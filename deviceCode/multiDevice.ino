@@ -15,10 +15,7 @@ int port = 80;
 IPAddress ipDevice(10, 0, 0, 200);
 IPAddress gateway(10, 0, 0, 138);
 IPAddress subnet(255, 0, 0, 0);
-boolean certain;
-
-
-
+String certain;
 
 
 ESP8266WiFiMulti WiFiMulti;
@@ -46,34 +43,12 @@ void setup() {
   Serial.print("IP:");
   Serial.println(ip);
 
-int pins[] = {16,5,4,0,2,14,12,13,15}
-for (int i = 0; i < sizeof(pins); i++){
-  pinMode(pins[i], OUTPUT);
-  digitalWrite(pins[i], HIGH);
-}
-// pinMode(16, OUTPUT);
-// pinMode(5, OUTPUT);
-// pinMode(4, OUTPUT);
-// pinMode(0, OUTPUT);
-// pinMode(2, OUTPUT);
-// pinMode(14, OUTPUT);
-// pinMode(12, OUTPUT);
-// pinMode(13, OUTPUT);
-// pinMode(15, OUTPUT);
-// // pinMode(TX, OUTPUT);
-// // pinMode(RX, OUTPUT);
-//
-// digitalWrite(16, HIGH);
-// digitalWrite(5, HIGH);
-// digitalWrite(4, HIGH);
-// digitalWrite(0, HIGH);
-// digitalWrite(2, LOW);
-// digitalWrite(14, HIGH);
-// digitalWrite(12, HIGH);
-// digitalWrite(13, HIGH);
-// digitalWrite(15, HIGH);
-// // digitalWrite(TX, HIGH);
-// // digitalWrite(RX, HIGH);
+  int pins[] = {16,5,4,0,2,14,12,13,15};
+
+  for (int i = 0; i < sizeof(pins); i++){
+    pinMode(pins[i], OUTPUT);
+    digitalWrite(pins[i], HIGH);
+  }
 
   setIp(ip);
 
@@ -82,15 +57,8 @@ for (int i = 0; i < sizeof(pins); i++){
   }
 
   server.on("/set/multi", handleStatus);
-  //server.on("/status/false", handleRootOff);
   server.on("/info", handleInfo);
-
-//  server.on("/inline", []() {
-//    server.send(200, "text/plain", "this works as well");
-//  });
-
   server.onNotFound(handleNotFound);
-
   server.begin();
   Serial.println("HTTP server started");
 }
@@ -110,12 +78,9 @@ void setIp(String ip){
       WiFiClient client;
       HTTPClient http;
       Serial.print("[HTTP] begin...\n");
-      if (http.begin(client, "http://88.8.67.178:3371/new/"+deviceName+"/true/"+ip+":"+port)) {
+      if (http.begin(client, "http://88.8.67.178:8000/new/"+deviceName+"/true/"+ip+":"+port)) {
         Serial.print("[HTTP] GET CODE: ");
-        // start connection and send HTTP header
         int httpCode = http.GET();
-
-        // httpCode will be negative on error
         if (httpCode > 0) {
           Serial.println(httpCode);
           if (httpCode == 200 ) {
@@ -126,7 +91,6 @@ void setIp(String ip){
         } else {
           Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
         }
-
         http.end();
       } else {
         Serial.printf("[HTTP} Unable to connect\n");
@@ -137,37 +101,26 @@ void setIp(String ip){
 }
 
 void handleInfo() {
-  String state;
-  if(certain){
-    server.send(200, "application/json", "{\"status\": true}");
-  }else{
-    server.send(200, "application/json", "{\"status\": false}");
-  };
-
+  server.send(200, "application/json", certain);
 }
 
-void types(String a){Serial.println("it's a String");}
-void types(int a)   {Serial.println("it's an int");}
-void types(char* a) {Serial.println("it's a char*");}
-void types(float a) {Serial.println("it's a float");}
 
 void handleStatus() {
-  for (uint8_t i = 0; i < server.args(); i++) {
-    //Serial.print( " " + server.argName(i) + ": " + server.arg(i) + "\n");
-    StaticJsonDocument<200> doc;
-    DeserializationError error = deserializeJson(doc, server.arg(i));
-    setPin(doc);
-  }
-  server.send(200, "application/json", "{\"status\": true}");
+  StaticJsonDocument<100> doc;
+  DeserializationError error = deserializeJson(doc, server.arg(0));
+  setPin(doc);
+  certain=server.arg(0);
+  server.send(200, "application/json", server.arg(0));
 }
 
-void setPin(StaticJsonDocument<200> doc){
-  for (int i = 0; i < sizeof(pins); i++){
-    digitalWrite(pins[i], doc[pins[i].toString());
+void setPin(StaticJsonDocument<100> doc){
+  int pins[9] = {16,5,4,0,2,14,12,13,15};
+  int tmpVal;
+  for (int i = 0; i < 9; i++){
+    tmpVal=doc[String(pins[i])];
+    digitalWrite(pins[i], !tmpVal);
   }
-
-  }
-
+}
 
 void handleNotFound() {
   String message = "File Not Found\n\n";
