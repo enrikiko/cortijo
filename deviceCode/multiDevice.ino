@@ -7,16 +7,16 @@
 #include <ESP8266mDNS.h>
 #include <ArduinoJson.h>
 
-
 const char *ssid = "iPhone";
 const char *password = "123443211";
+const char *ssid2 = "VilaVeronika";
+const char *password2 = "Julinka12";
 String deviceName = "Enrique1";
 int port = 80;
 IPAddress ipDevice(10, 0, 0, 200);
 IPAddress gateway(10, 0, 0, 138);
 IPAddress subnet(255, 0, 0, 0);
 String certain;
-
 
 ESP8266WiFiMulti WiFiMulti;
 ESP8266WebServer server(port);
@@ -28,6 +28,7 @@ void setup() {
 
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid, password);
+  WiFiMulti.addAP(ssid2, password2);
   //WiFi.config(ipDevice, gateway, subnet);
   WiFi.begin();
 
