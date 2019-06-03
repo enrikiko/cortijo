@@ -1,7 +1,7 @@
 n=0
-for run in {1..5}
+for value in {1..5}
 do
-  name="fp-"$run
+  name="fp-"$n
   sh fp.sh $name
   n=$((n+1))
 done
