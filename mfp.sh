@@ -1,5 +1,6 @@
 name="mock"
 for n in {1..4}
 do
-  sh fp.sh $name$n
+  i=$n
+  sh fp.sh $name$i
 done
