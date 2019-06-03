@@ -1,4 +1,4 @@
-IP=$local_ip
+IP=$local_ip | tr -d '"'
 STATUS="true"
 SERVERIP="$IP:8000"
 echo "$SERVERIP"/new/"$mock_name/$STATUS/$IP:$mock_port"
