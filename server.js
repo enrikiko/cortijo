@@ -111,9 +111,9 @@ app.get("/update/:name/:status", async function(req, res){
   }else {
   try{
     var name = req.params.name
-    if (req.params.status == "on"){var status = true}
-    else if (req.params.status == "off"){var status = false}
-    else{res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})}
+    // if (req.params.status == "on"){var status = true}
+    // else if (req.params.status == "off"){var status = false}
+    // else{res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})}
 
     joker.log("Change status of "+name+" to "+status);
 

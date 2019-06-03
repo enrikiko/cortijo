@@ -1,4 +1,4 @@
-docker rm -f mock mock1 mock2 mock3 cortijo
+docker rm -f mock mock1 mock2 mock3 mock4 cortijo
 git pull
 docker build -t cortijo .
 docker build -t mock ./deviceMock

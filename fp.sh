@@ -1,4 +1,4 @@
-url="http://88.8.67.178:3371"
+url="http://88.8.67.178:8000"
 device=$1
 echo
 echo "Create New Device"
