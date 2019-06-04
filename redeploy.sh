@@ -1,3 +1,5 @@
+docker pull enriqueramosmunoz/rolling:mongodb
+docker run -d -p 7999:27017 --name mongodb enriqueramosmunoz/rolling:mongodb
 docker rm -f mock1 mock2 mock3 mock4 cortijo
 git pull
 docker build -t cortijo .

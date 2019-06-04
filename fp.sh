@@ -16,6 +16,11 @@ echo
 echo "View Device"
 echo $url"/name/"$device
 curl -X GET $url"/name/"$device
+echo
+echo
+echo "Change Device Status"
+echo $url"/update/"$device"/true"
+curl -X GET $url"/update/"$device"/true"
 # echo "Create An Existing Device"
 # curl -X GET $url"/new/"$device"/true/192.2168.1.23:2000"
 # echo
