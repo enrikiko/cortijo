@@ -23,7 +23,7 @@ client.connect(connString, function(err, db) {
 // });
 
 // definicion de esquema del artículo
-const deviceSchema = mongoose.Schema({
+const deviceSchema = client.Schema({
   name: {
     type: String,
     required: true
@@ -39,7 +39,7 @@ const deviceSchema = mongoose.Schema({
 });
 
 // definicion del modelo de dato de nuevos articulos
-let myDevice = mongoose.model('User', deviceSchema);
+let myDevice = client.model('User', deviceSchema);
 
 module.exports = {
 
