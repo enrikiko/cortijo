@@ -1,15 +1,23 @@
 const mongoose = require('mongoose');
-let connString = 'mongodb://mongo:27017/users';
-const db = mongoose.connection;
-mongoose.connect(connString);
+// let connString = 'mongodb://mongo:27017/users';
+// const db = mongoose.connection;
+// mongoose.connect(connString);
+//
+// db.on('error',function(){
+// console.log("Error al conectarse a Mongo");
+// });
+//
+// db.once('open', function() {
+// console.log("Conectado a MongoDB");
+// });
 
-db.on('error',function(){
-console.log("Error al conectarse a Mongo");
-});
-
-db.once('open', function() {
-console.log("Conectado a MongoDB");
-});
+let mongoose
+  .connect(
+    'mongodb://localhost/users',
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
 
 // definicion de esquema del artículo
 const deviceSchema = mongoose.Schema({
