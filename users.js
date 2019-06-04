@@ -1,15 +1,26 @@
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+const mongoose = require('mongodb');
 let connString = 'mongodb://mongo:27017/users';
-const db = mongoose.connection;
-mongoose.connect(connString);
+// const db = mongoose.connection;
+// mongoose.connect(connString);
+const client = mongoose.MongoClient;
 
-db.on('error',function(){
-console.log("Error al conectarse a Mongo");
+client.connect(connString, function(err, db) {
+    if(err) {
+        console.log('database is not connected')
+    }
+    else {
+        console.log('connected!!')
+    }
 });
 
-db.once('open', function() {
-console.log("Conectado a MongoDB");
-});
+// db.on('error',function(){
+// console.log("Error al conectarse a Mongo");
+// });
+//
+// db.once('open', function() {
+// console.log("Conectado a MongoDB");
+// });
 
 // definicion de esquema del artículo
 const deviceSchema = mongoose.Schema({
