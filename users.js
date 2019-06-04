@@ -1,29 +1,18 @@
-// const mongoose = require('mongoose');
-const mongoose = require('mongodb');
+const mongoose = require('mongoose');
 let connString = 'mongodb://mongo:27017/users';
-// const db = mongoose.connection;
-// mongoose.connect(connString);
-const client = mongoose.MongoClient;
+const db = mongoose.connection;
+mongoose.connect(connString);
 
-client.connect(connString, function(err, db) {
-    if(err) {
-        console.log('database is not connected')
-    }
-    else {
-        console.log('connected!!')
-    }
+db.on('error',function(){
+console.log("Error al conectarse a Mongo");
 });
 
-// db.on('error',function(){
-// console.log("Error al conectarse a Mongo");
-// });
-//
-// db.once('open', function() {
-// console.log("Conectado a MongoDB");
-// });
+db.once('open', function() {
+console.log("Conectado a MongoDB");
+});
 
 // definicion de esquema del artículo
-const deviceSchema = client.Schema({
+const deviceSchema = mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -39,7 +28,7 @@ const deviceSchema = client.Schema({
 });
 
 // definicion del modelo de dato de nuevos articulos
-let myDevice = client.model('User', deviceSchema);
+let myDevice = mongoose.model('User', deviceSchema);
 
 module.exports = {
 
