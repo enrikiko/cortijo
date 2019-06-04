@@ -10,8 +10,7 @@ const mongoose = require('mongoose');
 // db.once('open', function() {
 // console.log("Conectado a MongoDB");
 // });
-
-let mongoose
+mongoose
   .connect(
     'mongodb://localhost/users',
     { useNewUrlParser: true }
