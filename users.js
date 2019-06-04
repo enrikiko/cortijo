@@ -12,14 +12,14 @@ const mongoose = require('mongoose');
 // });
 mongoose
   .connect(
-    'mongodb://localhost/users',
+    'mongodb://mongo:27017/users',
     { useNewUrlParser: true }
   )
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
 // definicion de esquema del artículo
-const deviceSchema = mongoose.Schema({
+const deviceSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
