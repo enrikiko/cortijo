@@ -1,5 +1,8 @@
 version: "2"
 services:
+  networks:
+    app-tier:
+      driver: bridge
   app:
     container_name: cortijo
     restart: always
