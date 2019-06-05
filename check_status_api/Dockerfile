@@ -10,4 +10,4 @@ RUN apt update
 COPY package/. .
 RUN npm install
 COPY . .
-ENTRYPOINT ["node", "server.js"]
+ENTRYPOINT ["sleep", "5", "&&", "node", "server.js"]
