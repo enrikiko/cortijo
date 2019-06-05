@@ -8,12 +8,12 @@ services:
       - "8000:3000"
     links:
       - mongo
+    networks:
+      - cortijo-network
   mongo:
     container_name: mongo
     image: mongo
     ports:
       - "27017:27017"
-  networks:
-    default:
-      external:
-        name: cortijo-network
+    networks:
+      - cortijo-network
