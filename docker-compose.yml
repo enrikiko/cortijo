@@ -9,14 +9,14 @@ services:
     links:
       - mongo
     networks:
-      - cortijo-network
+      - net
   mongo:
     container_name: mongo
     image: mongo
     ports:
       - "27017:27017"
     networks:
-      - cortijo-network
+      - net
 networks:
-  default:
-    driver: cortijo-network 
+  net:
+    driver: cortijo-network
