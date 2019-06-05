@@ -43,7 +43,7 @@ async function check() {
   try {
 
     var listDevice = await myDevice.getDevice();
-    //console.log(listDevice);
+    console.log(listDevice);
     for (elem in listDevice){
       try {
         //console.log("http://"+listDevice[elem].ip+"/info");
