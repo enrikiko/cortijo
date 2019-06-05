@@ -1,8 +1,5 @@
-version: "2"
+version: "1"
 services:
-  networks:
-    app-tier:
-      driver: bridge
   app:
     container_name: cortijo
     restart: always
@@ -16,3 +13,6 @@ services:
     image: mongo
     ports:
       - "27017:27017"
+  networks:
+   default:
+    driver: cortijo-network
