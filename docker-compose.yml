@@ -15,6 +15,14 @@ services:
       - "8100:3000"
     networks:
       - network
+  mock:
+    container_name: mock
+    restart: always
+    build: ./deviceMock/.
+    ports:
+      - "8001:3000"
+    networks:
+      - network
   app:
     container_name: cortijo
     restart: always
