@@ -17,3 +17,5 @@ services:
       - "27017:27017"
     networks:
       - cortijo-network
+networks:
+  default: cortijo-network 
