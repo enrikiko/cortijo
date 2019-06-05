@@ -7,6 +7,13 @@ services:
       - "27017:27017"
     networks:
       - network
+  check:
+    container_name: check
+    image: check
+    ports:
+      - "8100:3000"
+    networks:
+      - network
   app:
     container_name: cortijo
     restart: always
