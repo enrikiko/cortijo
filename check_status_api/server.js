@@ -43,14 +43,14 @@ async function check() {
   try {
 
     var listDevice = await myDevice.getDevice();
-    console.log(listDevice);
+    //console.log(listDevice);
     for (elem in listDevice){
       try {
-        console.log("http://"+listDevice[elem].ip+"/info");
+        //console.log("http://"+listDevice[elem].ip+"/info");
         let res = await request.get("http://"+listDevice[elem].ip+"/info");
-        console.log(res.body);
+        //console.log(res.body);
         let save = myDevice.setStatus(listDevice[elem]._id, res.body.status)
-        console.log(save);
+        //console.log(save);
       } catch (e) {
         console.log(e);
       } finally {
@@ -63,7 +63,7 @@ async function check() {
   }
 }
 
-if (true) {
+while (true) {
   sleep(2000)
   check()
 }
