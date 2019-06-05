@@ -22,5 +22,5 @@ app.get("/all", async function(req, res) { //OK
   })
 
 app.listen(3000, function () {
-    joker.log('Servidor activo en http://localhost:3000');
+    console.log('Servidor activo en http://localhost:3000');
   })
