@@ -14,5 +14,6 @@ services:
     ports:
       - "27017:27017"
   networks:
-   default:
-    driver: cortijo-network
+    default:
+      external:
+        name: cortijo-network
