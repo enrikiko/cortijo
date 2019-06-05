@@ -11,7 +11,8 @@
     "cors": "^2.8.4",
     "express": "*",
     "mongoose": "*",
-    "request": "*"
+    "request": "*",
+    "superagent": "*"
   },
   "author": "Enrique Ramos",
   "license": "ISC"

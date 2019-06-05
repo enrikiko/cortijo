@@ -20,9 +20,9 @@ services:
     restart: always
     build: ./deviceMock/.
     environment:
-      - mock_name=mock1
+      - mock_name=mock
       - mock_port=8001
-      - localIp=192.168.0.50
+      - local_Ip=192.168.0.50
     ports:
       - "8001:3000"
     networks:

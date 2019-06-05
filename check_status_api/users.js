@@ -97,6 +97,18 @@ module.exports = {
      });
    },
 
+   setStatus: (id, status) => {
+    return myDevice.findById(id, function(err, result) {
+       if (err) throw err
+       if(result){
+         result.status = status
+         result.check = true
+         result.save()
+         console.log(result)
+       }
+     });
+   },
+
    updateDeviceIp: (id, ip) => {
      var device = myDevice.findById(id, function(err, result) {
        if (err) throw err
