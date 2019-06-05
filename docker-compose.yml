@@ -10,6 +10,7 @@ services:
   check:
     container_name: check
     image: check
+    build: ./check_status_api/.
     ports:
       - "8100:3000"
     networks:
