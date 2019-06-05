@@ -9,6 +9,7 @@ services:
       - network
   check:
     container_name: check
+    restart: always
     image: check
     build: ./check_status_api/.
     ports:
