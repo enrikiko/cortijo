@@ -1,5 +1,12 @@
 version: "2"
 services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - network
   app:
     container_name: cortijo
     restart: always
@@ -8,13 +15,6 @@ services:
       - "8000:3000"
     links:
       - mongo
-    networks:
-      - network
-  mongo:
-    container_name: mongo
-    image: mongo
-    ports:
-      - "27017:27017"
     networks:
       - network
 networks:

@@ -1,1 +1,1 @@
-mongod & sh init2.sh
+sleep 5 & sh init2.sh

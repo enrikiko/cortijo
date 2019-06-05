@@ -13,4 +13,4 @@ RUN apt update
 COPY package/. .
 RUN npm install
 COPY . .
-ENTRYPOINT ["sh", "init2.sh"]
+ENTRYPOINT ["sh", "init.sh"]

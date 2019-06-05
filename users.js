@@ -26,6 +26,10 @@ const deviceSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  check: {
+    type: Boolean,
+    required: false
+  },
 });
 
 // definicion del modelo de dato de nuevos articulos
