@@ -18,4 +18,5 @@ services:
     networks:
       - cortijo-network
 networks:
-  default: cortijo-network 
+  default:
+    driver: cortijo-network 
