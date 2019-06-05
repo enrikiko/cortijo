@@ -65,4 +65,5 @@ async function check() {
 
 if (true) {
   sleep(2000)
+  check()
 }
