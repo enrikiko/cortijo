@@ -1,42 +1,55 @@
-/*
-  Blink
-
-  Turns an LED on for one second, then off for one second, repeatedly.
-
-  Most Arduinos have an on-board LED you can control. On the UNO, MEGA and ZERO
-  it is attached to digital pin 13, on MKR1000 on pin 6. LED_BUILTIN is set to
-  the correct LED pin independent of which board is used.
-  If you want to know what pin the on-board LED is connected to on your Arduino
-  model, check the Technical Specs of your board at:
-  https://www.arduino.cc/en/Main/Products
-
-  modified 8 May 2014
-  by Scott Fitzgerald
-  modified 2 Sep 2016
-  by Arturo Guadalupi
-  modified 8 Sep 2016
-  by Colby Newman
-
-  This example code is in the public domain.
-
-  http://www.arduino.cc/en/Tutorial/Blink
-*/
+#include <SPI.h>
+#include <Ethernet.h>
+byte mac[] = {
+  0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED
+};
+IPAddress ip(192, 168, 1, 200);
+EthernetServer server(80);
+boolean certian = true;
 int rele1 = 11;
 int rele2 = 12;
-// the setup function runs once when you press reset or power the board
+
 void setup() {
-  // initialize digital pin LED_BUILTIN as an output.
   pinMode(rele1, OUTPUT);
   pinMode(rele2, OUTPUT);
+  Serial.begin(9600);
+  while (!Serial) {
+    ; // wait for serial port to connect. Needed for native USB port only
+  }
+  Serial.println("Ethernet WebServer Example");
+  if (Ethernet.hardwareStatus() == EthernetNoHardware) {
+    Serial.println("Ethernet shield was not found.  Sorry, can't run without hardware. :(");
+    while (true) {
+      delay(1); // do nothing, no point running without Ethernet hardware
+    }
+  }
+  if (Ethernet.linkStatus() == LinkOFF) {
+    Serial.println("Ethernet cable is not connected.");
+  }
+
+  server.on("/status/true", handleRootOn);
+  server.on("/status/false", handleRootOff);
+  server.begin();
+  Serial.print("server is at ");
+  Serial.println(Ethernet.localIP());
+
 }
 
-// the loop function runs over and over again forever
-void loop() {
-  digitalWrite(rele1, HIGH);
-  digitalWrite(rele2, HIGH);
-  // turn the LED on (HIGH is the voltage level)
-  delay(10000);                       // wait for a second
+void handleRootOn() {
+  certain=true;
   digitalWrite(rele1, LOW);    // turn the LED off by making the voltage LOW
   digitalWrite(rele2, LOW);
-  delay(10000);                       // wait for a second
+  server.send(200, "application/json", "{\"status\": true}");
+}
+
+void handleRootOn() {
+  certain=false;
+  digitalWrite(rele1, HIGH);    // turn the LED off by making the voltage LOW
+  digitalWrite(rele2, HIGH);
+  server.send(200, "application/json", "{\"status\": false}");
+}
+
+
+void loop() {
+  server.handleClient();
 }
