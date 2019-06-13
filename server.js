@@ -106,25 +106,26 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
 //update user
 app.get("/update/:name/:status", async function(req, res){
   var status = joker.getStatus(req.params.status);
+  var name = req.params.name
   if (status === null){
     res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
   }else {
   try{
-    var name = req.params.name
-    // if (req.params.status == "on"){var status = true}
-    // else if (req.params.status == "off"){var status = false}
-    // else{res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})}
 
     joker.log("Change status of "+name+" to "+status);
-
-    var id = await myDevice.getIdbyName(name)
-    if(!id){res.status(400).json({"Request": "Incorrect", "Device": "Not found"})}
+    //Get ID of the device
+    // var id = await myDevice.getIdbyName(name)
+    var ip = await myDevice.getIpbyName(name)
+    if(!ip){res.status(400).json({"Request": "Incorrect", "Device": "Not found"})}
     else {
-      var ip = await myDevice.getIpbyName(name)
+      //Get IP of the device
+      // var ip = await myDevice.getIpbyName(name)
+      //switch status of the device
       var response = await joker.switchStatus(ip, status)
       if (response.code == 200) {
         var lastStatus = await myDevice.updateDevice(id, status)
         var newStatus = await myDevice.getDeviceById(id)
+
         joker.log("Previous Status:"+lastStatus+ " New Status:"+newStatus)
         res.status(response.code).send(response)
       }

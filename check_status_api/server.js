@@ -173,7 +173,7 @@ function sleep(delay) {
     while (new Date().getTime() < start + delay);
 }
 
-async function i() {
+async function checkStatus() {
 
   try {
     const list = await mongoFunction.getDevice();
@@ -184,6 +184,7 @@ async function i() {
   } finally {
     console.log("end");
   }
+  
 }
 
 
