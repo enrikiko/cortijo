@@ -184,7 +184,7 @@ async function checkStatus() {
   } finally {
     console.log("end");
   }
-  
+
 }
 
 
@@ -215,5 +215,5 @@ async function loopList(listDevice) {
 
 while (true) {
   sleep(2000)
-  check()
+  checkStatus()
 }

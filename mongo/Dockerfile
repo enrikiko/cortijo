@@ -1,2 +1,2 @@
 FROM enriqueramosmunoz/rolling:mongo
-ENTRYPOINT ["mongod"]
+ENTRYPOINT ["sh", "init.sh", "&&", "sleep", "infinity"]

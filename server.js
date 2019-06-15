@@ -12,16 +12,7 @@ app.options('*', cors());
 app.use(express.urlencoded())
 var http = require('http').Server(app);
 var io = http;
-//var io = require('socket.io')(http);
 
-
-
-
-// io.on('connection', function(socket){
-//   socket.on('chat message', function(msg){
-//     //execute(msg);
-//   });
-// });
 
 //Get log
 app.get("/log", function(req, res) { //OK
@@ -114,18 +105,17 @@ app.get("/update/:name/:status", async function(req, res){
 
     joker.log("Change status of "+name+" to "+status);
     //Get ID of the device
-    // var id = await myDevice.getIdbyName(name)
+    //var id = await myDevice.getIdbyName(name)
     var ip = await myDevice.getIpbyName(name)
     if(!ip){res.status(400).json({"Request": "Incorrect", "Device": "Not found"})}
     else {
       //Get IP of the device
-      // var ip = await myDevice.getIpbyName(name)
+      //var ip = await myDevice.getIpbyName(name)
       //switch status of the device
       var response = await joker.switchStatus(ip, status)
       if (response.code == 200) {
         var lastStatus = await myDevice.updateDevice(id, status)
         var newStatus = await myDevice.getDeviceById(id)
-
         joker.log("Previous Status:"+lastStatus+ " New Status:"+newStatus)
         res.status(response.code).send(response)
       }

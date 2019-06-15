@@ -2,6 +2,8 @@ version: "2"
 services:
   mongo:
     container_name: mongo
+    build: ./mongo/.
+    restart: on-failure
     image: mongo
     ports:
       - "27017:27017"
