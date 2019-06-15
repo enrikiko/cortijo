@@ -14,7 +14,7 @@
  by Tom Igoe
  modified 02 Sept 2015
  by Arturo Guadalupi
- 
+
  */
 
 #include <SPI.h>
@@ -77,23 +77,25 @@ void setup() {
 
 void loop() {
   // listen for incoming clients
-  String stringC;
+  String response;
   EthernetClient client = server.available();
   if (client) {
     while (client.connected()) {
       if (client.available()) {
-        
+
         char c = client.read();
         Serial.write(c);
-        stringC=stringC+c;
+        response=response+c;
       }
       else{
         //client.print(stringC.substring(4,15));
-        if(stringC.substring(4,15)=="/rele1/true"){digitalWrite(rele1, LOW);}
-        if(stringC.substring(4,16)=="/rele1/false"){digitalWrite(rele1, HIGH);}
-        if(stringC.substring(4,15)=="/rele2/true"){digitalWrite(rele2, LOW);}
-        if(stringC.substring(4,16)=="/rele2/false"){digitalWrite(rele2, HIGH);}
-        client.print(stringC);
+        if(response.substring(4,15)=="/rele1/true"){digitalWrite(rele1, LOW);}
+        //else if(stringC.substring(4,16)=="/rele1/false"){digitalWrite(rele1, HIGH);}
+        else if(path("/rele2/true", response)){digitalWrite(rele2, LOW);}
+        else if(response.substring(4,16)=="/rele2/false"){digitalWrite(rele2, HIGH);}
+        else if(response.substring(4,15)=="/rele3/true"){digitalWrite(rele3, LOW);}
+        else if(response.substring(4,16)=="/rele3/false"){digitalWrite(rele3, HIGH);}
+        client.print(response);
         client.stop();
         stringC="";
         }
@@ -101,4 +103,12 @@ void loop() {
     delay(1);
     Serial.println("client disconnected");
   }
+}
+
+boolean path(String path, String response){
+     // int len=path.length();
+     // String txt=root.substring(4, len);
+     // if (root.substring(4, path.length())==path){return true;}
+     // else{return false;}
+     return (response.substring(4, path.length())==path);
 }
