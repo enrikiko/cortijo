@@ -7,5 +7,5 @@ RUN npm install
 COPY scs/. .
 ENV mock_name=$NAME
 ENV mock_port=$PORT
-ENV localIp=$IP
+ENV local_ip=$IP
 ENTRYPOINT ["sh", "init.sh"]

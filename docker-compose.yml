@@ -24,9 +24,21 @@ services:
     environment:
       - mock_name=mock
       - mock_port=8001
-      - local_Ip=192.168.0.50
+      - local_ip=10.0.0.17
     ports:
       - "8001:3000"
+    networks:
+      - network
+  mock-test:
+    container_name: mock-test
+    restart: always
+    build: ./deviceMock/.
+    environment:
+      - mock_name=mock-test
+      - mock_port=8002
+      - local_ip=10.0.0.17
+    ports:
+      - "8002:3000"
     networks:
       - network
   app:
