@@ -1,1 +1,1 @@
-sleep 5 && node server.js
+node server.js
