@@ -9,12 +9,9 @@ RUN apt-get install gcc g++ make -y
 RUN apt-get install nodejs -y
 RUN npm install -g @angular/cli
 RUN mkdir angular
-# RUN mkdir -p /var/www/angular/html
-# RUN chmod -R 755 /var/www/angular/html
-COPY ./frontAng/. angular/.
+COPY ./. angular/.
 WORKDIR angular/.
 RUN ng build
 RUN rm -r /var/www/html
 RUN mv ./dist/frondAng /var/www/html
-# RUN /etc/init.d/apache2 restart
 ENTRYPOINT ["sh", "init.sh"]
