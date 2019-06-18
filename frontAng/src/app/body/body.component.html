@@ -1,0 +1,10 @@
+<div class="bg-primary container-fluid p-1">
+
+  <button *ngFor="let device of devices" class="m-4 bg-warning" (click)="changeStatus(device)">
+        <h2>Id:{{ device._id }}</h2>
+        <h2>Name:{{ device.name }}</h2>
+        <h2>Status:{{ device.status }}</h2>
+        <h2>Ip:{{ device.ip }}</h2>
+      </button>
+
+</div>
