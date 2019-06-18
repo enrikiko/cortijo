@@ -80,7 +80,7 @@ services:
     restart: always
     build: ./frontAng/.
     ports:
-      - "80:80"
+      - "443:80"
     networks:
       - network
 networks:
