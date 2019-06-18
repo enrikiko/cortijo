@@ -51,5 +51,13 @@ services:
       - mongo
     networks:
       - network
+  front:
+    container_name: front
+    restart: always
+    build: ./frontAng/.
+    ports:
+      - "80:80"
+    networks:
+      - network
 networks:
   network:
