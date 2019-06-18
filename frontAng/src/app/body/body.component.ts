@@ -24,9 +24,9 @@ export class BodyComponent implements OnInit {
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        for(let index in data){
-          console.log(data[index])
-        }
+        // for(let index in data){
+        //   console.log(data[index])
+        // }
         this.devices=data;
       }
       else {
@@ -41,18 +41,18 @@ export class BodyComponent implements OnInit {
     if(device.status){newStatus="false"}
     else if (!device.status){newStatus="true"}
     let url = "http://localhost:8000/update/" + device.name +"/"+ newStatus
-    console.log(url)
+    // console.log(url)
     this.http.get(url).subscribe( data =>
     {
       if(data!=null){
-        console.log(data)
-        console.log('response')
+        // console.log(data)
+        this.getDevicesList()
       }
       else {
-      console.log('no response')
+      // console.log('no response')
       }
     })
-    this.getDevicesList()
+
   }
 
 }

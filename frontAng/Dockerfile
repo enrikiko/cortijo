@@ -11,6 +11,7 @@ RUN npm install -g @angular/cli
 RUN mkdir angular
 COPY ./. angular/.
 WORKDIR angular/.
+RUN npm install --save-dev @angular-devkit/build-angular
 RUN ng build
 RUN rm -r /var/www/html
 RUN mv ./dist/frondAng /var/www/html
