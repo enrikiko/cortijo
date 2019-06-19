@@ -20,7 +20,8 @@ export class BodyComponent implements OnInit {
   }
 
   getDevicesList(){
-    let url = "http://localhost:8000/all"
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    let url = "http://" + host + ":8000/all"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -40,7 +41,8 @@ export class BodyComponent implements OnInit {
     console.log(device.status)
     if(device.status){newStatus="false"}
     else if (!device.status){newStatus="true"}
-    let url = "http://localhost:8000/update/" + device.name +"/"+ newStatus
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    let url = "http://" + host + ":8000/update/" + device.name +"/"+ newStatus
     // console.log(url)
     this.http.get(url).subscribe( data =>
     {

@@ -1,10 +1,10 @@
-<div class="bg-light container-fluid">
-  <div class="row m-2">
-    <button *ngFor="let device of devices" [ngClass]="{'bg-secondary': device.status==false , 'bg-success': device.status==true}" class="m-2 col-3" (click)="changeStatus(device)">
-        <!-- <h2>Id:{{ device._id }}</h2> -->
+<div class="bg-light container-fluid ">
+  <div class="row">
+    <div *ngFor="let device of devices" class="col-3">
+      <button class="col-12" (click)="changeStatus(device)" [ngClass]="{'bg-secondary': device.status==false , 'bg-success': device.status==true}" ><!-- <h2>Id:{{ device._id }}</h2> -->
         <h2>{{ device.name }}</h2>
         <h2>{{ device.status }}</h2>
-        <!-- <h2>Ip:{{ device.ip }}</h2> -->
-    </button>
+      </button><!-- <h2>Ip:{{ device.ip }}</h2> -->
+    </div>
   </div>
 </div>
