@@ -7,8 +7,10 @@
 #include <ESP8266mDNS.h>
 
 
-const char *ssid = "Cuarto2.4G";
-const char *password = "Lunohas13steps";
+const char *ssid1 = "Cuarto2.4G";
+const char *password1 = "Lunohas13steps";
+const char *ssid2 = "Cuarto5G";
+const char *password2 = "Lunohas13steps";
 String deviceName = "Device-1";
 int port = 80;
 IPAddress ipDevice(192, 168, 1, 100);
@@ -27,7 +29,8 @@ void setup() {
   Serial.begin(115200);
 
   WiFi.mode(WIFI_STA);
-  WiFiMulti.addAP(ssid, password);
+  WiFiMulti.addAP(ssid1, password1);
+  WiFiMulti.addAP(ssid2, password2);
   WiFi.config(ipDevice,dns, gateway, subnet);
   WiFi.begin();
 

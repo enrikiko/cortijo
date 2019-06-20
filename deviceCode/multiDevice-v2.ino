@@ -55,7 +55,7 @@ void setup() {
     setIp(ip, pins[i]);
   }
 
-  
+
 
   if (MDNS.begin("esp8266")) {
     Serial.println("MDNS responder started");
@@ -63,7 +63,23 @@ void setup() {
 
   server.on("/"+deviceName+"-16/status/true", handleRoot16true);
   server.on("/"+deviceName+"-16/status/false", handleRoot16false);
-  
+  server.on("/"+deviceName+"-5/status/true", handleRoot5true);
+  server.on("/"+deviceName+"-5/status/false", handleRoot5false);
+  server.on("/"+deviceName+"-4/status/true", handleRoot4true);
+  server.on("/"+deviceName+"-4/status/false", handleRoot4false);
+  server.on("/"+deviceName+"-0/status/true", handleRoot0true);
+  server.on("/"+deviceName+"-0/status/false", handleRoot0false);
+  server.on("/"+deviceName+"-2/status/true", handleRoot2true);
+  server.on("/"+deviceName+"-2/status/false", handleRoot2false);
+  server.on("/"+deviceName+"-14/status/true", handleRoot14true);
+  server.on("/"+deviceName+"-14/status/false", handleRoot14false);
+  server.on("/"+deviceName+"-12/status/true", handleRoot12true);
+  server.on("/"+deviceName+"-12/status/false", handleRoot12false);
+  server.on("/"+deviceName+"-13/status/true", handleRoot13true);
+  server.on("/"+deviceName+"-13/status/false", handleRoot13false);
+  server.on("/"+deviceName+"-15/status/true", handleRoot15true);
+  server.on("/"+deviceName+"-15/status/false", handleRoot15false);
+
   server.onNotFound(handleNotFound);
   server.begin();
   Serial.println("HTTP server started");
@@ -110,19 +126,95 @@ void handleInfo() {
   server.send(200, "application/json", certain);
 }
 
-
+//16,5,4,0,2,14,12,13,15
+void handleRoot15true() {
+  digitalWrite(15, true);
+  Serial.println("pin 15 true");
+  server.send(200, "application/json", "{\"status\": true}");
+}
+void handleRoot15false() {
+  digitalWrite(15, false);
+  Serial.println("pin 15 false");
+  server.send(200, "application/json", "{\"status\": false}");
+}
+void handleRoot13true() {
+  digitalWrite(13, true);
+  Serial.println("pin 13 true");
+  server.send(200, "application/json", "{\"status\": true}");
+}
+void handleRoot13false() {
+  digitalWrite(13, false);
+  Serial.println("pin 13 false");
+  server.send(200, "application/json", "{\"status\": false}");
+}
+void handleRoot12true() {
+  digitalWrite(12, true);
+  Serial.println("pin 12 true");
+  server.send(200, "application/json", "{\"status\": true}");
+}
+void handleRoot12false() {
+  digitalWrite(12, false);
+  Serial.println("pin 12 false");
+  server.send(200, "application/json", "{\"status\": false}");
+}
+void handleRoot14true() {
+  digitalWrite(14, true);
+  Serial.println("pin 14 true");
+  server.send(200, "application/json", "{\"status\": true}");
+}
+void handleRoot14false() {
+  digitalWrite(14, false);
+  Serial.println("pin 14 false");
+  server.send(200, "application/json", "{\"status\": false}");
+}
+void handleRoot2true() {
+  digitalWrite(2, true);
+  Serial.println("pin 2 true");
+  server.send(200, "application/json", "{\"status\": true}");
+}
+void handleRoot2false() {
+  digitalWrite(2, false);
+  Serial.println("pin 2 false");
+  server.send(200, "application/json", "{\"status\": false}");
+}
+void handleRoot0true() {
+  digitalWrite(0, true);
+  Serial.println("pin 0 true");
+  server.send(200, "application/json", "{\"status\": true}");
+}
+void handleRoot0false() {
+  digitalWrite(0, false);
+  Serial.println("pin 0 false");
+  server.send(200, "application/json", "{\"status\": false}");
+}
+void handleRoot4true() {
+  digitalWrite(4, true);
+  Serial.println("pin 4 true");
+  server.send(200, "application/json", "{\"status\": true}");
+}
+void handleRoot4false() {
+  digitalWrite(4, false);
+  Serial.println("pin 4 false");
+  server.send(200, "application/json", "{\"status\": false}");
+}
 void handleRoot16true() {
-  //certain=true;
-  //light(true);
   digitalWrite(16, true);
   Serial.println("pin 16 true");
   server.send(200, "application/json", "{\"status\": true}");
 }
 void handleRoot16false() {
-  //certain=true;
-  //light(true);
   digitalWrite(16, false);
   Serial.println("pin 16 false");
+  server.send(200, "application/json", "{\"status\": false}");
+}
+void handleRoot5true() {
+  digitalWrite(5, true);
+  Serial.println("pin 5 true");
+  server.send(200, "application/json", "{\"status\": true}");
+}
+void handleRoot5false() {
+  digitalWrite(5, false);
+  Serial.println("pin 5 false");
   server.send(200, "application/json", "{\"status\": false}");
 }
 //void handleStatus() {
