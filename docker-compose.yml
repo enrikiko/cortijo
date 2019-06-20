@@ -29,42 +29,42 @@ services:
       - "8001:3000"
     networks:
       - network
-  mock2:
-    container_name: mock2
-    restart: always
-    build: ./deviceMock/.
-    environment:
-      - mock_name=mock2
-      - mock_port=8002
-      - local_ip=192.168.1.50
-    ports:
-      - "8002:3000"
-    networks:
-      - network
-  mock3:
-    container_name: mock3
-    restart: always
-    build: ./deviceMock/.
-    environment:
-      - mock_name=mock3
-      - mock_port=8003
-      - local_ip=192.168.1.50
-    ports:
-      - "8003:3000"
-    networks:
-      - network
-  mock4:
-    container_name: mock4
-    restart: always
-    build: ./deviceMock/.
-    environment:
-      - mock_name=mock4
-      - mock_port=8004
-      - local_ip=192.168.1.50
-    ports:
-      - "8004:3000"
-    networks:
-      - network
+  # mock2:
+  #   container_name: mock2
+  #   restart: always
+  #   build: ./deviceMock/.
+  #   environment:
+  #     - mock_name=mock2
+  #     - mock_port=8002
+  #     - local_ip=192.168.1.50
+  #   ports:
+  #     - "8002:3000"
+  #   networks:
+  #     - network
+  # mock3:
+  #   container_name: mock3
+  #   restart: always
+  #   build: ./deviceMock/.
+  #   environment:
+  #     - mock_name=mock3
+  #     - mock_port=8003
+  #     - local_ip=192.168.1.50
+  #   ports:
+  #     - "8003:3000"
+  #   networks:
+  #     - network
+  # mock4:
+  #   container_name: mock4
+  #   restart: always
+  #   build: ./deviceMock/.
+  #   environment:
+  #     - mock_name=mock4
+  #     - mock_port=8004
+  #     - local_ip=192.168.1.50
+  #   ports:
+  #     - "8004:3000"
+  #   networks:
+  #     - network
   app:
     container_name: cortijo
     restart: always
