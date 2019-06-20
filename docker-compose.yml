@@ -24,7 +24,7 @@ services:
     environment:
       - mock_name=mock1
       - mock_port=8001
-      - local_ip=10.0.0.17
+      - local_ip=localhost
     ports:
       - "8001:3000"
     networks:
@@ -36,7 +36,7 @@ services:
     environment:
       - mock_name=mock2
       - mock_port=8002
-      - local_ip=10.0.0.17
+      - local_ip=localhost
     ports:
       - "8002:3000"
     networks:
@@ -48,7 +48,7 @@ services:
     environment:
       - mock_name=mock3
       - mock_port=8003
-      - local_ip=10.0.0.17
+      - local_ip=localhost
     ports:
       - "8003:3000"
     networks:
@@ -60,7 +60,7 @@ services:
     environment:
       - mock_name=mock4
       - mock_port=8004
-      - local_ip=10.0.0.17
+      - local_ip=localhost
     ports:
       - "8004:3000"
     networks:
