@@ -3,10 +3,10 @@ const fs = require('fs');
 
 module.exports={
 
-     switchStatus: async (ip, status) => {
+     switchStatus: async (ip, status, name) => {
        console.log("http://"+ip+"/"+status);
        async function getResponse(ip, status, ) {
-         let response = await request.get("http://"+ip+"/status/"+status);
+         let response = await request.get("http://"+ip+"/"+name+"/status/"+status);
          res = {};
          res.code = response.statusCode;
          res.body = response.body

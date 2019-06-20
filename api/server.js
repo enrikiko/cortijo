@@ -112,7 +112,7 @@ app.get("/update/:name/:status", async function(req, res){
       //Get IP of the device
       //var ip = await myDevice.getIpbyName(name)
       //switch status of the device
-      var response = await joker.switchStatus(ip, status)
+      var response = await joker.switchStatus(ip, status, name)
       joker.log(response.code);
       if (response.code == 200) {
         var lastStatus = await myDevice.updateDevice(id, status)
