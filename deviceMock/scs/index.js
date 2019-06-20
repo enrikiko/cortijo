@@ -24,14 +24,14 @@ app.get("/*", function(req, res, next) {
 //   res.status(200).json(info)
 // });
 
-app.get('/'+env.mock_name+'/status/true', function(req, res){
+app.get('/'+process.env.mock_name+'/status/true', function(req, res){
   info={}
   info.status=true
   console.log(info);
   status=true;
   res.status(200).json(info)
 });
-app.get('/'+env.mock_name+'/status/false', function(req, res){
+app.get('/'+process.env.mock_name+'/status/false', function(req, res){
   info={}
   info.status=false
   console.log(info);
