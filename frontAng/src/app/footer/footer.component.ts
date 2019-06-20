@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  active: string="normal"
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  normal(){this.active="normal"}
+  off(){this.active="off"}
+  alarm(){this.active="alarm"}
 
 }

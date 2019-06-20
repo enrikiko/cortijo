@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  active: string="device"
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  device(){this.active="device"}
+  weather(){this.active="weather"}
+  timer(){this.active="timer"}
+  settings(){this.active="settings"}
+  graphics(){this.active="graphics"}
 
 }

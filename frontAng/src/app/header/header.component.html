@@ -1,7 +1,22 @@
-<div class="bg-danger container-flow">
-  <div class="row">
-    <div class="col-12">
-      <h1 class="text-center">Header</h1>
-    </div>
-  </div>
+<div class="bg-white container-flow fixed">
+      <nav class="navbar navbar-dark">
+        <!-- Navbar content -->
+        <ul class="nav nav-pills nav-fill">
+          <li class="nav-item" (click)="device()">
+            <a class="nav-link" [ngClass]="{'active': active=='device'}" href="#">Device</a>
+          </li>
+          <li class="nav-item" (click)="weather()">
+            <a class="nav-link" [ngClass]="{'active': active=='weather'}" href="#">Weather</a>
+          </li>
+          <li class="nav-item" (click)="timer()">
+            <a class="nav-link" [ngClass]="{'active': active=='timer'}" href="#">Timer</a>
+          </li>
+          <li class="nav-item" (click)="settings()">
+            <a class="nav-link" [ngClass]="{'active': active=='settings'}" href="#">Settings</a>
+          </li>
+          <li class="nav-item" (click)="graphics()">
+            <a class="nav-link" [ngClass]="{'active': active=='graphics'}" href="#">Graphics</a>
+          </li>
+        </ul>
+      </nav>
 </div>
