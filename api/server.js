@@ -12,6 +12,8 @@ app.options('*', cors());
 app.use(express.urlencoded())
 var http = require('http').Server(app);
 var io = http;
+var temperature;
+var humidity;
 
 
 //Get log
@@ -45,9 +47,24 @@ app.get("/all", async function(req, res) { //OK
   })
 
 //Set temperature and humidity
-app.get("/set", async function(req, res) { //OK
-  console.log("/set");
-  res.status(200).send("OK")
+app.get("/set/:temperature/:humidity", function(req, res) { //OK
+  temperature = req.params.temperature;
+  humidity = req.params.humidity;
+  console.log("/set/"+temperature+"/"+humidity);
+  response={}
+  response.temperature=temperature;
+  response.humidity=humidity;
+  res.status(200).json(response)
+  })
+
+//Get temperature and humidity
+app.get("/get/temperature/humidity", function(req, res) { //OK
+
+  console.log("/get/temperature/humidity");
+  response={}
+  response.temperature=temperature;
+  response.humidity=humidity;
+  res.status(200).json(response)
   })
 
 //Get device by name
