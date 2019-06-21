@@ -44,6 +44,11 @@ app.get("/all", async function(req, res) { //OK
   }catch(response){}
   })
 
+//Set temperature and humidity
+app.get("/set", async function(req, res) { //OK
+    res.status(200).json("OK")
+  })
+
 //Get device by name
 app.get("/name/:name", async function(req, res) { //OK
   try{
