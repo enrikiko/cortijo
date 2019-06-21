@@ -11,8 +11,7 @@ export class HeaderComponent implements OnInit {
 
   active: string="device";
 //  temperature: string="";
-//  humidity: string="";
-  data : any[]=null; 
+//  humidity: string="
 
     constructor(private http: HttpClient) { }
 
@@ -22,15 +21,15 @@ export class HeaderComponent implements OnInit {
 
   getData(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/get/temperature/humidity"
-    this.http.get<any[]>(url).subscribe( data =>
+    let url = "http://" + host + ":8000/all"
+    this.http.get(url).subscribe( data =>
     {
       if(data!=null){
         // for(let index in data){
         //   console.log(data[index])
         // }
-        this.data=data;
-        //this.humidity=data.humidity;
+        this.temperature=data.temperature;
+        this.humidity=data.humidity;
       }
       else {
       console.log('Database is empty')
