@@ -22,10 +22,9 @@ export class LogsComponent implements OnInit {
     this.http.get(url).subscribe( data =>
     {
       if(data!=null){
-        var response=data.response
-        //console.log(response)
+        var res = data.response
         var list = []
-        for(var index in response){list.push(index+"-"+response[index])}
+        for(var index in res){list.push(index+"-"+res[index])}
         this.logs=(list);
       }
       else {
