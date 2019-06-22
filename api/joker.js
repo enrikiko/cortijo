@@ -1,5 +1,6 @@
 const request = require('superagent');
 const fs = require('fs');
+var dot = false
 
 module.exports={
 
@@ -34,7 +35,9 @@ module.exports={
 
     log: (text) => {
        //io.emit('chat message', text);
-       text="\""+Date()+"\""+":"+"\""+text+"\","
+       text="\""+Date()+"\""+":"+"\""+text+"\""
+       if(dot){text=text+","}
+       dot=true
        // var date = Date()
        // text="\"${date}\":\"${text}\""
        console.log(text);
