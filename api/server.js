@@ -56,7 +56,7 @@ app.get("/all", async function(req, res) { //OK
 app.get("/set/:temperature/:humidity", function(req, res) {
   temperature = req.params.temperature;
   humidity = req.params.humidity;
-  res.status(200)
+  res.status(200).send()
   })
 
 //Get temperature and humidity
