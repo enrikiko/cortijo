@@ -21,10 +21,10 @@
             <a class="nav-link" [ngClass]="{'active': active=='logs'}" routerLink="logs">logs</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">Temperature:{{ data.temperature }}°C</a>
+            <a *ngIf="data" class="nav-link">Temperature:{{ data.temperature }}°C</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link">Humidity:{{ data.humidity }}%</a>
+            <a *ngIf="data" class="nav-link">Humidity:{{ data.humidity }}%</a>
           </li>
         </ul>
       </nav>
