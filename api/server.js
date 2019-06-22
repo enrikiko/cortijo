@@ -29,7 +29,7 @@ app.get("/*", function(req, res, next) {
 app.get("/log", function(req, res) { //OK
   try{
     var response = joker.readLog();
-    res.status(200).json({response})
+    res.status(200).json(response)
   }catch(response){}
   })
 

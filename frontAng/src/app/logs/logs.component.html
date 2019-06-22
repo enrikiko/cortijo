@@ -1,5 +1,7 @@
 <div class="my-5">
-  <p class="py-3">
-    {{ logs }}
-  </p>
+  <div *ngFor="let log of logs" class="">
+    <p class="py-3">
+      {{ log }}
+    </p>
+  </div>
 </div>
