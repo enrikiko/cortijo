@@ -34,9 +34,9 @@ module.exports={
 
     log: (text) => {
        //io.emit('chat message', text);
-       // text="\""+Date()+"\""+":"+"\""+text+"\","
-       var date = Date()
-       text="\"${date}\":\"${text}\""
+       text="\""+Date()+"\""+":"+"\""+text+"\","
+       // var date = Date()
+       // text="\"${date}\":\"${text}\""
        console.log(text);
        fs.appendFile("log.txt", text, function(err) {
           if(err) {
