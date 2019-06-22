@@ -33,8 +33,8 @@ module.exports={
 
     log: (text) => {
        //io.emit('chat message', text);
-       console.log(text);
        text=Date()+"\n"+text+"\n\n"
+       console.log(text);
        fs.appendFile("log.txt", text, function(err) {
           if(err) {
               console.log(err);
