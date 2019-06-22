@@ -15,5 +15,5 @@ WORKDIR angular/.
 # RUN npm install
 # RUN ng build
 RUN rm -r /var/www/html
-RUN mv ./dist/frondAng /var/www/html
-ENTRYPOINT ["sh", "init.sh"]
+# RUN mv ./dist/frondAng /var/www/html
+# ENTRYPOINT ["sh", "init.sh"]
