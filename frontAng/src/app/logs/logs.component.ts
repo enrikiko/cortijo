@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 })
 export class LogsComponent implements OnInit {
 
-  logs: string=null;
+  logs: any[]=null;
 
   constructor(private http: HttpClient) { }
 
@@ -19,11 +19,14 @@ export class LogsComponent implements OnInit {
   getLogs(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8000/log"
-    this.http.get(url).subscribe( data =>
+    this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        console.log(data)
-        this.logs=JSON.stringify(data);
+        var response=data.response
+        //console.log(response)
+        var list = []
+        for(var index in response){list.push(index+"-"+response[index])}
+        this.logs=(list);
       }
       else {
       console.log('No logs')
