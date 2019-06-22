@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 })
 export class LogsComponent implements OnInit {
 
-  logs: any[]="";
+  logs: any[]=null;
 
   constructor(private http: HttpClient) { }
 
