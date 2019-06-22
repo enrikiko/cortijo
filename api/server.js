@@ -17,10 +17,11 @@ var temperature;
 var humidity;
 
 //Middleware
-app.get("/*", function(req, res, next) { //OK
-  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+app.get("/*", function(req, res, next) {
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
-  joker.log(fullUrl+" : "+ip)
+  joker.log( fullUrl + " : " + ip )
   next()
 })
 
@@ -28,7 +29,7 @@ app.get("/*", function(req, res, next) { //OK
 app.get("/log", function(req, res) { //OK
   try{
     var response = joker.readLog();
-    res.status(200).send(response)
+    res.status(200).json(response)
   }catch(response){}
   })
 

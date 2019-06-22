@@ -12,9 +12,9 @@ export class HeaderComponent implements OnInit {
   active: string="device";
 //  temperature: string="";
 //  humidity: string="";
-  data : any[]=null; 
+  data : any[]=null;
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.getData()
@@ -43,5 +43,7 @@ export class HeaderComponent implements OnInit {
   timer(){this.active="timer"}
   settings(){this.active="settings"}
   graphics(){this.active="graphics"}
+  logs(){this.active="logs"}
+
 
 }

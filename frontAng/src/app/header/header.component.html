@@ -3,19 +3,22 @@
         <!-- Navbar content -->
         <ul class="nav nav-pills nav-fill">
           <li class="nav-item" (click)="device()">
-            <a class="nav-link" [ngClass]="{'active': active=='device'}" href="#">Device</a>
+            <a class="nav-link" [ngClass]="{'active': active=='device'}" routerLink="">Device</a>
           </li>
           <li class="nav-item" (click)="weather()">
-            <a class="nav-link" [ngClass]="{'active': active=='weather'}" href="#">Weather</a>
+            <a class="nav-link" [ngClass]="{'active': active=='weather'}">Weather</a>
           </li>
           <li class="nav-item" (click)="timer()">
-            <a class="nav-link" [ngClass]="{'active': active=='timer'}" href="#">Timer</a>
+            <a class="nav-link" [ngClass]="{'active': active=='timer'}">Timer</a>
           </li>
           <li class="nav-item" (click)="settings()">
-            <a class="nav-link" [ngClass]="{'active': active=='settings'}" href="#">Settings</a>
+            <a class="nav-link" [ngClass]="{'active': active=='settings'}">Settings</a>
           </li>
           <li class="nav-item" (click)="graphics()">
-            <a class="nav-link" [ngClass]="{'active': active=='graphics'}" href="#">Graphics</a>
+            <a class="nav-link" [ngClass]="{'active': active=='graphics'}">Graphics</a>
+          </li>
+          <li class="nav-item" (click)="logs()">
+            <a class="nav-link" [ngClass]="{'active': active=='logs'}" routerLink="logs">logs</a>
           </li>
           <li class="nav-item">
             <a class="nav-link">Temperature:{{ data.temperature }}</a>
