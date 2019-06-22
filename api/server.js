@@ -10,15 +10,22 @@ app.use(bodyParser.json());
 app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded())
+app.enable('trust proxy')
 var http = require('http').Server(app);
 var io = http;
 var temperature;
 var humidity;
 
+//Middleware
+app.get("/*", function(req, res, next) { //OK
+  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  var ip = req.ip
+  joker.log(fullUrl+" : "+ip)
+  next()
+})
 
 //Get log
 app.get("/log", function(req, res) { //OK
-  joker.log("--- Log Sent ---")
   try{
     var response = joker.readLog();
     res.status(200).send(response)
@@ -33,13 +40,12 @@ app.post("/*", function(req, res) { //OK
   res.status(200).send('ok')
   })
 
-app.get('/terminal', function(req, res){
-  res.sendFile(__dirname + '/terminal.html');
-});
+// app.get('/terminal', function(req, res){
+//   res.sendFile(__dirname + '/terminal.html');
+// });
 
 //Get all device
 app.get("/all", async function(req, res) { //OK
-  joker.log("--- Display all device ---")
   try{
     var response = await myDevice.getDevice();
     res.status(200).json(response)
@@ -47,20 +53,14 @@ app.get("/all", async function(req, res) { //OK
   })
 
 //Set temperature and humidity
-app.get("/set/:temperature/:humidity", function(req, res) { //OK
+app.get("/set/:temperature/:humidity", function(req, res) {
   temperature = req.params.temperature;
   humidity = req.params.humidity;
-  console.log("/set/"+temperature+"/"+humidity);
-  response={}
-  response.temperature=temperature;
-  response.humidity=humidity;
-  res.status(200).json(response)
+  res.status(200)
   })
 
 //Get temperature and humidity
-app.get("/get/temperature/humidity", function(req, res) { //OK
-
-  console.log("/get/temperature/humidity");
+app.get("/get/temperature/humidity", function(req, res) {
   response={}
   response.temperature=temperature;
   response.humidity=humidity;
@@ -68,10 +68,9 @@ app.get("/get/temperature/humidity", function(req, res) { //OK
   })
 
 //Get device by name
-app.get("/name/:name", async function(req, res) { //OK
+app.get("/name/:name", async function(req, res) {
   try{
     var name = req.params.name;
-    joker.log("Get "+name+" info");
     var response = await myDevice.getDeviceByName(name);
     res.status(200).json(response)
   }catch(response){}
@@ -81,7 +80,6 @@ app.get("/name/:name", async function(req, res) { //OK
 app.get("/remove/:name", async function(req, res) { //OK
   try{
     var name = req.params.name;
-    joker.log("Try to remove "+name+" device");
     var id = await myDevice.getIdbyName(name)
     if (id){
       var response = await myDevice.removeDeviceByName(name);
@@ -103,11 +101,11 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
     try{
       var name = req.params.name
       var ip = req.params.ip
-      joker.log("Try to create a new device: name-"+name+" status-"+status+" ip-"+ip);
+      //joker.log("Try to create a new device: name-"+name+" status-"+status+" ip-"+ip);
       var id = await myDevice.getIdbyName(name)
       if (!id) {
         var response = await myDevice.newDevice(name, status, ip)
-        joker.log(name+' create successfully');
+        joker.log(name+' have been created successfully');
         res.status(200).json(name+' create successfully')
       }else {
         var lastIp = await myDevice.updateDeviceIp(id, ip)
@@ -136,11 +134,11 @@ app.get("/update/:name/:status", async function(req, res){
       //var ip = await myDevice.getIpbyName(name)
       //switch status of the device
       var response = await joker.switchStatus(ip, status, name)
-      joker.log(response.code);
+      //joker.log(response.code);
       if (response.code == 200) {
         var lastStatus = await myDevice.updateDevice(id, status)
         var newStatus = await myDevice.getDeviceById(id)
-        joker.log("Previous Status:"+lastStatus+ " New Status:"+newStatus)
+        joker.log("Previous Status: " + lastStatus + "  New Status: " + newStatus)
         res.status(response.code).send(response)
       }
 
@@ -148,7 +146,7 @@ app.get("/update/:name/:status", async function(req, res){
 
     var lastStatus = await myDevice.updateDevice(id, status)
     var newStatus = await myDevice.getDeviceById(id)
-    joker.log("Previous Status:"+lastStatus+ " New Status:"+newStatus)
+    joker.log("Previous Status: " + lastStatus + " New Status: " + newStatus)
 
   }catch(response){}
   }
