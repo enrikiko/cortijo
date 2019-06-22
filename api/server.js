@@ -135,13 +135,13 @@ app.get("/update/:name/:status", async function(req, res){
       if (response.code == 200) {
         var lastStatus = await myDevice.updateDevice(id, status)
         var newStatus = await myDevice.getDeviceById(id)
-        joker.log("Previous Status: " + lastStatus + "  New Status: " + newStatus)
+        //joker.log("Previous Status: \"" + lastStatus + "\",  New Status: \"" + newStatus + "\"")
         res.status(response.code).send(response)
       }
     }
     var lastStatus = await myDevice.updateDevice(id, status)
     var newStatus = await myDevice.getDeviceById(id)
-    joker.log("Previous Status: " + lastStatus + "\n New Status: " + newStatus)
+    //joker.log("Previous Status: \"" + lastStatus + "\",\n New Status: \"" + newStatus + "\"")
 
   }catch(response){}
   }
