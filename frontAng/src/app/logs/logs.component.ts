@@ -23,7 +23,7 @@ export class LogsComponent implements OnInit {
     {
       if(data!=null){
         console.log(data)
-        var res = data
+        var res = data.response
         var list = []
         for(var index in res){list.push(index+"-"+res[index])}
         this.logs=(list);
