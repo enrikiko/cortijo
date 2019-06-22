@@ -36,7 +36,7 @@ module.exports={
     log: (text) => {
        //io.emit('chat message', text);
        text="\""+Date()+"\""+":"+"\""+text+"\""
-       if(dot){text=text+","}
+       if(dot){text=","+text}
        dot=true
        // var date = Date()
        // text="\"${date}\":\"${text}\""
