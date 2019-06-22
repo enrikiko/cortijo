@@ -4,7 +4,7 @@ RUN apt update
 RUN apt install curl -y
 RUN apt install apache2 -y
 # RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
-# RUN apt-get update
+RUN apt-get update
 # RUN apt-get install gcc g++ make -y
 # RUN apt-get install nodejs -y
 # RUN npm install -g @angular/cli
