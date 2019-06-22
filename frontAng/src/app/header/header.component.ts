@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   active: string="device";
 //  temperature: string="";
 //  humidity: string="";
-  data : any[]={"temperature":0,"humidity":0};
+  data : any[]=null;
 
   constructor(private http: HttpClient) { }
 
