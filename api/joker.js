@@ -18,7 +18,7 @@ module.exports={
 
     readLog: () => {
         var jsonString = '{'+fs.readFileSync("log.txt", {encoding: 'ASCII'})+'}'
-        return JSON.stringify(jsonString)
+        return JSON.parse(jsonString)
      },
 
     // execute: (msg) => {
