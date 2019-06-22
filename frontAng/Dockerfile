@@ -16,4 +16,4 @@ WORKDIR angular/.
 # RUN ng build
 RUN rm -r /var/www/html
 # RUN mv ./dist/frondAng /var/www/html
-# ENTRYPOINT ["sh", "init.sh"]
+ENTRYPOINT ["sh", "init.sh"]
