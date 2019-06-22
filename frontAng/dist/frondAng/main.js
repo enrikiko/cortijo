@@ -81,7 +81,7 @@ module.exports = ".fixed-top{\n  position:fixed;\n  top: 0;\n  width: 100%;\n  o
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-header class=\"fixed-top\"></app-header>\n<app-header></app-header>\n<router-outlet></router-outlet>\n<app-footer></app-footer>\n<app-footer class=\"fixed-bottom\"></app-footer>\n"
+module.exports = "<app-header class=\"fixed-top\"></app-header>\n<app-header></app-header>\n<router-outlet></router-outlet>\n<app-footer class=\"fixed-bottom\"></app-footer>\n"
 
 /***/ }),
 
