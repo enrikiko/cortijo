@@ -2,7 +2,7 @@ FROM ubuntu:18.04
 RUN apt-get update
 RUN apt update
 # RUN apt install curl -y
-# RUN apt install apache2 -y
+RUN apt install apache2 -y
 # RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
 # RUN apt-get update
 # RUN apt-get install gcc g++ make -y
