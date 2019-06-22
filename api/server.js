@@ -32,13 +32,13 @@ app.get("/log", function(req, res) { //OK
   }catch(response){}
   })
 
-app.post("/*", function(req, res) { //OK
-  joker.log(req.get('host')+req.originalUrl)
-  joker.log(req.protocol)
-  joker.log(JSON.stringify(req.body))
-  joker.log(req.ip)
-  res.status(200).send('ok')
-  })
+// app.post("/*", function(req, res) { //OK
+//   joker.log(req.get('host')+req.originalUrl)
+//   joker.log(req.protocol)
+//   joker.log(JSON.stringify(req.body))
+//   joker.log(req.ip)
+//   res.status(200).send('ok')
+//   })
 
 // app.get('/terminal', function(req, res){
 //   res.sendFile(__dirname + '/terminal.html');
@@ -130,23 +130,17 @@ app.get("/update/:name/:status", async function(req, res){
     var ip = await myDevice.getIpbyName(name)
     if(!ip){res.status(400).json({"Request": "Incorrect", "Device": "Not found"})}
     else {
-      //Get IP of the device
-      //var ip = await myDevice.getIpbyName(name)
-      //switch status of the device
       var response = await joker.switchStatus(ip, status, name)
-      //joker.log(response.code);
       if (response.code == 200) {
         var lastStatus = await myDevice.updateDevice(id, status)
         var newStatus = await myDevice.getDeviceById(id)
         joker.log("Previous Status: " + lastStatus + "  New Status: " + newStatus)
         res.status(response.code).send(response)
       }
-
     }
-
     var lastStatus = await myDevice.updateDevice(id, status)
     var newStatus = await myDevice.getDeviceById(id)
-    joker.log("Previous Status: " + lastStatus + " New Status: " + newStatus)
+    joker.log("Previous Status: " + lastStatus + "\n New Status: " + newStatus)
 
   }catch(response){}
   }

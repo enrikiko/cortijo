@@ -92,7 +92,7 @@ module.exports = {
        if(result){
          result.status = status
          result.save()
-         console.log(result)
+         //console.log(result)
        }
      });
    },

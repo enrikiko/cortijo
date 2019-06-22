@@ -19,17 +19,17 @@ module.exports={
         return fs.readFileSync("log.txt", {encoding: 'ASCII'})
      },
 
-    execute: (msg) => {
-       console.log(msg)
-       exec(msg, (err, stdout) => {
-         if (err) {
-           console.log(err)
-         }
-         if (stdout) {
-           console.log(stdout);
-         }
-       });
-     },
+    // execute: (msg) => {
+    //    console.log(msg)
+    //    exec(msg, (err, stdout) => {
+    //      if (err) {
+    //        console.log(err)
+    //      }
+    //      if (stdout) {
+    //        console.log(stdout);
+    //      }
+    //    });
+    //  },
 
     log: (text) => {
        //io.emit('chat message', text);
