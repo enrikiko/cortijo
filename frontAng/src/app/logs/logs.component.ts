@@ -19,10 +19,11 @@ export class LogsComponent implements OnInit {
   getLogs(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8000/log"
-    this.http.get(url).subscribe( data =>
+    this.http.get<Object>(url).subscribe( data =>
     {
       if(data!=null){
-        var res = data.response
+        console.log(data)
+        var res = data
         var list = []
         for(var index in res){list.push(index+"-"+res[index])}
         this.logs=(list);
