@@ -26,11 +26,7 @@ export class HeaderComponent implements OnInit {
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        // for(let index in data){
-        //   console.log(data[index])
-        // }
         this.data=data;
-        //this.humidity=data.humidity;
       }
       else {
       console.log('Database is empty')
