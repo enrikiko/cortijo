@@ -1,5 +1,7 @@
 const request = require('superagent');
 const fs = require('fs');
+const myLogs = require('./logs');
+const myTemperature = require('./temperature');
 var dot = false
 
 module.exports={
@@ -46,8 +48,14 @@ module.exports={
           if(err) {
               console.log(err);
              }
-      });
+       });
     },
+
+    newLogRequest: (ip, request)=>{ 
+      var time = new Date().getTime()
+      myLogs.newDevice(time, ip, request);
+    },
+    getLogRequest: async()=>{ return await myLogs.getAll(time, ip, request); },
     getStatus: (status) => {
       var status;
       if (status == "true"){ status = true}

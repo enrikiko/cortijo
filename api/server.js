@@ -22,6 +22,7 @@ app.get("/*", function(req, res, next) {
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
   joker.log( fullUrl + " : " + ip )
+  joker.newLogRequest(ip, fullUrl)
   next()
 })
 
