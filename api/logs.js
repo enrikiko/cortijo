@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+lconst mongoose = require('mongoose');
 let connString = 'mongodb://mongo/logs';
 const db = mongoose.connection;
 mongoose.connect(connString);
@@ -46,6 +46,6 @@ module.exports = {
     });
   },
 
-  getAll: () => { return myDevice.find() },
+  getAll: () => { return myLogs.find() },
 
 }

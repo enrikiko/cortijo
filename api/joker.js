@@ -51,11 +51,22 @@ module.exports={
        });
     },
 
-    newLogRequest: (ip, request)=>{ 
+    newLogRequest: (ip, request)=>{
       var time = new Date().getTime()
       myLogs.newDevice(time, ip, request);
     },
-    getLogRequest: async()=>{ return await myLogs.getAll(time, ip, request); },
+    getLogRequest: async()=>{
+      let res = await myLogs.getAll();
+      return res
+    },
+    newLogTemperature: (temperature, humidity)=>{
+      var time = new Date().getTime()
+      myTemperature.newDevice(time, temperature, humidity);
+    },
+    getLogTemperature: async()=>{
+      let res = await myTemperature.getAll();
+      return res
+    },
     getStatus: (status) => {
       var status;
       if (status == "true"){ status = true}

@@ -17,11 +17,11 @@ const deviceSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  ip: {
+  temperature: {
     type: String,
     required: false
   },
-  request: {
+  humidity: {
     type: String,
     required: true
   },
@@ -31,12 +31,12 @@ let myTemperature = mongoose.model('Temperature', deviceSchema);
 
 module.exports = {
 
-  newDevice: (time, ip, request) => {
+  newDevice: (time, temperature, humidity) => {
     let device = new myTemperature(
       {
         time: time,
-        request: request,
-        ip: ip
+        temperature: temperature,
+        humidity: humidity
       });
     device.save(function(err, result) {
       if (err) throw err;
