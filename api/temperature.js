@@ -46,6 +46,6 @@ module.exports = {
     });
   },
 
-  getAll: () => { return myDevice.find() },
+  getAll: () => { return myTemperature.find() },
 
 }
