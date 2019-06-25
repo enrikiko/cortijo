@@ -1,4 +1,4 @@
-lconst mongoose = require('mongoose');
+const mongoose = require('mongoose');
 let connString = 'mongodb://mongo/logs';
 const db = mongoose.connection;
 mongoose.connect(connString);
