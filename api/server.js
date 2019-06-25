@@ -3,6 +3,7 @@ const express = require("express");
 const myDevice = require('./users');
 const joker = require('./joker');
 const weather = require('./weather');
+const history = require('./history');
 const cors = require('cors');
 const bodyParser = require('body-parser')
 const app = express();
@@ -74,13 +75,19 @@ app.get("/get/temperature/humidity", function(req, res) {
 //Get temperature and humidity history
 app.get("/get/temperature/humidity/history",async function(req, res) {
   try {
-    var temperature = await weather.temperature()
+    var temperature = await weather.history()
   } catch (e) {
     console.log(e)
   }
-  // response = {}
-  // response.temperature = temperature;
-  // response.humidity = humidity;
+  res.status(200).json(temperature)
+  })
+
+app.get("/log/history",async function(req, res) {
+  try {
+    var temperature = await history.history()
+  } catch (e) {
+    console.log(e)
+  }
   res.status(200).json(temperature)
   })
 
