@@ -2,10 +2,11 @@ const { exec } = require('child_process');
 const express = require("express");
 const myDevice = require('./users');
 const joker = require('./joker');
+const weather = require('./weather');
 const cors = require('cors');
 const bodyParser = require('body-parser')
 const app = express();
-app.enable('trust proxy')
+app.enable('trust proxy');
 app.use(bodyParser.json());
 app.use(cors());
 app.options('*', cors());
@@ -68,6 +69,19 @@ app.get("/get/temperature/humidity", function(req, res) {
   response.temperature=temperature;
   response.humidity=humidity;
   res.status(200).json(response)
+  })
+
+//Get temperature and humidity history
+app.get("/get/temperature/humidity/history",async function(req, res) {
+  try {
+    var temperature = await weather.temperature()
+  } catch (e) {
+    console.log(e)
+  }
+  // response = {}
+  // response.temperature = temperature;
+  // response.humidity = humidity;
+  res.status(200).json(temperature)
   })
 
 //Get device by name
