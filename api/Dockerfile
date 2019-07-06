@@ -14,4 +14,4 @@ COPY package/. .
 RUN npm install
 COPY . .
 RUN touch log.txt
-ENTRYPOINT ["sh", "init.sh"]
+#ENTRYPOINT ["sh", "init.sh"]
