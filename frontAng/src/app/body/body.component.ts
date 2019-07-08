@@ -20,8 +20,8 @@ export class BodyComponent implements OnInit {
   }
 
   getDevicesList(){
-    // const host = (window.location.href.split("/")[2]).split(":")[0]
-    const host = "88.8.71.214"
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    // const host = "88.8.71.214"
     let url = "http://" + host + ":8000/all"
     this.http.get<any[]>(url).subscribe( data =>
     {
