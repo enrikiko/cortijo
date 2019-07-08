@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-let connString = 'mongodb://localhost:27017/temperature';
+let connString = 'mongodb://192.168.1.50:27017/temperature';
 const db = mongoose.connection;
 mongoose.connect(connString);
 
