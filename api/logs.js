@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-let connString = 'mongodb://mongo/';
+let connString = 'mongodb://localhost:27017/logs';
 const db = mongoose.connection;
 mongoose.connect(connString);
 
