@@ -21,7 +21,8 @@ export class HeaderComponent implements OnInit {
   }
 
   getData(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
+    // const host = (window.location.href.split("/")[2]).split(":")[0]
+    const host = "88.8.71.214"
     let url = "http://" + host + ":8000/get/temperature/humidity"
     this.http.get<any[]>(url).subscribe( data =>
     {

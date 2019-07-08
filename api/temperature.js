@@ -34,9 +34,9 @@ module.exports = {
   newDevice: (time, temperature, humidity) => {
     let device = new myTemperature(
       {
-        time: "time",
-        temperature: "temperature",
-        humidity: "humidity"
+        time: time,
+        temperature: temperature,
+        humidity: humidity
       });
     device.save(function(err, result) {
       if (err) throw err;
