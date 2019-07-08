@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-let connString = 'mongodb://mongo/temperature';
+let connString = 'mongodb://192.168.1.50:27017/temperature';
 const db = mongoose.connection;
 mongoose.connect(connString);
 
@@ -34,9 +34,9 @@ module.exports = {
   newDevice: (time, temperature, humidity) => {
     let device = new myTemperature(
       {
-        time: time,
-        temperature: temperature,
-        humidity: humidity
+        time: "time",
+        temperature: "temperature",
+        humidity: "humidity"
       });
     device.save(function(err, result) {
       if (err) throw err;
