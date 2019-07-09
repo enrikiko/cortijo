@@ -1512,7 +1512,7 @@ var WeatherComponent = /** @class */ (function () {
         var chart = new _canvasjs_min__WEBPACK_IMPORTED_MODULE_2__["Chart"]("chartContainer", {
             animationEnabled: true,
             exportEnabled: true,
-            // title: { text: "Basic Column Chart in Angular" },
+            title: { text: "Temperature & humidity" },
             data: [{
                     type: "spline",
                     dataPoints: temperature

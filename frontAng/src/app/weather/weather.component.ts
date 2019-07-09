@@ -52,7 +52,7 @@ export class WeatherComponent implements OnInit {
     let chart = new CanvasJS.Chart("chartContainer", {
 		animationEnabled: true,
 		exportEnabled: true,
-		// title: { text: "Basic Column Chart in Angular" },
+		title: { text: "Temperature & humidity" },
 		data: [{
 			type: "spline",
 			dataPoints: temperature
