@@ -19,7 +19,4 @@ spec:
         image: enriqueramosmunoz/cortijo-service:app_1.0
         ports:
         - containerPort: 3000
-      - name: mongo
-        image: mongo
-        ports:
-        - containerPort: 27017
+      
