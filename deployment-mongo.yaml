@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cortijo-deployment
+  name: cortijo-mongo-deployment
   labels:
-    app: cortijo
+    app: mongo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cortijo
+      app: mongo
   template:
     metadata:
       labels:
-        app: cortijo
+        app: mongo
     spec:
       containers:
-      - name: cortijo
-        image: enriqueramosmunoz/cortijo-service:app_1.0
+      - name: mongo
+        image: mongo
         ports:
-        - containerPort: 3000
+        - containerPort: 27017
