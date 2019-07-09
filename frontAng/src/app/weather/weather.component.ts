@@ -54,13 +54,15 @@ export class WeatherComponent implements OnInit {
 		exportEnabled: true,
 		title: { text: "Temperature & humidity" },
 		data: [{
-			type: "spline",
+			type: "line",
+               color: "rgba(255,0,0,1)", //red
 			dataPoints: temperature
 		},
-    {
-      type: "spline",
-      dataPoints: humidity
-    }]
+         {
+                type: "splineArea",
+                color: "rgba(0,75,141,0.3)", //Blue
+                dataPoints: humidity
+         }]
 	});
 
 	chart.render();
