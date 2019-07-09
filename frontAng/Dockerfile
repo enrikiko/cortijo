@@ -10,7 +10,7 @@ RUN apt-get update
 # RUN npm install -g @angular/cli
 # RUN npm install --save-dev @angular-devkit/build-angular
 RUN mkdir angular
-COPY ./. angular/.
+COPY ./dist/. angular/dist/.
 WORKDIR angular/.
 # RUN npm install
 # RUN ng build
