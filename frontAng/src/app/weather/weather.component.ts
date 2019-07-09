@@ -33,8 +33,8 @@ export class WeatherComponent implements OnInit {
         var humi
         for(var index in data){
           // list.push(index+"-"+res[index])
-          temp={ y: parseInt(data[index].temperature) }
-          humi={ y: parseInt(data[index].humidity) }
+          temp={ y: parseInt(data[index].temperature), label: new Date(parseInt(data[index].time)) }
+          humi={ y: parseInt(data[index].humidity), label: new Date(parseInt(data[index].time)) }
           temperature.push(temp)
           humidity.push(humi)
         }
