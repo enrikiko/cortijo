@@ -1,3 +1,5 @@
+const version = "1.0.0";
+const startDate = Date();
 const { exec } = require('child_process');
 const express = require("express");
 const myDevice = require('./users');
@@ -26,6 +28,12 @@ app.get("/*", function(req, res, next) {
   joker.log( fullUrl + " : " + ip )
   joker.newLogRequest(ip, fullUrl)
   next()
+})
+
+//Get log
+app.get("/info", function(req, res) { //OK
+    var info = {"Version": version, "Deployment time": startDate}
+    res.status(200).json(info)
 })
 
 //Get log
