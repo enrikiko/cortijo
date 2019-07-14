@@ -3,7 +3,7 @@ services:
   mongo:
     container_name: mongo
     build: ./mongo/.
-    restart: never
+    restart: "no"
     image: mongo:latest
     ports:
       - "27017:27017"
