@@ -7,10 +7,10 @@
 #include <ESP8266mDNS.h>
 #include <ArduinoJson.h>
 
-const char *ssid1 = "Cuarto2.4G";
-const char *password1 = "Lunohas13steps";
-const char *ssid2 = "Cuarto5G";
-const char *password2 = "Lunohas13steps";
+const char *ssid1 = "<ssid1>";
+const char *password1 = "<password1>";
+const char *ssid2 = "<ssid2>";
+const char *password2 = "<password2>";
 String deviceName = "Device-1";
 int port = 80;
 IPAddress ipDevice(192, 168, 1, 100);
