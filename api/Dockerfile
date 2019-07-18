@@ -16,7 +16,7 @@ COPY . .
 RUN touch log.txt
 RUN apt install -y man
 RUN apt install -y less
-RUN apt install -y more
+# RUN apt install -y more
 RUN apt install -y mc
 RUN apt install -y yum
 RUN apt install -y dnf
