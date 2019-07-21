@@ -30,6 +30,14 @@ export class BodyComponent implements OnInit {
       else { console.log("No data")
       }
     })
+    this.http.get("http://" + host + ":8000/all").subscribe( data =>
+    {
+      if(data!=null){
+        console.log(data)
+      }
+      else { console.log("No data")
+      }
+    })
     // const host = "88.8.71.214"
     let url = "http://" + host + ":8000/all"
     this.http.get<any[]>(url).subscribe( data =>
