@@ -22,7 +22,7 @@ export class BodyComponent implements OnInit {
   getDevicesList(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
     console.log(host)
-    this.https.get("5nwdav0wk9.execute-api.eu-central-1.amazonaws.com/dev/get_ip").subscribe( data =>
+    this.http.get("https://5nwdav0wk9.execute-api.eu-central-1.amazonaws.com/dev/get_ip").subscribe( data =>
     {
       if(data!=null){
         console.log(data)
