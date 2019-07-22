@@ -22,7 +22,14 @@ export class BodyComponent implements OnInit {
   getDevicesList(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
     console.log(host)
-    this.http.get("https://5nwdav0wk9.execute-api.eu-central-1.amazonaws.com/dev/get_ip").subscribe( data =>
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Access-Control-Allow-Origin": "http://localhost:8080",
+        'Content-Type':  'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+    this.http.get("https://5nwdav0wk9.execute-api.eu-central-1.amazonaws.com/dev/get_ip", httpOptions).subscribe( data =>
     {
       if(data!=null){
         console.log(data)
@@ -30,14 +37,7 @@ export class BodyComponent implements OnInit {
       else { console.log("No data")
       }
     })
-    this.http.get("http://" + host + ":8000/all").subscribe( data =>
-    {
-      if(data!=null){
-        console.log(data)
-      }
-      else { console.log("No data")
-      }
-    })
+
     // const host = "88.8.71.214"
     let url = "http://" + host + ":8000/all"
     this.http.get<any[]>(url).subscribe( data =>
