@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit {
 //  humidity: string="";
   data : any[]=null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private Auth: AuthService) { }
 
   ngOnInit() {
     this.getData()
@@ -41,6 +43,9 @@ export class HeaderComponent implements OnInit {
   settings(){this.active="settings"}
   graphics(){this.active="graphics"}
   logs(){this.active="logs"}
-
+  logOut(){
+    this.Auth.logOut()
+    this.active="logOut"
+  }
 
 }

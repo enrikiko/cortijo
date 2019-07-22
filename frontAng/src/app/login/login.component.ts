@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     const target = event.target
     const user = target.querySelector('#userName').value
     const password = target.querySelector('#password').value
-    console.log( this.Auth.login(user, password))
+    this.Auth.login(user, password)
   }
 
 }

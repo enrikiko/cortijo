@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface myData {
   success: boolean
@@ -11,7 +12,7 @@ export class AuthService {
 
   private status = false
 
-  constructor() { };
+  constructor(private router: Router) { };
 
   isLogin(){
     return this.status
@@ -19,6 +20,7 @@ export class AuthService {
 
   login( user, password ) {
     if ( user=="Enrique" && password=="1234") {
+      this.router.navigate([''])
       this.status = true
       return true
     }
@@ -26,4 +28,9 @@ export class AuthService {
       return false
     }
   }
+
+  logOut(){
+    this.status = false
+  }
+
 }
