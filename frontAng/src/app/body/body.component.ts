@@ -24,9 +24,7 @@ export class BodyComponent implements OnInit {
     console.log(host)
     const httpOptions = {
       headers: new HttpHeaders({
-        "Access-Control-Allow-Origin": "http://localhost:8080",
-        'Content-Type':  'application/json',
-        'Authorization': 'my-auth-token'
+        'Access-Control-Allow-Origin': 'http://localhost:8080'
       })
     };
     this.http.get("https://5nwdav0wk9.execute-api.eu-central-1.amazonaws.com/dev/get_ip", httpOptions).subscribe( data =>
