@@ -20,24 +20,8 @@ export class BodyComponent implements OnInit {
   }
 
   getDevicesList(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    const body = null
-    console.log(host)
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Access-Control-Allow-Origin': '12.3.4.2'
-      })
-    };
-    this.http.get("https://5nwdav0wk9.execute-api.eu-central-1.amazonaws.com/dev/get_ip", body, httpOptions).subscribe( data =>
-    {
-      if(data!=null){
-        console.log(data)
-      }
-      else { console.log("No data")
-      }
-    })
-
-    // const host = "88.8.71.214"
+    //const host = (window.location.href.split("/")[2]).split(":")[0]
+    const host = "88.8.35.161"
     let url = "http://" + host + ":8000/all"
     this.http.get<any[]>(url).subscribe( data =>
     {

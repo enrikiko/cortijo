@@ -17,8 +17,8 @@ export class LogsComponent implements OnInit {
   }
 
   getLogs(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    // const host = "88.8.71.214"
+    //const host = (window.location.href.split("/")[2]).split(":")[0]
+    const host = "88.8.35.161"
     let url = "http://" + host + ":8000/log"
     this.http.get<HttpResponse<object>>(url).subscribe( data =>
     {

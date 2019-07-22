@@ -9,6 +9,8 @@ import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogsComponent } from './logs/logs.component';
 import { WeatherComponent } from './weather/weather.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { WeatherComponent } from './weather/weather.component';
     BodyComponent,
     FooterComponent,
     LogsComponent,
-    WeatherComponent
+    WeatherComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
