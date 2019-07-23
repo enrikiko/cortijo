@@ -41,7 +41,7 @@ for (var elem in list){
      console.log(elem)
      app.get("/"+elem, function(req, res) { //OK
          var info = new Info(elem)
-         console.log(info)
+         console.log(new Info(elem))
          res.status(200).json(info)
      })
 }
