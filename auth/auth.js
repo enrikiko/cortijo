@@ -30,12 +30,12 @@ let myAuth = mongoose.model('Auth', authSchema);
 module.exports = {
 
    createUser: (user, password) => {
-     let user = new myAuth(
+     let auth = new myAuth(
        {
          user: user,
          password: password
        });
-     user.save(function(err, result) {
+     auth.save(function(err, result) {
        if (err) throw err;
        if(result) {
          console.log(result);
@@ -47,9 +47,9 @@ module.exports = {
      async function getUser(userName){
         return myAuth.find({user: userName})
      }
-     var list = await getUser(user)
-     if (list.length > 0) {
-       var device = list[0]
+     var userList = await getUser(user)
+     if (userList.length > 0) {
+       var device = userList[0]
        var userPassword = device.password
        if (userPassword == password){ return true }
        else{ return false;}
