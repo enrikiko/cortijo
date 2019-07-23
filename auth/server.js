@@ -37,12 +37,12 @@ var Info = function(elem){
      return {"Version": elem, "Start time": startDate}
 }
 
-for (var elem in list){
+for (elem in list){
      console.log(elem)
      app.get("/"+elem, function(req, res) { //OK
          var info = new Info(elem)
          console.log(new Info(elem))
-         res.status(200).json(info)
+         res.status(200).json(new Info(elem))
      })
 }
 
