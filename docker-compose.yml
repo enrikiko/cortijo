@@ -80,7 +80,7 @@ services:
     restart: always
     build: ./auth/.
     environment:
-      - PASSWORD=cortijo
+      - PASSWORD=cortijo1
     ports:
       - "8010:3000"
     links:
