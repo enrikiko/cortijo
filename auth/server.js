@@ -41,7 +41,7 @@ app.get('/usermock/:user/:password', function(req, res){
      password = req.params.password;
      var status = false;
      if(user=="Enrique" && password=="1234"){status=true}
-     res.status(200).send(true)
+     res.status(200).send(status)
 });
 
 app.post('/newuser/:user/:password/:token', function(req, res){
