@@ -72,5 +72,5 @@ app.get('/*', function(req, res){
 
 // activate the listenner
 http.listen(3000, function () {
-    joker.log('Servidor activo en http://localhost:3000');
+    console.log('Servidor activo en http://localhost:3000');
   })
