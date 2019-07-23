@@ -43,17 +43,18 @@ module.exports = {
      });
    },
 
-   is: async (deviceNane) => {
-     async function getList(name){
-        return myDevice.find({name: name})
+   isUser: async (user, password) => {
+     async function getUser(userName){
+        return myAuth.find({user: userName})
      }
-     var list = await getList(deviceNane)
+     var list = await getUser(user)
      if (list.length > 0) {
        var device = list[0]
-       var id = device._id
-       return id
+       var userPassword = device.password
+       if (userPassword == password){ return true }
+       else{ return false;}
      }else {
-       return null
+       return false
      }
    },
 
