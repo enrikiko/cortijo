@@ -34,6 +34,7 @@ app.get("/info", function(req, res) { //OK
 })
 
 for (var elem in list){
+     console.log(elem)
      app.get("/"+elem, function(req, res) { //OK
          var info = {"Version": elem, "Start time": startDate}
          res.status(200).json(info)
