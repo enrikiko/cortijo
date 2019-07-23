@@ -46,6 +46,7 @@ module.exports = {
    },
 
    removeUser: (user, password) => {
+        console.log("Removing "+user+"...")
           return myAuth.remove({name: user}, function(err, result) {
           if (err) throw err
           if(result){
