@@ -45,13 +45,13 @@ module.exports = {
      });
    },
 
-   removeUser: (user, password) => {
-        console.log("Removing "+user+"...")
-          return myAuth.remove({name: user}, function(err, result) {
-          if (err) throw err
-          if(result){
-               console.log(result)
-          }
+   removeUser: (user) => {
+     console.log("Removing "+user+"...")
+     return myAuth.remove({user: user}, function(err, result) {
+     if (err) throw err
+     if(result){
+          console.log(result)
+     }
     });
    },
 
