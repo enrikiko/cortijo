@@ -60,7 +60,7 @@ app.get('/user/:user/:password', function(req, res){
      user = req.params.user;
      password = req.params.password;
      var status = auth.isUser(user,password)
-     if(status){res.status(200).send(true)}
+     if(status==true){res.status(200).send(true)}
      else{res.status(400).send(false)}
 });
 
