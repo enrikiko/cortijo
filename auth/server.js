@@ -34,7 +34,7 @@ app.get("/info", function(req, res) { //OK
 })
 
 
-app.delete('/removeuser/:user/:password/:token', function(req, res){
+app.delete('/removeuser/:user/:password/:token', async function(req, res){
      user = req.params.user;
      password = req.params.password;
      token = req.params.token;
