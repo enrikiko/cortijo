@@ -71,9 +71,6 @@ app.post('/newuser/:user/:password/:token', async function(req, res){
      if(token==process.env.TOKEN){
           console.log("Token correct")
           var isUser = await auth.getUser(user)
-          console.log(isUser)
-          console.log(isUser[0])
-          console.log(!isUser[0])
           if(!isUser[0]){
                auth.createUser(user, password)
                res.status(200).send("User created successfuly")
