@@ -30,6 +30,7 @@ let myAuth = mongoose.model('Auth', authSchema);
 module.exports = {
 
    createUser: (user, password) => {
+     console.log("Creating User...")
      let auth = new myAuth(
        {
          user: user,

@@ -49,6 +49,7 @@ app.post('/newuser/:user/:password/:token', function(req, res){
      password = req.params.password;
      token = req.params.token;
      if(token=="token"){
+          console.log("token correct")
           auth.createUser(user, password)
           res.status(200).send("User created successfuly")
      }else{
