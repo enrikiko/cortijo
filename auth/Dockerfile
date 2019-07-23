@@ -18,4 +18,5 @@ COPY . .
 # RUN apt install -y mc
 # RUN apt install -y yum
 # RUN apt install -y dnf
+ENV TOKEN=token
 ENTRYPOINT ["sh", "init.sh"]

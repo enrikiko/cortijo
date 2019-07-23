@@ -2,10 +2,6 @@ const version = "1.0.0";
 const startDate = Date();
 const { exec } = require('child_process');
 const express = require("express");
-//const myDevice = require('./users');
-//const joker = require('./joker');
-//const weather = require('./weather');
-//const history = require('./history');
 const auth = require('./auth');
 const cors = require('cors');
 const bodyParser = require('body-parser')
@@ -36,24 +32,24 @@ app.get("/info", function(req, res) { //OK
     res.status(200).json(info)
 })
 
-app.get('/usermock/:user/:password', function(req, res){
-     user = req.params.user;
-     password = req.params.password;
-     var status = false;
-     if(user=="Enrique" && password=="1234"){status=true}
-     res.status(200).send(status)
-});
+// app.get('/usermock/:user/:password', function(req, res){
+//      user = req.params.user;
+//      password = req.params.password;
+//      var status = false;
+//      if(user=="Enrique" && password=="1234"){status=true}
+//      res.status(200).send(status)
+// });
 
 app.post('/newuser/:user/:password/:token', function(req, res){
      user = req.params.user;
      password = req.params.password;
      token = req.params.token;
-     console.log()
-     if(token=="token"){
-          console.log("token correct")
+     if(token==process.env.TOKEN){
+          console.log("Token correct")
           auth.createUser(user, password)
           res.status(200).send("User created successfuly")
      }else{
+          console.log("Token incorrect")
           res.status(400).send("Unauthorized")
      }
 });
@@ -61,15 +57,18 @@ app.post('/newuser/:user/:password/:token', function(req, res){
 app.get('/user/:user/:password',async function(req, res){
      user = req.params.user;
      password = req.params.password;
-     var status =await auth.isUser(user,password)
-     console.log("status")
-     console.log(status)
+     var status = await auth.isUser(user,password)
      if(status==true){res.status(200).send(true)}
      else{res.status(400).send(false)}
 });
 
 app.get('/*', function(req, res){
-     var info = {"Version": version, "Start time": startDate}
+     var info = {"Version": version, "Start time": startDate, "URL": "incorrect"}
+     res.status(200).json(info)
+});
+
+app.post('/*', function(req, res){
+     var info = {"Version": version, "Start time": startDate, "URL": "incorrect"}
      res.status(200).json(info)
 });
 
@@ -77,4 +76,5 @@ app.get('/*', function(req, res){
 // activate the listenner
 http.listen(3000, function () {
     console.log('Servidor activo en http://localhost:3000');
+    console.log(process.env.TOKEN)
   })

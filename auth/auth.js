@@ -30,6 +30,7 @@ let myAuth = mongoose.model('Auth', authSchema);
 module.exports = {
 
    createUser: (user, password) => {
+        //TODO verify if user exit
      console.log("Creating User...")
      let auth = new myAuth(
        {
