@@ -72,7 +72,7 @@ app.post('/newuser/:user/:password/:token', async function(req, res){
           console.log("Token correct")
           var isUser = await auth.getUser(user)
           console.log(isUser)
-          if(!isUser){
+          if(isUser.lengh==0){
                auth.createUser(user, password)
                res.status(200).send("User created successfuly")
           }else{res.status(200).send("User already exist")}
