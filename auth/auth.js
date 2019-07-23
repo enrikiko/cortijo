@@ -19,7 +19,7 @@ const authSchema = new mongoose.Schema({
     required: true
   },
   password: {
-    type: Boolean,
+    type: String,
     required: false
   },
 });
