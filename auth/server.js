@@ -33,6 +33,15 @@ app.get("/info", function(req, res) { //OK
     res.status(200).json(info)
 })
 
+app.get("/all/:token", async function(req, res) {
+     token = req.params.token;
+     if(token==process.env.TOKEN){
+          var all = await auth.getAll()
+          res.status(200).json(all)
+     }else{res.status(400).send(false)}
+
+})
+
 
 app.delete('/removeuser/:user/:password/:token', async function(req, res){
      user = req.params.user;

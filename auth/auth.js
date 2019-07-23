@@ -29,6 +29,7 @@ let myAuth = mongoose.model('Auth', authSchema);
 
 module.exports = {
 
+   getAll: () => { return myAuth.find() },
    createUser: (user, password) => {
         //TODO verify if user exit
      console.log("Creating User...")
