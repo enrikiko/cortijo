@@ -52,7 +52,7 @@ export class WeatherComponent implements OnInit {
     let chart = new CanvasJS.Chart("chartContainer", {
 		animationEnabled: true,
 		exportEnabled: true,
-		title: { text: "Temperature & humidity" },
+		title: { text: "Laptop-room temperature & humidity" },
 		data: [{
 			type: "spline",
                color: "rgba(255,0,0,1)", //red
