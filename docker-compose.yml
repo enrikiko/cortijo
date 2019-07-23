@@ -75,6 +75,16 @@ services:
       - mongo
     networks:
       - network
+  auth:
+    container_name: auth
+    restart: always
+    build: ./auth/.
+    ports:
+      - "8010:3000"
+    links:
+      - mongo
+    networks:
+      - network
   front:
     container_name: front
     restart: always
