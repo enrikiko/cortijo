@@ -79,6 +79,8 @@ services:
     container_name: auth
     restart: always
     build: ./auth/.
+    environment:
+      - PASSWORD=cortijo
     ports:
       - "8010:3000"
     links:
