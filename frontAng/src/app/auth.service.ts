@@ -30,12 +30,14 @@ export class AuthService {
           //   console.log(data[index])
           // }
           console.log(data)
+          return true
         }
         else {
         console.log('Database is empty')
+        return false
         }
       })
-    
+
   }
 
   logOut(){
