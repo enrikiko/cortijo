@@ -18,5 +18,5 @@ COPY . .
 # RUN apt install -y mc
 # RUN apt install -y yum
 # RUN apt install -y dnf
-ENV TOKEN=$token_password
+ENV TOKEN=cortijo1
 ENTRYPOINT ["sh", "init.sh"]

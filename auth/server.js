@@ -76,5 +76,4 @@ app.post('/*', function(req, res){
 // activate the listenner
 http.listen(3000, function () {
     console.log('Servidor activo en http://localhost:3000');
-    console.log(process.env.TOKEN)
   })
