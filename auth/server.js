@@ -48,6 +48,7 @@ app.post('/newuser/:user/:password/:token', function(req, res){
      user = req.params.user;
      password = req.params.password;
      token = req.params.token;
+     console.log()
      if(token=="token"){
           console.log("token correct")
           auth.createUser(user, password)
@@ -57,10 +58,12 @@ app.post('/newuser/:user/:password/:token', function(req, res){
      }
 });
 
-app.get('/user/:user/:password', function(req, res){
+app.get('/user/:user/:password',async function(req, res){
      user = req.params.user;
      password = req.params.password;
-     var status = auth.isUser(user,password)
+     var status =await auth.isUser(user,password)
+     console.log("status")
+     console.log(status)
      if(status==true){res.status(200).send(true)}
      else{res.status(400).send(false)}
 });
