@@ -14,6 +14,7 @@ app.use(express.urlencoded())
 app.enable('trust proxy')
 var http = require('http').Server(app);
 var io = http;
+const list = [1,2,3,4,5,6,7,8,9]
 //var temperature;
 //var humidity;
 
@@ -31,6 +32,13 @@ app.get("/info", function(req, res) { //OK
     var info = {"Version": version, "Start time": startDate}
     res.status(200).json(info)
 })
+
+for (var elem in list){
+     app.get("/"+elem, function(req, res) { //OK
+         var info = {"Version": elem, "Start time": startDate}
+         res.status(200).json(info)
+     })
+}
 
 // app.get('/usermock/:user/:password', function(req, res){
 //      user = req.params.user;
