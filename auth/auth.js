@@ -45,6 +45,15 @@ module.exports = {
      });
    },
 
+   removeUser: (user, password) => {
+          return auth.remove({name: user}, function(err, result) {
+          if (err) throw err
+          if(result){
+               console.log(result)
+          }
+    });
+   },
+
    isUser: async (user, password) => {
      async function getUser(userName){
         return myAuth.find({user: userName})

@@ -34,13 +34,26 @@ app.get("/info", function(req, res) { //OK
 })
 
 
-// app.get('/usermock/:user/:password', function(req, res){
-//      user = req.params.user;
-//      password = req.params.password;
-//      var status = false;
-//      if(user=="Enrique" && password=="1234"){status=true}
-//      res.status(200).send(status)
-// });
+app.delete('/removeuser/:user/:password/:token', function(req, res){
+     user = req.params.user;
+     password = req.params.password;
+     token = req.params.token;
+     if(token==process.env.TOKEN){
+          console.log("Token correct")
+          var status = await auth.isUser(user,password)
+          if(status){
+               var result = await auth.removeUser(user, password)
+               console.log(result)
+               res.status(200).send("User removed successfuly")
+          }else{
+               console.log("User not exist")
+               res.status(400).send("Unauthorized")
+          }
+     }else{
+          console.log("Token incorrect")
+          res.status(400).send("Unauthorized")
+     }
+});
 
 app.post('/newuser/:user/:password/:token', function(req, res){
      user = req.params.user;
