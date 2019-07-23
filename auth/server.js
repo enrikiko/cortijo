@@ -33,18 +33,6 @@ app.get("/info", function(req, res) { //OK
     res.status(200).json(info)
 })
 
-var Info = function(elem){
-     return {"Version": elem, "Start time": startDate}
-}
-
-for (elem in list){
-     console.log(elem)
-     app.get("/"+elem, function(req, res) { //OK
-         var info = new Info(elem)
-         console.log(new Info(elem))
-         res.status(200).json(new Info(elem))
-     })
-}
 
 // app.get('/usermock/:user/:password', function(req, res){
 //      user = req.params.user;
