@@ -25,17 +25,14 @@ export class AuthService {
       let url = "http://" + host + ":8010/user/"+ user + "/" + password
       this.http.get(url).subscribe( data =>
       {
-        if(data=="true"){
-          // for(let index in data){
-          //   console.log(data[index])
-          // }
+        if(data[status]==true){
           console.log(data)
           this.status = true
           this.router.navigate([''])
           return true
         }
         else {
-        console.log('Database is empty')
+        console.log('Unautorized')
         return false
         }
       })
