@@ -30,6 +30,8 @@ export class AuthService {
           //   console.log(data[index])
           // }
           console.log(data)
+          this.status = true
+          this.router.navigate([''])
           return true
         }
         else {
