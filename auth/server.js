@@ -14,7 +14,6 @@ app.use(express.urlencoded())
 app.enable('trust proxy')
 var http = require('http').Server(app);
 var io = http;
-const list = [1,2,3,4,5,6,7,8,9]
 //var temperature;
 //var humidity;
 
@@ -38,7 +37,7 @@ app.get("/all/:token", async function(req, res) {
      if(token==process.env.TOKEN){
           var all = await auth.getAll()
           res.status(200).json(all)
-     }else{res.status(400).send(false)}
+     }else{res.status(401).send(false)}
 
 })
 
@@ -56,11 +55,11 @@ app.delete('/removeuser/:user/:password/:token', async function(req, res){
                res.status(200).send("User removed successfuly")
           }else{
                console.log("User not exist")
-               res.status(400).send("Unauthorized")
+               res.status(401).send("Unauthorized")
           }
      }else{
           console.log("Token incorrect")
-          res.status(400).send("Unauthorized")
+          res.status(401).send("Unauthorized")
      }
 });
 
@@ -73,12 +72,12 @@ app.post('/newuser/:user/:password/:token', async function(req, res){
           var isUser = await auth.getUser(user)
           if(!isUser[0]){
                auth.createUser(user, password)
-               res.status(200).send("User created successfuly")
+               res.status(201).send("User created successfuly")
           }else{res.status(200).send("User already exist")}
 
      }else{
           console.log("Token incorrect")
-          res.status(400).send("Unauthorized")
+          res.status(401).send("Unauthorized")
      }
 });
 
@@ -86,9 +85,12 @@ app.get('/user/:user/:password',async function(req, res){
      user = req.params.user;
      password = req.params.password;
      var status = await auth.isUser(user,password)
-     if(status==true){res.status(200).send(true)}
-     else{res.status(400).send(false)}
+     if(status==true){res.status(200).send(respose(true))}
+     else{res.status(401).send(respose(false))}
 });
+function respose(status) {
+return {"status":status}
+}
 
 app.get('/*', function(req, res){
      var info = {"Version": version, "Start time": startDate, "URL": "incorrect"}
