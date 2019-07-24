@@ -25,7 +25,7 @@ export class AuthService {
       let url = "http://" + host + ":8010/user/"+ user + "/" + password
       this.http.get(url).subscribe( data =>
       {
-        if(data!=null){
+        if(data=="true"){
           // for(let index in data){
           //   console.log(data[index])
           // }
