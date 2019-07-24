@@ -23,9 +23,9 @@ export class AuthService {
   login( user, password ) {
       const host = "88.8.35.161"
       let url = "http://" + host + ":8010/user/"+ user + "/" + password
-      this.http.get(url).subscribe( data =>
+      this.http.get<any>(url).subscribe( data =>
       {
-        if(data[status]==true){
+        if(data.status==true){
           console.log(data)
           this.status = true
           this.router.navigate([''])
