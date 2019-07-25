@@ -9,7 +9,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 export class BodyComponent implements OnInit {
 
   devices: any[] = null;
-
+  lapse: number = null;
 
 
   constructor(private http: HttpClient) { }
@@ -26,9 +26,6 @@ export class BodyComponent implements OnInit {
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        // for(let index in data){
-        //   console.log(data[index])
-        // }
         this.devices=data;
       }
       else {
@@ -45,10 +42,12 @@ export class BodyComponent implements OnInit {
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8000/update/" + device.name +"/"+ newStatus
     // console.log(url)
+    let startTime = new Date().getTime()
     this.http.get(url).subscribe( data =>
     {
       if(data!=null){
-        // console.log(data)
+        let finishTime = new Date().getTime()
+        this.getDiference(startTime, finishTime)
         this.getDevicesList()
       }
       else {
@@ -56,6 +55,11 @@ export class BodyComponent implements OnInit {
       }
     })
 
+  }
+
+  getDiference(startTime, finishTime){
+    let lapse = finishTime - startTime
+    this.lapse = lapse
   }
 
 }

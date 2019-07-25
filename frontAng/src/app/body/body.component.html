@@ -6,5 +6,8 @@
         <h2>{{ device.status }}</h2>
       </button><!-- <h2>Ip:{{ device.ip }}</h2> -->
     </div>
+    <div *ngIf="lapse" class="col-12 col-md-6 col-lg-3">
+      <h3>Lapse= {{ lapse }}</h3>
+    </div>
   </div>
 </div>
