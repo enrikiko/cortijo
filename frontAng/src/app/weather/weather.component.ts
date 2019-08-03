@@ -21,7 +21,7 @@ export class WeatherComponent implements OnInit {
   }
   getData(){
     //const host = (window.location.href.split("/")[2]).split(":")[0]
-    const host = "88.8.35.161"
+    const host = "88.8.65.164"
     let url = "http://" + host + ":8000/get/temperature/humidity/history"
     this.http.get<HttpResponse<object>>(url).subscribe( data =>
     {

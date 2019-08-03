@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   login( user, password ) {
-      const host = "88.8.35.161"
+      const host = "88.8.65.164"
       let url = "http://" + host + ":8010/user/"+ user + "/" + password
       this.http.get<any>(url).subscribe( data =>
       {
