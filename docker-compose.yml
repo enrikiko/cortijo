@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 services:
   mongo:
     container_name: mongo
@@ -9,7 +9,7 @@ services:
       - "27017:27017"
     networks:
       - network
-  catOrDog:
+  catordog:
     container_name: catordog
     restart: always
     build: ./catOrDog/.
