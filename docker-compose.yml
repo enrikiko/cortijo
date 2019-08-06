@@ -9,14 +9,14 @@ services:
       - "27017:27017"
     networks:
       - network
-  # check:
-  #   container_name: check
-  #   restart: always
-  #   build: ./check_status_api/.
-  #   ports:
-  #     - "8100:3000"
-  #   networks:
-  #     - network
+  catOrDog:
+    container_name: catordog
+    restart: always
+    build: ./catOrDog/.
+    ports:
+      - "8200:3000"
+    networks:
+      - network
   mock1:
     container_name: mock1
     restart: always

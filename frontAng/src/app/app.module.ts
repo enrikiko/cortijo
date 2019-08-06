@@ -11,6 +11,7 @@ import { LogsComponent } from './logs/logs.component';
 import { WeatherComponent } from './weather/weather.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { CatordogComponent } from './catordog/catordog.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     LogsComponent,
     WeatherComponent,
-    LoginComponent
+    LoginComponent,
+    CatordogComponent
   ],
   imports: [
     BrowserModule,
