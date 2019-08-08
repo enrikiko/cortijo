@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/upload', methods = ['GET', 'POST'])
 def upload_file():
   f = request.files['file']
-  f.save(os.path.join(app.instance_path, 'files'), secure_filename(f.filename))
+  f.save(secure_filename(f.filename))
   return 'file uploaded successfully'
 
 @app.route('/liveness', methods = ['GET'])
