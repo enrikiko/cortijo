@@ -1,6 +1,7 @@
-
-         <form action = "http://88.8.65.164:8030/uploader" method = "POST"
-            enctype = "multipart/form-data">
-            <input type = "file" name = "file" />
-            <input type = "submit"/>
-         </form>
+<div class="container-fluid">
+  <form (submit)="update($event)">
+    <input type="file" name ="file"/>
+    <input type="submit" value="Submit" class="btn btn-primary mt-2"/>
+  </form>
+  <h2>{{ response }}</h2>
+</div>
