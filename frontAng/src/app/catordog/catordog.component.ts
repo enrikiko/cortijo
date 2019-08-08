@@ -27,6 +27,7 @@ export class CatordogComponent implements OnInit {
     const url = "http://88.8.65.164:8200/upload"
     const options = {
       headers: new HttpHeaders().set('Authorization', "EnriqueRamos"),
+
     }
     this.http.post(url, formData, options).subscribe( data =>
     {
