@@ -25,11 +25,11 @@ export class CatordogComponent implements OnInit {
       console.log(file);
     };
     const url = "http://88.8.65.164:8200/upload"
-    const options = {
-      headers: new HttpHeaders().set('Authorization', "EnriqueRamos"),
-
-    }
-    this.http.post(url, formData, options).subscribe( data =>
+    // const options = {
+    //   headers: new HttpHeaders().set('Authorization', "EnriqueRamos"),
+    //
+    // }
+    this.http.post(url, formData).subscribe( data =>
     {
       if(data!=null){
         this.response=data;
