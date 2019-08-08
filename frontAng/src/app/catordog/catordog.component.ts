@@ -24,7 +24,7 @@ export class CatordogComponent implements OnInit {
       formData.append('upload', file);
       console.log(file);
     };
-    const url = "http://88.8.65.164:8030/uploader"
+    const url = "http://88.8.65.164:8030/upload"
     const options = {
       headers: new HttpHeaders().set('Authorization', "EnriqueRamos"),
     }
