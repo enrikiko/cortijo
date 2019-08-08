@@ -18,7 +18,7 @@ def liveness():
 def http():
     return '''<html>
        <body>
-          <form action = "http://localhost:5000/uploader" method = "POST"
+          <form action = "http://88.8.65.164:8200/upload" method = "POST"
              enctype = "multipart/form-data">
              <input type = "file" name = "file" />
              <input type = "submit"/>
