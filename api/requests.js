@@ -51,8 +51,11 @@ module.exports = {
   getAllIp: () => {
        let ipList = []
        const allRequest = myRequest.find()
+       console.log(allRequest)
        allRequest.forEach(function (item, index) {
+            console.log(item)
             const ip = item.ip
+            console.log(ip)
             if (!ipList.includes(ip)){ipList.push(ip)}
        })
   },
