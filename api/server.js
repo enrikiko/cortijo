@@ -5,6 +5,7 @@ const express = require("express");
 const myDevice = require('./users');
 const joker = require('./joker');
 const weather = require('./weather');
+const requests = require('./requests');
 const history = require('./history');
 const cors = require('cors');
 const bodyParser = require('body-parser')
@@ -27,8 +28,16 @@ app.get("/*", function(req, res, next) {
   var ip = req.ip
   joker.log( fullUrl + " : " + ip )
   joker.newLogRequest(ip, fullUrl)
+  request.newRequest(ip, fullUrl)
   next()
 })
+
+app.get("/getAllRequest", async function(req, res) { //OK
+  try{
+    var response = await requests.getAllRequest();
+    res.status(200).json({response})
+  }catch(response){}
+  })
 
 //Get log
 app.get("/info", function(req, res) { //OK
