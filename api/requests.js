@@ -48,9 +48,9 @@ module.exports = {
 
   getAllRequest: () => { return myRequest.find() },
 
-  getAllIp: () => {
+  getAllIp: async () => {
        let ipList = []
-       const allRequest = myRequest.find()
+       const allRequest = await myRequest.find()
        console.log(allRequest)
        allRequest.forEach(function (item, index) {
             console.log(item)

@@ -12,10 +12,10 @@ RUN apt-get update
 RUN apt update
 COPY package/. .
 RUN npm install
-COPY . .
 RUN touch log.txt
 RUN apt install -y man
 RUN apt install -y less
+COPY . .
 # RUN apt install -y more
 # RUN apt install -y mc
 # RUN apt install -y yum
