@@ -39,6 +39,13 @@ app.get("/getAllRequest", async function(req, res) { //OK
   }catch(response){}
   })
 
+app.get("/getAllIp", async function(req, res) { //OK
+try{
+ var response = await requests.getAllIp();
+ res.status(200).json({response})
+}catch(response){}
+})
+
 //Get log
 app.get("/info", function(req, res) { //OK
     var info = {"Version": version, "Start time": startDate}
