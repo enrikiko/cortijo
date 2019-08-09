@@ -42,7 +42,7 @@ app.get("/getAllRequest", async function(req, res) { //OK
 app.get("/getAllIp", async function(req, res) { //OK
 try{
  var response = await requests.getAllIp();
- res.status(200).json({response})
+ res.status(200).json([response])
 }catch(response){}
 })
 
