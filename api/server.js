@@ -28,7 +28,7 @@ app.get("/*", function(req, res, next) {
   var ip = req.ip
   joker.log( fullUrl + " : " + ip )
   joker.newLogRequest(ip, fullUrl)
-  request.newRequest(ip, fullUrl)
+  requests.newRequest(ip, fullUrl)
   next()
 })
 
