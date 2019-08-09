@@ -51,13 +51,11 @@ module.exports = {
   getAllIp: async () => {
        let ipList = []
        const allRequest = await myRequest.find()
-       console.log(allRequest)
        allRequest.forEach(function (item, index) {
-            console.log(item)
             const ip = item.ip
-            console.log(ip)
             if (!ipList.includes(ip)){ipList.push(ip)}
        })
+       return ipList
   },
 
 }
