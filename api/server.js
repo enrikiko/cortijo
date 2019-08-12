@@ -9,6 +9,7 @@ const requests = require('./requests');
 const history = require('./history');
 const cors = require('cors');
 const bodyParser = require('body-parser')
+const auth = require('basic-auth')
 const app = express();
 app.enable('trust proxy');
 app.use(bodyParser.json());
@@ -30,6 +31,11 @@ app.get("/*", function(req, res, next) {
   joker.newLogRequest(ip, fullUrl)
   requests.newRequest(ip, fullUrl)
   next()
+})
+
+app.get("/parameters",  function(req, res) {
+  var user = auth(req)
+  res.status(200).json(user)
 })
 
 app.get("/getAllRequest", async function(req, res) { //OK
