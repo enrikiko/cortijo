@@ -5,6 +5,7 @@ const express = require("express");
 const auth = require('./auth');
 const cors = require('cors');
 const bodyParser = require('body-parser')
+const auth_parameters = require('basic-auth')
 const app = express();
 app.enable('trust proxy');
 app.use(bodyParser.json());
@@ -84,6 +85,18 @@ app.post('/newuser/:user/:password/:token', async function(req, res){
 app.get('/user/:user/:password',async function(req, res){
      user = req.params.user;
      password = req.params.password;
+     var status = await auth.isUser(user,password)
+     if(status==true){res.status(200).send(respose(true))}
+     else{res.status(401).send(respose(false))}
+});
+function respose(status) {
+return {"status":status}
+}
+
+app.get('/user_auth/',async function(req, res){
+     const parameters = auth_parameters(req)
+     user = parameters.name;
+     password = parameters.pass;
      var status = await auth.isUser(user,password)
      if(status==true){res.status(200).send(respose(true))}
      else{res.status(401).send(respose(false))}

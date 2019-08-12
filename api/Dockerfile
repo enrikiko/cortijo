@@ -1,20 +1,14 @@
 #FROM enriqueramosmunoz/rolling:mongo
 FROM ubuntu:18.04
-RUN apt update
-
 RUN apt-get update
-RUN apt-get install -y curl
-RUN apt-get install -y nodejs
-RUN apt-get install -y npm
+RUN apt update
+RUN apt-get install -y curl nodejs npm
+RUN apt install -y man less
 RUN mkdir /root/node
 WORKDIR /root/node
-RUN apt-get update
-RUN apt update
 COPY package/. .
 RUN npm install
 RUN touch log.txt
-RUN apt install -y man
-RUN apt install -y less
 COPY . .
 # RUN apt install -y more
 # RUN apt install -y mc

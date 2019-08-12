@@ -14,7 +14,8 @@
     "socket.io": "^1.7.3",
     "request": "*",
     "nodemon": "*",
-    "superagent": "*"
+    "superagent": "*",
+    "basic-auth": "*"
   },
   "author": "Enrique Ramos",
   "license": "ISC"
