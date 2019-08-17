@@ -1,14 +1,17 @@
 from flask import Flask, render_template, request
 from werkzeug import secure_filename
 import os
+from learning import catordog
 app = Flask(__name__)
 
 
 @app.route('/upload', methods = ['GET', 'POST'])
 def upload_file():
-  f = request.files['file']
-  f.save(secure_filename(f.filename))
-  return 'file uploaded successfully'
+    f = request.files['file']
+    print("Filename:" + f.filename))
+    f.save(secure_filename(f.filename))
+    return catordog(f.filename)
+    #return 'file uploaded successfully'
 
 @app.route('/liveness', methods = ['GET'])
 def liveness():
