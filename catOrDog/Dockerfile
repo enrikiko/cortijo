@@ -16,7 +16,8 @@ RUn pip install Flask
 RUN pip install Werkzeug
 RUN updatedb
 RUN mkdir /src/
-COPY ./ /src/
+COPY ./dataset/ /src/dataset/
+COPY ./files/ /src/
 WORKDIR /src/
 #RUN curl https://sds-platform-private.s3-us-east-2.amazonaws.com/uploads/P16-Convolutional-Neural-Networks.zip --output zip.zip
 #RUN unzip zip.zip

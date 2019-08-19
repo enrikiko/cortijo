@@ -29,7 +29,7 @@ export class CatordogComponent implements OnInit {
     //   headers: new HttpHeaders().set('Authorization', "EnriqueRamos"),
     //
     // }
-    this.http.post(url, formData).subscribe( data =>
+    this.http.get(url).subscribe( data =>
     {
       if(data!=null){
         this.response=data;
