@@ -2,6 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <script>
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    const port = (window.location.href.split("/")[2]).split(":")[1]
     function getURL(post) {
       var xmlHttp = new XMLHttpRequest();
       const text=window.location.href.split("/")[2]
@@ -25,6 +27,7 @@
       <div style="margin-left: 50px; margin-top: 50px">
         <!-- <h2><a onclick=getURL("terminal") >terminal</a></h2> -->
         <!-- <a onclick=getURL("log") >log</a> -->
+          <h1><a>host+":"+port+"/http"</a></h1>
           <h1><a onclick=getURL("all") >all</a></h1>
           <h1><a onclick=getURL("name/mock") >name/mock</a></h1>
           <h1><a onclick=getURL("new/mock/true/localhost:8001") >new/mock/true/localhost:8001</a></h1>
