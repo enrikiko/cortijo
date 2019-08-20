@@ -34,7 +34,7 @@ app.get("/*", function(req, res, next) {
   next()
 })
 
-app.get("/ai", async function(req, res) { //OK
+app.get("/ia", async function(req, res) { //OK
   try{
     var response = await ia.catordog(req);
     res.status(200).json({response})
