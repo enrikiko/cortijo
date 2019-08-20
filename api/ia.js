@@ -6,7 +6,7 @@ module.exports={
        console.log(req);
        async function getResponse(req) {
          console.log(req)
-         let response = await request.post("http://88.8.65.164/upload").send(req);
+         let response = await request.get("http://88.8.65.164/liveness");
          res = {};
          res.code = response.statusCode;
          res.body = response.body
