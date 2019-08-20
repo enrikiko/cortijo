@@ -7,9 +7,10 @@ const joker = require('./joker');
 const weather = require('./weather');
 const requests = require('./requests');
 const history = require('./history');
+const ia = require('./ia');
 const cors = require('cors');
-const bodyParser = require('body-parser')
-const auth = require('basic-auth')
+const bodyParser = require('body-parser');
+const auth = require('basic-auth');
 const app = express();
 app.enable('trust proxy');
 app.use(bodyParser.json());
@@ -32,6 +33,14 @@ app.get("/*", function(req, res, next) {
   requests.newRequest(ip, fullUrl)
   next()
 })
+
+app.get("/ai", async function(req, res) { //OK
+  try{
+    var response = await ia.catordog(req);
+    res.status(200).json({response})
+  }catch(response){}
+  })
+
 
 app.get("/parameters",  function(req, res) {
   var user = auth(req)
