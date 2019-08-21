@@ -2,6 +2,9 @@
 <html lang="en" dir="ltr">
   <head>
     <script>
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    const port = 8200
+    function getIA(){console.log("getIA");window.location.href =  "http://"+host+":"+port+"/http"}
     function getURL(post) {
       var xmlHttp = new XMLHttpRequest();
       const text=window.location.href.split("/")[2]
@@ -25,11 +28,21 @@
       <div style="margin-left: 50px; margin-top: 50px">
         <!-- <h2><a onclick=getURL("terminal") >terminal</a></h2> -->
         <!-- <a onclick=getURL("log") >log</a> -->
+          <h1><a onclick=getIA()>IA</a></h1>
           <h1><a onclick=getURL("all") >all</a></h1>
           <h1><a onclick=getURL("name/mock") >name/mock</a></h1>
           <h1><a onclick=getURL("new/mock/true/localhost:8001") >new/mock/true/localhost:8001</a></h1>
           <h1><a onclick=getURL("update/mock/true") >update/mock/true</a></h1>
           <h1><a onclick=getURL("update/mock/false") >update/mock/false</a></h1>
+          <h1><a onclick=getURL("parameters") >parameters</a></h1>
+          <h1><a onclick=getURL("getAllRequest") >getAllRequest</a></h1>
+          <h1><a onclick=getURL("getAllIp") >getAllIp</a></h1>
+          <h1><a onclick=getURL("info") >info</a></h1>
+          <h1><a onclick=getURL("log") >log</a></h1>
+          <h1><a onclick=getURL("set/35/40") >set/:temperature/:humidity</a></h1>
+          <h1><a onclick=getURL("get/temperature/humidity") >get/temperature/humidity</a></h1>
+          <h1><a onclick=getURL("get/temperature/humidity/history") >get/temperature/humidity/history</a></h1>
+          <h1><a onclick=getURL("log/history") >log/history</a></h1>
           <h1><a onclick=getURL("remove/mock") >remove/mock</a></h1>
       </div>
       <div style="margin-left: 50px; margin-top: 50px" id="dynamic">
