@@ -26,11 +26,12 @@ module.exports={
      auth: async (user, password) => {
        const url = "http://192.168.1.50:8010/user/"+user+"/"+password
        console.log(url);
-       async function getResponse(user, password ) {
+       async function getResponse(url) {
          let response = await request.get(url);
+         console.log(response.statusCode)
          return response.statusCode;
        }
-       return await getResponse(user, password);
+       return await getResponse(url);
      },
 
     log: (text) => {
