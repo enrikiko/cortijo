@@ -184,7 +184,7 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
   }
 })
 
-app.get("/auth/:name/:password", async function(req, res) {
+app.get("/auth/:user/:password", async function(req, res) {
   user = req.params.user;
   password = req.params.password;
   var response = joker.auth(user, password);
