@@ -24,10 +24,10 @@ module.exports={
      },
 
      auth: async (user, password) => {
-       const request = "http://192.168.1.50:8010/user/"+user+"/"+password
-       console.log(request);
+       const url = "http://192.168.1.50:8010/user/"+user+"/"+password
+       console.log(url);
        async function getResponse(user, password ) {
-         let response = await request.get(request);
+         let response = await request.get(url);
          return response.statusCode;
        }
        return await getResponse(user, password);
