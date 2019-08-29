@@ -31,14 +31,14 @@ let myTemperature = mongoose.model('Temperature', deviceSchema);
 
 module.exports = {
 
-  newDevice: (time, temperature, humidity) => {
-    let device = new myTemperature(
+  newTemperature: (time, temperature, humidity) => {
+    let mesure = new myTemperature(
       {
         time: time,
         temperature: temperature,
         humidity: humidity
       });
-    device.save(function(err, result) {
+    mesure.save(function(err, result) {
       if (err) throw err;
       if(result) {
         console.log(result);

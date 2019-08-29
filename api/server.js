@@ -34,18 +34,24 @@ app.get("/*", function(req, res, next) {
   next()
 })
 
+app.post("/*", function(req, res, next) {
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
+  var ip = req.ip
+  joker.log( fullUrl + " : " + ip )
+  joker.newLogRequest(ip, fullUrl)
+  requests.newRequest(ip, fullUrl)
+  next()
+})
+
+
+
 app.get("/ia", async function(req, res) { //OK
   try{
     var response = await ia.catordog(req);
     res.status(200).json({response})
   }catch(response){}
   })
-
-
-app.get("/parameters",  function(req, res) {
-  var user = auth(req)
-  res.status(200).json(user)
-})
 
 app.get("/getAllRequest", async function(req, res) { //OK
   try{
@@ -139,7 +145,7 @@ app.get("/name/:name", async function(req, res) {
   }catch(response){}
   })
 
-//Remove user by id
+//Remove device by id
 app.get("/remove/:name", async function(req, res) { //OK
   try{
     var name = req.params.name;
@@ -178,7 +184,19 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
   }
 })
 
-//update user
+app.get("/auth/:name/:password", async function(req, res) {
+  user = req.params.user;
+  password = req.params.password;
+  var response = joker.auth(user, password);
+  if(response==true){res.status(200).send(respose(true))}
+  else{res.status(401).send(respose(false))}
+})
+
+function respose(status) {
+return {"status":status}
+}
+
+//update device
 app.get("/update/:name/:status", async function(req, res){
   var status = joker.getStatus(req.params.status);
   var name = req.params.name
@@ -209,7 +227,12 @@ app.get("/update/:name/:status", async function(req, res){
   }
 })
 
+//Handel all bad requests
 app.get('/*', function(req, res){
+  res.sendFile(__dirname + '/info.html');
+});
+
+app.post('/*', function(req, res){
   res.sendFile(__dirname + '/info.html');
 });
 

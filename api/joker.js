@@ -23,17 +23,15 @@ module.exports={
         return JSON.parse(jsonString)
      },
 
-    // execute: (msg) => {
-    //    console.log(msg)
-    //    exec(msg, (err, stdout) => {
-    //      if (err) {
-    //        console.log(err)
-    //      }
-    //      if (stdout) {
-    //        console.log(stdout);
-    //      }
-    //    });
-    //  },
+     auth: async (user, password) => {
+       const request = "http://192.168.1.50:8010/user/"+user+"/"+password
+       console.log(request);
+       async function getResponse(user, password ) {
+         let response = await request.get(request);
+         return response.statusCode;
+       }
+       return await getResponse(user, password);
+     },
 
     log: (text) => {
        //io.emit('chat message', text);
@@ -53,7 +51,7 @@ module.exports={
 
     newLogRequest: (ip, request)=>{
       var time = new Date().getTime()
-      myLogs.newDevice(time, ip, request);
+      myLogs.newLog(time, ip, request);
     },
     getLogRequest: async()=>{
       let res = await myLogs.getAll();
@@ -61,7 +59,7 @@ module.exports={
     },
     newLogTemperature: (temperature, humidity)=>{
       var time = new Date().getTime()
-      myTemperature.newDevice(time, temperature, humidity);
+      myTemperature.newTemperature(time, temperature, humidity);
     },
     getLogTemperature: async()=>{
       let res = await myTemperature.getAll();

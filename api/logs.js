@@ -31,7 +31,7 @@ let myLogs = mongoose.model('Logs', deviceSchema);
 
 module.exports = {
 
-  newDevice: (time, ip, request) => {
+  newLog: (time, ip, request) => {
     let device = new myLogs(
       {
         time: time,
