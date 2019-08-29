@@ -187,7 +187,7 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
 app.get("/auth/:user/:password", async function(req, res) {
   user = req.params.user;
   password = req.params.password;
-  var response = joker.auth(user, password);
+  var response = await joker.auth(user, password);
   console.log("response "+response);
   if(response==200){res.status(200).send(respose(true))}
   else{res.status(401).send(respose(false))}
