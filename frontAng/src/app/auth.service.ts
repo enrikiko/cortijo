@@ -11,7 +11,7 @@ interface myData {
 })
 export class AuthService {
 
-  private status = false
+  private status = false;
 
   constructor(private router: Router,
               private http: HttpClient ) { };

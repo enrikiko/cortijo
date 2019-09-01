@@ -12,6 +12,7 @@ import { WeatherComponent } from './weather/weather.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { CatordogComponent } from './catordog/catordog.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CatordogComponent } from './catordog/catordog.component';
     LogsComponent,
     WeatherComponent,
     LoginComponent,
-    CatordogComponent
+    CatordogComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

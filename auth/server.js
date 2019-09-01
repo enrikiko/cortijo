@@ -68,17 +68,22 @@ app.post('/newuser/:user/:password/:token', async function(req, res){
      user = req.params.user;
      password = req.params.password;
      token = req.params.token;
+     response = {}
      if(token==process.env.TOKEN){
           console.log("Token correct")
           var isUser = await auth.getUser(user)
           if(!isUser[0]){
                auth.createUser(user, password)
-               res.status(201).send("User created successfuly")
-          }else{res.status(200).send("User already exist")}
+               response.status="User created successfuly"
+               res.status(201).send(response)
+          }else{
+              response.status="User already exist"
+              res.status(200).send(response)}
 
      }else{
           console.log("Token incorrect")
-          res.status(401).send("Unauthorized")
+          response.status="Unauthorized"
+          res.status(401).send(response)
      }
 });
 

@@ -5,7 +5,8 @@ import { BodyComponent } from './body/body.component';
 import { WeatherComponent } from './weather/weather.component';
 import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
-import { CatordogComponent } from './catordog/catordog.component'
+import { CatordogComponent } from './catordog/catordog.component';
+import { UsersComponent } from './users/users.component'
 
 const routes: Routes = [
   {path:'', component: BodyComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path:'weather', component: WeatherComponent},
   {path:'weather', component: WeatherComponent},
   {path:'login', component: LoginComponent},
-  {path:'catordog', component: CatordogComponent}
+  {path:'catordog', component: CatordogComponent},
+  {path:'users', component: UsersComponent}
 ];
 
 @NgModule({
