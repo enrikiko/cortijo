@@ -128,7 +128,7 @@ app.get("/get/temperature/humidity/history",async function(req, res) {
   res.status(200).json(temperature)
   })
 //Delete temperature history
-app.get("/delete/temperature/humidity/history", function(req, res) {
+app.get("/delete/temperature/humidity/history",async function(req, res) {
   try {
     var result = await myTemperature.deleteAll()
   } catch (e) {
