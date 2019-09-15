@@ -5,6 +5,7 @@ const express = require("express");
 const myDevice = require('./users');
 const joker = require('./joker');
 const weather = require('./weather');
+const myTemperature = require('./temperature');
 const requests = require('./requests');
 const history = require('./history');
 const ia = require('./ia');
@@ -125,6 +126,16 @@ app.get("/get/temperature/humidity/history",async function(req, res) {
     console.log(e)
   }
   res.status(200).json(temperature)
+  })
+//Delete temperature history
+app.get("/delete/temperature/humidity/history", function(req, res) {
+  try {
+    var result = await myTemperature.deleteAll()
+  } catch (e) {
+    console.log(e)
+    res.status(500).send(e)
+  }
+  res.status(200).send(result)
   })
 
 app.get("/log/history",async function(req, res) {

@@ -12,7 +12,7 @@ services:
   catordog:
     container_name: catordog
     restart: always
-    build: ./catOrDog/.
+    build: ./cat_or_dog/.
     ports:
       - "8200:3000"
     networks:

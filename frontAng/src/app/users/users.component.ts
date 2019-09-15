@@ -12,7 +12,7 @@ export class UsersComponent implements OnInit {
   password: String;
   userName: String;
   userPassword: String;
-  status: Boolean;
+  status: String;
 
   constructor( private http: HttpClient ) { }
 
@@ -24,16 +24,15 @@ export class UsersComponent implements OnInit {
     let url = "http://" + host + ":8010/newuser/"+this.userName+"/"+this.userPassword+"/"+this.password
     console.log(url)
 
-    this.http.post<String>(url).subscribe( data =>
+    this.http.post<any>(url,null,null).subscribe( data =>
     {
       if(data){
-        //console.log(data)
-        this.status = true
-        return true
+        console.log(data)
+        this.status = data.status
       }
       else {
-      console.log('Unautorized')
-      return false
+        console.log('Unautorized')
+        this.status = data.status
       }
     })
 

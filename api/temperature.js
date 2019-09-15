@@ -31,6 +31,8 @@ let myTemperature = mongoose.model('Temperature', deviceSchema);
 
 module.exports = {
 
+  deleteAll: () => { return myTemperature.deleteMany({}) },
+
   newTemperature: (time, temperature, humidity) => {
     let mesure = new myTemperature(
       {
@@ -46,6 +48,6 @@ module.exports = {
     });
   },
 
-  getAll: () => { return myTemperature.find() },
+  getAll: () => { return myTemperature.find() }
 
 }
