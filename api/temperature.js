@@ -31,7 +31,7 @@ let myTemperature = mongoose.model('Temperature', deviceSchema);
 
 module.exports = {
 
-  deleteAll: () => { return myTemperature.deleteMany({}) },
+  deleteAll: async () => { return myTemperature.deleteMany({}) },
 
   newTemperature: (time, temperature, humidity) => {
     let mesure = new myTemperature(
