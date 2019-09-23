@@ -105,6 +105,7 @@ module.exports = {
          result.ip = ip
          result.save()
          //logs.log(result)
+         
        }
      });
      return device.ip;
