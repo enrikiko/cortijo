@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
-const joker = require('./joker');
+const logs = require('./logs');
 let connString = 'mongodb://mongo/users';
 const db = mongoose.connection;
 //mongoose.connect("mongodb://localhost:27017/users");
 mongoose.connect(connString);
 
 db.on('error',function(){
-joker.log("Error al conectarse a Mongo Device");
+logs.log("Error al conectarse a Mongo Device");
 });
 
 db.once('open', function() {
-joker.log("Conectado a MongoDB Device");
+logs.log("Conectado a MongoDB Device");
 });
 
 // definicion de esquema del artículo
@@ -54,7 +54,7 @@ module.exports = {
      device.save(function(err, result) {
        if (err) throw err;
        if(result) {
-         joker.log(result);
+         logs.log(result);
        }
      });
    },
@@ -93,7 +93,7 @@ module.exports = {
        if(result){
          result.status = status
          result.save()
-         joker.log(result)
+         logs.log(result)
        }
      });
    },
@@ -104,7 +104,7 @@ module.exports = {
        if(result){
          result.ip = ip
          result.save()
-         joker.log(result)
+         logs.log(result)
        }
      });
      return device.ip;
@@ -114,7 +114,7 @@ module.exports = {
     return myDevice.remove({name: deviceName}, function(err, result) {
       if (err) throw err
       if(result){
-        joker.log(result)
+        logs.log(result)
         }
       });
     }

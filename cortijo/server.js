@@ -30,7 +30,7 @@ app.get("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
-  joker.log( fullUrl + " : " + ip )
+  logs.log( fullUrl + " : " + ip )
   joker.newLogRequest(ip, fullUrl)
   requests.newRequest(ip, fullUrl)
   next()
@@ -40,7 +40,7 @@ app.post("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
-  joker.log( fullUrl + " : " + ip )
+  logs.log( fullUrl + " : " + ip )
   joker.newLogRequest(ip, fullUrl)
   requests.newRequest(ip, fullUrl)
   next()
@@ -112,7 +112,7 @@ app.get("/get/temperature/humidity/history",async function(req, res) {
        try {
          var temperature = await myTemperature.getAll()
        } catch (e) {
-         joker.log(e)
+         logs.log(e)
        }
        res.status(200).json(temperature)
   })
@@ -123,7 +123,7 @@ app.get("/delete/temperature/humidity/history",async function(req, res) {
          var result = await myTemperature.deleteAll()
          res.status(200).send(result)
        } catch (e) {
-         joker.log(e)
+         logs.log(e)
          res.status(500).send(e)
        }
   })
@@ -132,7 +132,7 @@ app.get("/log/history",async function(req, res) {
   try {
     var temperature = await history.history()
   } catch (e) {
-    joker.log(e)
+    logs.log(e)
   }
   res.status(200).json(temperature)
   })
@@ -153,10 +153,10 @@ app.get("/remove/:name", async function(req, res) { //OK
     var id = await myDevice.getIdbyName(name)
     if (id){
       var response = await myDevice.removeDeviceByName(name);
-      joker.log(name+" Remove successfully");
+      logs.log(name+" Remove successfully");
       res.status(200).json("Device Remove successfully")
     }else {
-      joker.log(name+" Doesn't Exist");
+      logs.log(name+" Doesn't Exist");
       res.status(200).json("Device Doesn't Exist")
     }
   }catch(response){}
@@ -171,11 +171,11 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
     try{
       var name = req.params.name
       var ip = req.params.ip
-      //joker.log("Try to create a new device: name-"+name+" status-"+status+" ip-"+ip);
+      //logs.log("Try to create a new device: name-"+name+" status-"+status+" ip-"+ip);
       var id = await myDevice.getIdbyName(name)
       if (!id) {
         var response = await myDevice.newDevice(name, status, ip)
-        joker.log(name+' have been created successfully');
+        logs.log(name+' have been created successfully');
         res.status(200).json(name+' create successfully')
       }else {
         var lastIp = await myDevice.updateDeviceIp(id, ip)
@@ -189,7 +189,7 @@ app.get("/auth/:user/:password", async function(req, res) {
   user = req.params.user;
   password = req.params.password;
   var response = await joker.auth(user, password);
-  joker.log("response "+response);
+  logs.log("response "+response);
   if(response==200){res.status(200).send(respose(true))}
   else{res.status(401).send(respose(false))}
 })
@@ -208,7 +208,7 @@ app.get("/update/:name/:status", async function(req, res){
   if (status === null){
     res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
   }else {
-    joker.log("Change status of "+name+" to "+status);
+    logs.log("Change status of "+name+" to "+status);
     var id = await myDevice.getIdbyName(name) //Get ID of the device
     var ip = await myDevice.getIpbyName(name) //Get IP of the device
     if(!ip){res.status(400).json({"Request": "Incorrect", "Device": "Not found"})}
@@ -221,14 +221,14 @@ app.get("/update/:name/:status", async function(req, res){
         setTimeout(async function(){  //Change back to false
              if(isUpdating[name]==true){
                   var responseBack = await joker.switchStatus(ip, false, name)
-                  joker.log("Changing back " + name + " to " + false.toString())
+                  logs.log("Changing back " + name + " to " + false.toString())
                   if (responseBack.code == 200) {
                     await myDevice.updateDevice(id, false) //Change DB back to false
-                    joker.log("Changed back " + name + " to " + false.toString())
+                    logs.log("Changed back " + name + " to " + false.toString())
                     isUpdating[name]=false
                     }
                     else {
-                         joker.log("Error changing back " + name + " to " + false.toString())
+                         logs.log("Error changing back " + name + " to " + false.toString())
                     }
              }
         }, defaultTime);
@@ -258,5 +258,5 @@ app.post('/*', function(req, res){
 
 // activate the listenner
 http.listen(3000, function () {
-    joker.log('Servidor activo en http://localhost:3000');
+    logs.log('Servidor activo en http://localhost:3000');
   })

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const joker = require('./joker');
+const logs = require('./logs');
 let connString = 'mongodb://mongo/temperature';
 const db = mongoose.connection;
 mongoose.connect(connString);
@@ -44,7 +44,7 @@ module.exports = {
     mesure.save(function(err, result) {
       if (err) throw err;
       if(result) {
-        joker.log(result);
+        logs.log(result);
       }
     });
   },

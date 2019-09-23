@@ -7,9 +7,9 @@ module.exports = {
 history: async () => {
  try{
    var response = await myLogs.getAll();
-   // console.log(response)
+   // logs.log(response)
    return response
    }catch(response){ console.log(response) }
  }
- 
+
 }

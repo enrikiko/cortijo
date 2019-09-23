@@ -1,4 +1,4 @@
-const joker = require('./joker');
+const logs = require('./logs');
 const myTemperature = require('./temperature');
 
 module.exports = {

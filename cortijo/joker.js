@@ -31,19 +31,6 @@ module.exports={
        return await getResponse(url);
      },
 
-    log: (text) => {
-       let time = new Date().toLocaleString()
-       text="\""+time+"\""+"  :    "+"\""+text+"\""
-
-       console.log(text);
-
-       fs.appendFile("log.txt", text, function(err) {
-          if(err) {
-              console.log(err);
-             }
-       });
-    },
-
     newLogRequest: (ip, request)=>{
       var time = new Date().getTime()
       myLogs.newLog(time, ip, request);

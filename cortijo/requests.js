@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
-const joker = require('./joker');
+const logs = require('./logs');
 let connString = 'mongodb://mongo/requests';
 const db = mongoose.connection;
 mongoose.connect(connString);
 
 db.on('error',function(){
-joker.log("Error al conectarse a Mongo Requests");
+logs.log("Error al conectarse a Mongo Requests");
 });
 
 db.once('open', function() {
-joker.log("Conectado a MongoDB Requests");
+logs.log("Conectado a MongoDB Requests");
 });
 
 // definicion de esquema del artículo
@@ -42,7 +42,7 @@ module.exports = {
     request.save(function(err, result) {
       if (err) throw err;
       if(result) {
-        joker.log(result);
+        logs.log(result);
       }
     });
   },
