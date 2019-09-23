@@ -66,7 +66,7 @@ module.exports = {
     log.save(function(err, result) {
       if (err) throw err;
       if(result) {
-        log(result);
+        logs.log(result);
       }
     });
   },
