@@ -4,7 +4,7 @@ const { exec } = require('child_process');
 const express = require("express");
 const myDevice = require('./users');
 const joker = require('./joker');
-const weather = require('./weather');
+//const weather = require('./weather');
 const myTemperature = require('./temperature');
 const requests = require('./requests');
 const history = require('./history');
@@ -110,7 +110,7 @@ app.get("/get/temperature/humidity", function(req, res) {
 //Get temperature and humidity history
 app.get("/get/temperature/humidity/history",async function(req, res) {
        try {
-         var temperature = await weather.history()
+         var temperature = await myTemperature.getAll()
        } catch (e) {
          joker.log(e)
        }

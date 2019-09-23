@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const joker = require('./joker');
+//const joker = require('./joker');
 let connString = 'mongodb://mongo/temperature';
 const db = mongoose.connection;
 mongoose.connect(connString);
@@ -49,6 +49,6 @@ module.exports = {
     });
   },
 
-  getAll: () => { return myTemperature.find() }
+  getAll: async() => { return await myTemperature.find() }
 
 }
