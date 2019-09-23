@@ -243,11 +243,13 @@ app.get("/update/:name/:status", async function(req, res){
              if (responseBack.code == 200) {
                await myDevice.updateDevice(id, false) //Change DB back to false
                console.log("Changed back " + name + " to " + false.toString())
+               isUpdating[name]=false
+               console.log(isUpdating)
+               console.log(isUpdating[name]!=true)
                }
                else {console.log("Error changing back " + name + " to " + false.toString())}
         }, defaultTime);
       }
-      isUpdating[name]=false
     }
     // var lastStatus = await myDevice.updateDevice(id, status)
     // var newStatus = await myDevice.getDeviceById(id)
