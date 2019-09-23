@@ -215,7 +215,7 @@ app.get("/update/:name/:status", async function(req, res){
   if (status === null){
     res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
   }else {
-  try{
+  // try{
     joker.log("Change status of "+name+" to "+status);
     var id = await myDevice.getIdbyName(name) //Get ID of the device
     var ip = await myDevice.getIpbyName(name) //Get IP of the device
@@ -232,7 +232,7 @@ app.get("/update/:name/:status", async function(req, res){
              var responseBack = await joker.switchStatus(ip, false, name)
              console.log("Changing back " + name + " to " + false.toString())
              if (responseBack.code == 200) {
-               // var lastStatus = await myDevice.updateDevice(id, false)
+               await myDevice.updateDevice(id, false) //Change DB back to false
                console.log("Changed back " + name + " to " + false.toString())
                }
                else {console.log("Error changing back " + name + " to " + false.toString())}
@@ -243,7 +243,7 @@ app.get("/update/:name/:status", async function(req, res){
     // var newStatus = await myDevice.getDeviceById(id)
     // joker.log("Previous Status: \"" + lastStatus + "\",\n New Status: \"" + newStatus + "\"")
 
-  }catch(response){}
+  // }catch(response){}
   }
 })
 
