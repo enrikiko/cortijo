@@ -216,7 +216,6 @@ app.get("/update/:name/:status", async function(req, res){
     res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
   }else {
   try{
-
     joker.log("Change status of "+name+" to "+status);
     //Get ID of the device
     var id = await myDevice.getIdbyName(name)
@@ -230,13 +229,13 @@ app.get("/update/:name/:status", async function(req, res){
         //joker.log("Previous Status: \"" + lastStatus + "\",  New Status: \"" + newStatus + "\"")
         res.status(response.code).send(response)
         setTimeout(async function(){  //Change back to false
-             var responseBack = await joker.switchStatus(ip, !status, name)
-             console.log("Changing back " + name + " to " + !status.toString())
+             var responseBack = await joker.switchStatus(ip, false, name)
+             console.log("Changing back " + name + " to " + false.toString())
              if (responseBack.code == 200) {
-               var lastStatus = await myDevice.updateDevice(id, !status)
-               console.log("Changed back " + name + " to " + !status.toString())
+               var lastStatus = await myDevice.updateDevice(id, false)
+               console.log("Changed back " + name + " to " + false.toString())
                }
-               else {console.log("Error changing back " + name + " to " + !status.toString())}
+               else {console.log("Error changing back " + name + " to " + false.toString())}
         }, 2000);
       }
     }
