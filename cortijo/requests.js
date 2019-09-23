@@ -41,7 +41,7 @@ module.exports = {
     request.save(function(err, result) {
       if (err) throw err;
       if(result) {
-        console.log(result);
+        // console.log(result);
       }
     });
   },
