@@ -23,7 +23,7 @@ var http = require('http').Server(app);
 var io = http;
 var temperature;
 var humidity;
-const defaultTime = 10000 //1000=1s 60000=1min  900000=15min
+const defaultTime = 600000 //1000=1s 60000=1min  900000=15min
 
 //Middleware
 app.get("/*", function(req, res, next) {
@@ -82,18 +82,6 @@ app.get("/log", function(req, res) { //OK
     res.status(200).json({response})
   }catch(response){}
   })
-
-// app.post("/*", function(req, res) { //OK
-//   joker.log(req.get('host')+req.originalUrl)
-//   joker.log(req.protocol)
-//   joker.log(JSON.stringify(req.body))
-//   joker.log(req.ip)
-//   res.status(200).send('ok')
-//   })
-
-// app.get('/terminal', function(req, res){
-//   res.sendFile(__dirname + '/terminal.html');
-// });
 
 //Get all device
 app.get("/all", async function(req, res) { //OK
@@ -222,19 +210,12 @@ app.get("/update/:name/:status", async function(req, res){
     joker.log("Change status of "+name+" to "+status);
     var id = await myDevice.getIdbyName(name) //Get ID of the device
     var ip = await myDevice.getIpbyName(name) //Get IP of the device
-    console.log(isUpdating)
-    console.log(isUpdating[name]!=true)
     if(!ip){res.status(400).json({"Request": "Incorrect", "Device": "Not found"})}
     else if(isUpdating[name]!=true){
       isUpdating[name]=true
-      console.log(isUpdating)
-      console.log(isUpdating[name]!=true)
       var response = await joker.switchStatus(ip, status, name) //Change device status
       if (response.code == 200) {
         await myDevice.updateDevice(id, status) //Update DB status
-        // var lastStatus = await myDevice.updateDevice(id, status)
-        // var newStatus = await myDevice.getDeviceById(id)
-        //joker.log("Previous Status: \"" + lastStatus + "\",  New Status: \"" + newStatus + "\"")
         res.status(response.code).send(response)
         setTimeout(async function(){  //Change back to false
              if(isUpdating[name]==true){
@@ -244,8 +225,6 @@ app.get("/update/:name/:status", async function(req, res){
                     await myDevice.updateDevice(id, false) //Change DB back to false
                     console.log("Changed back " + name + " to " + false.toString())
                     isUpdating[name]=false
-                    console.log(isUpdating)
-                    console.log(isUpdating[name]!=true)
                     }
                     else {
                          console.log("Error changing back " + name + " to " + false.toString())
