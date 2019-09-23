@@ -36,7 +36,8 @@ module.exports={
 
     log: (text) => {
        //io.emit('chat message', text);
-       var time = new Date().getTime()
+       let time = new Date().getTime()
+       let time = dateFormat(time, "dddd, mmmm dS, yyyy, h:MM:ss TT");
        text="\""+time+"\""+":"+"\""+text+"\""
        // if(dot){text=","+text}
        // dot=true
