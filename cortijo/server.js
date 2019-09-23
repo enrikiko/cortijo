@@ -225,8 +225,8 @@ app.get("/update/:name/:status", async function(req, res){
     console.log(isUpdating)
     if(!ip){res.status(400).json({"Request": "Incorrect", "Device": "Not found"})}
     else if(isUpdating[name]!=true){
-      var response = await joker.switchStatus(ip, status, name) //Change device status
       isUpdating[name]=true
+      var response = await joker.switchStatus(ip, status, name) //Change device status
       if (response.code == 200) {
         await myDevice.updateDevice(id, status) //Update DB status
         // var lastStatus = await myDevice.updateDevice(id, status)
