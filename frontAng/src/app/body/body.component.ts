@@ -17,6 +17,7 @@ export class BodyComponent implements OnInit {
   ngOnInit()
   {
     this.getDevicesList()
+    this.reload()
   }
 
   getDevicesList(){
@@ -60,6 +61,13 @@ export class BodyComponent implements OnInit {
   getDiference(startTime, finishTime){
     let lapse = finishTime - startTime
     this.lapse = lapse
+  }
+
+  reload() {
+       setTimeout(function(){
+            this.getDevicesList()
+            this.reload()
+       }, 5000)
   }
 
 }

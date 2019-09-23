@@ -23,6 +23,7 @@ var http = require('http').Server(app);
 var io = http;
 var temperature;
 var humidity;
+const defaultTime = 10000 //1000=1s 60000=1min  900000=15min
 
 //Middleware
 app.get("/*", function(req, res, next) {
@@ -239,7 +240,7 @@ app.get("/update/:name/:status", async function(req, res){
                console.log("Changed back " + name + " to " + false.toString())
                }
                else {console.log("Error changing back " + name + " to " + false.toString())}
-        }, 2000);
+        }, defaultTime);
       }
       isUpdating[name]=false
     }
