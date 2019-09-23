@@ -42,7 +42,7 @@ module.exports={
        dot=true
        // var date = Date()
        // text="\"${date}\":\"${text}\""
-       console.log(text);
+       //console.log(text);
        fs.appendFile("log.txt", text, function(err) {
           if(err) {
               console.log(err);
