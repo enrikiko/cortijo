@@ -229,7 +229,7 @@ app.get("/update/:name/:status", async function(req, res){
         var newStatus = await myDevice.getDeviceById(id)
         //joker.log("Previous Status: \"" + lastStatus + "\",  New Status: \"" + newStatus + "\"")
         res.status(response.code).send(response)
-        setTimeout(function(){  //Change back to false
+        setTimeout(async function(){  //Change back to false
              var responseBack = await joker.switchStatus(ip, !status, name)
              console.log("Changing back " + name + " to " + !status.toString())
              if (responseBack.code == 200) {
