@@ -54,7 +54,7 @@ module.exports = {
      device.save(function(err, result) {
        if (err) throw err;
        if(result) {
-         logs.log(result);
+         //logs.log(result);
        }
      });
    },
@@ -93,7 +93,7 @@ module.exports = {
        if(result){
          result.status = status
          result.save()
-         logs.log(result)
+         //logs.log(result)
        }
      });
    },
@@ -104,7 +104,7 @@ module.exports = {
        if(result){
          result.ip = ip
          result.save()
-         logs.log(result)
+         //logs.log(result)
        }
      });
      return device.ip;
@@ -114,7 +114,7 @@ module.exports = {
     return myDevice.remove({name: deviceName}, function(err, result) {
       if (err) throw err
       if(result){
-        logs.log(result)
+        //logs.log(result)
         }
       });
     }
