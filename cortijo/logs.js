@@ -4,7 +4,7 @@ const fs = require('fs');
 const db = mongoose.connection;
 mongoose.connect(connString);
 
-function log() {
+function log(text) {
      let time = new Date().toLocaleString()
      text="\""+time+"\""+"  :    "+"\""+text+"\""
      console.log(text);
