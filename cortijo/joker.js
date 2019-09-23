@@ -1,5 +1,4 @@
 const request = require('superagent');
-const fs = require('fs');
 const myLogs = require('./logs');
 const myTemperature = require('./temperature');
 var dot = false
