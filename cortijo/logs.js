@@ -5,11 +5,11 @@ const db = mongoose.connection;
 mongoose.connect(connString);
 
 db.on('error',function(){
-joker.log("Error al conectarse a Mongo Logs");
+console.log("Error al conectarse a Mongo Logs");
 });
 
 db.once('open', function() {
-joker.log("Conectado a MongoDB Logs");
+console.log("Conectado a MongoDB Logs");
 });
 
 // definicion de Schema del artículo
