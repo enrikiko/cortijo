@@ -209,6 +209,7 @@ return {"status":status}
 }
 
 //update device
+isUpdating={}
 app.get("/update/:name/:status", async function(req, res){
   var status = joker.getStatus(req.params.status);
   var name = req.params.name
@@ -219,9 +220,11 @@ app.get("/update/:name/:status", async function(req, res){
     joker.log("Change status of "+name+" to "+status);
     var id = await myDevice.getIdbyName(name) //Get ID of the device
     var ip = await myDevice.getIpbyName(name) //Get IP of the device
+    console.log(isUpdating[name])
     if(!ip){res.status(400).json({"Request": "Incorrect", "Device": "Not found"})}
-    else {
+    else if(isUpdating[name]){
       var response = await joker.switchStatus(ip, status, name) //Change device status
+      isUpdating[name]=true
       if (response.code == 200) {
         await myDevice.updateDevice(id, status) //Update DB status
         // var lastStatus = await myDevice.updateDevice(id, status)
@@ -238,6 +241,7 @@ app.get("/update/:name/:status", async function(req, res){
                else {console.log("Error changing back " + name + " to " + false.toString())}
         }, 2000);
       }
+      isUpdating[name]=false
     }
     // var lastStatus = await myDevice.updateDevice(id, status)
     // var newStatus = await myDevice.getDeviceById(id)
