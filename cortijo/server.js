@@ -249,7 +249,17 @@ app.get("/update/:name/:status", async function(req, res){
                }
                else {console.log("Error changing back " + name + " to " + false.toString())}
         }, defaultTime);
+      }else {
+           res.status(response.code).send(response)
       }
+    }else {
+         isUpdating[name]=false
+         var response = await joker.switchStatus(ip, false, name) //Change device status
+         if (response.code == 200) {
+              await myDevice.updateDevice(id, status) //Update DB status
+              res.status(response.code).send(response)
+         }
+         else {res.status(response.code).send(response)}
     }
     // var lastStatus = await myDevice.updateDevice(id, status)
     // var newStatus = await myDevice.getDeviceById(id)
