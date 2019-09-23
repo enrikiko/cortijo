@@ -5,7 +5,7 @@ const fs = require('fs');
 const db = mongoose.connection;
 mongoose.connect(connString);
 
-function log(text) {
+function logs(text) {
      let time = new Date().toLocaleString()
      text="\""+time+"\""+"  :    "+"\""+text+"\""
      console.log(text);
@@ -17,11 +17,11 @@ function log(text) {
 }
 
 db.on('error',function(){
-log("Error al conectarse a Mongo Logs");
+logs("Error al conectarse a Mongo Logs");
 });
 
 db.once('open', function() {
-log("Conectado a MongoDB Logs");
+logs("Conectado a MongoDB Logs");
 });
 
 // definicion de Schema del artículo
@@ -45,16 +45,7 @@ let myLogs = mongoose.model('Logs', deviceSchema);
 module.exports = {
 
   log: (text) => {
-     let time = new Date().toLocaleString()
-     text="\""+time+"\""+"  :    "+"\""+text+"\""
-
-     console.log(text);
-
-     fs.appendFile("log.txt", text, function(err) {
-        if(err) {
-            console.log(err);
-           }
-     });
+     logs(text)
   },
 
   newLog: (time, ip, request) => {
@@ -67,7 +58,7 @@ module.exports = {
     log.save(function(err, result) {
       if (err) throw err;
       if(result) {
-        logs.log(result);
+        logs(result);
       }
     });
   },
