@@ -4,6 +4,17 @@ const fs = require('fs');
 const db = mongoose.connection;
 mongoose.connect(connString);
 
+function log() {
+     let time = new Date().toLocaleString()
+     text="\""+time+"\""+"  :    "+"\""+text+"\""
+     console.log(text);
+     fs.appendFile("log.txt", text, function(err) {
+        if(err) {
+            console.log(err);
+           }
+     });
+}
+
 db.on('error',function(){
 log("Error al conectarse a Mongo Logs");
 });
