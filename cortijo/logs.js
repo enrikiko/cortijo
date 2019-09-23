@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const logs = require('./logs');
+// const logs = require('./logs');
 let connString = 'mongodb://mongo/logs';
 const fs = require('fs');
 const db = mongoose.connection;
