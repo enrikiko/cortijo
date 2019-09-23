@@ -5,11 +5,11 @@ const db = mongoose.connection;
 mongoose.connect(connString);
 
 db.on('error',function(){
-joker.log("Error al conectarse a Mongo Temperature");
+console.log("Error al conectarse a Mongo Temperature");
 });
 
 db.once('open', function() {
-joker.log("Conectado a MongoDB Temperature");
+console.log("Conectado a MongoDB Temperature");
 });
 
 // definicion de esquema del artículo

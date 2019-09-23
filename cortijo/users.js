@@ -6,11 +6,11 @@ const db = mongoose.connection;
 mongoose.connect(connString);
 
 db.on('error',function(){
-joker.log("Error al conectarse a Mongo");
+joker.log("Error al conectarse a Mongo Device");
 });
 
 db.once('open', function() {
-joker.log("Conectado a MongoDB");
+joker.log("Conectado a MongoDB Device");
 });
 
 // definicion de esquema del artículo
