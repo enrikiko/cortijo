@@ -7,7 +7,7 @@ var dot = false
 module.exports={
 
      switchStatus: async (ip, status, name) => {
-       console.log("http://"+ip+"/"+status);
+       // console.log("http://"+ip+"/"+status);
        async function getResponse(ip, status, ) {
          let response = await request.get("http://"+ip+"/"+name+"/status/"+status);
          res = {};
@@ -25,10 +25,10 @@ module.exports={
 
      auth: async (user, password) => {
        const url = "http://192.168.1.50:8010/user/"+user+"/"+password
-       console.log(url);
+       // console.log(url);
        async function getResponse(url) {
          let response = await request.get(url);
-         console.log(response.statusCode)
+         // console.log(response.statusCode)
          return response.statusCode;
        }
        return await getResponse(url);
@@ -38,11 +38,11 @@ module.exports={
        //io.emit('chat message', text);
        var time = new Date().getTime()
        text="\""+time+"\""+":"+"\""+text+"\""
-       if(dot){text=","+text}
-       dot=true
+       // if(dot){text=","+text}
+       // dot=true
        // var date = Date()
        // text="\"${date}\":\"${text}\""
-       //console.log(text);
+       console.log(text);
        fs.appendFile("log.txt", text, function(err) {
           if(err) {
               console.log(err);

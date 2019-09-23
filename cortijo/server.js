@@ -109,29 +109,30 @@ app.get("/get/temperature/humidity", function(req, res) {
 
 //Get temperature and humidity history
 app.get("/get/temperature/humidity/history",async function(req, res) {
-  try {
-    var temperature = await weather.history()
-  } catch (e) {
-    console.log(e)
-  }
-  res.status(200).json(temperature)
+       try {
+         var temperature = await weather.history()
+       } catch (e) {
+         joker.log(e)
+       }
+       res.status(200).json(temperature)
   })
+
 //Delete temperature history
 app.get("/delete/temperature/humidity/history",async function(req, res) {
-  try {
-    var result = await myTemperature.deleteAll()
-  } catch (e) {
-    console.log(e)
-    res.status(500).send(e)
-  }
-  res.status(200).send(result)
+       try {
+         var result = await myTemperature.deleteAll()
+         res.status(200).send(result)
+       } catch (e) {
+         joker.log(e)
+         res.status(500).send(e)
+       }
   })
 
 app.get("/log/history",async function(req, res) {
   try {
     var temperature = await history.history()
   } catch (e) {
-    console.log(e)
+    joker.log(e)
   }
   res.status(200).json(temperature)
   })
@@ -188,7 +189,7 @@ app.get("/auth/:user/:password", async function(req, res) {
   user = req.params.user;
   password = req.params.password;
   var response = await joker.auth(user, password);
-  console.log("response "+response);
+  joker.log("response "+response);
   if(response==200){res.status(200).send(respose(true))}
   else{res.status(401).send(respose(false))}
 })
@@ -220,14 +221,14 @@ app.get("/update/:name/:status", async function(req, res){
         setTimeout(async function(){  //Change back to false
              if(isUpdating[name]==true){
                   var responseBack = await joker.switchStatus(ip, false, name)
-                  console.log("Changing back " + name + " to " + false.toString())
+                  joker.log("Changing back " + name + " to " + false.toString())
                   if (responseBack.code == 200) {
                     await myDevice.updateDevice(id, false) //Change DB back to false
-                    console.log("Changed back " + name + " to " + false.toString())
+                    joker.log("Changed back " + name + " to " + false.toString())
                     isUpdating[name]=false
                     }
                     else {
-                         console.log("Error changing back " + name + " to " + false.toString())
+                         joker.log("Error changing back " + name + " to " + false.toString())
                     }
              }
         }, defaultTime);
