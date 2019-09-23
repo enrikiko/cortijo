@@ -211,8 +211,9 @@ return {"status":status}
 
 //update device
 isUpdating={}
-isUpdating.test=true
+isUpdating.test=1
 app.get("/update/:name/:status", async function(req, res){
+  isUpdating.test=isUpdating.test+1
   var status = joker.getStatus(req.params.status);
   var name = req.params.name
   if (status === null){
@@ -227,6 +228,8 @@ app.get("/update/:name/:status", async function(req, res){
     if(!ip){res.status(400).json({"Request": "Incorrect", "Device": "Not found"})}
     else if(isUpdating[name]!=true){
       isUpdating[name]=true
+      console.log(isUpdating)
+      console.log(isUpdating[name]!=true)
       var response = await joker.switchStatus(ip, status, name) //Change device status
       if (response.code == 200) {
         await myDevice.updateDevice(id, status) //Update DB status
