@@ -17,58 +17,22 @@ services:
       - "8200:3000"
     networks:
       - network
-  mock1:
-    container_name: mock1
+  mock:
+    container_name: mock
     restart: always
     build: ./deviceMock/.
     environment:
-      - mock_name=mock1
+      - mock_name=mock
       - mock_port=8101
       - local_ip=192.168.1.50
     ports:
       - "8101:3000"
     networks:
       - network
-  mock2:
-    container_name: mock2
-    restart: always
-    build: ./deviceMock/.
-    environment:
-      - mock_name=mock2
-      - mock_port=8102
-      - local_ip=192.168.1.50
-    ports:
-      - "8102:3000"
-    networks:
-      - network
-  mock3:
-    container_name: mock3
-    restart: always
-    build: ./deviceMock/.
-    environment:
-      - mock_name=mock3
-      - mock_port=8103
-      - local_ip=192.168.1.50
-    ports:
-      - "8103:3000"
-    networks:
-      - network
-  mock4:
-    container_name: mock4
-    restart: always
-    build: ./deviceMock/.
-    environment:
-      - mock_name=mock4
-      - mock_port=8104
-      - local_ip=192.168.1.50
-    ports:
-      - "8104:3000"
-    networks:
-      - network
-  app:
+  cortijo:
     container_name: cortijo
     restart: always
-    build: ./api/.
+    build: ./cortijo/.
     ports:
       - "8000:3000"
     links:
