@@ -37,7 +37,7 @@ module.exports={
     log: (text) => {
        //io.emit('chat message', text);
        let time = new Date().toLocaleString()
-       text="\""+time+"\""+":"+"\""+text+"\""
+       text="\""+time+"\""+"  :    "+"\""+text+"\""
        // if(dot){text=","+text}
        // dot=true
        // var date = Date()
