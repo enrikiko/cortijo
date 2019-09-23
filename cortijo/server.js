@@ -223,6 +223,7 @@ app.get("/update/:name/:status", async function(req, res){
     var id = await myDevice.getIdbyName(name) //Get ID of the device
     var ip = await myDevice.getIpbyName(name) //Get IP of the device
     console.log(isUpdating)
+    console.log(isUpdating[name]!=true)
     if(!ip){res.status(400).json({"Request": "Incorrect", "Device": "Not found"})}
     else if(isUpdating[name]!=true){
       isUpdating[name]=true
