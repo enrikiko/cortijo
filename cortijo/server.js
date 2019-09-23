@@ -231,6 +231,7 @@ app.get("/update/:name/:status", async function(req, res){
         res.status(response.code).send(response)
         setTimeout(function(){
              joker.switchStatus(ip, !status, name)
+             console.log("changing back " + name + " to " + !status.toString())
         }, 2000);
       }
     }
