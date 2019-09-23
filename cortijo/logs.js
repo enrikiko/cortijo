@@ -5,23 +5,23 @@ const fs = require('fs');
 const db = mongoose.connection;
 mongoose.connect(connString);
 
-// function log(text) {
-//      let time = new Date().toLocaleString()
-//      text="\""+time+"\""+"  :    "+"\""+text+"\""
-//      console.log(text);
-//      fs.appendFile("log.txt", text, function(err) {
-//         if(err) {
-//             console.log(err);
-//            }
-//      });
-// }
+function log(text) {
+     let time = new Date().toLocaleString()
+     text="\""+time+"\""+"  :    "+"\""+text+"\""
+     console.log(text);
+     fs.appendFile("log.txt", text, function(err) {
+        if(err) {
+            console.log(err);
+           }
+     });
+}
 
 db.on('error',function(){
-logs.log("Error al conectarse a Mongo Logs");
+log("Error al conectarse a Mongo Logs");
 });
 
 db.once('open', function() {
-logs.log("Conectado a MongoDB Logs");
+log("Conectado a MongoDB Logs");
 });
 
 // definicion de Schema del artículo
@@ -67,7 +67,7 @@ module.exports = {
     log.save(function(err, result) {
       if (err) throw err;
       if(result) {
-        this.log(result);
+        logs.log(result);
       }
     });
   },
