@@ -1,1 +1,2 @@
-sh init2.sh
+#!/bin/bash
+node server.js

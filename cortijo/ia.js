@@ -1,11 +1,12 @@
 const request = require('superagent');
+const joker = require('./joker');
 
 module.exports={
 
      catordog: async (req) => {
-       console.log(req);
+       joker.log(req);
        async function getResponse(req) {
-         console.log(req)
+         joker.log(req)
          let response = await request.get("http://88.8.65.164:8200/liveness");
          res = {};
          res.code = response.statusCode;

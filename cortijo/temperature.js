@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
+const joker = require('./joker');
 let connString = 'mongodb://mongo/temperature';
 const db = mongoose.connection;
 mongoose.connect(connString);
 
 db.on('error',function(){
-console.log("Error al conectarse a Mongo Temperature");
+joker.log("Error al conectarse a Mongo Temperature");
 });
 
 db.once('open', function() {
-console.log("Conectado a MongoDB Temperature");
+joker.log("Conectado a MongoDB Temperature");
 });
 
 // definicion de esquema del artículo
@@ -43,7 +44,7 @@ module.exports = {
     mesure.save(function(err, result) {
       if (err) throw err;
       if(result) {
-        console.log(result);
+        joker.log(result);
       }
     });
   },

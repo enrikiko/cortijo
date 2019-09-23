@@ -7,7 +7,6 @@ var dot = false
 module.exports={
 
      switchStatus: async (ip, status, name) => {
-       // console.log("http://"+ip+"/"+status);
        async function getResponse(ip, status, ) {
          let response = await request.get("http://"+ip+"/"+name+"/status/"+status);
          res = {};
@@ -25,24 +24,19 @@ module.exports={
 
      auth: async (user, password) => {
        const url = "http://192.168.1.50:8010/user/"+user+"/"+password
-       // console.log(url);
        async function getResponse(url) {
          let response = await request.get(url);
-         // console.log(response.statusCode)
          return response.statusCode;
        }
        return await getResponse(url);
      },
 
     log: (text) => {
-       //io.emit('chat message', text);
        let time = new Date().toLocaleString()
        text="\""+time+"\""+"  :    "+"\""+text+"\""
-       // if(dot){text=","+text}
-       // dot=true
-       // var date = Date()
-       // text="\"${date}\":\"${text}\""
+
        console.log(text);
+
        fs.appendFile("log.txt", text, function(err) {
           if(err) {
               console.log(err);
@@ -63,15 +57,12 @@ module.exports={
       myTemperature.newTemperature(time, temperature, humidity);
     },
     getLogTemperature: async()=>{
-      let res = await myTemperature.getAll();
-      return res
+      return await myTemperature.getAll();
     },
     getStatus: (status) => {
-      var status;
-      if (status == "true"){ status = true}
-      else if (status == "false"){status = false}
-      else{ status = null }
-      return status;
+      if (status == "true"){ return true}
+      else if (status == "false"){return false}
+      else{ return null }
     }
 
 

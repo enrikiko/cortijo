@@ -11,7 +11,7 @@ db.once('open', function() {
 console.log("Conectado a MongoDB Logs");
 });
 
-// definicion de esquema del artículo
+// definicion de Schema del artículo
 const deviceSchema = new mongoose.Schema({
   time: {
     type: String,
@@ -32,13 +32,13 @@ let myLogs = mongoose.model('Logs', deviceSchema);
 module.exports = {
 
   newLog: (time, ip, request) => {
-    let device = new myLogs(
+    let log = new myLogs(
       {
         time: time,
         request: request,
         ip: ip
       });
-    device.save(function(err, result) {
+    log.save(function(err, result) {
       if (err) throw err;
       if(result) {
         //console.log(result);
