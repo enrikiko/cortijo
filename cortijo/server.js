@@ -30,8 +30,8 @@ app.get("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
-  logs.log( fullUrl + " : " + ip )
-  joker.newLogRequest(ip, fullUrl)
+  // logs.log( fullUrl + " : " + ip )
+  logs.newLog(ip, fullUrl)
   requests.newRequest(ip, fullUrl)
   next()
 })
@@ -40,8 +40,8 @@ app.post("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
-  logs.log( fullUrl + " : " + ip )
-  joker.newLogRequest(ip, fullUrl)
+  // logs.log( fullUrl + " : " + ip )
+  logs.newLog(ip, fullUrl)
   requests.newRequest(ip, fullUrl)
   next()
 })
@@ -95,7 +95,7 @@ app.get("/all", async function(req, res) { //OK
 app.get("/set/:temperature/:humidity", function(req, res) {
   temperature = req.params.temperature;
   humidity = req.params.humidity;
-  joker.newLogTemperature(temperature, humidity)
+  myTemperature.newTemperature(temperature, humidity)
   res.status(200).send()
   })
 
@@ -200,9 +200,7 @@ return {"status":status}
 
 //update device
 isUpdating={}
-isUpdating.test=1
 app.get("/update/:name/:status", async function(req, res){
-  isUpdating.test=isUpdating.test+1
   var status = joker.getStatus(req.params.status);
   var name = req.params.name
   if (status === null){
@@ -221,10 +219,10 @@ app.get("/update/:name/:status", async function(req, res){
         setTimeout(async function(){  //Change back to false
              if(isUpdating[name]==true){
                   var responseBack = await joker.switchStatus(ip, false, name)
-                  logs.log("Changing back " + name + " to " + false.toString())
+                  // logs.log("Changing back " + name + " to " + false.toString())
                   if (responseBack.code == 200) {
                     await myDevice.updateDevice(id, false) //Change DB back to false
-                    logs.log("Changed back " + name + " to " + false.toString())
+                    logs.log("Changed back automatically due to timeout " + name + " to " + false.toString())
                     isUpdating[name]=false
                     }
                     else {
@@ -237,6 +235,7 @@ app.get("/update/:name/:status", async function(req, res){
       }
     }else {
          isUpdating[name]=false
+         logs.log("Change status of " + name + " to " + false);
          var response = await joker.switchStatus(ip, false, name) //Change device status
          if (response.code == 200) {
               await myDevice.updateDevice(id, status) //Update DB status

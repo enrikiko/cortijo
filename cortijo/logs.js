@@ -6,8 +6,9 @@ const db = mongoose.connection;
 mongoose.connect(connString);
 
 function logs(text) {
-     let time = new Date().toLocaleString()
-     text="\""+time+"\""+"  :    "+"\""+text+"\""
+     let time = new Date().toLocaleString({timeZone: 'Europe/Spain'})
+     let str = ' '.repeat(25 - time.length)
+     text="\""+time+"\"" + str +"  :    "+"\""+text+"\""
      console.log(text);
      fs.appendFile("log.txt", text, function(err) {
         if(err) {
@@ -48,10 +49,12 @@ module.exports = {
      logs(text)
   },
 
-  newLog: (time, ip, request) => {
+  newLog: (ip, request) => {
+       let str = ' '.repeat(20 - ip.length)
+       logs(ip + str +"  :    " + request + " ")
     let log = new myLogs(
       {
-        time: time,
+        time: new Date().getTime(),
         request: request,
         ip: ip
       });

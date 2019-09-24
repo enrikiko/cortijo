@@ -39,6 +39,14 @@ services:
       - mongo
     networks:
       - network
+    volumes:
+        - /etc/localtime:/etc/localtime:ro
+  watering:
+    container_name: watering
+    restart: on-failure
+    build: ./wateringTiming/.
+    volumes:
+        - /etc/localtime:/etc/localtime:ro
   auth:
     container_name: auth
     restart: always
