@@ -44,7 +44,7 @@ module.exports = {
     mesure.save(function(err, result) {
       if (err) throw err;
       if(result) {
-        logs.log(result);
+        //logs.log(result);
       }
     });
   },
