@@ -31,7 +31,7 @@ app.get("/*", function(req, res, next) {
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
   logs.log( fullUrl + " : " + ip )
-  joker.newLogRequest(ip, fullUrl)
+  myLogs.newLog(ip, fullUrl)
   requests.newRequest(ip, fullUrl)
   next()
 })
@@ -41,7 +41,7 @@ app.post("/*", function(req, res, next) {
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
   logs.log( fullUrl + " : " + ip )
-  joker.newLogRequest(ip, fullUrl)
+  myLogs.newLog(ip, fullUrl)
   requests.newRequest(ip, fullUrl)
   next()
 })

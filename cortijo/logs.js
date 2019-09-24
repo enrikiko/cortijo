@@ -48,10 +48,10 @@ module.exports = {
      logs(text)
   },
 
-  newLog: (time, ip, request) => {
+  newLog: (ip, request) => {
     let log = new myLogs(
       {
-        time: time,
+        time: new Date().getTime(),
         request: request,
         ip: ip
       });

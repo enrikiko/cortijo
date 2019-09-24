@@ -30,14 +30,14 @@ module.exports={
        return await getResponse(url);
      },
 
-    newLogRequest: (ip, request)=>{
-      var time = new Date().getTime()
-      myLogs.newLog(time, ip, request);
-    },
-    getLogRequest: async()=>{
-      let res = await myLogs.getAll();
-      return res
-    },
+    // newLogRequest: (ip, request)=>{
+    //   var time = new Date().getTime()
+    //   myLogs.newLog(time, ip, request);
+    // },
+    // getLogRequest: async()=>{
+    //   let res = await myLogs.getAll();
+    //   return res
+    // },
     // newLogTemperature: (temperature, humidity)=>{
     //   var time = new Date().getTime()
     //   myTemperature.newTemperature(time, temperature, humidity);
