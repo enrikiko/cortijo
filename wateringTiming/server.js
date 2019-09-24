@@ -4,7 +4,7 @@ async function call() {
 }
 let certain
 while(true){
-     if ( new Date().getMinutes() == 27 & certain){
+     if ( new Date().getMinutes() == 30 & certain){
           certain = false
           call()
      }else { certain = true}
