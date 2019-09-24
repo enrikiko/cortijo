@@ -7,4 +7,4 @@ RUN apt-get install npm -y
 RUN mkdir angular
 WORKDIR angular/.
 COPY . .
-ENTRYPOINT ["ng", "serve"]
+ENTRYPOINT ["sh", "init.sh"]
