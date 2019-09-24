@@ -1,10 +1,10 @@
 const request = require('superagent');
 async function call() {
-     return await request.get("http://192.168.1.50:8000/update/Watering/true ");
+     return await request.get("http://192.168.1.50:8000/update/mock/true ");
 }
-let certain
+let certain = true
 while(true){
-     if ( new Date().getMinutes() == 30 & new Date().getHours() == 11  & certain){
+     if ( certain && new Date().getMinutes() == 35 && new Date().getHours() == 11){
           certain = false
           call()
           console.log("Is time to watering")
