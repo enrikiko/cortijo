@@ -206,7 +206,7 @@ app.get("/update/:name/:status", async function(req, res){
   if (status === null){
     res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
   }else {
-    //logs.log("Change status of "+name+" to "+status);
+    logs.log("Change status of "+name+" to "+status);
     var id = await myDevice.getIdbyName(name) //Get ID of the device
     var ip = await myDevice.getIpbyName(name) //Get IP of the device
     if(!ip){res.status(400).json({"Request": "Incorrect", "Device": "Not found"})}
@@ -235,6 +235,7 @@ app.get("/update/:name/:status", async function(req, res){
       }
     }else {
          isUpdating[name]=false
+         logs.log("Change status of " + name + " to " + false);
          var response = await joker.switchStatus(ip, false, name) //Change device status
          if (response.code == 200) {
               await myDevice.updateDevice(id, status) //Update DB status
