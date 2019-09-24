@@ -42,9 +42,9 @@ module.exports={
     //   var time = new Date().getTime()
     //   myTemperature.newTemperature(time, temperature, humidity);
     // },
-    getLogTemperature: async()=>{
-      return await myTemperature.getAll();
-    },
+    // getLogTemperature: async()=>{
+    //   return await myTemperature.getAll();
+    // },
     getStatus: (status) => {
       if (status == "true"){ return true}
       else if (status == "false"){return false}
