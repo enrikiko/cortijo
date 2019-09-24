@@ -1,11 +1,11 @@
 const request = require('superagent');
-async function request() {
+async function call() {
      return await request.get("http://192.168.1.50:8000/update/Watering/true ");
 }
 let certain
 while(true){
-     if ( new Date().getMinutes() == 25 & certain){
+     if ( new Date().getMinutes() == 27 & certain){
           certain = false
-          request()
+          call()
      }else { certain = true}
 }
