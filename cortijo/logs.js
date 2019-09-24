@@ -49,7 +49,7 @@ module.exports = {
   },
 
   newLog: (ip, request) => {
-       logs(ip + "  :    " + request)
+       logs(ip + "  :    " + request + " ")
     let log = new myLogs(
       {
         time: new Date().getTime(),
