@@ -4,7 +4,7 @@ async function call() {
 }
 let certain = true
 let time
-const min = 50
+const min = 52
 const hour = 11
 while(true){
      time = new Date()
