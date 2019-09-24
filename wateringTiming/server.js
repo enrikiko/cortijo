@@ -5,7 +5,7 @@ async function call() {
 }
 let certain = true
 let time
-const min = 54
+const min = 56
 const hour = 11
 while(true){
      time = new Date()
@@ -15,7 +15,7 @@ while(true){
           console.log(certain)
           console.log(res)
           console.log("Is time to watering")
-     }else if( !certain & time.getMinutes() != min & time.getHours() != hour){
+     }else if( !certain & (time.getMinutes() != min | time.getHours() != hour)){
           certain = true
           console.log(certain)
      }
