@@ -38,10 +38,10 @@ module.exports={
       let res = await myLogs.getAll();
       return res
     },
-    newLogTemperature: (temperature, humidity)=>{
-      var time = new Date().getTime()
-      myTemperature.newTemperature(time, temperature, humidity);
-    },
+    // newLogTemperature: (temperature, humidity)=>{
+    //   var time = new Date().getTime()
+    //   myTemperature.newTemperature(time, temperature, humidity);
+    // },
     getLogTemperature: async()=>{
       return await myTemperature.getAll();
     },
