@@ -6,7 +6,7 @@ const db = mongoose.connection;
 mongoose.connect(connString);
 
 function logs(text) {
-     let time = new Date().toLocaleString()
+     let time = new Date().toLocaleString({timeZone: 'Europe/Spain'})
      text="\""+time+"\""+"  :    "+"\""+text+"\""
      console.log(text);
      fs.appendFile("log.txt", text, function(err) {
