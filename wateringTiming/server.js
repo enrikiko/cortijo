@@ -6,13 +6,13 @@ async function call() {
 }
 let certain = true
 let time
-const min = 21
+const min = 23
 const hour = 17
 while(true){
      time = new Date()
      if ( certain & time.getMinutes() == min & time.getHours() == hour){
           certain = false
-          async function res() => { return await call() }
+          async function res() { return await call() }
           console.log(res())
           // console.log(res)
           console.log("Is time to watering")
