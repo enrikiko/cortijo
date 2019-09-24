@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   weather(){this.active="weather"}
   catordog(){this.active="catordog"}
   settings(){this.active="settings"}
-  graphics(){this.active="users"}
+  users(){this.active="users"}
   logs(){this.active="logs"}
   logOut(){
     this.Auth.logOut()

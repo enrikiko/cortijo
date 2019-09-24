@@ -24,17 +24,17 @@ export class UsersComponent implements OnInit {
     let url = "http://" + host + ":8010/newuser/"+this.userName+"/"+this.userPassword+"/"+this.password
     console.log(url)
 
-    this.http.post<any>(url,null,null).subscribe( data =>
-    {
-      if(data){
-        console.log(data)
-        this.status = data.status
-      }
-      else {
-        console.log('Unautorized')
-        this.status = data.status
-      }
-    })
+    // this.http.post<any>(url,null,null).subscribe( data =>
+    // {
+    //   if(data){
+    //     console.log(data)
+    //     this.status = data.status
+    //   }
+    //   else {
+    //     console.log('Unautorized')
+    //     this.status = data.status
+    //   }
+    // })
 
 
 
