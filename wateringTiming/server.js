@@ -1,12 +1,12 @@
 const request = require('superagent');
 async function call() {
      console.log("calling...")
-     return await request.get("http://192.168.1.50:8000/update/mock/true");
+     return await request.get("http://192.168.1.50:8000/update/mock/true7");
      console.log("calling")
 }
 let certain = true
 let time
-const min = 13
+const min = 16
 const hour = 17
 while(true){
      time = new Date()
