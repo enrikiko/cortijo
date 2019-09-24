@@ -7,5 +7,6 @@ while(true){
      if ( new Date().getMinutes() == 30 & certain){
           certain = false
           call()
+          console.log("Is time to watering")
      }else { certain = true}
 }
