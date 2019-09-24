@@ -6,6 +6,6 @@ RUN apt install -y man less
 RUN mkdir /root/node
 WORKDIR /root/node
 # COPY package/. .
-RUN npm install
+# RUN npm install
 COPY . .
 ENTRYPOINT ["sh", "init.sh"]
