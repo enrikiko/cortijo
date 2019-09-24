@@ -4,7 +4,7 @@ async function call() {
 }
 let certain
 while(true){
-     if ( new Date().getMinutes() == 30 & certain){
+     if ( new Date().getMinutes() == 30 & new Date().getHours() == 11  & certain){
           certain = false
           call()
           console.log("Is time to watering")
