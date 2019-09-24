@@ -35,13 +35,13 @@ module.exports = {
   deleteAll: async () => { return myTemperature.deleteMany({}) },
 
   newTemperature: (temperature, humidity) => {
-    let temperature = new myTemperature(
+    let newMesure = new myTemperature(
       {
         time: new Date().getTime(),
         temperature: temperature,
         humidity: humidity
       });
-    temperature.save(function(err, result) {
+    newMesure.save(function(err, result) {
       if (err) throw err;
       if(result) {
         //logs.log(result);
