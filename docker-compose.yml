@@ -67,7 +67,7 @@ services:
       - "443:80"
     networks:
       - network
-  frontTest:
+  fronttest:
     container_name: fronttest
     restart: always
     build: ./frontAngTest/.
