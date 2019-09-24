@@ -7,7 +7,7 @@ mongoose.connect(connString);
 
 function logs(text) {
      let time = new Date().toLocaleString({timeZone: 'Europe/Spain'})
-     let str = ' '.repeat(30 - time.length)
+     let str = ' '.repeat(22 - time.length)
      text="\""+time+"\"" + str +"  :    "+"\""+text+"\""
      console.log(text);
      fs.appendFile("log.txt", text, function(err) {
