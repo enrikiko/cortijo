@@ -68,7 +68,7 @@ services:
     networks:
       - network
   frontTest:
-    container_name: frontTest
+    container_name: fronttest
     restart: always
     build: ./frontAngTest/.
     ports:
