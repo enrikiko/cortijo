@@ -7,5 +7,5 @@ RUN apt-get install npm -y
 RUN mkdir angular
 WORKDIR angular/.
 COPY . .
-RUN npm install angular -y
-ENTRYPOINT ["sh", "init.sh"]
+RUN npm install
+ENTRYPOINT ["npm", "start"]
