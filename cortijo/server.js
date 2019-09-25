@@ -77,7 +77,7 @@ app.get("/info", function(req, res) { //OK
 
 //Get liveness
 app.get("/liveness", function(req, res) {
-    res.status(200)
+    res.status(200).send()
 })
 
 //Get log

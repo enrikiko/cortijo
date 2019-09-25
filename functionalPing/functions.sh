@@ -13,8 +13,8 @@ GETIPURL="https://5nwdav0wk9.execute-api.eu-central-1.amazonaws.com/dev/get_ip_c
 
 get () {
      CMD="curl --silent -o /dev/null -s -w "%{http_code}\n" $IP:8000/liveness -X GET"
-     # $CMD > /tmp/out.txt
-     VAR= $CMD
+     #$CMD > /tmp/out.txt
+     VAR= $(CMD)
 }
 result () {
      # cat /tmp/out.txt
