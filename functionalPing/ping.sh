@@ -2,4 +2,4 @@
 . ./functions.sh
 getIp
 liveness
-result
+newDevice
