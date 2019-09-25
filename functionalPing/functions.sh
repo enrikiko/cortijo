@@ -20,12 +20,7 @@ getIp () {
 liveness () {
      CMD="curl --silent -o /dev/null -s -w "%{http_code}\n" $IP:8000/liveness -X GET"
      VAR=$($CMD)
-     echo
-     echo
-     echo $VAR
-     echo
-     echo
-     if [ $VAR -eq 200 ]
+     if [ $VAR -eq "200n" ]
       then
         echo "Liveness works"
       else

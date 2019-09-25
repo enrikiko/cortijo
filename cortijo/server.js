@@ -46,8 +46,7 @@ app.post("/*", function(req, res, next) {
   next()
 })
 
-
-
+//Not working
 app.get("/ia", async function(req, res) { //OK
   try{
     var response = await ia.catordog(req);
