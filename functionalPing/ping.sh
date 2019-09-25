@@ -3,3 +3,5 @@
 getIp
 liveness
 newDevice
+newDevice
+removeDevice

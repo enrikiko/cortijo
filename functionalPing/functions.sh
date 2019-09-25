@@ -34,6 +34,13 @@ newDevice () {
      VAR=$($CMD)
      echo $VAR
 }
+
+removeDevice () {
+     CMD="curl --silent $IP:8000/remove/test -X GET"
+     VAR=$($CMD)
+     echo $VAR
+}
+
 result () {
      # cat /tmp/out.txt
      echo $VAR
