@@ -5,7 +5,7 @@ while [ 1 ]
 do
     date >> /log
     sh ping.sh
-    sleep 5
+    sleep 30
     date $(date)
     echo " looping... "
 done
