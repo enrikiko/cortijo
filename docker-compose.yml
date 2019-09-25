@@ -67,6 +67,14 @@ services:
       - "443:80"
     networks:
       - network
+  fronttest:
+    container_name: fronttest
+    restart: always
+    build: ./frontAngTest/.
+    ports:
+      - "8300:4200"
+    networks:
+      - network
   git:
     container_name: git
     restart: on-failure
