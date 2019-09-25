@@ -10,18 +10,19 @@ YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
 GETIPURL="https://5nwdav0wk9.execute-api.eu-central-1.amazonaws.com/dev/get_ip_clear"
-
-get () {
-     CMD="curl --silent -o /dev/null -s -w "%{http_code}\n" $IP:8000/liveness -X GET"
-     #$CMD > /tmp/out.txt
-     VAR= $(CMD)
-}
-result () {
-     # cat /tmp/out.txt
-     echo $VAR
-}
+IP="localhost"
 
 getIp () {
      CMD="curl --silent $GETIPURL -X GET"
      IP= $CMD
+}
+
+get () {
+     CMD="curl --silent -o /dev/null -s -w "%{http_code}\n" $IP:8000/liveness -X GET"
+     #$CMD > /tmp/out.txt
+     VAR=$($CMD)
+}
+result () {
+     # cat /tmp/out.txt
+     echo $VAR
 }

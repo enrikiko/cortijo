@@ -1,4 +1,5 @@
 #!/bin/sh
 . ./functions.sh
-get 
+getIp
+get
 result
