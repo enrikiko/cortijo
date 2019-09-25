@@ -14,7 +14,7 @@ IP="localhost"
 
 getIp () {
      CMD="curl --silent $GETIPURL -X GET"
-     IP= $CMD
+     IP=$($CMD)
 }
 
 liveness () {
@@ -29,7 +29,7 @@ liveness () {
       then
         echo "Liveness works"
       else
-        echo "Liveness doesn't works" 
+        echo "Liveness doesn't works"
      fi
 }
 result () {

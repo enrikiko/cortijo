@@ -1,10 +1,16 @@
 #!/bin/sh
+echo
+echo
+echo
+echo
+echo
+echo 
 echo -n "Running Functional Ping... "
-echo ""
+echo
+echo
 while [ 1 ]
-do
+  do
+    date
     sh ping.sh
     sleep 30
-    date
-    echo " looping... "
-done
+  done
