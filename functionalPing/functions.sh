@@ -30,14 +30,9 @@ liveness () {
 }
 
 newDevice () {
-     CMD="curl --silent -o /dev/null -s -w "%{http_code}\n" $IP:8000/liveness -X GET"
+     CMD="curl --silent $IP:8000/new/test/true/1.2.3.4 -X GET"
      VAR=$($CMD)
-     if [ $VAR -eq "200n" ]
-      then
-        echo "Liveness works"
-      else
-        echo "Liveness doesn't works"
-     fi
+     echo $VAR
 }
 result () {
      # cat /tmp/out.txt
