@@ -75,6 +75,11 @@ app.get("/info", function(req, res) { //OK
     res.status(200).json(info)
 })
 
+//Get liveness
+app.get("/liveness", function(req, res) {
+    res.status(200)
+})
+
 //Get log
 app.get("/log", function(req, res) { //OK
   try{

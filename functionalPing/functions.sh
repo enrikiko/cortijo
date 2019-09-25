@@ -10,11 +10,11 @@ YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
 get () {
-     CMD="curl $1 -X GET"
-     $CMD > /tmp/out.txt
+     CMD="curl --silent -o /dev/null -s -w "%{http_code}\n" $1 -X GET"
+     # $CMD > /tmp/out.txt
      VAR= cat /tmp/out.txt
 }
 result () {
-     cat /tmp/out.txt
+     # cat /tmp/out.txt
      echo $VAR
 }
