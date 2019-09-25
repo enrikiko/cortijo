@@ -25,7 +25,12 @@ liveness () {
      echo $VAR
      echo
      echo
-     if [VAR -eq 200](echo "Liveness works")
+     if [ $VAR -eq 200 ]
+      then
+        echo "Liveness works"
+      else
+        echo "Liveness doesn't works" 
+     fi
 }
 result () {
      # cat /tmp/out.txt
