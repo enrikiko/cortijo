@@ -12,7 +12,9 @@ NC='\033[0m' # No Color
 get () {
      CMD="curl $1 -X GET"
      $CMD > /tmp/out.txt
+     VAR= cat /tmp/out.txt
 }
 result () {
      cat /tmp/out.txt
+     echo $VAR
 }

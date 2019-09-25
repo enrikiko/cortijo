@@ -1,5 +1,5 @@
 #!/bin/sh
 echo -n "Running Functional Ping... "
-echo " "
+echo ""
 sh ping.sh
 echo " Done."
