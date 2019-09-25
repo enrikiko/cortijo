@@ -17,10 +17,15 @@ getIp () {
      IP= $CMD
 }
 
-get () {
+liveness () {
      CMD="curl --silent -o /dev/null -s -w "%{http_code}\n" $IP:8000/liveness -X GET"
-     #$CMD > /tmp/out.txt
      VAR=$($CMD)
+     echo
+     echo
+     echo $VAR
+     echo
+     echo
+     if [VAR -eq 200](echo "Liveness works")
 }
 result () {
      # cat /tmp/out.txt
