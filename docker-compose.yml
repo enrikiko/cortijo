@@ -83,5 +83,9 @@ services:
     container_name: ip
     restart: on-failure
     build: ./ip/.
+  fp:
+    container_name: fp
+    restart: on-failure
+    build: ./functionalPing/.
 networks:
   network:
