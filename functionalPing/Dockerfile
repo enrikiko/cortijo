@@ -4,4 +4,4 @@ RUN apt-get install curl -y
 COPY functionalPing.sh functionalPing.sh
 COPY ping.sh ping.sh
 COPY functions.sh functions.sh
-# ENTRYPOINT ["./functionalPing.sh"]
+ENTRYPOINT ["./functionalPing.sh"]
