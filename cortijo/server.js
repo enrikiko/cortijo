@@ -54,7 +54,7 @@ async function getFavicon() {
                throw err;
           }
      return data;
-     }
+     })
 }
 app.get("/favicon.ico", async function(req, res) {
   try{
