@@ -17,7 +17,7 @@ export class BodyComponent implements OnInit {
   ngOnInit()
   {
     this.getDevicesList()
-    this.reload()
+    this.reload2()
   }
 
   getDevicesList(){
@@ -63,11 +63,11 @@ export class BodyComponent implements OnInit {
     this.lapse = lapse
   }
 
-  reload() {
+  reload2() {
        setTimeout(function(){
          console.log("reload")
             this.getDevicesList()
-            this.reload()
+            this.reload2()
        }, 1000)
   }
 
