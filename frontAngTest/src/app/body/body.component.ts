@@ -68,7 +68,7 @@ export class BodyComponent implements OnInit {
          console.log("reload")
             this.getDevicesList()
             this.reload()
-       }, 5000)
+       }, 1000)
   }
 
 }

@@ -64,7 +64,7 @@ app.delete('/removeuser/:user/:password/:token', async function(req, res){
      }
 });
 
-app.post('/newuser/:user/:password/:token', async function(req, res){
+app.get('/newuser/:user/:password/:token', async function(req, res){
      user = req.params.user;
      password = req.params.password;
      token = req.params.token;
