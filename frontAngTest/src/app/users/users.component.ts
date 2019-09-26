@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 
-
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -14,7 +13,7 @@ export class UsersComponent implements OnInit {
   userPassword: String;
   status: String;
 
-  constructor( private http: HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
@@ -36,9 +35,6 @@ export class UsersComponent implements OnInit {
         this.status = data.status
       }
     })
-
-
-
   }
 
 }
