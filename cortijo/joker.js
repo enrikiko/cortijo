@@ -16,10 +16,10 @@ module.exports={
        return await getResponse(ip, status);
      },
 
-    readLog: () => {
-        var jsonString = '{'+fs.readFileSync("log.txt", {encoding: 'ASCII'})+'}'
-        return JSON.parse(jsonString)
-     },
+    // readLog: () => {
+    //     var jsonString = '{'+fs.readFileSync("log.txt", {encoding: 'ASCII'})+'}'
+    //     return JSON.parse(jsonString)
+    //  },
 
      auth: async (user, password) => {
        const url = "http://192.168.1.50:8010/user/"+user+"/"+password

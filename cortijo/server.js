@@ -13,6 +13,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const auth = require('basic-auth');
 const app = express();
+const fs = require('fs')
 app.enable('trust proxy');
 app.use(bodyParser.json());
 app.use(cors());
@@ -45,6 +46,22 @@ app.post("/*", function(req, res, next) {
   requests.newRequest(ip, fullUrl)
   next()
 })
+
+//favicon.ico
+async function getFavicon() {
+     fs.readFile('./favicon.ico', function read(err, data) {
+          if (err) {
+               throw err;
+          }
+     return data;
+     }
+}
+app.get("/favicon.ico", async function(req, res) {
+  try{
+    var response = await getFavicon();
+    res.status(200).json({response})
+  }catch(response){}
+  })
 
 //Not working
 app.get("/ia", async function(req, res) { //OK
@@ -80,11 +97,13 @@ app.get("/liveness", function(req, res) {
 })
 
 //Get log
-app.get("/log", function(req, res) { //OK
-  try{
-    var response = joker.readLog();
-    res.status(200).json({response})
-  }catch(response){}
+app.get("/log", function(req, res) {
+     try {
+       var logHistory = await history.history()
+     } catch (e) {
+       logs.log(e)
+     }
+     res.status(200).json(logHistory)
   })
 
 //Get all device
@@ -134,11 +153,11 @@ app.get("/delete/temperature/humidity/history",async function(req, res) {
 
 app.get("/log/history",async function(req, res) {
   try {
-    var temperature = await history.history()
+    var logHistory = await history.history()
   } catch (e) {
     logs.log(e)
   }
-  res.status(200).json(temperature)
+  res.status(200).json(logHistory)
   })
 
 //Get device by name
