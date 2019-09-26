@@ -97,7 +97,7 @@ app.get("/liveness", function(req, res) {
 })
 
 //Get log
-app.get("/log", function(req, res) {
+app.get("/log", async function(req, res) {
      try {
        var logHistory = await history.history()
      } catch (e) {
