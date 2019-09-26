@@ -49,17 +49,18 @@ app.post("/*", function(req, res, next) {
 
 //favicon.ico
 async function getFavicon() {
-     fs.readFile('./favicon.ico', function read(err, data) {
-          if (err) {
-               throw err;
-          }
-     return data;
-     })
+     // fs.readFile('./favicon.ico', function read(err, data) {
+     //      if (err) {
+     //           throw err;
+     //      }
+     // return data;
+     // })
+     return fs.readFileSync('favicon.ico')
 }
 app.get("/favicon.ico", async function(req, res) {
   try{
     var response = await getFavicon();
-    res.status(200).json({response})
+    res.status(200).send(response)
   }catch(response){}
   })
 
