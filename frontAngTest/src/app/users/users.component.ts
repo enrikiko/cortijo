@@ -25,7 +25,7 @@ export class UsersComponent implements OnInit {
     let url = "http://" + host + ":8010/newuser/"+this.userName+"/"+this.userPassword+"/"+this.password
     console.log(url)
 
-    this.http.get(url).subscribe( data =>
+    this.http.get<any>(url).subscribe( data =>
     {
       if(data){
         console.log(data)
