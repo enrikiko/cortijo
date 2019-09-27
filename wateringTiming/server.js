@@ -1,12 +1,13 @@
 const request = require('superagent');
 async function call() {
      console.log("calling...")
-     return await request.get("http://192.168.1.50:8000/update/mock/true");
+     let res = await request.get("http://192.168.1.50:8000/update/mock/true");
+     return res
 }
 let certain = true
 let time
-const min = 55
-const hour = 18
+const min = 0
+const hour = 19
 while(true){
      time = new Date()
      if ( certain & time.getMinutes() == min & time.getHours() == hour){
