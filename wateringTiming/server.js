@@ -5,15 +5,15 @@ async function call() {
 }
 let certain = true
 let time
-const min = 52
+const min = 55
 const hour = 18
 while(true){
      time = new Date()
      if ( certain & time.getMinutes() == min & time.getHours() == hour){
           certain = false
-          call()
           console.log(time)
           console.log("Is time to watering")
+          console.log(call())
      }else if( !certain & (time.getMinutes() != min | time.getHours() != hour)){
           certain = true
      }
