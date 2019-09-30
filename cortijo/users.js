@@ -105,14 +105,14 @@ module.exports = {
          result.ip = ip
          result.save()
          //logs.log(result)
-         
+
        }
      });
      return device.ip;
    },
 
    removeDeviceByName: (deviceName) => {
-    return myDevice.remove({name: deviceName}, function(err, result) {
+    return myDevice.deleteOne({name: deviceName}, function(err, result) {
       if (err) throw err
       if(result){
         //logs.log(result)
