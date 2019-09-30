@@ -50,7 +50,8 @@ module.exports = {
   },
 
   newLog: (ip, request) => {
-       let str = ' '.repeat(20 - ip.length)
+       let length =  (20 - ip.length) > 0 ? 20 - ip.length 1 : 1
+       let str = ' '.repeat(length)
        logs(ip + str +"  :    " + request + " ")
     let log = new myLogs(
       {
