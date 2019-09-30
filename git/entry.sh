@@ -9,6 +9,7 @@ date
 date
 while [ 1 ]
 do
+     date
      day=$(date > file | cut -f1 -d " " file)
      echo $day
 
