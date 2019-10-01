@@ -36,5 +36,5 @@ function check-time {
 while [[ 1 ]]; do
   time="$(date +"%H:%M")"
   check-time $time $waterTime
-  sleep 4
+  sleep 50
 done
