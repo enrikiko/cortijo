@@ -1,5 +1,7 @@
 #!/bin/bash
-time="$(date +"%H:%M")"
+date
+echo "start script server.sh"
+#time="$(date +"%H:%M")"
 waterTime="23:59"
 certain="true"
 
@@ -12,7 +14,6 @@ function water
     certain="false"
     curl  http://192.168.1.50:8000/update/mock/true
   fi
-
 }
 
 function no-water
