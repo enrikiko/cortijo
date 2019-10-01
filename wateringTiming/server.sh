@@ -2,21 +2,21 @@
 date
 echo "start script server.sh"
 #time="$(date +"%H:%M")"
-waterTime="23:59"
+waterTime="3:00"
 certain="true"
 
-function water
+function on
 {
   if [[ $certain = "true" ]]; then
     realTime="$(date)"
     echo $realTime
     echo "Is time to watter"
     certain="false"
-    curl  http://192.168.1.50:8000/update/mock/true
+    curl  http://192.168.1.50:8000/update/Watering/true
   fi
 }
 
-function no-water
+function off
 {
   if [[ $certain = "false" ]]; then
     echo "Is not time to watter"
@@ -27,9 +27,9 @@ function no-water
 function check-time {
   if [ $1 == $2 ]
   then
-    water
+    on
   else
-    no-water
+    off
   fi
 }
 
