@@ -2,7 +2,7 @@
 date
 echo "start script server.sh"
 #time="$(date +"%H:%M")"
-waterTime="5:30"
+waterTime="17:30"
 certain="true"
 
 function on
