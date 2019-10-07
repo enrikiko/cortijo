@@ -86,14 +86,14 @@ app.get("/liveness", function(req, res) {
 })
 
 //Get log
-app.get("/log", async function(req, res) {
-     try {
-       var logHistory = await history.history()
-     } catch (e) {
-       logs.log(e)
-     }
-     res.status(200).json(logHistory)
-  })
+// app.get("/log", async function(req, res) {
+//      try {
+//        var logHistory = await history.history()
+//      } catch (e) {
+//        logs.log(e)
+//      }
+//      res.status(200).json(logHistory)
+//   })
 
 //Get all device
 app.get("/all/device", async function(req, res) {
