@@ -24,7 +24,7 @@ var http = require('http').Server(app);
 var io = http;
 var temperature;
 var humidity;
-const defaultTime = 600000 //1000=1s 60000=1min  900000=15min
+const defaultTime = 300000 //1000=1s 60000=1min 300000=5min 900000=15min
 
 //Middleware
 app.get("/*", function(req, res, next) {
@@ -48,37 +48,34 @@ app.post("/*", function(req, res, next) {
 })
 
 //favicon.ico
-async function getFavicon() {
-     return
-}
 app.get("/favicon.ico", async function(req, res) {
     res.status(200).send(fs.readFileSync('favicon.ico'))
   })
 
 //Not working
-app.get("/ia", async function(req, res) { //OK
-  try{
-    var response = await ia.catordog(req);
-    res.status(200).json({response})
-  }catch(response){}
-  })
+// app.get("/ia", async function(req, res) {
+//   try{
+//     var response = await ia.catordog(req);
+//     res.status(200).json({response})
+//   }catch(response){}
+// })
 
-app.get("/getAllRequest", async function(req, res) { //OK
+app.get("/getAllRequest", async function(req, res) {
   try{
     var response = await requests.getAllRequest();
     res.status(200).json({response})
   }catch(response){}
-  })
+})
 
-app.get("/getAllIp", async function(req, res) { //OK
-try{
- var response = await requests.getAllIp();
- res.status(200).json([response])
-}catch(response){}
+app.get("/getAllIp", async function(req, res) {
+  try{
+   var response = await requests.getAllIp();
+   res.status(200).json([response])
+ }catch(response){}
 })
 
 //Get log
-app.get("/info", function(req, res) { //OK
+app.get("/info", function(req, res) {
     var info = {"Version": version, "Start time": startDate}
     res.status(200).json(info)
 })
@@ -99,12 +96,12 @@ app.get("/log", async function(req, res) {
   })
 
 //Get all device
-app.get("/all", async function(req, res) { //OK
+app.get("/all/device", async function(req, res) {
   try{
     var response = await myDevice.getDevice();
     res.status(200).json(response)
   }catch(response){}
-  })
+})
 
 //Set temperature and humidity
 app.get("/set/:temperature/:humidity", function(req, res) {
@@ -112,7 +109,7 @@ app.get("/set/:temperature/:humidity", function(req, res) {
   humidity = req.params.humidity;
   myTemperature.newTemperature(temperature, humidity)
   res.status(200).send()
-  })
+})
 
 //Get temperature and humidity
 app.get("/get/temperature/humidity", function(req, res) {
@@ -120,28 +117,28 @@ app.get("/get/temperature/humidity", function(req, res) {
   response.temperature=temperature;
   response.humidity=humidity;
   res.status(200).json(response)
-  })
+})
 
 //Get temperature and humidity history
 app.get("/get/temperature/humidity/history",async function(req, res) {
-       try {
-         var temperature = await myTemperature.getAll()
-       } catch (e) {
-         logs.log(e)
-       }
-       res.status(200).json(temperature)
-  })
+   try {
+     var temperature = await myTemperature.getAll()
+   } catch (e) {
+     logs.log(e)
+   }
+   res.status(200).json(temperature)
+})
 
 //Delete temperature history
 app.get("/delete/temperature/humidity/history",async function(req, res) {
-       try {
-         var result = await myTemperature.deleteAll()
-         res.status(200).send(result)
-       } catch (e) {
-         logs.log(e)
-         res.status(500).send(e)
-       }
-  })
+   try {
+     var result = await myTemperature.deleteAll()
+     res.status(200).send(result)
+   } catch (e) {
+     logs.log(e)
+     res.status(500).send(e)
+   }
+})
 
 app.get("/log/history",async function(req, res) {
   try {
@@ -150,7 +147,7 @@ app.get("/log/history",async function(req, res) {
     logs.log(e)
   }
   res.status(200).json(logHistory)
-  })
+})
 
 //Get device by name
 app.get("/name/:name", async function(req, res) {
@@ -159,10 +156,10 @@ app.get("/name/:name", async function(req, res) {
     var response = await myDevice.getDeviceByName(name);
     res.status(200).json(response)
   }catch(response){}
-  })
+})
 
 //Remove device by id
-app.get("/remove/:name", async function(req, res) { //OK
+app.get("/remove/:name", async function(req, res) {
   try{
     var name = req.params.name;
     var id = await myDevice.getIdbyName(name)
@@ -175,7 +172,7 @@ app.get("/remove/:name", async function(req, res) { //OK
       res.status(200).json("Device Doesn't Exist")
     }
   }catch(response){}
-  })
+})
 
 //New device
 app.get("/new/:name/:status/:ip", async (req, res) => {
@@ -200,6 +197,7 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
   }
 })
 
+//Auth with user & password
 app.get("/auth/:user/:password", async function(req, res) {
   user = req.params.user;
   password = req.params.password;
@@ -234,7 +232,6 @@ app.get("/update/:name/:status", async function(req, res){
         setTimeout(async function(){  //Change back to false
              if(isUpdating[name]==true){
                   var responseBack = await joker.switchStatus(ip, false, name)
-                  // logs.log("Changing back " + name + " to " + false.toString())
                   if (responseBack.code == 200) {
                     await myDevice.updateDevice(id, false) //Change DB back to false
                     logs.log("Changed back automatically due to timeout " + name + " to " + false.toString())
@@ -265,12 +262,11 @@ app.get("/update/:name/:status", async function(req, res){
 app.get('/*', function(req, res){
   res.sendFile(__dirname + '/info.html');
 });
-
 app.post('/*', function(req, res){
   res.sendFile(__dirname + '/info.html');
 });
 
 // activate the listenner
 http.listen(3000, function () {
-    logs.log('Servidor activo en http://localhost:3000');
-  })
+  logs.log('Servidor activo en http://localhost:3000');
+})
