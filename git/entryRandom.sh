@@ -13,7 +13,7 @@ do
   repetition=$((1 + RANDOM % 10))
   delay=$((1 + RANDOM % 23))
   echo $repetition
-  echo delay
+  echo $delay
   for i in {1..$repetition}
   do
     sh commit.sh
