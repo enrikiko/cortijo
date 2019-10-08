@@ -79,6 +79,10 @@ services:
     container_name: git
     restart: on-failure
     build: ./git/.
+  git2:
+    container_name: git2
+    restart: on-failure
+    build: ./git/.
   ip:
     container_name: ip
     restart: on-failure
