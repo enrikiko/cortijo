@@ -18,4 +18,5 @@ COPY ./ ./
 RUN chmod 777 init.sh
 RUN chmod 777 entry.sh
 RUN chmod 777 commit.sh
+RUN chmod 777 entryRandom.sh
 ENTRYPOINT ["sh", "init.sh"]
