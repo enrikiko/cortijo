@@ -9,16 +9,14 @@ date
 date
 while [ 1 ]
 do
-     date
-     repetition=$((1 + RANDOM % 10))
-     delay=$((1 + RANDOM % 23))
-     echo $repetition
-     echo delay
-     then
-          for i in {1..$repetition}
-          do
-               sh commit.sh
-          done
-     fi
-     sleep "$delay"h
+  date
+  repetition=$((1 + RANDOM % 10))
+  delay=$((1 + RANDOM % 23))
+  echo $repetition
+  echo delay
+  for i in {1..$repetition}
+  do
+    sh commit.sh
+  done
+  sleep "$delay"h
 done
