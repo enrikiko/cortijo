@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 //  humidity: string="";
   data : any[]=null;
 
-  constructor(private http: HttpClient,
+  constructor(private Http: HttpClient,
               private Auth: AuthService) { }
 
   ngOnInit() {
@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
     const host = (window.location.href.split("/")[2]).split(":")[0]
     // const host = "88.8.65.164"
     let url = "http://" + host + ":8000/get/temperature/humidity"
-    this.http.get<any[]>(url).subscribe( data =>
+    this.Http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
         this.data=data;

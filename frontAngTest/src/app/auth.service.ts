@@ -29,12 +29,12 @@ export class AuthService {
         if(data.status==true){
           console.log(data)
           this.status = true
-          this.router.navigate([''])
+          this.router.navigate(['logs'])
           return true
         }
         else {
-        console.log('Unautorized')
-        return false
+          console.log('Unautorized')
+          return false
         }
       })
 
