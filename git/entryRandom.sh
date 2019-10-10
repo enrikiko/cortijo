@@ -1,22 +1,22 @@
 #! /bin/bash
-echo "Starting entry.sh"
-git config --global user.email "enrikiko_91@hotmail.com"
-git config --global user.name "enrikiko_91"
+echo "Starting $0"
+echo "cd ./Java"
 cd ./Java
+echo "Pull changes from repository"
 git pull
-cd ../
-date
-date
+echo ""
 while [ 1 ]
 do
   date
-  repetition=$((1 + RANDOM % 10))
-  delay=$((1 + RANDOM % 23))
-  echo $repetition
-  echo $delay
+  repetition=$((1 + RANDOM % 5))
+  delay=$((1 + RANDOM % 5))
+  echo "Repetitions: $repetition"
+  echo "Delay: $delay"
+  echo {1..5}
+  echo {1..$repetition}
   for i in {1..$repetition}
-  do
-    sh commit.sh
-  done
+    do
+      sh commit.sh
+    done
   sleep "$delay"h
 done
