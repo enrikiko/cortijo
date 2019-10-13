@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const logs = require('./logs');
 let connString = 'mongodb://mongo/users';
 const db = mongoose.connection;
-//mongoose.connect("mongodb://localhost:27017/users");
-mongoose.connect(connString);
+mongoose.connect("mongodb://localhost:27017/users");
+//mongoose.connect(connString);
 
 db.on('error',function(){
 logs.log("Error al conectarse a Mongo Device");
