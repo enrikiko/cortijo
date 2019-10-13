@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-let connString = 'mongodb://mongo/users';
+let connString = 'mongodb://username:password@mongo/users';
 const db = mongoose.connection;
-db.auth("user_name", "password");
+//db.auth("user_name", "password");
 //mongoose.connect("mongodb://localhost:27017/users");
 mongoose.connect(connString);
 
