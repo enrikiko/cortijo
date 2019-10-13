@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const logs = require('./logs');
-let connString = 'mongodb://username:password@mongo/temperature';
+let connString = 'mongodb://user_name:password@mongo/temperature';
 const db = mongoose.connection;
 //db.auth("user_name", "password");
 mongoose.connect(connString);
