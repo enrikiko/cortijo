@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 // const logs = require('./logs');
-let connString = 'mongodb://user_name:password@localhost:2017/logs';
+let connString = 'mongodb://mongo/users';
 const fs = require('fs');
 const db = mongoose.connection;
-//db.auth("user_name", "password");
 mongoose.connect(connString);
 
 function logs(text) {

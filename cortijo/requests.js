@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const logs = require('./logs');
-let connString = 'mongodb://user_name:password@localhost:2017/requests';
+let connString = 'mongodb://mongo/users';
 const db = mongoose.connection;
-//db.auth("user_name", "password");
 mongoose.connect(connString);
 db.on('error',function(){
 logs.log("Error al conectarse a Mongo Requests");
