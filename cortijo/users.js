@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const logs = require('./logs');
 let connString = 'mongodb://mongo/users';
 const db = mongoose.connection;
-mongoose.connect("mongodb://localhost:27017/users");
+mongoose.connect("mongodb://user_name:password@172.18.0.5:27017/users");
 //mongoose.connect(connString);
 
 db.on('error',function(){
