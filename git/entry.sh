@@ -1,10 +1,10 @@
 #! /bin/bash
-echo "Starting entry.sh"
-git config --global user.email "enrikiko_91@hotmail.com"
-git config --global user.name "enrikiko_91"
+echo "Starting $0"
+echo "cd ./Java"
 cd ./Java
+echo "Pull changes from repository"
 git pull
-date
+echo ""
 while [ 1 ]
 do
      date
@@ -13,7 +13,7 @@ do
 
      if [ "$day" == "Mon" ]
      then
-          for i in {1..5}
+          for i in {1..3}
           do
                sh commit.sh
           done
@@ -21,7 +21,7 @@ do
 
      if [ "$day" == "Tue" ]
      then
-          for i in {1..10}
+          for i in {1..6}
           do
                sh commit.sh
           done
@@ -29,7 +29,7 @@ do
 
      if [ "$day" == "Wed" ]
      then
-          for i in {1..15}
+          for i in {1..9}
           do
                sh commit.sh
           done
@@ -37,7 +37,7 @@ do
 
      if [ "$day" == "Thu" ]
      then
-          for i in {1..20}
+          for i in {1..12}
           do
                sh commit.sh
           done
@@ -45,7 +45,7 @@ do
 
      if [ "$day" == "Fri" ]
      then
-          for i in {1..25}
+          for i in {1..15}
           do
                sh commit.sh
           done
@@ -53,7 +53,7 @@ do
 
      if [ "$day" == "Sat" ]
      then
-          for i in {1..30}
+          for i in {1..18}
           do
                sh commit.sh
           done
@@ -61,11 +61,11 @@ do
 
      if [ "$day" == "Sun" ]
      then
-          for i in {1..35}
+          for i in {1..21}
           do
                sh commit.sh
           done
      fi
 
-     sleep 1d
+     sleep 23h
 done
