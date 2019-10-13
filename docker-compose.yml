@@ -9,7 +9,7 @@ services:
       - "27017:27017"
     networks:
       - network
-    environment:
+    #  environment:
     #  MONGO_INITDB_ROOT_USERNAME: user_name
     #  MONGO_INITDB_ROOT_PASSWORD: password
   catordog:
