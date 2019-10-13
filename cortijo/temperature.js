@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const logs = require('./logs');
 let connString = 'mongodb://mongo/temperature';
 const db = mongoose.connection;
+db.auth("user_name", "password");
 mongoose.connect(connString);
 
 db.on('error',function(){

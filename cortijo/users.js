@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const logs = require('./logs');
 let connString = 'mongodb://mongo/users';
 const db = mongoose.connection;
+db.auth("user_name", "password");
 //mongoose.connect("mongodb://localhost:27017/users");
 mongoose.connect(connString);
 

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 let connString = 'mongodb://mongo/logs';
 const fs = require('fs');
 const db = mongoose.connection;
+db.auth("user_name", "password");
 mongoose.connect(connString);
 
 function logs(text) {
