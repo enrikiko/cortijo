@@ -15,7 +15,9 @@ do
      then
           for i in {1..3}
           do
-               sh commit.sh
+            pwd
+            ls -la
+            ./commit.sh
           done
      fi
 
@@ -23,7 +25,9 @@ do
      then
           for i in {1..6}
           do
-               sh commit.sh
+            pwd
+            ls -la
+            ./commit.sh
           done
      fi
 
@@ -31,7 +35,9 @@ do
      then
           for i in {1..9}
           do
-               sh commit.sh
+            pwd
+            ls -la
+            ./commit.sh
           done
      fi
 
@@ -39,7 +45,9 @@ do
      then
           for i in {1..12}
           do
-               sh commit.sh
+            pwd
+            ls -la
+            ./commit.sh
           done
      fi
 
@@ -47,7 +55,9 @@ do
      then
           for i in {1..15}
           do
-               sh commit.sh
+            pwd
+            ls -la
+            ./sh commit.sh
           done
      fi
 
@@ -55,7 +65,9 @@ do
      then
           for i in {1..18}
           do
-               sh commit.sh
+            pwd
+            ls -la
+            ./commit.sh
           done
      fi
 
@@ -63,7 +75,9 @@ do
      then
           for i in {1..21}
           do
-               sh commit.sh
+            pwd
+            ls -la
+            ./commit.sh
           done
      fi
 

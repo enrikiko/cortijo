@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 // const logs = require('./logs');
-let connString = 'mongodb://user_name:password@192.168.1.50:27017/users';
+let connString = 'mongodb://user_name:user_password@192.168.1.50:27017/users';
 const fs = require('fs');
 const db = mongoose.connection;
 mongoose.connect(connString, { useNewUrlParser: true });

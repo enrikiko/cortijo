@@ -2,6 +2,7 @@
 echo "Starting $0"
 echo "cd ./Java"
 cd ./Java
+pwd
 echo "Pull changes from repository"
 git pull
 echo ""
@@ -16,6 +17,8 @@ do
   echo {1..$repetition}
   for i in {1..$repetition}
     do
+      pwd
+      ls -la
       sh commit.sh
     done
   sleep "$delay"h
