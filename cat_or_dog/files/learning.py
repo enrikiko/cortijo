@@ -32,7 +32,7 @@ classifier.add(Flatten())
 
 # Step 4 - Full connection
 classifier.add(Dense(units=128, activation='relu'))
-classifier.add(Dense(units=1, activation='sigmoid'))
+classifier.add(Dense(units=1, activation='linear'))
 
 # Compiling the CNN
 classifier.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
@@ -79,7 +79,7 @@ def catordog(imageName):
         prediction = 'cat'
     else:
         prediction = None
-    return prediction
+    return result[0][0]
 
 
 print(catordog("dataset/single_prediction/cat_or_dog_1.jpg"))
