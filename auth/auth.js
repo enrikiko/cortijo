@@ -32,8 +32,12 @@ module.exports = {
    getAll: () => { return myAuth.find() },
    getUser: (user) => { return myAuth.find({user: user})},
    createUser: (user, password) => {
+
         //TODO verify if user exit
-     console.log("Creating User...")
+     console.log("user:", myAuth.find({user: user}) );
+     console.log("user_is_null:", myAuth.find({user: user}) == null );
+     console.log("user_is_[]:", myAuth.find({user: user}) == [] );
+     console.log("Creating User...");
      let auth = new myAuth(
        {
          user: user,

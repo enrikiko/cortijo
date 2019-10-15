@@ -10,8 +10,8 @@ services:
 #    networks:
 #      - network
     environment:
-      MONGO_INITDB_ROOT_USERNAME: "user_name"
-      MONGO_INITDB_ROOT_PASSWORD: "user_password"
+      MONGO_INITDB_ROOT_USERNAME: user_name
+      MONGO_INITDB_ROOT_PASSWORD: user_password
   catordog:
     container_name: catordog
     restart: always
