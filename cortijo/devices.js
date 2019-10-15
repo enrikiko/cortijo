@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const logs = require('./logs');
-let connString = 'mongodb://192.168.1.50:27017/users';
+let connString = 'mongodb://192.168.1.50:27017/cortijo';
 const db = mongoose.connection;
-//mongoose.connect("mongodb://user_name:password@172.18.0.5:27017/users");
+//mongoose.connect("mongodb://user_name:password@172.18.0.5:27017/cortijo");
 mongoose.connect(connString, { useNewUrlParser: true });
 
 db.on('error',function(){
@@ -34,7 +34,7 @@ const deviceSchema = new mongoose.Schema({
 });
 
 // definicion del modelo de dato de nuevos articulos
-let myDevice = mongoose.model('User', deviceSchema);
+let myDevice = mongoose.model('Devices', deviceSchema);
 
 module.exports = {
 

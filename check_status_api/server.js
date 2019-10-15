@@ -1,20 +1,10 @@
-// const { exec } = require('child_process');
-// const express = require("express");
-// const myDevice = require('./users');
-// const cors = require('cors');
-// const bodyParser = require('body-parser')
-// const app = express();
-// app.enable('trust proxy')
-// app.use(bodyParser.json());
-// app.use(cors());
-// app.options('*', cors());
-// app.use(express.urlencoded())
+
 
 const request = require('superagent');
 const mongoose = require('mongoose');
-let connString = 'mongodb://mongo/users';
+let connString = 'mongodb://192.168.1.50:27017/cortijo';
 const db = mongoose.connection;
-mongoose.connect(connString);
+mongoose.connect(connString, { useNewUrlParser: true });
 
 
 db.on('error',function(){

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-let connString = 'mongodb://mongo/users';
+let connString = 'mongodb://192.168.1.50:27017/cortijo';
 const db = mongoose.connection;
-mongoose.connect(connString);
+mongoose.connect(connString, { useNewUrlParser: true });
 
 db.on('error',function(){
 console.log("Error al conectarse a Mongo");
