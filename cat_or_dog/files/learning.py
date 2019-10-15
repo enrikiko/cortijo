@@ -79,7 +79,7 @@ def catordog(imageName):
         prediction = 'cat'
     else:
         prediction = None
-    return "{result[0][0]}"
+    return str(result[0][0])
 
 
 print(catordog("dataset/single_prediction/cat_or_dog_1.jpg"))
