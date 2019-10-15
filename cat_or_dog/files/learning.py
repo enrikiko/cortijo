@@ -112,7 +112,7 @@ def favicon():
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
-@app.route('/*', methods=['GET'])
+@app.route('/', methods=['GET'])
 def http():
     return '''
     <html>
