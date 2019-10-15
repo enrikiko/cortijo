@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 let connString = 'mongodb://192.168.1.50:27017/users';
 const fs = require('fs');
 const db = mongoose.connection;
-mongoose.connect(connString);
+mongoose.connect(connString, { useNewUrlParser: true });
 
 function logs(text) {
      let time = new Date().toLocaleString({timeZone: 'Europe/Spain'})
