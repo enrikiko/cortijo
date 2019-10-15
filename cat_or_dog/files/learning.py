@@ -107,13 +107,8 @@ def liveness():
 
 
 @app.route('/favicon.ico', methods=['GET'])
-def favicon2():
-    return send_from_directory(os.path.join(app.root_path, 'src'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
-@app.route('/favicon', methods=['GET'])
 def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'src'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory('/src', 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 @app.route('/', methods=['GET'])
