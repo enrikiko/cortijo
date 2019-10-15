@@ -10,9 +10,9 @@ from flask import Flask, render_template, request, send_from_directory
 from werkzeug import secure_filename
 
 # Set IA
-STEPS = 5
-EPOCHS = 2
-VALIDATION_STEPS = 5
+STEPS = 8000
+EPOCHS = 25
+VALIDATION_STEPS = 8000
 
 # Initialising the CNN
 classifier = Sequential()
@@ -79,6 +79,7 @@ def catordog(imageName):
         prediction = 'cat'
     else:
         prediction = None
+    print(str(result[0][0]))
     return str(result[0][0])
 
 
