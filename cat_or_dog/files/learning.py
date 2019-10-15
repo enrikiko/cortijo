@@ -6,13 +6,13 @@ from keras.layers import Dense
 from keras.preprocessing.image import ImageDataGenerator
 from keras.preprocessing import image
 import numpy as np
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from werkzeug import secure_filename
 
 # Set IA
-STEPS = 80
-EPOCHS = 3
-VALIDATION_STEPS = 80
+STEPS = 5
+EPOCHS = 2
+VALIDATION_STEPS = 5
 
 # Initialising the CNN
 classifier = Sequential()
@@ -72,7 +72,7 @@ def catordog(imageName):
     test_image = image.img_to_array(test_image)
     test_image = np.expand_dims(test_image, axis=0)
     result = classifier.predict(test_image)
-    #training_set.class_indices
+    # training_set.class_indices
     if result[0][0] == 1:
         prediction = 'dog'
     elif result[0][0] == 0:
@@ -85,7 +85,8 @@ def catordog(imageName):
 print(catordog("dataset/single_prediction/cat_or_dog_1.jpg"))
 print(catordog("dataset/single_prediction/cat_or_dog_2.jpg"))
 
-# import os
+import os
+
 app = Flask(__name__)
 
 print("line 84")
@@ -105,7 +106,13 @@ def liveness():
     return "I am alive"
 
 
-@app.route('/http', methods=['GET'])
+@app.route('/favicon.ico', methods=['GET'])
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'src'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+
+@app.route('/*', methods=['GET'])
 def http():
     return '''
     <html>
