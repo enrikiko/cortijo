@@ -10,6 +10,7 @@ export class BodyComponent implements OnInit {
 
   devices: any[] = null;
   lapse: number = null;
+  lapse_time: number = 5;
 
 
   constructor(private http: HttpClient) { }
@@ -17,13 +18,13 @@ export class BodyComponent implements OnInit {
   ngOnInit()
   {
     this.getDevicesList()
-    this.reload()
+    this.reload2()
   }
 
   getDevicesList(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
     // const host = "88.8.65.164"
-    let url = "http://" + host + ":8000/all"
+    let url = "http://" + host + ":8000/all/device"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -41,7 +42,7 @@ export class BodyComponent implements OnInit {
     if(device.status){newStatus="false"}
     else if (!device.status){newStatus="true"}
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/update/" + device.name +"/"+ newStatus
+    let url = "http://" + host + ":8000/update/" + device.name +"/"+ newStatus +"/"+ this.lapse_time*60000
     // console.log(url)
     let startTime = new Date().getTime()
     this.http.get(url).subscribe( data =>
@@ -63,11 +64,12 @@ export class BodyComponent implements OnInit {
     this.lapse = lapse
   }
 
-  reload() {
+  reload2() {
        setTimeout(function(){
+         console.log("reload")
             this.getDevicesList()
-            this.reload()
-       }, 5000)
+            this.reload2()
+       }, 1000)
   }
 
 }
