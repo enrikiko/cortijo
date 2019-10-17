@@ -42,7 +42,7 @@ export class BodyComponent implements OnInit {
     if(device.status){newStatus="false"}
     else if (!device.status){newStatus="true"}
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/update/" + device.name +"/"+ newStatus +"/"+ this.lapse_time
+    let url = "http://" + host + ":8000/update/" + device.name +"/"+ newStatus +"/"+ this.lapse_time*60000
     // console.log(url)
     let startTime = new Date().getTime()
     this.http.get(url).subscribe( data =>
