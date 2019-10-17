@@ -1,4 +1,8 @@
 <div class="bg-white container body mb-5">
+     <div class="row">
+          <h2>Time</h2>
+          <input [(ngModel)]="lapse_time" type="number" name="lapse_time" value="5">
+     </div>
   <div class="row">
     <div *ngFor="let device of devices" class="col-12 col-md-6 col-lg-3">
       <button class="col-12 my-1" (click)="changeStatus(device)" [ngClass]="{'bg-secondary': device.status==false , 'bg-success': device.status==true}" ><!-- <h2>Id:{{ device._id }}</h2> -->
