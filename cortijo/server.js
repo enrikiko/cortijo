@@ -276,19 +276,21 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
       if (response.code == 200) {
         await myDevice.updateDevice(id, status) //Update DB status
         res.status(response.code).send(response)
-        setTimeout(async function(){  //Change back to false
-             if(isUpdating[name]==true){
-                  var responseBack = await joker.switchStatus(ip, false, name)
-                  if (responseBack.code == 200) {
-                    await myDevice.updateDevice(id, false) //Change DB back to false
-                    logs.log("Changed back automatically due to timeout " + name + " to " + false.toString())
-                    isUpdating[name]=false
-                    }
-                    else {
-                         logs.log("Error changing back " + name + " to " + false.toString())
-                    }
-             }
-        }, lapse);
+        if (status = "true"){
+             setTimeout(async function(){  //Change back to false
+                  if(isUpdating[name]==true){
+                       var responseBack = await joker.switchStatus(ip, false, name)
+                       if (responseBack.code == 200) {
+                         await myDevice.updateDevice(id, false) //Change DB back to false
+                         logs.log("Changed back automatically due to timeout " + name + " to " + false.toString())
+                         isUpdating[name]=false
+                         }
+                         else {
+                              logs.log("Error changing back " + name + " to " + false.toString())
+                         }
+                  }
+             }, lapse);
+        }
       }else {
            res.status(response.code).send(response)
       }
