@@ -1,8 +1,12 @@
 <div class="bg-white container body mb-5">
      <div class="row">
-          <h2>Time: </h2>
+          <div class="input-group-append">
+               <span class="input-group-text">Wattering time: </span>
+          </div>
           <input [(ngModel)]="lapse_time" type="number" name="lapse_time" value="5" class="form-control">
-          <h3>min</h3>
+          <div class="input-group-append">
+               <span class="input-group-text">minutes</span>
+          </div>
      </div>
   <div class="row">
     <div *ngFor="let device of devices" class="col-12 col-md-6 col-lg-3">
