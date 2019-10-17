@@ -12,7 +12,7 @@ RUN apt-get install tree
 RUN apt-get install locate
 RUN apt-get install unzip -y
 RUN pip install pillow
-RUn pip install Flask
+RUN pip install Flask
 RUN pip install Werkzeug
 RUN updatedb
 RUN mkdir /src/

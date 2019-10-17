@@ -1,0 +1,24 @@
+<div class="bg-white container body mb-5">
+     <div class="row">
+          <div class="input-group mb-3">
+               <div class="input-group-append">
+                    <span class="input-group-text">Wattering time: </span>
+               </div>
+               <input [(ngModel)]="lapse_time" type="number" name="lapse_time" value="5" class="form-control">
+               <div class="input-group-append">
+                    <span class="input-group-text">minutes</span>
+               </div>
+          </div>
+     </div>
+  <div class="row">
+    <div *ngFor="let device of devices" class="col-12 col-md-6 col-lg-3">
+      <button class="col-12 my-1" (click)="changeStatus(device)" [ngClass]="{'bg-secondary': device.status==false , 'bg-success': device.status==true}" ><!-- <h2>Id:{{ device._id }}</h2> -->
+        <h2>{{ device.name }}</h2>
+        <h2>{{ device.status }}</h2>
+      </button><!-- <h2>Ip:{{ device.ip }}</h2> -->
+    </div>
+    <div *ngIf="lapse" class="col-12 col-md-6 col-lg-3">
+      <h3>Lapse= {{ lapse }}</h3>
+    </div>
+  </div>
+</div>

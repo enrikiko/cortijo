@@ -1,0 +1,13 @@
+<div class="my-5 container">
+  <div *ngFor="let log of logs" class="p-1 row">
+    <div class="col-3 alert-success">
+      {{ log.time }}
+    </div>
+    <div class="col-3 alert-info">
+      {{ log.ip }}
+    </div>
+    <div class="col-3 alert-warning">
+      {{ log.request }}
+    </div>
+  </div>
+</div>
