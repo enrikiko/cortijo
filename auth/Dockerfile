@@ -5,12 +5,14 @@ RUN apt-get update
 RUN apt install -y man less
 RUN apt-get install -y curl nodejs npm
 RUN npm install jsonwebtoken
+RUN apt install -y openssh-client
 RUN mkdir /root/node
 WORKDIR /root/node
 RUN apt-get update
 RUN apt update
 COPY package/. .
 RUN npm install
+RUN ssh-keygen -q -N '' -f /private_key
 COPY . .
 ENV TOKEN=cortijo1
 ENTRYPOINT ["sh", "init.sh"]
