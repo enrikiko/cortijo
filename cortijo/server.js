@@ -14,8 +14,10 @@ const bodyParser = require('body-parser');
 const auth = require('basic-auth');
 const app = express();
 const fs = require('fs')
+var cookieParser = require('cookie-parser');
 app.enable('trust proxy');
 app.use(bodyParser.json());
+app.use(cookieParser);
 app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded())
@@ -201,12 +203,12 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
 app.get("/auth/:user/:password", async function(req, res) {
   user = req.params.user;
   password = req.params.password;
-  var response = await joker.auth(user, password);
-  logs.log("response "+response);
+  var jwt = await joker.auth(user, password);
+  logs.log("jwt: "+jwt);
+  res.cookie('jwt',jwt);
   if(response==200){res.status(200).send(respose(true))}
   else{res.status(401).send(respose(false))}
 })
-
 function respose(status) {
 return {"status":status}
 }

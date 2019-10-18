@@ -49,7 +49,8 @@ app.get("/auth/jwt/:user/:password", async function(req, res) {
      if(status==true){
           generatedJWT = await jwt_auth.signAuthJwt(user)
           res.cookie('jwt',generatedJWT);
-          res.status(200).json("Login successfuly")
+          var resposeJson = {"jwt": jwt}
+          res.status(200).json(resposeJson)
      }
      else{
           res.status(401).json("Invalid credencials")
