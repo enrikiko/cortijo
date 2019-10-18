@@ -30,6 +30,8 @@ const defaultTime = 300000 //1000=1s 60000=1min 300000=5min 900000=15min
 
 
 app.get("/*", function(req, res, next) {
+  const jwt = req.cookies.jwt
+  console.log(jwt)
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
@@ -91,7 +93,7 @@ app.get("/favicon.ico", async function(req, res) {
     res.status(200).send(fs.readFileSync('favicon.ico'))
   })
 
-//Middleware
+//JWT verification
 app.get("/*", function(req, res, next) {
   const jwt = req.cookies.jwt
   console.log(jwt)
