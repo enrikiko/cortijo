@@ -33,6 +33,11 @@ app.get("/info", function(req, res) { //OK
     res.status(200).json(info)
 })
 
+//favicon.ico
+app.get("/favicon.ico", async function(req, res) {
+    res.status(200).send(fs.readFileSync('favicon.ico'))
+  })
+
 app.get("/auth/jwt/:user/:password", async function(req, res) {
      user = req.params.user;
      password = req.params.password;
