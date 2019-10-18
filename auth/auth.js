@@ -6,7 +6,7 @@ const db = mongoose.connection;
 
 
 const privateKey = fs.readFileSync("private_key");
-const publicKey = fs.readFileSync("private_key.pub");
+const publicKey = fs.readFileSync("public_key");
 
 //mongoose.connect("mongodb://localhost:27017/cortijo");
 mongoose.connect(connString, { useNewUrlParser: true });
