@@ -42,7 +42,7 @@ app.get("/get/jwt/:val", async function(req, res) {
 app.get("/verify/jwt/:val", async function(req, res) {
      sentJWT = req.params.val;
      payload = await auth.verifyJwt(sentJWT)
-     res.status(200).json(generatedJWT)
+     res.status(200).json(payload.val)
 })
 
 app.get("/all/:token", async function(req, res) {
