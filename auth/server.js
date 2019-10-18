@@ -57,13 +57,12 @@ app.get("/auth/jwt/:user/:password", async function(req, res) {
      }
 })
 
-// app.get("/auth/jwt/:jwt", async function(req, res) {
-//      jwt = req.params.jwt;
-//      // info = await auth.decodeJwt(jwt)
-//      // console.log(info)
-//      payload = await jwt_auth.verifyJwt(jwt)
-//      res.status(200).json(payload.user)
-// })
+app.get("/auth/jwt/:jwt", async function(req, res) {
+     jwt = req.params.jwt;
+     console.log(info)
+     payload = await jwt_auth.verifyJwt(jwt)
+     res.status(200).json(payload.user)
+})
 
 app.get("/auth/jwt", async function(req, res) {
      const jwt = req.cookies.jwt

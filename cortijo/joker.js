@@ -26,8 +26,8 @@ module.exports={
        async function getResponse(url) {
          let response = await request.get(url);
          console.log(response)
-         console.log(response.jwt)
-         return response.jwt;
+         console.log(response.body.jwt)
+         return response.body.jwt;
        }
        return await getResponse(url);
      },
