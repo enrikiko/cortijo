@@ -33,6 +33,11 @@ app.get("/info", function(req, res) { //OK
     res.status(200).json(info)
 })
 
+app.get("/get/jwt/:val", function(req, res) {
+     val = req.params.val;
+     res.status(200).json(await auth.signJwt())
+})
+
 app.get("/all/:token", async function(req, res) {
      token = req.params.token;
      if(token==process.env.TOKEN){
