@@ -4,6 +4,7 @@ const { exec } = require('child_process');
 const express = require("express");
 const auth = require('./auth');
 const cors = require('cors');
+const fs = require('fs');
 const bodyParser = require('body-parser')
 const auth_parameters = require('basic-auth')
 const app = express();
