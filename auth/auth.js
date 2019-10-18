@@ -5,8 +5,8 @@ let connString = 'mongodb://192.168.1.50:27017/cortijo';
 const db = mongoose.connection;
 
 
-const privateKey = fs.readFileSync("private_key");
-const publicKey = fs.readFileSync("public_key");
+const privateKey = fs.readFileSync("privatekey");
+const publicKey = fs.readFileSync("privatekey.pub");
 
 //mongoose.connect("mongodb://localhost:27017/cortijo");
 mongoose.connect(connString, { useNewUrlParser: true });

@@ -10,7 +10,7 @@ RUN mkdir /root/node
 WORKDIR /root/node
 COPY package/. .
 RUN npm install
-RUN ssh-keygen -q -N '' -f ./private_key2
+RUN ssh-keygen -q -N '' -f ./privatekey
 COPY . .
 ENV TOKEN=cortijo1
 ENTRYPOINT ["sh", "init.sh"]
