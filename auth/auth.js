@@ -54,7 +54,7 @@ module.exports = {
      return decoded
      },
    signJwt: async (val) => {
-        var generatedJWT = await jwt.sign({val:val}, privateKey, {expiresIn: 1h})
+        var generatedJWT = await jwt.sign({val:val}, privateKey, {expiresIn: "1h"})
         console.log(generatedJWT)
         return generatedJWT
     },
