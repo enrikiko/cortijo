@@ -11,6 +11,7 @@ const auth_parameters = require('basic-auth')
 const app = express();
 app.enable('trust proxy');
 app.use(bodyParser.json());
+app.use(express.cookieParser());
 app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded())
@@ -46,6 +47,7 @@ app.get("/auth/jwt/:user/:password", async function(req, res) {
      var status = await auth.isUser(user, password)
      if(status==true){
           generatedJWT = await jwt_auth.signAuthJwt(user)
+          res.cookie('jwt',generatedJWT);
           res.status(200).json(generatedJWT)
      }
      else{
