@@ -25,8 +25,6 @@ module.exports={
        const url = "http://192.168.1.50:8010/auth/jwt/"+user+"/"+password
        async function getResponse(url) {
          let response = await request.get(url);
-         console.log(response)
-         console.log(response.body.jwt)
          return response.body.jwt;
        }
        return await getResponse(url);
