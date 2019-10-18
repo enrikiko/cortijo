@@ -47,7 +47,7 @@ module.exports = {
      }
      return decoded
      },
-   signJwt: async (val) => { return jwt.sign(val, privateKey) },
+   signJwt: async (val) => { return jwt.sign(val, privateKey, {expiresIn: 604800} ) },
    createUser: (user, password) => {
         //TODO verify if user exit
      console.log("user:", myAuth.find({user: user}) );
