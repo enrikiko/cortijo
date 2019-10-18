@@ -12,7 +12,7 @@ var cookieParser = require('cookie-parser');
 const app = express();
 app.enable('trust proxy');
 app.use(bodyParser.json());
-app.use(express.cookieParser());
+app.use(cookieParser());
 app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded())
