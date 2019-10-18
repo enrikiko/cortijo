@@ -49,6 +49,7 @@ module.exports = {
        console.log(decoded)
      } catch(err) {
           console.log(err)
+          return {val:"Invalid JWT"}
      }
      return decoded
      },
