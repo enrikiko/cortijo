@@ -28,6 +28,16 @@ var temperature;
 var humidity;
 const defaultTime = 300000 //1000=1s 60000=1min 300000=5min 900000=15min
 
+
+app.get("/*", function(req, res, next) {
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
+  var ip = req.ip
+  // logs.log( fullUrl + " : " + ip )
+  logs.newLog(ip, fullUrl)
+  requests.newRequest(ip, fullUrl)
+  next()
+})
 //Get log
 app.get("/info", function(req, res) {
     var info = {"Version": version, "Start time": startDate}
@@ -85,8 +95,7 @@ app.get("/favicon.ico", async function(req, res) {
 app.get("/*", function(req, res, next) {
   const jwt = req.cookies.jwt
   console.log(jwt)
-  if(jwt!=undefined){console.log("jwt is undefined")}
-  if(jwt!=null){console.log("jwt is null")}
+  if(jwt!=undefined){next()}
   else{
     res.status(401).json("Invalid credencials")
   }
@@ -96,7 +105,7 @@ app.get("/*", function(req, res, next) {
   // logs.log( fullUrl + " : " + ip )
   logs.newLog(ip, fullUrl)
   requests.newRequest(ip, fullUrl)
-  next()
+
 })
 
 app.post("/*", function(req, res, next) {
