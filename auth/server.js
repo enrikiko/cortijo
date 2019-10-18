@@ -49,20 +49,20 @@ app.get("/auth/jwt/:user/:password", async function(req, res) {
      if(status==true){
           generatedJWT = await jwt_auth.signAuthJwt(user)
           res.cookie('jwt',generatedJWT);
-          res.status(200).json(generatedJWT)
+          res.status(200).json("Login successfuly")
      }
      else{
           res.status(401).json("Invalid credencials")
      }
 })
 
-app.get("/auth/jwt/:jwt", async function(req, res) {
-     jwt = req.params.jwt;
-     // info = await auth.decodeJwt(jwt)
-     // console.log(info)
-     payload = await jwt_auth.verifyJwt(jwt)
-     res.status(200).json(payload.user)
-})
+// app.get("/auth/jwt/:jwt", async function(req, res) {
+//      jwt = req.params.jwt;
+//      // info = await auth.decodeJwt(jwt)
+//      // console.log(info)
+//      payload = await jwt_auth.verifyJwt(jwt)
+//      res.status(200).json(payload.user)
+// })
 
 app.get("/auth/jwt", async function(req, res) {
      const jwt = req.cookies.jwt
@@ -74,7 +74,7 @@ app.get("/auth/jwt", async function(req, res) {
      }
      else{
      res.status(200).json(payload.user)
-   }
+    }
 })
 
 
