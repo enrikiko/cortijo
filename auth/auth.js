@@ -58,6 +58,11 @@ module.exports = {
         console.log(generatedJWT)
         return generatedJWT
     },
+    signAuthJwt: async (user, password) => {
+         var generatedJWT = await jwt.sign({user:user, password:password}, privateKey, {expiresIn: 604800})
+         console.log(generatedJWT)
+         return generatedJWT
+    },
    createUser: (user, password) => {
         //TODO verify if user exit
      console.log("user:", myAuth.find({user: user}) );

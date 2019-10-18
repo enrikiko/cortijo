@@ -33,6 +33,13 @@ app.get("/info", function(req, res) { //OK
     res.status(200).json(info)
 })
 
+app.get("/auth/jwt/:user/:password", async function(req, res) {
+     user = req.params.user;
+     password = req.params.password;
+     generatedJWT = await auth.signAuthJwt(user, password)
+     res.status(200).json(generatedJWT)
+})
+
 app.get("/get/jwt/:val", async function(req, res) {
      val = req.params.val;
      generatedJWT = await auth.signJwt(val)
