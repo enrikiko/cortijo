@@ -17,7 +17,7 @@ module.exports = {
       var decoded = await jwt.verify(token, privateKey);
     } catch(err) {
          console.log(err.message)
-         return {val:"Invalid JWT"}
+         return {user:"Invalid JWT"}
     }
     console.log(decoded)
     return decoded

@@ -57,9 +57,8 @@ app.get("/auth/jwt/:jwt", async function(req, res) {
      jwt = req.params.jwt;
      // info = await auth.decodeJwt(jwt)
      // console.log(info)
-     payload = await auth.verifyJwt(jwt)
-     var status = await auth.isUser(payload.user, payload.password)
-     res.status(200).json(status)
+     payload = await jwt_auth.verifyJwt(jwt)
+     res.status(200).json(user:payload.user)
 })
 
 // app.get("/get/jwt/:val", async function(req, res) {
