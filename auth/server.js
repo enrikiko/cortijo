@@ -39,11 +39,18 @@ app.get("/auth/jwt/:user/:password", async function(req, res) {
      var status = await auth.isUser(user, password)
      if(status==true){
           generatedJWT = await auth.signAuthJwt(user, password)
-          res.status(200).send(generatedJWT)
+          res.status(200).json(generatedJWT)
      }
      else{
-          res.status(401).send("Invalid credencials")
+          res.status(401).json("Invalid credencials")
      }
+})
+
+app.get("/auth/jwt/:jwt", async function(req, res) {
+     jwt = req.params.jwt;
+     payload = await auth.verifyJwt(jwt)
+     var status = await auth.isUser(payload.user, payload.password)
+     res.status(200).json(status)
 })
 
 app.get("/get/jwt/:val", async function(req, res) {
