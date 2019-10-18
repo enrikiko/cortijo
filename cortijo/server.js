@@ -17,7 +17,7 @@ const fs = require('fs')
 var cookieParser = require('cookie-parser');
 app.enable('trust proxy');
 app.use(bodyParser.json());
-app.use(cookieParser);
+app.use(cookieParser());
 app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded())
