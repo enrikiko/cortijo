@@ -63,6 +63,16 @@ app.get("/auth/jwt/:jwt", async function(req, res) {
      res.status(200).json(payload.user)
 })
 
+app.get("/auth/jwt", async function(req, res) {
+     const jwt = req.cookies.jwt
+     // info = await auth.decodeJwt(jwt)
+     console.log(jwt)
+     payload = await jwt_auth.verifyJwt(jwt)
+     res.status(200).json(payload.user)
+})
+
+
+
 // app.get("/get/jwt/:val", async function(req, res) {
 //      val = req.params.val;
 //      generatedJWT = await auth.signJwt(val)
