@@ -1,12 +1,7 @@
 const mongoose = require('mongoose');
-const fs = require('fs');
-var jwt = require('jsonwebtoken');
 let connString = 'mongodb://192.168.1.50:27017/cortijo';
 const db = mongoose.connection;
 
-
-const privateKey = fs.readFileSync("privatekey");
-const publicKey = fs.readFileSync("privatekey.pub");
 
 //mongoose.connect("mongodb://localhost:27017/cortijo");
 mongoose.connect(connString, { useNewUrlParser: true });
@@ -38,31 +33,6 @@ module.exports = {
 
    getAll: () => { return myAuth.find() },
    getUser: (user) => { return myAuth.find({user: user})},
-   decodeJwt: async (token) => {
-        var payload = await jwt.decode(token)
-        console.log(payload)
-        return payload
-   },
-   verifyJwt: async (token) => {
-     try {
-       var decoded = await jwt.verify(token, privateKey);
-     } catch(err) {
-          console.log(err.message)
-          return {val:"Invalid JWT"}
-     }
-     console.log(decoded)
-     return decoded
-     },
-   signJwt: async (val) => {
-        var generatedJWT = await jwt.sign({val:val}, privateKey, {expiresIn: "1h"})
-        console.log(generatedJWT)
-        return generatedJWT
-    },
-    signAuthJwt: async (user, password) => {
-         var generatedJWT = await jwt.sign({user:user, password:password}, privateKey, {expiresIn: 604800})
-         console.log(generatedJWT)
-         return generatedJWT
-    },
    createUser: (user, password) => {
         //TODO verify if user exit
      console.log("user:", myAuth.find({user: user}) );
@@ -81,7 +51,6 @@ module.exports = {
        }
      });
    },
-
    removeUser: (user) => {
      console.log("Removing "+user+"...")
      return myAuth.remove({user: user}, function(err, result) {

@@ -3,6 +3,7 @@ const startDate = Date();
 const { exec } = require('child_process');
 const express = require("express");
 const auth = require('./auth');
+const jwt_auth = require('./jwt');
 const cors = require('cors');
 const fs = require('fs');
 const bodyParser = require('body-parser')
@@ -44,7 +45,7 @@ app.get("/auth/jwt/:user/:password", async function(req, res) {
      password = req.params.password;
      var status = await auth.isUser(user, password)
      if(status==true){
-          generatedJWT = await auth.signAuthJwt(user, password)
+          generatedJWT = await jwt_auth.signAuthJwt(user)
           res.status(200).json(generatedJWT)
      }
      else{
@@ -54,24 +55,24 @@ app.get("/auth/jwt/:user/:password", async function(req, res) {
 
 app.get("/auth/jwt/:jwt", async function(req, res) {
      jwt = req.params.jwt;
-     info = await auth.decodeJwt(jwt)
-     console.log(info)
+     // info = await auth.decodeJwt(jwt)
+     // console.log(info)
      payload = await auth.verifyJwt(jwt)
      var status = await auth.isUser(payload.user, payload.password)
      res.status(200).json(status)
 })
 
-app.get("/get/jwt/:val", async function(req, res) {
-     val = req.params.val;
-     generatedJWT = await auth.signJwt(val)
-     res.status(200).json(generatedJWT)
-})
-
-app.get("/verify/jwt/:val", async function(req, res) {
-     sentJWT = req.params.val;
-     payload = await auth.verifyJwt(sentJWT)
-     res.status(200).json(payload.val)
-})
+// app.get("/get/jwt/:val", async function(req, res) {
+//      val = req.params.val;
+//      generatedJWT = await auth.signJwt(val)
+//      res.status(200).json(generatedJWT)
+// })
+//
+// app.get("/verify/jwt/:val", async function(req, res) {
+//      sentJWT = req.params.val;
+//      payload = await auth.verifyJwt(sentJWT)
+//      res.status(200).json(payload.val)
+// })
 
 app.get("/all/:token", async function(req, res) {
      token = req.params.token;
@@ -135,18 +136,6 @@ app.get('/user/:user/:password',async function(req, res){
      else{res.status(401).send(respose(false))}
 });
 
-function respose(status) {
-return {"status":status}
-}
-
-app.get('/user_auth/',async function(req, res){
-     const parameters = auth_parameters(req)
-     user = parameters.name;
-     password = parameters.pass;
-     var status = await auth.isUser(user,password)
-     if(status==true){res.status(200).send(respose(true))}
-     else{res.status(401).send(respose(false))}
-});
 function respose(status) {
 return {"status":status}
 }
