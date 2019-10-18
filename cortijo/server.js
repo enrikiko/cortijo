@@ -91,7 +91,7 @@ app.post('/*', function(req, res){
 
 //Middleware
 app.get("/*", function(req, res, next) {
-
+  
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
