@@ -46,11 +46,11 @@ module.exports = {
    verifyJwt: async (token) => {
      try {
        var decoded = await jwt.verify(token, privateKey);
-       console.log(decoded)
      } catch(err) {
           console.log(err)
           return {val:"Invalid JWT"}
      }
+     console.log(decoded)
      return decoded
      },
    signJwt: async (val) => {
