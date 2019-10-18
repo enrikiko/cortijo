@@ -43,9 +43,10 @@ module.exports = {
         console.log(payload)
         return payload
    },
-   verifyJwt: (token) => {
+   verifyJwt: asyn (token) => {
      try {
-       var decoded = jwt.verify(token, privateKey);
+       var decoded = await jwt.verify(token, privateKey);
+       console.log(decoded)
      } catch(err) {
           console.log(err)
      }

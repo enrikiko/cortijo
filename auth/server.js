@@ -39,6 +39,12 @@ app.get("/get/jwt/:val", async function(req, res) {
      res.status(200).json(generatedJWT)
 })
 
+app.get("/verify/jwt/:val", async function(req, res) {
+     sentJWT = req.params.val;
+     payload = await auth.verifyJwt(sentJWT)
+     res.status(200).json(generatedJWT)
+})
+
 app.get("/all/:token", async function(req, res) {
      token = req.params.token;
      if(token==process.env.TOKEN){
