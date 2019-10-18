@@ -66,10 +66,15 @@ app.get("/auth/jwt/:jwt", async function(req, res) {
 
 app.get("/auth/jwt", async function(req, res) {
      const jwt = req.cookies.jwt
-     // info = await auth.decodeJwt(jwt)
      console.log(jwt)
      payload = await jwt_auth.verifyJwt(jwt)
+     var isUser = await auth.getUser(payload.user)
+     if(!isUser[0]){
+       res.status(200).json("Invalid credencials")
+     }
+     else{
      res.status(200).json(payload.user)
+   }
 })
 
 
