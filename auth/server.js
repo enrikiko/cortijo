@@ -36,8 +36,14 @@ app.get("/info", function(req, res) { //OK
 app.get("/auth/jwt/:user/:password", async function(req, res) {
      user = req.params.user;
      password = req.params.password;
-     generatedJWT = await auth.signAuthJwt(user, password)
-     res.status(200).json(generatedJWT)
+     var status = await auth.isUser(user, password)
+     if(status==true){
+          generatedJWT = await auth.signAuthJwt(user, password)
+          res.status(200).send(generatedJWT)
+     }
+     else{
+          res.status(401).send("Invalid credencials")
+     }
 })
 
 app.get("/get/jwt/:val", async function(req, res) {
