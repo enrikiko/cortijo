@@ -49,7 +49,7 @@ app.get("/auth/jwt/:user/:password", async function(req, res) {
      if(status==true){
           generatedJWT = await jwt_auth.signAuthJwt(user)
           res.cookie('jwt',generatedJWT);
-          var resposeJson = {"jwt": jwt}
+          var resposeJson = {"jwt": generatedJWT}
           res.status(200).json(resposeJson)
      }
      else{
