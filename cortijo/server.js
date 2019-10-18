@@ -81,20 +81,15 @@ app.get("/favicon.ico", async function(req, res) {
     res.status(200).send(fs.readFileSync('favicon.ico'))
   })
 
-//Handel all bad requests
-app.get('/*', function(req, res){
-  res.sendFile(__dirname + '/info.html');
-});
-app.post('/*', function(req, res){
-  res.sendFile(__dirname + '/info.html');
-});
-
 //Middleware
 app.get("/*", function(req, res, next) {
   const jwt = req.cookies.jwt
   console.log(jwt)
   if(jwt!=undefined){console.log("jwt is undefined")}
   if(jwt!=null){console.log("jwt is null")}
+  else{
+    res.status(401).json("Invalid credencials")
+  }
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
@@ -327,6 +322,14 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
     }
   }
 })
+
+//Handel all bad requests
+app.get('/*', function(req, res){
+  res.sendFile(__dirname + '/info.html');
+});
+app.post('/*', function(req, res){
+  res.sendFile(__dirname + '/info.html');
+});
 
 // activate the listenner
 http.listen(3000, function () {
