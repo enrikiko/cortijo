@@ -38,7 +38,11 @@ module.exports = {
 
    getAll: () => { return myAuth.find() },
    getUser: (user) => { return myAuth.find({user: user})},
-   decodeJwt: async (token) => { return await jwt.decode(token) },
+   decodeJwt: async (token) => {
+        var payload = await jwt.decode(token)
+        console.log(payload)
+        return payload
+   },
    verifyJwt: (token) => {
      try {
        var decoded = jwt.verify(token, privateKey);
@@ -47,7 +51,11 @@ module.exports = {
      }
      return decoded
      },
-   signJwt: async (val) => { return jwt.sign({val:val}, privateKey, {expiresIn: 604800} ) },
+   signJwt: async (val) => {
+        var generatedJWT = await jwt.sign({val:val}, privateKey, {expiresIn: 604800})
+        console.log(generatedJWT)
+        return generatedJWT
+    },
    createUser: (user, password) => {
         //TODO verify if user exit
      console.log("user:", myAuth.find({user: user}) );
