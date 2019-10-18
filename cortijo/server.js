@@ -46,7 +46,7 @@ app.get("/auth/:user/:password", async function(req, res) {
   var jwt = await joker.auth(user, password);
   logs.log("jwt: "+jwt);
   res.cookie('jwt',jwt);
-  if(response==200){res.status(200).send(respose(true))}
+  if(jwt!="Invalid credencials"){res.status(200).send(respose(true))}
   else{res.status(401).send(respose(false))}
 })
 function respose(status) {
@@ -91,7 +91,10 @@ app.post('/*', function(req, res){
 
 //Middleware
 app.get("/*", function(req, res, next) {
-  
+  const jwt = req.cookies.jwt
+  console.log(jwt)
+  if(jwt!=undefined){console.log("jwt is undefined")}
+  if(jwt!=null){console.log("jwt is null")}
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip

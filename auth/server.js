@@ -53,7 +53,7 @@ app.get("/auth/jwt/:user/:password", async function(req, res) {
           res.status(200).json(resposeJson)
      }
      else{
-          res.status(401).json("jwt": "Invalid credencials")
+          res.status(401).json({"jwt": "Invalid credencials"})
      }
 })
 
