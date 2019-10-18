@@ -9,6 +9,7 @@ RUN apt install -y openssh-client
 RUN mkdir /root/node
 WORKDIR /root/node
 COPY package/. .
+RUN npm install cookie-parser
 RUN npm install
 COPY . .
 ENV TOKEN=cortijo1
