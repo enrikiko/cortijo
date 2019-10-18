@@ -4,12 +4,12 @@ RUN apt update
 RUN apt-get update
 RUN apt install -y man less
 RUN apt-get install -y curl nodejs npm
-RUN npm install jsonwebtoken
+# RUN npm install jsonwebtoken
+# RUN npm install cookie-parser
 RUN apt install -y openssh-client
 RUN mkdir /root/node
 WORKDIR /root/node
 COPY package/. .
-RUN npm install cookie-parser
 RUN npm install
 COPY . .
 ENV TOKEN=cortijo1
