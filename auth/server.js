@@ -33,9 +33,10 @@ app.get("/info", function(req, res) { //OK
     res.status(200).json(info)
 })
 
-app.get("/get/jwt/:val", function(req, res) {
+app.get("/get/jwt/:val", async function(req, res) {
      val = req.params.val;
-     res.status(200).json(auth.signJwt())
+     generatedJWT = await auth.signJwt(val)
+     res.status(200).json(generatedJWT)
 })
 
 app.get("/all/:token", async function(req, res) {
