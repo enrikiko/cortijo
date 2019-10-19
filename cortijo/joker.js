@@ -64,7 +64,7 @@ module.exports={
       async function getResponse(url) {
         let response = await request.get(url);
         console.log(url)
-        console.log(respose)
+        console.log(response)
         return response;
       }
       return await getResponse(url);
