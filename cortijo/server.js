@@ -95,8 +95,8 @@ app.get("/favicon.ico", async function(req, res) {
 //JWT verification
 app.get("/*", async function(req, res, next) {
   const jwt = await req.cookies.jwt
-  console.log(jwt)
-  if(jwt!=undefined | requireJwt==false){next()}
+  //console.log(jwt)
+  if( requireJwt==false || jwt!=undefined ){next()}
   else{
     console.log("jwt is undefined")
     res.status(401).json("Invalid credencials")
