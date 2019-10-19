@@ -27,6 +27,7 @@ var io = http;
 var temperature;
 var humidity;
 const defaultTime = 300000 //1000=1s 60000=1min 300000=5min 900000=15min
+const requireJwt = false
 
 
 app.get("/*", function(req, res, next) {
@@ -95,8 +96,9 @@ app.get("/favicon.ico", async function(req, res) {
 app.get("/*", async function(req, res, next) {
   const jwt = await req.cookies.jwt
   console.log(jwt)
-  if(jwt!=undefined){next()}
+  if(jwt!=undefined | requireJwt==false){next()}
   else{
+    console.log("jwt is undefined")
     res.status(401).json("Invalid credencials")
   }
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
