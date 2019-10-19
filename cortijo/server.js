@@ -92,23 +92,23 @@ app.get("/favicon.ico", async function(req, res) {
     res.status(200).send(fs.readFileSync('favicon.ico'))
   })
 
-//JWT verification
-app.get("/*", async function(req, res, next) {
-  const jwt = await req.cookies.jwt
-  //console.log(jwt)
-  if( requireJwt==false || jwt!=undefined ){next()}
-  else{
-    console.log("jwt is undefined")
-    res.status(401).json("Invalid credencials")
-  }
-  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
-  var fullUrl = req.protocol + '://' + host + req.originalUrl;
-  var ip = req.ip
-  // logs.log( fullUrl + " : " + ip )
-  logs.newLog(ip, fullUrl)
-  requests.newRequest(ip, fullUrl)
-
-})
+// //JWT verification
+// app.get("/*", async function(req, res, next) {
+//   const jwt = await req.cookies.jwt
+//   //console.log(jwt)
+//   if( requireJwt==false || jwt!=undefined ){next()}
+//   else{
+//     console.log("jwt is undefined")
+//     res.status(401).json("Invalid credencials")
+//   }
+//   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+//   var fullUrl = req.protocol + '://' + host + req.originalUrl;
+//   var ip = req.ip
+//   // logs.log( fullUrl + " : " + ip )
+//   logs.newLog(ip, fullUrl)
+//   requests.newRequest(ip, fullUrl)
+//
+// })
 
 app.post("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
