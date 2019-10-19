@@ -301,13 +301,13 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
       isUpdating[name]=true
       var response = await joker.switchStatus(ip, status, name) //Change device status
       if (response.code == 200) {
+        var uselles = await joker.alert(lapse)
+        console.log(uselles)
         await myDevice.updateDevice(id, status) //Update DB status
         res.status(response.code).send(response)
         if (status = "true"){
              setTimeout(async function(){  //Change back to false
                   if(isUpdating[name]==true){
-                      var uselles = await joker.alert(lapse)
-                      console.log(uselles)
                        var responseBack = await joker.switchStatus(ip, false, name)
                        if (responseBack.code == 200) {
                          await myDevice.updateDevice(id, false) //Change DB back to false
