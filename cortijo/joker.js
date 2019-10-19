@@ -60,9 +60,10 @@ module.exports={
     },
 
     alert: async (text) => {
-      const url = "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=f3KPUkNC_7k:APA91bEWbIf-8Ew4PshzW4wT6fImKfQ89OO4X1UKpin7eSQaIUdq540oNM1qkkIEyqFNJVFySROTfqS8ywWPpOPXmRhT1HLPezmcsCDseJP78sDga2YRJ88is-wjvghLYMpSp_PadXCv&titlle=" + text
+      const url = "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=f3KPUkNC_7k:APA91bEWbIf-8Ew4PshzW4wT6fImKfQ89OO4X1UKpin7eSQaIUdq540oNM1qkkIEyqFNJVFySROTfqS8ywWPpOPXmRhT1HLPezmcsCDseJP78sDga2YRJ88is-wjvghLYMpSp_PadXCv&tittle=" + text
       async function getResponse(url) {
         let response = await request.get(url);
+        console.log(url)
         console.log(respose)
         return response;
       }
