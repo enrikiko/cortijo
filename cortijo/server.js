@@ -23,6 +23,7 @@ app.options('*', cors());
 app.use(express.urlencoded())
 app.enable('trust proxy')
 var http = require('http').Server(app);
+var multer  = require('multer');
 var upload = multer({ dest: '/tmp/'});
 var io = http;
 var temperature;
