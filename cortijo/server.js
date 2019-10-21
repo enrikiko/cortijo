@@ -123,7 +123,7 @@ app.post("/*", function(req, res, next) {
 })
 
 
-app.get('/file_upload', upload.single("file"), function (req, res) {
+app.post('/file_upload', upload.single("file"), function (req, res) {
      var file = __dirname + "/" + "picture.jpg";
    fs.readFile( req.file.path, function (err, data) {
         fs.writeFile(file, data, function (err) {})
