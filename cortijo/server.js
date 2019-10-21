@@ -47,6 +47,18 @@ app.post("/*", function(req, res, next) {
   next()
 })
 
+app.get('/file_upload', upload.single("file"), function (req, res) {
+     var file = __dirname + "/" + "picture.jpg";
+   fs.readFile( req.file.path, function (err, data) {
+        fs.writeFile(file, data, function (err) {})
+   })
+    res.send(req.files);
+})
+
+app.get('/picture', function (req, res) {
+    res.sendFile( __dirname + "/" + "picture.jpg" );
+})
+
 //favicon.ico
 app.get("/favicon.ico", async function(req, res) {
     res.status(200).send(fs.readFileSync('favicon.ico'))
