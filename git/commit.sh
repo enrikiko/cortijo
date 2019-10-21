@@ -1,11 +1,11 @@
 #! /bin/bash
 echo "Starting $0"
 text=$(python ./randomSentence.py)
-pusd ./Java
+pushd ./Java
 git pull
 popd
 sh makeSomeChange.sh
-pusd ./Java
+pushd ./Java
 git add .
 git commit -m "$text"
 git push

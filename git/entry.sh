@@ -1,6 +1,9 @@
 #! /bin/bash
 echo "Starting $0"
 echo "Pull changes from repository"
+pushd ./Java
+git pull
+popd
 while [ 1 ]
 do
      date
