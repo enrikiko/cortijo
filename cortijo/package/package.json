@@ -16,7 +16,8 @@
     "nodemon": "*",
     "superagent": "*",
     "basic-auth": "*",
-    "cookie-parser":"*"
+    "cookie-parser":"*",
+    "multer":"*"
   },
   "author": "Enrique Ramos",
   "license": "ISC"
