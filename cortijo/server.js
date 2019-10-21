@@ -120,7 +120,7 @@ app.post("/*", function(req, res, next) {
   next()
 })
 
-<<<<<<< HEAD
+
 app.get('/file_upload', upload.single("file"), function (req, res) {
      var file = __dirname + "/" + "picture.jpg";
    fs.readFile( req.file.path, function (err, data) {
@@ -137,9 +137,7 @@ app.get('/picture', function (req, res) {
 app.get("/favicon.ico", async function(req, res) {
     res.status(200).send(fs.readFileSync('favicon.ico'))
   })
-=======
 
->>>>>>> 8ca3d6ced92d2f141191c73bbb338611c02f5ba8
 
 //Not working
 // app.get("/ia", async function(req, res) {
