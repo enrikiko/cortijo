@@ -1,7 +1,6 @@
 #! /bin/bash
 echo "Starting $0"
 echo "Pull changes from repository"
-git pull
 while [ 1 ]
 do
      date
