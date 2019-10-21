@@ -1,10 +1,7 @@
 #! /bin/bash
 echo "Starting $0"
-echo "cd ./Java"
-cd ./Java
 echo "Pull changes from repository"
 git pull
-echo ""
 while [ 1 ]
 do
      date
