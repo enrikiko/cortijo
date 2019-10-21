@@ -14,8 +14,10 @@ const bodyParser = require('body-parser');
 const auth = require('basic-auth');
 const app = express();
 const fs = require('fs')
+var cookieParser = require('cookie-parser');
 app.enable('trust proxy');
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded())
@@ -25,8 +27,9 @@ var io = http;
 var temperature;
 var humidity;
 const defaultTime = 300000 //1000=1s 60000=1min 300000=5min 900000=15min
+const requireJwt = false
 
-//Middleware
+
 app.get("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
@@ -36,6 +39,76 @@ app.get("/*", function(req, res, next) {
   requests.newRequest(ip, fullUrl)
   next()
 })
+//Get log
+app.get("/info", function(req, res) {
+    var info = {"Version": version, "Start time": startDate}
+    res.status(200).json(info)
+})
+
+//Get liveness
+app.get("/liveness", function(req, res) {
+    res.status(200).send()
+})
+
+//Auth with user & password
+app.get("/auth/:user/:password", async function(req, res) {
+  user = req.params.user;
+  password = req.params.password;
+  var jwt = await joker.auth(user, password);
+  logs.log("jwt: "+jwt);
+  res.cookie('jwt',jwt);
+  if(jwt!="Invalid credencials"){res.status(200).send(respose(true))}
+  else{res.status(401).send(respose(false))}
+})
+function respose(status) {
+return {"status":status}
+}
+
+//New device
+app.get("/new/:name/:status/:ip", async (req, res) => {
+  var status = joker.getStatus(req.params.status);
+  if (status===null){
+    res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
+  }else {
+    try{
+      var name = req.params.name
+      var ip = req.params.ip
+      //logs.log("Try to create a new device: name-"+name+" status-"+status+" ip-"+ip);
+      var id = await myDevice.getIdbyName(name)
+      if (!id) {
+        var response = await myDevice.newDevice(name, status, ip)
+        logs.log(name+' have been created successfully');
+        res.status(200).json(name+' create successfully')
+      }else {
+        var lastIp = await myDevice.updateDeviceIp(id, ip)
+        res.status(200).json({"Previous Ip": lastIp, "New Ip": ip})
+      }
+    }catch(response){}
+  }
+})
+
+//favicon.ico
+app.get("/favicon.ico", async function(req, res) {
+    res.status(200).send(fs.readFileSync('favicon.ico'))
+  })
+
+// //JWT verification
+// app.get("/*", async function(req, res, next) {
+//   const jwt = await req.cookies.jwt
+//   //console.log(jwt)
+//   if( requireJwt==false || jwt!=undefined ){next()}
+//   else{
+//     console.log("jwt is undefined")
+//     res.status(401).json("Invalid credencials")
+//   }
+//   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+//   var fullUrl = req.protocol + '://' + host + req.originalUrl;
+//   var ip = req.ip
+//   // logs.log( fullUrl + " : " + ip )
+//   logs.newLog(ip, fullUrl)
+//   requests.newRequest(ip, fullUrl)
+//
+// })
 
 app.post("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
@@ -47,6 +120,7 @@ app.post("/*", function(req, res, next) {
   next()
 })
 
+<<<<<<< HEAD
 app.get('/file_upload', upload.single("file"), function (req, res) {
      var file = __dirname + "/" + "picture.jpg";
    fs.readFile( req.file.path, function (err, data) {
@@ -63,6 +137,9 @@ app.get('/picture', function (req, res) {
 app.get("/favicon.ico", async function(req, res) {
     res.status(200).send(fs.readFileSync('favicon.ico'))
   })
+=======
+
+>>>>>>> 8ca3d6ced92d2f141191c73bbb338611c02f5ba8
 
 //Not working
 // app.get("/ia", async function(req, res) {
@@ -86,16 +163,9 @@ app.get("/getAllIp", async function(req, res) {
  }catch(response){}
 })
 
-//Get log
-app.get("/info", function(req, res) {
-    var info = {"Version": version, "Start time": startDate}
-    res.status(200).json(info)
-})
 
-//Get liveness
-app.get("/liveness", function(req, res) {
-    res.status(200).send()
-})
+
+
 
 //Get log
 // app.get("/log", async function(req, res) {
@@ -186,42 +256,6 @@ app.get("/remove/:name", async function(req, res) {
   }catch(response){}
 })
 
-//New device
-app.get("/new/:name/:status/:ip", async (req, res) => {
-  var status = joker.getStatus(req.params.status);
-  if (status===null){
-    res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
-  }else {
-    try{
-      var name = req.params.name
-      var ip = req.params.ip
-      //logs.log("Try to create a new device: name-"+name+" status-"+status+" ip-"+ip);
-      var id = await myDevice.getIdbyName(name)
-      if (!id) {
-        var response = await myDevice.newDevice(name, status, ip)
-        logs.log(name+' have been created successfully');
-        res.status(200).json(name+' create successfully')
-      }else {
-        var lastIp = await myDevice.updateDeviceIp(id, ip)
-        res.status(200).json({"Previous Ip": lastIp, "New Ip": ip})
-      }
-    }catch(response){}
-  }
-})
-
-//Auth with user & password
-app.get("/auth/:user/:password", async function(req, res) {
-  user = req.params.user;
-  password = req.params.password;
-  var response = await joker.auth(user, password);
-  logs.log("response "+response);
-  if(response==200){res.status(200).send(respose(true))}
-  else{res.status(401).send(respose(false))}
-})
-
-function respose(status) {
-return {"status":status}
-}
 
 //update device
 isUpdating={}
@@ -286,6 +320,8 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
       isUpdating[name]=true
       var response = await joker.switchStatus(ip, status, name) //Change device status
       if (response.code == 200) {
+        var uselles = await joker.alert(lapse)
+        //console.log(uselles)
         await myDevice.updateDevice(id, status) //Update DB status
         res.status(response.code).send(response)
         if (status = "true"){

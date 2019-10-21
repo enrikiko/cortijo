@@ -15,7 +15,8 @@
     "request": "*",
     "nodemon": "*",
     "superagent": "*",
-    "basic-auth": "*"
+    "basic-auth": "*",
+    "cookie-parser":"*"
   },
   "author": "Enrique Ramos",
   "license": "ISC"

@@ -3,12 +3,16 @@ const startDate = Date();
 const { exec } = require('child_process');
 const express = require("express");
 const auth = require('./auth');
+const jwt_auth = require('./jwt');
 const cors = require('cors');
+const fs = require('fs');
 const bodyParser = require('body-parser')
 const auth_parameters = require('basic-auth')
+var cookieParser = require('cookie-parser');
 const app = express();
 app.enable('trust proxy');
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded())
@@ -33,37 +37,59 @@ app.get("/info", function(req, res) { //OK
     res.status(200).json(info)
 })
 
+//favicon.ico
+app.get("/favicon.ico", async function(req, res) {
+    res.status(200).send(fs.readFileSync('favicon.ico'))
+  })
+
 app.get("/auth/jwt/:user/:password", async function(req, res) {
      user = req.params.user;
      password = req.params.password;
      var status = await auth.isUser(user, password)
      if(status==true){
-          generatedJWT = await auth.signAuthJwt(user, password)
-          res.status(200).json(generatedJWT)
+          generatedJWT = await jwt_auth.signAuthJwt(user)
+          res.cookie('jwt',generatedJWT);
+          var resposeJson = {"jwt": generatedJWT}
+          res.status(200).json(resposeJson)
      }
      else{
-          res.status(401).json("Invalid credencials")
+          res.status(401).json({"jwt": "Invalid credencials"})
      }
 })
 
 app.get("/auth/jwt/:jwt", async function(req, res) {
      jwt = req.params.jwt;
-     payload = await auth.verifyJwt(jwt)
-     var status = await auth.isUser(payload.user, payload.password)
-     res.status(200).json(status)
+     console.log(info)
+     payload = await jwt_auth.verifyJwt(jwt)
+     res.status(200).json(payload.user)
 })
 
-app.get("/get/jwt/:val", async function(req, res) {
-     val = req.params.val;
-     generatedJWT = await auth.signJwt(val)
-     res.status(200).json(generatedJWT)
+app.get("/auth/jwt", async function(req, res) {
+     const jwt = req.cookies.jwt
+     console.log(jwt)
+     payload = await jwt_auth.verifyJwt(jwt)
+     var isUser = await auth.getUser(payload.user)
+     if(!isUser[0]){
+       res.status(200).json("Invalid credencials")
+     }
+     else{
+     res.status(200).json(payload.user)
+    }
 })
 
-app.get("/verify/jwt/:val", async function(req, res) {
-     sentJWT = req.params.val;
-     payload = await auth.verifyJwt(sentJWT)
-     res.status(200).json(payload.val)
-})
+
+
+// app.get("/get/jwt/:val", async function(req, res) {
+//      val = req.params.val;
+//      generatedJWT = await auth.signJwt(val)
+//      res.status(200).json(generatedJWT)
+// })
+//
+// app.get("/verify/jwt/:val", async function(req, res) {
+//      sentJWT = req.params.val;
+//      payload = await auth.verifyJwt(sentJWT)
+//      res.status(200).json(payload.val)
+// })
 
 app.get("/all/:token", async function(req, res) {
      token = req.params.token;
@@ -127,18 +153,6 @@ app.get('/user/:user/:password',async function(req, res){
      else{res.status(401).send(respose(false))}
 });
 
-function respose(status) {
-return {"status":status}
-}
-
-app.get('/user_auth/',async function(req, res){
-     const parameters = auth_parameters(req)
-     user = parameters.name;
-     password = parameters.pass;
-     var status = await auth.isUser(user,password)
-     if(status==true){res.status(200).send(respose(true))}
-     else{res.status(401).send(respose(false))}
-});
 function respose(status) {
 return {"status":status}
 }

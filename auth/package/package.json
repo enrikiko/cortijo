@@ -16,7 +16,8 @@
     "nodemon": "*",
     "superagent": "*",
     "basic-auth": "*",
-    "jsonwebtoken": "*"
+    "jsonwebtoken": "*",
+    "cookie-parser":"*"
   },
   "author": "Enrique Ramos",
   "license": "ISC"
