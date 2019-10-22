@@ -1,7 +1,7 @@
 const request = require('superagent');
 const myLogs = require('./logs');
 const myTemperature = require('./temperature');
-var dot = false
+//var dot = false
 
 module.exports={
 

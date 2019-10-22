@@ -3,6 +3,7 @@ const startDate = Date();
 const { exec } = require('child_process');
 const express = require("express");
 const myDevice = require('./devices');
+const watering_request = require('./watering_request')
 const joker = require('./joker');
 const logs = require('./logs');
 const myTemperature = require('./temperature');
@@ -243,7 +244,10 @@ app.get("/remove/:name", async function(req, res) {
   }catch(response){}
 })
 
-
+app.get("/all/watering", async function(req, res) {
+  const watering_list = await watering_request.getAllIp()
+  res.status(200).json(watering_list)
+})
 //update device
 isUpdating={}
 app.get("/update/:name/:status", async function(req, res){
@@ -260,6 +264,7 @@ app.get("/update/:name/:status", async function(req, res){
       isUpdating[name]=true
       var response = await joker.switchStatus(ip, status, name) //Change device status
       if (response.code == 200) {
+        watering_request.newRequest(name, status)
         await myDevice.updateDevice(id, status) //Update DB status
         res.status(response.code).send(response)
         setTimeout(async function(){  //Change back to false
