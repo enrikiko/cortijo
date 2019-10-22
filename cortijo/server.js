@@ -245,6 +245,7 @@ app.get("/remove/:name", async function(req, res) {
 })
 
 app.get("/all/watering", async function(req, res) {
+  console.log("/all/watering");
   const watering_list = await watering.getAllRequest()
   res.status(200).json(watering_list)
 })
@@ -265,6 +266,7 @@ app.get("/update/:name/:status", async function(req, res){
       var response = await joker.switchStatus(ip, status, name) //Change device status
       if (response.code == 200) {
         watering.newRequest(name, status)
+        console.log("/update/:name/:status");
         await myDevice.updateDevice(id, status) //Update DB status
         res.status(response.code).send(response)
         setTimeout(async function(){  //Change back to false
