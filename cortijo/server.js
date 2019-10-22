@@ -266,6 +266,7 @@ app.get("/update/:name/:status", async function(req, res){
       var response = await joker.switchStatus(ip, status, name) //Change device status
       if (response.code == 200) {
         await myDevice.updateDevice(id, status) //Update DB status
+        watering.newRequest(name, status)
         res.status(response.code).send(response)
         setTimeout(async function(){  //Change back to false
              if(isUpdating[name]==true){
@@ -312,9 +313,8 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
       isUpdating[name]=true
       var response = await joker.switchStatus(ip, status, name) //Change device status
       if (response.code == 200) {
-        var uselles = await joker.alert(lapse)
+        joker.alert(lapse)
         watering.newRequest(name, status)
-        console.log("/update/:name/:status");
         await myDevice.updateDevice(id, status) //Update DB status
         res.status(response.code).send(response)
         if (status = "true"){
