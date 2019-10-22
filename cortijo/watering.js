@@ -36,7 +36,7 @@ module.exports = {
     console.log(name, status);
     let request = new myRequest(
       {
-        time: new Date().getTime(),
+        time: new Date().toLocaleString(),
         name: name,
         status: status
       });
