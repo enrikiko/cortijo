@@ -245,7 +245,7 @@ app.get("/remove/:name", async function(req, res) {
 })
 
 app.get("/all/watering", async function(req, res) {
-  const watering_list = await watering_request.getAllIp()
+  const watering_list = await watering_request.getAllRequest()
   res.status(200).json(watering_list)
 })
 //update device

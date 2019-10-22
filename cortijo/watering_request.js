@@ -47,11 +47,6 @@ module.exports = {
     });
   },
 
-  getAllRequest: () => { return myRequest.find() },
+  getAllRequest: () => { return myRequest.find() }
 
-  getAllIp: async () => {
-       const allRequest = await myRequest.find()
-       return allRequest
-  }
-  
 }
