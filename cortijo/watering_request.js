@@ -28,7 +28,7 @@ const requestSchema = new mongoose.Schema({
   },
 });
 
-let myRequest = mongoose.model('Request', requestSchema);
+let myRequest = mongoose.model('Watering', requestSchema);
 
 module.exports = {
 
