@@ -33,6 +33,7 @@ let myRequest = mongoose.model('Watering', requestSchema);
 module.exports = {
 
   newRequest: (name, status) => {
+    console.log(name, status);
     let request = new myRequest(
       {
         time: new Date().getTime(),
