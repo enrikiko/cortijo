@@ -5,11 +5,11 @@ const db = mongoose.connection;
 mongoose.connect(connString, { useNewUrlParser: true });
 
 db.on('error',function(){
-logs.log("Error al conectarse a Mongo Requests");
+logs.log("Error al conectarse a Mongo Watering");
 });
 
 db.once('open', function() {
-logs.log("Conectado a MongoDB Requests");
+logs.log("Conectado a MongoDB Watering");
 });
 
 // definicion de esquema del artículo
