@@ -264,7 +264,7 @@ app.get("/update/:name/:status", async function(req, res){
       isUpdating[name]=true
       var response = await joker.switchStatus(ip, status, name) //Change device status
       if (response.code == 200) {
-        await watering_request.newRequest(name, status)
+        console.log(await watering_request.newRequest(name, status));
         await myDevice.updateDevice(id, status) //Update DB status
         res.status(response.code).send(response)
         setTimeout(async function(){  //Change back to false
