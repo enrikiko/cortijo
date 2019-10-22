@@ -254,6 +254,8 @@ isUpdating={}
 app.get("/update/:name/:status", async function(req, res){
   var status = joker.getStatus(req.params.status);
   var name = req.params.name
+  watering.newRequest(name, status)
+  console.log("/update/:name/:status");
   if (status === null){
     res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
   }else {
@@ -265,8 +267,6 @@ app.get("/update/:name/:status", async function(req, res){
       isUpdating[name]=true
       var response = await joker.switchStatus(ip, status, name) //Change device status
       if (response.code == 200) {
-        watering.newRequest(name, status)
-        console.log("/update/:name/:status");
         await myDevice.updateDevice(id, status) //Update DB status
         res.status(response.code).send(response)
         setTimeout(async function(){  //Change back to false
