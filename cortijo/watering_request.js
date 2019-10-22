@@ -50,14 +50,8 @@ module.exports = {
   getAllRequest: () => { return myRequest.find() },
 
   getAllIp: async () => {
-       let ipList = []
        const allRequest = await myRequest.find()
-       allRequest.forEach(function (item, index) {
-            const ip = item.ip
-            if (!ipList.includes(ip)){ipList.push(ip)}
-       })
-       return ipList
+       return allRequest
   }
-
-
+  
 }
