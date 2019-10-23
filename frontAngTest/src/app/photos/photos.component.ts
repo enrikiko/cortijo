@@ -12,6 +12,7 @@ export class PhotosComponent implements OnInit {
   date=null;
   folders: any[]=null;
   url=null;
+  certain=false;
 
   constructor(private http: HttpClient) { }
 
@@ -27,6 +28,7 @@ export class PhotosComponent implements OnInit {
 
   getdate(date){
     this.date=date
+    this.certain=true
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8400/" + date
     this.http.get<any[]>(url).subscribe( data =>

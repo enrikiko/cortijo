@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col-6 row">
 
-      <div *ngFor="let date of dates" [ngClass]="{'col-12': folders==false, 'col-6': folders!=false}">
+      <div *ngFor="let date of dates" [ngClass]="{'col-12': certain==false, 'col-6': certain==true}">
         <button class="alert-success" (click)="getdate(date)">
           {{ date }}
         </button>
       </div>
 
-      <div class="col-6" *ngIf="folders">
-        <div *ngFor="let folder of folders" class="col-6 p-1">
+      <div class="col-6 p-1" *ngIf="folders">
+        <div *ngFor="let folder of folders">
           <button class="alert-primary" (click)="getphoto(folder)">
             {{ folder }}
           </button>
