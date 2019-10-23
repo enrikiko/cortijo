@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 export class PhotosComponent implements OnInit {
 
   dates: any[]=null;
+  date=null;
   folders: any[]=null;
   url: any[]=null;
 
@@ -31,6 +32,7 @@ export class PhotosComponent implements OnInit {
   }
 
   getdate(date){
+    this.date=date
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8400/" + date
     this.http.get<any[]>(url).subscribe( data =>
