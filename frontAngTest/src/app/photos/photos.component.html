@@ -8,11 +8,14 @@
         </button>
       </div>
 
-      <div *ngFor="let folder of folders" class="col-6 p-1" *ngIf="folders">
-        <button class="alert-primary" (click)="getphoto(folder)">
-          {{ folder }}
-        </button>
+      <div class="col-6" *ngIf="folders">
+        <div *ngFor="let folder of folders" class="col-6 p-1">
+          <button class="alert-primary" (click)="getphoto(folder)">
+            {{ folder }}
+          </button>
+        </div>
       </div>
+
 
     </div>
 
