@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-6 row">
 
-      <div *ngFor="let date of dates" [ngClass]="{'col-12': folders==null, 'col-6': folders!=null}">
+      <div *ngFor="let date of dates" [ngClass]="{'col-12': folders==false, 'col-6': folders!=false}">
         <button class="alert-success" (click)="getdate(date)">
           {{ date }}
         </button>
