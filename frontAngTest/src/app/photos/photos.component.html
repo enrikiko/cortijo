@@ -1,19 +1,22 @@
 <div class="my-5 container">
   <div class="row">
-    <div class="col-6">
-      <div class="row">
-        <div *ngFor="let date of dates" class="col-6 p-1">
-          <button class="alert-success" (click)="getdate(date)">
-            {{ date }}
-          </button>
-        </div>
+    <div class="col-3">
 
+      <div *ngFor="let date of dates">
+        <button class="alert-success" (click)="getdate(date)">
+          {{ date }}
+        </button>
+      </div>
 
-        <div *ngFor="let folder of folders" class="col-6 p-1">
+    </div>
+    <div class="col-3">
+
+        <div *ngFor="let folder of folders">
           <button class="alert-primary" (click)="getphoto(folder)">
             {{ folder }}
           </button>
         </div>
+
       </div>
     </div>
 
