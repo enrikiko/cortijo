@@ -3,19 +3,22 @@
     <div class="col-6">
 
       <div *ngFor="let date of dates" class="p-1">
-        <button class="col-12 alert-success" (click)="getdate(date)">
+        <button class="alert-success" [ngClass]="{'col-12': folders==null, 'col-6': folders!=null}" (click)="getdate(date)">
           {{ date }}
         </button>
       </div>
+
       <div *ngFor="let folder of folders" class="p-1">
-        <button class="col-12 alert-primary" (click)="getphoto(folder)">
+        <button class="col-6 alert-primary" (click)="getphoto(folder)">
           {{ folder }}
         </button>
       </div>
 
     </div>
+
     <div class="col-6" *ngIf="url">
       <img src="{{ url }}" class="img-fluid" alt="Responsive image">
     </div>
+
   </div>
 </div>
