@@ -1,6 +1,6 @@
 <div class="my-5 container">
   <div class="row">
-    <div class="col-6">
+    <div class="col-6 row">
 
       <div *ngFor="let date of dates" [ngClass]="{'col-12': folders==null, 'col-6': folders!=null}">
         <button class="alert-success" (click)="getdate(date)">
