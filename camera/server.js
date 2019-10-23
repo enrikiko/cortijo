@@ -26,17 +26,7 @@ const defaultTime = 300000 //1000=1s 60000=1min 300000=5min 900000=15min
 const requireJwt = false
 
 
-app.get("/*", function(req, res) {
-     dirList=fs.readdir("./eramos", function(err, files) {
-          if (err) {
-               res.status(200).send(err)
-          }else {
-               res.status(200).send(files)
-          }
-     })
-     //res.status(200).send(fs.readFileSync('/eramos'))
-     //res.status(200).json(info)
-})
+
 
 app.get("/:day", function(req, res) {
   var day = req.params.day
@@ -53,6 +43,18 @@ app.get("/:day/:picture", function(req, res) {
   var day = req.params.day
   var picture = req.params.picture
   res.status(200).send(fs.readFileSync("./eramos/"+day+"/images/"+picture))
+})
+
+app.get("/*", function(req, res) {
+     dirList=fs.readdir("./eramos", function(err, files) {
+          if (err) {
+               res.status(200).send(err)
+          }else {
+               res.status(200).send(files)
+          }
+     })
+     //res.status(200).send(fs.readFileSync('/eramos'))
+     //res.status(200).json(info)
 })
 
 http.listen(3000, function () {
