@@ -91,12 +91,12 @@ services:
   #   restart: on-failure
   #   build: ./functionalPing/.
   camera:
-       container_name: camera
-       restart: on-failure
-       build: ./camera/.
-       volumes:
-            - type: volume
-              source: /home/lenovo/eramos
-              target: ./eramos
+    container_name: camera
+    restart: on-failure
+    build: ./camera/.
+    volumes:
+        - type: volume
+          source: /home/lenovo/eramos
+          target: /root/node/eramos
 networks:
   network:
