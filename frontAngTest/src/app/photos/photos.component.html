@@ -1,7 +1,7 @@
 <div class="my-5 container">
   <div class="row">
 
-    <div class="col-3">
+    <div class="col-3 alert-primary">
       <div *ngFor="let date of dates">
         <button class="alert-success" (click)="getdate(date)">
           {{ date }}
@@ -9,7 +9,7 @@
       </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-3 alert-primary">
       <div *ngFor="let folder of folders">
         <button class="alert-primary" (click)="getphoto(folder)">
           {{ folder }}
@@ -20,5 +20,6 @@
     <div class="col-6" *ngIf="url">
       <img src="{{ url }}" class="img-fluid" alt="Responsive image">
     </div>
+
   </div>
 </div>
