@@ -10,12 +10,26 @@ export class PhotosComponent implements OnInit {
 
   dates: any[]=null;
   folders: any[]=null;
+  url: any[]=null;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.getDates()
   }
+
+  getphoto(folder){
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    let url = "http://" + host + ":8400/" + date + "/" folder
+    this.http.get<any[]>(url).subscribe( data =>
+    {
+      if(data!=null){
+        console.log(data)
+        this.url=data;
+      }
+    })
+  }
+
   getdate(date){
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8400/" + date
