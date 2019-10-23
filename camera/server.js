@@ -27,19 +27,33 @@ const requireJwt = false
 
 
 app.get("/*", function(req, res) {
-     var info = {"Version": version, "Start time": startDate}
      dirList=fs.readdir("./eramos", function(err, files) {
           if (err) {
                res.status(200).send(err)
           }else {
                res.status(200).send(files)
           }
-
      })
      //res.status(200).send(fs.readFileSync('/eramos'))
      //res.status(200).json(info)
 })
 
+app.get("/:day", function(req, res) {
+  var day = req.params.day
+  dirList=fs.readdir("./eramos/"+day+"/images", function(err, files) {
+       if (err) {
+            res.status(200).send(err)
+       }else {
+            res.status(200).send(files)
+       }
+  })
+})
+
+app.get("/:day/:picture", function(req, res) {
+  var day = req.params.day
+  var picture = req.params.picture
+  res.status(200).send(fs.readFileSync("./eramos/"+day+"/images/"+picture))
+})
 
 http.listen(3000, function () {
   console.log('Servidor activo en http://localhost:3000');
