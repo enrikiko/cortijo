@@ -32,5 +32,5 @@ app.get("/*", function(req, res) {
 
 
 http.listen(3000, function () {
-  logs.log('Servidor activo en http://localhost:3000');
+  console.log('Servidor activo en http://localhost:3000');
 })
