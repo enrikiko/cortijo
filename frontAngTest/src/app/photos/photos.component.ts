@@ -22,13 +22,7 @@ export class PhotosComponent implements OnInit {
   getphoto(folder){
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8400/" + this.date + "/" + folder
-    this.http.get<any[]>(url).subscribe( data =>
-    {
-      if(data!=null){
-        console.log(data)
-        this.url=data;
-      }
-    })
+    this.url=url;
   }
 
   getdate(date){
