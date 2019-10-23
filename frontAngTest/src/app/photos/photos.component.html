@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col-6">
 
-      <div *ngFor="let date of dates" class="p-1">
-        <button class="alert-success" [ngClass]="{'col-12': folders==null, 'col-6': folders!=null}" (click)="getdate(date)">
+      <div *ngFor="let date of dates" [ngClass]="{'col-12': folders==null, 'col-6': folders!=null}">
+        <button class="alert-success" (click)="getdate(date)">
           {{ date }}
         </button>
       </div>
 
-      <div *ngFor="let folder of folders" class="p-1">
-        <button class="col-6 alert-primary" (click)="getphoto(folder)">
+      <div *ngFor="let folder of folders" class="col-6 p-1" *ngIf="folders">
+        <button class="alert-primary" (click)="getphoto(folder)">
           {{ folder }}
         </button>
       </div>
