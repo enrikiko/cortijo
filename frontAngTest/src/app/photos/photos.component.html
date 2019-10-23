@@ -11,18 +11,17 @@
     </div>
     <div class="col-3">
 
-        <div *ngFor="let folder of folders">
-          <button class="alert-primary" (click)="getphoto(folder)">
-            {{ folder }}
-          </button>
-        </div>
-
+      <div *ngFor="let folder of folders">
+        <button class="alert-primary" (click)="getphoto(folder)">
+          {{ folder }}
+        </button>
       </div>
-    </div>
 
-    <div class="col-6" *ngIf="url">
-      <img src="{{ url }}" class="img-fluid" alt="Responsive image">
     </div>
-
   </div>
+
+  <div class="col-6" *ngIf="url">
+    <img src="{{ url }}" class="img-fluid" alt="Responsive image">
+  </div>
+
 </div>
