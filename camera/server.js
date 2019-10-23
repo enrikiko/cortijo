@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const auth = require('basic-auth');
 const app = express();
 const fs = require('fs')
+const path = require('path');
 var cookieParser = require('cookie-parser');
 app.enable('trust proxy');
 app.use(bodyParser.json());
@@ -27,7 +28,16 @@ const requireJwt = false
 
 app.get("/*", function(req, res) {
      var info = {"Version": version, "Start time": startDate}
-     res.status(200).json(info)
+     dirList=fs.readdir("./eramos", function(err, files) {
+          if (err) {
+               res.status(200).send(err)
+          }else {
+               res.status(200).send(files)
+          }
+
+     })
+     //res.status(200).send(fs.readFileSync('/eramos'))
+     //res.status(200).json(info)
 })
 
 

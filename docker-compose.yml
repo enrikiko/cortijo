@@ -94,6 +94,8 @@ services:
     container_name: camera
     restart: on-failure
     build: ./camera/.
+    ports:
+      - "8400:3000"
     volumes:
         - type: bind
           source: /home/lenovo/eramos
