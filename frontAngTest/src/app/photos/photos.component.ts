@@ -23,10 +23,10 @@ export class PhotosComponent implements OnInit {
     {
       if(data!=null){
         console.log(data)
-        this.logs=data;
+        this.dates=data;
       }
       else {
-      console.log('No logs')
+      console.log('No dates')
       }
     })
   }
