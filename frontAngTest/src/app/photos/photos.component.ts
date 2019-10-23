@@ -11,7 +11,7 @@ export class PhotosComponent implements OnInit {
   dates: any[]=null;
   date=null;
   folders: any[]=null;
-  url: any[]=null;
+  url=null;
 
   constructor(private http: HttpClient) { }
 
