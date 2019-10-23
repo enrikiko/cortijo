@@ -95,8 +95,8 @@ services:
        restart: on-failure
        build: ./camera/.
        volumes:
-            type: volume
-            source: /home/lenovo/eramos
-            target: ./eramos
+            - type: volumes
+              source: /home/lenovo/eramos
+              target: ./eramos
 networks:
   network:
