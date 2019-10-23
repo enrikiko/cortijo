@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { CatordogComponent } from './catordog/catordog.component';
 import { UsersComponent } from './users/users.component';
 import { PhotosComponent } from './photos/photos.component';
+import { PhotoComponent } from './photo/photo.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PhotosComponent } from './photos/photos.component';
     LoginComponent,
     CatordogComponent,
     UsersComponent,
-    PhotosComponent
+    PhotosComponent,
+    PhotoComponent
   ],
   imports: [
     BrowserModule,
