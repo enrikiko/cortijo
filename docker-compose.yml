@@ -90,5 +90,11 @@ services:
   #   container_name: fp
   #   restart: on-failure
   #   build: ./functionalPing/.
+  camera:
+       container_name: camera
+       restart: on-failure
+       build: ./camera/.
+       volumes:
+            - ./root/node:/home/lenovo/eramos
 networks:
   network:

@@ -1,0 +1,23 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Api with express",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "cors": "^2.8.4",
+    "express": "*",
+    "mongoose": "5.5.15",
+    "socket.io": "^1.7.3",
+    "request": "*",
+    "superagent": "*",
+    "basic-auth": "*",
+    "cookie-parser":"*",
+    "multer":"*"
+  },
+  "author": "Enrique Ramos",
+  "license": "ISC"
+}
