@@ -100,3 +100,5 @@ services:
           target: /root/node/eramos
 networks:
   network:
+volumes:
+  data-volume:
