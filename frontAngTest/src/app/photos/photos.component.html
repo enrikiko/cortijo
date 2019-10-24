@@ -3,7 +3,7 @@
 
     <div class="col-lg-3 col-12">
       <div *ngFor="let date of dates">
-        <div class="alert-success" (click)="getdate(date)">
+        <div class="alert-success text-wrap" (click)="getdate(date)">
           {{ date }}
         </div>
       </div>
@@ -11,7 +11,7 @@
 
     <div class="col-lg-3 col-12">
       <div *ngFor="let folder of folders">
-        <div class="alert-primary" (click)="getphoto(folder)">
+        <div class="alert-primary text-wrap" (click)="getphoto(folder)">
           {{ folder }}
         </div>
       </div>
