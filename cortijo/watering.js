@@ -38,7 +38,7 @@ module.exports = {
       {
         time: new Date().toLocaleString(),
         name: name,
-        lapse: lapse
+        lapse: lapse/60000
       });
     request.save(function(err, result) {
       if (err) throw err;
