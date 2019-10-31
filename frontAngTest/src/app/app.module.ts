@@ -15,6 +15,7 @@ import { CatordogComponent } from './catordog/catordog.component';
 import { UsersComponent } from './users/users.component';
 import { PhotosComponent } from './photos/photos.component';
 import { PhotoComponent } from './photo/photo.component';
+import { RequestsComponent } from './requests/requests.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PhotoComponent } from './photo/photo.component';
     CatordogComponent,
     UsersComponent,
     PhotosComponent,
-    PhotoComponent
+    PhotoComponent,
+    RequestsComponent
   ],
   imports: [
     BrowserModule,
