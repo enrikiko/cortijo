@@ -167,7 +167,7 @@ app.get("/all/temperature",async function(req, res) {
    res.status(200).json(temperature)
 })
 
-app.get("all/log",async function(req, res) {
+app.get("/all/log",async function(req, res) {
   try {
     var logHistory = await history.history()
   } catch (e) {
