@@ -1,23 +1,23 @@
-<div class="my-5 container">
+<div class="container-fluid">
   <div class="row">
 
-    <div class="col-3">
+    <div class="col-lg-3 col-12">
       <div *ngFor="let date of dates">
-        <button class="alert-success" (click)="getdate(date)">
+        <div class="alert-success text-wrap" (click)="getdate(date)">
           {{ date }}
-        </button>
+        </div>
       </div>
     </div>
 
-    <div class="col-3">
+    <div class="col-lg-3 col-12">
       <div *ngFor="let folder of folders">
-        <button class="alert-primary" (click)="getphoto(folder)">
+        <div class="alert-primary text-wrap" (click)="getphoto(folder)">
           {{ folder }}
-        </button>
+        </div>
       </div>
     </div>
 
-    <div class="col-6" *ngIf="url">
+    <div class="col-lg-6 col-12" *ngIf="url">
       <img src="{{ url }}" class="img-fluid" alt="Responsive image">
     </div>
 

@@ -22,7 +22,7 @@ const requestSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  status: {
+  lapse: {
     type: String,
     required: true
   },
@@ -32,13 +32,13 @@ let myRequest = mongoose.model('Watering', requestSchema);
 
 module.exports = {
 
-  newRequest: (name, status) => {
-    console.log(name, status);
+  newRequest: (name, lapse) => {
+    console.log(name, lapse);
     let request = new myRequest(
       {
         time: new Date().toLocaleString(),
         name: name,
-        status: status
+        lapse: lapse/60000
       });
     request.save(function(err, result) {
       if (err) throw err;

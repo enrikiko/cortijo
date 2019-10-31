@@ -251,51 +251,51 @@ app.get("/remove/:name", async function(req, res) {
 
 //update device
 isUpdating={}
-app.get("/update/:name/:status", async function(req, res){
-  var status = joker.getStatus(req.params.status);
-  var name = req.params.name
-  if (status === null){
-    res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
-  }else {
-    logs.log("Change status of "+name+" to "+status);
-    var id = await myDevice.getIdbyName(name) //Get ID of the device
-    var ip = await myDevice.getIpbyName(name) //Get IP of the device
-    if(!ip){res.status(400).json({"Request": "Incorrect", "Device": "Not found"})}
-    else if(isUpdating[name]!=true){
-      isUpdating[name]=true
-      var response = await joker.switchStatus(ip, status, name) //Change device status
-      if (response.code == 200) {
-        await myDevice.updateDevice(id, status) //Update DB status
-        watering.newRequest(name, status)
-        res.status(response.code).send(response)
-        setTimeout(async function(){  //Change back to false
-             if(isUpdating[name]==true){
-                  var responseBack = await joker.switchStatus(ip, false, name)
-                  if (responseBack.code == 200) {
-                    await myDevice.updateDevice(id, false) //Change DB back to false
-                    logs.log("Changed back automatically due to timeout " + name + " to " + false.toString())
-                    isUpdating[name]=false
-                    }
-                    else {
-                         logs.log("Error changing back " + name + " to " + false.toString())
-                    }
-             }
-        }, defaultTime);
-      }else {
-           res.status(response.code).send(response)
-      }
-    }else {
-         isUpdating[name]=false
-         logs.log("Change status of " + name + " to " + false);
-         var response = await joker.switchStatus(ip, false, name) //Change device status
-         if (response.code == 200) {
-              await myDevice.updateDevice(id, status) //Update DB status
-              res.status(response.code).send(response)
-         }
-         else {res.status(response.code).send(response)}
-    }
-  }
-})
+// app.get("/update/:name/:status", async function(req, res){
+//   var status = joker.getStatus(req.params.status);
+//   var name = req.params.name
+//   if (status === null){
+//     res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
+//   }else {
+//     logs.log("Change status of "+name+" to "+status);
+//     var id = await myDevice.getIdbyName(name) //Get ID of the device
+//     var ip = await myDevice.getIpbyName(name) //Get IP of the device
+//     if(!ip){res.status(400).json({"Request": "Incorrect", "Device": "Not found"})}
+//     else if(isUpdating[name]!=true){
+//       isUpdating[name]=true
+//       var response = await joker.switchStatus(ip, status, name) //Change device status
+//       if (response.code == 200) {
+//         await myDevice.updateDevice(id, status) //Update DB status
+//         watering.newRequest(name, status)
+//         res.status(response.code).send(response)
+//         setTimeout(async function(){  //Change back to false
+//              if(isUpdating[name]==true){
+//                   var responseBack = await joker.switchStatus(ip, false, name)
+//                   if (responseBack.code == 200) {
+//                     await myDevice.updateDevice(id, false) //Change DB back to false
+//                     logs.log("Changed back automatically due to timeout " + name + " to " + false.toString())
+//                     isUpdating[name]=false
+//                     }
+//                     else {
+//                          logs.log("Error changing back " + name + " to " + false.toString())
+//                     }
+//              }
+//         }, defaultTime);
+//       }else {
+//            res.status(response.code).send(response)
+//       }
+//     }else {
+//          isUpdating[name]=false
+//          logs.log("Change status of " + name + " to " + false);
+//          var response = await joker.switchStatus(ip, false, name) //Change device status
+//          if (response.code == 200) {
+//               await myDevice.updateDevice(id, status) //Update DB status
+//               res.status(response.code).send(response)
+//          }
+//          else {res.status(response.code).send(response)}
+//     }
+//   }
+// })
 
 
 app.get("/update/:name/:status/:lapse_time", async function(req, res){
@@ -314,7 +314,7 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
       var response = await joker.switchStatus(ip, status, name) //Change device status
       if (response.code == 200) {
         joker.alert(lapse)
-        watering.newRequest(name, status)
+        watering.newRequest(name, lapse)
         await myDevice.updateDevice(id, status) //Update DB status
         res.status(response.code).send(response)
         if (status = "true"){

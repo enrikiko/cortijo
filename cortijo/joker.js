@@ -6,7 +6,7 @@ const myTemperature = require('./temperature');
 module.exports={
 
      switchStatus: async (ip, status, name) => {
-       async function getResponse(ip, status, ) {
+       async function getResponse(ip, status) {
          let response = await request.get("http://"+ip+"/"+name+"/status/"+status);
          res = {};
          res.code = response.statusCode;
