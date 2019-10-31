@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit {
   device(){this.active="device"}
   weather(){this.active="weather"}
   catordog(){this.active="catordog"}
+  requests(){this.active="requests"}
   photos(){this.active="photos"}
   users(){this.active="users"}
   logs(){this.active="logs"}

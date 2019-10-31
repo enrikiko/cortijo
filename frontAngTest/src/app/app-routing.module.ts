@@ -6,6 +6,7 @@ import { WeatherComponent } from './weather/weather.component';
 import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { CatordogComponent } from './catordog/catordog.component';
+import { RequestsComponent } from './requests/requests.component';
 import { PhotosComponent } from './photos/photos.component';
 import { UsersComponent } from './users/users.component'
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'weather', component: WeatherComponent},
   {path:'login', component: LoginComponent},
   {path:'catordog', component: CatordogComponent},
+  {path:'requests', component: RequestsComponent},
   {path:'photos', component: PhotosComponent},
   {path:'users', component: UsersComponent}
 ];
