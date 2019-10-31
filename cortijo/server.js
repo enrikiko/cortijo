@@ -37,7 +37,14 @@ app.get("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
-  // logs.log( fullUrl + " : " + ip )
+  logs.newLog(ip, fullUrl)
+  requests.newRequest(ip, fullUrl)
+  next()
+})
+app.post("/*", function(req, res, next) {
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
+  var ip = req.ip
   logs.newLog(ip, fullUrl)
   requests.newRequest(ip, fullUrl)
   next()
@@ -52,6 +59,13 @@ app.get("/info", function(req, res) {
 app.get("/liveness", function(req, res) {
     res.status(200).send()
 })
+
+//favicon.ico
+app.get("/favicon.ico", async function(req, res) {
+    res.status(200).send(fs.readFileSync('favicon.ico'))
+})
+
+
 
 //Auth with user & password
 app.get("/auth/:user/:password", async function(req, res) {
@@ -90,10 +104,6 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
   }
 })
 
-//favicon.ico
-app.get("/favicon.ico", async function(req, res) {
-    res.status(200).send(fs.readFileSync('favicon.ico'))
-  })
 
 // //JWT verification
 // app.get("/*", async function(req, res, next) {
@@ -113,20 +123,8 @@ app.get("/favicon.ico", async function(req, res) {
 //
 // })
 
-app.post("/*", function(req, res, next) {
-  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
-  var fullUrl = req.protocol + '://' + host + req.originalUrl;
-  var ip = req.ip
-  // logs.log( fullUrl + " : " + ip )
-  logs.newLog(ip, fullUrl)
-  requests.newRequest(ip, fullUrl)
-  next()
-})
 
-//favicon.ico
-app.get("/favicon.ico", async function(req, res) {
-    res.status(200).send(fs.readFileSync('favicon.ico'))
-  })
+
 
 
 //Not working
@@ -137,23 +135,52 @@ app.get("/favicon.ico", async function(req, res) {
 //   }catch(response){}
 // })
 
-app.get("/getAllRequest", async function(req, res) {
+app.get("/all/request", async function(req, res) {
   try{
     var response = await requests.getAllRequest();
     res.status(200).json({response})
   }catch(response){}
 })
 
-app.get("/getAllIp", async function(req, res) {
+app.get("/all/ip", async function(req, res) {
   try{
    var response = await requests.getAllIp();
    res.status(200).json([response])
  }catch(response){}
 })
 
+//Get all device
+app.get("/all/device", async function(req, res) {
+  try{
+    var response = await myDevice.getDevice();
+    res.status(200).json(response)
+  }catch(response){}
+})
 
+//Get temperature and humidity history
+app.get("/all/temperature",async function(req, res) {
+   try {
+     var temperature = await myTemperature.getAll()
+   } catch (e) {
+     logs.log(e)
+   }
+   res.status(200).json(temperature)
+})
 
+app.get("all/log",async function(req, res) {
+  try {
+    var logHistory = await history.history()
+  } catch (e) {
+    logs.log(e)
+  }
+  res.status(200).json(logHistory)
+})
 
+app.get("/all/watering", async function(req, res) {
+  console.log("/all/watering");
+  const watering_list = await watering.getAllRequest()
+  res.status(200).json(watering_list)
+})
 
 //Get log
 // app.get("/log", async function(req, res) {
@@ -165,13 +192,7 @@ app.get("/getAllIp", async function(req, res) {
 //      res.status(200).json(logHistory)
 //   })
 
-//Get all device
-app.get("/all/device", async function(req, res) {
-  try{
-    var response = await myDevice.getDevice();
-    res.status(200).json(response)
-  }catch(response){}
-})
+
 
 //Set temperature and humidity
 app.get("/set/:temperature/:humidity", function(req, res) {
@@ -182,22 +203,14 @@ app.get("/set/:temperature/:humidity", function(req, res) {
 })
 
 //Get temperature and humidity
-app.get("/get/temperature/humidity", function(req, res) {
+app.get("/temperature/humidity", function(req, res) {
   response={}
   response.temperature=temperature;
   response.humidity=humidity;
   res.status(200).json(response)
 })
 
-//Get temperature and humidity history
-app.get("/get/temperature/humidity/history",async function(req, res) {
-   try {
-     var temperature = await myTemperature.getAll()
-   } catch (e) {
-     logs.log(e)
-   }
-   res.status(200).json(temperature)
-})
+
 
 //Delete temperature history
 app.get("/delete/temperature/humidity/history",async function(req, res) {
@@ -208,15 +221,6 @@ app.get("/delete/temperature/humidity/history",async function(req, res) {
      logs.log(e)
      res.status(500).send(e)
    }
-})
-
-app.get("/log/history",async function(req, res) {
-  try {
-    var logHistory = await history.history()
-  } catch (e) {
-    logs.log(e)
-  }
-  res.status(200).json(logHistory)
 })
 
 //Get device by name
@@ -244,11 +248,7 @@ app.get("/remove/:name", async function(req, res) {
   }catch(response){}
 })
 
-app.get("/all/watering", async function(req, res) {
-  console.log("/all/watering");
-  const watering_list = await watering.getAllRequest()
-  res.status(200).json(watering_list)
-})
+
 //update device
 isUpdating={}
 app.get("/update/:name/:status", async function(req, res){
