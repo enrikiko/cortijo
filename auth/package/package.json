@@ -10,7 +10,7 @@
     "body-parser": "*",
     "cors": "^2.8.4",
     "express": "*",
-    "mongoose": "5.5.15",
+    "mongoose": "5.7.7",
     "socket.io": "^1.7.3",
     "request": "*",
     "nodemon": "*",
