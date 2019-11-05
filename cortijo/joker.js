@@ -8,6 +8,7 @@ module.exports={
      switchStatus: async (ip, status, name) => {
        async function getResponse(ip, status) {
          let response = await request.get("http://"+ip+"/"+name+"/status/"+status);
+         alert(name+" has changed to "+status+" during "+lapse+" miliseconds")
          res = {};
          res.code = response.statusCode;
          res.body = response.body
