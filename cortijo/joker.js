@@ -5,16 +5,18 @@ const myTemperature = require('./temperature');
 
 module.exports={
 
-     switchStatus: async (ip, status, name) => {
-       async function getResponse(ip, status) {
+     switchStatus: async (ip, status, name, lapse) => {
+       async function getResponse() {
+         text = name+"("+ip+")"+" has changed to "+status+" during "+lapse+" miliseconds"
+         const url = "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=dPM2s9vYj4o:APA91bG3LiZsdvj7EPqBlTHKNXCiDbpWDdxKhONAO_qpIf_8uomgVW5QFtxM2AIX0kJPPt3RBzPJVeMNMgkCTtfkUoJFAHYtPBROh6bupxDkxW647z7J4A8Y3690q7OV6_lkYIvt7dlA&title=" + text
+         let response = await request.get(url);
          let response = await request.get("http://"+ip+"/"+name+"/status/"+status);
-         alert(name+" has changed to "+status+" during "+lapse+" miliseconds")
          res = {};
          res.code = response.statusCode;
          res.body = response.body
          return res;
        }
-       return await getResponse(ip, status);
+       return await getResponse();
      },
 
     // readLog: () => {
@@ -60,16 +62,16 @@ module.exports={
       else{ return null }
     },
 
-    alert: async (text) => {
-      const url = "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=dPM2s9vYj4o:APA91bG3LiZsdvj7EPqBlTHKNXCiDbpWDdxKhONAO_qpIf_8uomgVW5QFtxM2AIX0kJPPt3RBzPJVeMNMgkCTtfkUoJFAHYtPBROh6bupxDkxW647z7J4A8Y3690q7OV6_lkYIvt7dlA&title=" + text
-      async function getResponse(url) {
-        let response = await request.get(url);
-        //console.log(url)
-        //console.log(response)
-        return response;
-      }
-      return await getResponse(url);
-    }
+    // alert: async (text) => {
+    //   const url = "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=dPM2s9vYj4o:APA91bG3LiZsdvj7EPqBlTHKNXCiDbpWDdxKhONAO_qpIf_8uomgVW5QFtxM2AIX0kJPPt3RBzPJVeMNMgkCTtfkUoJFAHYtPBROh6bupxDkxW647z7J4A8Y3690q7OV6_lkYIvt7dlA&title=" + text
+    //   async function getResponse(url) {
+    //     let response = await request.get(url);
+    //     //console.log(url)
+    //     //console.log(response)
+    //     return response;
+    //   }
+    //   return await getResponse(url);
+    // }
 
 
 
