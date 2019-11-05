@@ -9,7 +9,7 @@ module.exports={
        async function getResponse() {
          text = name+"("+ip+")"+" has changed to "+status+" during "+lapse+" miliseconds"
          const url = "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=dPM2s9vYj4o:APA91bG3LiZsdvj7EPqBlTHKNXCiDbpWDdxKhONAO_qpIf_8uomgVW5QFtxM2AIX0kJPPt3RBzPJVeMNMgkCTtfkUoJFAHYtPBROh6bupxDkxW647z7J4A8Y3690q7OV6_lkYIvt7dlA&title=" + text
-         let response = await request.get(url);
+         await request.get(url);
          let response = await request.get("http://"+ip+"/"+name+"/status/"+status);
          res = {};
          res.code = response.statusCode;
