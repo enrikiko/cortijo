@@ -33,7 +33,7 @@ let myRequest = mongoose.model('Watering', requestSchema);
 module.exports = {
 
   newRequest: (name, lapse) => {
-    console.log(name, lapse);
+    //console.log(name, lapse);
     let request = new myRequest(
       {
         time: new Date().toLocaleString(),
