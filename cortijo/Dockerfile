@@ -1,11 +1,11 @@
 #FROM enriqueramosmunoz/rolling:mongo
 #FROM ubuntu:18.04
-FROM node
+FROM alpine
 #RUN apt-get update
 #RUN apt update
 #RUN apt-get install -y curl nodejs npm
 #RUN apt install -y man less
-#RUN apk add --update npm
+RUN apk add npm
 RUN mkdir /root/node
 WORKDIR /root/node
 COPY package/. .
