@@ -12,6 +12,10 @@ NC='\033[0m' # No Color
 GETIPURL="https://5nwdav0wk9.execute-api.eu-central-1.amazonaws.com/dev/get_ip_clear"
 IP="localhost"
 
+alert () {
+  curl --silent "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=dPM2s9vYj4o:APA91bG3LiZsdvj7EPqBlTHKNXCiDbpWDdxKhONAO_qpIf_8uomgVW5QFtxM2AIX0kJPPt3RBzPJVeMNMgkCTtfkUoJFAHYtPBROh6bupxDkxW647z7J4A8Y3690q7OV6_lkYIvt7dlA&title=Alert"
+}
+
 getIp () {
      CMD="curl --silent $GETIPURL -X GET"
      IP=$($CMD)
@@ -26,6 +30,7 @@ liveness () {
       else
         echo "Liveness doesn't works"
         echo "$VAR"
+        alert
      fi
 }
 

@@ -7,8 +7,8 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
-#    networks:
-#      - network
+   # networks:
+   #   - network
 #    environment:
 #      MONGO_INITDB_ROOT_USERNAME: user_name
 #      MONGO_INITDB_ROOT_PASSWORD: user_password
@@ -86,10 +86,10 @@ services:
     container_name: ip
     restart: on-failure
     build: ./ip/.
-  # fp:
-  #   container_name: fp
-  #   restart: on-failure
-  #   build: ./functionalPing/.
+  fp:
+    container_name: fp
+    restart: on-failure
+    build: ./functionalPing/.
   camera:
     container_name: camera
     restart: on-failure
