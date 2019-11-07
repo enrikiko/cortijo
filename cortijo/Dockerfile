@@ -5,7 +5,7 @@ FROM alpine:3.7
 #RUN apt update
 #RUN apt-get install -y curl nodejs npm
 #RUN apt install -y man less
-RUN apk add --update nodejs npm
+RUN apk add --update npm
 RUN mkdir /root/node
 WORKDIR /root/node
 COPY package/. .
