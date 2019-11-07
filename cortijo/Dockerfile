@@ -1,5 +1,6 @@
 #FROM enriqueramosmunoz/rolling:mongo
-FROM ubuntu:18.04
+#FROM ubuntu:18.04
+FROM alpine:3.7
 RUN apt-get update
 RUN apt update
 RUN apt-get install -y curl nodejs npm
