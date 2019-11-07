@@ -35,15 +35,29 @@ liveness () {
 }
 
 newDevice () {
-     CMD="curl --silent $IP:8000/new/test/true/1.2.3.4 -X GET"
+     CMD="curl --silent -o /dev/null -s -w "%{http_code}" $IP:8000/new/test/true/1.2.3.4 -X GET"
      VAR=$($CMD)
-     echo $VAR
+     if [ $VAR -eq 200 ]
+      then
+        echo "NewDevice"
+      else
+        echo "NewDevice doesn't works"
+        echo "$VAR"
+        alert
+     fi
 }
 
 removeDevice () {
-     CMD="curl --silent $IP:8000/remove/test -X GET"
+     CMD="curl --silent -o /dev/null -s -w "%{http_code}" $IP:8000/remove/test -X GET"
      VAR=$($CMD)
-     echo $VAR
+     if [ $VAR -eq 200 ]
+      then
+        echo "removeDevice"
+      else
+        echo "removeDevice doesn't works"
+        echo "$VAR"
+        alert
+     fi
 }
 
 result () {
