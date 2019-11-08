@@ -3,7 +3,7 @@ const startDate = Date();
 const { exec } = require('child_process');
 const express = require("express");
 const myDevice = require('./devices');
-const watering = require('./watering')
+const watering = require('./watering');
 const joker = require('./joker');
 const logs = require('./logs');
 const myTemperature = require('./temperature');
@@ -240,7 +240,7 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
       }
       if (response.code == 200) {
         //joker.alert(name+" has changed to "+status+" during "+lapse+" miliseconds")
-        watering.newRequest(name, lapse)
+        //watering.newRequest(name, lapse)
         await myDevice.updateDevice(id, status) //Update DB status
         res.status(response.code).send(response)
         if (status = "true"){
