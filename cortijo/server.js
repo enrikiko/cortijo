@@ -117,48 +117,48 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
 // })
 
 app.get("/all/request", async function(req, res) {
-  try{
+  //try{
     var response = await requests.getAllRequest();
     res.status(200).json({response})
-  }catch(response){}
+ // }catch(response){console.log(respose)}
 })
 
 app.get("/all/ip", async function(req, res) {
-  try{
+  //try{
    var response = await requests.getAllIp();
    res.status(200).json([response])
- }catch(response){}
+ //}catch(response){console.log(respose)}
 })
 
 //Get all device
 app.get("/all/device", async function(req, res) {
-  try{
+  //try{
     var response = await myDevice.getDevice();
     res.status(200).json(response)
-  }catch(response){}
+  //}catch(response){console.log(respose)}
 })
 
 //Get temperature and humidity history
 app.get("/all/temperature",async function(req, res) {
-   try {
-     var temperature = await myTemperature.getAll()
-   } catch (e) {
-     logs.log(e)
-   }
+   // try {
+   var temperature = await myTemperature.getAll()
+   // } catch (e) {
+   //   logs.log(e)
+   // }
    res.status(200).json(temperature)
 })
 
 app.get("/all/log",async function(req, res) {
-  try {
-    var logHistory = await history.history()
-  } catch (e) {
-    logs.log(e)
-  }
+  // try {
+  var logHistory = await history.history()
+  // } catch (e) {
+  //   logs.log(e)
+  // }
   res.status(200).json(logHistory)
 })
 
 app.get("/all/watering", async function(req, res) {
-  console.log("/all/watering");
+  // console.log("/all/watering");
   const watering_list = await watering.getAllRequest()
   res.status(200).json(watering_list)
 })
@@ -181,27 +181,27 @@ app.get("/temperature/humidity", function(req, res) {
 
 //Delete temperature history
 app.get("/delete/temperature/humidity/history",async function(req, res) {
-   try {
+   // try {
      var result = await myTemperature.deleteAll()
      res.status(200).send(result)
-   } catch (e) {
-     logs.log(e)
-     res.status(500).send(e)
-   }
+   // } catch (e) {
+   //   logs.log(e)
+   //   res.status(500).send(e)
+   // }
 })
 
 //Get device by name
 app.get("/name/:name", async function(req, res) {
-  try{
+  // try{
     var name = req.params.name;
     var response = await myDevice.getDeviceByName(name);
     res.status(200).json(response)
-  }catch(response){}
+  // }catch(response){console.log(respose)}
 })
 
 //Remove device by id
 app.get("/remove/:name", async function(req, res) {
-  try{
+  // try{
     var name = req.params.name;
     var id = await myDevice.getIdbyName(name)
     if (id){
@@ -212,7 +212,7 @@ app.get("/remove/:name", async function(req, res) {
       logs.log(name+" Doesn't Exist");
       res.status(200).json("Device Doesn't Exist")
     }
-  }catch(response){}
+// }catch(response){console.log(respose)}
 })
 
 //update device
