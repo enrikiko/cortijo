@@ -270,7 +270,13 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
     }else {
          isUpdating[name]=false
          logs.log("Change status of " + name + " to " + false);
-         var response = await joker.switchStatus(ip, false, name) //Change device status
+         try {
+              var response = await joker.switchStatus(ip, false, name, lapse) //Change device status
+         } catch (e) {
+              console.log(e)
+              var response = {}
+              response.code = 404
+         }
          if (response.code == 200) {
               await myDevice.updateDevice(id, status) //Update DB status
               res.status(response.code).send(response)
