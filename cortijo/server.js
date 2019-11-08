@@ -80,20 +80,21 @@ return {"status":status}
 
 //New device
 app.get("/new/:name/:status/:ip", async (req, res) => {
-       if(joker.getStatus(req.params.status)===null){
+     var name = req.params.name
+     var ip = req.params.ip
+     var status = joker.getStatus(req.params.status)
+     var id = await myDevice.getIdbyName(name)
+     if(status===null){
             res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
-      }
-      var name = req.params.name
-      var ip = req.params.ip
-      var id = await myDevice.getIdbyName(name)
-      if (!id) {
+       }
+     if (!id) {
         var response = await myDevice.newDevice(name, status, ip)
         logs.log(name+' have been created successfully');
         res.status(200).json(name+' create successfully')
-      }else {
+     }else {
         var lastIp = await myDevice.updateDeviceIp(id, ip)
         res.status(200).json({"Previous Ip": lastIp, "New Ip": ip})
-      }
+     }
 })
 
 // //JWT verification
