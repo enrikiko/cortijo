@@ -59,7 +59,7 @@ app.get("/auth/jwt/:user/:password", async function(req, res) {
 
 app.get("/auth/jwt/:jwt", async function(req, res) {
      jwt = req.params.jwt;
-     console.log(info)
+     console.log(jwt)
      payload = await jwt_auth.verifyJwt(jwt)
      res.status(200).json(payload.user)
 })
