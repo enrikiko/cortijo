@@ -235,8 +235,10 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
            var response = await joker.switchStatus(ip, status, name, lapse) //Change device status
       } catch (e) {
            console.log(e)
-      } 
-      if (response!=null & response.code == 200) {
+           var response = {}
+           respose.code = 404
+      }
+      if (response!=null && response.code == 200) {
         //joker.alert(name+" has changed to "+status+" during "+lapse+" miliseconds")
         watering.newRequest(name, lapse)
         await myDevice.updateDevice(id, status) //Update DB status
