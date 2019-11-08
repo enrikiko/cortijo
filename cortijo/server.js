@@ -236,7 +236,7 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
       } catch (e) {
            console.log(e)
            var response = {}
-           respose.code = 404
+           response.code = 404
       }
       if (response!=null && response.code == 200) {
         //joker.alert(name+" has changed to "+status+" during "+lapse+" miliseconds")
