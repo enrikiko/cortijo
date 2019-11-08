@@ -25,8 +25,11 @@ var humidity;
 const defaultTime = 300000 //1000=1s 60000=1min 300000=5min 900000=15min
 const requireJwt = false
 
-
-
+app.get("/:day/:picture", function(req, res) {
+  var day = req.params.day
+  var picture = req.params.picture
+  res.status(200).send(fs.readFileSync("./eramos/"+day+"/images/"+picture))
+})
 
 app.get("/:day", function(req, res) {
   var day = req.params.day
@@ -37,12 +40,6 @@ app.get("/:day", function(req, res) {
             res.status(200).send(files)
        }
   })
-})
-
-app.get("/:day/:picture", function(req, res) {
-  var day = req.params.day
-  var picture = req.params.picture
-  res.status(200).send(fs.readFileSync("./eramos/"+day+"/images/"+picture))
 })
 
 app.get("/*", function(req, res) {
