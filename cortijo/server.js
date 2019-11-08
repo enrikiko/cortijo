@@ -238,7 +238,7 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
            var response = {}
            response.code = 404
       }
-      if (response!=null && response.code == 200) {
+      if (response.code == 200) {
         //joker.alert(name+" has changed to "+status+" during "+lapse+" miliseconds")
         watering.newRequest(name, lapse)
         await myDevice.updateDevice(id, status) //Update DB status
@@ -246,7 +246,13 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
         if (status = "true"){
              setTimeout(async function(){  //Change back to false
                   if(isUpdating[name]==true){
-                       var responseBack = await joker.switchStatus(ip, false, name)
+                       try {
+                           var responseBack = await joker.switchStatus(ip, status, name, lapse) //Change device status
+                      } catch (e) {
+                           console.log(e)
+                           var responseBack = {}
+                           responseBack.code = 404
+                      }
                        if (responseBack.code == 200) {
                          await myDevice.updateDevice(id, false) //Change DB back to false
                          logs.log("Changed back automatically due to timeout " + name + " to " + false.toString())
