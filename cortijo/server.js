@@ -80,7 +80,7 @@ return {"status":status}
 
 //New device
 app.get("/new/:name/:status/:ip", async (req, res) => {
-       if(getStatus(req.params.status)===null){
+       if(joker.getStatus(req.params.status)===null){
             res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
       }
       var name = req.params.name
