@@ -5,5 +5,5 @@ while [ 1 ]
   do
     date
     sh ping.sh
-    sleep 1s
+    sleep 15min
   done
