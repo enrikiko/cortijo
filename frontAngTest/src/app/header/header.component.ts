@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
 //  temperature: string="";
 //  humidity: string="";
   data : any[]=null;
+  jwt : string="JWT";
 
   constructor(private Http: HttpClient,
               private Auth: AuthService) { }
@@ -47,6 +48,19 @@ export class HeaderComponent implements OnInit {
   logOut(){
     this.Auth.logOut()
     this.active="logOut"
+  }
+  jwt(){
+  const host = (window.location.href.split("/")[2]).split(":")[0]
+  let url = "http://" + host + ":8000/jwt"
+  this.Http.get(url).subscribe( data =>
+    {
+      if(data!=null){
+        this.jwt=data.jwt;
+      }
+      else {
+      console.log('Database is empty')
+      }
+    })
   }
 
 }
