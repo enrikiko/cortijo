@@ -52,10 +52,10 @@ export class HeaderComponent implements OnInit {
   getjwt(){
   const host = (window.location.href.split("/")[2]).split(":")[0]
   let url = "http://" + host + ":8000/jwt"
-  this.Http.get<Object>(url).subscribe( data =>
+  this.Http.get(url).subscribe( data =>
     {
       if(data!=null){
-        this.jwt=data.jwt;
+        this.jwt=data;
       }
       else {
       console.log('Database is empty')
