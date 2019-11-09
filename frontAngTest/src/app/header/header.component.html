@@ -28,7 +28,7 @@
               <a class="nav-link" [ngClass]="{'active': active=='logOut'}" routerLink="login">Log Out</a>
             </li>
             <li class="nav-item" (click)="getjwt()">
-              <a class="nav-link">{{ jwt }}</a>
+              <a class="nav-link">{{ jwt.jwt }}</a>
             </li>
           </ul>
         </div>

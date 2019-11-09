@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
 //  temperature: string="";
 //  humidity: string="";
   data : any[]=null;
-  jwt : any="JWT";
+  jwt : any={"jwt":"JWT"};
 
   constructor(private Http: HttpClient,
               private Auth: AuthService) { }
