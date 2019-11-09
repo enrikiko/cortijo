@@ -100,7 +100,8 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
 
  //JWT verification
  app.get("/jwt", async function(req, res) {
-   const jwt = await req.cookies.jwt
+   var jwt = "Invalid"
+   jwt = await req.cookies.jwt
    console.log(jwt)
    res.status(200).json({"jwt":jwt})
 //   if( requireJwt==false || jwt!=undefined ){next()}
