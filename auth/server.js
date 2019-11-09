@@ -42,7 +42,7 @@ app.get("/favicon.ico", async function(req, res) {
     res.status(200).send(fs.readFileSync('favicon.ico'))
   })
 
-app.get("/auth/jwt/:user/:password", async function(req, res) {
+app.get("/auth/:user/:password", async function(req, res) {
      user = req.params.user;
      password = req.params.password;
      var status = await auth.isUser(user, password)
