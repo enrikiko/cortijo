@@ -1,4 +1,5 @@
 #!/bin/bash
+echo $0
 date
 echo "start script server.sh"
 #time="$(date +"%H:%M")"
