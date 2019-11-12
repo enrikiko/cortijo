@@ -8,4 +8,4 @@ RUN apk add curl
 RUN mkdir /root/bash
 WORKDIR /root/bash
 COPY . .
-ENTRYPOINT ["sh", "init.sh"]
+ENTRYPOINT ["bash", "init.sh"]
