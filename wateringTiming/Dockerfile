@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-# RUN apt-get update
+RUN apt-get update
 # RUN apt update
 RUN apt-get install -y curl
 # RUN apt install -y man less
