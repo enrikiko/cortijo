@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/usr/bin/env bash
 echo $0
-sh server.sh
+server.sh
