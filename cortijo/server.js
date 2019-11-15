@@ -231,6 +231,7 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
     res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
   }else {
     if(isUpdating[name]!=true){
+    logs.log(isUpdating)
     logs.log("Change status of "+name+" to "+status);
     isUpdating[name]=true
       try {
@@ -272,20 +273,22 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
       }
     }
     else {
-         isUpdating[name]=false
-         logs.log("Change status of " + name + " to false" );
-         try {
+        logs.log(isUpdating)
+        isUpdating[name]=false
+        logs.log(isUpdating)
+        logs.log("Change status of " + name + " to false" );
+        try {
               var response = await joker.switchStatus(ip, false, name, lapse) //Change device status
-         } catch (e) {
+        } catch (e) {
               console.log(e)
               var response = {}
               response.code = 404
          }
-         if (response.code == 200) {
+        if (response.code == 200) {
               await myDevice.updateDevice(id, status) //Update DB status
               res.status(response.code).send(response)
-         }
-         else {res.status(response.code).send(response)}
+        }
+        else {res.status(response.code).send(response)}
     }
   }
 })
