@@ -1,4 +1,4 @@
-version: "3.2"
+version: "3.3"
 services:
   mongo:
     container_name: mongo
@@ -7,8 +7,8 @@ services:
     image: mongo:latest
     ports:
       - "27017:27017"
-   # networks:
-   #   - network
+    networks:
+      - network
 #    environment:
 #      MONGO_INITDB_ROOT_USERNAME: user_name
 #      MONGO_INITDB_ROOT_PASSWORD: user_password
@@ -62,22 +62,20 @@ services:
       - mongo
     networks:
       - network
+#  front:
+#    container_name: front
+#    restart: always
+#    build: ./frontAng/.
+#    ports:
+#      - "443:80"
+#    networks:
+#      - network
   front:
     container_name: front
-    restart: always
-    build: ./frontAng/.
-    ports:
-      - "443:80"
-    networks:
-      - network
-  fronttest:
-    container_name: fronttest
     restart: always
     build: ./frontAngTest/.
     ports:
       - "8300:4200"
-    networks:
-      - network
   git:
     container_name: git
     restart: on-failure

@@ -39,7 +39,7 @@ newDevice () {
      VAR=$($CMD)
      if [ $VAR -eq 200 ]
       then
-        echo "NewDevice"
+        echo "NewDevice works"
       else
         echo "NewDevice doesn't works"
         echo "$VAR"
@@ -52,7 +52,7 @@ removeDevice () {
      VAR=$($CMD)
      if [ $VAR -eq 200 ]
       then
-        echo "removeDevice"
+        echo "removeDevice works"
       else
         echo "removeDevice doesn't works"
         echo "$VAR"

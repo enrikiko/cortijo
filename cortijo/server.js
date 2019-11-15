@@ -218,20 +218,20 @@ app.get("/remove/:name", async function(req, res) {
 })
 
 //update device
-isUpdating={}
+var isUpdating={}
 app.get("/update/:name/:status/:lapse_time", async function(req, res){
   var status = joker.getStatus(req.params.status);
   var name = req.params.name
   var lapse = req.params.lapse_time
+  var id = await myDevice.getIdbyName(name) //Get ID of the device
+  var ip = await myDevice.getIpbyName(name) //Get IP of the device
   if (status === null){
     res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
+  }else if ( !ip || !id ) {
+    res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
   }else {
     logs.log("Change status of "+name+" to "+status);
-    var id = await myDevice.getIdbyName(name) //Get ID of the device
-    var ip = await myDevice.getIpbyName(name) //Get IP of the device
-    if( !ip || !id ) {
-      res.status(400).json({"Request": "Incorrect", "Device": "Not found"})
-    }else if(isUpdating[name]!=true){
+    if(isUpdating[name]!=true){
       isUpdating[name]=true
       try {
            var response = await joker.switchStatus(ip, status, name, lapse) //Change device status
@@ -241,13 +241,12 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
            response.code = 404
       }
       if (response.code == 200) {
-        //joker.alert(name+" has changed to "+status+" during "+lapse+" miliseconds")
-        //watering.newRequest(name, lapse)
         await myDevice.updateDevice(id, status) //Update DB status
         res.status(response.code).send(response)
-        if (status = "true"){
+        if(status == "true"){
              setTimeout(async function(){  //Change back to false
                   if(isUpdating[name]==true){
+                      status="false"
                        try {
                            var responseBack = await joker.switchStatus(ip, status, name, lapse) //Change device status
                       } catch (e) {
@@ -256,22 +255,24 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
                            responseBack.code = 404
                       }
                        if (responseBack.code == 200) {
-                         await myDevice.updateDevice(id, false) //Change DB back to false
-                         logs.log("Changed back automatically due to timeout " + name + " to " + false.toString())
+                         await myDevice.updateDevice(id, status) //Change DB back to false
+                         logs.log("Changed back automatically due to timeout " + name + " to " + status)
                          isUpdating[name]=false
                          }
                          else {
-                              logs.log("Error changing back " + name + " to " + false.toString())
+                              logs.log("Error changing back " + name + " to " + status)
                          }
                   }
+                  else{logs.log("TimeOut have been cancel")}
              }, lapse);
         }
       }else {
            res.status(response.code).send(response)
       }
-    }else {
+    }
+    else {
          isUpdating[name]=false
-         logs.log("Change status of " + name + " to " + false);
+         logs.log("Change status of " + name + " to false" );
          try {
               var response = await joker.switchStatus(ip, false, name, lapse) //Change device status
          } catch (e) {
