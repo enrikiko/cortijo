@@ -1,10 +1,11 @@
 #!/bin/bash
+echo $0
 date
 echo "start script server.sh"
 #time="$(date +"%H:%M")"
 waterTime="17:30"
 certain="true"
-wateringTime=180000 #3min
+wateringTime=120000 #3min
 
 function on
 {

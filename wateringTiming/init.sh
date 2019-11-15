@@ -1,3 +1,3 @@
-#!/bin/bash
-#node server.js
+#!/usr/bin/env bash
+echo $0
 bash server.sh
