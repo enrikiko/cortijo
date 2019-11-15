@@ -245,6 +245,7 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
         res.status(response.code).send(response)
         if(status == "true"){
              setTimeout(async function(){  //Change back to false
+                  logs.log("setTimeout")
                   if(isUpdating[name]==true){
                       status="false"
                        try {
