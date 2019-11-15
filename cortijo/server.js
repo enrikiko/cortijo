@@ -230,9 +230,9 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
   }else if ( !ip || !id ) {
     res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
   }else {
-    logs.log("Change status of "+name+" to "+status);
     if(isUpdating[name]!=true){
-      isUpdating[name]=true
+    logs.log("Change status of "+name+" to "+status);
+    isUpdating[name]=true
       try {
            var response = await joker.switchStatus(ip, status, name, lapse) //Change device status
       } catch (e) {
