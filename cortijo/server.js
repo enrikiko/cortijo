@@ -249,11 +249,11 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
 //        logs.log(typeof(status))
 //        logs.log(typeof("true"))
         if(status){
-        logs.log("Trigger timeout")
+//        logs.log("Trigger timeout")
              setTimeout(async function(){  //Change back to false
-                  logs.log("setTimeout")
+//                  logs.log("setTimeout")
                   if(isUpdating[name]==true){
-                      status="false"
+                      status=false
                        try {
                            var responseBack = await joker.switchStatus(ip, status, name, lapse) //Change device status
                       } catch (e) {
