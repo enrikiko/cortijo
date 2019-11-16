@@ -3,7 +3,7 @@ echo $0
 date
 echo "start script server.sh"
 #time="$(date +"%H:%M")"
-waterTime="14:00"
+waterTime="19:30"
 certain="true"
 wateringTime=60000 #1min
 
