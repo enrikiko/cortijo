@@ -245,6 +245,7 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
         await myDevice.updateDevice(id, status) //Update DB status
         res.status(response.code).send(response)
         if(status == "true"){
+        logs.log("Trigger timeout")
              setTimeout(async function(){  //Change back to false
                   logs.log("setTimeout")
                   if(isUpdating[name]==true){
