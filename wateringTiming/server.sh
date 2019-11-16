@@ -3,9 +3,9 @@ echo $0
 date
 echo "start script server.sh"
 #time="$(date +"%H:%M")"
-waterTime="17:30"
+waterTime="14:00"
 certain="true"
-wateringTime=120000 #3min
+wateringTime=60000 #1min
 
 function on
 {
