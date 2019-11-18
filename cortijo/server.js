@@ -233,7 +233,7 @@ app.get("/status/:device", async function(req, res) {
       res.status(200).json(status)
     }catch (e) {
       console.log("no response")
-      res.status(404)
+      res.status(201)
       }
   }
 
