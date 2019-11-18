@@ -28,7 +28,7 @@ module.exports={
             return res;
         }
         return await getResponse();
-     }
+     },
 
     // readLog: () => {
     //     var jsonString = '{'+fs.readFileSync("log.txt", {encoding: 'ASCII'})+'}'
