@@ -1,10 +1,10 @@
 <div class="container-fluid">
 
-  <div class="row">
+  <div class="container-fluid row">
 
-    <div class="col-lg-6 row">
+    <div class="container-fluid col-lg-6 row">
 
-      <div class="col-12 row">
+      <div class="container-fluid col-12 row">
         <div *ngFor="let camera of cameras" class="col-lg-3 col-12">
           <div class="alert-secondary text-wrap" (click)="getdates(camera)">
             {{ camera }}
@@ -12,7 +12,7 @@
         </div>
       </div>
 
-      <div class="col-12 row">
+      <div class="container-fluid col-12 row">
         <div *ngFor="let date of dates" class="col-lg-3 col-12">
           <div class="alert-success text-wrap" (click)="getdate(date)">
             {{ date }}
@@ -20,7 +20,7 @@
         </div>
       </div>
 
-      <div class="col-12 row">
+      <div class="container-fluid col-12 row">
         <div *ngFor="let folder of folders" class="col-lg-3 col-12">
           <div class="alert-primary text-wrap" (click)="getphoto(folder)">
             {{ folder }}
@@ -30,7 +30,7 @@
 
     </div>
 
-    <div class="col-lg-6 col-12" *ngIf="url">
+    <div class="container-fluid col-lg-6 col-12" *ngIf="url">
         <img src="{{ url }}" class="img-fluid" alt="Responsive image">
     </div>
 
