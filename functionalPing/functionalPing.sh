@@ -7,5 +7,5 @@ while [ 1 ]
     date
     #sh ping.sh
     python check.py
-    sleep 10
+    sleep 5
   done
