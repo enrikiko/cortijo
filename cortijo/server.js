@@ -228,9 +228,10 @@ app.get("/status/:device", async function(req, res) {
     res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
   }else {
     try {
-      var response = await joker.getStatus(ip, name) //Get device status
-      res.status(200).json(response)
-      console.log(response)
+        console.log("name:"+name+" ip:"+ip)
+      var status = await joker.getStatus(ip, name) //Get device status
+      console.log(status)
+      res.status(200).json(status)
     }catch (e) {
       console.log(e)
       res.status(404)
