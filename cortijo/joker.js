@@ -24,7 +24,8 @@ module.exports={
      getDeviceStatus: async (ip, name) => {
         async function status() {
             let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: 5000});
-            return response["body"]["status"];
+            console.log(response)
+            return response;
         }
      return await status();
      },
