@@ -229,7 +229,6 @@ app.get("/status/:device", async function(req, res) {
   }else {
     try {
       var status = await joker.getStatus(ip, name) //Get device status
-      console.log(typeof(joker.getStatus(ip, name)))
       console.log("status: " + status)
       res.status(200).json(status)
     }catch (e) {

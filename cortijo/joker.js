@@ -22,6 +22,7 @@ module.exports={
      },
 
      getStatus: async (ip, name) => {
+     console.log("1")
         async function status() {
             console.log("http://"+ip+"/"+name+"/status")
             let response = await request.get("http://"+ip+"/"+name+"/status");
