@@ -38,7 +38,7 @@ app.get('/'+process.env.mock_name+'/status/false', function(req, res){
   status=false;
   res.status(200).json(info)
 });
-app.get('/info', function(req, res){
+app.get('/'+process.env.mock_name+'/status', function(req, res){
   info={}
   info.status=status
   console.log(info);

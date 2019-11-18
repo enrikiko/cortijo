@@ -5,6 +5,7 @@ echo
 while [ 1 ]
   do
     date
-    sh ping.sh
-    sleep 15 m
+    #sh ping.sh
+    python check.py
+    sleep 10
   done

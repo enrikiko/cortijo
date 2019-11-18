@@ -21,6 +21,15 @@ module.exports={
        return await getResponse();
      },
 
+     getStatus: async(ip,name) => {
+        async function getResponse(){
+            let response = await request.get("http://"+ip+"/"+name+"/status");
+            let res = response.status;
+            return res;
+        }
+        return await getResponse();
+     }
+
     // readLog: () => {
     //     var jsonString = '{'+fs.readFileSync("log.txt", {encoding: 'ASCII'})+'}'
     //     return JSON.parse(jsonString)

@@ -74,6 +74,7 @@ app.get("/auth/:user/:password", async function(req, res) {
   if(jwt!="Invalid credencials"){res.status(200).send(respose(true))}
   else{res.status(401).send(respose(false))}
 })
+
 function respose(status) {
 return {"status":status}
 }
@@ -215,6 +216,28 @@ app.get("/remove/:name", async function(req, res) {
       res.status(200).json("Device Doesn't Exist")
     }
 // }catch(response){console.log(respose)}
+})
+
+//Get status of device
+app.get("/status/:device", async function(req, res) {
+  // try{
+  var name = req.params.device;
+  var id = await myDevice.getIdbyName(name) //Get ID of the device
+  var ip = await myDevice.getIpbyName(name) //Get IP of the device
+  if ( !ip || !id ) {
+    res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
+  }else {
+    try {
+      var response = await joker.getStatus(ip, name) //Get device status
+    }catch (e) {
+      console.log(e)
+      var response = {}
+      response.code = 404
+      }
+  }
+    var response = await myDevice.getDeviceByName(name);
+    res.status(response.code).json(response)
+  // }catch(response){console.log(respose)}
 })
 
 //update device
