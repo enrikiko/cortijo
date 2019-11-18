@@ -31,7 +31,6 @@ export class PhotosComponent implements OnInit {
   getdate(date){
     this.date=date
     this.certain=true
-    this.url = null
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8400/camera/" + this.camera + "/" + date
     this.http.get<any[]>(url).subscribe( data =>
@@ -46,7 +45,6 @@ export class PhotosComponent implements OnInit {
   getdates(camera){
     this.camera = camera
     this.folders = null
-    this.url = null
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8400/camera/" + this.camera
     this.http.get<any[]>(url).subscribe( data =>
@@ -63,7 +61,6 @@ export class PhotosComponent implements OnInit {
 
   getcamera(){
   this.folders = null
-  this.url = null
   this.dates = null
   const host = (window.location.href.split("/")[2]).split(":")[0]
   let url = "http://" + host + ":8400/camera"
