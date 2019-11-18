@@ -11,7 +11,7 @@ export class PhotosComponent implements OnInit {
   cameras: any[]=null;
   dates: any[]=null;
   folders: any[]=null;
-  camera=nul;
+  camera=null;
   date=null;
   url=null;
   certain=false;
