@@ -8,4 +8,7 @@ for device in response:
     URL = "http://88.8.38.4:8000/status/" + str(device['name'])
     res = requests.get(url=URL)
     print(res)
+    res = res.json
+    print(res)
+    print(res)
 print(devices)

@@ -23,10 +23,8 @@ module.exports={
 
      getDeviceStatus: async (ip, name) => {
         async function status() {
-            console.log(Date.now())
             let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: 2000});
-            console.log(Date.now())
-            return response["body"]["status"];
+            return response["body"];
         }
      return await status();
      },
