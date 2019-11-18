@@ -25,7 +25,9 @@ module.exports={
         async function getResponse(){
             console.log("http://"+ip+"/"+name+"/status")
             let response = await request.get("http://"+ip+"/"+name+"/status");
+            console.log(response)
             let res = response.status;
+            console.log(res)
             return res;
         }
         return await getResponse();
