@@ -9,16 +9,16 @@
       </div>
     </div>
 
-    <div class="col-lg-3 col-12">
-      <div *ngFor="let date of dates">
+    <div class="col-12">
+      <div *ngFor="let date of dates" class="col-lg-3 col-12">
         <div class="alert-success text-wrap" (click)="getdate(date)">
           {{ date }}
         </div>
       </div>
     </div>
 
-    <div class="col-lg-3 col-12">
-      <div *ngFor="let folder of folders">
+    <div class="col-12">
+      <div *ngFor="let folder of folders" class="col-lg-3 col-12">
         <div class="alert-primary text-wrap" (click)="getphoto(folder)">
           {{ folder }}
         </div>
