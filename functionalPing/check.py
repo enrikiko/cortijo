@@ -14,4 +14,3 @@ for device in response:
         URL = "http://88.8.38.4:8000/remove/" + device['name']
         res = requests.get(url=URL)
         print(res.json())
-print(devices)

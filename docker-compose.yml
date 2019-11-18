@@ -32,6 +32,42 @@ services:
       - "8101:3000"
     networks:
       - network
+  mock2:
+    container_name: mock2
+    restart: always
+    build: ./deviceMock/.
+    environment:
+      - mock_name=mock2
+      - mock_port=8102
+      - local_ip=192.168.1.50
+    ports:
+      - "8102:3000"
+    networks:
+      - network
+  mock3:
+    container_name: mock3
+    restart: always
+    build: ./deviceMock/.
+    environment:
+      - mock_name=mock3
+      - mock_port=8103
+      - local_ip=192.168.1.50
+    ports:
+      - "8103:3000"
+    networks:
+      - network
+  mock4:
+    container_name: mock4
+    restart: always
+    build: ./deviceMock/.
+    environment:
+      - mock_name=mock4
+      - mock_port=8104
+      - local_ip=192.168.1.50
+    ports:
+      - "8104:3000"
+    networks:
+      - network
   cortijo:
     container_name: cortijo
     restart: on-failure
@@ -84,10 +120,10 @@ services:
     container_name: ip
     restart: on-failure
     build: ./ip/.
-#  fp:
-#    container_name: fp
-#    restart: on-failure
-#    build: ./functionalPing/.
+  fp:
+    container_name: fp
+    restart: on-failure
+    build: ./functionalPing/.
   camera:
     container_name: camera
     restart: on-failure
