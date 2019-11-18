@@ -26,8 +26,7 @@ module.exports={
             console.log(Date.now())
             let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: 2000});
             console.log(Date.now())
-            console.log(response["body"]["status"])
-            return response["body"];
+            return response["body"]["status"];
         }
      return await status();
      },
