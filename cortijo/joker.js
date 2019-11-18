@@ -21,11 +21,14 @@ module.exports={
        return await getResponse();
      },
 
-     getStatus: async(ip,name) => {
+     getStatus: async(ip, name) => {
+        async function status() {
             console.log("http://"+ip+"/"+name+"/status")
             let response = await request.get("http://"+ip+"/"+name+"/status");
             console.log(response)
             return response;
+        }
+        return await status();
      },
 
     // readLog: () => {
