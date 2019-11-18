@@ -25,33 +25,44 @@ var humidity;
 const defaultTime = 300000 //1000=1s 60000=1min 300000=5min 900000=15min
 const requireJwt = false
 
-app.get("/:day/:picture", function(req, res) {
-  var day = req.params.day
-  var picture = req.params.picture
-  res.status(200).send(fs.readFileSync("./eramos/"+day+"/images/"+picture))
+app.get("/camera/:camera/:day/:picture", function(req, res) {
+    var day = req.params.day
+    var picture = req.params.picture
+    var camera = req.params.camera
+    res.status(200).send(fs.readFileSync("./eramos/"+camera+"/"+day+"/images/"+picture))
 })
 
-app.get("/:day", function(req, res) {
-  var day = req.params.day
-  dirList=fs.readdir("./eramos/"+day+"/images", function(err, files) {
-       if (err) {
+app.get("/camera/:camera/:day", function(req, res) {
+    var day = req.params.day
+    var camera = req.params.camera
+    dirList=fs.readdir("./eramos/"+camera+"/"+day+"/images", function(err, files) {
+        if (err) {
             res.status(200).send(err)
-       }else {
+        }else {
             res.status(200).send(files)
-       }
+        }
+    })
+})
+
+app.get("/camera/:camera", function(req, res) {
+  var camera = req.params.camera
+  dirList=fs.readdir("./eramos/"+camera+"/", function(err, files) {
+      if (err) {
+           res.status(200).send(err)
+      }else {
+           res.status(200).send(files)
+      }
   })
 })
 
-app.get("/*", function(req, res) {
-     dirList=fs.readdir("./eramos", function(err, files) {
-          if (err) {
-               res.status(200).send(err)
-          }else {
-               res.status(200).send(files)
-          }
-     })
-     //res.status(200).send(fs.readFileSync('/eramos'))
-     //res.status(200).json(info)
+app.get("/camera", function(req, res) {
+  dirList=fs.readdir("./eramos/", function(err, files) {
+      if (err) {
+           res.status(200).send(err)
+      }else {
+           res.status(200).send(files)
+      }
+  })
 })
 
 http.listen(3000, function () {

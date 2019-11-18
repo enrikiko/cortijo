@@ -1,8 +1,6 @@
 #!/bin/bash
 echo $0
 date
-echo "start script server.sh"
-#time="$(date +"%H:%M")"
 waterTime="19:30"
 certain="true"
 wateringTime=60000 #1min
