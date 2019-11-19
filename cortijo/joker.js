@@ -1,8 +1,7 @@
 const request = require('superagent');
-//const myLogs = require('./logs');
 const myTemperature = require('./temperature');
 const watering = require('./watering');
-//var dot = false
+
 
 module.exports={
 
@@ -23,7 +22,7 @@ module.exports={
 
      getDeviceStatus: async (ip, name) => {
         async function status() {
-            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: 2000});
+            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: 5000});
             return response["body"];
         }
      return await status();
@@ -82,7 +81,4 @@ module.exports={
     //   }
     //   return await getResponse(url);
     // }
-
-
-
 }
