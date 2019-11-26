@@ -45,8 +45,10 @@ export class PhotosComponent implements OnInit {
 
   formatList(list){
     let finalList = []
-    for(let elem in list){
-      finalList.push(this.formatDate(list[elem]))
+    for(let index in list){
+      let key = this.formatDate(list[index])
+      
+      finalList.push(key)
     }
     console.log(this.dataMap)
     return finalList
