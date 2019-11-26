@@ -15,7 +15,7 @@ export class PhotosComponent implements OnInit {
   date=null;
   url=null;
   certain=false;
-  dataMap=null;
+  dataMap={};
 
   constructor(private http: HttpClient) { }
 
@@ -47,7 +47,7 @@ export class PhotosComponent implements OnInit {
     let finalList = []
     for(let index in list){
       let key = this.formatDate(list[index])
-      
+      this.dataMap[key] = elem
       finalList.push(key)
     }
     console.log(this.dataMap)
