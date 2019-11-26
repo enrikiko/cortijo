@@ -31,7 +31,8 @@ export class PhotosComponent implements OnInit {
     this.url=url;
   }
 
-  getdate(date){
+  getdate(key){
+    const date = this.dataCameraMap[key]
     this.date=date
     this.certain=true
     const host = (window.location.href.split("/")[2]).split(":")[0]
@@ -74,7 +75,7 @@ export class PhotosComponent implements OnInit {
     {
       if(data!=null){
         console.log("Dates" + data)
-        this.dates=data;
+        this.dates=this.formatCameraList(data);
       }
       else {
       console.log('No dates')
