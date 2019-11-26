@@ -37,13 +37,28 @@ export class PhotosComponent implements OnInit {
     {
       if(data!=null){
         console.log("Data" + data)
-        this.folders=this.formatDate(data);
+        this.folders=this.formatList(data);
       }
     })
   }
-  formatDate(data){
-    return data
+
+  formatList(list){
+    let list = []
+    for(elem in list){
+      list.push(this.formatDate(elem))
+    }
+    return list
   }
+
+  formatDate(data){
+    let finalData
+    finalData = data.split(".")[0]
+    finalData = finalData.split("A")[1]
+    finalData = finalData.split("")
+    finalData = finalData[6]+finalData[7]+":"+finalData[8]+finalData[9]+":"+finalData[10]+finalData[11]+" "+finalData[4]+finalData[5]+"/"+finalData[2]+finalData[3]+"/20"+finalData[0]+finalData[1]
+    return finalData
+  }
+
 
   getdates(camera){
     this.camera = camera
