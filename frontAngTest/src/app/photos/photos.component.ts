@@ -16,6 +16,7 @@ export class PhotosComponent implements OnInit {
   url=null;
   certain=false;
   dataMap={};
+  dataCameraMap={};
 
   constructor(private http: HttpClient) { }
 
@@ -51,7 +52,6 @@ export class PhotosComponent implements OnInit {
       this.dataMap[key] = list[index]
       finalList.push(key)
     }
-    console.log(this.dataMap)
     return finalList
   }
 
@@ -80,6 +80,23 @@ export class PhotosComponent implements OnInit {
       console.log('No dates')
       }
     })
+  }
+
+  formatCameraList(list){
+    let finalList = []
+    for(let index in list){
+      let key = this.formatCameraDate(list[index])
+      this.dataCameraMap[key] = list[index]
+      finalList.push(key)
+    }
+    return finalList
+  }
+
+  formatCameraDate(data){
+    let finalData
+    finalData = finalData.split("")
+    finalData = finalData[6]+finalData[7]+"/"+finalData[8]+finalData[9]+"/"+finalData[10]+finalData[11]+finalData[12]+finalData[13]
+    return finalData
   }
 
   getcamera(){
