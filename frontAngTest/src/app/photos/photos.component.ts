@@ -40,7 +40,6 @@ export class PhotosComponent implements OnInit {
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        console.log("Data" + data)
         this.folders=this.formatList(data);
       }
     })
@@ -74,7 +73,6 @@ export class PhotosComponent implements OnInit {
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        console.log(data)
         this.dates=this.formatCameraList(data);
       }
       else {
@@ -96,7 +94,7 @@ export class PhotosComponent implements OnInit {
   formatCameraDate(data){
     let finalData
     finalData = data.split("")
-    finalData = finalData[6]+finalData[7]+"/"+finalData[8]+finalData[9]+"/"+finalData[10]+finalData[11]+finalData[12]+finalData[13]
+    finalData = finalData[6]+finalData[7]+"/"+finalData[4]+finalData[5]+"/"+finalData[0]+finalData[1]+finalData[2]+finalData[3]
     return finalData
   }
 
@@ -108,7 +106,6 @@ export class PhotosComponent implements OnInit {
   this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        console.log("cameras" + data)
         this.cameras=data;
       }
       else {
