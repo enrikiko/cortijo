@@ -42,7 +42,6 @@ export class PhotosComponent implements OnInit {
     })
   }
   formatDate(data){
-    data="OK"
     return data
   }
 
