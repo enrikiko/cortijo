@@ -43,11 +43,11 @@ export class PhotosComponent implements OnInit {
   }
 
   formatList(list){
-    let list = []
-    for(elem in list){
-      list.push(this.formatDate(elem))
+    let finalList = []
+    for(let elem in list){
+      finalList.push(this.formatDate(elem))
     }
-    return list
+    return finalList
   }
 
   formatDate(data){
