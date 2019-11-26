@@ -37,9 +37,12 @@ export class PhotosComponent implements OnInit {
     {
       if(data!=null){
         console.log("Data" + data)
-        this.folders=data;
+        this.folders=formatDate(data);
       }
     })
+  }
+  formatDate(data){
+    return data
   }
 
   getdates(camera){
