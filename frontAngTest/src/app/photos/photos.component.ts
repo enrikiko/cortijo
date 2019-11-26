@@ -25,7 +25,7 @@ export class PhotosComponent implements OnInit {
 
   getphoto(key){
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    const photo = this.dataMap.key
+    const photo = this.dataMap[key]
     let url = "http://" + host + ":8400/camera/" + this.camera + "/" + this.date + "/" + photo
     this.url=url;
   }
@@ -60,7 +60,7 @@ export class PhotosComponent implements OnInit {
     finalData = data.split(".")[0]
     finalData = finalData.split("A")[1]
     finalData = finalData.split("")
-    finalData = finalData[6]+finalData[7]+":"+finalData[8]+finalData[9]+":"+finalData[10]+finalData[11]+" "+finalData[4]+finalData[5]+"/"+finalData[2]+finalData[3]+"/20"+finalData[0]+finalData[1]
+    finalData = finalData[6]+finalData[7]+":"+finalData[8]+finalData[9]+":"+finalData[10]+finalData[11]
     return finalData
   }
 
