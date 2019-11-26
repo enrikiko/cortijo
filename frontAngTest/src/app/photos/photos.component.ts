@@ -74,7 +74,7 @@ export class PhotosComponent implements OnInit {
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        console.log("Dates" + data)
+        console.log(data)
         this.dates=this.formatCameraList(data);
       }
       else {
@@ -95,7 +95,7 @@ export class PhotosComponent implements OnInit {
 
   formatCameraDate(data){
     let finalData
-    finalData = finalData.split("")
+    finalData = data.split("")
     finalData = finalData[6]+finalData[7]+"/"+finalData[8]+finalData[9]+"/"+finalData[10]+finalData[11]+finalData[12]+finalData[13]
     return finalData
   }
