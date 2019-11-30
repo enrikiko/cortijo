@@ -6,6 +6,6 @@ while [ 1 ]
   do
     date
     sh ping.sh
-    #python check.py
-    sleep 60
+    # python check.py
+    sleep 3600
   done

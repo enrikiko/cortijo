@@ -11,9 +11,10 @@ NC='\033[0m' # No Color
 
 GETIPURL="https://5nwdav0wk9.execute-api.eu-central-1.amazonaws.com/dev/get_ip_clear"
 IP="localhost"
+token="eOnaAChhkNY:APA91bH-SUKPuCPWJGvTeGEQNGnlUZCSBFs9Cxa_K3lNsfcuH0SxO13QeCBM0fozUQ4EA57Mra3IKtZ34lXeFbeHAONRFkxD8YHz3ro3WDsjP8mXn-omrpFZQLJQGsc5ffYwDbEIs-Nj"
 
 alert () {
-  curl --silent "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=dPM2s9vYj4o:APA91bG3LiZsdvj7EPqBlTHKNXCiDbpWDdxKhONAO_qpIf_8uomgVW5QFtxM2AIX0kJPPt3RBzPJVeMNMgkCTtfkUoJFAHYtPBROh6bupxDkxW647z7J4A8Y3690q7OV6_lkYIvt7dlA&title=Alert"
+  curl --silent "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=" + token + "&title=" + $1
 }
 
 getIp () {
@@ -30,7 +31,7 @@ liveness () {
       else
         echo "Liveness doesn't works"
         echo "$VAR"
-        alert
+        alert $0
      fi
 }
 
@@ -43,7 +44,7 @@ newDevice () {
       else
         echo "NewDevice doesn't works"
         echo "$VAR"
-        alert
+        alert $0
      fi
 }
 
@@ -56,7 +57,7 @@ removeDevice () {
       else
         echo "removeDevice doesn't works"
         echo "$VAR"
-        alert
+        alert $0
      fi
 }
 
