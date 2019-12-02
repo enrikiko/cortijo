@@ -247,7 +247,6 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
   var lapse = req.params.lapse_time
   var id = await myDevice.getIdByName(name) //Get ID of the device //TODO UNIFY IN ONE FUNCTION
   var ip = await myDevice.getIpByName(name) //Get IP of the device
-//  var id ip = await myDevice.getIDAndIPbyName(name)  //Get ID and IP of the device
   if (status === null){
     res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
   }else if ( !ip || !id ) {

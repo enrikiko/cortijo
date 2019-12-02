@@ -91,23 +91,6 @@ module.exports = {
      }
    },
 
-   getIDAndIPbyName: async (deviceName) => {
-     async function getList(name){
-        return myDevice.find({name: name})
-     }
-     var list = await getList(deviceName)
-     if (list.length > 1) {
-       return "The Database is corrupted";
-     }
-     else if (list.length > 0) {
-       var id = device._id
-       var ip = device.ip
-       return id ip
-     }else {
-       return null null
-     }
-   },
-
    updateDevice: (id, status) => {
     return myDevice.findById(id, function(err, result) {
        if (err) throw err
