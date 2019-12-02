@@ -11,7 +11,7 @@ module.exports={
          const url = "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=dPM2s9vYj4o:APA91bG3LiZsdvj7EPqBlTHKNXCiDbpWDdxKhONAO_qpIf_8uomgVW5QFtxM2AIX0kJPPt3RBzPJVeMNMgkCTtfkUoJFAHYtPBROh6bupxDkxW647z7J4A8Y3690q7OV6_lkYIvt7dlA&title=" + text
          await request.get(url);
          watering.newRequest(name, lapse, status)
-         let response = await request.get("http://"+ip+"/"+name+"/status/"+status);
+         let response = await request.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: 10000});
          res = {};
          res.code = response.statusCode;
          res.body = response.body
@@ -22,7 +22,7 @@ module.exports={
 
      getDeviceStatus: async (ip, name) => {
         async function status() {
-            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: 5000});
+            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: 10000});
             return response["body"];
         }
      return await status();

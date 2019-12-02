@@ -59,31 +59,52 @@ module.exports = {
      });
    },
 
-   getIdbyName: async (deviceNane) => {
+   getIdByName: async (deviceName) => {
      async function getList(name){
         return myDevice.find({name: name})
      }
-     var list = await getList(deviceNane)
-     if (list.length > 0) {
+     var list = await getList(deviceName)
+     if (list.length > 1) {
+       return "The Database is corrupted";
+     }
+     else if (list.length > 0) {
        var device = list[0]
-       var id = device._id
-       return id
+       return device._id
      }else {
        return null
      }
    },
 
-   getIpbyName: async (deviceNane) => {
+   getIpByName: async (deviceName) => {
      async function getList(name){
         return myDevice.find({name: name})
      }
-     var list = await getList(deviceNane)
+     var list = await getList(deviceName)
      if (list.length > 1) {
-       return "The Database is corupeted";
-     } else if (list.length > 0) {
-       return list[0].ip
+       return "The Database is corrupted";
+     }
+     else if (list.length > 0) {
+       var device = list[0]
+       return device.ip
      }else {
        return null
+     }
+   },
+
+   getIDAndIPbyName: async (deviceName) => {
+     async function getList(name){
+        return myDevice.find({name: name})
+     }
+     var list = await getList(deviceName)
+     if (list.length > 1) {
+       return "The Database is corrupted";
+     }
+     else if (list.length > 0) {
+       var id = device._id
+       var ip = device.ip
+       return id ip
+     }else {
+       return null null
      }
    },
 

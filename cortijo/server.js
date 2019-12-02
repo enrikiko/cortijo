@@ -245,14 +245,15 @@ app.get("/update/:name/:status/:lapse_time", async function(req, res){
   var status = joker.getStatus(req.params.status);
   var name = req.params.name
   var lapse = req.params.lapse_time
-  var id = await myDevice.getIdbyName(name) //Get ID of the device
-  var ip = await myDevice.getIpbyName(name) //Get IP of the device
+//  var id = await myDevice.getIdByName(name) //Get ID of the device //TODO UNIFY IN ONE FUNCTION
+//  var ip = await myDevice.getIpByName(name) //Get IP of the device
+  var id ip = await myDevice.getIDAndIPbyName(name)  //Get ID and IP of the device
   if (status === null){
     res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
   }else if ( !ip || !id ) {
     res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
   }else {
-    if(isUpdating[name]!=true){
+    if( isUpdating[name] != true ){
     logs.log(JSON.stringify(isUpdating))
     logs.log("Change status of "+name+" to "+status);
     isUpdating[name]=true
