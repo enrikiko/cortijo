@@ -84,7 +84,7 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
      var name = req.params.name
      var ip = req.params.ip
      var status = joker.getStatus(req.params.status)
-     var id = await myDevice.getIdbyName(name)
+     var id = await myDevice.getIdByName(name)
      if(status===null){
             res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
        }else{
@@ -206,7 +206,7 @@ app.get("/name/:name", async function(req, res) {
 app.get("/remove/:name", async function(req, res) {
   // try{
     var name = req.params.name;
-    var id = await myDevice.getIdbyName(name)
+    var id = await myDevice.getIdByName(name)
     if (id){
       var response = await myDevice.removeDeviceByName(name);
       logs.log(name+" Remove successfully");
@@ -222,8 +222,8 @@ app.get("/remove/:name", async function(req, res) {
 app.get("/status/:device", async function(req, res) {
   // try{
   var name = req.params.device;
-  var id = await myDevice.getIdbyName(name) //Get ID of the device
-  var ip = await myDevice.getIpbyName(name) //Get IP of the device
+  var id = await myDevice.getIdByName(name) //Get ID of the device
+  var ip = await myDevice.getIpByName(name) //Get IP of the device
   if ( !ip || !id ) {
     res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
   }else {
