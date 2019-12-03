@@ -14,6 +14,7 @@ def getDevice(url):
 devices = getDevice("http://" + getURL() + ":8000/all/device")
 
 for device in devices:
+    print(device['name'])
     URL = "http://88.18.59.212:8000/status/" + device['name']
     res = requests.get(url=URL)
     if res.status_code == 200:
