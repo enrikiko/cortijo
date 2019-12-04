@@ -2,23 +2,44 @@ const request = require('superagent');
 const myTemperature = require('./temperature');
 const watering = require('./watering');
 const myDevice = require('./devices');
+const logs = require('./logs');
 
 module.exports={
 
      switchStatus: async (status, name, lapse) => {
        async function getResponse() {
-         ip = await myDevice.getIpByName(name)
-         text = name+"("+ip+")"+" has changed to "+status+" during "+lapse+" miliseconds"
-         const url = "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=dPM2s9vYj4o:APA91bG3LiZsdvj7EPqBlTHKNXCiDbpWDdxKhONAO_qpIf_8uomgVW5QFtxM2AIX0kJPPt3RBzPJVeMNMgkCTtfkUoJFAHYtPBROh6bupxDkxW647z7J4A8Y3690q7OV6_lkYIvt7dlA&title=" + text
-         await request.get(url);
-         watering.newRequest(name, lapse, status)
-         let response = await request.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: 10000});
-         res = {};
-         res.code = response.statusCode;
-         res.body = response.body
-         return res;
+        try{
+            ip = await myDevice.getIpByName(name)
+            let response = await request.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: 10000});
+            logs.log(response.body)
+        }catch (e) {logs.log(e)}
+        if(response.statusCode==200){
+        await myDevice.updateDevice(id, status)
+        }else{
+        myDevice.blockDeviceByName(name)
+        }
+        res = {};
+        res.code = response.statusCode;
+        res.body = response.body
+        return res;
        }
        return await getResponse();
+     },
+
+     switchAlertLapse: ( name, lapse ) => {
+        ip = myDevice.getIdByName(name)
+        text = name+" has changed to true during "+lapse+" miliseconds"
+        const url = "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=dPM2s9vYj4o:APA91bG3LiZsdvj7EPqBlTHKNXCiDbpWDdxKhONAO_qpIf_8uomgVW5QFtxM2AIX0kJPPt3RBzPJVeMNMgkCTtfkUoJFAHYtPBROh6bupxDkxW647z7J4A8Y3690q7OV6_lkYIvt7dlA&title=" + text
+        await request.get(url);
+        watering.newRequest(name, lapse, true)
+     },
+
+     switchAlert: ( name ) => {
+        ip = myDevice.getIdByName(name)
+        text = name+" has changed to false"
+        const url = "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=dPM2s9vYj4o:APA91bG3LiZsdvj7EPqBlTHKNXCiDbpWDdxKhONAO_qpIf_8uomgVW5QFtxM2AIX0kJPPt3RBzPJVeMNMgkCTtfkUoJFAHYtPBROh6bupxDkxW647z7J4A8Y3690q7OV6_lkYIvt7dlA&title=" + text
+        await request.get(url);
+        watering.newRequest(name, null, false)
      },
 
      getDeviceStatus: async (name) => {

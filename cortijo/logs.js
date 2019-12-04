@@ -68,9 +68,6 @@ module.exports = {
       });
     log.save(function(err, result) {
       if (err) throw err;
-      if(result) {
-        //logs(result);
-      }
     });
   },
 
