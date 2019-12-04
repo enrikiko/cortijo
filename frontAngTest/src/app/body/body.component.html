@@ -12,7 +12,7 @@
      </div>
   <div class="row">
     <div *ngFor="let device of devices" class="col-12 col-md-6 col-lg-3">
-      <button class="col-12 my-1" id="{{ device.name }}" (click)="changeStatus(device)" [ngClass]="{'bg-secondary': device.status==false , 'bg-success': device.status==true}" [ngClass]="{'bg-danger': device.check==false , 'bg-primary': device.check==null}" >
+      <button class="col-12 my-1" id="{{ device.name }}" (click)="changeStatus(device)" [ngClass]="{'bg-secondary': device.status==false, 'bg-success': device.status==true, 'bg-primary': device.check==null, 'bg-danger': device.check==false}" >
         <h2>{{ device.name }}</h2>
         <h2>{{ device.status }}</h2>
         <h2>{{ device.ip }}</h2>
