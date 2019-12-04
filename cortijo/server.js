@@ -257,30 +257,30 @@ app.get("/status/:device", async function(req, res) {
 var isUpdating={}
 app.get("/update/:name/false", async function(req, res){
 
-  var name = req.params.name
-  var lapse = req.params.lapse_time
-  var id = await myDevice.getIdByName(name) //Get ID of the device //
+    var name = req.params.name
+    var lapse = req.params.lapse_time
+    var id = await myDevice.getIdByName(name) //Get ID of the device //
 
-  if ( !id ) {
-    res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
-  }else if( isUpdating[name] != true ){
-    isUpdating[name]=true
-    logs.log(JSON.stringify(isUpdating))
-    logs.log("Change status of "+name+" to true");
-      try {
-           var response = await joker.switchStatus(true, name) //Change device status
-           joker.switchAlert( name )
-      } catch (e) {
-           console.log(e)
-           var response = {}
-           response.code = 404
-      }
-      if (response.code == 200) {
-        res.status(response.code).send(response)
-      }else {
-           res.status(response.code).send(response)
-      }
-      isUpdating[name]=false
+    if ( !id ) {
+        res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
+    }else if( isUpdating[name] != true ){
+        isUpdating[name]=true
+        logs.log(JSON.stringify(isUpdating))
+        logs.log("Change status of "+name+" to true");
+        try {
+            var response = await joker.switchStatus(true, name) //Change device status
+            joker.switchAlert( name )
+            if (response.code == 200) {
+                res.status(response.code).send(response)
+            }else {
+                res.status(response.code).send(response)
+            }
+        } catch (e) {
+            console.log(e)
+            var response = {}
+            response.code = 404
+        }
+        isUpdating[name]=false
     }
 })
 app.get("/update/:name/true/:lapse_time", async function(req, res){
