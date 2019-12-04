@@ -245,7 +245,7 @@ app.get("/status/:device", async function(req, res) {
       var status = await joker.getDeviceStatus(ip, name) //Get device status
       myDevice.checkDeviceByName(name)
       res.status(200).json(status)
-    }catch (e) {ƒ
+    }catch (e) {
       logs.log("no response")
       res.status(404).send()
       }
