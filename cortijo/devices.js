@@ -125,6 +125,7 @@ module.exports = {
     return myDevice.find({name: deviceName}, function(err, result) {
        if (err) throw err
        if(result){
+         result=result[0]
          result.check = false
          result.save()
        }
@@ -135,6 +136,7 @@ module.exports = {
     return myDevice.find({name: deviceName}, function(err, result) {
        if (err) throw err
        if(result){
+         result=result[0]
          result.check = true
          result.save()
        }

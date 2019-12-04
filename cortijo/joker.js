@@ -1,7 +1,7 @@
 const request = require('superagent');
 const myTemperature = require('./temperature');
 const watering = require('./watering');
-
+const myDevice = require('./devices');
 
 module.exports={
 
