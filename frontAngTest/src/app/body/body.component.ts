@@ -39,11 +39,12 @@ export class BodyComponent implements OnInit {
   changeStatus(device){
     let newStatus=null
     const host = (window.location.href.split("/")[2]).split(":")[0]
+    let url = null
     if(device.status){
-      let url = "http://" + host + ":8000/update/" + device.name +"/false/"
+      url = "http://" + host + ":8000/update/" + device.name +"/false/"
     }
     else if (!device.status){
-      let url = "http://" + host + ":8000/update/" + device.name +"/true/"+ this.lapse_time*60000
+      url = "http://" + host + ":8000/update/" + device.name +"/true/"+ this.lapse_time*60000
     }
     let startTime = new Date().getTime()
     this.http.get(url).subscribe( data =>
