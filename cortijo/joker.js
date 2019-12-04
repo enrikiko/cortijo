@@ -10,6 +10,7 @@ module.exports={
        async function getResponse() {
         try{
             ip = await myDevice.getIpByName(name)
+            console.log(status)
             let response = await request.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: 10000});
             logs.log(response.body)
             if(response.statusCode==200){
