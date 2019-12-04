@@ -56,7 +56,6 @@ export class BodyComponent implements OnInit {
       // console.log('no response')
       }
     })
-
   }
 
   getDiference(startTime, finishTime){

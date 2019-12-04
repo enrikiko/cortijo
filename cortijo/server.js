@@ -218,6 +218,20 @@ app.get("/remove/:name", async function(req, res) {
 // }catch(response){console.log(respose)}
 })
 
+//Block device by id
+app.get("/block/:name", async function(req, res) {
+    var name = req.params.name;
+    var id = await myDevice.getIdByName(name)
+    if (id){
+      var response = await myDevice.blockDeviceByName(name);
+      logs.log(name+" block successfully");
+      res.status(200).json("Device block successfully")
+    }else {
+      logs.log(name+" Doesn't Exist");
+      res.status(200).json("Device Doesn't Exist")
+    }
+})
+
 //Get status of device
 app.get("/status/:device", async function(req, res) {
   // try{
@@ -230,7 +244,7 @@ app.get("/status/:device", async function(req, res) {
     try {
       var status = await joker.getDeviceStatus(ip, name) //Get device status
       res.status(200).json(status)
-    }catch (e) {
+    }catch (e) {ƒ
       logs.log("no response")
       res.status(404).send()
       }

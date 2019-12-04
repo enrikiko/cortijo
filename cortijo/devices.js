@@ -97,7 +97,6 @@ module.exports = {
        if(result){
          result.status = status
          result.save()
-         //logs.log(result)
        }
      });
    },
@@ -108,8 +107,6 @@ module.exports = {
        if(result){
          result.ip = ip
          result.save()
-         //logs.log(result)
-
        }
      });
      return device.ip;
@@ -122,6 +119,16 @@ module.exports = {
         //logs.log(result)
         }
       });
+    }
+
+    blockDeviceByName: async (deviceName) => {
+    return myDevice.findById(id, function(err, result) {
+       if (err) throw err
+       if(result){
+         result.check = true
+         result.save()
+       }
+     });
     }
 
 }
