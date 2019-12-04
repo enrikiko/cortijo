@@ -5,8 +5,9 @@ const myDevice = require('./devices');
 
 module.exports={
 
-     switchStatus: async (ip, status, name, lapse) => {
+     switchStatus: async (status, name, lapse) => {
        async function getResponse() {
+         ip= await myDevice.getIpByName(name)
          text = name+"("+ip+")"+" has changed to "+status+" during "+lapse+" miliseconds"
          const url = "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=dPM2s9vYj4o:APA91bG3LiZsdvj7EPqBlTHKNXCiDbpWDdxKhONAO_qpIf_8uomgVW5QFtxM2AIX0kJPPt3RBzPJVeMNMgkCTtfkUoJFAHYtPBROh6bupxDkxW647z7J4A8Y3690q7OV6_lkYIvt7dlA&title=" + text
          await request.get(url);
@@ -22,8 +23,8 @@ module.exports={
 
      getDeviceStatus: async (name) => {
         async function status() {
-            Ip= await myDevice.getIpByName(name)
-            let response = await request.get("http://"+Ip+"/"+name+"/status").timeout({response: 10000});
+            ip= await myDevice.getIpByName(name)
+            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: 10000});
             return response["body"];
         }
      return await status();
