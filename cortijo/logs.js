@@ -4,6 +4,9 @@ const fs = require('fs');
 const config = fs.readFileSync('config.json');
 const DEBUG = "debug"
 const yaml = require('js-yaml')
+const yaml_file = fs.readFileSync('yaml_file.yaml');
+const yaml_data = yaml.safeLoad(yaml_file);
+
 const db = mongoose.connection;
 mongoose.connect(connString, { useNewUrlParser: true });
 
@@ -48,6 +51,8 @@ let myLogs = mongoose.model('Logs', deviceSchema);
 module.exports = {
 
   log: (text) => {
+  console.log(config.log)
+  console.log(yaml_data.log)
     if( config.log == DEBUG ){
         logs(text)
     }
