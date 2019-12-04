@@ -13,7 +13,7 @@ module.exports={
             let response = await request.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: 10000});
             logs.log(response.body)
             if(response.statusCode==200){
-                await id=myDevice.getIdByName(name)
+                id = await myDevice.getIdByName(name)
                 await myDevice.updateDevice(id, status)
             }else{
                 await myDevice.blockDeviceByName(name)
