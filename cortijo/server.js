@@ -296,8 +296,6 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
     logs.log("Change status of "+name+" to true");
       try {
             joker.switchAlertLapse( name, lapse )
-            var response = {}
-            response.code = null
             response = await joker.switchStatus(true, name) //Change device status
             if (response.code == 200) {
 
@@ -318,9 +316,9 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
                         responseBack.code = 404
                     }
                 }, lapse);
-          }else {
-               res.status(response.code).send(response)
-          }
+            }else {
+               res.status(200).send(response)
+            }
       } catch (e) {
            console.log(e)
            var response = {}
