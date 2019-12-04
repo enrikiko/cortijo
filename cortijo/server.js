@@ -294,36 +294,35 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
     logs.log(JSON.stringify(isUpdating))
     logs.log("Change status of "+name+" to true");
       try {
-           var response = await joker.switchStatus(true, name) //Change device status
-           joker.switchAlertLapse( name, lapse )
-      } catch (e) {
-           console.log(e)
-           var response = {}
-           response.code = 404
-      }
-      if (response.code == 200) {
-//
-        res.status(response.code).send(response)
-//
-        setTimeout(async function(){  //Change back to false
-        //
+            var response = await joker.switchStatus(true, name) //Change device status
+            joker.switchAlertLapse( name, lapse )
+            if (response.code == 200) {
+
+                res.status(response.code).send(response)
+                setTimeout(async function(){  //Change back to false
                 try {
+
                     var responseBack = await joker.switchStatus(false, name) //Change device status
                     logs.log("Changed back automatically due to timeout " + name + " to " + status)
+                    if (responseBack.code == 200) {
+                        logs.log("Changed back automatically due to timeout " + name + " to " + status)
+                    }
+                    else {
+                        logs.log("Error changing back " + name + " to false")
+                }
                 } catch (e) {
                     console.log(e)
                     var responseBack = {}
                     responseBack.code = 404
                 }
-                if (responseBack.code == 200) {
-                    logs.log("Changed back automatically due to timeout " + name + " to " + status)
-                }
-                else {
-                    logs.log("Error changing back " + name + " to false")
-                }
         }, lapse);
       }else {
            res.status(response.code).send(response)
+      }
+      } catch (e) {
+           console.log(e)
+           var response = {}
+           response.code = 404
       }
       isUpdating[name]=false
     }
