@@ -7,5 +7,5 @@ while [ 1 ]
     date
     #sh ping.sh
     python checkAvailability.py
-    #sleep 3600
+    sleep 30
   done
