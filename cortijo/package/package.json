@@ -16,7 +16,9 @@
     "superagent": "*",
     "basic-auth": "*",
     "cookie-parser":"*",
-    "multer":"*"
+    "multer":"*",
+    "js-yaml":"*"
+
   },
   "author": "Enrique Ramos",
   "license": "ISC"

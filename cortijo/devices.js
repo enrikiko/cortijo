@@ -37,13 +37,13 @@ const deviceSchema = new mongoose.Schema({
 let myDevice = mongoose.model('Devices', deviceSchema);
 
 module.exports = {
-
+//
    getDevice: () => { return myDevice.find() },
-
+//
    getDeviceByName: (Name) => { return myDevice.find({name: Name})},
-
+//
    getDeviceById: (id) => { return myDevice.findById(id)},
-
+//
    newDevice: (name, status, ip) => {
      let device = new myDevice(
        {
@@ -54,11 +54,11 @@ module.exports = {
      device.save(function(err, result) {
        if (err) throw err;
        if(result) {
-         //logs.log(result);
+         logs.log(result);
        }
      });
    },
-
+//
    getIdByName: async (deviceName) => {
      async function getList(name){
         return myDevice.find({name: name})
@@ -74,7 +74,7 @@ module.exports = {
        return null
      }
    },
-
+//
    getIpByName: async (deviceName) => {
      async function getList(name){
         return myDevice.find({name: name})
@@ -90,7 +90,7 @@ module.exports = {
        return null
      }
    },
-
+//
    updateDevice: (id, status) => {
     return myDevice.findById(id, function(err, result) {
        if (err) throw err
@@ -100,7 +100,7 @@ module.exports = {
        }
      });
    },
-
+//
    updateDeviceIp: (id, ip) => {
      var device = myDevice.findById(id, function(err, result) {
        if (err) throw err
@@ -111,7 +111,7 @@ module.exports = {
      });
      return device.ip;
    },
-
+//
    removeDeviceByName: (deviceName) => {
     return myDevice.deleteOne({name: deviceName}, function(err, result) {
       if (err) throw err
@@ -120,7 +120,7 @@ module.exports = {
         }
       });
     },
-
+//
     blockDeviceByName: async (deviceName) => {
     return myDevice.find({name: deviceName}, function(err, result) {
        if (err) throw err
@@ -131,7 +131,7 @@ module.exports = {
        }
      });
     },
-
+//
     checkDeviceByName: async (deviceName) => {
     return myDevice.find({name: deviceName}, function(err, result) {
        if (err) throw err
@@ -142,5 +142,5 @@ module.exports = {
        }
      });
     }
-
+//
 }

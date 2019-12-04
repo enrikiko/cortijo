@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
-// const logs = require('./logs');
 let connString = 'mongodb://192.168.1.50:27017/cortijo';
 const fs = require('fs');
+const config = fs.readFileSync('config.json');
+const DEBUG = "debug"
+const yaml = require('js-yaml')
 const db = mongoose.connection;
 mongoose.connect(connString, { useNewUrlParser: true });
 
@@ -46,7 +48,9 @@ let myLogs = mongoose.model('Logs', deviceSchema);
 module.exports = {
 
   log: (text) => {
-     logs(text)
+    if( config.log == DEBUG ){
+        logs(text)
+    }
   },
 
   newLog: (ip, request) => {
