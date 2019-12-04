@@ -12,16 +12,16 @@ module.exports={
             ip = await myDevice.getIpByName(name)
             let response = await request.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: 10000});
             logs.log(response.body)
+            if(response.statusCode==200){
+                await myDevice.updateDevice(id, status)
+            }else{
+                await myDevice.blockDeviceByName(name)
+            }
+            res = {};
+            res.code = response.statusCode;
+            res.body = response.body
+            return res;
         }catch (e) {logs.log(e)}
-        if(response.statusCode==200){
-        await myDevice.updateDevice(id, status)
-        }else{
-        myDevice.blockDeviceByName(name)
-        }
-        res = {};
-        res.code = response.statusCode;
-        res.body = response.body
-        return res;
        }
        return await getResponse();
      },
@@ -33,7 +33,7 @@ module.exports={
         await request.get(url);
         watering.newRequest(name, lapse, true)
      },
-
+//
      switchAlert: async ( name ) => {
         ip = myDevice.getIdByName(name)
         text = name+" has changed to false"
@@ -41,7 +41,7 @@ module.exports={
         await request.get(url);
         watering.newRequest(name, null, false)
      },
-
+//
      getDeviceStatus: async (name) => {
         async function status() {
             ip= await myDevice.getIpByName(name)
@@ -50,12 +50,12 @@ module.exports={
         }
      return await status();
      },
-
+//
     // readLog: () => {
     //     var jsonString = '{'+fs.readFileSync("log.txt", {encoding: 'ASCII'})+'}'
     //     return JSON.parse(jsonString)
     //  },
-
+//
      auth: async (user, password) => {
        const url = "http://192.168.1.50:8010/auth/"+user+"/"+password
        async function getResponse(url) {
