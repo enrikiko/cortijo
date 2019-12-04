@@ -281,9 +281,8 @@ app.get("/update/:name/false", async function(req, res){
            res.status(response.code).send(response)
       }
       isUpdating[name]=false
-//
-
-}
+    }
+})
 app.get("/update/:name/true/:lapse_time", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
