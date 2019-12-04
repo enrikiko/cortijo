@@ -119,7 +119,7 @@ module.exports = {
         //logs.log(result)
         }
       });
-    }
+    },
 
     blockDeviceByName: async (deviceName) => {
     return myDevice.findById(id, function(err, result) {
