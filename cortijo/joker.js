@@ -6,7 +6,7 @@ const logs = require('./logs');
 
 module.exports={
 
-     switchStatus: async (status, name, lapse) => {
+     switchStatus: async (status, name) => {
        async function getResponse() {
         try{
             ip = await myDevice.getIpByName(name)
@@ -22,7 +22,12 @@ module.exports={
             res.code = response.statusCode;
             res.body = response.body
             return res;
-        }catch (e) {logs.log(e)}
+        }catch (e) {
+            logs.log(e)
+            res = {};
+            res.code = 400;
+            return res
+            }
        }
        return await getResponse();
      },

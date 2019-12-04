@@ -295,30 +295,32 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
     logs.log(JSON.stringify(isUpdating))
     logs.log("Change status of "+name+" to true");
       try {
-            var response = await joker.switchStatus(true, name) //Change device status
             joker.switchAlertLapse( name, lapse )
+            var response = {}
+            response.code = null
+            response = await joker.switchStatus(true, name) //Change device status
             if (response.code == 200) {
 
                 res.status(response.code).send(response)
                 setTimeout(async function(){  //Change back to false
-                try {
+                    try {
 
-                    var responseBack = await joker.switchStatus(false, name) //Change device status
-                    if (responseBack.code == 200) {
-                        logs.log("Changed back automatically due to timeout " + name + " to false")
+                        var responseBack = await joker.switchStatus(false, name) //Change device status
+                        if (responseBack.code == 200) {
+                            logs.log("Changed back automatically due to timeout " + name + " to false")
+                        }
+                        else {
+                            logs.log("Error changing back " + name + " to false")
                     }
-                    else {
-                        logs.log("Error changing back " + name + " to false")
-                }
-                } catch (e) {
-                    console.log(e)
-                    var responseBack = {}
-                    responseBack.code = 404
-                }
-        }, lapse);
-      }else {
-           res.status(response.code).send(response)
-      }
+                    } catch (e) {
+                        console.log(e)
+                        var responseBack = {}
+                        responseBack.code = 404
+                    }
+                }, lapse);
+          }else {
+               res.status(response.code).send(response)
+          }
       } catch (e) {
            console.log(e)
            var response = {}
