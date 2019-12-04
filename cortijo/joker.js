@@ -20,7 +20,7 @@ module.exports={
        return await getResponse();
      },
 
-     getDeviceStatus: async (ip, name) => {
+     getDeviceStatus: async (name) => {
         async function status() {
             Ip= await myDevice.getIpByName(name)
             let response = await request.get("http://"+Ip+"/"+name+"/status").timeout({response: 10000});
