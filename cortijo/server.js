@@ -303,7 +303,6 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
                 try {
 
                     var responseBack = await joker.switchStatus(false, name) //Change device status
-                    logs.log("Changed back automatically due to timeout " + name + " to false")
                     if (responseBack.code == 200) {
                         logs.log("Changed back automatically due to timeout " + name + " to false")
                     }
