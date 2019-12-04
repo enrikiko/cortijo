@@ -268,7 +268,7 @@ app.get("/update/:name/false", async function(req, res){
         logs.log(JSON.stringify(isUpdating))
         logs.log("Change status of "+name+" to true");
         try {
-            var response = await joker.switchStatus(true, name) //Change device status
+            var response = await joker.switchStatus(false, name) //Change device status
             joker.switchAlert( name )
             if (response.code == 200) {
                 res.status(response.code).send(response)
