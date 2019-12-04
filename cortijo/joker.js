@@ -14,6 +14,7 @@ module.exports={
             if(response.statusCode==200){
                 id = await myDevice.getIdByName(name)
                 await myDevice.updateDevice(id, status)
+                await myDevice.checkDeviceByName(name)
             }else{
                 await myDevice.blockDeviceByName(name)
             }

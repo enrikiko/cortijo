@@ -1,6 +1,5 @@
 import requests
 
-
 getURLLink = "https://5nwdav0wk9.execute-api.eu-central-1.amazonaws.com/dev/get_ip"
 
 
@@ -22,6 +21,6 @@ for device in devices:
         res = res.json()
         print(res["status"])
     elif res.status_code == 404:
-        URL = "http://" + getURL() + ":8000/block/" + device['name']
+        # URL = "http://" + getURL() + ":8000/block/" + device['name']
         res = requests.get(url=URL)
         print(res.json())
