@@ -125,6 +125,16 @@ module.exports = {
     return myDevice.findById(id, function(err, result) {
        if (err) throw err
        if(result){
+         result.check = false
+         result.save()
+       }
+     });
+    },
+
+    checkDeviceByName: async (deviceName) => {
+    return myDevice.findById(id, function(err, result) {
+       if (err) throw err
+       if(result){
          result.check = true
          result.save()
        }
