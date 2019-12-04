@@ -122,7 +122,7 @@ module.exports = {
     },
 
     blockDeviceByName: async (deviceName) => {
-    return myDevice.findById(id, function(err, result) {
+    return myDevice.find({name: deviceName}, function(err, result) {
        if (err) throw err
        if(result){
          result.check = false
@@ -132,7 +132,7 @@ module.exports = {
     },
 
     checkDeviceByName: async (deviceName) => {
-    return myDevice.findById(id, function(err, result) {
+    return myDevice.find({name: deviceName}, function(err, result) {
        if (err) throw err
        if(result){
          result.check = true
