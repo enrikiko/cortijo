@@ -15,14 +15,13 @@ module.exports={
                 id = await myDevice.getIdByName(name)
                 await myDevice.updateDevice(id, status)
                 await myDevice.checkDeviceByName(name)
-            }else{
-                await myDevice.blockDeviceByName(name)
+                res = {};
+                res.code = response.statusCode;
+                res.body = response.body
+                return res;
             }
-            res = {};
-            res.code = response.statusCode;
-            res.body = response.body
-            return res;
         }catch (e) {
+            await myDevice.blockDeviceByName(name)
             logs.log(e)
             res = {};
             res.code = 400;
