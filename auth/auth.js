@@ -31,26 +31,25 @@ let myAuth = mongoose.model('Auth', authSchema);
 
 module.exports = {
 
-   getAll: () => { return myAuth.find() },
-   getUser: (user) => { return myAuth.find({user: user})},
-   createUser: (user, password) => {
-        //TODO verify if user exit
-     console.log("user:", myAuth.find({user: user}) );
-     console.log("user_is_null:", myAuth.find({user: user}) == null );
-     console.log("user_is_[]:", myAuth.find({user: user}) == [] );
-     console.log("Creating User...");
-     let auth = new myAuth(
-       {
-         user: user,
-         password: password
-       });
-     auth.save(function(err, result) {
-       if (err) throw err;
-       if(result) {
-         console.log(result);
-       }
-     });
-   },
+    getAll: () => { return myAuth.find() },
+    getUser: (user) => { return myAuth.find({user: user})},
+    createUser: async (user, password) => {
+        userList = await myAuth.find({user: user})
+        if( userList.length > 0 ){return false}
+        else{
+            let auth = new myAuth({
+                user: user,
+                password: password
+            });
+            auth.save(function(err, result) {
+                if (err) throw err;
+                if(result) {
+                    console.log(result);
+                    return true
+                }
+            });
+        }
+    },
    removeUser: (user) => {
      console.log("Removing "+user+"...")
      return myAuth.remove({user: user}, function(err, result) {
@@ -66,15 +65,12 @@ module.exports = {
         return myAuth.find({user: userName})
      }
      var userList = await getUser(name)
-     console.log(userList)
      if (userList.length > 0) {
-       console.log("userList>0")
        var user = userList[0]
        var userPassword = user.password
        if (userPassword == password){ return true }
        else{ return false;}
      }else {
-        console.log("userList=0")
         return false
      }
    }

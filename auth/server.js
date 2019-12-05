@@ -41,15 +41,13 @@ app.get("/favicon.ico", async function(req, res) {
 app.get("/auth/:user/:password", async function(req, res) {
      user = req.params.user;
      password = req.params.password;
-     console.log("isUser")
      var status = await auth.isUser(user, password)
      if(status==true){
           generatedJWT = await jwt_auth.signAuthJwt(user)
-          res.cookie('jwt',generatedJWT);
           var responseJson = {"jwt": generatedJWT}
           res.status(200).json(responseJson)
      }
-     else{
+     else if(status==true){
           res.status(401).json({"jwt": "Invalid credentials"})
      }
 })
@@ -120,26 +118,25 @@ app.delete('/removeuser/:user/:password/:token', async function(req, res){
 });
 
 app.get('/newuser/:user/:password/:token', async function(req, res){
-     user = req.params.user;
-     password = req.params.password;
-     token = req.params.token;
-     response = {}
-     if(token==process.env.TOKEN){
-          console.log("Token correct")
-          var isUser = await auth.getUser(user)
-          if(!isUser[0]){
-               auth.createUser(user, password)
-               response.status="User created successfuly"
-               res.status(201).send(response)
-          }else{
-              response.status="User already exist"
-              res.status(200).send(response)}
-
-     }else{
-          console.log("Token incorrect")
-          response.status="Unauthorized"
-          res.status(401).send(response)
-     }
+    user = req.params.user;
+    password = req.params.password;
+    token = req.params.token;
+    response = {}
+    if(token==process.env.TOKEN){
+        console.log("Token correct")
+        isCreateUser = await auth.createUser(user, password)
+        if ( isCreateUser ) {
+            response.status="User created successfuly"
+            res.status(201).send(response)
+        }else {
+            response.status="User already exist"
+            res.status(200).send(response)
+        }
+    }else{
+        console.log("Token incorrect")
+        response.status="Unauthorized"
+        res.status(401).send(response)
+    }
 });
 
 app.get('/user/:user/:password',async function(req, res){
