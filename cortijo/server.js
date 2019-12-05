@@ -22,7 +22,6 @@ app.enable('trust proxy');
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
-app.use(parseBearerToken())
 app.options('*', cors());
 app.use(express.urlencoded())
 app.enable('trust proxy')
