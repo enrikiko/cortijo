@@ -112,7 +112,9 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
  app.get("/jwt", async function(req, res) {
    const token = parseBearerToken(req)
    console.log(token)
-   res.status(200).json({"jwt":jwt})
+   const jwt = req.headers.authorization
+   console.log(jwt)
+   res.status(200).json({"jwt":jwt, "token":token})
 //   if( requireJwt==false || jwt!=undefined ){next()}
 //   else{
 //     console.log("jwt is undefined")
