@@ -18,7 +18,8 @@
     "cookie-parser":"*",
     "multer":"*",
     "js-yaml":"*",
-    "delay":"*"
+    "delay":"*",
+    "parse-bearer-token":"*"
 
   },
   "author": "Enrique Ramos",

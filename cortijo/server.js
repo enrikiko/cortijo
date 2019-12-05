@@ -16,7 +16,8 @@ const bodyParser = require('body-parser');
 const auth = require('basic-auth');
 const app = express();
 const fs = require('fs')
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
+import parseBearerToken from 'parse-bearer-token'
 app.enable('trust proxy');
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -109,9 +110,8 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
 
  //JWT verification
  app.get("/jwt", async function(req, res) {
-   var jwt = "Invalid"
-   jwt = await req.cookies.jwt
-   console.log(jwt)
+   const token = parseBearerToken(req)
+   console.log(token)
    res.status(200).json({"jwt":jwt})
 //   if( requireJwt==false || jwt!=undefined ){next()}
 //   else{
