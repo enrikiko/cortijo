@@ -17,7 +17,8 @@
     "basic-auth": "*",
     "cookie-parser":"*",
     "multer":"*",
-    "js-yaml":"*"
+    "js-yaml":"*",
+    "delay":"*"
 
   },
   "author": "Enrique Ramos",

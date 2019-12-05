@@ -11,6 +11,7 @@ const requests = require('./requests');
 const history = require('./history');
 const ia = require('./ia');
 const cors = require('cors');
+const delay = require('delay');
 const bodyParser = require('body-parser');
 const auth = require('basic-auth');
 const app = express();
@@ -136,6 +137,7 @@ app.get("/all/ip", async function(req, res) {
 //Get all device
 app.get("/all/device", async function(req, res) {
   //try{
+    await delay(700)
     var response = await myDevice.getDevice();
     res.status(200).json(response)
   //}catch(response){console.log(respose)}
