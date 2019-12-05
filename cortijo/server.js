@@ -17,11 +17,12 @@ const auth = require('basic-auth');
 const app = express();
 const fs = require('fs')
 const cookieParser = require('cookie-parser');
-import parseBearerToken from 'parse-bearer-token'
+const parseBearerToken = require('parse-bearer-token');
 app.enable('trust proxy');
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
+app.use(parseBearerToken())
 app.options('*', cors());
 app.use(express.urlencoded())
 app.enable('trust proxy')
