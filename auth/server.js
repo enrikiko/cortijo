@@ -5,10 +5,8 @@ const express = require("express");
 const auth = require('./auth');
 const jwt_auth = require('./jwt');
 const cors = require('cors');
-const fs = require('fs');
 const bodyParser = require('body-parser')
-const auth_parameters = require('basic-auth')
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
 app.enable('trust proxy');
 app.use(bodyParser.json());
@@ -19,8 +17,6 @@ app.use(express.urlencoded())
 app.enable('trust proxy')
 var http = require('http').Server(app);
 var io = http;
-//var temperature;
-//var humidity;
 
 //Middleware
 app.get("/*", function(req, res, next) {
@@ -49,11 +45,11 @@ app.get("/auth/:user/:password", async function(req, res) {
      if(status==true){
           generatedJWT = await jwt_auth.signAuthJwt(user)
           res.cookie('jwt',generatedJWT);
-          var resposeJson = {"jwt": generatedJWT}
-          res.status(200).json(resposeJson)
+          var responseJson = {"jwt": generatedJWT}
+          res.status(200).json(responseJson)
      }
      else{
-          res.status(401).json({"jwt": "Invalid credencials"})
+          res.status(401).json({"jwt": "Invalid credentials"})
      }
 })
 
@@ -149,11 +145,11 @@ app.get('/user/:user/:password',async function(req, res){
      user = req.params.user;
      password = req.params.password;
      var status = await auth.isUser(user,password)
-     if(status==true){res.status(200).send(respose(true))}
-     else{res.status(401).send(respose(false))}
+     if(status==true){res.status(200).send(response(true))}
+     else{res.status(401).send(response(false))}
 });
 
-function respose(status) {
+function response(status) {
 return {"status":status}
 }
 

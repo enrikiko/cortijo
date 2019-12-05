@@ -67,16 +67,21 @@ app.get("/favicon.ico", async function(req, res) {
 
 //Auth with user & password
 app.get("/auth/:user/:password", async function(req, res) {
-  user = req.params.user;
-  password = req.params.password;
-  var jwt = await joker.auth(user, password);
-  logs.log("jwt: "+jwt);
-  res.cookie('jwt',jwt);
-  if(jwt!="Invalid credencials"){res.status(200).send(respose(true))}
-  else{res.status(401).send(respose(false))}
+    user = req.params.user;
+    password = req.params.password;
+    try{
+        var jwt = await joker.auth(user, password);
+        logs.log("jwt: "+jwt);
+        res.cookie('jwt',jwt);
+        if(jwt!="Invalid credentials"){res.status(200).send(response(true))}
+        else{res.status(401).send(response(false))}
+    }
+    catch(e){
+        res.status(404).send(response(e))
+    }
 })
 
-function respose(status) {
+function response(status) {
 return {"status":status}
 }
 

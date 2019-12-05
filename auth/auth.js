@@ -61,18 +61,21 @@ module.exports = {
     });
    },
 
-   isUser: async (user, password) => {
+   isUser: async (name, password) => {
      async function getUser(userName){
         return myAuth.find({user: userName})
      }
-     var userList = await getUser(user)
+     var userList = await getUser(name)
+     console.log(userList)
      if (userList.length > 0) {
-       var device = userList[0]
-       var userPassword = device.password
+       console.log("userList>0")
+       var user = userList[0]
+       var userPassword = user.password
        if (userPassword == password){ return true }
        else{ return false;}
      }else {
-       return false
+        console.log("userList=0")
+        return false
      }
    }
 
