@@ -27,6 +27,7 @@ export class AuthService {
       this.http.get<any>(url).subscribe( data =>
       {
         if(data.status==true){
+          window.localStorage.setItem('jwt', data.jwt)
           console.log(data)
           this.status = true
           this.router.navigate(['logs'])
