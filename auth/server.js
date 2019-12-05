@@ -52,6 +52,14 @@ app.get("/auth/:user/:password", async function(req, res) {
      }
 })
 
+app.get('/user/:user/:password',async function(req, res){
+     user = req.params.user;
+     password = req.params.password;
+     var status = await auth.isUser(user,password)
+     if(status==true){res.status(200).send(response(true))}
+     else{res.status(401).send(response(false))}
+});
+
 app.get("/auth/jwt/:jwt", async function(req, res) {
      jwt = req.params.jwt;
      console.log(jwt)
@@ -137,14 +145,6 @@ app.get('/newuser/:user/:password/:token', async function(req, res){
         response.status="Unauthorized"
         res.status(401).send(response)
     }
-});
-
-app.get('/user/:user/:password',async function(req, res){
-     user = req.params.user;
-     password = req.params.password;
-     var status = await auth.isUser(user,password)
-     if(status==true){res.status(200).send(response(true))}
-     else{res.status(401).send(response(false))}
 });
 
 function response(status) {

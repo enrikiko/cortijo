@@ -77,7 +77,8 @@ app.get("/auth/:user/:password", async function(req, res) {
         else{res.status(401).send(response(false))}
     }
     catch(e){
-        res.status(e.status).send(response(false))
+        console.log(e)
+        res.status(401).send(response(false))
     }
 })
 
