@@ -51,12 +51,12 @@ export class BodyComponent implements OnInit {
   }
 
   reload2() {
-    reload3()=>{
+    function reload3(){
     console.log("reload3")
     setTimeout(function(){
       console.log("setTimeout")
       reload3()
-    },3000);
+    },3000)
     }
     console.log("reload")
     setTimeout(function(){
