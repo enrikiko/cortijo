@@ -18,7 +18,7 @@ export class BodyComponent implements OnInit {
   ngOnInit()
   {
     this.getDevicesList()
-    this.reload()
+    this.reload2()
   }
 
   changeStatus(device){
@@ -50,10 +50,9 @@ export class BodyComponent implements OnInit {
     this.lapse = lapse
   }
 
-  reload() {
+  reload2() {
     console.log("reload")
     setTimeout(function(){
-      this.reload
       console.log("reload")
       const host = (window.location.href.split("/")[2]).split(":")[0]
       let url = "http://" + host + ":8000/all/device"
