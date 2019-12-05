@@ -51,6 +51,7 @@ export class BodyComponent implements OnInit {
   }
 
   reload() {
+    console.log("reload")
     setTimeout(function(){
       this.reload
       console.log("reload")
