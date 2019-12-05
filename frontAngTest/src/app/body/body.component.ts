@@ -70,7 +70,7 @@ export class BodyComponent implements OnInit {
     setTimeout(function(){
       console.log("setTimeout")
       reload3()
-      getDevicesList
+      getDevicesList()
     },3000)
     }
     console.log("reload")
