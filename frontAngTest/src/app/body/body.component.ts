@@ -52,10 +52,10 @@ export class BodyComponent implements OnInit {
 
   reload2() {
     console.log("reload")
-    setTimeout(function(){
-
-      })
-    }, 1000)
+//     setTimeout(function(){
+//
+//       })
+//     }, 1000)
   }
 
     getDevicesList(){
