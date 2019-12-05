@@ -50,8 +50,9 @@ export class HeaderComponent implements OnInit {
     this.active="logOut"
   }
   getjwt(){
+  const jwt = window.localStorage.getItem('jwt')
   const host = (window.location.href.split("/")[2]).split(":")[0]
-  let url = "http://" + host + ":8000/jwt"
+  let url = "http://" + host + ":8000/jwt/" + jwt
   this.Http.get(url).subscribe( data =>
     {
       if(data!=null){
