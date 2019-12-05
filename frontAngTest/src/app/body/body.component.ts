@@ -51,7 +51,6 @@ export class BodyComponent implements OnInit {
 
 
     getDevicesList(){
-    console.log("getDevicesList")
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8000/all/device"
     this.http.get<any[]>(url).subscribe( data =>
