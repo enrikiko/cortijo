@@ -66,13 +66,9 @@ module.exports = {
      }
      var userList = await getUser(name)
      if (userList.length > 0) {
-       var user = userList[0]
-       var userPassword = user.password
-       if (userPassword == password){ return true }
-       else{ return false;}
-     }else {
-        return false
-     }
+       if (userList[0].password == password) { return true }
+       else { return false }
+     }else { return false }
    }
 
 
