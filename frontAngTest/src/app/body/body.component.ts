@@ -53,16 +53,7 @@ export class BodyComponent implements OnInit {
   reload2() {
     console.log("reload")
     setTimeout(function(){
-      console.log("reload")
-      const host = (window.location.href.split("/")[2]).split(":")[0]
-      let url = "http://" + host + ":8000/all/device"
-      this.http.get<any[]>(url).subscribe( data => {
-        if(data!=null){
-          this.devices=data;
-        }
-        else {
-          console.log('Database is empty')
-        }
+
       })
     }, 1000)
   }
