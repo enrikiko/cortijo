@@ -58,6 +58,7 @@ export class BodyComponent implements OnInit {
     {
       if(data!=null){
         this.devices=data;
+        delay(700)
         this.getDevicesList()
       }
       else {
