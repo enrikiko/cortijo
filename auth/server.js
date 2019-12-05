@@ -41,7 +41,7 @@ app.get("/favicon.ico", async function(req, res) {
 app.get("/auth/:user/:password", async function(req, res) {
      user = req.params.user;
      password = req.params.password;
-     console,log("isUser")
+     console.log("isUser")
      var status = await auth.isUser(user, password)
      if(status==true){
           generatedJWT = await jwt_auth.signAuthJwt(user)
