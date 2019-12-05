@@ -18,22 +18,6 @@ export class BodyComponent implements OnInit {
   ngOnInit()
   {
     this.getDevicesList()
-    this.reload2()
-  }
-
-  getDevicesList(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    // const host = "88.8.65.164"
-    let url = "http://" + host + ":8000/all/device"
-    this.http.get<any[]>(url).subscribe( data =>
-    {
-      if(data!=null){
-        this.devices=data;
-      }
-      else {
-      console.log('Database is empty')
-      }
-    })
   }
 
   changeStatus(device){
@@ -51,7 +35,7 @@ export class BodyComponent implements OnInit {
     {
       if(data!=null){
         let finishTime = new Date().getTime()
-        this.getDiference(startTime, finishTime)
+        this.getDifference(startTime, finishTime)
         this.getDevicesList()
       }
       else {
@@ -60,7 +44,7 @@ export class BodyComponent implements OnInit {
     })
   }
 
-  getDiference(startTime, finishTime){
+  getDifference(startTime, finishTime){
     let lapse = finishTime - startTime
     this.lapse = lapse
   }
@@ -71,6 +55,21 @@ export class BodyComponent implements OnInit {
             this.getDevicesList()
             this.reload2()
        }, 1000)
+  }
+
+    getDevicesList(){
+    console.log("getDevicesList")
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    let url = "http://" + host + ":8000/all/device"
+    this.http.get<any[]>(url).subscribe( data =>
+    {
+      if(data!=null){
+        this.devices=data;
+      }
+      else {
+      console.log('Database is empty')
+      }
+    })
   }
 
 }
