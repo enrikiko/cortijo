@@ -18,7 +18,7 @@ export class BodyComponent implements OnInit {
   ngOnInit()
   {
     this.getDevicesList()
-    this.reload2()
+    this.reloadPage()
   }
 
   changeStatus(device){
@@ -50,18 +50,33 @@ export class BodyComponent implements OnInit {
     this.lapse = lapse
   }
 
-  reload2() {
-    function reload3(){
+  reloadPage() {
+    function getDevicesList(){
+      console.log("getDevicesList")
+      const host = (window.location.href.split("/")[2]).split(":")[0]
+      let url = "http://" + host + ":8000/all/device"
+      this.http.get<any[]>(url).subscribe( data =>
+      {
+      if(data!=null){
+        this.devices=data;
+      }
+      else {
+      console.log('Database is empty')
+      }
+      })
+    }
+    function reloadPage(){
     console.log("reload3")
     setTimeout(function(){
       console.log("setTimeout")
       reload3()
+      getDevicesList
     },3000)
     }
     console.log("reload")
     setTimeout(function(){
       console.log("setTimeout")
-      reload3()
+      reloadPage()
     },3000);
   }
 
