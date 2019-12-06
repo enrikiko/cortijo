@@ -110,6 +110,7 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
  //JWT verification
  app.get("/jwt", async function(req, res) {
    const jwt = req.headers.authorization
+   console.log(jwt)
    try{
        user = await joker.getUserByJWT(jwt)
        console.log(user)
