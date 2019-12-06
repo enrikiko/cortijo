@@ -51,9 +51,13 @@ export class HeaderComponent implements OnInit {
   }
   getjwt(){
   const jwt = window.localStorage.getItem('jwt')
+  const headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
   const host = (window.location.href.split("/")[2]).split(":")[0]
   let url = "http://" + host + ":8000/jwt/" + jwt
-  this.Http.get(url).subscribe( data =>
+  this.Http.get(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
         this.jwt=data;
