@@ -9,7 +9,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
 const app = express();
 app.enable('trust proxy');
-app.use(express.bodyParser());
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 app.options('*', cors());
