@@ -79,8 +79,9 @@ module.exports={
        return await getResponse(url);
      },
      getUserByJWT: async (jwt) => {
-       const url = "http://192.168.1.50:8010/auth/jwt/"+jwt
-       async function getResponse(url) {
+       const url = "http://192.168.1.50:8010/auth/jwt"
+       const body = jwt
+       async function getResponse(url, body) {
          let response = await request.get(url);
          return response;
        }
