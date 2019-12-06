@@ -111,7 +111,7 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
  app.get("/jwt", async function(req, res) {
    const jwt = req.headers.authorization
    user = joker.getUserByJWT(jwt)
-   res.status(200).json({"jwt":jwt})
+   res.status(200).json({"jwt":user})
 //   if( requireJwt==false || jwt!=undefined ){next()}
 //   else{
 //     console.log("jwt is undefined")
