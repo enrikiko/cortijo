@@ -78,6 +78,14 @@ module.exports={
        }
        return await getResponse(url);
      },
+     getUserByJWT: async (jwt) => {
+       const url = "http://192.168.1.50:8010/auth/jwt/"+jwt
+       async function getResponse(url) {
+         let response = await request.get(url);
+         return response.jwt;
+       }
+       return await getResponse(url);
+     },
 
     // newLogRequest: (ip, request)=>{
     //   var time = new Date().getTime()
