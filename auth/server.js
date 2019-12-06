@@ -66,7 +66,7 @@ app.get("/auth/jwt/:jwt", async function(req, res) {
      payload = await jwt_auth.verifyJwt(jwt)
      var isUser = await auth.getUser(payload.user)
      if(!isUser[0]){
-       res.status(200).json("Invalid credencials")
+       res.status(200).json("Unauthorized")
      }
      else{
      res.status(200).json(payload.user)
