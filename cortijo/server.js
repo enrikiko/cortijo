@@ -117,7 +117,7 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
    }catch(e){
    }
        console.log(e)
-       res.status(200).json({"jwt":"ERROR"}
+       res.status(200).json({"jwt":"ERROR"})
    }
 
 //   if( requireJwt==false || jwt!=undefined ){next()}
