@@ -17,8 +17,7 @@ export class HeaderComponent implements OnInit {
   jwt : object={"jwt":"JWT"};
 
   constructor(private Http: HttpClient,
-              private Auth: AuthService,
-              private Headers: HttpHeaders) { }
+              private Auth: AuthService) { }
 
   ngOnInit() {
     this.getData()
@@ -52,7 +51,7 @@ export class HeaderComponent implements OnInit {
   }
   getjwt(){
   const jwt = window.localStorage.getItem('jwt')
-  const headers = new Headers({
+  const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
