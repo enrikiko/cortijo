@@ -269,7 +269,7 @@ app.get("/status/:device", async function(req, res) {
       await myDevice.checkDeviceByName(name)
       res.status(200).json(status)
     }catch (e) {
-      logs.log(name " doesn't response")
+      logs.log(name + " doesn't response")
       await myDevice.blockDeviceByName(name);
       res.status(404).json("error": e)
       }
