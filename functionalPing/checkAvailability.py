@@ -23,4 +23,4 @@ for device in devices:
     elif res.status_code == 404:
         # URL = "http://" + getURL() + ":8000/block/" + device['name']
         res = requests.get(url=URL)
-        #print(res.json())
+        print(res)
