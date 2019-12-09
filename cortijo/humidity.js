@@ -31,7 +31,7 @@ module.exports = {
   deleteAll: async () => { return myHumidity.deleteMany({}) },
 
   newHumidity: (humidity) => {
-    let newMesure = new myTemperature(
+    let newMesure = new myHumidity(
       {
         time: new Date().getTime(),
         humidity: humidity
