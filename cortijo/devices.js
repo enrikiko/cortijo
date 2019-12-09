@@ -128,6 +128,7 @@ module.exports = {
          result=result[0]
          result.check = false
          result.save()
+         logs.log(result)
        }
      });
     },
