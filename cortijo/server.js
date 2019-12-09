@@ -7,6 +7,7 @@ const watering = require('./watering');
 const joker = require('./joker');
 const logs = require('./logs');
 const myTemperature = require('./temperature');
+const myHumidity = require('./humidity');
 const requests = require('./requests');
 const history = require('./history');
 const ia = require('./ia');
@@ -181,6 +182,13 @@ app.get("/all/watering", async function(req, res) {
   const watering_list = await watering.getAllRequest()
   res.status(200).json(watering_list)
 })
+
+//Set temperature and humidity
+app.get("/set/humidity/:humidity", function(req, res) {
+  myHumidity.newHumidity(req.params.humidity)
+  res.status(200).send()
+})
+
 
 //Set temperature and humidity
 app.get("/set/:temperature/:humidity", function(req, res) {
