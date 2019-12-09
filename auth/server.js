@@ -11,6 +11,8 @@ const app = express();
 const fs = require('fs')
 app.enable('trust proxy');
 app.use(bodyParser.json());
+app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
+app.use(bodyParser.text({ type: 'text/html' }))
 app.use(cookieParser());
 app.use(cors());
 app.options('*', cors());
