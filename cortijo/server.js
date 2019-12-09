@@ -113,7 +113,7 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
    const jwt = req.headers.authorization
    console.log(jwt)
    try{
-       user = await joker.getUserByJWT(jwt)
+       var jwtUser = await joker.getUserByJWT(jwt)
        console.log(user)
        res.status(200).json({"jwt":user})
    }catch(e){
