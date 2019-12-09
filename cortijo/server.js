@@ -117,7 +117,7 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
        console.log(user)
        res.status(200).json({"jwt":user})
    }catch(e){
-       //console.log(e)
+       console.log(e)
        res.status(200).json({"jwt":"ERROR1"})
    }
 
