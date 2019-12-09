@@ -5,8 +5,7 @@ echo
 while [ 1 ]
   do
     date
-    sleep 1
     sh ping.sh
     python checkAvailability.py
-    sleep 2
+    sleep 300
   done
