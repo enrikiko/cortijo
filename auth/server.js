@@ -53,6 +53,7 @@ app.get("/auth/:user/:password", async function(req, res) {
      else if(status==false){
           res.status(401).json({"jwt": "Invalid credentials"})
      }
+
 })
 
 app.get('/user/:user/:password',async function(req, res){
