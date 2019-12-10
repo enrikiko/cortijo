@@ -69,6 +69,15 @@ module.exports = {
        if (userList[0].password == password) { return true }
        else { return false }
      }else { return false }
+   },
+
+   isValidUser: async(name) => {
+   async function getUser(userName){
+        return myAuth.find({user: userName})
+     }
+     var userList = await getUser(name)
+     if (userList.length > 0) { return true }
+     else { return false }
    }
 
 
