@@ -42,7 +42,7 @@ app.get("/*", function(req, res, next) {
   requests.newRequest(ip, fullUrl)
   next()
 })
-app.get("/*", function(req, res, next) {
+app.get("/*", async function(req, res, next) {
     const jwt = req.headers.authorization
     console.log(req)
    try{
