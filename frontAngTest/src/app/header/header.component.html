@@ -9,6 +9,11 @@
             <li class="nav-item" (click)="weather()">
               <a class="nav-link" [ngClass]="{'active': active=='weather'}" routerLink="weather">Weather</a>
             </li>
+
+            <li class="nav-item" (click)="humidity()">
+              <a class="nav-link" [ngClass]="{'active': active=='humidity'}" routerLink="humidity">Humidity</a>
+            </li>
+
             <li class="nav-item" (click)="catordog()">
               <a class="nav-link" [ngClass]="{'active': active=='catordog'}" routerLink="catordog">Cat or Dog</a>
             </li>
