@@ -23,7 +23,6 @@ var io = http;
 
 //Middleware
 app.get("/*", function(req, res, next) {
-  console.log(res)
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
@@ -72,7 +71,7 @@ app.get("/jwt/:jwt", async function(req, res) {
         isUser = await auth.isUser(payload.user)
         console.log(payload.user)
         if(isUser){
-            res.status(200).json(payload.user)
+            res.status(200).send(payload.user)
         }
         else{
             console.log("Unauthorized")
