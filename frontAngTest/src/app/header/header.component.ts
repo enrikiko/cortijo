@@ -62,8 +62,8 @@ export class HeaderComponent implements OnInit {
   this.Http.get<any>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
-        this.jwt=data;
-        console.log(data)
+        this.jwt=data.text;
+        console.log(data.text)
       }
       else {
       console.log('Database is empty')
