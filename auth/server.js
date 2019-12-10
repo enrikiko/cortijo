@@ -65,6 +65,8 @@ app.get('/user/:user/:password',async function(req, res){
 
 app.get("/auth/jwt/:jwt", async function(req, res) {
      jwt = req.params.jwt;
+     console.log("/auth/jwt/:jwt")
+     console.log(jwt)
      try{
         payload = await jwt_auth.verifyJwt(jwt)
         console.log(payload)
@@ -74,11 +76,12 @@ app.get("/auth/jwt/:jwt", async function(req, res) {
             res.status(200).json(payload.user)
         }
         else{
+            console.log("Unauthorized")
             res.status(200).json("Unauthorized")
         }
      }catch(e){
         console.log(e)
-        res.status(200).json("ERROR2")
+        res.status(200).send("ERROR2")
      }
 })
 
