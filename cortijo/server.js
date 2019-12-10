@@ -167,6 +167,16 @@ app.get("/all/temperature",async function(req, res) {
    res.status(200).json(temperature)
 })
 
+//Get humidity history
+app.get("/all/humidity",async function(req, res) {
+   // try {
+   var temperature = await myHumidity.getAll()
+   // } catch (e) {
+   //   logs.log(e)
+   // }
+   res.status(200).json(temperature)
+})
+
 app.get("/all/log",async function(req, res) {
   // try {
   var logHistory = await history.history()

@@ -16,6 +16,7 @@ import { UsersComponent } from './users/users.component';
 import { PhotosComponent } from './photos/photos.component';
 import { PhotoComponent } from './photo/photo.component';
 import { RequestsComponent } from './requests/requests.component';
+import { HumidityComponent } from './humidity/humidity.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RequestsComponent } from './requests/requests.component';
     UsersComponent,
     PhotosComponent,
     PhotoComponent,
-    RequestsComponent
+    RequestsComponent,
+    HumidityComponent
   ],
   imports: [
     BrowserModule,
