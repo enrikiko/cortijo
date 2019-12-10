@@ -43,15 +43,7 @@ app.get("/*", function(req, res, next) {
   next()
 })
 app.get("/*", async function(req, res, next) {
-    const jwt = req.headers.authorization
-    console.log(req)
-   try{
-       user = await joker.getUserByJWT(jwt)
-       if(user=="miso"){next()}
-   }catch(e){
-       console.log(e)
-       res.status(200).json({"jwt":"ERROR1"})
-   }
+
 })
 app.post("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
