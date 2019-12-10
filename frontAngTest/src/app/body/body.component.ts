@@ -21,6 +21,11 @@ export class BodyComponent implements OnInit {
   }
 
   changeStatus(device){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
     let newStatus=null
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = null
@@ -31,7 +36,7 @@ export class BodyComponent implements OnInit {
       url = "http://" + host + ":8000/update/" + device.name +"/true/"+ this.lapse_time*60000
     }
     let startTime = new Date().getTime()
-    this.http.get(url).subscribe( data =>
+    this.http.get(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
         let finishTime = new Date().getTime()
