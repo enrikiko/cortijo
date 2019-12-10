@@ -287,6 +287,22 @@ app.get("/status/:device", async function(req, res) {
   // }catch(response){console.log(respose)}
 })
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////                     Secure request JWT needed                 /////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+app.get("/*", function(req, res, next) {
+    const jwt = req.headers.authorization
+    console.log(req)
+    try{
+       user = await joker.getUserByJWT(jwt)
+       if(user!="miso"){next()}
+    }catch(e){
+       console.log(e)
+       res.status(404).json({"jwt":"Error"})
+    }
+})
+
 //update device
 var isUpdating={}
 app.get("/update/:name/false", async function(req, res){
@@ -362,12 +378,12 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
 })
 
 //Handel all bad requests
-app.get('/*', function(req, res){
-  res.sendFile(__dirname + '/info.html');
-});
-app.post('/*', function(req, res){
-  res.sendFile(__dirname + '/info.html');
-});
+//app.get('/*', function(req, res){
+//  res.sendFile(__dirname + '/info.html');
+//});
+//app.post('/*', function(req, res){
+//  res.sendFile(__dirname + '/info.html');
+//});
 
 // activate the listenner
 http.listen(3000, function () {
