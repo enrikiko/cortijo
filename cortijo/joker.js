@@ -72,6 +72,7 @@ module.exports={
        }
        return await getResponse(url);
      },
+
      verifyJwt: async (jwt) => {
        const url = "http://192.168.1.50:8010/auth/jwt/"+jwt
        async function getResponse(url) {
