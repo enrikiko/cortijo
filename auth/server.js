@@ -70,6 +70,7 @@ app.get("/jwt/:jwt", async function(req, res) {
         payload = await jwt_auth.verifyJwt(jwt)
         isUser = await auth.isUser(payload.user)
         console.log(payload.user)
+        console.log(isUser)
         if(isUser){
             res.status(200).send(payload.user)
         }
