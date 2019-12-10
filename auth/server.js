@@ -23,7 +23,7 @@ var io = http;
 
 //Middleware
 app.get("/*", function(req, res, next) {
-  //console.log(req)
+  console.log(res)
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
@@ -65,9 +65,8 @@ app.get('/user/:user/:password',async function(req, res){
      else{res.status(401).send(response(false))}
 });
 
-app.get("/auth/jwt/:jwt", async function(req, res) {
+app.get("/jwt/:jwt", async function(req, res) {
      jwt = req.params.jwt;
-     console.log("/auth/jwt/:jwt")
      console.log(jwt)
      try{
         payload = await jwt_auth.verifyJwt(jwt)
