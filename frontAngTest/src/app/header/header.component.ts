@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
     })
   const host = (window.location.href.split("/")[2]).split(":")[0]
   let url = "http://" + host + ":8000/jwt"
-  this.Http.get(url, { headers: headers }).subscribe( data =>
+  this.Http.get(url).subscribe( data =>
     {
       if(data!=null){
         this.jwt=data;
