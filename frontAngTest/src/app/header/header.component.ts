@@ -52,6 +52,7 @@ export class HeaderComponent implements OnInit {
   }
   getjwt(){
   const jwt = window.localStorage.getItem('jwt')
+  console.log(jwt)
   const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': jwt
