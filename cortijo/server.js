@@ -42,9 +42,7 @@ app.get("/*", function(req, res, next) {
   requests.newRequest(ip, fullUrl)
   next()
 })
-app.get("/*", async function(req, res, next) {
 
-})
 app.post("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
