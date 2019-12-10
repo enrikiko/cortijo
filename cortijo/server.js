@@ -291,7 +291,7 @@ app.get("/status/:device", async function(req, res) {
 /////////////////////////////////                     Secure request JWT needed                 /////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-app.get("/*", function(req, res, next) {
+app.get("/*", async function(req, res, next) {
     const jwt = req.headers.authorization
     console.log(req)
     try{
