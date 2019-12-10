@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.getData()
+    this.getJwt()
   }
 
   getData(){
@@ -50,7 +51,7 @@ export class HeaderComponent implements OnInit {
     this.Auth.logOut()
     this.active="logOut"
   }
-  getjwt(){
+  getJwt(){
   const jwt = window.localStorage.getItem('jwt')
   const headers = new HttpHeaders({
       'Content-Type': 'application/json',
