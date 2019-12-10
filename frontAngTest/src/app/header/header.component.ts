@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
 //  temperature: string="";
 //  humidity: string="";
   data : any[]=null;
-  jwt : string="JWT";
+  jwt : string=JWT;
 
   constructor(private Http: HttpClient,
               private Auth: AuthService) { }
@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
     })
   const host = (window.location.href.split("/")[2]).split(":")[0]
   let url = "http://" + host + ":8000/jwt"
-  this.Http.get(url).subscribe( data =>
+  this.Http.get<any>(url).subscribe( data =>
     {
       if(data!=null){
         this.jwt=data;
