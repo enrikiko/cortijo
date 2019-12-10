@@ -87,6 +87,7 @@ module.exports={
         //const body = {"jwt":jwt}
         async function getResponse(url) {
             let response = await request.get(url);
+            console.log(response)
             return response;
         }
        return await getResponse(url);
