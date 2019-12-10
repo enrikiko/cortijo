@@ -1,4 +1,6 @@
 const request = require('superagent');
+const req = require('request');
+
 const myTemperature = require('./temperature');
 const watering = require('./watering');
 const myDevice = require('./devices');
@@ -80,10 +82,10 @@ module.exports={
      },
 
      getUserByJWT: async (jwt) => {
-        const url = "http://192.168.1.50:8010/auth/jwt"
-        const body = {"jwt":jwt}
+        const url = "http://192.168.1.50:8010/auth/jwt/"+jwt
+        //const body = {"jwt":jwt}
         async function getResponse(url) {
-            let response = await request.get(url, body);
+            let response = await request.get(url);
             return response;
         }
        return await getResponse(url);
