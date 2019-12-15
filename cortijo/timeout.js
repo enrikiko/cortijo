@@ -40,7 +40,14 @@ async function check(){
     var devicesList = await myDevice.getDevice()
     for (var index in devicesList){
         logs.log("Checking " + devicesList[index].name + "...")
-        await myDevice.checkDeviceByName(devicesList[index].name)
+        try{
+            var status = await joker.getDeviceStatus(name)
+            await myDevice.checkDeviceByName(devicesList[index].name)
+        }catch{
+            await myDevice.blockDeviceByName(name);
+        }
+
+
     }
 }
 //
