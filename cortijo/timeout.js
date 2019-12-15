@@ -36,7 +36,9 @@ async function getSensor(){
         logs.log(name)
         try{
             data = await sensors.getData(name)
-            logs.log(data)
+            logs.log(data.name)
+            logs.log(data.type)
+            logs.log(data.content)
         }catch(e){
             logs.log(e)
         }
