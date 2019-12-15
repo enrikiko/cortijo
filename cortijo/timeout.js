@@ -8,7 +8,10 @@ const yaml = require('js-yaml')
 const config_file = fs.readFileSync('config.yaml');
 const config = yaml.safeLoad(config_file);
 const TIMEOUT = config.timeout
-
-setTimeout(function(){
-        logs.log("Time out executing every "+TIMEOUT+" milliseconds")
-    }, TIMEOUT);
+function executeTimeout(){
+    setTimeout(function(){
+            logs.log("Time out executing every "+TIMEOUT+" milliseconds")
+            executeTimeout()
+        }, TIMEOUT);
+}
+executeTimeout()
