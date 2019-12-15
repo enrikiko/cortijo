@@ -38,10 +38,8 @@ async function getSensor(){
 async function check(){
     logs.log("check...")
     var devicesList = await myDevice.getDevice()
-    logs.log(devicesList)
-    logs.log(typeof(devicesList))
     for (var index in devicesList){
-        logs.log(devicesList[index].name)
+        logs.log("Checking " + devicesList[index].name + "...")
         await myDevice.checkDeviceByName(devicesList[index].name)
     }
 }
