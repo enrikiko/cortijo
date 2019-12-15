@@ -17,7 +17,7 @@ function executeTimeout(){
         }, TIMEOUT);
 }
 //
-function async getSensor(){
+async function getSensor(){
     var sensorList = await sensors.getAllSensor()
     for (var sensor in sensorList){
         log.log(sensor)
