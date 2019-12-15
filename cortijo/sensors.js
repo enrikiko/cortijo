@@ -149,8 +149,13 @@ module.exports = {
     getData: async (name) => {
         async function data() {
             ip = await getIpByName(name)
-            let response = await request.get("http://"+ip+"/data").timeout({response: GET_DATA_TIMEOUT});
-            return response["body"];
+            try{
+                let response = await request.get("http://"+ip+"/data").timeout({response: GET_DATA_TIMEOUT});
+                return response["body"];
+            }catch(e){
+                return e
+            }
+
         }
         return await data();
     },
