@@ -128,7 +128,7 @@ module.exports = {
          result.save()
        }
      });
-    }
+    },
 //
     getData: async (name) => {
         async function data() {
