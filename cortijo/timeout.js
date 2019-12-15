@@ -39,11 +39,12 @@ async function check(){
     logs.log("check...")
     var devicesList = await myDevice.getDevice()
     logs.log(devicesList)
+    logs.log(typeof(devicesList))
     for (var device in devicesList){
         logs.log(device.name)
         //await myDevice.checkDeviceByName(device.name)
     }
 }
 //
-executeTimeoutSensor()
+//executeTimeoutSensor()
 executeTimeoutCheck()
