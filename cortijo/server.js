@@ -10,6 +10,7 @@ const myTemperature = require('./temperature');
 const myHumidity = require('./humidity');
 const requests = require('./requests');
 const sensors = require('./sensors');
+const timeout = require('./timeout');
 const history = require('./history');
 const ia = require('./ia');
 const cors = require('cors');
