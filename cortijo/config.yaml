@@ -2,3 +2,4 @@
   log: "debug"
   timeout_check: 3000
   timeout_sensor: 3600000
+  refresh_delay: 1000

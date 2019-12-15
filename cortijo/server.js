@@ -19,6 +19,7 @@ const bodyParser = require('body-parser');
 const auth = require('basic-auth');
 const app = express();
 const fs = require('fs')
+const yaml = require('js-yaml')
 const cookieParser = require('cookie-parser');
 app.enable('trust proxy');
 app.use(bodyParser.json());
@@ -34,6 +35,9 @@ var upload = multer({ dest: '/tmp/'});
 var temperature;
 var humidity;
 //const requireJwt = false
+const config_file = fs.readFileSync('config.yaml');
+const config = yaml.safeLoad(config_file);
+const REFRESH_DELAY = config.refresh_delay
 
 
 app.get("/*", function(req, res, next) {
@@ -173,7 +177,7 @@ app.get("/all/ip", async function(req, res) {
 //Get all device
 app.get("/all/device", async function(req, res) {
   //try{
-    await delay(700)
+    await delay(REFRESH_DELAY)
     var response = await myDevice.getDevice();
     res.status(200).json(response)
   //}catch(response){console.log(respose)}

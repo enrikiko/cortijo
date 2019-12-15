@@ -46,6 +46,7 @@ async function check(){
             var status = await joker.getDeviceStatus(name)
             await myDevice.checkDeviceByName(name)
         }catch(e){
+            logs.log(e)
             await myDevice.blockDeviceByName(name);
         }
 
