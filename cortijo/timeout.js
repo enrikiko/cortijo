@@ -30,8 +30,8 @@ async function getSensor(){
     logs.log("getSensor...")
     var sensorList = await sensors.getAllSensor()
     logs.log(sensorList)
-    for (var sensor in sensorList){
-        logs.log(sensor.name)
+    for (var index in sensorList){
+        logs.log(sensorList[index].name)
     }
 }
 //
@@ -42,9 +42,9 @@ async function check(){
     logs.log(typeof(devicesList))
     for (var index in devicesList){
         logs.log(devicesList[index].name)
-        //await myDevice.checkDeviceByName(device.name)
+        await myDevice.checkDeviceByName(devicesList[index].name)
     }
 }
 //
-//executeTimeoutSensor()
+executeTimeoutSensor()
 executeTimeoutCheck()
