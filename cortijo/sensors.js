@@ -50,7 +50,7 @@ async function getIpByName(sensorName){
      }else {
        return null
      }
-   },
+   }
 //
 module.exports = {
 //
