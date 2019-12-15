@@ -1,5 +1,6 @@
 const sensors = require('./sensors');
 const myDevice = require('./devices');
+const joker = require('./joker');
 const logs = require('./logs');
 const request = require('superagent');
 const req = require('request');
