@@ -1,10 +1,16 @@
 const request = require('superagent');
 const req = require('request');
-
+const fs = require('fs');
+const yaml = require('js-yaml')
 const myTemperature = require('./temperature');
 const watering = require('./watering');
 const myDevice = require('./devices');
 const logs = require('./logs');
+// Get config
+const config_file = fs.readFileSync('config.yaml');
+const config = yaml.safeLoad(config_file);
+SWITCH_STATUS_TIMEOUT = config.switch_status_timeout
+GET_DEVICE_STATUS_TIMEOUT = config.get_device_status_timeout
 
 module.exports={
 
@@ -12,7 +18,7 @@ module.exports={
        async function getResponse() {
         try{
             ip = await myDevice.getIpByName(name)
-            let response = await request.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: 10000});
+            let response = await request.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: SWITCH_STATUS_TIMEOUT});
             if(response.statusCode==200){
                 id = await myDevice.getIdByName(name)
                 await myDevice.updateDevice(id, status)
@@ -53,7 +59,7 @@ module.exports={
      getDeviceStatus: async (name) => {
         async function status() {
             ip= await myDevice.getIpByName(name)
-            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: 10000});
+            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: GET_DEVICE_STATUS_TIMEOUT});
             return response["body"];
         }
      return await status();
