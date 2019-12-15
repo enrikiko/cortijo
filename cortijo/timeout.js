@@ -20,6 +20,7 @@ function executeTimeout(){
 async function getSensor(){
     logs.log("getSensor fun")
     var sensorList = await sensors.getAllSensor()
+    logs.log(sensorList)
     for (var sensor in sensorList){
         logs.log(sensor)
     }
