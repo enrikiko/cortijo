@@ -19,31 +19,11 @@ app.get("/*", function(req, res, next) {
   next()
   })
 
-// app.get('/status/:status', function(req, res){
-//   info={}
-//   info.status=req.params.status
-//   res.status(200).json(info)
-// });
-
-app.get('/'+process.env.mock_name+'/status/true', async function(req, res){
-    await delay(300);
-    info={}
-    info.status=true
-    console.log(info);
-    status=true;
-res.status(200).json(info)
-});
-app.get('/'+process.env.mock_name+'/status/false', async function(req, res){
-    await delay(300);
-    info={}
-    info.status=false
-    console.log(info);
-    status=false;
-res.status(200).json(info)
-});
-app.get('/'+process.env.mock_name+'/status', function(req, res){
+app.get('/data', function(req, res){
   info={}
-  info.status=status
+  info.name=process.env.mock_name
+  info.data.type="Type of data"
+  info.data.content="Is is the data"
   console.log(info);
   res.status(200).json(info)
 });
