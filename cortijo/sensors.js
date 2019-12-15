@@ -36,6 +36,22 @@ const sensorSchema = new mongoose.Schema({
 //
 let mySensor = mongoose.model('Sensors', sensorSchema);
 //
+async function getIpByName(sensorName){
+     async function getList(name){
+        return mySensor.find({name: name})
+     }
+     var list = await getList(sensorName)
+     if (list.length > 1) {
+       return "The Database is corrupted";
+     }
+     else if (list.length > 0) {
+       var sensor = list[0]
+       return sensor.ip
+     }else {
+       return null
+     }
+   },
+//
 module.exports = {
 //
    getAllSensor: () => { return mySensor.find() },
@@ -72,7 +88,7 @@ module.exports = {
      }
    },
 //
-   getIpByName: async function getIpByName(sensorName) {
+   getIpByName: async (sensorName) {
      async function getList(name){
         return mySensor.find({name: name})
      }
