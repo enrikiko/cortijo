@@ -1,4 +1,4 @@
 ---
   log: "debug"
-  timeout_check: 2000
-  timeout_sensor: 2500
+  timeout_check: 1000
+  timeout_sensor: 3600
