@@ -72,7 +72,7 @@ module.exports = {
      }
    },
 //
-   getIpByName: async getIpByName (sensorName) {
+   getIpByName: async function getIpByName(sensorName) {
      async function getList(name){
         return mySensor.find({name: name})
      }
