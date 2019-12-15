@@ -5,3 +5,4 @@
   refresh_delay: 1000
   get_device_status_timeout: 10000
   switch_status_timeout: 10000
+  get_data_timeout: 10000

@@ -32,7 +32,10 @@ async function getSensor(){
     var sensorList = await sensors.getAllSensor()
     logs.log(sensorList)
     for (var index in sensorList){
-        logs.log(sensorList[index].name)
+        var name = sensorList[index].name
+        logs.log(name)
+        data = await getData(name)
+        logs.log(data)
     }
 }
 //

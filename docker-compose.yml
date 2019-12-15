@@ -73,11 +73,11 @@ services:
     restart: always
     build: ./sensorMock/.
     environment:
-      - mock_name=sensorMock2
+      - mock_name=sensorMock
       - mock_port=8110
       - local_ip=192.168.1.50
     ports:
-      - "8110:3000"
+      - "8105:3000"
     networks:
       - network
   cortijo:

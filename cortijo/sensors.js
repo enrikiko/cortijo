@@ -1,15 +1,22 @@
-const mongoose = require('mongoose');
-const logs = require('./logs');
-let connString = 'mongodb://192.168.1.50:27017/cortijo';
-const db = mongoose.connection;
-mongoose.connect(connString, { useNewUrlParser: true });
+const mongoose = require('mongoose')
+const logs = require('./logs')
+const fs = require('fs')
+const yaml = require('js-yaml')
+const request = require('superagent')
+let connString = 'mongodb://192.168.1.50:27017/cortijo'
+const db = mongoose.connection
+mongoose.connect(connString, { useNewUrlParser: true })
+// Get config
+const config_file = fs.readFileSync('config.yaml')
+const config = yaml.safeLoad(config_file)
+GET_DATA_TIMEOUT = config.get_data_timeout
 //
 db.on('error',function(){
-logs.log("Error to connect to MongoDB Services");
+logs.log("Error to connect to MongoDB Services")
 });
 //
 db.once('open', function() {
-logs.log("Connecting a MongoDB Services");
+logs.log("Connecting a MongoDB Services")
 });
 //
 const sensorSchema = new mongoose.Schema({
@@ -65,7 +72,7 @@ module.exports = {
      }
    },
 //
-   getIpByName: async (sensorName) => {
+   getIpByName: async getIpByName (sensorName) {
      async function getList(name){
         return mySensor.find({name: name})
      }
@@ -123,4 +130,12 @@ module.exports = {
      });
     }
 //
+    getData: async (name) => {
+        async function data() {
+            ip = await getIpByName(name)
+            let response = await request.get("http://"+ip+"/data").timeout({response: GET_DATA_TIMEOUT});
+            return response["body"];
+        }
+        return await data();
+    },
 }
