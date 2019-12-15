@@ -69,11 +69,11 @@ services:
     networks:
       - network
   sensor1:
-    container_name: sensor1
+    container_name: sensorMock
     restart: always
-    build: ./deviceMock/.
+    build: ./sensorMock/.
     environment:
-      - mock_name=sensor1
+      - mock_name=sensorMock
       - mock_port=8110
       - local_ip=192.168.1.50
     ports:
