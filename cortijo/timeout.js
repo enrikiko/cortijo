@@ -40,8 +40,8 @@ async function check(){
     var devicesList = await myDevice.getDevice()
     logs.log(devicesList)
     logs.log(typeof(devicesList))
-    for (var device in devicesList){
-        logs.log(device.name)
+    for (var index in devicesList){
+        logs.log(devicesList[index].name)
         //await myDevice.checkDeviceByName(device.name)
     }
 }
