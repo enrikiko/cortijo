@@ -8,10 +8,20 @@ const yaml = require('js-yaml')
 const config_file = fs.readFileSync('config.yaml');
 const config = yaml.safeLoad(config_file);
 const TIMEOUT = config.timeout
+//
 function executeTimeout(){
     setTimeout(function(){
-            logs.log("Time out executing every "+TIMEOUT+" milliseconds")
             executeTimeout()
+            logs.log("Time out executing every " + TIMEOUT + " milliseconds")
+            getSensor()
         }, TIMEOUT);
 }
+//
+function async getSensor(){
+    var sensorList = await sensors.getAllSensor()
+    for (var sensor in sensorList){
+        log.log(sensor)
+    }
+}
+//
 executeTimeout()

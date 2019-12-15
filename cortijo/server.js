@@ -9,7 +9,7 @@ const logs = require('./logs');
 const myTemperature = require('./temperature');
 const myHumidity = require('./humidity');
 const requests = require('./requests');
-const sensors = require('./sensors');
+const mySensor = require('./sensors');
 const timeout = require('./timeout');
 const history = require('./history');
 const ia = require('./ia');
@@ -106,6 +106,26 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
              res.status(200).json(name+' create successfully')
           }else {
              var lastIp = await myDevice.updateDeviceIp(id, ip)
+             res.status(200).json({"Previous Ip": lastIp, "New Ip": ip})
+          }
+     }
+})
+
+//New device
+app.get("/newSensor/:name/:status/:ip", async (req, res) => {
+     var name = req.params.name
+     var ip = req.params.ip
+     var status = joker.getStatus(req.params.status)
+     var id = await mySensor.getIdByName(name)
+     if(status===null){
+            res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
+       }else{
+          if (!id) {
+             var response = await mySensor.newDevice(name, status, ip)
+             logs.log(name+' have been created successfully');
+             res.status(200).json(name+' create successfully')
+          }else {
+             var lastIp = await mySensor.updateDeviceIp(id, ip)
              res.status(200).json({"Previous Ip": lastIp, "New Ip": ip})
           }
      }
