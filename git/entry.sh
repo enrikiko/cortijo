@@ -56,7 +56,7 @@ do
           do
             pwd
             ls -la
-            ./sh commit.sh
+            ./commit.sh
           done
      fi
 
