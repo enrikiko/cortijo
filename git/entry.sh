@@ -4,7 +4,7 @@ echo "Pull changes from repository"
 pushd ./Java
 git pull
 popd
-while [ 1 ]
+while true
 do
      date
      day=$(date > file | cut -f1 -d " " file)
@@ -14,8 +14,8 @@ do
      then
           for i in {1..3}
           do
-            pwd
-            ls -la
+            #pwd
+            #ls -la
             ./commit.sh
           done
      fi
@@ -24,8 +24,8 @@ do
      then
           for i in {1..6}
           do
-            pwd
-            ls -la
+            #pwd
+            #ls -la
             ./commit.sh
           done
      fi
@@ -34,8 +34,8 @@ do
      then
           for i in {1..9}
           do
-            pwd
-            ls -la
+            #pwd
+            #ls -la
             ./commit.sh
           done
      fi
@@ -44,8 +44,8 @@ do
      then
           for i in {1..12}
           do
-            pwd
-            ls -la
+            #pwd
+            #ls -la
             ./commit.sh
           done
      fi
@@ -54,8 +54,8 @@ do
      then
           for i in {1..15}
           do
-            pwd
-            ls -la
+            #pwd
+            #ls -la
             ./commit.sh
           done
      fi
@@ -64,8 +64,8 @@ do
      then
           for i in {1..18}
           do
-            pwd
-            ls -la
+            #pwd
+            #ls -la
             ./commit.sh
           done
      fi
@@ -74,8 +74,8 @@ do
      then
           for i in {1..21}
           do
-            pwd
-            ls -la
+            #pwd
+            #ls -la
             ./commit.sh
           done
      fi

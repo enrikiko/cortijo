@@ -10,6 +10,9 @@ export class PhotosComponent implements OnInit {
 
   cameras: any[]=null;
   dates: any[]=null;
+  years: any[]=null;
+  months: any[]=null;
+  days: any[]=null;
   folders: any[]=null;
   camera=null;
   date=null;
@@ -21,26 +24,45 @@ export class PhotosComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.getcamera()
+    this.getCamera()
   }
 
-  getphoto(key){
+  getCamera(){
+    this.folders = null
+    this.dates = null
+    this.years = null
+    this.months = null
+    this.days = null
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    const photo = this.dataMap[key]
-    let url = "http://" + host + ":8400/camera/" + this.camera + "/" + this.date + "/" + photo
-    this.url=url;
+    let url = "http://" + host + ":8400/camera"
+    this.http.get<any[]>(url).subscribe( data =>
+      {
+        if(data!=null){
+          this.cameras=data;
+        }
+        else {
+          console.log('No dates') //TODO alert there is a problem
+        }
+      })
   }
 
-  getdate(key){
-    const date = this.dataCameraMap[key]
-    this.date=date
-    this.certain=true
+  getDatesMonth(){}
+
+  getDatesDay(){}
+
+  getPhotos(){}
+
+  getPhoto(){}
+
+  getDatesYear(key){
+    this.date = this.dataCameraMap[key]
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8400/camera/" + this.camera + "/" + date
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
         this.folders=this.formatList(data);
+        this.years=this.formatYearList(this.folders)
       }
     })
   }
@@ -64,8 +86,48 @@ export class PhotosComponent implements OnInit {
     return finalData
   }
 
+  formatCameraDate(data){
+    let finalData
+    finalData = data.split("")
+    finalData = finalData[6]+finalData[7]+"/"+finalData[4]+finalData[5]+"/"+finalData[0]+finalData[1]+finalData[2]+finalData[3]
+    return finalData
+  }
 
-  getdates(camera){
+   formatYearList(key){
+    key=["15/12/2019","15/12/2019","15/12/2020"]
+    yearList=[]
+    key.forEach(function(element){
+      year=element.split("/")[2]
+      if( yearList.indexOf(year) === -1 ){
+        yearList.push(year)}
+      })
+    this.years = yearList
+    }
+
+
+
+  getdate(key){
+    const date = this.dataCameraMap[key]
+    this.date = date
+    this.certain=true
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    let url = "http://" + host + ":8400/camera/" + this.camera + "/" + date
+    this.http.get<any[]>(url).subscribe( data =>
+    {
+      if(data!=null){
+        this.folders=this.formatList(data);
+      }
+    })
+  }
+
+  getPhoto(key){
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    const photo = this.dataMap[key]
+    let url = "http://" + host + ":8400/camera/" + this.camera + "/" + this.date + "/" + photo
+    this.url=url;
+  }
+
+  getDates(camera){
     this.camera = camera
     this.folders = null
     const host = (window.location.href.split("/")[2]).split(":")[0]
@@ -89,29 +151,6 @@ export class PhotosComponent implements OnInit {
       finalList.push(key)
     }
     return finalList
-  }
-
-  formatCameraDate(data){
-    let finalData
-    finalData = data.split("")
-    finalData = finalData[6]+finalData[7]+"/"+finalData[4]+finalData[5]+"/"+finalData[0]+finalData[1]+finalData[2]+finalData[3]
-    return finalData
-  }
-
-  getcamera(){
-  this.folders = null
-  this.dates = null
-  const host = (window.location.href.split("/")[2]).split(":")[0]
-  let url = "http://" + host + ":8400/camera"
-  this.http.get<any[]>(url).subscribe( data =>
-    {
-      if(data!=null){
-        this.cameras=data;
-      }
-      else {
-      console.log('No dates')
-      }
-    })
   }
 
 }

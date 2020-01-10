@@ -1,4 +1,4 @@
-#! /bin/#!/usr/bin/env bash
+#! /bin/bash
 text=$(python ./randomSentence.py)
 date >> ./Java/newFile.txt
 echo  $text >> ./Java/newFile.txt
