@@ -107,12 +107,12 @@ export class PhotosComponent implements OnInit {
 
    getPhotos(key){
       let file = this.year + this.month + key
+      this.date = file
       const host = (window.location.href.split("/")[2]).split(":")[0]
       let url = "http://" + host + ":8400/camera/" + this.camera + "/" + file
       this.http.get<any[]>(url).subscribe( data =>
       {
         if(data!=null){
-        console.log(data)
           this.photos=this.formatList(data);
         }
       })
@@ -170,30 +170,30 @@ export class PhotosComponent implements OnInit {
     this.url=url;
   }
 
-  getDates(camera){
-    this.camera = camera
-    this.folders = null
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8400/camera/" + this.camera
-    this.http.get<any[]>(url).subscribe( data =>
-    {
-      if(data!=null){
-        this.dates=this.formatCameraList(data);
-      }
-      else {
-      console.log('No dates')
-      }
-    })
-  }
-
-  formatCameraList(list){
-    let finalList = []
-    for(let index in list){
-      let key = this.formatCameraDate(list[index])
-      this.dataCameraMap[key] = list[index]
-      finalList.push(key)
-    }
-    return finalList
-  }
+//   getDates(camera){
+//     this.camera = camera
+//     this.folders = null
+//     const host = (window.location.href.split("/")[2]).split(":")[0]
+//     let url = "http://" + host + ":8400/camera/" + this.camera
+//     this.http.get<any[]>(url).subscribe( data =>
+//     {
+//       if(data!=null){
+//         this.dates=this.formatCameraList(data);
+//       }
+//       else {
+//       console.log('No dates')
+//       }
+//     })
+//   }
+//
+//   formatCameraList(list){
+//     let finalList = []
+//     for(let index in list){
+//       let key = this.formatCameraDate(list[index])
+//       this.dataCameraMap[key] = list[index]
+//       finalList.push(key)
+//     }
+//     return finalList
+//   }
 
 }
