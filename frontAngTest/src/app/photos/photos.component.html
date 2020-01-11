@@ -11,7 +11,7 @@
 
       <div class="container-fluid col-3 row">
         <div *ngFor="let year of years" class="col-12">
-          <div class="alert-success text-wrap" (click)="getDatesMonth(years)">
+          <div class="alert-success text-wrap" (click)="getDatesMonth(year)">
             {{ year }}
           </div>
         </div>
@@ -19,7 +19,7 @@
 
       <div class="container-fluid col-3 row">
         <div *ngFor="let month of months" class="col-12">
-          <div class="alert-success text-wrap" (click)="getDatesDay(months)">
+          <div class="alert-success text-wrap" (click)="getDatesDay(month)">
             {{ month }}
           </div>
         </div>

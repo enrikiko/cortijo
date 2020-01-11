@@ -76,6 +76,7 @@ export class PhotosComponent implements OnInit {
 
   getDatesMonth(key){
     let monthList=[]
+    console.log("getDatesMonth")
     this.data.forEach(function(element){
       if(element.includes(key)){
         let monthNumber = element.split("")
