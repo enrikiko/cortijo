@@ -111,6 +111,7 @@ export class PhotosComponent implements OnInit {
       this.http.get<any[]>(url).subscribe( data =>
       {
         if(data!=null){
+        console.log(data)
           this.photos=this.formatList(data);
         }
       })
@@ -119,6 +120,7 @@ export class PhotosComponent implements OnInit {
   formatList(list){
     let finalList = []
     for(let index in list){
+    console.log(list[index])
       let key = this.formatDate(list[index])
       this.dataMap[key] = list[index]
       finalList.push(key)
