@@ -107,7 +107,7 @@ export class PhotosComponent implements OnInit {
    getPhotos(key){
       let file = this.year + this.month + key
       const host = (window.location.href.split("/")[2]).split(":")[0]
-      let url = "http://" + host + ":8400/camera/" + this.camera + "/" + date
+      let url = "http://" + host + ":8400/camera/" + this.camera + "/" + file
       this.http.get<any[]>(url).subscribe( data =>
       {
         if(data!=null){
