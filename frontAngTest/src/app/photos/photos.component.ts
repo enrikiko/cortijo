@@ -52,6 +52,7 @@ export class PhotosComponent implements OnInit {
   }
 
   getDatesYear(key){
+    this.camera=key
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8400/camera/" + key
     this.http.get<any[]>(url).subscribe( data =>
