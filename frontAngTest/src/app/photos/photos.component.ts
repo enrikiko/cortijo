@@ -52,12 +52,9 @@ export class PhotosComponent implements OnInit {
 
   getPhotos(){}
 
-  getPhoto(){}
-
   getDatesYear(key){
-    this.date = this.dataCameraMap[key]
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8400/camera/" + this.camera + "/" + date
+    let url = "http://" + host + ":8400/camera/" + key
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -95,13 +92,13 @@ export class PhotosComponent implements OnInit {
 
    formatYearList(key){
     key=["15/12/2019","15/12/2019","15/12/2020"]
-    yearList=[]
+    let yearList=[]
     key.forEach(function(element){
-      year=element.split("/")[2]
+      let year = element.split("/")[2]
       if( yearList.indexOf(year) === -1 ){
         yearList.push(year)}
       })
-    this.years = yearList
+    return yearList
     }
 
 
