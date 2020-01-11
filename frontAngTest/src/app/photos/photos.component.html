@@ -1,9 +1,8 @@
-<div class="container-fluid">
-  <div class="container-fluid row">
-    <div class="container-fluid col-lg-6 row">
+<div class="container-fluid row photos">
+    <div class="container-fluid col-lg-6 col-12 row">
 
       <div class="container-fluid col-3 row">
-        <div *ngFor="let camera of cameras" class="col-lg-3 col-12">
+        <div *ngFor="let camera of cameras" class="col-12">
           <div class="alert-secondary text-wrap" (click)="getDatesYear(camera)">
             {{ camera }}
           </div>
@@ -11,7 +10,7 @@
       </div>
 
       <div class="container-fluid col-3 row">
-        <div *ngFor="let date of dates" class="col-lg-3 col-12">
+        <div *ngFor="let date of dates" class="col-12">
           <div class="alert-success text-wrap" (click)="getDatesMonth(years)">
             {{ years }}
           </div>
@@ -19,7 +18,7 @@
       </div>
 
       <div class="container-fluid col-3 row">
-        <div *ngFor="let date of dates" class="col-lg-3 col-12">
+        <div *ngFor="let date of dates" class="col-12">
           <div class="alert-success text-wrap" (click)="getDatesDay(months)">
             {{ months }}
           </div>
@@ -27,7 +26,7 @@
       </div>
 
       <div class="container-fluid col-3 row">
-        <div *ngFor="let date of dates" class="col-lg-3 col-12">
+        <div *ngFor="let date of dates" class="col-12">
           <div class="alert-success text-wrap" (click)="getPhotos(days)">
             {{ days }}
           </div>
@@ -48,5 +47,4 @@
         <img src="{{ url }}" class="img-fluid" alt="Responsive image">
     </div>
 
-  </div>
 </div>
