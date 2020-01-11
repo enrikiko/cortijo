@@ -58,12 +58,24 @@ export class PhotosComponent implements OnInit {
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        this.folders=this.formatList(data);
-        this.years=this.formatYearList(this.folders)
+        //this.folders=this.formatList(data);
+        this.years=this.formatYearList(data)
         console.log(this.years)
       }
     })
   }
+
+  formatYearList(key){
+    //key=["20170829","20180829","20170829"]
+    let yearList=[]
+    key.forEach(function(element){
+      let yearNumber = element.split("")
+      let year = yearNumber[0] + yearNumber[1] + yearNumber[2] + yearNumber[3]
+      if( yearList.indexOf(year) === -1 ){
+        yearList.push(year)}
+      })
+    return yearList
+    }
 
   formatList(list){
     let finalList = []
@@ -77,11 +89,8 @@ export class PhotosComponent implements OnInit {
 
   formatDate(data){
     let finalData
-    console.log(data)
     finalData = data.split(".")[0]
-    console.log(finalData)
     finalData = finalData.split("A")[1]
-    console.log(finalData)
     finalData = finalData.split("")
     finalData = finalData[6]+finalData[7]+":"+finalData[8]+finalData[9]+":"+finalData[10]+finalData[11]
     return finalData
@@ -94,17 +103,7 @@ export class PhotosComponent implements OnInit {
     return finalData
   }
 
-   formatYearList(key){
-    key=["15/12/2019","15/12/2019","15/12/2020"]
-    let yearList=[]
-    key.forEach(function(element){
-      let year = element.split("/")[2]
-      if( yearList.indexOf(year) === -1 ){
-        yearList.push(year)}
-      })
-      console.log(yearList)
-    return yearList
-    }
+
 
 
 
