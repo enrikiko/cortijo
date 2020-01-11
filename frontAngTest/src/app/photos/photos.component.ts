@@ -76,11 +76,8 @@ export class PhotosComponent implements OnInit {
 
   getDatesMonth(key){
     let monthList=[]
-    console.log("getDatesMonth")
     this.data.forEach(function(element){
-      console.log(element)
       if(element.includes(key)){
-        console.log(element)
         let monthNumber = element.split("")
         let month = monthNumber[4] + monthNumber[5]
         if( monthList.indexOf(month) === -1 ){
@@ -89,6 +86,7 @@ export class PhotosComponent implements OnInit {
         }
       }
     })
+    return monthList
   }
 
   formatList(list){
