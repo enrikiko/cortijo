@@ -15,7 +15,11 @@ export class PhotosComponent implements OnInit {
   months: any[]=null;
   days: any[]=null;
   folders: any[]=null;
+  photos: any[]=null;
   camera=null;
+  year=null;
+  month=null;
+  day=null;
   date=null;
   url=null;
   certain=false;
@@ -47,8 +51,6 @@ export class PhotosComponent implements OnInit {
       })
   }
 
-  getPhotos(){}
-
   getDatesYear(key){
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8400/camera/" + key
@@ -73,6 +75,7 @@ export class PhotosComponent implements OnInit {
     }
 
   getDatesMonth(key){
+    this.year=key
     let monthList=[]
     this.data.forEach(function(element){
       if(element.includes(key)){
@@ -87,7 +90,8 @@ export class PhotosComponent implements OnInit {
   }
 
    getDatesDay(key){
-     let dayList=[]
+      this.month=key
+      let dayList=[]
       this.data.forEach(function(element){
         if(element.includes(key)){
           let dayNumber = element.split("")
@@ -98,7 +102,19 @@ export class PhotosComponent implements OnInit {
         }
       })
       this.days = dayList
-    }
+   }
+
+   getPhotos(key){
+      let file = this.year + this.month + key
+      const host = (window.location.href.split("/")[2]).split(":")[0]
+      let url = "http://" + host + ":8400/camera/" + this.camera + "/" + date
+      this.http.get<any[]>(url).subscribe( data =>
+      {
+        if(data!=null){
+          this.photos=this.formatList(data);
+        }
+      })
+   }
 
   formatList(list){
     let finalList = []
