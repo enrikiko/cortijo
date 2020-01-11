@@ -58,7 +58,6 @@ export class PhotosComponent implements OnInit {
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        console.log(data)
         this.folders=this.formatList(data);
         this.years=this.formatYearList(this.folders)
         console.log(this.years)
@@ -78,8 +77,11 @@ export class PhotosComponent implements OnInit {
 
   formatDate(data){
     let finalData
+    console.log(data)
     finalData = data.split(".")[0]
+    console.log(finalData)
     finalData = finalData.split("A")[1]
+    console.log(finalData)
     finalData = finalData.split("")
     finalData = finalData[6]+finalData[7]+":"+finalData[8]+finalData[9]+":"+finalData[10]+finalData[11]
     return finalData
