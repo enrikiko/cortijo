@@ -91,7 +91,7 @@ export class PhotosComponent implements OnInit {
       this.data.forEach(function(element){
         if(element.includes(key)){
           let dayNumber = element.split("")
-          let day = monthNumber[6] + monthNumber[7]
+          let day = dayNumber[6] + dayNumber[7]
           if( dayList.indexOf(day) === -1 ){
             dayList.push(day)
           }
