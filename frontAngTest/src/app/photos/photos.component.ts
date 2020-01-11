@@ -60,6 +60,7 @@ export class PhotosComponent implements OnInit {
       if(data!=null){
         this.folders=this.formatList(data);
         this.years=this.formatYearList(this.folders)
+        console.log(this.years)
       }
     })
   }
