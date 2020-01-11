@@ -58,6 +58,7 @@ export class PhotosComponent implements OnInit {
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
+        console.log(data)
         this.folders=this.formatList(data);
         this.years=this.formatYearList(this.folders)
         console.log(this.years)
@@ -99,6 +100,7 @@ export class PhotosComponent implements OnInit {
       if( yearList.indexOf(year) === -1 ){
         yearList.push(year)}
       })
+      console.log(yearList)
     return yearList
     }
 
