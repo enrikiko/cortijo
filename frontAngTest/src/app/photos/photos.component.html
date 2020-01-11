@@ -18,25 +18,25 @@
       </div>
 
       <div class="container-fluid col-3 row">
-        <div *ngFor="let date of dates" class="col-12">
+        <div *ngFor="let month of months" class="col-12">
           <div class="alert-success text-wrap" (click)="getDatesDay(months)">
-            {{ months }}
+            {{ month }}
           </div>
         </div>
       </div>
 
       <div class="container-fluid col-3 row">
-        <div *ngFor="let date of dates" class="col-12">
+        <div *ngFor="let day of days" class="col-12">
           <div class="alert-success text-wrap" (click)="getPhotos(days)">
-            {{ days }}
+            {{ day }}
           </div>
         </div>
       </div>
 
       <div class="container-fluid col-3 row">
-        <div *ngFor="let folder of folders" class="col-lg-3 col-12">
-          <div class="alert-primary text-wrap" (click)="getPhoto(data)">
-            {{ data }}
+        <div *ngFor="let picture of pictures" class="col-lg-3 col-12">
+          <div class="alert-primary text-wrap" (click)="getPhoto(picture)">
+            {{ picture }}
           </div>
         </div>
       </div>
