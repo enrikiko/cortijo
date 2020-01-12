@@ -2,40 +2,34 @@
     <div class="container-fluid col-lg-6 col-12 row">
 
       <div class="container-fluid col-3 row">
-        <div *ngFor="let camera of cameras" class="col-12">
-          <button (click)="getDatesYear(camera)" type="button" class="btn btn-primary btn-outline-danger btn-block" name="button">{{ camera }}</button>
+        <div *ngFor="let camera of cameras" class="col-12 container-fluid">
+          <button (click)="getDatesYear(camera)" type="button" class="btn btn-primary btn-outline-success btn-block" name="button">{{ camera }}</button>
         </div>
       </div>
 
       <div class="container-fluid col-3 row">
-        <div *ngFor="let year of years" class="col-12">
-          <div class="alert-success text-wrap" (click)="getDatesMonth(year)">
-            <button type="button" class="btn btn-primary" name="button">{{ year }}</button>
+        <div *ngFor="let year of years" class="col-12 container-fluid">
+          <div class="alert-success text-wrap" >
+            <button (click)="getDatesMonth(year)" type="button" class="btn btn-primary" class="btn btn-primary btn-outline-success btn-block" name="button">{{ year }}</button>
           </div>
         </div>
       </div>
 
       <div class="container-fluid col-3 row">
-        <div *ngFor="let month of months" class="col-12">
-          <div class="alert-success text-wrap" (click)="getDatesDay(month)">
-            <button type="button" class="btn btn-primary" name="button">{{ month }}</button>
-          </div>
+        <div *ngFor="let month of months" class="col-12 container-fluid">
+            <button (click)="getDatesDay(month)" type="button" class="btn btn-primary" class="btn btn-primary btn-outline-success btn-block" name="button">{{ month }}</button>
         </div>
       </div>
 
       <div class="container-fluid col-3 row">
-        <div *ngFor="let day of days" class="col-12">
-          <div class="alert-success text-wrap" (click)="getPhotos(day)">
-            <button type="button" class="btn btn-primary" name="button">{{ day }}</button>
-          </div>
+        <div *ngFor="let day of days" class="col-12 container-fluid">
+            <button (click)="getPhotos(day)" type="button" class="btn btn-primary" class="btn btn-primary btn-outline-success btn-block" name="button">{{ day }}</button>
         </div>
       </div>
 
       <div class="container-fluid col-3 row">
-        <div *ngFor="let picture of photos" class="col-12">
-          <div class="alert-primary text-wrap" (click)="getPhoto(picture)">
-            <button type="button" class="btn btn-primary" name="button">{{ picture }}</button>
-          </div>
+        <div *ngFor="let picture of photos" class="col-12 container-fluid">
+            <button type="button" (click)="getPhoto(picture)" class="btn btn-primary" class="btn btn-primary btn-outline-success btn-block" name="button">{{ picture }}</button>
         </div>
       </div>
 
