@@ -19,14 +19,14 @@
         </div>
       </div>
 
-      <div class="container-fluid col-3 ">
+      <div class="container-fluid col-3">
         <div *ngFor="let day of days" class="container-fluid">
             <button (click)="getPhotos(day)" type="button" class="btn btn-outline-success btn-block" name="button">{{ day }}</button>
         </div>
       </div>
 
-      <div class="container-fluid col-3 row">
-        <div *ngFor="let picture of photos" class="col-12 container-fluid">
+      <div class="container-fluid col-3" data-spy="scroll" data-offset="0" class="scrollspy-example" >
+        <div *ngFor="let picture of photos" class="container-fluid">
             <button type="button" (click)="getPhoto(picture)" class="btn btn-outline-success btn-block" name="button">{{ picture }}</button>
         </div>
       </div>
