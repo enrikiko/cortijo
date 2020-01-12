@@ -145,23 +145,19 @@ export class PhotosComponent implements OnInit {
     return finalData
   }
 
-
-
-
-
-  getdate(key){
-    const date = this.dataCameraMap[key]
-    this.date = date
-    this.certain=true
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8400/camera/" + this.camera + "/" + date
-    this.http.get<any[]>(url).subscribe( data =>
-    {
-      if(data!=null){
-        this.folders=this.formatList(data);
-      }
-    })
-  }
+//   getdate(key){
+//     const date = this.dataCameraMap[key]
+//     this.date = date
+//     this.certain=true
+//     const host = (window.location.href.split("/")[2]).split(":")[0]
+//     let url = "http://" + host + ":8400/camera/" + this.camera + "/" + date
+//     this.http.get<any[]>(url).subscribe( data =>
+//     {
+//       if(data!=null){
+//         this.folders=this.formatList(data);
+//       }
+//     })
+//   }
 
   getPhoto(key){
     const host = (window.location.href.split("/")[2]).split(":")[0]
