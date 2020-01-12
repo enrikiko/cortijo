@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <div class="container-fluid col-3" data-spy="scroll" data-offset="0" class="scrollspy-example" >
+      <div class="container-fluid col-3">
         <div *ngFor="let picture of photos" class="container-fluid">
             <button type="button" (click)="getPhoto(picture)" class="btn btn-outline-success btn-block" name="button">{{ picture }}</button>
         </div>
