@@ -16,8 +16,8 @@
 
 .body{
   position:fixed;
-  top: 200px;
-  bottom: 0;
+  margin-top: 50px;
+  margin-bottom: 50px;
   width: 100%;
   overflow: hidden;
   z-index: 1;
