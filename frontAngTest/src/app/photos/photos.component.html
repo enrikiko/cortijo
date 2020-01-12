@@ -2,7 +2,9 @@
     <div class="container-fluid col-lg-6 col-12 row">
 
       <div class="col-3">
-          <button *ngFor="let camera of cameras" (click)="getDatesYear(camera)" type="button" class="btn btn-outline-success btn-block" name="button">{{ camera }}</button>
+        <div *ngFor="let camera of cameras">
+          <button (click)="getDatesYear(camera)" type="button" class="btn btn-outline-success btn-block" name="button">{{ camera }}</button>
+        </div>
       </div>
 
       <div class="col-2">
