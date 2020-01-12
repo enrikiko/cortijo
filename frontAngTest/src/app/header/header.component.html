@@ -1,7 +1,7 @@
 <div class="bg-white container-fluid">
       <nav class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar">
 
-        <div class="col-12 col-ms-6 col-lg-8">
+        <div class="col-12 col-ms-6">
           <ul class="nav nav-pills nav-fill">
             <li class="nav-item" (click)="device()">
               <a class="nav-link" [ngClass]="{'active': active=='device'}" routerLink="">Device</a>
@@ -38,7 +38,7 @@
           </ul>
         </div>
 
-        <div class="col-12 col-ms-6 col-lg-4">
+        <div class="col-12 col-ms-6">
           <ul class="nav nav-pills nav-fill">
             <li class="nav-item">
               <a *ngIf="data" class="nav-link">Temperature:{{ data.temperature }}°C</a>
