@@ -60,6 +60,8 @@ export class PhotosComponent implements OnInit {
       if(data!=null){
         this.data=data
         this.years=this.formatYearList(data)
+        this.months = null
+        this.days = null
       }
     })
   }
@@ -88,13 +90,14 @@ export class PhotosComponent implements OnInit {
       }
     })
     this.months = monthList
+    this.days = null
   }
 
    getDatesDay(key){
       this.month=key
       let dayList=[]
       this.data.forEach(function(element){
-        if(element.includes(key)){
+        if(element.includes( this.year + this.month )){
           let dayNumber = element.split("")
           let day = dayNumber[6] + dayNumber[7]
           if( dayList.indexOf(day) === -1 ){
