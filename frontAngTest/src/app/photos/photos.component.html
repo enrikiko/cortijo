@@ -9,9 +9,7 @@
 
       <div class="container-fluid col-3 row">
         <div *ngFor="let year of years" class="col-12 container-fluid">
-          <div class="alert-success text-wrap" >
-            <button (click)="getDatesMonth(year)" type="button" class="btn" class="btn btn-outline-success btn-block" name="button">{{ year }}</button>
-          </div>
+          <button (click)="getDatesMonth(year)" type="button" class="btn btn-outline-success btn-block" name="button">{{ year }}</button>
         </div>
       </div>
 
