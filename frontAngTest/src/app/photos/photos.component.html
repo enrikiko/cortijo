@@ -1,8 +1,8 @@
 <div class="container-fluid row photos">
     <div class="container-fluid col-lg-6 col-12 row">
 
-      <div class="container-fluid col-3 row">
-        <div *ngFor="let camera of cameras" class="col-12 container-fluid">
+      <div class="container-fluid col-3">
+        <div *ngFor="let camera of cameras" class="container-fluid">
           <button (click)="getDatesYear(camera)" type="button" class="btn btn-outline-success btn-block" name="button">{{ camera }}</button>
         </div>
       </div>
