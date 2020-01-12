@@ -13,3 +13,12 @@
   overflow: hidden;
   z-index: 1;
 }
+
+.body{
+  position:fixed;
+  top: 50px;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
