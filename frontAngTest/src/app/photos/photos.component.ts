@@ -62,6 +62,7 @@ export class PhotosComponent implements OnInit {
         this.years=this.formatYearList(data)
         this.months = null
         this.days = null
+        this.photos = null
       }
     })
   }
@@ -91,6 +92,7 @@ export class PhotosComponent implements OnInit {
     })
     this.months = monthList
     this.days = null
+    this.photos = null
   }
 
    getDatesDay(key){
@@ -107,6 +109,7 @@ export class PhotosComponent implements OnInit {
         }
       })
       this.days = dayList
+      this.photos = null
    }
 
    getPhotos(key){
