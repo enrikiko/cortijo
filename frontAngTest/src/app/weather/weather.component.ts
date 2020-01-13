@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as CanvasJS from './canvasjs.min';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import * as D3 from 'd3';
 
 
 @Component({
@@ -17,7 +18,11 @@ export class WeatherComponent implements OnInit {
   ngOnInit() {
     this.getData()
     // this.printGraph()
+    this.test()
 
+  }
+  test(){
+    d3.select(“p”).style(“color”, “red”);
   }
   getData(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
