@@ -39,22 +39,23 @@ module.exports = {
   deleteAll: async () => { return myTemperature.deleteMany({}) },
 
   newTemperature: (name, temperature, humidity) => {
-    let newMesure = new myTemperature(
+    let newMeasure = new myTemperature(
       {
         time: new Date().getTime(),
         temperature: temperature,
         humidity: humidity,
         name: name
       });
-    newMesure.save(function(err, result) {
+    newMeasure.save(function(err, result) {
       if (err) throw err;
       if(result) {
-        //logs.log(result);
+        logs.log(result);
       }
     });
   },
-
-  getAll: async() => { return await myTemperature.find() },
+//
+//  getAll: async() => { return await myTemperature.find() },
+//
   getByName: async(name) => { return await myTemperature.find({"name":name}) }
 
 }
