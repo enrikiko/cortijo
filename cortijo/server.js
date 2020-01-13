@@ -181,7 +181,7 @@ app.get("/all/device", async function(req, res) {
 //Get temperature and humidity history
 app.get("/all/temperature",async function(req, res) {
    // try {
-   var temperature = await myTemperature.getAll()
+   var temperature = await myTemperature.getByName("sensorMock")
    // } catch (e) {
    //   logs.log(e)
    // }

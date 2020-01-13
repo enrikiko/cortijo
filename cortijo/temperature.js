@@ -26,6 +26,10 @@ const deviceSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  name: {
+    type: String,
+    required: true
+  },
 });
 
 let myTemperature = mongoose.model('Temperature', deviceSchema);
@@ -34,12 +38,13 @@ module.exports = {
 
   deleteAll: async () => { return myTemperature.deleteMany({}) },
 
-  newTemperature: (temperature, humidity) => {
+  newTemperature: (name, temperature, humidity) => {
     let newMesure = new myTemperature(
       {
         time: new Date().getTime(),
         temperature: temperature,
-        humidity: humidity
+        humidity: humidity,
+        name: name
       });
     newMesure.save(function(err, result) {
       if (err) throw err;
@@ -50,5 +55,6 @@ module.exports = {
   },
 
   getAll: async() => { return await myTemperature.find() }
+  getByName: async(name) => { return await myTemperature.find({"name":name}) }
 
 }

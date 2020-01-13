@@ -71,7 +71,7 @@ function safeData(type,name,data){
     switch(type){
     case "Temperature":
     logs.log("case temperature")
-    myTemperature.newTemperature(data.temperature, data.humidity)
+    myTemperature.newTemperature(name, data.temperature, data.humidity)
     break;
     case "Humidity":
     break;
