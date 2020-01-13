@@ -37,9 +37,6 @@ export class WeatherComponent implements OnInit {
           humidity.push(humi)
         }
         this.printGraph(temperature, humidity);
-        // console.log([{y:1},{y:2}])
-        // console.log(temperature)
-        // console.log(humidity)
       }
       else {
       console.log('No logs')
@@ -50,7 +47,7 @@ export class WeatherComponent implements OnInit {
     let chart = new CanvasJS.Chart("chartContainer", {
 		animationEnabled: true,
 		exportEnabled: true,
-		title: { text: "Laptop-room temperature & humidity" },
+		title: { text: "sensorMock" },
 		data: [{
 			type: "spline",
                color: "rgba(255,0,0,1)", //red
