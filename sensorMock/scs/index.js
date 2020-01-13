@@ -23,7 +23,7 @@ app.get('/data', function(req, res){
   info={}
   info.name=process.env.mock_name
   info.type="Temperature"
-  info.content={"temperature":20,"humidity":30}
+  info.content={"temperature":Math.floor((Math.random() * 100) + 1),"humidity":Math.floor((Math.random() * 100) + 1)}
   console.log(info);
   res.status(200).json(info)
 });
