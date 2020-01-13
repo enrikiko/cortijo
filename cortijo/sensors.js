@@ -119,7 +119,7 @@ module.exports = {
     return mySensor.deleteOne({name: sensorName}, function(err, result) {
       if (err) throw err
       if(result){
-        //logs.log(result)
+          logs.log(result)
         }
       });
     },
