@@ -1,2 +1,8 @@
-.body{
+.photo{
+  position:fixed;
+  margin-top: 300px;
+  margin-left: 1000px;
+  width: 100%;
+  overflow: hidden;
+  z-index: 1;
 }
