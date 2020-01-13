@@ -22,7 +22,7 @@ export class WeatherComponent implements OnInit {
 
   }
   test(){
-    d3.select(“p”).style(“color”, “red”);
+    D3.select(“p”).style(“color”, “red”);
   }
   getData(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
