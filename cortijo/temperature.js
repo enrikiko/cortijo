@@ -54,7 +54,7 @@ module.exports = {
     });
   },
 
-  getAll: async() => { return await myTemperature.find() }
+  getAll: async() => { return await myTemperature.find() },
   getByName: async(name) => { return await myTemperature.find({"name":name}) }
 
 }
