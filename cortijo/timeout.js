@@ -2,6 +2,8 @@ const sensors = require('./sensors');
 const myDevice = require('./devices');
 const joker = require('./joker');
 const logs = require('./logs');
+const myTemperature = require('./temperature');
+const myHumidity = require('./humidity');
 const request = require('superagent');
 const req = require('request');
 const fs = require('fs');
@@ -39,6 +41,7 @@ async function getSensor(){
             dataType = data.type
             dataContent = data.content
             logs.log("Name: " + dataName + " Type: " + dataType + " Content: " + dataContent)
+            safeData()
         }catch(e){
             logs.log(e)
         }
@@ -61,6 +64,16 @@ async function check(){
         }
 
 
+    }
+}
+//
+function safeData(type,name,data){
+    switch(type){
+    case "Temperature":
+    myTemperature.newTemperature(data.temperature, data.humidity)
+    break;
+    case "Humidity":
+    break;
     }
 }
 //

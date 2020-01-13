@@ -22,8 +22,8 @@ app.get("/*", function(req, res, next) {
 app.get('/data', function(req, res){
   info={}
   info.name=process.env.mock_name
-  info.type="Type of data"
-  info.content="Is is the data"
+  info.type="Temperature"
+  info.content={"temperature":20,"humidity":30}
   console.log(info);
   res.status(200).json(info)
 });
