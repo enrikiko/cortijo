@@ -1,7 +1,7 @@
 ---
   log: "debug"
   timeout_check: 3000000
-  timeout_sensor: 6000
+  timeout_sensor: 3600000
   refresh_delay: 1000
   get_device_status_timeout: 10000
   switch_status_timeout: 10000
