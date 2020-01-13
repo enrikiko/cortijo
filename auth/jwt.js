@@ -20,7 +20,7 @@ module.exports = {
         }
     },
     signAuthJwt: async (user, password) => {
-        var generatedJWT = await jwt.sign({user:user}, privateKey, {expiresIn: "1h"})
+        var generatedJWT = await jwt.sign({user:user}, privateKey, {expiresIn: "1y"})
         console.log(generatedJWT)
         return generatedJWT
     }

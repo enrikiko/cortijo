@@ -132,10 +132,10 @@ services:
     container_name: ip
     restart: on-failure
     build: ./ip/.
-  fp:
-    container_name: fp
-    restart: on-failure
-    build: ./functionalPing/.
+#  fp:
+#    container_name: fp
+#    restart: on-failure
+#    build: ./functionalPing/.
   camera:
     container_name: camera
     restart: on-failure

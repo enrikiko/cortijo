@@ -30,15 +30,15 @@ function executeTimeoutCheck(){
 async function getSensor(){
     logs.log("getSensor...")
     var sensorList = await sensors.getAllSensor()
-    logs.log(sensorList)
+    //logs.log(sensorList)
     for (var index in sensorList){
         var name = sensorList[index].name
-        logs.log(name)
         try{
             data = await sensors.getData(name)
-            logs.log(data.name)
-            logs.log(data.type)
-            logs.log(data.content)
+            dataName = data.name
+            dataType = data.type
+            dataContent = data.content
+            logs.log("Name: " + dataName + " Type: " + dataType + " Content: " + dataContent)
         }catch(e){
             logs.log(e)
         }
