@@ -3,17 +3,16 @@ const logs = require('./logs');
 let connString = 'mongodb://192.168.1.50:27017/cortijo';
 const db = mongoose.connection;
 mongoose.connect(connString, { useNewUrlParser: true });
-
+//
 db.on('error',function(){
-logs.log("Error al conectarse a Mongo Temperature");
+logs.log("Error to connect to MongoDB Temperature");
 });
-
+//
 db.once('open', function() {
-logs.log("Conectado a MongoDB Temperature");
+logs.log("Connected to  MongoDB Temperature");
 });
-
-// definicion de esquema del artículo
-const deviceSchema = new mongoose.Schema({
+//
+const temperatureSchema = new mongoose.Schema({
   time: {
     type: String,
     required: true
@@ -31,13 +30,23 @@ const deviceSchema = new mongoose.Schema({
     required: true
   },
 });
-
-let myTemperature = mongoose.model('Temperature', deviceSchema);
-
+//
+const temperatureList = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  }
+});
+//
+let myTemperature = mongoose.model('Temperature', temperatureSchema);
+let myList = mongoose.model('Temperature', temperatureList);
+//
 module.exports = {
-
-  deleteAll: async () => { return myTemperature.deleteMany({}) },
-
+//
+  getList: async () => { return myList.find() }
+//
+  deleteName: async (name) => { return myTemperature.deleteMany({"name":name}) },
+//
   newTemperature: (name, temperature, humidity) => {
     let newMeasure = new myTemperature(
       {

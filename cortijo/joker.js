@@ -92,7 +92,8 @@ module.exports={
         const url = "http://192.168.1.50:8010/jwt/"+jwt
         async function getResponse(url) {
             let response = await request.get(url);
-            return response;
+            if(response.status==200){return response}
+            else{ throw false }
         }
        return await getResponse(url);
      },

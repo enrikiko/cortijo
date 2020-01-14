@@ -74,11 +74,11 @@ app.get("/jwt/:jwt", async function(req, res) {
         }
         else{
             console.log("Unauthorized")
-            res.status(200).send("Unauthorized")
+            res.status(401).send("Unauthorized")
         }
      }catch(e){
         console.log(e)
-        res.status(200).send("ERROR2")
+        res.status(404).send("ERROR2")
      }
 })
 
