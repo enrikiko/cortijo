@@ -11,10 +11,7 @@
 DHT dht(DHTPIN, DHTTYPE);
 
 const int analogInPin = A0;
-
-
 int mapValue;
-
 
 const char *ssid1 = "Cuarto2.4G";
 const char *password1 = "Lunohas13steps";
@@ -33,12 +30,11 @@ ESP8266WebServer server(port);
 
 
 void setup() {
-  Serial.begin(115200);
 
+  Serial.begin(115200);
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid1, password1);
   WiFiMulti.addAP(ssid2, password2);
-  //WiFi.config(ipDevice, dns, gateway, subnet);
   WiFi.begin();
 
   while (WiFiMulti.run() != WL_CONNECTED) {

@@ -43,7 +43,7 @@ let myList = mongoose.model('Temperature', temperatureList);
 //
 module.exports = {
 //
-  getList: async () => { return myList.find() }
+  getList: async () => { return myList.find() },
 //
   deleteName: async (name) => { return myTemperature.deleteMany({"name":name}) },
 //
