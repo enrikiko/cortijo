@@ -39,7 +39,7 @@ const temperatureList = new mongoose.Schema({
 });
 //
 let myTemperature = mongoose.model('Temperature', temperatureSchema);
-let myList = mongoose.model('Temperature', temperatureList);
+let myList = mongoose.model('TemperatureList', temperatureList);
 //
 module.exports = {
 //
