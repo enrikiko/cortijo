@@ -63,7 +63,7 @@ export class HeaderComponent implements OnInit {
     {
       if(data!=null){
         this.jwt=data.text;
-        console.log(data.text)
+        console.log(data)
       }
       else {
       console.log('Database is empty')
