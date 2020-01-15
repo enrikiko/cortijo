@@ -85,17 +85,13 @@ app.get("/auth/:user/:password", async function(req, res) {
         data={"status":true}
         data.jwt=jwt
         if(jwt!="Invalid credentials"){res.status(200).json(data)}
-        else{res.status(401).json({"status":false}}
+        else{res.status(401).json({"status":false})
     }
     catch(e){
         res.status(e.status).json({"status":false})
     }
 })
-
-function response(status) {
-return {"status":status}
-}
-
+//
 //New device
 app.get("/new/:name/:status/:ip", async (req, res) => {
      var name = req.params.name
