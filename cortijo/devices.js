@@ -40,7 +40,7 @@ module.exports = {
 //
    getDevice: () => { return myDevice.find() },
 //
-   getDeviceByName: (Name) => { return myDevice.find({name: Name})[0]},
+   getDeviceByName: (Name) => { return myDevice.find({name: Name})},
 //
    getDeviceById: (id) => { return myDevice.findById(id)},
 //

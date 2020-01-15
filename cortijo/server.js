@@ -214,8 +214,8 @@ app.delete("/temperature/history/:name",async function(req, res) {
 //Get device by name
 app.get("/device/:name", async function(req, res) {
     var name = req.params.name;
-    var response = await myDevice.getDeviceByName(name);
-    res.status(200).json(response)
+    var deviceList = await myDevice.getDeviceByName(name);
+    res.status(200).json(deviceList[0])
 })
 
 //Remove device by id
