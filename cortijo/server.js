@@ -85,8 +85,8 @@ app.get("/auth/:user/:password", async function(req, res) {
         data={"status":true}
         data.jwt=jwt
         if(jwt!="Invalid credentials"){res.status(200).json(data)}
-        else{res.status(401).json({"status":false})
-    }catch (e) {
+        else{res.status(401).json({"status":false})}
+    }catch(e){
         res.status(e.status).json({"status":false})
     }
 })
