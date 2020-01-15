@@ -81,11 +81,7 @@ app.get("/jwt/:jwt", async function(req, res) {
         res.status(404).send("ERROR2")
      }
 })
-
-
-
-
-
+//
 // app.get("/get/jwt/:val", async function(req, res) {
 //      val = req.params.val;
 //      generatedJWT = await auth.signJwt(val)
@@ -97,7 +93,7 @@ app.get("/jwt/:jwt", async function(req, res) {
 //      payload = await auth.verifyJwt(sentJWT)
 //      res.status(200).json(payload.val)
 // })
-
+//
 app.get("/all/:token", async function(req, res) {
      token = req.params.token;
      if(token==process.env.TOKEN){
@@ -108,7 +104,7 @@ app.get("/all/:token", async function(req, res) {
 })
 
 
-app.delete('/removeuser/:user/:password/:token', async function(req, res){
+app.get('/removeuser/:user/:password/:token', async function(req, res){
      user = req.params.user;
      password = req.params.password;
      token = req.params.token;

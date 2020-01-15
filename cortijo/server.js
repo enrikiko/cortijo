@@ -82,13 +82,13 @@ app.get("/auth/:user/:password", async function(req, res) {
         var jwt = await joker.auth(user, password);
         logs.log("jwt: "+jwt);
         res.cookie('jwt',jwt);
-        data=response(true)
+        data={"status":true}
         data.jwt=jwt
         if(jwt!="Invalid credentials"){res.status(200).json(data)}
-        else{res.status(401).send(response(false))}
+        else{res.status(401).json({"status":false}}
     }
     catch(e){
-        res.status(e.status).send(response(false))
+        res.status(e.status).json({"status":false})
     }
 })
 
