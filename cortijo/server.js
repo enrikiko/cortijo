@@ -110,7 +110,7 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
           }
      }
 })
-
+//
 //New device
 app.get("/newSensor/:name/:ip", async (req, res) => {
      var name = req.params.name
@@ -125,7 +125,7 @@ app.get("/newSensor/:name/:ip", async (req, res) => {
          res.status(200).json({"Previous Ip": lastIp, "New Ip": ip})
       }
 })
-
+//
  //JWT verification
  app.get("/jwt", async function(req, res) {
    const jwt = req.headers.authorization
@@ -137,54 +137,57 @@ app.get("/newSensor/:name/:ip", async (req, res) => {
        res.status(401).json({"jwt":"ERROR1"})
    }
  })
-
-app.get("/all/request", async function(req, res) {
-    var response = await requests.getAllRequest();
-    res.status(200).json({response})
-})
-
+//
+//TODO too much data is create the app collapse
+//app.get("/all/request", async function(req, res) {
+//    var response = await requests.getAllRequest();
+//    res.status(200).json({response})
+//})
+//
 app.get("/all/ip", async function(req, res) {
    var response = await requests.getAllIp();
    res.status(200).json([response])
 })
-
+//
 //Get all device
 app.get("/all/device", async function(req, res) {
     await delay(REFRESH_DELAY)
     var response = await myDevice.getDevice();
     res.status(200).json(response)
 })
-
+//
 //Get temperature and humidity history
+//TODO add to doc and add request to get al sensors
 app.get("/all/:name/temperature",async function(req, res) {
    var name = req.params.name;
    var temperature = await myTemperature.getByName(name)
    res.status(200).json(temperature)
 })
-
+//
 //Get humidity history
 app.get("/all/humidity",async function(req, res) {
    var temperature = await myHumidity.getAll()
    res.status(200).json(temperature)
 })
-
-app.get("/all/log",async function(req, res) {
-  var logHistory = await history.history()
-  res.status(200).json(logHistory)
-})
-
+//
+//TODO too much data is create the app collapse
+//app.get("/all/log",async function(req, res) {
+//  var logHistory = await history.history()
+//  res.status(200).json(logHistory)
+//})
+//
 app.get("/all/watering", async function(req, res) {
   const watering_list = await watering.getAllRequest()
   res.status(200).json(watering_list)
 })
-
+//
 //Set temperature and humidity
 //app.get("/set/humidity/:humidity", function(req, res) {
 //  myHumidity.newHumidity(req.params.humidity)
 //  res.status(200).send()
 //})
-
-
+//
+//
 //Set temperature and humidity
 //app.get("/set/:temperature/:humidity", function(req, res) {
 //  temperature = req.params.temperature;
@@ -192,9 +195,9 @@ app.get("/all/watering", async function(req, res) {
 //  myTemperature.newTemperature(temperature, humidity)
 //  res.status(200).send()
 //})
-
+//
 //Get temperature and humidity
-app.get("/temperature/humidity", function(req, res) {
+app.get("/current/temperature/humidity", function(req, res) {
   response={}
   response.temperature=temperature;
   response.humidity=humidity;
