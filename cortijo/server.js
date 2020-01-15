@@ -133,8 +133,8 @@ app.get("/newSensor/:name/:ip", async (req, res) => {
        user = await joker.getUserByJWT(jwt)
        res.status(200).send(user.text)
    }catch(e){
-       console.log(e)
-       res.status(401).json({"jwt":"ERROR1"})
+       //console.log(e)
+       res.status(401).json({"jwt":"Incorrect"})
    }
  })
 //
@@ -203,14 +203,14 @@ app.get("/current/temperature/humidity", function(req, res) {
   response.humidity=humidity;
   res.status(200).json(response)
 })
-
+//TODO
 //Delete temperature history
 app.delete("/temperature/history/:name",async function(req, res) {
      var name = req.params.name;
      var result = await myTemperature.deleteName(name)
      res.status(200).send(result)
 })
-
+//
 //Get device by name
 app.get("/device/:name", async function(req, res) {
     var name = req.params.name;
