@@ -217,7 +217,7 @@ app.get("/device/:name", async function(req, res) {
     var deviceList = await myDevice.getDeviceByName(name);
     res.status(200).json(deviceList[0])
 })
-
+//
 //Remove device by id
 app.delete("/device/:name", async function(req, res) {
     var name = req.params.name;
@@ -231,7 +231,7 @@ app.delete("/device/:name", async function(req, res) {
       res.status(200).json("Device Doesn't Exist")
     }
 })
-
+//
 //Block device by id
 //app.get("/block/:name", async function(req, res) {
 //    var name = req.params.name;
@@ -245,7 +245,7 @@ app.delete("/device/:name", async function(req, res) {
 //      res.status(200).json("Device Doesn't Exist")
 //    }
 //})
-
+//
 //Get status of device
 app.get("/status/:device", async function(req, res) {
   var name = req.params.device;
@@ -264,11 +264,11 @@ app.get("/status/:device", async function(req, res) {
       }
   }
 })
-
+//
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////                     Secure request JWT needed                 /////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+//
 app.get("/update/*", async function(req, res, next) {
     const jwt = req.headers.authorization
     console.log(req)
@@ -280,7 +280,7 @@ app.get("/update/*", async function(req, res, next) {
        res.status(404).json({"jwt":"Error"})
     }
 })
-
+//
 //update device
 var isUpdating={}
 app.get("/update/:name/false", async function(req, res){

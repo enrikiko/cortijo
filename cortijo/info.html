@@ -16,7 +16,7 @@
       var newRequest = document.createElement("div");
       newRequest.appendChild(newContent);
       var dynamicDiv = document.getElementById("dynamic");
-      dynamicDiv.appendChild(newRequest);
+      dynamicDiv.innerHTML(newRequest);
     }
     </script>
     <meta charset="utf-8">
@@ -45,24 +45,11 @@
           <h1><a onclick=getURL("all/log") >http://host/all/log</a></h1>
           <h1><a onclick=getURL("current/temperature/humidity") >http://host/temperature/humidity</a></h1>
           <h1><a onclick=getURL("device/testDevice") >http://host/device/testDevice</a></h1>
-          <h1><a onclick=getURL("liveness") >http://host/liveness</a></h1>
-          <h1><a onclick=getURL("liveness") >http://host/liveness</a></h1>
-
-          <h1><a onclick=getURL("update/mock/false") >update/mock/false</a></h1>
-          <h1><a onclick=getURL("getAllRequest") >getAllRequest</a></h1>
-          <h1><a onclick=getURL("getAllIp") >getAllIp</a></h1>
-          <h1><a onclick=getURL("info") >info</a></h1>
-          <h1><a onclick=getURL("log/history") >log/history</a></h1>
-          <h1><a onclick=getURL("set/35/40") >set/35/40</a></h1>
-          <h1><a onclick=getURL("get/temperature/humidity") >get/temperature/humidity</a></h1>
-          <h1><a onclick=getURL("get/temperature/humidity/history") >get/temperature/humidity/history</a></h1>
-          <!-- <h1><a onclick=getURL("log/history") >log/history</a></h1> -->
-          <h1><a onclick=getURL("remove/mock") >remove/mock</a></h1>
-          <h1><a onclick=getURL("block/mock") >block/mock</a></h1>
-          <h1><a onclick=getURL("check/mock") >check/mock</a></h1>
+          <h1><a onclick=getURL("status/testDevice") >http://host/status/testDevice</a></h1>
+          <h1><a onclick=getURL("update/mock/false") >http://host/update/mock/false</a></h1>
+          <h1><a onclick=getURL("update/mock/true/1") >http://host/update/mock/true/1</a></h1>
       </div>
       <div style="margin-left: 50px; margin-top: 50px" id="dynamic">
-
       </div>
     </div>
   </body>
