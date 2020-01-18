@@ -15,7 +15,6 @@ sensorList: any[]=null;
   constructor( private http: HttpClient ) { }
 
   ngOnInit() {
-    this.getData();
     this.getSensor()
   }
 
@@ -28,6 +27,7 @@ sensorList: any[]=null;
         this.sensorList = data
       }
     }
+    this.getData()
   },
   getData(){
       const host = (window.location.href.split("/")[2]).split(":")[0]
