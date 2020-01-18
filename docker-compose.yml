@@ -68,7 +68,7 @@ services:
   #     - "8104:3000"
   #   networks:
   #     - network
-  sensorTemperature:
+  sensortemperature:
     container_name: sensorTemperature
     restart: always
     build: ./sensorMock/.
@@ -80,7 +80,7 @@ services:
       - "8105:3000"
     networks:
       - network
-  sensorHumidity:
+  sensorhumidity:
     container_name: sensorHumidity
     restart: always
     build: ./sensorHumidityMock/.
