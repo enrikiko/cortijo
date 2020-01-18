@@ -22,7 +22,7 @@ const deviceSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  humidity: {
+  name: {
     type: String,
     required: true
   },

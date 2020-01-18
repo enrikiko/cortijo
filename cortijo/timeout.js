@@ -40,7 +40,6 @@ async function getSensor(){
             dataName = name
             dataType = data.type
             dataContent = data.content
-            logs.log("Name: " + dataName + " Type: " + dataType + " Content: " + dataContent)
             safeData(dataType,dataName,dataContent)
         }catch(e){
             logs.log(e)
@@ -71,6 +70,7 @@ function safeData(type,name,data){
     switch(type){
     case "Temperature":
     logs.log("case temperature")
+    logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " : " + data.temperature)
     myTemperature.newTemperature(name, data.temperature, data.humidity)
     break;
     case "Humidity":
