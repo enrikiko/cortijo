@@ -126,8 +126,8 @@ app.get("/newSensor/:name/:ip", async (req, res) => {
       }
 })
 //
- //JWT verification
- app.get("/jwt", async function(req, res) {
+//JWT verification
+app.get("/jwt", async function(req, res) {
    const jwt = req.headers.authorization
    try{
        user = await joker.getUserByJWT(jwt)
@@ -136,7 +136,7 @@ app.get("/newSensor/:name/:ip", async (req, res) => {
        //console.log(e)
        res.status(401).json({"jwt":"Incorrect"})
    }
- })
+})
 //
 //TODO too much data is create the app collapse
 //app.get("/all/request", async function(req, res) {
@@ -182,10 +182,10 @@ app.get("/all/watering", async function(req, res) {
 })
 //
 //Set temperature and humidity
-//app.get("/set/humidity/:humidity", function(req, res) {
-//  myHumidity.newHumidity(req.params.humidity)
-//  res.status(200).send()
-//})
+app.get("/set/humidity/:humidity", function(req, res) {
+  myHumidity.newHumidity(req.params.humidity)
+  res.status(200).send()
+})
 //
 //
 //Set temperature and humidity
