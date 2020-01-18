@@ -75,7 +75,7 @@ function safeData(type,name,data){
     break;
     case "Humidity":
     logs.log("case humidity")
-    //TODO Change myHumidity.newHumidity add name
+    logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity)
     myHumidity.newHumidity(name, data.humidity)
     break;
     }
