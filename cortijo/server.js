@@ -126,6 +126,13 @@ app.get("/newSensor/:name/:ip", async (req, res) => {
       }
 })
 //
+//Get all device
+app.get("/all/sensor", async function(req, res) {
+    await delay(REFRESH_DELAY)
+    var response = await mySensor.getAllSensor();
+    res.status(200).json(response)
+})
+//
 //JWT verification
 app.get("/jwt", async function(req, res) {
    const jwt = req.headers.authorization
