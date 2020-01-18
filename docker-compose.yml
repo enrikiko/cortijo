@@ -80,6 +80,18 @@ services:
       - "8105:3000"
     networks:
       - network
+  sensor2:
+    container_name: sensorMock2
+    restart: always
+    build: ./sensorMock/.
+    environment:
+      - mock_name=sensorMock2
+      - mock_port=8106
+      - local_ip=192.168.1.50
+    ports:
+      - "8106:3000"
+    networks:
+      - network
   cortijo:
     container_name: cortijo
     restart: on-failure

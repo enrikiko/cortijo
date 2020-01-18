@@ -1,4 +1,4 @@
-const sensors = require('./sensors');
+const mySensor = require('./sensors');
 const myDevice = require('./devices');
 const joker = require('./joker');
 const logs = require('./logs');
@@ -31,13 +31,13 @@ function executeTimeoutCheck(){
 //
 async function getSensor(){
     logs.log("getSensor...")
-    var sensorList = await sensors.getAllSensor()
+    var sensorList = await mySensor.getAllSensor()
     //logs.log(sensorList)
     for (var index in sensorList){
         var name = sensorList[index].name
         try{
-            data = await sensors.getData(name)
-            dataName = data.name
+            data = await mySensor.getData(name)
+            dataName = name
             dataType = data.type
             dataContent = data.content
             logs.log("Name: " + dataName + " Type: " + dataType + " Content: " + dataContent)
@@ -74,6 +74,9 @@ function safeData(type,name,data){
     myTemperature.newTemperature(name, data.temperature, data.humidity)
     break;
     case "Humidity":
+    logs.log("case humidity")
+    //TODO Change myHumidity.newHumidity add name 
+    //myHumidity.newHumidity(name, data.humidity)
     break;
     }
 }

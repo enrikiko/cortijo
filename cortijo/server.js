@@ -274,7 +274,7 @@ app.get("/update/*", async function(req, res, next) {
     console.log(req)
     try{
        user = await joker.getUserByJWT(jwt)
-       if(user!="miso"){next()}
+       next()
     }catch(e){
        console.log(e)
        res.status(404).json({"jwt":"Error"})

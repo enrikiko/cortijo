@@ -31,19 +31,19 @@ const temperatureSchema = new mongoose.Schema({
   },
 });
 //
-const temperatureList = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  }
-});
+// const temperatureListSchema = new mongoose.Schema({
+//   name: {
+//     type: String,
+//     required: true
+//   }
+// });
 //
 let myTemperature = mongoose.model('Temperature', temperatureSchema);
-let myList = mongoose.model('TemperatureList', temperatureList);
+//let myList = mongoose.model('TemperatureList', temperatureListSchema);
 //
 module.exports = {
 //
-  getList: async () => { return myList.find() },
+//  getList: async () => { return myList.find() },
 //
   deleteName: async (name) => { return myTemperature.deleteMany({"name":name}) },
 //
