@@ -165,8 +165,8 @@ app.get("/all/:name/temperature",async function(req, res) {
 })
 //
 //Get humidity history
-app.get("/all/humidity",async function(req, res) {
-   var temperature = await myHumidity.getAll()
+app.get("/all/:name/humidity",async function(req, res) {
+   var temperature = await myHumidity.getAll(name)
    res.status(200).json(temperature)
 })
 //
