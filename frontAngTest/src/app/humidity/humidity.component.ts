@@ -10,16 +10,27 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 export class HumidityComponent implements OnInit {
 
 logs: any[]=null;
+sensorList: any[]=null;
 
   constructor( private http: HttpClient ) { }
 
   ngOnInit() {
-    this.getData()
+    this.getData();
+    this.getSensor()
   }
 
+  getSensor(){
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    let url = "http://" + host + ":8000/all/sensor"
+    this.http.get<HttpResponse<object>>(url).subscribe( data =>
+    {
+      if(data!=null){
+        this.sensorList = data
+      }
+    }
+  }
   getData(){
       const host = (window.location.href.split("/")[2]).split(":")[0]
-      // const host = "88.8.65.164"
       let url = "http://" + host + ":8000/all/sensorHumidity/humidity"
       this.http.get<HttpResponse<object>>(url).subscribe( data =>
       {
