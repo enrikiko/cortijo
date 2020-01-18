@@ -28,7 +28,7 @@ sensorList: any[]=null;
         this.sensorList = data
       }
     }
-  }
+  },
   getData(){
       const host = (window.location.href.split("/")[2]).split(":")[0]
       let url = "http://" + host + ":8000/all/sensorHumidity/humidity"
