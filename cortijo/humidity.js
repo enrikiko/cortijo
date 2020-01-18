@@ -22,6 +22,10 @@ const deviceSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  humidity: {
+    type: String,
+    required: true
+  },
 });
 
 let myHumidity = mongoose.model('Humidity', deviceSchema);
@@ -30,11 +34,12 @@ module.exports = {
 
   deleteAll: async () => { return myHumidity.deleteMany({}) },
 
-  newHumidity: (humidity) => {
+  newHumidity: (name, humidity) => {
     let newMesure = new myHumidity(
       {
         time: new Date().getTime(),
-        humidity: humidity
+        humidity: humidity,
+        name: name
       });
     newMesure.save(function(err) {
       if (err) throw err;

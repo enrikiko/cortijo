@@ -44,48 +44,48 @@ services:
       - "8102:3000"
     networks:
       - network
-  mock3:
-    container_name: mock3
-    restart: always
-    build: ./deviceMock/.
-    environment:
-      - mock_name=mock3
-      - mock_port=8103
-      - local_ip=192.168.1.50
-    ports:
-      - "8103:3000"
-    networks:
-      - network
-  mock4:
-    container_name: mock4
-    restart: always
-    build: ./deviceMock/.
-    environment:
-      - mock_name=mock4
-      - mock_port=8104
-      - local_ip=192.168.1.50
-    ports:
-      - "8104:3000"
-    networks:
-      - network
-  sensor1:
-    container_name: sensorMock
+  # mock3:
+  #   container_name: mock3
+  #   restart: always
+  #   build: ./deviceMock/.
+  #   environment:
+  #     - mock_name=mock3
+  #     - mock_port=8103
+  #     - local_ip=192.168.1.50
+  #   ports:
+  #     - "8103:3000"
+  #   networks:
+  #     - network
+  # mock4:
+  #   container_name: mock4
+  #   restart: always
+  #   build: ./deviceMock/.
+  #   environment:
+  #     - mock_name=mock4
+  #     - mock_port=8104
+  #     - local_ip=192.168.1.50
+  #   ports:
+  #     - "8104:3000"
+  #   networks:
+  #     - network
+  sensorTemperature:
+    container_name: sensorTemperature
     restart: always
     build: ./sensorMock/.
     environment:
-      - mock_name=sensorMock
+      - mock_name=sensorTemperature
       - mock_port=8105
       - local_ip=192.168.1.50
     ports:
       - "8105:3000"
     networks:
       - network
-  sensor2:
-    container_name: sensorMock2
+  sensorHumidity:
+    container_name: sensorHumidity
     restart: always
-    build: ./sensorMock/.
+    build: ./sensorHumidityMock/.
     environment:
-      - mock_name=sensorMock2
+      - mock_name=sensorHumidity
       - mock_port=8106
       - local_ip=192.168.1.50
     ports:
