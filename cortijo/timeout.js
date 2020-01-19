@@ -69,12 +69,12 @@ async function check(){
 //
 function safeData(type,name,data){
     switch(type){
-    case "temperature":
+    case "Temperature":
     logs.log("case temperature")
     logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " : " + data.temperature)
     myTemperature.newTemperature(name, data.temperature, data.humidity)
     break;
-    case "humidity":
+    case "Humidity":
     logs.log("case humidity")
     logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity)
     myHumidity.newHumidity(name, data.humidity)

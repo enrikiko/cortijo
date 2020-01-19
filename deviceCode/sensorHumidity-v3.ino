@@ -53,6 +53,7 @@ void setup() {
   setIp(ip);
 
   server.on("/data", sendData);
+  server.begin();
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
 
@@ -78,12 +79,12 @@ void loop() {
 
 int getInfo(){
   float total = 0;
-  int measureNumbers = 500;
+  int measureNumbers = 50;
   int sensorValue;
   int mapValue;
   for (int i = 0; i < measureNumbers; i++) {
     total += analogRead(analogInPin);
-    delay(500);
+    delay(50);
   }
   Serial.println(total);
   sensorValue = total/measureNumbers;
@@ -127,9 +128,11 @@ int getInfo(){
  }
 
  void sendData() {
+   Serial.printf("Getting data");
    int data = getInfo();
    blinkLight();
-   server.send(200, "application/json", "{\"humidity\": " + String(data) + "}");
+   server.send(200, "application/json", "{\"name\":\"" + deviceName + "\",\"type\":\"Humidity\",\"content\":{\"humidity\": " + String(data) + "}}");
+
  }
 
  void blinkLight(){
