@@ -22,7 +22,7 @@ sensorList: any[]=null;
   getSensor(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8000/all/sensor"
-    this.http.get<HttpResponse<object>>(url).subscribe( data =>
+    this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
         this.sensorList = data
