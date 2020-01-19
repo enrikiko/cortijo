@@ -34,22 +34,55 @@ showGraphic=true;
     console.log(sensor)
       const host = (window.location.href.split("/")[2]).split(":")[0]
       let url = "http://" + host + ":8000/all/" + sensor.name + "/" + sensor.type
-      sw
+      switch(sensor.type) {
+        case "humidity":
+          this.getHumidity(url, sensor.name)
+          // code block
+          break;
+        case "temperature":
+        this.getTemperature(url, sensor.name)
+          // code block
+          break;
+        default:
+          console.log("switch default")
+      }
+    }
+
+    getHumidity(url, name){
+      this.http.get<HttpResponse<object>>(url).subscribe( data =>
+      {
+        if(data!=null){
+          var dataList = []
+          var dataFormat
+          for(var index in data){
+            dataFormat={ y: parseInt(data[index].humidity), label: new Date(parseInt(data[index].time)) }
+            dataList.push(dataFormat)
+          }
+          this.printGraphHumidity(name, dataList);
+        }
+        else {
+          console.log("No logs")
+        }
+      })
+    }
+
+    getTemperature(url, name){
       this.http.get<HttpResponse<object>>(url).subscribe( data =>
       {
         if(data!=null){
           // var res = data["response"]
-          var dataList = []
-          var dataFormat
+          var temperature = []
+          var humidity = []
+          var temp
+          var humi
           for(var index in data){
             // list.push(index+"-"+res[index])
-            dataFormat={ y: parseInt(data[index].humidity), label: new Date(parseInt(data[index].time)) }
-            dataList.push(dataFormat)
+            temp={ y: parseInt(data[index].temperature), label: new Date(parseInt(data[index].time)) }
+            humi={ y: parseInt(data[index].humidity), label: new Date(parseInt(data[index].time)) }
+            temperature.push(temp)
+            humidity.push(humi)
           }
-          this.printGraph(sensor.type, sensor.name, dataList);
-          // console.log([{y:1},{y:2}])
-          // console.log(temperature)
-          // console.log(humidity)
+          this.printGraphTemperature(name, temperature, humidity);
         }
         else {
         console.log('No logs')
@@ -57,7 +90,7 @@ showGraphic=true;
       })
     }
 
-    printGraph(type, name, data){
+    printGraphHumidity(name, data){
       let chart = new CanvasJS.Chart("chartContainer", {
   		animationEnabled: true,
   		exportEnabled: true,
@@ -65,8 +98,29 @@ showGraphic=true;
   		data: [{
   			type: "spline",
                  color: "rgba(255,0,0,1)", //red
-  			dataPoints: type
+  			dataPoints: data
   		}]
+  	});
+
+  	chart.render();
+    }
+
+    printGraphTemperature(name, temperature, humidity){
+      let chart = new CanvasJS.Chart("chartContainer", {
+  		animationEnabled: true,
+  		exportEnabled: true,
+  		title: { text: "sensorMock" },
+  		data: [
+        {
+    			type: "spline",
+          color: "rgba(255,0,0,1)", //red
+    			dataPoints: temperature
+  		  },
+        {
+          type: "splineArea",
+          color: "rgba(0,75,141,0.3)", //Blue
+          dataPoints: humidity
+        }]
   	});
 
   	chart.render();
