@@ -33,19 +33,19 @@ showGraphic=true;
   getData(sensor){
     console.log(sensor)
       const host = (window.location.href.split("/")[2]).split(":")[0]
-      let url = "http://" + host + ":8000/all/" + sensor + "/humidity"
+      let url = "http://" + host + ":8000/all/" + sensor.name + "/" + sensor.type
       this.http.get<HttpResponse<object>>(url).subscribe( data =>
       {
         if(data!=null){
           // var res = data["response"]
-          var humidity = []
-          var humi
+          var data = []
+          var dataFormat
           for(var index in data){
             // list.push(index+"-"+res[index])
-            humi={ y: parseInt(data[index].humidity), label: new Date(parseInt(data[index].time)) }
-            humidity.push(humi)
+            dataFormat={ y: parseInt(data[index].humidity), label: new Date(parseInt(data[index].time)) }
+            data.push(dataFormat)
           }
-          this.printGraph(sensor, humidity);
+          this.printGraph(sensor.type, sensor.name, data);
           // console.log([{y:1},{y:2}])
           // console.log(temperature)
           // console.log(humidity)
@@ -56,7 +56,7 @@ showGraphic=true;
       })
     }
 
-    printGraph(sensor, humidity){
+    printGraph(type, name, data){
       let chart = new CanvasJS.Chart("chartContainer", {
   		animationEnabled: true,
   		exportEnabled: true,

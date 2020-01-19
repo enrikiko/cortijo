@@ -112,12 +112,13 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
 })
 //
 //New device
-app.get("/newSensor/:name/:ip", async (req, res) => {
+app.get("/newSensor/:type/:name/:ip", async (req, res) => {
      var name = req.params.name
      var ip = req.params.ip
+     var type = req.params.type
      var id = await mySensor.getIdByName(name)
       if (!id) {
-         var response = await mySensor.newSensor(name, ip)
+         var response = await mySensor.newSensor(name, ip, type)
          logs.log(name+' have been created successfully');
          res.status(200).json(name+' create successfully')
       }else {
