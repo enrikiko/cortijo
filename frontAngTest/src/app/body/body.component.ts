@@ -65,6 +65,7 @@ export class BodyComponent implements OnInit {
         this.getDevicesList()
       }
     })
+    alert(device.name + " has been remove");
   }
 
   getDifference(startTime, finishTime){
