@@ -4,8 +4,8 @@
         <nav class="navbar navbar-dark">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
-              <li class="nav-item" *ngFor="let sensor of sensorList">
-                <a class="nav-link active">{{ sensor.name }}</a>
+              <li class="nav-item" *ngFor="let sensor of sensorList" (click)="getData(sensor.name)">
+                <a class="nav-link active text-white-50">{{ sensor.name }}</a>
               </li>
             </ul>
           </div>

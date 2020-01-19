@@ -17,7 +17,6 @@ showGraphic=true;
 
   ngOnInit() {
     this.getSensor()
-    this.getData()
   }
 
   getSensor(){
@@ -31,9 +30,10 @@ showGraphic=true;
     })
   }
 
-  getData(){
+  getData(sensor){
+    console.log(sensor)
       const host = (window.location.href.split("/")[2]).split(":")[0]
-      let url = "http://" + host + ":8000/all/sensorHumidity/humidity"
+      let url = "http://" + host + ":8000/all/" + sensor + "/humidity"
       this.http.get<HttpResponse<object>>(url).subscribe( data =>
       {
         if(data!=null){
@@ -60,7 +60,7 @@ showGraphic=true;
       let chart = new CanvasJS.Chart("chartContainer", {
   		animationEnabled: true,
   		exportEnabled: true,
-  		title: { text: "Laptop-room humidity" },
+  		title: { text: sensor },
   		data: [{
   			type: "spline",
                  color: "rgba(255,0,0,1)", //red
