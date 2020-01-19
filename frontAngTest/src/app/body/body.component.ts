@@ -50,6 +50,7 @@ export class BodyComponent implements OnInit {
   }
 
   deleteDevice(device){
+    alert(device.name + " has been remove");
     const jwt = window.localStorage.getItem('jwt')
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -65,7 +66,6 @@ export class BodyComponent implements OnInit {
         this.getDevicesList()
       }
     })
-    alert(device.name + " has been remove");
   }
 
   getDifference(startTime, finishTime){
