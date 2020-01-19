@@ -14,6 +14,15 @@
   z-index: 1;
 }
 
+.fixed-center{
+  position:fixed;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  width: 100%;
+  overflow: hidden;
+  z-index: 100;
+}
+
 .body{
   margin-top: 100px;
   margin-bottom: 100px;
