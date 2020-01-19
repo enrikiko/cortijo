@@ -278,6 +278,17 @@ app.get("/status/:device", async function(req, res) {
 /////////////////////////////////                     Secure request JWT needed                 /////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
+app.delete("/device/*", async function(req, res, next) {
+    const jwt = req.headers.authorization
+    console.log(req)
+    try{
+       user = await joker.getUserByJWT(jwt)
+       next()
+    }catch(e){
+       console.log(e)
+       res.status(404).json({"jwt":"Error"})
+    }
+})
 app.get("/update/*", async function(req, res, next) {
     const jwt = req.headers.authorization
     console.log(req)
