@@ -45,7 +45,7 @@ showGraphic=true;
             humi={ y: parseInt(data[index].humidity), label: new Date(parseInt(data[index].time)) }
             humidity.push(humi)
           }
-          this.printGraph(humidity);
+          this.printGraph(sensor, humidity);
           // console.log([{y:1},{y:2}])
           // console.log(temperature)
           // console.log(humidity)
@@ -56,7 +56,7 @@ showGraphic=true;
       })
     }
 
-    printGraph(humidity){
+    printGraph(sensor, humidity){
       let chart = new CanvasJS.Chart("chartContainer", {
   		animationEnabled: true,
   		exportEnabled: true,
