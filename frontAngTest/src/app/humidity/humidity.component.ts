@@ -11,6 +11,7 @@ export class HumidityComponent implements OnInit {
 
 logs: any[]=null;
 sensorList: any[]=null;
+showGraphic= null;
 
   constructor( private http: HttpClient ) { }
 

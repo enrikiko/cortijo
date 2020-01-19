@@ -4,7 +4,9 @@
       <h2>{{ sensor.name }}</h2>
     </button>
   </div>
-  <div class="col-9 bg-light" *ngIf="showGraphic">
+  <div class="col-9 bg-light">
+    <div class="row" style="height: 100%; width: 100%;">
       <div class="col-12" id="chartContainer" style="height: 100%; width: 100%;"></div>
+    </div>
   </div>
 </div>
