@@ -40,7 +40,7 @@ async function getSensor(){
             dataName = name
             dataType = data.type
             dataContent = data.content
-            console.log(dataType,dataName,dataContent)
+            //console.log(dataType,dataName,dataContent)
             safeData(dataType,dataName,dataContent)
         }catch(e){
             logs.log(e)
