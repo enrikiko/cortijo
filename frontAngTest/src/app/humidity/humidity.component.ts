@@ -34,18 +34,19 @@ showGraphic=true;
     console.log(sensor)
       const host = (window.location.href.split("/")[2]).split(":")[0]
       let url = "http://" + host + ":8000/all/" + sensor.name + "/" + sensor.type
+      sw
       this.http.get<HttpResponse<object>>(url).subscribe( data =>
       {
         if(data!=null){
           // var res = data["response"]
-          var data = []
+          var dataList = []
           var dataFormat
           for(var index in data){
             // list.push(index+"-"+res[index])
             dataFormat={ y: parseInt(data[index].humidity), label: new Date(parseInt(data[index].time)) }
-            data.push(dataFormat)
+            dataList.push(dataFormat)
           }
-          this.printGraph(sensor.type, sensor.name, data);
+          this.printGraph(sensor.type, sensor.name, dataList);
           // console.log([{y:1},{y:2}])
           // console.log(temperature)
           // console.log(humidity)
