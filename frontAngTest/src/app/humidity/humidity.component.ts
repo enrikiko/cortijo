@@ -16,6 +16,7 @@ sensorList: any[]=null;
 
   ngOnInit() {
     this.getSensor()
+    this.getData()
   }
 
   getSensor(){
@@ -26,8 +27,7 @@ sensorList: any[]=null;
       if(data!=null){
         this.sensorList = data
       }
-    }
-    this.getData()
+    })
   }
 
   getData(){
@@ -54,7 +54,7 @@ sensorList: any[]=null;
         }
       })
     }
-    
+
     printGraph(humidity){
       let chart = new CanvasJS.Chart("chartContainer", {
   		animationEnabled: true,
