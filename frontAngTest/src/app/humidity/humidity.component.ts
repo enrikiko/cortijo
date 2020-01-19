@@ -61,11 +61,11 @@ showGraphic=true;
       let chart = new CanvasJS.Chart("chartContainer", {
   		animationEnabled: true,
   		exportEnabled: true,
-  		title: { text: sensor },
+  		title: { text: name },
   		data: [{
   			type: "spline",
                  color: "rgba(255,0,0,1)", //red
-  			dataPoints: humidity
+  			dataPoints: type
   		}]
   	});
 
