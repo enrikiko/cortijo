@@ -1,7 +1,7 @@
-<div class="container-fluid">
+<div class="container-fluid" style="height: 100%; width: 100%;>
   <div class="row">
     <div class="col-2 sidebar d-none d-lg-block">
-        <nav class="mt-5 navbar navbar-dark">
+        <nav class="navbar navbar-dark">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item" *ngFor="let sensor of sensorList">
@@ -11,7 +11,7 @@
           </div>
         </nav>
     </div>
-    <div class="col-10 bg-light" *ngIf="showGraphic">
+    <div class="col-10" *ngIf="showGraphic">
         <div id="chartContainer" style="height: 100%; width: 100%;"></div>
     </div>
   </div>
