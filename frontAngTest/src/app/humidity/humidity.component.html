@@ -1,10 +1,13 @@
 <div class="container-fluid body m3 row" style="height: 100%; width: 100%;">
-  <div class="col-3 bg-dark"s tyle="height: 100%; width: 100%;">
-      <div *ngFor="let sensor of sensorList">
-        <button class="btn btn-outline-success btn-block">
+  <div class="bg-dark col-2 sidebar d-none d-lg-block">
+    <nav class="mt-5 navbar navbar-dark">
+      <ul class="nav flex-column">
+        <li class="nav-item" *ngFor="let sensor of sensorList">
           <h2>{{ sensor.name }}</h2>
-        </button>
-      </div>
+        </li>
+      </ul>
+    </nav>
+
   </div>
   <div class="col-9 bg-light" *ngIf="showGraphic">
       <div id="chartContainer" style="height: 100%; width: 100%;"></div>
