@@ -1,8 +1,10 @@
 <div class="container-fluid body m3 row" style="height: 100%; width: 100%;">
-  <div class="col-3 bg-dark style="height: 100%; width: 100%;"">
-    <button class="btn btn-outline-success btn-block" *ngFor="let sensor of sensorList">
-      <h2>{{ sensor.name }}</h2>
-    </button>
+  <div class="col-3 bg-dark">
+      <div *ngFor="let sensor of sensorList" class="col-3">
+        <button class="col-12">
+          <h2>{{ sensor.name }}</h2>
+        </button>
+      </div>
   </div>
   <div class="col-9 bg-light">
     <div class="row" style="height: 100%; width: 100%;">
