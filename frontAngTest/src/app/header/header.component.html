@@ -8,10 +8,6 @@
               <a class="nav-link" [ngClass]="{'active': active=='device'}" routerLink="">Device</a>
             </li>
 
-            <li class="nav-item" (click)="config()">
-              <a class="nav-link" [ngClass]="{'active': active=='config'}" routerLink="config">Config</a>
-            </li>
-
             <li class="nav-item" (click)="sensor()">
               <a class="nav-link" [ngClass]="{'active': active=='sensor'}" routerLink="sensor">Sensor</a>
             </li>
@@ -24,6 +20,9 @@
             </li>
             <li class="nav-item" (click)="photos()">
               <a class="nav-link" [ngClass]="{'active': active=='photos'}" routerLink="photos">Photos</a>
+            </li>
+            <li class="nav-item" (click)="config()">
+              <a class="nav-link" [ngClass]="{'active': active=='config'}" routerLink="config">Config</a>
             </li>
             <li class="nav-item" (click)="users()">
               <a class="nav-link" [ngClass]="{'active': active=='users'}" routerLink="users">Users</a>
