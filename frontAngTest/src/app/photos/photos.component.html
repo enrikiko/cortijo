@@ -2,13 +2,13 @@
     <div class="container-fluid col-lg-6 col-12 row">
 
       <div class="col-3">
-        <div *ngFor="let camera of cameras m-2">
+        <div *ngFor="let camera of cameras" class=" m-2">
           <button (click)="getDatesYear(camera)" type="button" class="btn btn-outline-success btn-block" name="button">{{ camera }}</button>
         </div>
       </div>
 
       <div class="col-2">
-        <div *ngFor="let year of years m-2">
+        <div *ngFor="let year of years" class=" m-2">
           <button (click)="getDatesMonth(year)" type="button" class="btn btn-outline-success btn-block" name="button">{{ year }}</button>
         </div>
       </div>
