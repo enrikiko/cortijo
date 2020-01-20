@@ -8,6 +8,6 @@ const config = yaml.safeLoad(config_file);
 module.exports = {
 
   getValues: () => {return config},
-  get:  (value) => {return config.value}
+  get:  (value) => {return config[value]}
 
 }
