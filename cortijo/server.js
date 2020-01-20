@@ -37,7 +37,7 @@ var humidity;
 //const requireJwt = false
 //const config_file = fs.readFileSync('config.yaml');
 //const config = yaml.safeLoad(config_file);
-const REFRESH_DELAY = config.get(refresh_delay)
+const REFRESH_DELAY = config.get("refresh_delay")
 //
 //
 app.get("/*", function(req, res, next) {
