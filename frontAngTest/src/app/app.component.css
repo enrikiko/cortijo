@@ -24,13 +24,5 @@
 }
 
 .body2{
-  margin-top: 100px;
-  margin-bottom: 100px;
-  width: 100%;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.body{
   margin-top: .50rem!important;
 }
