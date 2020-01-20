@@ -49,7 +49,7 @@ export class BodyComponent implements OnInit {
   }
 
   deleteDevice(device){
-    if (confirm("Delete " + device + "?")) {
+    if (confirm("Delete " + device.name + "?")) {
       const jwt = window.localStorage.getItem('jwt')
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
