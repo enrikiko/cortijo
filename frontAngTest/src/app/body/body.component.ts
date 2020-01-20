@@ -12,7 +12,6 @@ export class BodyComponent implements OnInit {
   lapse: number = null;
   lapse_time: number = 5;
 
-
   constructor(private http: HttpClient) { }
 
   ngOnInit()
@@ -73,8 +72,7 @@ export class BodyComponent implements OnInit {
     this.lapse = lapse
   }
 
-
-    getDevicesList(){
+  getDevicesList(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8000/all/device"
     this.http.get<any[]>(url).subscribe( data =>

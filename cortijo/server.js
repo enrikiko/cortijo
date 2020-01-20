@@ -1,4 +1,3 @@
-const version = "1.0.0";
 const startDate = Date();
 const { exec } = require('child_process');
 const express = require("express");
@@ -11,7 +10,7 @@ const myHumidity = require('./humidity');
 const requests = require('./requests');
 const mySensor = require('./sensors');
 const timeout = require('./timeout');
-const history = require('./history');
+const config = require('./config');
 const ia = require('./ia');
 const cors = require('cors');
 const delay = require('delay');
@@ -31,6 +30,7 @@ app.enable('trust proxy')
 var http = require('http').Server(app);
 var multer  = require('multer');
 var upload = multer({ dest: '/tmp/'});
+const version = config.get("version");
 //var io = http;
 var temperature;
 var humidity;
@@ -313,7 +313,7 @@ app.get("/update/:name/false", async function(req, res){
         res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
     }else if( isUpdating[name] != true ){
         isUpdating[name]=true
-        logs.log(JSON.stringify(isUpdating))
+        //logs.log(JSON.stringify(isUpdating))
         logs.log("Change status of "+name+" to true");
         try {
             var response = await joker.switchStatus(false, name) //Change device status
@@ -339,7 +339,7 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
     res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
   }else if( isUpdating[name] != true ){
     isUpdating[name]=true
-    logs.log(JSON.stringify(isUpdating))
+    //logs.log(JSON.stringify(isUpdating))
     logs.log("Change status of "+name+" to true");
       try {
             joker.switchAlertLapse( name, lapse )
