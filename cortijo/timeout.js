@@ -7,11 +7,9 @@ const myHumidity = require('./humidity');
 const request = require('superagent');
 const req = require('request');
 const config = require('./config');
-// Get config
-//const config_file = fs.readFileSync('config.yaml');
-//const config = yaml.safeLoad(config_file);
-const TIMEOUT_SENSOR = config.getValues().timeout_sensor
-const TIMEOUT_CHECK = config.getValues().timeout_check
+//
+const TIMEOUT_SENSOR = config.get("timeout_sensor");
+const TIMEOUT_CHECK = config.get("timeout_check");
 //
 function executeTimeoutSensor(){
     setTimeout(function(){
@@ -61,8 +59,6 @@ async function check(){
             logs.log(e)
             await myDevice.blockDeviceByName(name);
         }
-
-
     }
 }
 //
