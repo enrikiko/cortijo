@@ -1,3 +1,6 @@
-<div class="container-fluid center" style="height: 100%; width: 100%;">
-  <h2 *ngFor="let elem of config" class="">{{ elem.key }} : {{ elem.value }}</h2>
+<div class="container-fluid center">
+  <button type="button" class="btn btn-primary" *ngFor="let elem of config">
+    {{ elem.key }} <span class="badge badge-light">{{ elem.value }}</span>
+    <span class="sr-only">{{ elem.key }}</span>
+  </button>
 </div>
