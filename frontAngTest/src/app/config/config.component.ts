@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 })
 export class ConfigComponent implements OnInit {
 
-    config: object = null;
+    config: any[] = null;
 
     constructor(private http: HttpClient) { }
 
@@ -22,7 +22,15 @@ export class ConfigComponent implements OnInit {
     this.http.get(url).subscribe( data =>
     {
       if(data!=null){
-        this.config = data
+        var list = []
+        Object.keys(data).forEach(function(elem){
+          var object = {}
+          object.key = elem
+          object.value = data[elem]
+          list.add(object)
+        })
+        this.config = list
+        console.log(list)
       }
       else {
        console.log('no response')
