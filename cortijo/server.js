@@ -30,7 +30,7 @@ app.enable('trust proxy')
 var http = require('http').Server(app);
 var multer  = require('multer');
 var upload = multer({ dest: '/tmp/'});
-const version = config.get("version");
+const version = config.getValues().version;
 //var io = http;
 var temperature;
 var humidity;
