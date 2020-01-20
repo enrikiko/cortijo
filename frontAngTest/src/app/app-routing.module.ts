@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LogsComponent } from './logs/logs.component';
 import { BodyComponent } from './body/body.component';
-import { ConfigComponent } from './weather/config.component';
+import { ConfigComponent } from './config/config.component';
 import { HumidityComponent } from './humidity/humidity.component';
 import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
