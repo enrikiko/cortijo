@@ -35,9 +35,9 @@ const version = config.get("version");
 var temperature;
 var humidity;
 //const requireJwt = false
-const config_file = fs.readFileSync('config.yaml');
-const config = yaml.safeLoad(config_file);
-const REFRESH_DELAY = config.refresh_delay
+//const config_file = fs.readFileSync('config.yaml');
+//const config = yaml.safeLoad(config_file);
+const REFRESH_DELAY = config.get(refresh_delay)
 //
 //
 app.get("/*", function(req, res, next) {
@@ -67,6 +67,10 @@ app.get("/info", function(req, res) {
 //Get liveness
 app.get("/liveness", function(req, res) {
     res.status(200).send()
+})
+//
+app.get("/config", function(req, res) {
+    res.status(200).json(config.getValues())
 })
 //
 //favicon.ico
