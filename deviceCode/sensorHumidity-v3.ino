@@ -79,12 +79,11 @@ void loop() {
 
 int getInfo(){
   float total = 0;
-  int measureNumbers = 50;
+  int measureNumbers = 10000;
   int sensorValue;
   int mapValue;
   for (int i = 0; i < measureNumbers; i++) {
     total += analogRead(analogInPin);
-    delay(50);
   }
   Serial.println(total);
   sensorValue = total/measureNumbers;
