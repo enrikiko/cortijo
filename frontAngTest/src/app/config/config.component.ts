@@ -24,13 +24,14 @@ export class ConfigComponent implements OnInit {
       if(data!=null){
         var list = []
         Object.keys(data).forEach(function(elem){
-          var object={}
+          var object={"key":null,"value":null}
           object.key=elem
           object.value=data[elem]
           list.push(object)
         })
-        this.config = list
         console.log(list)
+        this.config = list
+
       }
       else {
        console.log('no response')
