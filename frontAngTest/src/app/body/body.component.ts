@@ -51,14 +51,11 @@ export class BodyComponent implements OnInit {
   deleteDevice(device){
     //if (confirm("Delete " + device.name + "?")) {
       const jwt = window.localStorage.getItem('jwt')
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': jwt
-      })
+
       const host = (window.location.href.split("/")[2]).split(":")[0]
       let url = "http://" + host + ":8000/device/" + device.name
       console.log(url)
-      this.http.delete(url, { headers: headers }).subscribe( data =>
+      this.http.delete(url).subscribe( data =>
       {
         if(data!=null){
           this.getDevicesList()
