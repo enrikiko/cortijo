@@ -46,5 +46,5 @@ module.exports = {
     });
   },
 
-  getAll: async(name) => { return await myHumidity.find({"name":name}).sort('-date')}
+  getAll: async(name) => { return await myHumidity.find({"name":name}).sort('date').limit(2)}
 }
