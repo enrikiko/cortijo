@@ -54,7 +54,7 @@ function logs(text) {
 module.exports = {
   log: (text) => {
     switch (LOG) {
-      case DEGUG:
+      case DEBUG:
         logs(text)
         break;
       case ERROR:
