@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 echo $0
-sleep 1
+#sleep 1
 node server.js
