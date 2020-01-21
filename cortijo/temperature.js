@@ -58,6 +58,6 @@ module.exports = {
     });
   },
 //
-  getByName: async(name) => { return await myTemperature.find({"name":name}).sort('_id').limit(48) }
+  getByName: async(name) => { return await myTemperature.find({"name":name}).sort('-date')}
 
 }
