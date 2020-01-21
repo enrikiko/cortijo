@@ -45,7 +45,6 @@ app.get("/*", function(req, res, next) {
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
   logs.newLog(ip, fullUrl)
-  requests.newRequest(ip, fullUrl)
   next()
 })
 //
@@ -54,7 +53,6 @@ app.post("/*", function(req, res, next) {
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
   logs.newLog(ip, fullUrl)
-  requests.newRequest(ip, fullUrl)
   next()
 })
 //
@@ -381,12 +379,24 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
 //
 //Handel all bad requests
 app.get('/*', function(req, res){
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
+  var ip = req.ip
+  requests.newRequest(ip, fullUrl)
   res.sendFile(__dirname + '/info.html');
 });
 app.post('/*', function(req, res){
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
+  var ip = req.ip
+  requests.newRequest(ip, fullUrl)
   res.sendFile(__dirname + '/info.html');
 });
 app.delete('/*', function(req, res){
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
+  var ip = req.ip
+  requests.newRequest(ip, fullUrl)
   res.sendFile(__dirname + '/info.html');
 });
 //
