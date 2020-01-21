@@ -162,8 +162,10 @@ app.get("/all/ip", async function(req, res) {
 //Get all device
 app.get("/all/device", async function(req, res) {
     await delay(REFRESH_DELAY)
-    var response = await myDevice.getDevice();
-    res.status(200).json(response)
+    var deviceObjectList = await myDevice.getDevice();
+    var deviceList = []
+    deviceObjectList.forEach((device)=> deviceList.push(device.name))
+    res.status(200).json(deviceList)
 })
 //
 //Get temperature and humidity history

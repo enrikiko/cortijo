@@ -74,11 +74,11 @@ export class BodyComponent implements OnInit {
   getDevicesList(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8000/all/device"
-    this.http.get<any[]>(url).subscribe( data =>
+    this.http.get(url).subscribe( data =>
     {
       if(data!=null){
         this.devices=data;
-        this.getDevicesList()
+        //this.getDevicesList()
       }
       else {
       console.log('Database is empty')
