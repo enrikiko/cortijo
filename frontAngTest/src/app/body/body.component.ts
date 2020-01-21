@@ -55,10 +55,9 @@ export class BodyComponent implements OnInit {
         'Content-Type': 'application/json',
         'Authorization': jwt
       })
-      let newStatus=null
       const host = (window.location.href.split("/")[2]).split(":")[0]
-      let url = null
-      url = "http://" + host + ":8000/device/" + device.name
+      let url = "http://" + host + ":8000/device/" + device.name
+      console.log(url)
       this.http.delete(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){
