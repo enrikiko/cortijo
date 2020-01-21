@@ -46,5 +46,5 @@ module.exports = {
     });
   },
 
-  getAll: async(name) => { return await myHumidity.find({"name":name}).limit(2)}
+  getAll: async(name) => { return await myHumidity.find({"name":name}).sort({time:-1}).limit(2)}
 }
