@@ -168,17 +168,21 @@ app.get("/all/device", async function(req, res) {
 //
 //Get temperature and humidity history
 //TODO add to doc and add request to get al sensors
-app.get("/all/:name/temperature",async function(req, res) {
+app.get("/all/temperature/:name",async function(req, res) {
    var name = req.params.name;
-   var temperature = await myTemperature.getByName(name)
+   var time = 200
+   var temperature = await myTemperature.getByName(name, time)
+   temperature = joker.reverse(temperature)
    res.status(200).json(temperature)
 })
 //
 //Get humidity history
-app.get("/all/:name/humidity",async function(req, res) {
+app.get("/all/humidity/:name",async function(req, res) {
    var name = req.params.name;
-   var temperature = await myHumidity.getAll(name)
-   res.status(200).json(temperature)
+   var time = 200
+   var humidity = await myHumidity.getAll(name, time)
+   humidity = joker.reverse(humidity)
+   res.status(200).json(humidity)
 })
 //
 //TODO too much data is create the app collapse

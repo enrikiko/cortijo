@@ -129,4 +129,5 @@ module.exports={
     //   }
     //   return await getResponse(url);
     // }
+    reverse: (value)=>{return value}
 }

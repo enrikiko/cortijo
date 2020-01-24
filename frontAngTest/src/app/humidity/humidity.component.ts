@@ -33,7 +33,7 @@ showGraphic=true;
   getData(sensor){
     console.log(sensor)
       const host = (window.location.href.split("/")[2]).split(":")[0]
-      let url = "http://" + host + ":8000/all/" + sensor.name + "/" + sensor.type
+      let url = "http://" + host + ":8000/all/" + sensor.type + "/" + sensor.name 
       switch(sensor.type) {
         case "humidity":
           this.getHumidity(url, sensor.name)
