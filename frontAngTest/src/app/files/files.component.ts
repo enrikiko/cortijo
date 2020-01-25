@@ -29,5 +29,11 @@ export class FilesComponent implements OnInit {
       }
     })
   }
+  
+  download(file){
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    let url = "http://" + host + ":8500/download/" + file
+    window.location.href = url
+  }
 
 }
