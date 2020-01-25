@@ -4,6 +4,10 @@
         <div class="col-12 col-ms-6">
           <ul class="nav nav-pills nav-fill">
 
+            <li class="nav-item text-success">
+              <a class="nav-link">{{ jwt }}</a>
+            </li>
+
             <li class="nav-item" (click)="device()">
               <a class="nav-link" [ngClass]="{'active': active=='device'}" routerLink="">Device</a>
             </li>
@@ -32,9 +36,6 @@
             </li>
             <li class="nav-item" (click)="logOut()">
               <a class="nav-link" [ngClass]="{'active': active=='logOut'}" routerLink="login">Log Out</a>
-            </li>
-            <li class="nav-item text-success">
-              <a class="nav-link">{{ jwt }}</a>
             </li>
           </ul>
         </div>

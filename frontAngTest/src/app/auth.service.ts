@@ -37,7 +37,10 @@ export class AuthService {
   }
 
   isLogin(){
-    return this.status
+    if(this.auth.authJWT()){return true}
+    else{
+      return this.status
+    }
   }
 
   login( user, password ) {
