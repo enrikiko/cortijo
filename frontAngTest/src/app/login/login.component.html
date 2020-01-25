@@ -2,7 +2,7 @@
       <form (submit)="login($event)" class="form-signin">
         <img class="mb-4" src="{{ url }}" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label>User</label>
+        <label for="inputEmail" class="sr-only">User</label>
         <input [(ngModel)]="userName" name="userName" class="form-control" id="userName" type="text">
         <label>Password</label>
         <input [(ngModel)]="password" name="password" class="form-control" id="password" type="password">
