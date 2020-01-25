@@ -36,14 +36,14 @@ export class FilesComponent implements OnInit {
     window.location.href = url
   }
 
-  fileupload(event){
+  fileupload(file: FileList){
     event.preventDefault()
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8500/fileupload"
     event.preventDefault()
-    const file = event.target.files
+    //const file = event.target.files
     var fd = new FormData();
-    fd.append('file', file);
+    fd.append('file', file.item(0));
     this.http.post(url, fd).subscribe( data =>
     {
       if(data!=null){
