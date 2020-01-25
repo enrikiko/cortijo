@@ -166,7 +166,7 @@ services:
       - "8500:3000"
     volumes:
         - type: bind
-          source: /home/lenovo/eramos
-          target: /src/
+          source: /home/lenovo/eramosFiles
+          target: /files/
 networks:
   network:
