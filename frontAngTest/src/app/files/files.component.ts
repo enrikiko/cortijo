@@ -40,7 +40,7 @@ export class FilesComponent implements OnInit {
     event.preventDefault()
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8500/fileupload"
-    this.http.post(url, file).subscribe( data =>
+    this.http.post(url, files=file).subscribe( data =>
     {
       if(data!=null){
         console.log(data)
