@@ -1,7 +1,10 @@
 <div class="container-fluid bg-white body center">
   <div class="col-12">
     <form>
-      <input (change)="fileupload($event.target.files)"  class="btn btn-lg btn-info" type="file" name="file">
+      <div class="form-group">
+        <label for="file">Email address</label>
+        <input (change)="fileupload($event.target.files)" id="file" class="form-control" type="file" name="file">
+      </div>
     </form>
   </div>
   <div *ngFor="let file of files" class="col-12">
