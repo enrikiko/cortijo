@@ -136,12 +136,12 @@ app.get("/all/sensor", async function(req, res) {
     res.status(200).json(response)
 })
 //
-//JWT verification
+// JWT verification
 app.get("/jwt", async function(req, res) {
    const jwt = req.headers.authorization
    try{
        user = await joker.getUserByJWT(jwt)
-       res.status(200).json("jwt":user.text)
+       res.status(200).json({"jwt":user.text})
    }catch(e){
        //console.log(e)
        res.status(401).json({"jwt":"Incorrect"})
