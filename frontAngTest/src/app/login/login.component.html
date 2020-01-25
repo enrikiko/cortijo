@@ -1,12 +1,14 @@
-<div class="bg-white container form-group center">
-  <div class="text-center">
-      <form class="form-signin" (submit)="login($event)">
+<div class="text-center bg-white container form-group center">
+  <div class="row justify-content-md-center">
+    <div class="col-12 col-lg-8 ">
+      <form (submit)="login($event)" class="form-signin">
         <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <label for="inputEmail" class="sr-only">User</label>
+        <label>User</label>
         <input [(ngModel)]="userName" name="userName" class="form-control" id="userName" type="text">
-        <label for="inputPassword" class="sr-only">Password</label>
+        <label>Password</label>
         <input [(ngModel)]="password" name="password" class="form-control" id="password" type="password">
         <input type="submit" value="Submit" class="btn btn-primary mt-2">
       </form>
+    </div>
   </div>
 </div>
