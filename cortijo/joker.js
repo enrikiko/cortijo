@@ -130,8 +130,6 @@ module.exports={
     //   return await getResponse(url);
     // }
     reverse:(values)=>{
-      var reverseValues = []
-      values.forEach(element => reverseValues.insert(0,element))
-      return reverseValues
+      return values.reverse()
     }
 }
