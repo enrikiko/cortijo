@@ -10,4 +10,4 @@ COPY ./init.sh /src/init.sh
 WORKDIR /src/
 USER root
 #CMD python init.sh
-ENTRYPOINT ["./init.sh"]
+ENTRYPOINT ["sh", "/src/init.sh"]
