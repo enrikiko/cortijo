@@ -13,7 +13,7 @@ def upload_file():
 @app.route('/download', methods=['GET', 'POST'])
 def download_file():
     #filename = request.args.get('file', None)
-    return send_from_directory(".", "init.sh", as_attachment=True)
+    return send_from_directory(".", "init.py", as_attachment=True)
 
 
 @app.route('/liveness', methods=['GET'])
