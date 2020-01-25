@@ -9,7 +9,16 @@ def upload_file():
     print("Filename:" + f.filename)
     res=f.save(secure_filename(f.filename))
     return "res"
-    # return 'file uploaded successfullyd'
+
+@app.route('/download', methods=['GET', 'POST'])
+def download_file():
+    filename = request.args.get('file', None)
+    if filename is None:
+        abort(404)
+    #f = request.files['file']
+    print("Filename:" + filename)
+    #res=f.save(secure_filename(f.filename))
+    return "res"
 
 
 @app.route('/liveness', methods=['GET'])
