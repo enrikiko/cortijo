@@ -6,7 +6,8 @@ RUN pip install Flask
 RUN mkdir /src/
 COPY ./favicon.ico /src/favicon.ico
 COPY ./init.py /src/init.py
+COPY ./init.sh /src/init.sh
 WORKDIR /src/
 USER root
-CMD python /src/init.py
+CMD python /src/init.sh
 #ENTRYPOINT ["python", "/src/init.py"]
