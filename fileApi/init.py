@@ -19,7 +19,8 @@ def download_file():
 
 @app.route('/files', methods=['GET', 'POST'])
 def list_file():
-    return os.listdir("./files")
+    list = os.listdir("./files")
+    return tuple(list)
 
 
 
