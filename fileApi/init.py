@@ -1,6 +1,6 @@
 import os
 from werkzeug import secure_filename
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory, json
 app = Flask(__name__)
 
 @app.route('/upload', methods=['GET', 'POST'])
@@ -21,7 +21,12 @@ def download_file():
 def list_file():
     list = os.listdir("./files")
     tuple_list = tuple(list)
-    return str(tuple_list)
+    response = app.response_class(
+        response=json.dumps(list),
+        status=200,
+        mimetype='application/json'
+    )
+    return response
 
 @app.route('/liveness', methods=['GET'])
 def liveness():

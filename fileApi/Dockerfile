@@ -4,7 +4,6 @@ RUN apt-get update
 RUN apt install -y python-pip
 RUN pip install Flask
 RUN mkdir /files/
-RUN echo "test" > ./files/test
 COPY ./favicon.ico favicon.ico
 COPY ./init.py init.py
 CMD python init.py
