@@ -1,9 +1,7 @@
-FROM ubuntu:19.04
-RUN apt update
-RUN apt-get update
-RUN apt install -y python-pip
-RUN pip install Flask
-RUN mkdir /files/
-COPY ./favicon.ico favicon.ico
-COPY ./init.py init.py
-CMD python init.py
+FROM alpine
+RUN apk add npm
+RUN mkdir /scr/
+RUN mkdir /scr/files
+COPY ./src /scr/
+WORKDIR /scr/
+CMD sh init.sh

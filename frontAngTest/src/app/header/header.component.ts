@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
   logOut(){
     this.Auth.logOut()
     this.active="logOut"
+    this.getJwt()
   }
   getJwt(){
   const jwt = window.localStorage.getItem('jwt')
