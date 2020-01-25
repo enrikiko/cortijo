@@ -28,10 +28,10 @@ export class AuthService {
       if(data!=null){
         console.log("auth : " +data.jwt)
         console.log(data.status)
-
+        if(data.jwt!="Incorrect"){return true}
+        else {return false}
       }
     })
-    return true
   }
 
   isLogin(){
