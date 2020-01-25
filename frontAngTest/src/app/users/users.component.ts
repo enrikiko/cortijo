@@ -28,13 +28,14 @@ export class UsersComponent implements OnInit {
     const secret = target.querySelector('#secret').value
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8010/newuser/"+user+"/"+password+"/"+secret
-    console.log(url)
-
     this.http.get<any>(url).subscribe( data =>
     {
       if(data){
         console.log(data)
         this.status = data.status
+        if(data.jwt!=null){
+          window.localStorage.setItem('jwt', data.jwt)
+        }
       }
       else {
         console.log('Unautorized')

@@ -50,7 +50,7 @@ export class AuthService {
           window.localStorage.setItem('jwt', data.jwt)
           console.log(data)
           this.status = true
-          this.router.navigate(['logs'])
+          //this.router.navigate(['logs'])
           return true
         }
         else {

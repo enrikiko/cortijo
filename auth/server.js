@@ -136,11 +136,12 @@ app.get('/newuser/:user/:password/:token', async function(req, res){
         if ( isCreateUser == true ) {
             console.log("User created successfuly");
             response.status="User created successfuly"
-            res.status(201).send(response)
+            generatedJWT = await jwt_auth.signAuthJwt(user)
+            res.status(201).json({"status":response,"jwt":generatedJWT)
         }else {
             console.log("User already exist");
             response.status="User already exist"
-            res.status(200).send(response)
+            res.status(200).json({"status":response})
         }
     }else{
         console.log("Token incorrect")
