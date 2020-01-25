@@ -8,7 +8,7 @@ def upload_file():
     f = request.files['file']
     print("Filename:" + f.filename)
     res=f.save(secure_filename(f.filename))
-    return res
+    return "res"
     # return 'file uploaded successfullyd'
 
 
