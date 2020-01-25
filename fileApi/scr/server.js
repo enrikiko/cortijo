@@ -20,7 +20,7 @@ app.get('/', function (req, res) {
 app.post('/fileupload', function (req, res) {
     var busboy = new Busboy({ headers: req.headers });
     busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-      var saveTo = path.join(__dirname, 'uploads/' + filename);
+      var saveTo = path.join(__dirname, 'files/' + filename);
       file.pipe(fs.createWriteStream(saveTo));
     });
     busboy.on('finish', function() {
