@@ -129,5 +129,9 @@ module.exports={
     //   }
     //   return await getResponse(url);
     // }
-    reverse:(value)=>{return value}
+    reverse:(values)=>{
+      reverseValues
+      values.forEach(element => reverseValues.insert(0,element))
+      return value
+    }
 }
