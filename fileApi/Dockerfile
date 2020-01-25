@@ -7,4 +7,6 @@ RUN mkdir /src/
 COPY ./favicon.ico /src/favicon.ico
 COPY ./init.py /src/init.py
 WORKDIR /src/
+USER root
+CMD python /src/init.py
 #ENTRYPOINT ["python", "/src/init.py"]
