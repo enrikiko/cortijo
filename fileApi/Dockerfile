@@ -3,12 +3,7 @@ RUN apt update
 RUN apt-get update
 RUN apt install -y python-pip
 RUN pip install Flask
-#RUN mkdir /src/
+RUN mkdir /files/
 COPY ./favicon.ico favicon.ico
 COPY ./init.py init.py
-#COPY ./init.sh init.sh
-#WORKDIR /src/
-#USER root
-#RUN chmod +X init.sh
 CMD python init.py
-#ENTRYPOINT ["sh", "init.sh"]

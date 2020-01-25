@@ -7,13 +7,16 @@ app = Flask(__name__)
 def upload_file():
     f = request.files['file']
     print("Filename:" + f.filename)
-    res=f.save(secure_filename(f.filename))
+    res=f.save(os.path.join(app.instance_path, 'files', secure_filename(f.filename)))
     return "res"
 
 @app.route('/download', methods=['GET', 'POST'])
 def download_file():
-    #filename = request.args.get('file', None)
-    return send_from_directory(".", "init.py", as_attachment=True)
+    filename = request.args.get('file', None)
+    if filename is None:
+        return "invalid request"
+    return send_from_directory("./files", filename, as_attachment=True)
+     res
 
 
 @app.route('/liveness', methods=['GET'])
