@@ -133,10 +133,12 @@ app.get('/newuser/:user/:password/:token', async function(req, res){
     if(token==process.env.TOKEN){
         console.log("Token correct")
         isCreateUser = await auth.createUser(user, password)
-        if ( isCreateUser ) {
+        if ( isCreateUser == true ) {
+            console.log("User created successfuly");
             response.status="User created successfuly"
             res.status(201).send(response)
         }else {
+            console.log("User already exist");
             response.status="User already exist"
             res.status(200).send(response)
         }
