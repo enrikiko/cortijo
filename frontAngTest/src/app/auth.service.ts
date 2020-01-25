@@ -16,7 +16,29 @@ export class AuthService {
   constructor(private router: Router,
               private http: HttpClient ) { };
 
+  authJWT(){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    url = "http://" + host + ":8000/jwt"
+    this.http.get(url, { headers: headers }).subscribe( data => {
+      if(data!=null){
+        console.logs(data.status)
+        if(data.status==200){
+          return true
+        }else{
+          return false
+        }
+      }
+    })
+
+  }
+
   isLogin(){
+    if(this.authJWT()){this.status==true}
     return this.status
   }
 
