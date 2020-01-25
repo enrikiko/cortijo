@@ -2,7 +2,7 @@
   <div class="row justify-content-md-center">
     <div class="col-12 col-lg-8 ">
       <form (submit)="login($event)" class="form-signin">
-        <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <img class="mb-4" src="{{ url }}" alt="" width="72" height="72">
         <label>User</label>
         <input [(ngModel)]="userName" name="userName" class="form-control" id="userName" type="text">
         <label>Password</label>
