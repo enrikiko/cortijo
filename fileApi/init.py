@@ -20,8 +20,8 @@ def download_file():
 @app.route('/files', methods=['GET', 'POST'])
 def list_file():
     list = os.listdir("./files")
-    tuple = tuple(list)
-    return tuple(tuple, 200)
+    tuple_list = tuple(list)
+    return tuple(tuple_list, 200)
 
 
 
