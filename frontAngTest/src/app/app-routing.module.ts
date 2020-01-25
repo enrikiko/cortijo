@@ -9,7 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { CatordogComponent } from './catordog/catordog.component';
 import { RequestsComponent } from './requests/requests.component';
 import { PhotosComponent } from './photos/photos.component';
-import { UsersComponent } from './users/users.component'
+import { UsersComponent } from './users/users.component';
+import { FilesComponent } from './files/files.component';
 
 const routes: Routes = [
   {path:'', component: BodyComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
   {path:'catordog', component: CatordogComponent},
   {path:'requests', component: RequestsComponent},
   {path:'photos', component: PhotosComponent},
-  {path:'users', component: UsersComponent}
+  {path:'users', component: UsersComponent},
+  {path:'files', component: FilesComponent}
 ];
 
 @NgModule({

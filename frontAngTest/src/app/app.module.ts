@@ -18,6 +18,7 @@ import { PhotoComponent } from './photo/photo.component';
 import { RequestsComponent } from './requests/requests.component';
 import { HumidityComponent } from './humidity/humidity.component';
 import { ConfigComponent } from './config/config.component';
+import { FilesComponent } from './files/files.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ConfigComponent } from './config/config.component';
     PhotoComponent,
     RequestsComponent,
     HumidityComponent,
-    ConfigComponent
+    ConfigComponent,
+    FilesComponent
   ],
   imports: [
     BrowserModule,

@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
   device(){this.active="device"}
   config(){this.active="config"}
   sensor(){this.active="sensor"}
-  catordog(){this.active="catordog"}
+  files(){this.active="files"}
   requests(){this.active="requests"}
   photos(){this.active="photos"}
   users(){this.active="users"}
