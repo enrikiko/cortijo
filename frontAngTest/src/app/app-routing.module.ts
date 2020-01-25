@@ -13,16 +13,16 @@ import { UsersComponent } from './users/users.component';
 import { FilesComponent } from './files/files.component';
 
 const routes: Routes = [
-  {path:'', component: BodyComponent},
+  {path:'', component: BodyComponent, canActivate: [AuthGuard]},
   {path:'logs', component: LogsComponent, canActivate: [AuthGuard]},
-  {path:'config', component: ConfigComponent},
-  {path:'sensor', component: HumidityComponent},
+  {path:'config', component: ConfigComponent, canActivate: [AuthGuard]},
+  {path:'sensor', component: HumidityComponent, canActivate: [AuthGuard]},
   {path:'login', component: LoginComponent},
-  {path:'catordog', component: CatordogComponent},
-  {path:'requests', component: RequestsComponent},
-  {path:'photos', component: PhotosComponent},
-  {path:'users', component: UsersComponent},
-  {path:'files', component: FilesComponent}
+  {path:'catordog', component: CatordogComponent, canActivate: [AuthGuard]},
+  {path:'requests', component: RequestsComponent, canActivate: [AuthGuard]},
+  {path:'photos', component: PhotosComponent, canActivate: [AuthGuard]},
+  {path:'users', component: UsersComponent, canActivate: [AuthGuard]},
+  {path:'files', component: FilesComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
