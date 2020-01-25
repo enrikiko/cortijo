@@ -9,8 +9,6 @@ app.use(bodyParser.json());
 var http = require('http').Server(app);
 var io = http;
 
-app.get(){}
-
 app.get('/', function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.write('<form action="fileupload" method="post" enctype="multipart/form-data">');
