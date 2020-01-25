@@ -36,7 +36,7 @@ app.get('/list', function (req, res) {
     fs.readdirSync(testFolder).forEach(file => {
         list.push(file)
     });
-    return list;
+    res.status(200).json({"list":list})
 })
 
 http.listen(3000, function () {
