@@ -1,4 +1,10 @@
 <div class="container-fluid bg-white body center">
+  <div class="col-12">
+    <form action="fileupload($event)" method="post" enctype="multipart/form-data">
+      <input type="file" name="filetoupload" name="filetoupload"><br>
+      <input type="submit" class="btn btn-lg">
+    </form>
+  </div>
   <div *ngFor="let file of files" class="col-12">
     <button (click)="download(file)" class="btn btn-lg btn-info btn-block m-1" id="{{ file }}">
       <h2>{{ file }}</h2>
