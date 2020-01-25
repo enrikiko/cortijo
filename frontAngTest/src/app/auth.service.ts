@@ -24,12 +24,11 @@ export class AuthService {
     })
     const host = (window.location.href.split("/")[2]).split(":")[0]
     const url = "http://" + host + ":8000/jwt"
-    return true
-    // this.http.get<any>(url, { headers: headers }).subscribe( data => {
-    //   if(data!=null){
-    //     //#$console.log(data)
-    //   }
-    // })
+    this.http.get<any>(url, { headers: headers }).subscribe( data => {
+      if(data!=null){
+        console.log("auth : " +data.jwt)
+      }
+    })
   }
 
   isLogin(){
