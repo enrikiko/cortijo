@@ -36,7 +36,7 @@ export class FilesComponent implements OnInit {
     window.location.href = url
   }
 
-  fileupload(file){
+  fileupload(file: File){
     event.preventDefault()
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8500/fileupload"
@@ -44,6 +44,7 @@ export class FilesComponent implements OnInit {
     {
       if(data!=null){
         console.log(data)
+        this.getFiles()
       }
     })
   }
