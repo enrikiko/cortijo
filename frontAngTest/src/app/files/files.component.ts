@@ -22,7 +22,7 @@ export class FilesComponent implements OnInit {
     this.http.get<any>(url).subscribe( data =>
     {
       if(data!=null){
-        this.files=data.list;
+        this.files=data;
       }
       else {
       console.log('Database is empty')
