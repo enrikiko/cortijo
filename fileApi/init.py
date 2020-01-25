@@ -12,12 +12,8 @@ def upload_file():
 
 @app.route('/download', methods=['GET', 'POST'])
 def download_file():
-    return "res"
     filename = request.args.get('file', None)
-    if filename is None:
-        filename = "init.sh"
-    res = send_from_directory(".", filename, as_attachment=True)
-
+    return send_from_directory(".", "init.sh", as_attachment=True)
 
 
 @app.route('/liveness', methods=['GET'])
