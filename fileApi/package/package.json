@@ -9,7 +9,8 @@
   "dependencies": {
     "express": "*",
     "request": "*",
-    "busboy": "*"
+    "busboy": "*",
+    "cors": "*"
   },
   "author": "Enrique Ramos",
   "license": "ISC"
