@@ -29,7 +29,7 @@ export class AuthService {
         console.log("auth : " +data.jwt)
         if(data.status){
           console.log("true")
-          this.status == true
+          this.status = true
         }
       }
     })
