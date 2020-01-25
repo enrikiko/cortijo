@@ -1,4 +1,5 @@
 import os
+from werkzeug import secure_filename
 from flask import Flask, render_template, request, send_from_directory
 app = Flask(__name__)
 
@@ -6,8 +7,8 @@ app = Flask(__name__)
 def upload_file():
     f = request.files['file']
     print("Filename:" + f.filename)
-    f.save(secure_filename(f.filename))
-    return catordog(f.filename)
+    res=f.save(secure_filename(f.filename))
+    return res
     # return 'file uploaded successfullyd'
 
 
