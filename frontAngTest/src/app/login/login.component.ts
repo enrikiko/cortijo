@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +11,13 @@ export class LoginComponent implements OnInit {
 
   userName: String = "";
   password: String = "";
+  url = null;
 
-  constructor( private Auth: AuthService) { }
+  constructor( private Auth: AuthService, private http: HttpClient) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  this.getUrl()
+}
 
   login(event){
     //let user = this.userName
@@ -24,5 +28,10 @@ export class LoginComponent implements OnInit {
     const password = target.querySelector('#password').value
     this.Auth.login(user, password)
   }
+  getUrl(){
+    onst host = (window.location.href.split("/")[2]).split(":")[0]
+    const url = "http://" + host + ":8000/favicon.ico"
+    this.url=url
+    }
 
 }
