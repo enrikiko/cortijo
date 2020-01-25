@@ -216,12 +216,12 @@ app.get("/set/humidity/:humidity", function(req, res) {
 //})
 //
 //Get temperature and humidity
-app.get("/current/temperature/humidity", function(req, res) {
-  response={}
-  response.temperature=temperature;
-  response.humidity=humidity;
-  res.status(200).json(response)
-})
+// app.get("/current/temperature/humidity", function(req, res) {
+//   response={}
+//   response.temperature=temperature;
+//   response.humidity=humidity;
+//   res.status(200).json(response)
+// })
 //TODO
 //Delete temperature history
 app.delete("/temperature/history/:name",async function(req, res) {

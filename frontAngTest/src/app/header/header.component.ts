@@ -11,8 +11,6 @@ import { AuthService } from '../auth.service';
 export class HeaderComponent implements OnInit {
 
   active: string="device";
-//  temperature: string="";
-//  humidity: string="";
   data : any[]=null;
   jwt : string=null;
 
@@ -20,24 +18,10 @@ export class HeaderComponent implements OnInit {
               private Auth: AuthService) { }
 
   ngOnInit() {
-    this.getData()
     this.getJwt()
   }
 
-  getData(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    // const host = "88.8.65.164"
-    let url = "http://" + host + ":8000/current/temperature/humidity"
-    this.Http.get<any[]>(url).subscribe( data =>
-    {
-      if(data!=null){
-        this.data=data;
-      }
-      else {
-      console.log('Database is empty')
-      }
-    })
-  }
+
 
   device(){this.active="device"}
   config(){this.active="config"}
