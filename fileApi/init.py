@@ -18,7 +18,7 @@ def download_file():
     #f = request.files['file']
     print("Filename:" + filename)
     #res=f.save(secure_filename(f.filename))
-    return "res"
+    return filename
 
 
 @app.route('/liveness', methods=['GET'])
