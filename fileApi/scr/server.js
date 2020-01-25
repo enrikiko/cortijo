@@ -43,7 +43,7 @@ app.get('/list', function (req, res) {
 })
 
 app.get('/download/:file', function (req, res) {
-    req.status(200).send(fs.readFileSync("./files/"+req.params.file))
+    res.status(200).send(fs.readFileSync("./files/"+req.params.file))
 })
 
 
