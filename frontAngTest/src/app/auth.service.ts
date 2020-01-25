@@ -29,6 +29,7 @@ export class AuthService {
         console.log("auth : " +data.jwt)
       }
     })
+    return true
   }
 
   isLogin(){
