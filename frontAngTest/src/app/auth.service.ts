@@ -34,7 +34,6 @@ export class AuthService {
   }
 
   isLogin(){
-    if(this.authJWT()==true){this.status==true}
     return this.status
   }
 
