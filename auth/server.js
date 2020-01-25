@@ -137,7 +137,7 @@ app.get('/newuser/:user/:password/:token', async function(req, res){
             console.log("User created successfuly");
             response.status="User created successfuly"
             generatedJWT = await jwt_auth.signAuthJwt(user)
-            res.status(201).json({"status":response,"jwt":generatedJWT)
+            res.status(201).json({"status":response,"jwt":generatedJWT})
         }else {
             console.log("User already exist");
             response.status="User already exist"
