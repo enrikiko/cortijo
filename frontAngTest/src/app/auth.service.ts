@@ -24,18 +24,17 @@ export class AuthService {
     })
     const host = (window.location.href.split("/")[2]).split(":")[0]
     const url = "http://" + host + ":8000/jwt"
-    var res = this.http.get<any>(url, { headers: headers }).subscribe( data => {
+    var status = false
+    this.http.get<any>(url, { headers: headers }).subscribe( data => {
       if(data!=null){
-        //console.log("auth : " +data.jwt)
         if(data.status){
-          //console.log("true")
           this.status = true
-          return true
+          console.log(1)
         }
-        else{return false}
       }
     })
-    return res
+    console.log(2)
+    return false
   }
 
   isLogin(){
@@ -51,15 +50,11 @@ export class AuthService {
       {
         if(data.status==true){
           window.localStorage.setItem('jwt', data.jwt)
-          console.log(data)
           this.status = true
-          //this.router.navigate(['logs'])
-          this.router.navigate(['body'])
-          return true
+          this.router.navigate(['files'])
         }
         else {
           console.log('Unautorized')
-          return false
         }
       })
 
