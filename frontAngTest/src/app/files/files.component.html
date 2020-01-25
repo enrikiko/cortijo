@@ -2,8 +2,9 @@
   <div class="col-12">
     <form>
       <div class="form-group">
-        <label for="file">Email address</label>
-        <input (change)="fileupload($event.target.files)" id="file" class="form-control" type="file" name="file">
+        <button (change)="fileupload($event.target.files)" id="file" class="form-control" type="file" name="file">
+          Upload a file
+        </button>
       </div>
     </form>
   </div>
