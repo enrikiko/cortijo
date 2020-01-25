@@ -47,6 +47,7 @@ export class FilesComponent implements OnInit {
       if(data!=null){
         console.log(data)
       }
+    })
   }
 
 }
