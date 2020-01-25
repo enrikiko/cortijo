@@ -8,9 +8,9 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 })
 export class UsersComponent implements OnInit {
 
-  password: String;
+  secret: String;
   userName: String;
-  userPassword: String;
+  password: String;
   status: String;
   url = null;
 
@@ -20,10 +20,14 @@ export class UsersComponent implements OnInit {
     this.getUrl()
   }
 
-  accion() {
+  createUser(event) {
     // const host = "88.7.66.22"
+    const target = event.target
+    const user = target.querySelector('#userName').value
+    const password = target.querySelector('#password').value
+    const secret = target.querySelector('#secret').value
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8010/newuser/"+this.userName+"/"+this.userPassword+"/"+this.password
+    let url = "http://" + host + ":8010/newuser/"+user+"/"+password+"/"+secret
     console.log(url)
 
     this.http.get<any>(url).subscribe( data =>

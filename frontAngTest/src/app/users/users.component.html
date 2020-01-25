@@ -1,9 +1,9 @@
 <div class="text-center center">
-  <form (submit)="accion()" class="form-signin">
+  <form (submit)="createUser($event)" class="form-signin">
     <img class="mb-4" src="{{ url }}" alt="" width="72" height="72">
     <input [(ngModel)]="userName" id="userName" type="text" class="form-control" placeholder="User name" aria-label="User name" aria-describedby="addon-wrapping">
-    <input [(ngModel)]="userPassword" id="userPassword" type="password" class="form-control" placeholder="User password" aria-label="User password" aria-describedby="addon-wrapping">
-    <input [(ngModel)]="password" id="password" type="password" class="form-control" placeholder="Secret" aria-label="Password" aria-describedby="addon-wrapping">
+    <input [(ngModel)]="password" id="password" type="password" class="form-control" placeholder="User password" aria-label="User password" aria-describedby="addon-wrapping">
+    <input [(ngModel)]="secret" id="secret" type="password" class="form-control" placeholder="Secret" aria-label="Password" aria-describedby="addon-wrapping">
     <button class="btn btn-lg btn-primary btn-block mt-2"(click)="accion()" id="createUser" type="button" name="button" >Create</button>
     <p class="mt-3 mb-3 text-muted">&copy; 2020</p>
     <div *ngIf="status" id="userHasBeenCreated" class="mt-3 text-muted">
