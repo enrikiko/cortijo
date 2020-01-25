@@ -15,15 +15,13 @@ def download_file():
     filename = request.args.get('file', None)
     if filename is None:
         return "invalid request"
-    return send_from_directory("./files", filename, as_attachment=True)
+    return send_from_directory("./files/", filename, as_attachment=True)
 
 @app.route('/files', methods=['GET', 'POST'])
 def list_file():
     list = os.listdir("./files")
     tuple_list = tuple(list)
     return str(tuple_list)
-
-
 
 @app.route('/liveness', methods=['GET'])
 def liveness():
