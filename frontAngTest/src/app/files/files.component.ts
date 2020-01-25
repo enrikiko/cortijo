@@ -18,11 +18,11 @@ export class FilesComponent implements OnInit {
 
   getFiles(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8500/files"
+    let url = "http://" + host + ":8500/list"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        this.files=data;
+        this.files=data.list;
       }
       else {
       console.log('Database is empty')
