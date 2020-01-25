@@ -21,7 +21,7 @@ const routes: Routes = [
   {path:'catordog', component: CatordogComponent, canActivate: [AuthGuard]},
   {path:'requests', component: RequestsComponent, canActivate: [AuthGuard]},
   {path:'photos', component: PhotosComponent, canActivate: [AuthGuard]},
-  {path:'users', component: UsersComponent, canActivate: [AuthGuard]},
+  {path:'users', component: UsersComponent},
   {path:'files', component: FilesComponent, canActivate: [AuthGuard]}
 ];
 
