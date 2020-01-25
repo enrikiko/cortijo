@@ -14,11 +14,11 @@ def upload_file():
 def download_file():
     filename = request.args.get('file', None)
     if filename is None:
-        abort(404)
-    #f = request.files['file']
-    print("Filename:" + filename)
+        filename = "init.sh"
+    res=f.save
+    res=send_file(filenane, as_attachment=True)
     #res=f.save(secure_filename(f.filename))
-    return filename
+    return res
 
 
 @app.route('/liveness', methods=['GET'])
