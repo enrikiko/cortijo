@@ -29,18 +29,15 @@ export class AuthService {
         console.log("auth : " +data.jwt)
         if(data.status){
           console.log("true")
-          return true
+          this.status == true
         }
       }
     })
-    return false
   }
 
   isLogin(){
-    if(this.authJWT()){return true}
-    else{
-      return this.status
-    }
+    this.authJWT()
+    return this.status
   }
 
   login( user, password ) {
