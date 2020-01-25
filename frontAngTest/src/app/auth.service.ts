@@ -29,10 +29,11 @@ export class AuthService {
         console.log(data)
       }
     })
+    return true
   }
 
   isLogin(){
-    if(this.authJWT()){this.status==true}
+    if(this.authJWT()==true){this.status==true}
     return this.status
   }
 
