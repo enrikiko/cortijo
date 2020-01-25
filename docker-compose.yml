@@ -167,6 +167,6 @@ services:
     volumes:
         - type: bind
           source: /home/lenovo/eramosFiles
-          target: /files/
+          target: /scr/files/
 networks:
   network:
