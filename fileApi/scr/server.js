@@ -42,6 +42,12 @@ app.get('/list', function (req, res) {
     res.status(200).send(list)
 })
 
+app.get('/download/:file', function (req, res) {
+    req.status(200).send(fs.readFileSync("./files/"+req.params.file))
+})
+
+
+
 http.listen(3000, function () {
   console.log('Servidor activo en http://localhost:3000');
 })
