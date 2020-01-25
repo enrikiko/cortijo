@@ -12,10 +12,12 @@ export class UsersComponent implements OnInit {
   userName: String;
   userPassword: String;
   status: String;
+  url = null;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.getUrl()
   }
 
   accion() {
@@ -36,5 +38,11 @@ export class UsersComponent implements OnInit {
       }
     })
   }
+
+  getUrl(){
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    const url = "http://" + host + ":8000/favicon.ico"
+    this.url=url
+    }
 
 }
