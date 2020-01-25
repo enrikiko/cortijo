@@ -45,9 +45,9 @@ module.exports = {
                 if (err) throw err;
                 if(result) {
                     console.log(result);
-                    return true
                 }
             });
+            return true
         }
     },
    removeUser: (user) => {
