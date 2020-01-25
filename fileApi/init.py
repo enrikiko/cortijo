@@ -7,7 +7,7 @@ app = Flask(__name__)
 def upload_file():
     f = request.files['file']
     print("Filename:" + f.filename)
-    res=f.save(os.path.join(app.instance_path, 'files', secure_filename(f.filename)))
+    res=f.save(os.path.join('files', secure_filename(f.filename)))
     return "res"
 
 @app.route('/download', methods=['GET', 'POST'])
