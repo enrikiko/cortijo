@@ -1,6 +1,4 @@
-<div class="text-center bg-white container form-group center">
-  <div class="row justify-content-md-center">
-    <div class="col-12 col-lg-8 ">
+<div class="text-center center">
       <form (submit)="login($event)" class="form-signin">
         <img class="mb-4" src="{{ url }}" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -10,6 +8,4 @@
         <input [(ngModel)]="password" name="password" class="form-control" id="password" type="password">
         <input type="submit" value="Submit" class="btn btn-primary mt-2">
       </form>
-    </div>
-  </div>
 </div>
