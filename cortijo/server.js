@@ -75,6 +75,10 @@ app.get("/config", function(req, res) {
 app.get("/favicon.ico", async function(req, res) {
     res.status(200).send(fs.readFileSync('favicon.ico'))
 })
+// node
+app.get("/node", async function(req, res) {
+    res.status(200).send(fs.readFileSync('node.png'))
+})
 //
 //Auth with user & password
 app.get("/auth/:user/:password", async function(req, res) {
