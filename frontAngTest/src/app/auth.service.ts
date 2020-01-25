@@ -27,9 +27,10 @@ export class AuthService {
     this.http.get<any>(url, { headers: headers }).subscribe( data => {
       if(data!=null){
         console.log("auth : " +data.jwt)
-        console.log(data.status)
-        if(data.jwt!="Incorrect"){return true}
-        else {return false}
+        if(data.status){
+          console.log("true")
+          return true
+        }
       }
     })
     return false
