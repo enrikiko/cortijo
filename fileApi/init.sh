@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-python init.py
+#python init.py
+echo "hola"
