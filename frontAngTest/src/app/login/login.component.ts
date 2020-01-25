@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.Auth.login(user, password)
   }
   getUrl(){
-    onst host = (window.location.href.split("/")[2]).split(":")[0]
+    const host = (window.location.href.split("/")[2]).split(":")[0]
     const url = "http://" + host + ":8000/favicon.ico"
     this.url=url
     }
