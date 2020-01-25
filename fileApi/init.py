@@ -16,7 +16,6 @@ def download_file():
     if filename is None:
         return "invalid request"
     return send_from_directory("./files", filename, as_attachment=True)
-     res
 
 
 @app.route('/liveness', methods=['GET'])
