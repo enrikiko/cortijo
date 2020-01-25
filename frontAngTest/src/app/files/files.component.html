@@ -1,7 +1,7 @@
 <div class="container-fluid bg-white body center">
   <div class="col-12">
     <form (submit)="fileupload($event.target.files)" method="post" enctype="multipart/form-data">
-      <input type="file" name="filetoupload" name="files"><br>
+      <input (change)="fileupload($event.target.files)" type="file" name="file"><br>
       <input type="submit" class="btn btn-lg btn-success">
     </form>
   </div>
