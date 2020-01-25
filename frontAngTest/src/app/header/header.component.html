@@ -4,7 +4,7 @@
         <div class="col-12 col-ms-6">
           <ul class="nav nav-pills nav-fill">
 
-            <li class="nav-item text-success">
+            <li *ngIf="jwt" class="nav-item text-success">
               <a class="nav-link">User: {{ jwt }}</a>
             </li>
 
@@ -19,21 +19,27 @@
             <li class="nav-item" (click)="files()">
               <a class="nav-link" [ngClass]="{'active': active=='files'}" routerLink="files">Files</a>
             </li>
+            
             <li class="nav-item" (click)="requests()">
               <a class="nav-link" [ngClass]="{'active': active=='requests'}" routerLink="requests">Requests</a>
             </li>
+
             <li class="nav-item" (click)="photos()">
               <a class="nav-link" [ngClass]="{'active': active=='photos'}" routerLink="photos">Photos</a>
             </li>
-            <li class="nav-item" (click)="config()">
-              <a class="nav-link" [ngClass]="{'active': active=='config'}" routerLink="config">Config</a>
-            </li>
+
             <li class="nav-item" (click)="users()">
-              <a class="nav-link" [ngClass]="{'active': active=='users'}" routerLink="users">Users</a>
+              <a class="nav-link" [ngClass]="{'active': active=='users'}" routerLink="users">Create new user</a>
             </li>
+
             <li class="nav-item" (click)="logOut()">
               <a class="nav-link" [ngClass]="{'active': active=='logOut'}" routerLink="login">Log Out</a>
             </li>
+
+            <li class="nav-item" (click)="config()">
+              <a class="nav-link" [ngClass]="{'active': active=='config'}" routerLink="config">Config</a>
+            </li>
+
           </ul>
         </div>
 
