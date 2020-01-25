@@ -10,4 +10,4 @@ COPY ./init.py /src/init.py
 WORKDIR /src/
 RUN chmod 777 init.sh
 RUN ls
-ENTRYPOINT ["sh", "init.sh"]
+ENTRYPOINT ["python", "init.py"]
