@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 
 @Component({
@@ -14,7 +15,8 @@ export class UsersComponent implements OnInit {
   status: String;
   url = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private router: Router,
+              private http: HttpClient) { }
 
   ngOnInit() {
     this.getUrl()
@@ -36,6 +38,7 @@ export class UsersComponent implements OnInit {
         if(data.jwt!=null){
           window.localStorage.setItem('jwt', data.jwt)
         }
+        this.router.navigate(['body'])
       }
       else {
         console.log('Unautorized')

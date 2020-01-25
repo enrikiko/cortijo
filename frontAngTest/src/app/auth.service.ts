@@ -51,6 +51,7 @@ export class AuthService {
           console.log(data)
           this.status = true
           //this.router.navigate(['logs'])
+          this.router.navigate(['body'])
           return true
         }
         else {
