@@ -64,6 +64,7 @@ export class AuthService {
 
   logOut(){
     this.status = false
+    window.localStorage.setItem('jwt', null)
   }
 
 }
