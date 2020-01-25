@@ -29,7 +29,6 @@ export class AuthService {
         console.log(data)
       }
     })
-
   }
 
   isLogin(){
