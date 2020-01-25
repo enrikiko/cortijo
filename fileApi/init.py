@@ -17,6 +17,11 @@ def download_file():
         return "invalid request"
     return send_from_directory("./files", filename, as_attachment=True)
 
+@app.route('/files', methods=['GET', 'POST'])
+def list_file():
+    return os.listdir("./files")
+
+
 
 @app.route('/liveness', methods=['GET'])
 def liveness():
