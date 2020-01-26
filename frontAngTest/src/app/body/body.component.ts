@@ -104,7 +104,7 @@ export class BodyComponent implements OnInit {
         console.log(message)
       });
 
-    this.socketService.onEvent(Event.CONNEC)
+    this.socketService.onEvent(Event.CONNECT)
       .subscribe(() => {
         console.log('connected');
       });
