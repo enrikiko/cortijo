@@ -24,6 +24,7 @@ export class BodyComponent implements OnInit {
   ngOnInit()
   {
     this.getDevicesList()
+    this.initIoConnection()
   }
 
   changeStatus(device){
