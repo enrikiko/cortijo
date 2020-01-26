@@ -12,16 +12,13 @@ ws.onmessage = function(payload) {
   printMessege(payload.data)
 }
 
-document.forms[0].onsutmit = function () {
-  var input = document.getElementById('messege')
-  input.value = ''
-}
-function setTitle(title) {
-  document.querySelector('h1').innerHTML = title
-  console.log('New connection');
-}
-function printMessege(messege) {
-  var p = document.createElement('p')
-  p.innerText = messege
-  document.querySelector('div.messeges').appendChild(p)
-}
+// Connection opened
+ws.addEventListener('open', function (event) {
+    ws.send('Hello Server!');
+});
+
+// Listen for messages
+ws.addEventListener('message', function (event) {
+  alert()
+  //  console.log('Message from server ', event.data);
+});
