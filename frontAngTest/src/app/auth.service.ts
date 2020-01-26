@@ -29,11 +29,10 @@ export class AuthService {
       if(data!=null){
         if(data.status){
           this.status = true
-          status = true
           console.log(1)
         }
-        else{status = true}
       }
+      status = true
     })
     while(!status){console.log(1.5)}
     console.log(2)
