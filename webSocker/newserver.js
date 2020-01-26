@@ -21,10 +21,10 @@ app.get('/', function(req, res, next){
 app.ws('/', function(ws, req) {
   ws.on('connect', function(msg) {
     save(ws)
-  }
+  });
   ws.on('disconnect', function(msg) {
     deleteWS(ws)
-  }
+  });
   ws.on('message', function(msg) {
     console.log(msg);
     ws.send(msg);
