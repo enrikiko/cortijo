@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import * as socketIo from 'socket.io-client';
-
-const SERVER_URL = 'http://88.7.67.168:8200';
 
 @Component({
   selector: 'app-body',
@@ -15,8 +12,7 @@ export class BodyComponent implements OnInit {
   lapse: number = null;
   lapse_time: number = 5;
 
-  constructor(private http: HttpClient,
-              private socket: Sockets { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit()
   {
