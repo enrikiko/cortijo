@@ -8,13 +8,13 @@ const PORT = 3000
 wsList=[]
 
 app.use(function (req, res, next) {
-  console.log('middleware');
+  //console.log('middleware');
   req.testing = 'testing';
   return next();
 });
 
 app.get('/', function(req, res, next){
-  console.log('get route', req.testing);
+  //console.log('get route', req.testing);
   res.end();
 });
 
@@ -24,7 +24,6 @@ app.ws('/', function(ws, req) {
     list=[]
     wsList.forEach(function(client) {
       if (client.readyState==1) {
-        console.log(msg);
         client.send(msg);
       }else{
         list.push(client)
@@ -32,11 +31,11 @@ app.ws('/', function(ws, req) {
     });
     deleteWS(list)
   });
-  console.log('socket', req.testing);
+  //console.log('socket', req.testing);
 });
 
 function save(ws) {
-  console.log("save");
+  //console.log("save");
   if(!wsList.includes(ws)){
     wsList.push(ws)
   }
@@ -47,11 +46,11 @@ function deleteWS(list) {
   list.forEach((ws) => {
     const index = wsList.indexOf(ws);
     if (index > -1) {
-      console.log("deleting...");
+      //console.log("deleting...");
       wsList.splice(index, 1);
     }
   });
-  printList(wsList)
+  //printList(wsList)
 }
 
 function printList(wsList) {
