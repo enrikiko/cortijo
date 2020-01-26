@@ -42,7 +42,7 @@ function save(ws) {
 }
 
 function deleteWS(ws) {
-  console.log("save");
+  console.log("delete");
   const index = wsList.indexOf(ws);
   if (index > -1) {
     wsList.splice(index, 1);
@@ -52,7 +52,7 @@ function deleteWS(ws) {
 
 function printList(wsList) {
   wsList.forEach((item, i) => {
-    console.log((item.readyState+" : "+i));
+    console.log(item.readyState+" : "+i);
   });
 }
 
