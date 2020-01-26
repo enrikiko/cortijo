@@ -2,9 +2,9 @@ var WebSocketServer = require('ws').Server
 var wss = new WebSocketServer({ port: 3000 })
 
 wss.on('connection', function(ws) {
-  wss.clients.forEach(function each(client) {
+  wss.clients.forEach(function(client) {
+    console.log(client)
     if (client.readyState === WebSocketServer.OPEN) {
-      
       client.send(Date.now())
       console.log('New Connection', Date.now());
     }
