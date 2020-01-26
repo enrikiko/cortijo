@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
+import { Message } from './message';
 import * as socketIo from 'socket.io-client';
 
 const SERVER_URL = 'http://88.7.67.168:8200';
