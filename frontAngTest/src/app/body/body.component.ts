@@ -104,12 +104,12 @@ export class BodyComponent implements OnInit {
         console.log(message)
       });
 
-    this.socketService.onEvent('connect')
+    this.socketService.onEvent(Event.CONNEC)
       .subscribe(() => {
         console.log('connected');
       });
 
-    this.socketService.onEvent('disconnect')
+    this.socketService.onEvent(Event.DISCONNECT)
       .subscribe(() => {
         console.log('disconnected');
       });
