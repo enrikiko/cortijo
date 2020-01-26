@@ -21,14 +21,16 @@ app.get('/', function(req, res, next){
 app.ws('/', function(ws, req) {
   save(ws)
   ws.on('message', function(msg) {
+    list=[]
     wsList.forEach(function(client) {
       if (client.readyState==1) {
         console.log(msg);
         client.send(msg);
       }else{
-        deleteWS(client)
+        list.push(client)
       }
     });
+    deleteWS(list)
   });
   console.log('socket', req.testing);
 });
@@ -41,12 +43,14 @@ function save(ws) {
   printList(wsList)
 }
 
-function deleteWS(ws) {
-  const index = wsList.indexOf(ws);
-  if (index > -1) {
-    console.log("deleting...");
-    wsList.splice(index, 1);
-  }
+function deleteWS(list) {
+  list.forEach((ws) => {
+    const index = wsList.indexOf(ws);
+    if (index > -1) {
+      console.log("deleting...");
+      wsList.splice(index, 1);
+    }
+  });
   printList(wsList)
 }
 
