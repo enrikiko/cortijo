@@ -3,6 +3,11 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 import { SocketService } from '../socket.service';
 import { Message } from '../message';
 
+const enum Event {
+    CONNECT = 'connect',
+    DISCONNECT = 'disconnect'
+}
+
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
