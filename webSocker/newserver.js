@@ -39,6 +39,7 @@ function save(ws) {
   if(!wsList.includes(ws)){
     wsList.push(ws)
   }
+  console.log(wsList);
 }
 
 app.listen(PORT);
