@@ -14,11 +14,9 @@ ws.onmessage = function(payload) {
 }
 
 function test() {
-  console.log("test")
   ws.send("Hi")
 }
 
 function setTitle(title) {
   document.querySelector('h1').innerHTML = title
-  console.log('New connection');
 }
