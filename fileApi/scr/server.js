@@ -1,5 +1,3 @@
-const version = "1.0.0";
-const startDate = Date();
 const express = require("express");
 const app = express();
 const cors = require('cors');
@@ -7,9 +5,7 @@ app.use(cors());
 app.options('*', cors());
 const fs = require('fs');
 const Busboy = require('busboy');
-const path = require('path');
 var http = require('http').Server(app);
-var io = http;
 
 app.get('/', function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});

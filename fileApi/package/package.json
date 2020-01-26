@@ -7,10 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "*",
-    "request": "*",
+    "express": "^4.17.1",
     "busboy": "*",
-    "cors": "*"
+    "cors": "^2.8.5",
   },
   "author": "Enrique Ramos",
   "license": "ISC"
