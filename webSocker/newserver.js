@@ -19,6 +19,7 @@ app.get('/', function(req, res, next){
 });
 
 app.ws('/', function(ws, req) {
+  console.log("WS");
   save(ws)
   ws.on('message', function(msg) {
     console.log(msg);
