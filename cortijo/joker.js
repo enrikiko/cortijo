@@ -98,21 +98,6 @@ module.exports={
        return await getResponse(url);
      },
 
-    // newLogRequest: (ip, request)=>{
-    //   var time = new Date().getTime()
-    //   myLogs.newLog(time, ip, request);
-    // },
-    // getLogRequest: async()=>{
-    //   let res = await myLogs.getAll();
-    //   return res
-    // },
-    // newLogTemperature: (temperature, humidity)=>{
-    //   var time = new Date().getTime()
-    //   myTemperature.newTemperature(time, temperature, humidity);
-    // },
-    // getLogTemperature: async()=>{
-    //   return await myTemperature.getAll();
-    // },
     getStatus: (status) => {
       if (status == "true"){ return true}
       else if (status == "false"){return false}
@@ -129,7 +114,4 @@ module.exports={
     //   }
     //   return await getResponse(url);
     // }
-    reverse:(values)=>{
-      return values.reverse()
-    }
 }

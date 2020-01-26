@@ -31,7 +31,7 @@ const requestSchema = new mongoose.Schema({
 let myRequest = mongoose.model('Request', requestSchema);
 
 module.exports = {
-
+//
   newRequest: (ip, url) => {
     let request = new myRequest(
       {
@@ -46,9 +46,8 @@ module.exports = {
       }
     });
   },
-
   getAllRequest: () => { return myRequest.find() },
-
+  //
   getAllIp: async () => {
        let ipList = []
        const allRequest = await myRequest.find()

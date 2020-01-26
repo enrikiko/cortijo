@@ -38,6 +38,7 @@ var humidity;
 //const config_file = fs.readFileSync('config.yaml');
 //const config = yaml.safeLoad(config_file);
 const REFRESH_DELAY = config.get("refresh_delay")
+const SENSOR_HISTORY = config.get("sensor_history")
 //
 //
 app.get("/*", function(req, res, next) {
@@ -171,29 +172,34 @@ app.get("/all/device", async function(req, res) {
 })
 //
 //Get temperature and humidity history
-//TODO add to doc and add request to get al sensors
+//TODO add to documentation
 app.get("/all/temperature/:name",async function(req, res) {
    var name = req.params.name;
-   var time = 200
+   var time = SENSOR_HISTORY
    var temperature = await myTemperature.getByName(name, time)
-   temperature = joker.reverse(temperature)
-   res.status(200).json(temperature)
+   res.status(200).json(temperature.reverse())
+})
+//TODO add to documentation
+app.get("/all/temperature/:name/:times",async function(req, res) {
+   var name = req.params.name;
+   var time = req.params.times
+   var temperature = await myTemperature.getByName(name, time)
+   res.status(200).json(temperature.reverse())
 })
 //
 //Get humidity history
 app.get("/all/humidity/:name",async function(req, res) {
    var name = req.params.name;
-   var time = 200
+   var time = SENSOR_HISTORY
    var humidity = await myHumidity.getAll(name, time)
-   humidity = joker.reverse(humidity)
-   res.status(200).json(humidity)
+   res.status(200).json(humidity.reverse())
 })
-//
-//TODO too much data is create the app collapse
-//app.get("/all/log",async function(req, res) {
-//  var logHistory = await history.history()
-//  res.status(200).json(logHistory)
-//})
+app.get("/all/humidity/:name/:times",async function(req, res) {
+   var name = req.params.name;
+   var time = req.params.times
+   var humidity = await myHumidity.getAll(name, time)
+   res.status(200).json(humidity.reverse())
+})
 //
 app.get("/all/watering", async function(req, res) {
   const watering_list = await watering.getAllRequest()

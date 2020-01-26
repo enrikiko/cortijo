@@ -12,14 +12,14 @@ services:
 #    environment:
 #      MONGO_INITDB_ROOT_USERNAME: user_name
 #      MONGO_INITDB_ROOT_PASSWORD: user_password
-  # catordog:
-  #   container_name: catordog
-  #   restart: always
-  #   build: ./cat_or_dog/.
-  #   ports:
-  #     - "8200:3000"
-  #   networks:
-  #     - network
+  ws:
+    container_name: websocker
+    restart: always
+    build: ./webSocker/.
+    ports:
+      - "8200:3000"
+    networks:
+      - network
   mock:
     container_name: mock
     restart: always
