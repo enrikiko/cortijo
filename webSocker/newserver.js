@@ -21,6 +21,11 @@ app.ws('/', function(ws, req) {
   ws.on('message', function(msg) {
     console.log(msg);
     ws.send(msg)
+    wss.clients.forEach(function each(client) {
+      if (client.readyState==1) {
+        client.send(data);
+      }
+    });
   });
   console.log('socket', req.testing);
 });
