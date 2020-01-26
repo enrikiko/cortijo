@@ -19,8 +19,12 @@ app.get('/', function(req, res, next){
 });
 
 app.ws('/', function(ws, req) {
-  console.log("WS");
-  save(ws)
+  ws.on('connect', function(msg) {
+    save(ws)
+  }
+  ws.on('disconnect', function(msg) {
+    deleteWS(ws)
+  }
   ws.on('message', function(msg) {
     console.log(msg);
     ws.send(msg);
@@ -38,6 +42,14 @@ function save(ws) {
   console.log("is"+wsList.includes(ws))
   if(!wsList.includes(ws)){
     wsList.push(ws)
+  }
+  console.log(wsList);
+}
+
+function deleteWS(ws) {
+  const index = wsList.indexOf(ws);
+  if (index > -1) {
+    wsList.splice(index, 1);
   }
   console.log(wsList);
 }
