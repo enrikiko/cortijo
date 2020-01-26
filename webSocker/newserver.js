@@ -35,7 +35,7 @@ app.ws('/', function(ws, req) {
 
 function save(ws) {
   console.log("save");
-  console.log(wsList.include(ws))
+  console.log("is"+wsList.include(ws))
   if(!wsList.include(ws)){
     wsList.push(ws)
   }
