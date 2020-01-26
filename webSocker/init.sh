@@ -1,2 +1,2 @@
 echo $0
-node server.js
+node newserver.js
