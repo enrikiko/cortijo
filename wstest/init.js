@@ -10,18 +10,8 @@ ws.onclose = function() {
 
 ws.onmessage = function(payload) {
   console.log("payload")
-  console.log(payload)
+  console.log(payload.data)
 }
-
-ws.addEventListener('open', function (event) {
-    ws.send('Hello Server!');
-});
-
-// Listen for messages
-ws.addEventListener('message', function (event) {
-  //alert()
-  console.log('Message from server ', event.data);
-});
 
 function test() {
   console.log("test")
