@@ -37,6 +37,7 @@ export class AuthService {
     //var x = 0
     //while(!status){console.log(x); x++}
     console.log(2)
+    console.log(status)
     return false
   }
 
