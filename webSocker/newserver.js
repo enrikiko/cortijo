@@ -52,7 +52,7 @@ function deleteWS(ws) {
 
 function printList(wsList) {
   wsList.forEach((item, i) => {
-    console.log((item.readyState, i));
+    console.log((item.readyState+" : "+i));
   });
 }
 
