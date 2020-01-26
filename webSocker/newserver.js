@@ -4,6 +4,7 @@ const cors = require('cors');
 app.use(cors());
 app.options('*', cors());
 var expressWs = require('express-ws')(app);
+var http = require('http').Server(app);
 const PORT = 3000
 
 app.use(function (req, res, next) {
@@ -24,4 +25,7 @@ app.ws('/', function(ws, req) {
   console.log('socket', req.testing);
 });
 
-app.listen(PORT);
+
+http.listen(PORT, function () {
+  console.log('Servidor activo en http://localhost:'+PORT);
+})
