@@ -2,14 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Message } from './message';
+import { Event } from './event';
 import * as socketIo from 'socket.io-client';
 
 const SERVER_URL = 'http://88.7.67.168:8200';
-
-const enum Event {
-    CONNECT = 'connect',
-    DISCONNECT = 'disconnect'
-}
 
 @Injectable({
   providedIn: 'root'

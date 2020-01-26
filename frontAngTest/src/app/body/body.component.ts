@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { SocketService } from '../socket.service';
 import { Message } from '../message';
+import { Event } from '../event';
 
-const enum Event {
-    CONNECT = 'connect',
-    DISCONNECT = 'disconnect'
-}
+
 
 @Component({
   selector: 'app-body',
@@ -106,12 +104,12 @@ export class BodyComponent implements OnInit {
         console.log(message)
       });
 
-    this.socketService.onEvent(Event.CONNECT)
+    this.socketService.onEvent('connect')
       .subscribe(() => {
         console.log('connected');
       });
 
-    this.socketService.onEvent(Event.DISCONNECT)
+    this.socketService.onEvent('disconnect')
       .subscribe(() => {
         console.log('disconnected');
       });
