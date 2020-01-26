@@ -22,11 +22,11 @@ app.ws('/', function(ws, req) {
   save(ws)
   ws.on('message', function(msg) {
     console.log(msg);
-    wsList.forEach(function each(ws) {
-      if (ws.readyState==1) {
-        ws.send(msg);
+    wsList.forEach(function each(client) {
+      if (client.readyState==1) {
+        client.send(msg);
       }else{
-        deleteWS(ws)
+        deleteWS(client)
       }
     });
   });
