@@ -21,9 +21,9 @@ app.get('/', function(req, res, next){
 app.ws('/', function(ws, req) {
   save(ws)
   ws.on('message', function(msg) {
-    console.log(msg);
-    wsList.forEach(function each(client) {
+    wsList.forEach(function(client) {
       if (client.readyState==1) {
+        console.log(msg);
         client.send(msg);
       }else{
         deleteWS(client)
@@ -42,9 +42,9 @@ function save(ws) {
 }
 
 function deleteWS(ws) {
-  console.log("delete");
   const index = wsList.indexOf(ws);
   if (index > -1) {
+    console.log("deleting...");
     wsList.splice(index, 1);
   }
   printList(wsList)
