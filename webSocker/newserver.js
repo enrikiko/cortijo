@@ -19,15 +19,10 @@ app.get('/', function(req, res, next){
 });
 
 app.ws('/', function(ws, req) {
-  ws.on('connect', function(msg) {
-    save(ws)
-  });
-  ws.on('disconnect', function(msg) {
-    deleteWS(ws)
-  });
+  save(ws)
   ws.on('message', function(msg) {
     console.log(msg);
-    ws.send(msg);
+    //ws.send(msg);
     wsList.forEach(function each(client) {
       if (client.readyState==1) {
         client.send(msg);
