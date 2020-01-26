@@ -6,7 +6,7 @@ wss.on('connection', function(ws) {
   console.log('New Connection', Date.now());
   ws.on('message', function incoming(data) {
     wss.clients.forEach(function each(client) {
-      if (client.readyState === WebSocket.OPEN) {
+      if (client.readyState === WebSocketServer.OPEN) {
         client.send(data);
       }
     });
