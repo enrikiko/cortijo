@@ -13,8 +13,9 @@ export class BodyComponent implements OnInit {
   devices: any[] = null;
   lapse: number = null;
   lapse_time: number = 5;
+  messages: Message[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private socketService: SocketService) { }
 
   ngOnInit()
   {
@@ -85,6 +86,29 @@ export class BodyComponent implements OnInit {
       console.log('Database is empty')
       }
     })
+  }
+
+
+  //------WebSocker-------//
+
+   initIoConnection(){
+    this.socketService.initSocket();
+
+    this.ioConnection = this.socketService.onMessage()
+      .subscribe((message: Message) => {
+        //this.messages.push(message);
+        console.log(message)
+      });
+
+    this.socketService.onEvent(Event.CONNECT)
+      .subscribe(() => {
+        console.log('connected');
+      });
+
+    this.socketService.onEvent(Event.DISCONNECT)
+      .subscribe(() => {
+        console.log('disconnected');
+      });
   }
 
 }
