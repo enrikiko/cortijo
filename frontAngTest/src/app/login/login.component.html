@@ -7,6 +7,7 @@
         <label for="password" class="sr-only">Password</label>
         <input placeholder="Password" [(ngModel)]="password" name="password" class="form-control" id="password" type="password">
         <button class="btn btn-lg btn-primary btn-block mt-2" type="submit">Sign in</button>
+        <h2 *ngIf="fail" class="bg-danger"> Auth fail! </h2>
         <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
       </form>
 </div>

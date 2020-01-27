@@ -5,7 +5,8 @@ import { Message } from './message';
 import { Event } from './event';
 import * as socketIo from 'socket.io-client';
 
-const SERVER_URL = 'http://88.7.67.229:8200';
+const host = (window.location.href.split("/")[2]).split(":")[0]
+const SERVER_URL = "ws://"+host+":8200";
 
 @Injectable({
   providedIn: 'root'

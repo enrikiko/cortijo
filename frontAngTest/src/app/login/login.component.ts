@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
 
   userName: String = "";
   password: String = "";
+  fail: Boolean = false;
   url = null;
 
   constructor( private Auth: AuthService, private http: HttpClient) { }
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
     const user = target.querySelector('#userName').value
     const password = target.querySelector('#password').value
     this.Auth.login(user, password)
+    this.fail=true
   }
   getUrl(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
