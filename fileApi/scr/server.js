@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
 const cors = require('cors');
-//app.use(cors());
-//app.options('*', cors());
+app.use(cors());
+app.options('*', cors());
 const fs = require('fs');
 const Busboy = require('busboy');
-//var http = require('http').Server(app);
+var http = require('http').Server(app);
 
 app.get('/', function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
