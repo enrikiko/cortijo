@@ -17,7 +17,7 @@ services:
     restart: always
     build: ./webSocket/.
     ports:
-      - "8200:8080"
+      - "8200:80"
     networks:
       - network
   mock:
