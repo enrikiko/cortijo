@@ -28,7 +28,7 @@ export class AuthService {
     this.http.get<any>(url, { headers: headers }).subscribe( data => {
       if(data!=null){
         if(data.status){
-          this.router.navigate([''])
+          //this.router.navigate([''])
           this.status = true
           console.log(1)
         }
