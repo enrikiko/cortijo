@@ -47,7 +47,7 @@ import { FilesComponent } from './files/files.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    //SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config)
   ],
   providers: [],
   bootstrap: [AppComponent]
