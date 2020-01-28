@@ -19,7 +19,7 @@ export class BodyComponent implements OnInit {
   messages: Message[] = [];
   ioConnection: any;
 
-  constructor(private http: HttpClient,private socketService: SocketService) { }
+  constructor(private http: HttpClient, private socketService: SocketService) { }
 
   ngOnInit()
   {
@@ -97,23 +97,8 @@ export class BodyComponent implements OnInit {
   //------WebSocker-------//
 
    initIoConnection(){
-    this.socketService.initSocket();
+    this.socketService.sendMessage("test");
 
-    this.ioConnection = this.socketService.onMessage()
-      .subscribe((message: Message) => {
-        //this.messages.push(message);
-        console.log(message)
-      });
-
-    this.socketService.onEvent(Event.CONNECT)
-      .subscribe(() => {
-        console.log('connected');
-      });
-
-    this.socketService.onEvent(Event.DISCONNECT)
-      .subscribe(() => {
-        console.log('disconnected');
-      });
   }
 
 }
