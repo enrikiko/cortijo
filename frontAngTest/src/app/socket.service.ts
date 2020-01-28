@@ -15,6 +15,6 @@ export class SocketService {
    }
 
   getMessage() {
-      return this.socket.fromEvent("message").map( data => data.msg );
+      return this.socket.fromEvent("message").pipe(map( data => data.msg ));
    }
 }
