@@ -28,6 +28,7 @@ export class AuthService {
     this.http.get<any>(url, { headers: headers }).subscribe( data => {
       if(data!=null){
         if(data.status){
+          this.router.navigate([''])
           this.status = true
           console.log(1)
         }
@@ -55,7 +56,7 @@ export class AuthService {
         if(data.status==true){
           window.localStorage.setItem('jwt', data.jwt)
           this.status = true
-          this.router.navigate(['files'])
+          this.router.navigate([''])
         }
         else {
           console.log('Unautorized')
