@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Observer } from 'rxjs/Observer';
-import { Message } from './message';
-import { Event } from './event';
 import { Socket } from 'ngx-socket-io';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class SocketService {
 
@@ -18,8 +12,6 @@ export class SocketService {
    }
 
   getMessage() {
-      return this.socket
-           .fromEvent("message")
-           .map( data => data.msg );
+      return this.socket.fromEvent("message").map( data => data.msg );
    }
 }

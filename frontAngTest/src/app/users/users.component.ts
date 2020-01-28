@@ -49,7 +49,7 @@ export class UsersComponent implements OnInit {
 
   getUrl(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    const url = "http://" + host + ":8000/node"
+    const url = "http://" + host + ":8000/logo"
     this.url=url
     }
 
