@@ -13,11 +13,11 @@ services:
 #      MONGO_INITDB_ROOT_USERNAME: user_name
 #      MONGO_INITDB_ROOT_PASSWORD: user_password
   ws:
-    container_name: websocker
+    container_name: websocket
     restart: always
-    build: ./webSocker/.
+    build: ./webSocket/.
     ports:
-      - "8200:3000"
+      - "8200:8080"
     networks:
       - network
   mock:
