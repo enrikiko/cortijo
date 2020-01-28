@@ -6,4 +6,4 @@
 # COPY . .
 # RUN npm install
 # CMD sh init.sh
-FROM ramrodpcp/websocket-server
+FROM dataferret/websocket-echo
