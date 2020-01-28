@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+//import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const host = (window.location.href.split("/")[2]).split(":")[0]
-const config: SocketIoConfig = { url: 'http://'+host+':8200', options: {} };
+//const host = (window.location.href.split("/")[2]).split(":")[0]
+//const config: SocketIoConfig = { url: 'http://'+host+':8200', options: {} };
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -47,7 +47,7 @@ import { FilesComponent } from './files/files.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    SocketIoModule.forRoot(config)
+    //SocketIoModule.forRoot(config)
   ],
   providers: [],
   bootstrap: [AppComponent]
