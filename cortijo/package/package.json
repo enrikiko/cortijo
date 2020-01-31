@@ -18,7 +18,8 @@
     "cookie-parser":"*",
     "multer":"*",
     "js-yaml":"*",
-    "delay":"*"
+    "delay":"*",
+    "ws": "*"
   },
   "author": "Enrique Ramos",
   "license": "ISC"

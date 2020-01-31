@@ -11,6 +11,7 @@ const requests = require('./requests');
 const mySensor = require('./sensors');
 const timeout = require('./timeout');
 const config = require('./config');
+const socket = require('./webSocket');
 const ia = require('./ia');
 const cors = require('cors');
 const delay = require('delay');
