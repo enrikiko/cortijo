@@ -18,6 +18,7 @@ services:
     build: ./webSocket/.
     ports:
       - "8200:3000"
+      - "8201:3001"
     networks:
       - network
   mock:
