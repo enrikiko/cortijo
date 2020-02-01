@@ -416,5 +416,5 @@ app.delete('/*', function(req, res){
 //
 // activate the listenner
 http.listen(3000, function () {
-  logs.log('Api active en http://localhost:3000');
+  logs.log('Api active in port 3000');
 })
