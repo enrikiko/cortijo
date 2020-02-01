@@ -18,12 +18,12 @@ app.use(function (req, res, next) {
   return next();
 });
 
-app.get('/', function(req, res, next){
+app.get('/', cors(corsOptions), function(req, res, next){
   console.log('get route', req);
   res.end();
 });
 
-app.ws('/', cors(corsOptions), function(ws, req) {
+app.ws('/', function(ws, req) {
   save(ws)
   ws.on('message', function(msg) {
     console.log('message: ', msg);
