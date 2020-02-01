@@ -307,7 +307,7 @@ app.delete("/device/*", async function(req, res, next) {
 })
 app.get("/update/*", async function(req, res, next) {
     const jwt = req.headers.authorization
-    console.log(req)
+    //console.log(req)
     try{
        user = await joker.getUserByJWT(jwt)
        next()
