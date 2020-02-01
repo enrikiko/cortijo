@@ -5,7 +5,7 @@ var fs = require('fs');
 
 var options = {
     key: fs.readFileSync('./certs2/key.pem'),
-    cert: fs.readFileSync('./certs2/key-cert.pem')
+    cert: fs.readFileSync('./certs2/cert.pem')
 };
 
 var server = https.createServer(options, function (req, res) {
