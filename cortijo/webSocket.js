@@ -1,17 +1,17 @@
 const WebSocket = require('ws');
-let socket = new WebSocket("wss://localhost:8200",'echo-protocol');
+let ws = new WebSocket("ws://localhost:8200",'echo-protocol');
 
-socket.onopen = function(e) {
+ws.onopen = function(e) {
 console.log("[open] Connection established");
 console.log("Sending to server");
-  socket.send("My name is John");
+  ws.send("My name is John");
 };
 
-socket.onmessage = function(event) {
+ws.onmessage = function(event) {
 console.log(`[message] Data received from server: ${event.data}`);
 };
 
-socket.onclose = function(event) {
+ws.onclose = function(event) {
   if (event.wasClean) {
     console.log(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
   } else {
@@ -21,6 +21,6 @@ socket.onclose = function(event) {
   }
 };
 
-socket.onerror = function(error) {
+ws.onerror = function(error) {
 console.log(`[error] ${error.message}`);
 };
