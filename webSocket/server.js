@@ -1,4 +1,4 @@
-var WebSocketServer = require('ws').Server
+var WebSocketServer = require('ws')
 var https = require('https');
 var server = https.createServer(function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -7,18 +7,17 @@ var server = https.createServer(function (req, res) {
     res.writeHead(404);
     res.end();
 });
-server.listen(3001, function() {
-    console.log(' Server is listening on port 3000');
-});
-
-var wss = new WebSocketServer({ httpServer: server, port: 3000 })
+var wss = new WebSocketServer({ server})
 
 wss.on('connection', function(ws) {
-  ws.on('message', function(data) {
-    wss.clients.forEach(function each(client) {
-      if (client.readyState==1) {
-        client.send(data);
-      }
-    });
-  });
+  ws.on('message', function incoming(message) {
+  console.log('received: %s', message);
+});
+  ws.send('something');
 })
+
+
+
+server.listen(3000, function() {
+    console.log(' Server is listening on port 3000');
+});
