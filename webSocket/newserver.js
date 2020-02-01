@@ -31,7 +31,7 @@ app.ws('/', function(ws, req) {
       }
     });
     deleteWS(list)
-    console.log("List length: "wsList.length)
+    console.log("List length: "+wsList.length)
   });
 });
 
