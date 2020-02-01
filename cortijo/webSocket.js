@@ -1,5 +1,5 @@
 const WebSocket = require('ws');
-var ws = new WebSocket('ws://localhost:8200','echo-protocol')
+var ws = new WebSocket('ws://88.7.67.229:8200','echo-protocol')
 
 ws.onopen = function(e) {
 console.log("[open] Connection established");
