@@ -27,10 +27,7 @@ const fs = require('fs');
 const https = require('https');
 const WebSocket = require('ws');
 
-const server = https.createServer({
-  cert: fs.readFileSync('./certs2/cert.pem'),
-  key: fs.readFileSync('./certs2/key.pem')
-});
+const server = https.createServer();
 const wss = new WebSocket.Server({ server });
 
 wss.on('connection', function connection(ws) {
