@@ -6,6 +6,7 @@ const myTemperature = require('./temperature');
 const watering = require('./watering');
 const myDevice = require('./devices');
 const logs = require('./logs');
+const socket = require('./webSocket');
 // Get config
 const config_file = fs.readFileSync('config.yaml');
 const config = yaml.safeLoad(config_file);
@@ -23,6 +24,7 @@ module.exports={
                 id = await myDevice.getIdByName(name)
                 await myDevice.updateDevice(id, status)
                 await myDevice.checkDeviceByName(name)
+                socket.send(name+" has changed to "+status)
                 res = {};
                 res.code = response.statusCode;
                 res.body = response.body
