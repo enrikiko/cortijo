@@ -14,13 +14,14 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', function(req, res, next){
-  //console.log('get route', req.testing);
+  //console.log('get route', req);
   res.end();
 });
 
 app.ws('/', function(ws, req) {
   save(ws)
   ws.on('message', function(msg) {
+    console.log('message: ', msg);
     list=[]
     wsList.forEach(function(client) {
       if (client.readyState==1) {
@@ -30,32 +31,32 @@ app.ws('/', function(ws, req) {
       }
     });
     deleteWS(list)
+    console.log("List length: "wsList.length)
   });
-  //console.log('socket', req.testing);
 });
 
 function save(ws) {
   //console.log("save");
   if(!wsList.includes(ws)){
+    console.log("new user add to list")
     wsList.push(ws)
   }
-  printList(wsList)
 }
 
 function deleteWS(list) {
   list.forEach((ws) => {
     const index = wsList.indexOf(ws);
     if (index > -1) {
-      //console.log("deleting...");
+      console.log("deleting...");
       wsList.splice(index, 1);
     }
   });
-  //printList(wsList)
+  printList(wsList)
 }
 
 function printList(wsList) {
   wsList.forEach((item, i) => {
-    console.log(item.readyState+" : "+i);
+    console.log("{Item:"+i+",Status:"item.readyState+"}");
   });
 }
 
