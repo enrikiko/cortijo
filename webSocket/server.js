@@ -11,7 +11,7 @@ server.listen(3000, function() {
     console.log(' Server is listening on port 3000');
 });
 
-var wss = new WebSocketServer({ httpServer: server, port: 3000 })
+var wss = new WebSocketServer({ httpServer: server})
 
 wss.on('connection', function(ws) {
   ws.on('message', function(data) {
