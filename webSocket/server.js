@@ -7,11 +7,11 @@ var server = https.createServer(function (req, res) {
     res.writeHead(404);
     res.end();
 });
-server.listen(3000, function() {
+server.listen(3001, function() {
     console.log(' Server is listening on port 3000');
 });
 
-var wss = new WebSocketServer({ httpServer: server})
+var wss = new WebSocketServer({ httpServer: server, port: 3000 })
 
 wss.on('connection', function(ws) {
   ws.on('message', function(data) {
