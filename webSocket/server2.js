@@ -7,6 +7,11 @@ var expressWs = require('express-ws')(app);
 const PORT = 3000
 wsList=[]
 
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200
+}
+
 app.use(function (req, res, next) {
   //console.log('middleware');
   req.testing = 'testing';
@@ -14,11 +19,11 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', function(req, res, next){
-  //console.log('get route', req);
+  console.log('get route', req);
   res.end();
 });
 
-app.ws('/', function(ws, req) {
+app.ws('/', cors(corsOptions), function(ws, req) {
   save(ws)
   ws.on('message', function(msg) {
     console.log('message: ', msg);
