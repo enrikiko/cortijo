@@ -8,7 +8,7 @@ var options = {
     cert: fs.readFileSync('./certs2/cert.pem')
 };
 
-var server = https.createServer(options, function (req, res) {
+var server = https.createServer(function (req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
