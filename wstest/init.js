@@ -1,4 +1,4 @@
-var ws = new WebSocket('ws://88.7.67.229:8200')
+var ws = new WebSocket('ws://88.7.67.229:8200','echo-protocol')
 
 ws.onopen = function() {
   setTitle('Connected to Web Socker')
