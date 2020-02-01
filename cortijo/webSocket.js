@@ -1,10 +1,10 @@
 const WebSocket = require('ws');
-var ws = new WebSocket('ws://88.7.67.229:8200','echo-protocol')
+var ws = new WebSocket('ws://0.0.0.0:8200','echo-protocol')
 
 ws.onopen = function(e) {
 console.log("[open] Connection established");
 console.log("Sending to server");
-  ws.send("My name is John");
+  ws.send("Hello my name is Cortijo");
 };
 
 ws.onmessage = function(event) {
@@ -24,3 +24,7 @@ ws.onclose = function(event) {
 ws.onerror = function(error) {
 console.log(`[error] ${error.message}`);
 };
+
+module.exports = {
+  send:(msg)=>{ws.send(msg)}
+}
