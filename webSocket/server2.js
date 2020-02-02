@@ -16,8 +16,6 @@ app.ws('/test', (a,b,c) => {
 app.ws('/', function(ws, res) {
   console.log("ws");
   //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
-  str = JSON.stringify(res);
-  console.log(str);
   save(ws)
   ws.on('message', function(msg) {
     console.log('message: ', msg);
@@ -32,6 +30,8 @@ app.ws('/', function(ws, res) {
     deleteWS(list)
     console.log("List length: "+wsList.length)
   });
+  str = JSON.stringify(res);
+  console.log(str);
 });
 
 function save(ws) {
