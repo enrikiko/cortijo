@@ -27,7 +27,7 @@ ws.onerror = function(error) {
   console.log(`[WebSocket:error] ${error.message}`);
 };
 
-function reconnect() {
+async function reconnect() {
   retry=true
   while (retry) {
     try {
