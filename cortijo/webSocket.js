@@ -32,11 +32,9 @@ async function reconnect() {
   while (retry) {
     try {
       ws = new WebSocket('ws://88.7.67.229:8200','echo-protocol')
-    } catch (e) {
-      console.log(e);
-    } finally {
       retry=false
-      console.log("Reconnect to ws://88.7.67.229:8200");
+    } catch (e) {
+      console.log(e)
     }
     await delay(1000)
   }
