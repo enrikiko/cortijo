@@ -1,6 +1,6 @@
 const WebSocket = require('ws');
 const delay = require('delay');
-var ws = new WebSocket('ws://api.darwinex.com/quotewebsocket/','echo-protocol')
+var ws = new WebSocket('ws://88.7.67.229:8200','echo-protocol')
 
 ws.onopen = function(e) {
   console.log("[WebSocket:open] Connection established");
