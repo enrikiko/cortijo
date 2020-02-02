@@ -10,12 +10,14 @@ app.ws('/', (a,b,c) => {
   console.log("A : "+a)
   console.log("B : "+b)
   console.log("C : "+c)
+  console.log("D : "+d)
+  d()
 })
 
-app.ws('/', function(ws, req, res) {
+app.ws('/', function(error, req, res, next) {
   //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
-  save(ws)
-  ws.on('message', function(msg) {
+  save(req)
+  req.on('message', function(msg) {
     console.log('message: ', msg);
     list=[]
     wsList.forEach(function(client) {
