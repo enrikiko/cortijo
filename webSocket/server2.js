@@ -7,7 +7,7 @@ const PORT = 3000
 wsList=[]
 
 app.get('/', (req,res)=>{
-  req.setHeader('Access-Control-Allow-Origin', 'http://localhost:8200');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8200');
   console.log(req);
   res.json("{status:ok}")})
 
