@@ -7,28 +7,7 @@ var expressWs = require('express-ws')(app);
 const PORT = 3000
 wsList=[]
 
-var corsOptions = {
-  origin: '*',
-  optionsSuccessStatus: 200
-}
-
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
-
-app.use(function (req, res, next) {
-  //console.log('middleware');
-  req.testing = 'testing';
-  return next();
-});
-
-app.get('/', cors(corsOptions), function(req, res, next){
-  console.log('get route', req);
-  res.end();
-});
-
-app.ws('/', cors(corsOptions), function(ws, req) {
+app.ws('/', function(ws, req) {
   save(ws)
   ws.on('message', function(msg) {
     console.log('message: ', msg);
