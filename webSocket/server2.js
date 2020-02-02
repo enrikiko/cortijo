@@ -6,7 +6,10 @@ var expressWs = websocket(app);
 const PORT = 3000
 wsList=[]
 
-app.get('/', (req,res)=>{console.log(req); res.send("ok")})
+app.get('/', (req,res)=>{
+  req.setHeader('Access-Control-Allow-Origin', 'http://localhost:8200');
+  console.log(req);
+  res.json("{status:ok}")})
 
 app.ws('/', function(ws, req) {
   req.setHeader('Access-Control-Allow-Origin', 'http://localhost:8200');
