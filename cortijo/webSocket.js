@@ -5,7 +5,7 @@ var ws = new WebSocket('ws://88.7.67.229:8200','echo-protocol')
 ws.onopen = function(e) {
   console.log("[WebSocket:open] Connection established");
   console.log("[WebSocket:messege] Sending to server");
-  ws.send("Hello my name is Cortijo");
+  ws.send(" { 'op': 'subscribe', 'productNames' : [ <productNames> ] }");
 };
 
 ws.onmessage = function(event) {

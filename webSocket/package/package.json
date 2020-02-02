@@ -9,7 +9,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "express-ws": "4.0.0"
+    "express-ws": "4.0.0",
+    "socket.io": "2.3.0"
   },
   "author": "Enrique Ramos",
   "license": "ISC"
