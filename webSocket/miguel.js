@@ -21,13 +21,11 @@ io.on('connection', (socket) => {
     socket.on('change_username', (data) => {
         socket.username = data.username
     })
-
     //listen on new_message
     socket.on('new_message', (data) => {
         //broadcast the new message
         io.sockets.emit('new_message', {message : data.message, username : socket.username});
     })
-
     //listen on typing
     socket.on('typing', (data) => {
     	socket.broadcast.emit('typing', {username : socket.username})
