@@ -6,6 +6,7 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 io.on('connection', client => {
+  console.log("Something happen");
   client.on('event', data => { /* … */ });
   client.on('disconnect', () => { /* … */ });
 });
