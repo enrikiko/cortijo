@@ -19,6 +19,7 @@ ws.onclose = function(event) {
     // event.code is usually 1006 in this case
     console.log('[WebSocket:close] Connection died');
   }
+  ws = new WebSocket('ws://88.7.67.229:8200','echo-protocol')
 };
 
 ws.onerror = function(error) {
