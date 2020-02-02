@@ -1,6 +1,6 @@
 const WebSocket = require('ws');
 const delay = require('delay');
-var ws = new WebSocket('ws://88.7.67.229:8200','echo-protocol')
+var ws = new WebSocket('ws://152.168.1.50:8200','echo-protocol')
 //var ws = new WebSocket('https://protected-crag-00706.herokuapp.com/','echo-protocol')
 
 

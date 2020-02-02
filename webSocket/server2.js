@@ -1,9 +1,8 @@
-var express = require('express');
-var app = express();
+const express = require('express');
 const cors = require('cors');
-app.use(cors());
-//app.options('*', cors());
-var expressWs = require('express-ws')(app);
+const websocket = require('express-ws');
+var app = express().use(cors());
+var expressWs = websocket(app);
 const PORT = 3000
 wsList=[]
 
