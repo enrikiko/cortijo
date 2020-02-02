@@ -30,8 +30,8 @@ app.ws('/', function(ws, res) {
     deleteWS(list)
     console.log("List length: "+wsList.length)
   });
-  str = JSON.stringify(res);
-  console.log(str);
+
+  console.log(res);
 });
 
 function save(ws) {
