@@ -12,7 +12,7 @@ app.get('/', (req,res)=>{
   res.json("{status:ok}")})
 
 app.ws('/', function(ws, req, res) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
+  //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
   save(ws)
   ws.on('message', function(msg) {
     console.log('message: ', msg);
