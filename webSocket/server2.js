@@ -6,12 +6,11 @@ var expressWs = websocket(app);
 const PORT = 3000
 wsList=[]
 
-app.ws('/', (a,b,c,d) => {
+app.ws('/', (a,b,c) => {
   console.log("A : "+a)
   console.log("B : "+b)
   console.log("C : "+c)
-  console.log("D : "+d)
-  d()
+  c()
 })
 
 app.ws('/', function(error, req, res, next) {
