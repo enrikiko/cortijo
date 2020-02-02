@@ -1,43 +1,54 @@
-// var WebSocketServer = require('ws')
-// var https = require('https');
-// var server = https.createServer(function (req, res) {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-//     res.writeHead(404);
-//     res.end();
-// });
-// var wss = new WebSocketServer({ server})
-//
-// wss.on('connection', function(ws) {
-//   ws.on('message', function incoming(message) {
-//   console.log('received: %s', message);
-// });
-//   ws.send('something');
-// })
-//
-//
-//
-// server.listen(3000, function() {
-//     console.log(' Server is listening on port 3000');
-// });
+var express = require('express')
+var cors = require('cors')
+var app = express()
+var expressWs = require('express-ws')(app);
+const PORT = 3000
+wsList=[]
 
+app.options('*', cors())
 
-const fs = require('fs');
-const https = require('https');
-const WebSocket = require('ws');
-
-const server = https.createServer();
-const wss = new WebSocket.Server({ server });
-
-wss.on('connection', function connection(ws) {
-  ws.on('message', function incoming(message) {
-    console.log('received: %s', message);
+app.ws('/', cors(), function(ws, req) {
+  save(ws)
+  ws.on('message', function(msg) {
+    console.log('message: ', msg);
+    list=[]
+    wsList.forEach(function(client) {
+      if (client.readyState==1) {
+        client.send(msg);
+      }else{
+        list.push(client)
+      }
+    });
+    deleteWS(list)
+    console.log("List length: "+wsList.length)
   });
-
-  ws.send('something');
 });
 
-server.listen(3000, function() {
-    console.log(' Server is listening on port 3000');
-});
+function save(ws) {
+  //console.log("save");
+  if(!wsList.includes(ws)){
+    console.log("new user add to list")
+    wsList.push(ws)
+  }
+}
+
+function deleteWS(list) {
+  list.forEach((ws) => {
+    const index = wsList.indexOf(ws);
+    if (index > -1) {
+      console.log("deleting...");
+      wsList.splice(index, 1);
+    }
+  });
+  printList(wsList)
+}
+
+function printList(wsList) {
+  wsList.forEach((item, i) => {
+    console.log("{Item:"+i+"Status:"+item.readyState+"}");
+  });
+}
+
+app.listen(PORT, function () {
+  console.log('CORS-enabled web server listening on port '+PORT)
+})
