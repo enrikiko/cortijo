@@ -7,7 +7,7 @@ const PORT = 3000
 wsList=[]
 
 app.ws('/', function(ws, req) {
-  ws.setHeader('Access-Control-Allow-Origin', '');
+  ws.header('Access-Control-Allow-Origin', '*');
   save(ws)
   ws.on('message', function(msg) {
     console.log('message: ', msg);
