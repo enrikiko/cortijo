@@ -28,7 +28,7 @@ app.get('/', cors(corsOptions), function(req, res, next){
   res.end();
 });
 
-app.ws('/', function(ws, req) {
+app.ws('/', cors(corsOptions), function(ws, req) {
   save(ws)
   ws.on('message', function(msg) {
     console.log('message: ', msg);
