@@ -6,7 +6,7 @@ var expressWs = websocket(app);
 const PORT = 3000
 wsList=[]
 
-app.ws('/', (a,b,c) => {
+app.ws('/', (a,b,c,d) => {
   console.log("A : "+a)
   console.log("B : "+b)
   console.log("C : "+c)
@@ -15,6 +15,7 @@ app.ws('/', (a,b,c) => {
 })
 
 app.ws('/', function(error, req, res, next) {
+  console.log("ws");
   //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
   save(req)
   req.on('message', function(msg) {
