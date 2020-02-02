@@ -1,17 +1,8 @@
 const express = require('express');
-const socketio = require('socket.io');
-const http = require('http');
+var cors = require('cors')
 const app = express();
-const server= http.createServer(app);
-const io = socketio.listen(server);
-const path = require('path');
-const cors = require('cors');
-const port = 3000;
 app.use(cors());
-
-
-const server = require('http').createServer();
-
+const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 io.on('connection', client => {
