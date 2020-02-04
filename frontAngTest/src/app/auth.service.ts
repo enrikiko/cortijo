@@ -43,6 +43,7 @@ export class AuthService {
 
   async isLogin(){
     await this.authJWT()
+    console.log(this.status)
     return this.status
   }
 
