@@ -12,6 +12,7 @@ interface myData {
 export class AuthService {
 
   private status = false;
+  private certain = false;
 
   constructor(private router: Router,
               private http: HttpClient ) { };
@@ -24,27 +25,21 @@ export class AuthService {
       })
     const host = (window.location.href.split("/")[2]).split(":")[0]
     const url = "http://" + host + ":8000/jwt"
-    var finish = false
     this.http.get<any>(url, { headers: headers }).subscribe( data => {
       if(data!=null){
         if(data.status){
-          //this.router.navigate([''])
+          this.router.navigate(['sensor'])
           this.status = true
-          console.log(1)
         }
       }
-      finish = true
     })
-    //var x = 0
-    console.log("!finish= " + !finish )
-    //while(!finish){console.log("Waiting")}
-    console.log(2)
-    //return this.status
   }
 
   async isLogin(){
-    await this.authJWT()
-    console.log("this.status: "+this.status)
+    if(!this.certain){
+      this.authJWT()
+      this.certain=true
+    }
     return this.status
   }
 
