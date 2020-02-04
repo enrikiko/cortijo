@@ -20,6 +20,7 @@ const app = express();
 const fs = require('fs')
 const yaml = require('js-yaml')
 const cookieParser = require('cookie-parser');
+const websocket = require('express-ws');
 app.enable('trust proxy');
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -31,6 +32,7 @@ var http = require('http').Server(app);
 // var multer  = require('multer');
 // var upload = multer({ dest: '/tmp/'});
 const version = config.get("version");
+var expressWs = websocket(app);
 //var io = http;
 var temperature;
 var humidity;
@@ -39,6 +41,63 @@ var humidity;
 //const config = yaml.safeLoad(config_file);
 const REFRESH_DELAY = config.get("refresh_delay")
 const SENSOR_HISTORY = config.get("sensor_history")
+//
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////                       WebSocket                         ///////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//
+app.ws('/', function(ws, res) {
+  console.log("ws");
+  //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
+  save(ws)
+  ws.on('message', function(msg) {
+    console.log('message: ', msg);
+    list=[]
+    wsList.forEach(function(client) {
+      if (client.readyState==1) {
+        client.send(msg);
+      }else{
+        list.push(client)
+      }
+    });
+    deleteWS(list)
+    console.log("List length: "+wsList.length)
+  });
+  res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
+  console.log(res);
+});
+
+function save(ws) {
+  //console.log("save");
+  if(!wsList.includes(ws)){
+    console.log("new user add to list")
+    wsList.push(ws)
+  }
+}
+
+function deleteWS(list) {
+  list.forEach((ws) => {
+    const index = wsList.indexOf(ws);
+    if (index > -1) {
+      console.log("deleting...");
+      wsList.splice(index, 1);
+    }
+  });
+  printList(wsList)
+}
+
+function printList(wsList) {
+  wsList.forEach((item, i) => {
+    console.log("{Item:"+i+"Status:"+item.readyState+"}");
+  });
+}
+//
+//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////                End of WebSocket                         ///////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //
 app.get("/*", function(req, res, next) {

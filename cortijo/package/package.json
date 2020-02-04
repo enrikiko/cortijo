@@ -19,7 +19,7 @@
     "multer":"*",
     "js-yaml":"*",
     "delay":"*",
-    "ws": "*"
+    "express-ws": "4.0.0"
   },
   "author": "Enrique Ramos",
   "license": "ISC"

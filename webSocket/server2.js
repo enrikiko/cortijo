@@ -5,7 +5,6 @@ var app = express().use(cors());
 var expressWs = websocket(app);
 const PORT = 3000
 wsList=[]
-
 app.ws('/', function(ws, res) {
   console.log("ws");
   //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
