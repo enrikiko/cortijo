@@ -16,15 +16,15 @@ export class AuthService {
   constructor(private router: Router,
               private http: HttpClient ) { };
 
-  authJWT(){
+  async authJWT(){
     const jwt = window.localStorage.getItem('jwt')
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': jwt
-    })
+      })
     const host = (window.location.href.split("/")[2]).split(":")[0]
     const url = "http://" + host + ":8000/jwt"
-    var status = false
+    var finish = false
     this.http.get<any>(url, { headers: headers }).subscribe( data => {
       if(data!=null){
         if(data.status){
@@ -33,17 +33,16 @@ export class AuthService {
           console.log(1)
         }
       }
-      status = true
+      finish = true
     })
     //var x = 0
-    //while(!status){console.log(x); x++}
-    console.log(2)
-    console.log(status)
-    return false
+    await(finish)
+    //console.log(status)
+    //return this.status
   }
 
-  isLogin(){
-    this.authJWT()
+  async isLogin(){
+    await this.authJWT()
     return this.status
   }
 
