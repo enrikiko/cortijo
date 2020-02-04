@@ -32,7 +32,7 @@ var http = require('http').Server(app);
 // var multer  = require('multer');
 // var upload = multer({ dest: '/tmp/'});
 const version = config.get("version");
-var expressWs = websocket(app);
+var expressWs = websocket(http);
 //var io = http;
 var temperature;
 var humidity;
