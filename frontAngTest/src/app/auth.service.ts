@@ -39,6 +39,7 @@ export class AuthService {
     if(!this.certain){
       this.authJWT()
       this.certain=true
+      console.log("this.certain:" + this.certain)
     }
     return this.status
   }
