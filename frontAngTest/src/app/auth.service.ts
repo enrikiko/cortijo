@@ -17,7 +17,7 @@ export class AuthService {
   constructor(private router: Router,
               private http: HttpClient ) { };
 
-  async authJWT(){
+  authJWT(){
     const jwt = window.localStorage.getItem('jwt')
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -35,11 +35,11 @@ export class AuthService {
     })
   }
 
-  async isLogin(){
+  isLogin(){
     if(!this.certain){
       this.authJWT()
       this.certain=true
-      console.log("this.certain:" + this.certain)
+      console.log("this.certain: " + this.certain)
     }
     console.log("this.status: " + this.status)
     return this.status
