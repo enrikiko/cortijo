@@ -37,7 +37,7 @@ export class AuthService {
     })
     //var x = 0
     console.log("!finish= " + !finish )
-    while(!finish){console.log("Waiting")}
+    //while(!finish){console.log("Waiting")}
     console.log(2)
     //return this.status
   }
