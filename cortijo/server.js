@@ -28,11 +28,11 @@ app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded())
 app.enable('trust proxy')
-var http = require('http').Server(app);
+//var http = require('http').Server(app);
 // var multer  = require('multer');
 // var upload = multer({ dest: '/tmp/'});
 const version = config.get("version");
-var expressWs = websocket(http);
+var expressWs = websocket(app);
 //var io = http;
 var temperature;
 var humidity;
@@ -474,6 +474,6 @@ app.delete('/*', function(req, res){
 });
 //
 // activate the listenner
-http.listen(3000, function () {
+app.listen(3000, function () {
   logs.log('Api active in port 3000');
 })
