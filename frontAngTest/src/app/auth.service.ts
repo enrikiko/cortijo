@@ -37,7 +37,7 @@ export class AuthService {
     })
     //var x = 0
     await(finish)
-    //console.log(status)
+    console.log(1)
     //return this.status
   }
 
