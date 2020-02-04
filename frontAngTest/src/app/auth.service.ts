@@ -41,6 +41,7 @@ export class AuthService {
       this.certain=true
       console.log("this.certain:" + this.certain)
     }
+    console.log("this.status: " + this.status)
     return this.status
   }
 
