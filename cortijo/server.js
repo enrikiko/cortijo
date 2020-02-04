@@ -48,6 +48,7 @@ const SENSOR_HISTORY = config.get("sensor_history")
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //
+wsList=[]
 app.ws('/', function(ws, res) {
   console.log("ws");
   //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
