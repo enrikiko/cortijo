@@ -9,6 +9,10 @@ app.ws('/', function(ws, res) {
   console.log("ws");
   //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
   save(ws)
+  ws.on('open', function open() {
+  ws.send('something');
+  console.log('open')
+});
   ws.on('message', function(msg) {
     console.log('message: ', msg);
     list=[]
@@ -22,8 +26,14 @@ app.ws('/', function(ws, res) {
     deleteWS(list)
     console.log("List length: "+wsList.length)
   });
-  res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
-  console.log(res);
+  //
+  ws.on("connection", (x)=>{console.log(x)})
+  //
+  ws.on('close', function close() {
+  console.log('disconnected');
+  });
+  //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
+  //console.log(res);
 });
 
 function save(ws) {
