@@ -49,9 +49,9 @@ const SENSOR_HISTORY = config.get("sensor_history")
 //
 //
 wsList=[]
+//
 app.ws('/', function(ws, res) {
   console.log("ws");
-  //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
   save(ws)
   ws.on('message', function(msg) {
     console.log('message: ', msg);
@@ -69,7 +69,7 @@ app.ws('/', function(ws, res) {
 });
 
 function save(ws) {
-  //console.log("save");
+  console.log("save");
   if(!wsList.includes(ws)){
     console.log("new user add to list")
     wsList.push(ws)
@@ -77,6 +77,7 @@ function save(ws) {
 }
 
 function deleteWS(list) {
+  console.log("deleteWS");
   list.forEach((ws) => {
     const index = wsList.indexOf(ws);
     if (index > -1) {
