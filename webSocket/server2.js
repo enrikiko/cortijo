@@ -27,8 +27,9 @@ app.ws('/', function(ws, res) {
   //
   ws.on("connection", (x)=>{console.log(x)})
   //
-  ws.on('close', function close() {
+  ws.on('close', function close(ws) {
   console.log('disconnected');
+  console.log(ws);
   });
   //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
   //console.log(res);
