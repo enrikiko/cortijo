@@ -1,14 +1,14 @@
 version: "3.3"
 services:
-  mongo:
-    container_name: mongo
-    build: ../mongo/.
-    restart: on-failure
-    image: mongo:latest
-    ports:
-    - "27017:27017"
-    networks:
-    - network
+#  mongo:
+#    container_name: mongo
+#    build: ../mongo/.
+#    restart: on-failure
+#    image: mongo:latest
+#    ports:
+#    - "27017:27017"
+#    networks:
+#    - network
   #    environment:
   #      MONGO_INITDB_ROOT_USERNAME: user_name
   #      MONGO_INITDB_ROOT_PASSWORD: user_password
