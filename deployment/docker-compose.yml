@@ -10,7 +10,7 @@ services:
 #    networks:
 #    - network
   #    environment:
-  #      MONGO_INITDB_ROOT_USERNAME: user_name2
+  #      MONGO_INITDB_ROOT_USERNAME: user_name
   #      MONGO_INITDB_ROOT_PASSWORD: user_password
   ws:
     container_name: websocket
