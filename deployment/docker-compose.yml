@@ -98,8 +98,8 @@ services:
     build: ../cortijo/.
     ports:
     - "8000:3000"
-    links:
-    - mongo
+#    links:
+#    - mongo
     networks:
     - network
     volumes:
@@ -118,8 +118,8 @@ services:
     - token_password=cortijo1
     ports:
     - "8010:3000"
-    links:
-    - mongo
+#    links:
+#    - mongo
     networks:
     - network
   #  front:
