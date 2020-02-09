@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const logs = require('./logs');
-const joker = require('./joker');
 let connString = 'mongodb://192.168.1.50:27017/cortijo';
 const db = mongoose.connection;
 //mongoose.connect("mongodb://user_name:password@172.18.0.5:27017/cortijo");
