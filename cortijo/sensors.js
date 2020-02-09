@@ -127,7 +127,7 @@ module.exports = {
        if(result){
          result.ip = ip
          result.devices = devices
-         result.min: min,
+         result.min: min
          result.max: max
          result.save()
        }
