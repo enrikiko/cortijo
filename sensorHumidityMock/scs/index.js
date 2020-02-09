@@ -32,7 +32,9 @@ app.get('/data', function(req, res){
 
 app.get('/test', function(req, res){
   value = value + Math.floor((Math.random() * 500000) + 1)
-  res.status(200).send(value)
+  info={}
+  info.content={"humidity":value}
+  res.status(200).json(value)
 });
 
 http.listen(3000, function () {
