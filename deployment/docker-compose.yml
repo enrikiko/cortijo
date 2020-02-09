@@ -32,18 +32,18 @@ services:
     - "8101:3000"
     networks:
     - network
-  # mock2:
-  #   container_name: mock2
-  #   restart: always
-  #   build: ../deviceMock/.
-  #   environment:
-  #     - mock_name=mock2
-  #     - mock_port=8102
-  #     - local_ip=192.168.1.50
-  #   ports:
-  #     - "8102:3000"
-  #   networks:
-  #     - network
+  mock2:
+    container_name: mock2
+    restart: always
+    build: ../deviceMock/.
+    environment:
+      - mock_name=mock2
+      - mock_port=8102
+      - local_ip=192.168.1.50
+    ports:
+      - "8102:3000"
+    networks:
+      - network
   # mock3:
   #   container_name: mock3
   #   restart: always
