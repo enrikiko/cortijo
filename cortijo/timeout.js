@@ -7,7 +7,6 @@ const myHumidity = require('./humidity');
 const request = require('superagent');
 const req = require('request');
 const config = require('./config');
-const myDevice = require('./devices');
 //
 const TIMEOUT_SENSOR = config.get("timeout_sensor");
 const TIMEOUT_CHECK = config.get("timeout_check");
