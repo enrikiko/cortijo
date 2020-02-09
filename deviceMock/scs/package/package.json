@@ -13,7 +13,7 @@
     "mongoose": "*",
     "socket.io": "^1.7.3",
     "delay":"*",
-    "superagent": "*",
+    "superagent": "*"
   },
   "author": "Enrique Ramos",
   "license": "ISC"
