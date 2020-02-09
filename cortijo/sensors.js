@@ -185,9 +185,33 @@ module.exports = {
         return await data();
     },
     getMin: async (name) => {
-     return mySensor.find({name: Name})[0].min
+      async function getList(name){
+         return mySensor.find({name: name})
+      }
+      var list = await getList(sensorName)
+      if (list.length > 1) {
+        return "The Database is corrupted";
+      }
+      else if (list.length > 0) {
+        var sensor = list[0]
+        return sensor.min
+      }else {
+        return null
+      }
     },
     getMax: async (name) => {
-     return mySensor.find({name: Name})[0].max
+      async function getList(name){
+         return mySensor.find({name: name})
+      }
+      var list = await getList(sensorName)
+      if (list.length > 1) {
+        return "The Database is corrupted";
+      }
+      else if (list.length > 0) {
+        var sensor = list[0]
+        return sensor.max
+      }else {
+        return null
+      }
     },
 }
