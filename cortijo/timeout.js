@@ -84,7 +84,7 @@ async function analiceData(type,name,data) {
     case "Humidity":
     var min = await mySensor.getMin(name)
     var max = await mySensor.getMax(name)
-    logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + "Min:" + min + "Max: " + max)
+    logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max)
     break;
     }
 }
