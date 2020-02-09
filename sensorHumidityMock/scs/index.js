@@ -6,7 +6,7 @@ app.enable('trust proxy')
 app.use(express.urlencoded()) // middleware Bodyparse
 var http = require('http').Server(app);
 var status = true;
-var value = 700000;
+var value = 1000000;
 
 
 app.get("/*", function(req, res, next) {
@@ -24,14 +24,14 @@ app.get('/data', function(req, res){
   info={}
   info.name=process.env.mock_name
   info.type="Humidity"
-  value = value - Math.floor((Math.random() * 10000) + 1)
+  value = value - Math.floor((Math.random() * 50000) + 1)
   info.content={"humidity":value}
   console.log(info);
   res.status(200).json(info)
 });
 
 app.get('/test', function(req, res){
-  value = value + Math.floor((Math.random() * 500000) + 1)
+  value = value + Math.floor((Math.random() * 600000) + 1)
   info={}
   info.content={"humidity":value}
   res.status(200).json(value)
