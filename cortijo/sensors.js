@@ -234,8 +234,8 @@ module.exports = {
         list = []
         list.push(devices[0])
         list.push(devices[1])
-        logs.log(list + "type of device:" + typeof(list))
-        return devices
+        logs.log(list[0] + "type of device:" + typeof(list[0]))
+        return list
       }else {
         return null
       }
