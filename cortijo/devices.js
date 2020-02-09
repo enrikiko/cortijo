@@ -144,7 +144,7 @@ module.exports = {
    },
 //
   changeStatus: async (name, lapse, res) => {
-    var id = await myDevice.getIdByName(name) //Get ID of the device //
+    var id = await getIdByName(name) //Get ID of the device //
     if ( !id ) {
       return res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
     }else if( isUpdating[name] != true ){
