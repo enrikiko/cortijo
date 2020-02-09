@@ -214,4 +214,19 @@ module.exports = {
         return null
       }
     },
+    getDevices: async (name) => {
+      async function getList(name){
+         return mySensor.find({name: name})
+      }
+      var list = await getList(name)
+      if (list.length > 1) {
+        return "The Database is corrupted";
+      }
+      else if (list.length > 0) {
+        var sensor = list[0]
+        return sensor.devices
+      }else {
+        return null
+      }
+    },
 }
