@@ -44,6 +44,11 @@ const sensorSchema = new mongoose.Schema({
     type: Number,
      min: 0,
      max: 1000000
+  },
+  max: {
+    type: Number,
+     min: 0,
+     max: 1000000
   }
 });
 //
@@ -127,8 +132,8 @@ module.exports = {
        if(result){
          result.ip = ip
          result.devices = devices
-         result.min: min
-         result.max: max
+         result.min = min
+         result.max = max
          result.save()
        }
      });
