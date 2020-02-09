@@ -88,6 +88,9 @@ async function analiceData(type,name,data) {
     var devices = await mySensor.getDevices(name)
     logs.log(typeof(devices))
     logs.log(devices)
+    for (const property in object) {
+      console.log(`${property}: ${object[property]}`);
+    }
     //logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
     if (min!=undefined&max!=undefined&devices.length>0) {
       logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
