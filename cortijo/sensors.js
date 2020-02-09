@@ -225,9 +225,9 @@ module.exports = {
       else if (list.length > 0) {
         var sensor = list[0]
         var devices = sensor.devices
-        device=device["0"]
+        devices=devices["0"]
         logs.log(devices + "type of device:" + typeof(devices))
-        device=device.split(",")
+        devices=devices.split(",")
         logs.log(devices + "type of device:" + typeof(devices))
         logs.log(devices[0] + "type of device:" + typeof(devices))
         logs.log(devices[1] + "type of device:" + typeof(devices))
