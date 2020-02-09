@@ -184,4 +184,10 @@ module.exports = {
         }
         return await data();
     },
+    getMin: async (name) => {
+     return mySensor.find({name: Name})[0].min
+    },
+    getMax: async (name) => {
+     return mySensor.find({name: Name})[0].max
+    },
 }

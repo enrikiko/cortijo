@@ -75,13 +75,16 @@ function safeData(type,name,data){
     break;
     }
 }
-function analiceData(type,name,data) {
+async function analiceData(type,name,data) {
     switch(type){
     case "Temperature":
     //TODO logic for temperature
+    console.log("analiceData to be done");
     break;
     case "Humidity":
-    //TODO logic for temperature
+    var min = await mySensor.getMin(name)
+    var max = await mySensor.getMax(name)
+    logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + "Min:" + min + "Max: " + max)
     break;
     }
 }
