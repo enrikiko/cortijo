@@ -41,7 +41,7 @@ module.exports = {
 //
    getDevice: () => { return myDevice.find() },
 //
-   getDeviceByName: (Name) => { return myDevice.find({name: Name})},
+   getDeviceByName: (name) => { return myDevice.find({name: name})},
 //
    getDeviceById: (id) => { return myDevice.findById(id)},
 //
@@ -145,7 +145,7 @@ module.exports = {
    },
 //
   changeStatus: async (name, lapse, res) => {
-    var id = await myDevice.find({name: Name}) //Get ID of the device //
+    var id = await myDevice.find({name: name}) //Get ID of the device //
     if ( !id ) {
       return res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
     }else {
