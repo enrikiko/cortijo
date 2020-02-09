@@ -36,6 +36,10 @@ const sensorSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  devices: {
+    type: [],
+    require: false
+  }
 });
 //
 let mySensor = mongoose.model('Sensors', sensorSchema);
@@ -62,12 +66,13 @@ module.exports = {
 //
    getSensorByName: (Name) => { return mySensor.find({name: Name})},
 //
-   newSensor: (name, ip, type) => {
+   newSensor: (name, ip, type, devices) => {
      let sensor = new mySensor(
        {
          name: name,
          ip: ip,
          type: type,
+         devices: devices
        });
      sensor.save(function(err, result) {
        if (err) throw err;
@@ -109,11 +114,12 @@ module.exports = {
      }
    },
 //
-   updateSensorIp: (id, ip) => {
+   updateSensorIp: (id, ip, devices) => {
      var sensor = mySensor.findById(id, function(err, result) {
        if (err) throw err
        if(result){
          result.ip = ip
+         result.devices = devices
          result.save()
        }
      });
