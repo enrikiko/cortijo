@@ -7,6 +7,7 @@ const myHumidity = require('./humidity');
 const request = require('superagent');
 const req = require('request');
 const config = require('./config');
+const myDevice = require('./devices');
 //
 const TIMEOUT_SENSOR = config.get("timeout_sensor");
 const TIMEOUT_CHECK = config.get("timeout_check");
@@ -79,7 +80,7 @@ async function analiceData(type,name,data) {
     switch(type){
     case "Temperature":
     //TODO logic for temperature
-    console.log("analiceData to be done");
+    logs.log("AnaliceData Temperature TODO");
     break;
     case "Humidity":
     var min = await mySensor.getMin(name)
@@ -88,6 +89,9 @@ async function analiceData(type,name,data) {
     //logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
     if (min!=undefined&max!=undefined&devices.length>0) {
       logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
+      if ( data.humidity <= min ){
+        myDevice.changeStatus(name , 1000)
+      }
     }
     else{
       logs.log("No applicable to " + name);

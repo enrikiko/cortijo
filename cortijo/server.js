@@ -412,45 +412,8 @@ app.get("/update/:name/false", async function(req, res){
 app.get("/update/:name/true/:lapse_time", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
-  var id = await myDevice.getIdByName(name) //Get ID of the device //
-  if ( !id ) {
-    res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
-  }else if( isUpdating[name] != true ){
-    isUpdating[name]=true
-    //logs.log(JSON.stringify(isUpdating))
-    logs.log("Change status of "+name+" to true");
-      try {
-            joker.switchAlertLapse( name, lapse )
-            response = await joker.switchStatus(true, name) //Change device status
-            if (response.code == 200) {
+  var response = await myDevice.changeStatus(name, lapse, res)
 
-                res.status(response.code).send(response)
-                setTimeout(async function(){  //Change back to false
-                    try {
-
-                        var responseBack = await joker.switchStatus(false, name) //Change device status
-                        if (responseBack.code == 200) {
-                            logs.log("Changed back automatically due to timeout " + name + " to false")
-                        }
-                        else {
-                            logs.log("Error changing back " + name + " to false")
-                    }
-                    } catch (e) {
-                        console.log(e)
-                        var responseBack = {}
-                        responseBack.code = 404
-                    }
-                }, lapse);
-            }else {
-               res.status(200).send(response)
-            }
-      } catch (e) {
-           console.log(e)
-           var response = {}
-           response.code = 404
-      }
-      isUpdating[name]=false
-    }
 })
 //
 //Handel all bad requests
