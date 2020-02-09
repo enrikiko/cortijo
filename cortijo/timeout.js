@@ -85,7 +85,8 @@ async function analiceData(type,name,data) {
     var min = await mySensor.getMin(name)
     var max = await mySensor.getMax(name)
     var devices = await mySensor.getDevices(name)
-    if (min&max&devices) {
+    logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
+    if (min!=undefined&max!=undefined&devices!=undefined) {
       logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
     }
     else{
