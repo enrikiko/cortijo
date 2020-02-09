@@ -13,7 +13,7 @@ module.exports = {
               //joker.switchAlertLapse( name, lapse )
               response = await joker.switchStatus(true, name) //Change device status
               if (response.code == 200) {
-                logs.log(res)
+                //logs.log(res)
                 if(res!=null){
                   return res.status(response.code).send(response)
                 }
@@ -34,7 +34,7 @@ module.exports = {
                       }
                   }, lapse);
               }else {
-                 logs.log(res)
+                 //logs.log(res)
                  if(res!=null){
                    return res.status(200).send(response)
                  }
