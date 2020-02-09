@@ -39,6 +39,11 @@ const sensorSchema = new mongoose.Schema({
   devices: {
     type: [],
     require: false
+  },
+  min: {
+    type: Number,
+     min: 0,
+     max: 1000000
   }
 });
 //
@@ -66,13 +71,15 @@ module.exports = {
 //
    getSensorByName: (Name) => { return mySensor.find({name: Name})},
 //
-   newSensor: (name, ip, type, devices) => {
+   newSensor: (name, ip, type, devices, min, max ) => {
      let sensor = new mySensor(
        {
          name: name,
          ip: ip,
          type: type,
-         devices: devices
+         devices: devices,
+         min: min,
+         max: max
        });
      sensor.save(function(err, result) {
        if (err) throw err;
@@ -114,12 +121,14 @@ module.exports = {
      }
    },
 //
-   updateSensorIp: (id, ip, devices) => {
+   updateSensorIp: (id, ip, devices, min, max) => {
      var sensor = mySensor.findById(id, function(err, result) {
        if (err) throw err
        if(result){
          result.ip = ip
          result.devices = devices
+         result.min: min,
+         result.max: max
          result.save()
        }
      });

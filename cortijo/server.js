@@ -183,13 +183,15 @@ app.get("/newSensor/:type/:name/:ip", async (req, res) => {
      var ip = req.params.ip
      var type = req.params.type
      var devices = req.query.devices
+     var min = req.query.min
+     var max = req.query.max
      var id = await mySensor.getIdByName(name)
       if (!id) {
-         var response = await mySensor.newSensor(name, ip, type, devices)
+         var response = await mySensor.newSensor(name, ip, type, devices, min, max)
          logs.log(name+' have been created successfully');
          res.status(200).json(name+' create successfully')
       }else {
-         var lastIp = await mySensor.updateSensorIp(id, ip, devices)
+         var lastIp = await mySensor.updateSensorIp(id, ip, devices, min, max)
          res.status(200).json({"Previous Ip": lastIp, "New Ip": ip, "Devices": devices})
       }
 })

@@ -28,7 +28,7 @@ function executeTimeoutCheck(){
 //
 async function getSensor(){
     logs.log("getSensor...")
-    var sensorList = await mySensor.getAllSensor()
+    var sensorList = await mySensor.getAllSensor()//Get all sensor from db
     //logs.log(sensorList)
     for (var index in sensorList){
         var name = sensorList[index].name
@@ -39,6 +39,7 @@ async function getSensor(){
             dataContent = data.content
             //console.log(dataType,dataName,dataContent)
             safeData(dataType,dataName,dataContent)
+            analiceData(dataType,dataName,dataContent)
         }catch(e){
             logs.log(e)
         }
@@ -71,6 +72,16 @@ function safeData(type,name,data){
     case "Humidity":
     logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity)
     myHumidity.newHumidity(name, data.humidity)
+    break;
+    }
+}
+function analiceData(type,name,data) {
+    switch(type){
+    case "Temperature":
+    //TODO logic for temperature
+    break;
+    case "Humidity":
+    //TODO logic for temperature
     break;
     }
 }
