@@ -231,7 +231,7 @@ module.exports = {
           devices = devices.split(",")
           return devices
         }else{
-          return null;
+          return [];
         }
       }else {
         return null
