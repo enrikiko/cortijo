@@ -90,7 +90,10 @@ async function analiceData(type,name,data) {
     if (min!=undefined&max!=undefined&devices.length>0) {
       logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
       if ( data.humidity <= min ){
-        mySwitch.changeStatus(name , 1000)
+        devices.forEach((device, i) => {
+          mySwitch.changeStatus(device[i] , 1000)
+        });
+
       }
     }
     else{
