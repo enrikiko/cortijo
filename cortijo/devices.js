@@ -145,7 +145,7 @@ module.exports = {
    },
 //
   changeStatus: async (name, lapse, res) => {
-    var id = await myDevice.find({name: Name})) //Get ID of the device //
+    var id = await myDevice.find({name: Name}) //Get ID of the device //
     if ( !id ) {
       return res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
     }else {
