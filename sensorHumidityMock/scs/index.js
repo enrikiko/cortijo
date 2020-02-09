@@ -24,7 +24,7 @@ app.get('/data', function(req, res){
   info={}
   info.name=process.env.mock_name
   info.type="Humidity"
-  value = value - Math.floor((Math.random() * 1000) + 1)
+  value = value - Math.floor((Math.random() * 10000) + 1)
   info.content={"humidity":value}
   console.log(info);
   res.status(200).json(info)
