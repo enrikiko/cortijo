@@ -228,6 +228,7 @@ module.exports = {
         devices = devices["0"]
         logs.log(devices + " - type of device : " + typeof(devices))
         devices = devices.split(",")
+        logs.log(devices + " - type of device : " + typeof(devices))
         return devices
       }else {
         return null
