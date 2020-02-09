@@ -13,8 +13,10 @@ module.exports = {
               //joker.switchAlertLapse( name, lapse )
               response = await joker.switchStatus(true, name) //Change device status
               if (response.code == 200) {
-
+                logs.log(res)
+                if(res!=null){
                   return res.status(response.code).send(response)
+                }
                   setTimeout(async function(){  //Change back to false
                       try {
 
@@ -32,7 +34,10 @@ module.exports = {
                       }
                   }, lapse);
               }else {
-                 return res.status(200).send(response)
+                 logs.log(res)
+                 if(res!=null){
+                   return res.status(200).send(response)
+                 }
               }
         } catch (e) {
              console.log(e)
