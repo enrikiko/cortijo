@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require('cors');
 const delay = require('delay');
+const request = require('superagent');
 const app = express();
 app.enable('trust proxy')
 app.use(express.urlencoded()) // middleware Bodyparse
@@ -31,7 +32,9 @@ app.get('/'+process.env.mock_name+'/status/true', async function(req, res){
     info.status=true
     console.log(info);
     status=true;
-res.status(200).json(info)
+    let value = await request.get("http://192.168.1.50:8105/test")
+    console.log(value);
+    res.status(200).json(info)
 });
 app.get('/'+process.env.mock_name+'/status/false', async function(req, res){
     await delay(300);

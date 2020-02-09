@@ -12,7 +12,8 @@
     "express": "*",
     "mongoose": "*",
     "socket.io": "^1.7.3",
-    "delay":"*"
+    "delay":"*",
+    "superagent": "*",
   },
   "author": "Enrique Ramos",
   "license": "ISC"
