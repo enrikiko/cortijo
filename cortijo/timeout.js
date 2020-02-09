@@ -86,16 +86,13 @@ async function analiceData(type,name,data) {
     var min = await mySensor.getMin(name)
     var max = await mySensor.getMax(name)
     var devices = await mySensor.getDevices(name)
-    logs.log(typeof(devices))
-    logs.log(devices)
-    for (const property in devices) {
-      console.log(`${property}: ${devices[property]}`);
-    }
+    logs.log(typeof(devices[0]))
+    logs.log(devices[0])
     //logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
     if (min!=undefined&max!=undefined&devices.length>0) {
       logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
       if ( data.humidity <= min ){
-        devices.forEach((device, i) => {
+        devices.forEach((device[0], i) => {
           mySwitch.changeStatus(device[i] , 1000)
         });
 
