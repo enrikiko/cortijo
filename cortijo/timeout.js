@@ -85,12 +85,12 @@ async function analiceData(type,name,data) {
     var min = await mySensor.getMin(name)
     var max = await mySensor.getMax(name)
     var devices = await mySensor.getDevices(name)
-    logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
-    if (min!=undefined&max!=undefined&devices!=undefined) {
+    //logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
+    if (min!=undefined&max!=undefined&devices.length>0) {
       logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
     }
     else{
-      console.log("No applicable to " + name);
+      logs.log("No applicable to " + name);
     }
     break;
     }
