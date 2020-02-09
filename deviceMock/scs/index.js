@@ -36,6 +36,7 @@ app.get('/'+process.env.mock_name+'/status/true', async function(req, res){
       let value = await request.get("http://192.168.1.50:8106/test")
     }catch (e) {
       console.log(e);
+      let value = "error no response"
     }
     console.log(value);
     res.status(200).json(info)
