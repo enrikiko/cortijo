@@ -380,7 +380,7 @@ app.get("/update/*", async function(req, res, next) {
 })
 //
 //update device
-var isUpdating={}
+//var isUpdating={}
 app.get("/update/:name/false", async function(req, res){
 
     var name = req.params.name
@@ -389,8 +389,7 @@ app.get("/update/:name/false", async function(req, res){
 
     if ( !id ) {
         res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
-    }else if( isUpdating[name] != true ){
-        isUpdating[name]=true
+    }else {
         //logs.log(JSON.stringify(isUpdating))
         logs.log("Change status of "+name+" to true");
         try {
@@ -406,7 +405,6 @@ app.get("/update/:name/false", async function(req, res){
             var response = {}
             response.code = 404
         }
-        isUpdating[name]=false
     }
 })
 app.get("/update/:name/true/:lapse_time", async function(req, res){

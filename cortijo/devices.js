@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const logs = require('./logs');
+const joker = require('./joker');
 let connString = 'mongodb://192.168.1.50:27017/cortijo';
 const db = mongoose.connection;
 //mongoose.connect("mongodb://user_name:password@172.18.0.5:27017/cortijo");
@@ -144,11 +145,10 @@ module.exports = {
    },
 //
   changeStatus: async (name, lapse, res) => {
-    var id = await getIdByName(name) //Get ID of the device //
+    var id = await myDevice.find({name: Name})) //Get ID of the device //
     if ( !id ) {
       return res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
-    }else if( isUpdating[name] != true ){
-      isUpdating[name]=true
+    }else {
       //logs.log(JSON.stringify(isUpdating))
       logs.log("Change status of "+name+" to true");
         try {
@@ -181,7 +181,6 @@ module.exports = {
              var response = {}
              response.code = 404
         }
-        isUpdating[name]=false
       }
   }
 //
