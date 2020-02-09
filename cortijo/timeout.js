@@ -89,7 +89,7 @@ async function analiceData(type,name,data) {
     logs.log(typeof(devices))
     logs.log(devices)
     for (const property in devices) {
-      console.log(`${property}: ${object[property]}`);
+      console.log(`${property}: ${devices[property]}`);
     }
     //logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
     if (min!=undefined&max!=undefined&devices.length>0) {
