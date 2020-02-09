@@ -188,7 +188,7 @@ module.exports = {
       async function getList(name){
          return mySensor.find({name: name})
       }
-      var list = await getList(sensorName)
+      var list = await getList(name)
       if (list.length > 1) {
         return "The Database is corrupted";
       }
@@ -203,7 +203,7 @@ module.exports = {
       async function getList(name){
          return mySensor.find({name: name})
       }
-      var list = await getList(sensorName)
+      var list = await getList(name)
       if (list.length > 1) {
         return "The Database is corrupted";
       }
