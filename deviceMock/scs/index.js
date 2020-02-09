@@ -33,12 +33,10 @@ app.get('/'+process.env.mock_name+'/status/true', async function(req, res){
     console.log(info);
     status=true;
     try{
-      let value = await request.get("http://192.168.1.50:8106/test")
+      request.get("http://192.168.1.50:8106/test")
     }catch (e) {
       console.log(e);
-      let value = "error no response"
     }
-    console.log(value);
     res.status(200).json(info)
 });
 app.get('/'+process.env.mock_name+'/status/false', async function(req, res){
