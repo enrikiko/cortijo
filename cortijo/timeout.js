@@ -6,6 +6,7 @@ const myTemperature = require('./temperature');
 const myHumidity = require('./humidity');
 const request = require('superagent');
 const req = require('request');
+const mySwitch = require('./switch');
 const config = require('./config');
 //
 const TIMEOUT_SENSOR = config.get("timeout_sensor");
@@ -89,7 +90,7 @@ async function analiceData(type,name,data) {
     if (min!=undefined&max!=undefined&devices.length>0) {
       logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
       if ( data.humidity <= min ){
-        myDevice.changeStatus(name , 1000)
+        mySwitch.changeStatus(name , 1000)
       }
     }
     else{
