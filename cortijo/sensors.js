@@ -226,15 +226,15 @@ module.exports = {
         var sensor = list[0]
         var devices = sensor.devices
         devices=devices["0"]
-        logs.log(devices + "type of device:" + typeof(devices))
+        logs.log(devices + " - type of device : " + typeof(devices))
         devices=devices.split(",")
-        logs.log(devices + "type of device:" + typeof(devices))
-        logs.log(devices[0] + "type of device:" + typeof(devices))
-        logs.log(devices[1] + "type of device:" + typeof(devices))
+        logs.log(devices + " - type of device : " + typeof(devices))
+        logs.log(devices[0] + " - type of device : " + typeof(devices))
+        logs.log(devices[1] + " - type of device : " + typeof(devices))
         list = []
         list.push(devices[0])
         list.push(devices[1])
-        logs.log(list[0] + "type of device:" + typeof(list[0]))
+        logs.log(list[0] + " - type of device : " + typeof(list[0]))
         return list
       }else {
         return null
