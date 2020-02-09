@@ -11,6 +11,7 @@ const requests = require('./requests');
 const mySensor = require('./sensors');
 const timeout = require('./timeout');
 const config = require('./config');
+const switch = require('./switch');
 const ia = require('./ia');
 const cors = require('cors');
 const delay = require('delay');
@@ -410,7 +411,7 @@ app.get("/update/:name/false", async function(req, res){
 app.get("/update/:name/true/:lapse_time", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
-  var response = await myDevice.changeStatus(name, lapse, res)
+  var response = await switch.changeStatus(name, lapse, res)
 
 })
 //
