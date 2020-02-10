@@ -31,7 +31,7 @@ app.get('/data', function(req, res){
 });
 
 app.get('/test', function(req, res){
-  value = value + Math.floor((Math.random() * 400000) + 1)
+  value = value + Math.floor((Math.random() * 100000) + 1)
   info={}
   info.content={"humidity":value}
   res.status(200).json(value)
