@@ -91,11 +91,16 @@ async function analiceData(type,name,data) {
         if ( list[name+"increase"] ) {
           if ( data.humidity <= max ){
             if ( list[name+"last"] >= data.humidity ) {
-              if (list[name+"count"] <= 5 ) {
+              if (list[name+"count"] >= 5 ) {
                 console.log("----------------------------------Sensor is block!!!----------------------------------");
+              }else {
+                console.log("----------------------------------Alert!!!----------------------------------");
+                list[name+"count"]++
+                for (var i in devices) {
+                  mySwitch.changeStatus(devices[i] , 1000)
+                }
               }
-              console.log("----------------------------------Alert!!!----------------------------------");
-              list[name+"count"]++
+            }else {
               for (var i in devices) {
                 mySwitch.changeStatus(devices[i] , 1000)
               }
