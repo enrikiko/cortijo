@@ -35,10 +35,12 @@ app.get('/'+process.env.mock_name+'/status/true', async function(req, res){
     try{
         var value = request.get("http://192.168.1.50:8106/test")
         console.log("Response:" + value)
+        res.status(200).json(info)
     }catch (e) {
-      console.log(e);
+        console.log(e);
+        res.status(200).json(info)
     }
-    res.status(200).json(info)
+
 });
 app.get('/'+process.env.mock_name+'/status/false', async function(req, res){
     await delay(300);
