@@ -90,6 +90,9 @@ async function analiceData(type,name,data) {
         logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices + " Data: " + data.humidity)
         if (list[name+"min"]) {
           if ( data.humidity <= max ){
+            if ( list[name+"last"] >= data.humidity ) {
+              console.log("----------------------------------Alert!!!----------------------------------");
+            }
             for (var i in devices) {
               mySwitch.changeStatus(devices[i] , 1000)
             }
@@ -99,6 +102,7 @@ async function analiceData(type,name,data) {
         }else {
           if ( data.humidity <= min ){
             list[name+"min"]=true
+            list[name+"last"]=data.humidity
             for (var i in devices) {
               mySwitch.changeStatus(devices[i] , 1000)
             }
