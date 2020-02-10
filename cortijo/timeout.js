@@ -11,6 +11,7 @@ const config = require('./config');
 //
 const TIMEOUT_SENSOR = config.get("timeout_sensor");
 const TIMEOUT_CHECK = config.get("timeout_check");
+const TIMES_BEFORE_BLOCK = config.get("times_before_block");
 //
 function executeTimeoutSensor(){
     setTimeout(function(){
@@ -91,7 +92,7 @@ async function analiceData(type,name,data) {
         if ( list[name+"increase"] ) {
           if ( data.humidity <= max ){
             if ( list[name+"last"] >= data.humidity ) {
-              if (list[name+"count"] >= 5 ) {
+              if (list[name+"count"] >= TIMES_BEFORE_BLOCK ) {
                 console.log("----------------------------------Sensor is block!!!----------------------------------");
               }else {
                 console.log("----------------------------------Alert!!!----------------------------------");
