@@ -88,7 +88,7 @@ async function analiceData(type,name,data) {
       var devices = await mySensor.getDevices(name)
       if (min!=undefined&max!=undefined&devices.length>0) {
         logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices + " Data: " + data.humidity)
-        if (list[name].certain) {
+        if (list[name] & list[name].certain) {
           if ( data.humidity <= max ){
             for (var i in devices) {
               mySwitch.changeStatus(devices[i] , 1000)
