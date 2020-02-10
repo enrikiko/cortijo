@@ -34,7 +34,9 @@ app.get('/'+process.env.mock_name+'/status/true', async function(req, res){
     status=true;
     try{
         var value = request.get("http://192.168.1.50:8106/test")
-        console.log("Response:" + value)
+        for (var key in value) {
+            console.log("Response:" + value.key)
+        }
         res.status(200).json(info)
     }catch (e) {
         console.log(e);
