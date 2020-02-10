@@ -76,35 +76,43 @@ function safeData(type,name,data){
     break;
     }
 }
+var list = {}
 async function analiceData(type,name,data) {
     switch(type){
     case "Temperature":
     //TODO logic for temperature
-    logs.log("AnaliceData Temperature TODO");
     break;
     case "Humidity":
-    var min = await mySensor.getMin(name)
-    var max = await mySensor.getMax(name)
-    var devices = await mySensor.getDevices(name)
-    //logs.log(typeof(devices["0"]))
-    //logs.log(devices["0"])
-    //for (const property in devices) {
-    //  console.log(`${property}: ${devices[property]}`);
-    //}
-    //logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
-    if (min!=undefined&max!=undefined&devices.length>0) {
-      logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices)
-      if ( data.humidity <= min ){
-        for (var i in devices) {
-          mySwitch.changeStatus(devices[i] , 30000)
-          //logs.log(devices[i])
-          //logs.log(typeof(devices[i]))
+      var min = await mySensor.getMin(name)
+      var max = await mySensor.getMax(name)
+      var devices = await mySensor.getDevices(name)
+      if (min!=undefined&max!=undefined&devices.length>0) {
+        logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices + " Data: " + data.humidity)
+        if (list[name]) {
+
+          if ( data.humidity <= max ){
+            for (var i in devices) {
+              mySwitch.changeStatus(devices[i] , 30000)
+            }
+          }else {
+            list[name]=false
+          }
+
+        }else {
+
+          if ( data.humidity <= min ){
+            list[name]=true
+            for (var i in devices) {
+              mySwitch.changeStatus(devices[i] , 30000)
+            }
+          }
+
         }
+
       }
-    }
-    else{
-      logs.log("No applicable to " + name);
-    }
+      else{
+        logs.log("No applicable to " + name);
+      }
     break;
     }
 }
