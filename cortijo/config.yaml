@@ -6,5 +6,5 @@
   get_device_status_timeout: 5000
   switch_status_timeout: 5000
   get_data_timeout: 5000
-  sensor_history: 672
+  sensor_history: 6720
   version: "1.0.1"

@@ -88,21 +88,23 @@ async function analiceData(type,name,data) {
       var devices = await mySensor.getDevices(name)
       if (min!=undefined&max!=undefined&devices.length>0) {
         logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices + " Data: " + data.humidity)
-        if (list[name+"min"]) {
-          if ( data.humidity <= max ){
+        if ( list[name+"increase"] ) {
+          if ( data.humidity <= max & list[name+"count"] <= 5 ){
             if ( list[name+"last"] >= data.humidity ) {
               console.log("----------------------------------Alert!!!----------------------------------");
+              list[name+"count"]++
             }
             for (var i in devices) {
               mySwitch.changeStatus(devices[i] , 1000)
             }
           }else {
-            list[name+"min"]=false
+            list[name+"increase"]=false
           }
         }else {
           if ( data.humidity <= min ){
-            list[name+"min"]=true
+            list[name+"increase"]=true
             list[name+"last"]=data.humidity
+            list[name+"count"]=0
             for (var i in devices) {
               mySwitch.changeStatus(devices[i] , 1000)
             }
