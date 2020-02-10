@@ -89,29 +89,21 @@ async function analiceData(type,name,data) {
       if (min!=undefined&max!=undefined&devices.length>0) {
         logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " Min:" + min + " Max: " + max + " Devices " + devices + " Data: " + data.humidity)
         if (list[name]) {
-
           if ( data.humidity <= max ){
             for (var i in devices) {
-              mySwitch.changeStatus(devices[i] , 30000)
+              mySwitch.changeStatus(devices[i] , 1000)
             }
           }else {
             list[name]=false
           }
-
         }else {
-
           if ( data.humidity <= min ){
             list[name]=true
             for (var i in devices) {
-              mySwitch.changeStatus(devices[i] , 30000)
+              mySwitch.changeStatus(devices[i] , 1000)
             }
           }
-
         }
-
-      }
-      else{
-        logs.log("No applicable to " + name);
       }
     break;
     }
