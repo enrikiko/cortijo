@@ -124,7 +124,7 @@ module.exports = {
     blockDeviceByName: async (deviceName) => {
     return myDevice.find({name: deviceName}, function(err, result) {
        if (err) throw err
-       if(result.length>=1){
+       if(result.length==1){
          result=result[0]
          result.check = false
          result.save()
