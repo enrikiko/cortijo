@@ -13,16 +13,16 @@ const TIMEOUT_SENSOR = config.get("timeout_sensor");
 const TIMEOUT_CHECK = config.get("timeout_check");
 const TIMES_BEFORE_BLOCK = config.get("times_before_block");
 //
-function executeTimeoutSensor(){
+function executeTimeoutCheckSensors(){
     setTimeout(function(){
-            executeTimeoutSensor()
+            executeTimeoutCheckSensors()
             logs.log("Time out sensor executing every " + TIMEOUT_SENSOR + " milliseconds")
             getSensor()
         }, TIMEOUT_SENSOR);
 }
-function executeTimeoutCheck(){
+function executeTimeoutCheckDevices(){
     setTimeout(function(){
-            executeTimeoutCheck()
+            executeTimeoutCheckDevices()
             logs.log("Time out check executing every " + TIMEOUT_CHECK + " milliseconds")
             check()
         }, TIMEOUT_CHECK);
@@ -126,5 +126,5 @@ async function analiceData(type,name,data) {
     }
 }
 //
-executeTimeoutSensor()
-executeTimeoutCheck()
+executeTimeoutCheckSensors()
+executeTimeoutCheckDevices()
