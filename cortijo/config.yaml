@@ -1,7 +1,7 @@
 ---
   log: "debug"
-  timeout_check:  3000
-  timeout_sensor: 3000
+  timeout_check:  100
+  timeout_sensor: 100
   times_before_block: 5
   refresh_delay: 0
   get_device_status_timeout: 5000
