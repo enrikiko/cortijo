@@ -100,12 +100,12 @@ async function analiceData(type,name,data) {
                 console.log("----------------------------------Alert!!!----------------------------------");
                 list[name+"count"]++
                 for (var i in devices) {
-                  mySwitch.changeStatus(devices[i] , 1000)
+                  mySwitch.changeStatusToTrue(devices[i] , 1000)
                 }
               }
             }else {
               for (var i in devices) {
-                mySwitch.changeStatus(devices[i] , 1000)
+                mySwitch.changeStatusToTrue(devices[i] , 1000)
               }
             }
           }else {
@@ -117,7 +117,7 @@ async function analiceData(type,name,data) {
             list[name+"last"]=data.humidity
             list[name+"count"]=0
             for (var i in devices) {
-              mySwitch.changeStatus(devices[i] , 1000)
+              mySwitch.changeStatusToTrue(devices[i] , 1000)
             }
           }
         }
