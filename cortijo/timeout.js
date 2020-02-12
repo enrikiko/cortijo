@@ -29,9 +29,9 @@ function executeTimeoutCheck(){
 }
 //
 async function getSensor(){
-    logs.log("getSensor...")
+    logs.log("checking sensors: ")
     var sensorList = await mySensor.getAllSensor()//Get all sensor from db
-    //logs.log(sensorList)
+    logs.log(sensorList)
     for (var index in sensorList){
         var name = sensorList[index].name
         try{
@@ -50,11 +50,12 @@ async function getSensor(){
 }
 //
 async function check(){
-    logs.log("check...")
+    logs.log("Checking devices: ")
     var devicesList = await myDevice.getDevice()
+    logs.log(devicesList)
     for (var index in devicesList){
         var name = devicesList[index].name
-        logs.log("Checking " + name + "...")
+        logs.log("Checking " + name )
         try{
             var status = await joker.getDeviceStatus(name)
             await myDevice.checkDeviceByName(name)
@@ -68,11 +69,11 @@ async function check(){
 function safeData(type,name,data){
     switch(type){
     case "Temperature":
-    logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " : " + data.temperature)
+    //logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity + " : " + data.temperature)
     myTemperature.newTemperature(name, data.temperature, data.humidity)
     break;
     case "Humidity":
-    logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity)
+    //logs.log("Name: " + name + " Type: " + type + " Content: " + data.humidity)
     myHumidity.newHumidity(name, data.humidity)
     break;
     }
@@ -82,6 +83,7 @@ async function analiceData(type,name,data) {
     switch(type){
     case "Temperature":
     //TODO logic for temperature
+      logs.log("Name: " + name + " Type: " + type + " Humidity: " + data.humidity + " Temperature: " + data.temperature)
     break;
     case "Humidity":
       var min = await mySensor.getMin(name)
