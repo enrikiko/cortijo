@@ -44,7 +44,7 @@ wsList=[]
 //
 app.ws('/', function(ws, res) {
   save(ws)
-  ws.on('open', function open() {
+  ws.on('open', function() {
     logs.log('ws was open')
     });
   ws.on('message', function(msg) {
@@ -63,9 +63,9 @@ app.ws('/', function(ws, res) {
     });
   });
   //
-  ws.on("connection", (x)=>{console.log(x)})
+  ws.on("connection", function(x){logs.log(x)})
   //
-  ws.on('close', function close(ws) {
+  ws.on('close', function(ws) {
     logs.log(ws + ' ws was disconnected');
     deleteWS(ws)
   });
