@@ -67,7 +67,7 @@ app.ws('/', function(ws, res) {
   //
   ws.on('close', function close(ws) {
     logs.log(ws + ' ws was disconnected');
-    deleteWS([ws])
+    deleteWS(ws)
   });
   //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
   //console.log(res);
