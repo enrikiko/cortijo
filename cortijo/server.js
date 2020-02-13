@@ -70,7 +70,7 @@ app.ws('/', function(ws, res) {
   });
   //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
   //console.log(res);
-};
+});
 //
 function save(ws) {
   //console.log("save");
@@ -78,7 +78,7 @@ function save(ws) {
     logs.log("New user add to WS list")
     wsList.push(ws)
   }
-});
+};
 //
 function deleteWS(list) {
   list.forEach((ws) => {
