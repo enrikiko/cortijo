@@ -48,7 +48,7 @@ app.ws('/', function(ws, res) {
     logs.log('ws was open')
     });
   ws.on('message', function(msg) {
-    logs.log('message: ', msg);
+    logs.log('message: ' + msg);
 //    list=[]
     wsList.forEach(function(client) {
       if (client.readyState==1) {
@@ -81,13 +81,13 @@ function save(ws) {
   }
 };
 //
-function deleteWS(list) {
-  list.forEach((ws) => {
+function deleteWS(ws) {
+ // list.forEach((ws) => {
     const index = wsList.indexOf(ws);
     if (index > -1) {
       wsList.splice(index, 1);
     }
-  });
+  //});
   printList(wsList)
 }
 //
