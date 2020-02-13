@@ -84,6 +84,7 @@ function save(ws) {
 function deleteWS(ws) {
  // list.forEach((ws) => {
     const index = wsList.indexOf(ws);
+    logs.log(index)
     if (index > -1) {
       wsList.splice(index, 1);
     }
