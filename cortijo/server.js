@@ -51,9 +51,10 @@ app.ws('/', function(ws, res) {
     logs.log('message: ', msg);
 //    list=[]
     wsList.forEach(function(client) {
-//      if (client.readyState==1) {
+      if (client.readyState==1) {
         client.send(msg);
-//      }else{
+      }
+      //else{
 //        list.push(client)
 //      }
 //    });
