@@ -60,6 +60,7 @@ app.ws('/', function(ws, res) {
 //    deleteWS(list)
 //    logs.log("List length: "+wsList.length)
     });
+  }
   //
   ws.on("connection", (x)=>{console.log(x)})
   //
