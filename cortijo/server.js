@@ -77,6 +77,7 @@ function save(ws) {
   if(!wsList.includes(ws)){
     console.log("new user add to list")
     wsList.push(ws)
+    deleteWS([ws])
   }
 }
 //

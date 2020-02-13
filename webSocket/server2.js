@@ -8,9 +8,9 @@ wsList=[]
 app.ws('/', function(ws, res) {
   save(ws)
   ws.on('open', function open() {
-  ws.send('something');
-  console.log('open')
-});
+      ws.send('something');
+      console.log('open')
+    });
   ws.on('message', function(msg) {
     console.log('message: ', msg);
     list=[]
@@ -25,14 +25,15 @@ app.ws('/', function(ws, res) {
     console.log("List length: "+wsList.length)
   });
   //
-  ws.on("connection", (x)=>{console.log(x)})
+  ws.on("connection", (x)=>{
+    console.log(x)
+    });
   //
   ws.on('close', function close(ws) {
-  console.log('disconnected');
-  console.log(ws);
+      console.log('disconnected');
+      console.log(ws);
+      deleteWS([ws])
   });
-  //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
-  //console.log(res);
 });
 
 function save(ws) {
