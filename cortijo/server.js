@@ -60,7 +60,7 @@ app.ws('/', function(ws, res) {
 //    deleteWS(list)
 //    logs.log("List length: "+wsList.length)
     });
-  }
+  });
   //
   ws.on("connection", (x)=>{console.log(x)})
   //
@@ -78,7 +78,7 @@ function save(ws) {
     logs.log("New user add to WS list")
     wsList.push(ws)
   }
-}
+});
 //
 function deleteWS(list) {
   list.forEach((ws) => {
