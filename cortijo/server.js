@@ -12,7 +12,7 @@ const mySensor = require('./sensors');
 const timeout = require('./timeout');
 const config = require('./config');
 const mySwitch = require('./switch');
-const ia = require('./ia');
+//const ia = require('./ia');
 const cors = require('cors');
 const delay = require('delay');
 const bodyParser = require('body-parser');
@@ -24,22 +24,13 @@ const cookieParser = require('cookie-parser');
 const websocket = require('express-ws');
 app.enable('trust proxy');
 app.use(bodyParser.json());
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded())
 app.enable('trust proxy')
-//var http = require('http').Server(app);
-// var multer  = require('multer');
-// var upload = multer({ dest: '/tmp/'});
 const version = config.get("version");
 var expressWs = websocket(app);
-//var io = http;
-var temperature;
-var humidity;
-//const requireJwt = false
-//const config_file = fs.readFileSync('config.yaml');
-//const config = yaml.safeLoad(config_file);
 const REFRESH_DELAY = config.get("refresh_delay")
 const SENSOR_HISTORY = config.get("sensor_history")
 //
@@ -52,8 +43,11 @@ const SENSOR_HISTORY = config.get("sensor_history")
 wsList=[]
 //
 app.ws('/', function(ws, res) {
-  console.log("ws");
   save(ws)
+  ws.on('open', function open() {
+  ws.send('something');
+  console.log('open')
+});
   ws.on('message', function(msg) {
     console.log('message: ', msg);
     list=[]
@@ -67,18 +61,26 @@ app.ws('/', function(ws, res) {
     deleteWS(list)
     console.log("List length: "+wsList.length)
   });
+  //
+  ws.on("connection", (x)=>{console.log(x)})
+  //
+  ws.on('close', function close(ws) {
+  console.log('disconnected');
+  console.log(ws);
+  });
+  //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
+  //console.log(res);
 });
-
+//
 function save(ws) {
-  console.log("save");
+  //console.log("save");
   if(!wsList.includes(ws)){
     console.log("new user add to list")
     wsList.push(ws)
   }
 }
-
+//
 function deleteWS(list) {
-  console.log("deleteWS");
   list.forEach((ws) => {
     const index = wsList.indexOf(ws);
     if (index > -1) {
@@ -88,7 +90,7 @@ function deleteWS(list) {
   });
   printList(wsList)
 }
-
+//
 function printList(wsList) {
   wsList.forEach((item, i) => {
     console.log("{Item:"+i+"Status:"+item.readyState+"}");

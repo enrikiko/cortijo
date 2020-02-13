@@ -7,8 +7,6 @@ var ws = new WebSocket('ws://192.168.1.50:8200','echo-protocol')
 
 ws.onopen = function(e) {
   logs.log("[WebSocket:open] Connection established");
-  logs.log("[WebSocket:messege] Sending to server");
-  ws.send(" { 'op': 'subscribe', 'productNames' : [ DWC.4.20 ] }");
 };
 
 ws.onmessage = function(event) {
