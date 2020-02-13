@@ -45,28 +45,27 @@ wsList=[]
 app.ws('/', function(ws, res) {
   save(ws)
   ws.on('open', function open() {
-  ws.send('something');
-  console.log('open')
-});
-  ws.on('message', function(msg) {
-    console.log('message: ', msg);
-    list=[]
-    wsList.forEach(function(client) {
-      if (client.readyState==1) {
-        client.send(msg);
-      }else{
-        list.push(client)
-      }
+    logs.log('ws was open')
     });
-    deleteWS(list)
-    console.log("List length: "+wsList.length)
-  });
+  ws.on('message', function(msg) {
+    logs.log('message: ', msg);
+//    list=[]
+    wsList.forEach(function(client) {
+//      if (client.readyState==1) {
+        client.send(msg);
+//      }else{
+//        list.push(client)
+//      }
+//    });
+//    deleteWS(list)
+//    logs.log("List length: "+wsList.length)
+    });
   //
   ws.on("connection", (x)=>{console.log(x)})
   //
   ws.on('close', function close(ws) {
-  console.log('disconnected');
-  console.log(ws);
+    logs.log(ws + ' ws was disconnected');
+    deleteWS([ws])
   });
   //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
   //console.log(res);
@@ -75,9 +74,8 @@ app.ws('/', function(ws, res) {
 function save(ws) {
   //console.log("save");
   if(!wsList.includes(ws)){
-    console.log("new user add to list")
+    logs.log("New user add to WS list")
     wsList.push(ws)
-    deleteWS([ws])
   }
 }
 //
@@ -85,7 +83,6 @@ function deleteWS(list) {
   list.forEach((ws) => {
     const index = wsList.indexOf(ws);
     if (index > -1) {
-      console.log("deleting...");
       wsList.splice(index, 1);
     }
   });
@@ -94,7 +91,7 @@ function deleteWS(list) {
 //
 function printList(wsList) {
   wsList.forEach((item, i) => {
-    console.log("{Item:"+i+"Status:"+item.readyState+"}");
+    logs.log("{Item:"+i+"Status:"+item.readyState+"}");
   });
 }
 //
