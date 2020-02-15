@@ -83,8 +83,8 @@ function save(ws) {
 //
 function deleteWS() {
   wsList.forEach((ws) => {
-  logs.log(ws)
-  logs.log(ws.Status)
+  console.log(ws)
+  console.log(ws.Status)
   if(ws.Status=3){
     const index = wsList.indexOf(ws);
     logs.log(index)
