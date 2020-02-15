@@ -63,11 +63,11 @@ app.ws('/', function(ws, res) {
     });
   });
   //
-  ws.on("connection", function(x){logs.log(x)})
+  ws.on("connection", function(ws){logs.log(ws)})
   //
   ws.on('close', function(ws) {
     logs.log(ws + ' ws was disconnected');
-    deleteWS(ws)
+    deleteWS()
   });
   //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
   //console.log(res);
@@ -81,15 +81,18 @@ function save(ws) {
   }
 };
 //
-function deleteWS(ws) {
- // list.forEach((ws) => {
+function deleteWS() {
+  wsList.forEach((ws) => {
+  logs.log(ws)
+  logs.log(ws.Status)
+  if(ws.Status=3){
     const index = wsList.indexOf(ws);
     logs.log(index)
     logs.log(ws)
     if (index > -1) {
       wsList.splice(index, 1);
-    }
-  //});
+    }}
+  });
   printList(wsList)
 }
 //
