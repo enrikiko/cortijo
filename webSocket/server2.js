@@ -8,10 +8,26 @@ wsList=[]
 app.ws('/', function(ws, res) {
   save(ws)
   ws.on('open', function open() {
-      ws.send('something');
+      send('something');
       console.log('open')
     });
   ws.on('message', function(msg) {
+    send(msg)
+  });
+  //
+  ws.on("connection", (x)=>{
+    console.log(x)
+    send("connection")
+    });
+  //
+  ws.on('close', function close(ws) {
+      console.log('disconnected');
+      console.log(ws);
+      deleteWS([ws])
+      send("disconnected")
+  });
+});
+function send(msg){
     console.log('message: ', msg);
     list=[]
     wsList.forEach(function(client) {
@@ -23,18 +39,7 @@ app.ws('/', function(ws, res) {
     });
     deleteWS(list)
     console.log("List length: "+wsList.length)
-  });
-  //
-  ws.on("connection", (x)=>{
-    console.log(x)
-    });
-  //
-  ws.on('close', function close(ws) {
-      console.log('disconnected');
-      console.log(ws);
-      deleteWS([ws])
-  });
-});
+}
 
 function save(ws) {
   //console.log("save");
