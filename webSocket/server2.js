@@ -12,6 +12,7 @@ app.ws('/', function(ws, res) {
       console.log('open')
     });
   ws.on('message', function(msg) {
+    console.log(msg)
     send(msg)
   });
   //
