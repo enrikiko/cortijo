@@ -23,7 +23,7 @@ app.ws('/', function(ws, res) {
   ws.on('close', function close(ws) {
       console.log('disconnected');
       console.log(ws);
-      deleteWS([ws])
+      deleteWS([].push(ws))
       send("disconnected")
   });
 });
@@ -46,7 +46,9 @@ function save(ws) {
   if(!wsList.includes(ws)){
     console.log("new user add to list")
     wsList.push(ws)
+    send("connection")
   }
+  sent(wsList)
 }
 
 function deleteWS(list) {
