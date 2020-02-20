@@ -41,63 +41,67 @@ const SENSOR_HISTORY = config.get("sensor_history")
 //
 //
 wsList=[]
-//
 app.ws('/', function(ws, res) {
   save(ws)
-  ws.on('open', function() {
-    logs.log('ws was open')
+  ws.on('open', function open() {
+      send('something');
+      console.log('open')
     });
   ws.on('message', function(msg) {
-    logs.log('message: ' + msg);
-//    list=[]
+    console.log(msg)
+    send(msg)
+  });
+  //
+  ws.on("connection", (x)=>{
+    console.log(x)
+    send("connection")
+    });
+  //
+  ws.on('close', function close(ws) {
+      console.log('disconnected');
+      console.log(ws);
+      deleteWS([].push(ws))
+      send("disconnected")
+  });
+});
+function send(msg){
+    console.log('message: ', msg);
+    list=[]
     wsList.forEach(function(client) {
       if (client.readyState==1) {
         client.send(msg);
+      }else{
+        list.push(client)
       }
-      //else{
-//        list.push(client)
-//      }
-//    });
-//    deleteWS(list)
-//    logs.log("List length: "+wsList.length)
     });
-  });
-  //
-  ws.on("connection", function(ws){logs.log(ws)})
-  //
-  ws.on('close', function(ws) {
-    logs.log(ws + ' ws was disconnected');
-    deleteWS()
-  });
-  //res.setHeader('Access-Control-Allow-Origin', 'http://88.7.67.229:8300');
-  //console.log(res);
-});
-//
+    deleteWS(list)
+    console.log("List length: "+wsList.length)
+}
+
 function save(ws) {
   //console.log("save");
   if(!wsList.includes(ws)){
-    logs.log("New user add to WS list")
+    console.log("new user add to list")
     wsList.push(ws)
+    send("connection")
   }
-};
-//
-function deleteWS() {
-  wsList.forEach((ws) => {
-  console.log(ws.readyState)
-  if(ws.readyState=3){
+  sent(wsList)
+}
+
+function deleteWS(list) {
+  list.forEach((ws) => {
     const index = wsList.indexOf(ws);
-    logs.log(index)
-    logs.log(ws)
     if (index > -1) {
+      console.log("deleting...");
       wsList.splice(index, 1);
-    }}
+    }
   });
   printList(wsList)
 }
-//
+
 function printList(wsList) {
   wsList.forEach((item, i) => {
-    logs.log("{Item:"+i+"Status:"+item.readyState+"}");
+    console.log("{Item:"+i+"Status:"+item.readyState+"}");
   });
 }
 //
