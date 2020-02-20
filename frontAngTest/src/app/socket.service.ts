@@ -11,10 +11,10 @@ export class SocketService {
   constructor(private socket: Socket) { }
 
   sendMessage(msg: string){
-       this.socket.emit("message", msg);
+       this.socket.emit("device", msg);
    }
 
   getMessage() {
-      return this.socket.fromEvent("message").pipe(map( data => data ));
+      return this.socket.fromEvent("device").pipe(map( data => data ));
    }
 }

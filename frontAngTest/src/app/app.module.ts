@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 const host = (window.location.href.split("/")[2]).split(":")[0]
-const config: SocketIoConfig = { url: 'http://'+host+':8200', options: {} };
+const config: SocketIoConfig = { url: 'http://'+host+':8000', options: {} };
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';

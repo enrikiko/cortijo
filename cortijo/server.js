@@ -21,7 +21,9 @@ const app = express();
 const fs = require('fs')
 const yaml = require('js-yaml')
 const cookieParser = require('cookie-parser');
-const websocket = require('express-ws');
+//const websocket = require('express-ws');
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 app.enable('trust proxy');
 app.use(bodyParser.json());
 //app.use(cookieParser());
@@ -36,78 +38,22 @@ const SENSOR_HISTORY = config.get("sensor_history")
 //
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////                       WebSocket                         ///////////////////////////////
+//////////////////////////                       Socket.io                         ///////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //
-wsList=[]
-app.ws('/', function(ws, res) {
-  save(ws)
-  ws.on('open', function open() {
-      send('something');
-      console.log('open')
-    });
-  ws.on('message', function(msg) {
-    console.log(msg)
-    send(msg)
-  });
-  //
-  ws.on("connection", (x)=>{
-    console.log(x)
-    send("connection")
-    });
-  //
-  ws.on('close', function close(ws) {
-      console.log('disconnected');
-      console.log(ws);
-      deleteWS([].push(ws))
-      send("disconnected")
+io.on('connection', socket => {
+  console.logs('socket.io connection');
+  socket.emit('device', 'New connection')
+  socket.on('sendEvent', function (data) {
+    console.logs(data);
+    socket.emit('device', data)
   });
 });
-function send(msg){
-    console.log('message: ', msg);
-    list=[]
-    wsList.forEach(function(client) {
-      if (client.readyState==1) {
-        client.send(msg);
-      }else{
-        list.push(client)
-      }
-    });
-    deleteWS(list)
-    console.log("List length: "+wsList.length)
-}
-
-function save(ws) {
-  //console.log("save");
-  if(!wsList.includes(ws)){
-    console.log("new user add to list")
-    wsList.push(ws)
-    send("connection")
-  }
-  sent(wsList)
-}
-
-function deleteWS(list) {
-  list.forEach((ws) => {
-    const index = wsList.indexOf(ws);
-    if (index > -1) {
-      console.log("deleting...");
-      wsList.splice(index, 1);
-    }
-  });
-  printList(wsList)
-}
-
-function printList(wsList) {
-  wsList.forEach((item, i) => {
-    console.log("{Item:"+i+"Status:"+item.readyState+"}");
-  });
-}
 //
 //
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////                End of WebSocket                         ///////////////////////////////
+//////////////////////////                End of Socket.io                         ///////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //

@@ -6,10 +6,9 @@ app.get('/', (req, res) => {
   console.error('express connection');
 });
 //
-io.on('connection', s => {
+io.on('connection', socket => {
   console.error('socket.io connection');
-  for (var t = 0; t < 5; t++)
-    setTimeout(() => s.emit('message', 'message from server'), 1000*t);
+  socket.emit('message', 'New connection')
 });
 //
 http.listen(3000, () => console.error('listening on http://localhost:3000/'));
