@@ -32,7 +32,7 @@ app.options('*', cors());
 app.use(express.urlencoded())
 app.enable('trust proxy')
 const version = config.get("version");
-var expressWs = websocket(app);
+//var expressWs = websocket(app);
 const REFRESH_DELAY = config.get("refresh_delay")
 const SENSOR_HISTORY = config.get("sensor_history")
 //
