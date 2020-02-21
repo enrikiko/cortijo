@@ -11,6 +11,7 @@ io.on('connection', socket => {
   socket.emit('message', 'New connection');
   socket.on('sendEvent', function (data) {
     console.log(data);
+    socket.emit('device', 'Something happen');
   });
 });
 //
