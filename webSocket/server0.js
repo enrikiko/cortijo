@@ -8,7 +8,10 @@ app.get('/', (req, res) => {
 //
 io.on('connection', socket => {
   console.error('socket.io connection');
-  socket.emit('message', 'New connection')
+  socket.emit('message', 'New connection');
+  socket.on('sendEvent', function (data) {
+    console.log(data);
+  });
 });
 //
 http.listen(3000, () => console.error('listening on http://localhost:3000/'));
