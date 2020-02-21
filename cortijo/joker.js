@@ -24,7 +24,6 @@ module.exports={
                 id = await myDevice.getIdByName(name)
                 await myDevice.updateDevice(id, status)
                 await myDevice.checkDeviceByName(name)
-                socket.send(name+" has changed to "+status)
                 res = {};
                 res.code = response.statusCode;
                 res.body = response.body
@@ -37,7 +36,9 @@ module.exports={
             res.code = 400;
             res.body = response
             return res
-            }
+        }finally(){
+                socket.send(name+" has changed to "+status)
+        }
        }
        return await getResponse();
      },

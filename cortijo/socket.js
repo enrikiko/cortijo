@@ -4,5 +4,5 @@ socket.on('user', function (data) {
     console.log(data);
   });
 module.exports = {
-  send:(msg)=>{socket.emit('event', 'Hey');}
+  send:(msg)=>{socket.emit('event', msg);}
 }
