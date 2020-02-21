@@ -25,7 +25,7 @@ export class BodyComponent implements OnInit {
   {
     this.getDevicesList()
     this.initIoConnection()
-    this.getMessage()
+    this.getMessage().subscribe((msg)=>{console.log(msg)}
   }
 
   changeStatus(device){
