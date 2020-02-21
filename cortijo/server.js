@@ -44,10 +44,10 @@ const SENSOR_HISTORY = config.get("sensor_history")
 //
 io.on('connection', socket => {
   console.logs('socket.io connection');
-  socket.emit('device', 'New connection')
+  io.emit('device', 'New connection')
   socket.on('sendEvent', function (data) {
     console.logs(data);
-    socket.emit('device', data)
+    io.emit('device', data)
   });
 });
 //
