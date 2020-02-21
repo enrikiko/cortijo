@@ -25,7 +25,7 @@ export class BodyComponent implements OnInit {
   {
     this.getDevicesList()
     this.initIoConnection()
-    this.getMessage().subscribe( (msg)=>{console.log(msg)} )
+    this.socketService.getMessage().subscribe( (msg)=>{console.log(msg)} )
   }
 
   changeStatus(device){
@@ -99,7 +99,6 @@ export class BodyComponent implements OnInit {
    initIoConnection(){
     this.socketService.sendMessage("angular user connected");
   }
-   getMessage(){
-   this.socketService.getMessage()}
+
 
 }
