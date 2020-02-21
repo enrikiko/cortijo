@@ -97,8 +97,7 @@ export class BodyComponent implements OnInit {
   //------WebSocker-------//
 
    initIoConnection(){
-    this.socketService.sendMessage("test");
-
+    this.socketService.sendMessage("angular user connected");
   }
 
 }
