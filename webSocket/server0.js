@@ -9,7 +9,7 @@ app.get('/*', (req, res) => {
 io.on('connection', socket => {
   socket.on('event', function (data) {
     console.log(data);
-    socket.emit('user', data);
+    io.emit('user', data);
   });
 });
 //
