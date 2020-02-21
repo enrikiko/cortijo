@@ -36,7 +36,7 @@ module.exports={
             res.code = 400;
             res.body = response
             return res
-        }finally(){
+        }finally{
                 socket.send(name+" has changed to "+status)
         }
        }
