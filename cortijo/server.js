@@ -22,8 +22,6 @@ const fs = require('fs')
 const yaml = require('js-yaml')
 const cookieParser = require('cookie-parser');
 //const websocket = require('express-ws');
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
 app.enable('trust proxy');
 app.use(bodyParser.json());
 //app.use(cookieParser());
@@ -33,6 +31,8 @@ app.use(express.urlencoded())
 app.enable('trust proxy')
 const version = config.get("version");
 //var expressWs = websocket(app);
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 const REFRESH_DELAY = config.get("refresh_delay")
 const SENSOR_HISTORY = config.get("sensor_history")
 //

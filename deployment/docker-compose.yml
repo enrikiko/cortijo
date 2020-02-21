@@ -12,14 +12,14 @@ services:
   #    environment:
   #      MONGO_INITDB_ROOT_USERNAME: user_name
   #      MONGO_INITDB_ROOT_PASSWORD: user_password
-#  ws:
-#    container_name: websocket
-#    restart: always
-#    build: ../webSocket/.
-#    ports:
-#    - "8200:3000"
-#    networks:
-#    - network
+  ws:
+    container_name: websocket
+    restart: always
+    build: ../webSocket/.
+    ports:
+    - "8200:3000"
+    networks:
+    - network
   mock:
     container_name: mock
     restart: always
