@@ -25,8 +25,8 @@ export class BodyComponent implements OnInit {
   {
     this.getDevicesList()
     this.initIoConnection()
-    this.socketService.getMessage().subscribe( (msg)=>{
-      console.log(msg)
+    this.socketService.getDeviceAlert().subscribe( (msg)=>{
+      //console.log(msg)
       this.getDevicesList()
     } )
   }

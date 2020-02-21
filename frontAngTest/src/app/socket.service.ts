@@ -11,10 +11,10 @@ export class SocketService {
   constructor(private socket: Socket) { }
 
   sendMessage(msg: string){
-       this.socket.emit("event", msg);
+       this.socket.emit("event_angular", msg);
    }
 
-  getMessage() {
-      return this.socket.fromEvent("user").pipe(map( data => data ));
+  getDeviceAlert() {
+      return this.socket.fromEvent("alert_device").pipe(map( data => data ));
    }
 }
