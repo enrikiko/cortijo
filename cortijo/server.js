@@ -43,6 +43,7 @@ const SENSOR_HISTORY = config.get("sensor_history")
 //
 //
 io.on('connection', socket => {
+    logs.log(socket)
   console.logs('socket.io connection');
   io.emit('device', 'New connection')
   socket.on('sendEvent', function (data) {
