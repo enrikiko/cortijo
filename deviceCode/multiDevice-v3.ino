@@ -11,7 +11,7 @@ const char *ssid1 = "<ssid1>";
 const char *password1 = "<password1>";
 const char *ssid2 = "<ssid2>";
 const char *password2 = "<password2>";
-String deviceName = "Device-1";
+String deviceName = "Multi_device_1";
 int port = 80;
 IPAddress ipDevice(192, 168, 1, 100);
 IPAddress dns(80, 58, 61, 250);
@@ -30,7 +30,7 @@ void setup() {
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid1, password1);
   WiFiMulti.addAP(ssid2, password2);
-  WiFi.config(ipDevice, dns, gateway, subnet);
+  //WiFi.config(ipDevice, dns, gateway, subnet);
   WiFi.begin();
 
   while (WiFiMulti.run() != WL_CONNECTED) {
@@ -87,8 +87,20 @@ void setup() {
 
 void loop() {
 
-  server.handleClient();
-  //MDNS.update();
+   while(WiFiMulti.run() == WL_CONNECTED){
+    server.handleClient();
+    }
+
+  Serial.println("Desconnected");
+
+  WiFi.begin();
+
+  while (WiFiMulti.run() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(1000);
+    Serial.println("");
+    Serial.print("Connected");
+  }
 
 }
 
