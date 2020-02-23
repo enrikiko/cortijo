@@ -6,6 +6,6 @@
   refresh_delay: 0
   get_device_status_timeout: 5000
   switch_status_timeout: 5000
-  get_data_timeout: 5000
+  get_data_timeout: 1
   sensor_history: 1344
   version: "1.0.1"
