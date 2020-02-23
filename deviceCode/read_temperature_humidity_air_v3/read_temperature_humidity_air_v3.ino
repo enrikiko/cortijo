@@ -87,17 +87,17 @@ void loop() {
 void sendData() {
    Serial.printf("Sending data");
    blinkLight();
-   server.send(200, "application/json", "{\"name\":\"" + deviceName + "\",\"type\":\"Temperature\",\"content\":{\"temperature\": " + getTemp() + ",\"humidity\": " + String(dht.readHumidity()) + "}}");
+   server.send(200, "application/json", "{\"name\":\"" + deviceName + "\",\"type\":\"Temperature\",\"content\":{\"temperature\": " + getTemperature() + ",\"humidity\": " + getHumidity() + "}}");
 }
 
-String getTemp(){
+String getTemperature(){
     float val = dht.readTemperature();
-    if(val){return String(val)}else{return "0"}
+    if(!isnan(val)){return String(val);}else{return "0";}
 }
 
 String getHumidity(){
     float val = dht.readHumidity();
-    if(val){return String(val)}else{return "0"}
+    if(!isnan(val)){return String(val);}else{return "0";}
 }
 
 void blinkLight(){

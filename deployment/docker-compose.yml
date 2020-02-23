@@ -156,7 +156,7 @@ services:
     - "8400:3000"
     volumes:
     - type: bind
-      source: /home/lenovo/eramos
+      source: /home/ext_driver/eramos
       target: /root/node/eramos
   file:
     container_name: file
@@ -166,7 +166,7 @@ services:
     - "8500:3000"
     volumes:
     - type: bind
-      source: /home/lenovo/eramosFiles
+      source: /home/ext_driver/eramosFiles
       target: /scr/files/
 networks:
   network:
