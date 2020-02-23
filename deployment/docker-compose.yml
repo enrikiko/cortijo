@@ -69,11 +69,11 @@ services:
   #   networks:
   #     - network
   sensortemperature:
-    container_name: sensorTemperature
+    container_name: mockSensorTemperature
     restart: always
     build: ../sensorMock/.
     environment:
-    - mock_name=sensorTemperature
+    - mock_name=mockSensorTemperature
     - mock_port=8105
     - local_ip=192.168.1.50
     ports:
@@ -81,11 +81,11 @@ services:
     networks:
     - network
   sensorhumidity:
-    container_name: sensorHumidity
+    container_name: mockSensorHumidity
     restart: always
     build: ../sensorHumidityMock/.
     environment:
-    - mock_name=sensorHumidity
+    - mock_name=mockSensorHumidity
     - mock_port=8106
     - local_ip=192.168.1.50
     ports:
