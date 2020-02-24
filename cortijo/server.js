@@ -12,7 +12,6 @@ const mySensor = require('./sensors');
 const timeout = require('./timeout');
 const config = require('./config');
 const mySwitch = require('./switch');
-//const ia = require('./ia');
 const cors = require('cors');
 const delay = require('delay');
 const bodyParser = require('body-parser');
@@ -21,42 +20,19 @@ const app = express();
 const fs = require('fs')
 const yaml = require('js-yaml')
 const cookieParser = require('cookie-parser');
-//const websocket = require('express-ws');
 app.enable('trust proxy');
 app.use(bodyParser.json());
-//app.use(cookieParser());
 app.use(cors());
 app.options('*', cors());
 app.use(express.urlencoded())
 app.enable('trust proxy')
 const version = config.get("version");
-//var expressWs = websocket(app);
-//const server = require('http').Server(app);
-//const io = require('socket.io')(server);
 const REFRESH_DELAY = config.get("refresh_delay")
 const SENSOR_HISTORY = config.get("sensor_history")
 //
+app.get("/readiness", function(req, res) {res.status(200)}
 //
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////                       Socket.io                         ///////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//
-//io.on('connection', socket => {
-//    logs.log(socket)
-//  console.logs('socket.io connection');
-//  io.emit('device', 'New connection')
-//  socket.on('sendEvent', function (data) {
-//    console.logs(data);
-//    io.emit('device', data)
-//  });
-//});
-//
-//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////                End of Socket.io                         ///////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
+app.get("/liveness", function(req, res) {res.status(200)}
 //
 app.get("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")

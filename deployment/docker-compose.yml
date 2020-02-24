@@ -1,18 +1,6 @@
 version: "3.3"
 services:
-#  mongo:
-#    container_name: mongo
-#    build: ../mongo/.
-#    restart: on-failure
-#    image: mongo:latest
-#    ports:
-#    - "27017:27017"
-#    networks:
-#    - network
-  #    environment:
-  #      MONGO_INITDB_ROOT_USERNAME: user_name
-  #      MONGO_INITDB_ROOT_PASSWORD: user_password
-  ws:
+  websocket:
     container_name: websocket
     restart: always
     build: ../webSocket/.
@@ -32,42 +20,6 @@ services:
     - "8101:3000"
     networks:
     - network
-  # mock2:
-  #   container_name: mock2
-  #   restart: always
-  #   build: ../deviceMock/.
-  #   environment:
-  #     - mock_name=mock2
-  #     - mock_port=8102
-  #     - local_ip=192.168.1.50
-  #   ports:
-  #     - "8102:3000"
-  #   networks:
-  #     - network
-  # mock3:
-  #   container_name: mock3
-  #   restart: always
-  #   build: ../deviceMock/.
-  #   environment:
-  #     - mock_name=mock3
-  #     - mock_port=8103
-  #     - local_ip=192.168.1.50
-  #   ports:
-  #     - "8103:3000"
-  #   networks:
-  #     - network
-  # mock4:
-  #   container_name: mock4
-  #   restart: always
-  #   build: ../deviceMock/.
-  #   environment:
-  #     - mock_name=mock4
-  #     - mock_port=8104
-  #     - local_ip=192.168.1.50
-  #   ports:
-  #     - "8104:3000"
-  #   networks:
-  #     - network
   sensortemperature:
     container_name: mockSensorTemperature
     restart: always
@@ -98,18 +50,10 @@ services:
     build: ../cortijo/.
     ports:
     - "8000:3000"
-#    links:
-#    - mongo
     networks:
     - network
     volumes:
     - /etc/localtime:/etc/localtime:ro
-  # watering:
-  #   container_name: watering
-  #   restart: on-failure
-  #   build: ../wateringTiming/.
-  #   volumes:
-  #       - /etc/localtime:/etc/localtime:ro
   auth:
     container_name: auth
     restart: always
@@ -118,18 +62,8 @@ services:
     - token_password=cortijo1
     ports:
     - "8010:3000"
-#    links:
-#    - mongo
     networks:
     - network
-  #  front:
-  #    container_name: front
-  #    restart: always
-  #    build: ../frontAng/.
-  #    ports:
-  #      - "443:80"
-  #    networks:
-  #      - network
   front:
     container_name: front
     restart: always
@@ -144,10 +78,6 @@ services:
     container_name: ip
     restart: on-failure
     build: ../ip/.
-  #  fp:
-  #    container_name: fp
-  #    restart: on-failure
-  #    build: ../functionalPing/.
   camera:
     container_name: camera
     restart: on-failure
@@ -168,5 +98,41 @@ services:
     - type: bind
       source: /home/ext_driver/eramosFiles
       target: /scr/files/
+  mock2:
+   container_name: mock2
+   restart: always
+   build: ../deviceMock/.
+   environment:
+     - mock_name=mock2
+     - mock_port=8102
+     - local_ip=192.168.1.50
+   ports:
+     - "8102:3000"
+   networks:
+     - network
+  mock3:
+   container_name: mock3
+   restart: always
+   build: ../deviceMock/.
+   environment:
+     - mock_name=mock3
+     - mock_port=8103
+     - local_ip=192.168.1.50
+   ports:
+     - "8103:3000"
+   networks:
+     - network
+  mock4:
+   container_name: mock4
+   restart: always
+   build: ../deviceMock/.
+   environment:
+     - mock_name=mock4
+     - mock_port=8104
+     - local_ip=192.168.1.50
+   ports:
+     - "8104:3000"
+   networks:
+     - network
 networks:
   network:
