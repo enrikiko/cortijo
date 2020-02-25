@@ -30,9 +30,9 @@ const version = config.get("version");
 const REFRESH_DELAY = config.get("refresh_delay")
 const SENSOR_HISTORY = config.get("sensor_history")
 //
-app.get("/readiness", function(req, res) {res.status(200)}
+app.get("/readiness", function(req, res) {res.status(200).send()}
 //
-app.get("/liveness", function(req, res) {res.status(200)}
+app.get("/liveness", function(req, res) {res.status(200).send()}
 //
 app.get("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
@@ -54,11 +54,6 @@ app.post("/*", function(req, res, next) {
 app.get("/info", function(req, res) {
     var info = {"Version": version, "Start time": startDate}
     res.status(200).json(info)
-})
-//
-//Get liveness
-app.get("/liveness", function(req, res) {
-    res.status(200).send()
 })
 //
 app.get("/config", function(req, res) {
