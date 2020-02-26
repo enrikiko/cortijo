@@ -5,7 +5,6 @@
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
-#include <ArduinoJson.h>
 
 const char *ssid1 = "Cuarto2.4G";
 const char *password1 = "Lunohas13steps";
@@ -267,8 +266,8 @@ void handleRoot5false() {
   Serial.println("pin 5 false");
   server.send(200, "application/json", "{\"status\": false}");
 }
-void handleStatus(gateway) {
- server.send(200, "application/json", "{\"status\": "gateway"}");
+void handleStatus(String gateway) {
+ server.send(200, "application/json", "{\"status\": " + gateway + "}");
 }
 //
 //void setPin(StaticJsonDocument<100> doc){
