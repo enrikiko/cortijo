@@ -70,14 +70,14 @@ services:
     build: ../frontAngTest/.
     ports:
     - "8300:4200"
-  git:
-    container_name: git
-    restart: on-failure
-    build: ../git/.
-  ip:
-    container_name: ip
-    restart: on-failure
-    build: ../ip/.
+#  git:
+#    container_name: git
+#    restart: on-failure
+#    build: ../git/.
+#  ip:
+#    container_name: ip
+#    restart: on-failure
+#    build: ../ip/.
   camera:
     container_name: camera
     restart: on-failure

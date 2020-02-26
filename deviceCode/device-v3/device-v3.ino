@@ -7,10 +7,10 @@
 #include <ESP8266mDNS.h>
 
 
-const char *ssid1 = "<ssid1>";
-const char *password1 = "<password1>";
-const char *ssid2 = "<ssid2>";
-const char *password2 = "<password2>";
+const char *ssid1 = "Cuarto2.4G";
+const char *password1 = "Lunohas13steps";
+const char *ssid2 = "WifiSalon";
+const char *password2 = "lunohas13steps";
 String deviceName = "Device_1";
 int port = 80;
 IPAddress ipDevice(192, 168, 1, 100);
@@ -31,7 +31,7 @@ void setup() {
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid1, password1);
   WiFiMulti.addAP(ssid2, password2);
-  WiFi.config(ipDevice,dns, gateway, subnet);
+  //WiFi.config(ipDevice,dns, gateway, subnet);
   WiFi.begin();
 
   while (WiFiMulti.run() != WL_CONNECTED) {
@@ -58,7 +58,7 @@ void setup() {
 
   server.on("/"+deviceName+"/status/true", handleRootOn);
   server.on("/"+deviceName+"/status/false", handleRootOff);
-  server.on("/info", handleInfo);
+  server.on("/"+deviceName+"/status", handleStatus);
 
 //  server.on("/inline", []() {
 //    server.send(200, "text/plain", "this works as well");
@@ -131,8 +131,28 @@ void setIp(String ip){
   }
 }
 
-void handleInfo() {
+void handleStatus() {
   String state;
+  //New
+  int n = WiFi.scanNetworks();
+  if (n == 0) {
+    Serial.println("no networks found");
+  } else {
+    Serial.print(n);
+    Serial.println(" networks found");
+    for (int i = 0; i < n; ++i) {
+      // Print SSID and RSSI for each network found
+      Serial.print(i + 1);
+      Serial.print(": ");
+      Serial.print(WiFi.SSID(i));
+      Serial.print(" (");
+      Serial.print(WiFi.RSSI(i));
+      Serial.print(")");
+      Serial.println((WiFi.encryptionType(i) == ENC_TYPE_NONE) ? " " : "*");
+      delay(10);
+    }
+  }
+  //End
   Serial.print(digitalRead(LED_BUILTIN));
   if(certain){state="true";}
   else{state="false";};
