@@ -73,31 +73,31 @@ void setup() {
 
   server.on("/"+deviceName+"-16/status/true", handleRoot16true);
   server.on("/"+deviceName+"-16/status/false", handleRoot16false);
-  server.on("/"+deviceName+"-16/status", handleStatus(gateway16));
+  server.on("/"+deviceName+"-16/status", handleStatusGateway16);
   server.on("/"+deviceName+"-5/status/true", handleRoot5true);
   server.on("/"+deviceName+"-5/status/false", handleRoot5false);
-  server.on("/"+deviceName+"-5/status", handleStatus(gateway5));
+  server.on("/"+deviceName+"-5/status", handleStatusGateway5);
   server.on("/"+deviceName+"-4/status/true", handleRoot4true);
   server.on("/"+deviceName+"-4/status/false", handleRoot4false);
-  server.on("/"+deviceName+"-4/status", handleStatus(gateway4));
+  server.on("/"+deviceName+"-4/status", handleStatusGateway4);
   server.on("/"+deviceName+"-0/status/true", handleRoot0true);
   server.on("/"+deviceName+"-0/status/false", handleRoot0false);
-  server.on("/"+deviceName+"-0/status", handleStatus(gateway0));
+  server.on("/"+deviceName+"-0/status", handleStatusGateway0);
   server.on("/"+deviceName+"-2/status/true", handleRoot2true);
   server.on("/"+deviceName+"-2/status/false", handleRoot2false);
-  server.on("/"+deviceName+"-2/status", handleStatus(gateway2));
+  server.on("/"+deviceName+"-2/status", handleStatusGateway2);
   server.on("/"+deviceName+"-14/status/true", handleRoot14true);
   server.on("/"+deviceName+"-14/status/false", handleRoot14false);
-  server.on("/"+deviceName+"-14/status", handleStatus(gateway14));
+  server.on("/"+deviceName+"-14/status", handleStatuGgateway14);
   server.on("/"+deviceName+"-12/status/true", handleRoot12true);
   server.on("/"+deviceName+"-12/status/false", handleRoot12false);
-  server.on("/"+deviceName+"-12/status", handleStatus(gateway12));
+  server.on("/"+deviceName+"-12/status", handleStatusGateway12);
   server.on("/"+deviceName+"-13/status/true", handleRoot13true);
   server.on("/"+deviceName+"-13/status/false", handleRoot13false);
-  server.on("/"+deviceName+"-13/status", handleStatus(gateway13));
+  server.on("/"+deviceName+"-13/status", handleStatusGateway13);
   server.on("/"+deviceName+"-15/status/true", handleRoot15true);
   server.on("/"+deviceName+"-15/status/false", handleRoot15false);
-  server.on("/"+deviceName+"-15/status", handleStatus(gateway15));
+  server.on("/"+deviceName+"-15/status", handleStatusGateway15);
 
   server.onNotFound(handleNotFound);
   server.begin();
@@ -266,8 +266,29 @@ void handleRoot5false() {
   Serial.println("pin 5 false");
   server.send(200, "application/json", "{\"status\": false}");
 }
-void handleStatus(String gateway) {
- server.send(200, "application/json", "{\"status\": " + gateway + "}");
+void handleStatusGateway0() {
+ server.send(200, "application/json", "{\"status\": " + gateway0 + "}");
+}
+void handleStatusGateway2() {
+ server.send(200, "application/json", "{\"status\": " + gateway2 + "}");
+}
+void handleStatusGateway4() {
+ server.send(200, "application/json", "{\"status\": " + gateway4 + "}");
+}
+void handleStatusGateway5() {
+ server.send(200, "application/json", "{\"status\": " + gateway5 + "}");
+}
+void handleStatusGateway12() {
+ server.send(200, "application/json", "{\"status\": " + gateway12 + "}");
+}
+void handleStatusGateway13() {
+ server.send(200, "application/json", "{\"status\": " + gateway13 + "}");
+}
+void handleStatusGateway15() {
+ server.send(200, "application/json", "{\"status\": " + gateway15 + "}");
+}
+void handleStatusGateway16() {
+ server.send(200, "application/json", "{\"status\": " + gateway16 + "}");
 }
 //
 //void setPin(StaticJsonDocument<100> doc){
