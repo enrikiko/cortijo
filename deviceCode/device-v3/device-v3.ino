@@ -152,7 +152,7 @@ void handleStatus() {
       delay(10);
     }
   }
-  //End
+  //End c
   Serial.print(digitalRead(LED_BUILTIN));
   if(certain){state="true";}
   else{state="false";};
