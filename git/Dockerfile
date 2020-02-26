@@ -19,4 +19,5 @@ RUN chmod 777 init.sh
 RUN chmod 777 entryRandom.sh
 RUN chmod 777 entry.sh
 RUN chmod 777 commit.sh
+RUN apt install -y python
 ENTRYPOINT ["sh", "init.sh"]
