@@ -97,7 +97,7 @@ void setup() {
   server.on("/"+deviceName+"-13/status", handleStatus(gateway13));
   server.on("/"+deviceName+"-15/status/true", handleRoot15true);
   server.on("/"+deviceName+"-15/status/false", handleRoot15false);
-  server.on("/"+deviceName+"-15/status", handleStatus(gateway15);
+  server.on("/"+deviceName+"-15/status", handleStatus(gateway15));
 
   server.onNotFound(handleNotFound);
   server.begin();
