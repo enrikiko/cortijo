@@ -1,6 +1,6 @@
 ---
   log: "debug"
-  timeout_check:  10000
+  timeout_check:  10001
   timeout_sensor: 300000
   times_before_block: 5
   refresh_delay: 0
