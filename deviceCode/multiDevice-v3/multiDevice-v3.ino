@@ -88,7 +88,7 @@ void setup() {
   server.on("/"+deviceName+"-2/status", handleStatusGateway2);
   server.on("/"+deviceName+"-14/status/true", handleRoot14true);
   server.on("/"+deviceName+"-14/status/false", handleRoot14false);
-  server.on("/"+deviceName+"-14/status", handleStatuGgateway14);
+  server.on("/"+deviceName+"-14/status", handleStatusGateway14);
   server.on("/"+deviceName+"-12/status/true", handleRoot12true);
   server.on("/"+deviceName+"-12/status/false", handleRoot12false);
   server.on("/"+deviceName+"-12/status", handleStatusGateway12);
@@ -289,6 +289,9 @@ void handleStatusGateway15() {
 }
 void handleStatusGateway16() {
  server.send(200, "application/json", "{\"status\": " + gateway16 + "}");
+}
+void handleStatusGateway14() {
+ server.send(200, "application/json", "{\"status\": " + gateway14 + "}");
 }
 //
 //void setPin(StaticJsonDocument<100> doc){
