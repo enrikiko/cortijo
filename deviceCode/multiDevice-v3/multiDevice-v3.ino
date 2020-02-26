@@ -22,15 +22,15 @@ String certain;
 ESP8266WiFiMulti WiFiMulti;
 ESP8266WebServer server(port);
 
-String gateway16 = "false"
-String gateway5 = "false"
-String gateway4 = "false"
-String gateway0 = "false"
-String gateway2 = "false"
-String gateway14 = "false"
-String gateway12 = "false"
-String gateway13 = "false"
-String gateway15 = "false"
+String gateway16 = "false";
+String gateway5 = "false";
+String gateway4 = "false";
+String gateway0 = "false";
+String gateway2 = "false";
+String gateway14 = "false";
+String gateway12 = "false";
+String gateway13 = "false";
+String gateway15 = "false";
 
 
 
@@ -160,109 +160,109 @@ void handleInfo() {
 
 //16,5,4,0,2,14,12,13,15
 void handleRoot15true() {
-  gateway15 = "true"
+  gateway15 = "true";
   digitalWrite(15, true);
   Serial.println("pin 15 true");
   server.send(200, "application/json", "{\"status\": true}");
 }
 void handleRoot15false() {
-  gateway15 = "false"
+  gateway15 = "false";
   digitalWrite(15, false);
   Serial.println("pin 15 false");
   server.send(200, "application/json", "{\"status\": false}");
 }
 void handleRoot13true() {
-  gateway13 = "true"
+  gateway13 = "true";
   digitalWrite(13, true);
   Serial.println("pin 13 true");
   server.send(200, "application/json", "{\"status\": true}");
 }
 void handleRoot13false() {
-  gateway13 = "false"
+  gateway13 = "false";
   digitalWrite(13, false);
   Serial.println("pin 13 false");
   server.send(200, "application/json", "{\"status\": false}");
 }
 void handleRoot12true() {
-  gateway12 = "true"
+  gateway12 = "true";
   digitalWrite(12, true);
   Serial.println("pin 12 true");
   server.send(200, "application/json", "{\"status\": true}");
 }
 void handleRoot12false() {
-  gateway12 = "false"
+  gateway12 = "false";
   digitalWrite(12, false);
   Serial.println("pin 12 false");
   server.send(200, "application/json", "{\"status\": false}");
 }
 void handleRoot14true() {
-  gateway14 = "true"
+  gateway14 = "true";
   digitalWrite(14, true);
   Serial.println("pin 14 true");
   server.send(200, "application/json", "{\"status\": true}");
 }
 void handleRoot14false() {
-  gateway14 = "false"
+  gateway14 = "false";
   digitalWrite(14, false);
   Serial.println("pin 14 false");
   server.send(200, "application/json", "{\"status\": false}");
 }
 void handleRoot2true() {
-  gateway2 = "true"
+  gateway2 = "true";
   digitalWrite(2, true);
   Serial.println("pin 2 true");
   server.send(200, "application/json", "{\"status\": true}");
 }
 void handleRoot2false() {
-  gateway2 = "false"
+  gateway2 = "false";
   digitalWrite(2, false);
   Serial.println("pin 2 false");
   server.send(200, "application/json", "{\"status\": false}");
 }
 void handleRoot0true() {
-  gateway0 = "true"
+  gateway0 = "true";
   digitalWrite(0, true);
   Serial.println("pin 0 true");
   server.send(200, "application/json", "{\"status\": true}");
 }
 void handleRoot0false() {
-  gateway0 = "false"
+  gateway0 = "false";
   digitalWrite(0, false);
   Serial.println("pin 0 false");
   server.send(200, "application/json", "{\"status\": false}");
 }
 void handleRoot4true() {
-  gateway4 = "true"
+  gateway4 = "true";
   digitalWrite(4, true);
   Serial.println("pin 4 true");
   server.send(200, "application/json", "{\"status\": true}");
 }
 void handleRoot4false() {
-  gateway4 = "false"
+  gateway4 = "false";
   digitalWrite(4, false);
   Serial.println("pin 4 false");
   server.send(200, "application/json", "{\"status\": false}");
 }
 void handleRoot16true() {
-  gateway16 = "true"
+  gateway16 = "true";
   digitalWrite(16, true);
   Serial.println("pin 16 true");
   server.send(200, "application/json", "{\"status\": true}");
 }
 void handleRoot16false() {
-  gateway16 = "false"
+  gateway16 = "false";
   digitalWrite(16, false);
   Serial.println("pin 16 false");
   server.send(200, "application/json", "{\"status\": false}");
 }
 void handleRoot5true() {
-  gateway5 = "true"
+  gateway5 = "true";
   digitalWrite(5, true);
   Serial.println("pin 5 true");
   server.send(200, "application/json", "{\"status\": true}");
 }
 void handleRoot5false() {
-  gateway5 = "false"
+  gateway5 = "false";
   digitalWrite(5, false);
   Serial.println("pin 5 false");
   server.send(200, "application/json", "{\"status\": false}");
