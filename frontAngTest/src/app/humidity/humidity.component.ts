@@ -91,7 +91,7 @@ showGraphic=true;
     }
 
     printGraphHumidity(name, data){
-      let chart = new CanvasJS.Chart("chartContainer", {
+      let chart = new CanvasJS.Chart("humidityGraph", {
   		animationEnabled: true,
   		exportEnabled: true,
   		title: { text: name },
@@ -106,7 +106,7 @@ showGraphic=true;
     }
 
     printGraphTemperature(name, temperature, humidity){
-      let chart = new CanvasJS.Chart("chartContainer", {
+      let chart = new CanvasJS.Chart("humidityGraph", {
   		animationEnabled: true,
   		exportEnabled: true,
   		title: { text: name },

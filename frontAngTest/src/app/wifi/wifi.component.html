@@ -4,7 +4,7 @@
         <nav class="navbar navbar-dark">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
-              <li class="nav-item" *ngFor="let wifi of wifis" (click)="getData(wifi)">
+              <li class="nav-item" *ngFor="let wifi of wifis" (click)="wrapGetData(wifi)">
                 <a class="nav-link active text-white-50">{{ wifi }}</a>
               </li>
             </ul>
@@ -12,7 +12,7 @@
         </nav>
     </div>
     <div class="col-10 sidebar-right">
-        <div id="chartContainer" style="height: 100%;"></div>
+        <div id="wifiGraph" style="height: 100%;"></div>
     </div>
   </div>
 </div>

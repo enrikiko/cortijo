@@ -23,13 +23,16 @@ export class WifiComponent implements OnInit {
         this.getData(this.wifi)
     } )
   }
+  wrapGetData(wifi){
+    this.wifi=wifi
+    getData(wifi)
+  }
   getData(wifi){
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8000/wifi/" + wifi
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        this.wifi=wifi
         var signalList = []
         var signal
         for(var index in data){
@@ -43,7 +46,7 @@ export class WifiComponent implements OnInit {
   }
 
   printGraphWifi(name, data){
-    let chart = new CanvasJS.Chart("chartContainer", {
+    let chart = new CanvasJS.Chart("wifiGraph", {
     animationEnabled: false,
     exportEnabled: false,
     title: { text: name },
