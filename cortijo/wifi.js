@@ -49,5 +49,7 @@ module.exports = {
     },
 //
     getByDevice: async(device, time) => { return await myWifi.find({"device":device}).sort({time:-1}).limit(time)},
-    getBySSID: async(ssid, time) => { return await myWifi.find({"ssid":ssid}).sort({time:-1}).limit(time)}
+    getBySSID: async(ssid, time) => { return await myWifi.find({"ssid":ssid}).sort({time:-1}).limit(time)},
+    getByDeviceAndBySSID: async(device, ssid, time) => { return await myWifi.find({"ssid":ssid,"device":device}).sort({time:-1}).limit(time)}
+
 }
