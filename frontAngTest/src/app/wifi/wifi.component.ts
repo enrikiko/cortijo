@@ -24,8 +24,24 @@ export class WifiComponent implements OnInit {
       if(data!=null){
         this.wifiData = data
         console.log(this.wifiData)
+        printGraphWifi(wifi, data)
       }
     })
+  }
+
+  printGraphWifi(name, data){
+    let chart = new CanvasJS.Chart("chartContainer", {
+    animationEnabled: false,
+    exportEnabled: false,
+    title: { text: name },
+    data: [{
+      type: "spline",
+               color: "rgba(255,0,0,1)", //red
+      dataPoints: data
+    }]
+  });
+
+  chart.render();
   }
 
 }
