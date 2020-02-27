@@ -59,12 +59,12 @@ async function check(){
         logs.log("Checking " + name )
         try{
             var status = await joker.getDeviceStatus(name)
-            var body = await myDevice.checkDeviceByName(name)
-            logs.log(body.SSID)
-            if (body.SSID){
-                logs.log(body.SSID)
-                logs.log(body.SIGNAL)
-                let res = await wifi.newSignal(name,body.SSID,body.SIGNAL)
+            await myDevice.checkDeviceByName(name)
+            logs.log(status.SSID)
+            if (status.SSID){
+                logs.log(status.SSID)
+                logs.log(status.SIGNAL)
+                let res = await wifi.newSignal(name,status.SSID,status.SIGNAL)
                 logs.log(res)
                 }
         }catch(e){
