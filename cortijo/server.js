@@ -72,6 +72,7 @@ app.get("/logo", async function(req, res) {
 //
 //Get wifi signal
 app.get("/wifi/:wifi", async function(req, res) {
+    logs.log(req.params.wifi)
     wifi = req.params.wifi;
     try{
         var signal = await wifi.getBySSID(wifi);
