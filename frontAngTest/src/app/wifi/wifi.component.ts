@@ -25,7 +25,7 @@ export class WifiComponent implements OnInit {
   }
   wrapGetData(wifi){
     this.wifi=wifi
-    getData(wifi)
+    this.getData(wifi)
   }
   getData(wifi){
     const host = (window.location.href.split("/")[2]).split(":")[0]
