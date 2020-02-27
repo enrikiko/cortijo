@@ -73,13 +73,9 @@ app.get("/logo", async function(req, res) {
 //Get wifi signal
 app.get("/wifi/:wifi", async function(req, res) {
     wifi = req.params.wifi;
-    try{
-        var signal = await wifi.getBySSID(wifi,100);
-        logs.log(signal);
-        res.status(200).send(signal)
-    }catch(e){
-        res.status(e.status).send()
-    }
+    var signal = await wifi.getBySSID(wifi, 100);
+    logs.log(signal);
+    res.status(200).send(signal)
 })
 //
 //Auth with user & password
