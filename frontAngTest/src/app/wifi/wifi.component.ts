@@ -24,7 +24,14 @@ export class WifiComponent implements OnInit {
       if(data!=null){
         //this.wifiData = data
         //console.log(this.wifiData)
-        this.printGraphWifi(wifi, data)
+        var signalList = []
+        var signal
+        for(var index in data){
+          // list.push(index+"-"+res[index])
+          signal={ y: parseInt(data[index].signal), label: new Date(parseInt(data[index].time)) }
+          signalList.push(signal)
+        }
+        this.printGraphWifi(wifi, signalList)
       }
     })
   }
