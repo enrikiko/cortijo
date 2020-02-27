@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 export class WifiComponent implements OnInit {
 
  wifis: any[]=["test_wifi","Cuarto2.4G","WifiSalon"];
- wifiData: any[]=null;
+ //wifiData: any[]=null;
 
   constructor( private http: HttpClient ) { }
 
@@ -22,9 +22,9 @@ export class WifiComponent implements OnInit {
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        this.wifiData = data
-        console.log(this.wifiData)
-        printGraphWifi(wifi, data)
+        //this.wifiData = data
+        //console.log(this.wifiData)
+        this.printGraphWifi(wifi, data)
       }
     })
   }
