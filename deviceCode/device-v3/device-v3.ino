@@ -159,7 +159,7 @@ void handleStatus() {
   Serial.print(digitalRead(LED_BUILTIN));
   if(certain){state="true";}
   else{state="false";};
-  server.send(200, "application/json", "{\"status\": " + state + ",\"SSID\": " + ssid + ",\"SIGNAL\": " + signalSSID + "}");
+  server.send(200, "application/json", "{\"status\":" + state + ",\"SSID\":\"" + ssid + "\",\"SIGNAL\":" + signalSSID + "}");
 }
 
 void handleRootOn() {
