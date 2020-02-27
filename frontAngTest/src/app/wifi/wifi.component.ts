@@ -15,7 +15,6 @@ export class WifiComponent implements OnInit {
   constructor( private http: HttpClient ) { }
 
   ngOnInit() {
-    this.getData()
   }
   getData(wifi){
     const host = (window.location.href.split("/")[2]).split(":")[0]
