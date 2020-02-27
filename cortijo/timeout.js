@@ -58,7 +58,11 @@ async function check(){
         logs.log("Checking " + name )
         try{
             var status = await joker.getDeviceStatus(name)
-            await myDevice.checkDeviceByName(name)
+            var body = await myDevice.checkDeviceByName(name)
+            if (body.SSID){
+                logs.log(body.SSID)
+                logs.log(body.SIGNAL)
+                }
         }catch(e){
             logs.log(e)
             await myDevice.blockDeviceByName(name);

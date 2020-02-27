@@ -135,8 +135,8 @@ void handleStatus() {
   String state;
   //New
   int n = WiFi.scanNetworks();
-  String ssid[] = {};
-  String signal[] = {};
+  String ssid[n] = {};
+  String signalSSID[n] = {};
   if (n == 0) {
     Serial.println("no networks found");
   } else {
@@ -151,15 +151,15 @@ void handleStatus() {
       Serial.print(")");
       Serial.println((WiFi.encryptionType(i) == ENC_TYPE_NONE) ? " " : "*");
       delay(10);
-      ssid[i]=WiFi.SSID(i)
-      signal[i]=WiFi.RSSI(i)
+      ssid[i]=WiFi.SSID(i);
+      signalSSID[i]=WiFi.RSSI(i);
     }
   }
   //End c
   Serial.print(digitalRead(LED_BUILTIN));
   if(certain){state="true";}
   else{state="false";};
-  server.send(200, "application/json", "{\"status\": " + state + ",\"SSID\":" + ssid + ",\"SIGNAL\":" + signal + "}");
+  server.send(200, "application/json", "{\"status\": " + state + ",\"SSID\":" + ssid + ",\"SIGNAL\":" + signalSSID + "}");
 }
 
 void handleRootOn() {
