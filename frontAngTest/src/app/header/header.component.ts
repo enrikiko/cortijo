@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
   config(){this.active="config"}
   sensor(){this.active="sensor"}
   files(){this.active="files"}
+  wifi(){this.active="wifi"}
   requests(){this.active="requests"}
   photos(){this.active="photos"}
   users(){this.active="users"}
