@@ -45,8 +45,6 @@ app.get('/'+process.env.mock_name+'/status/false', async function(req, res){
     await delay(300);
     info={}
     info.status=false
-    info.SSID="test_wifi"
-    info.SIGNAL="50"
     console.log(info);
     status=false;
 res.status(200).json(info)
@@ -54,6 +52,8 @@ res.status(200).json(info)
 app.get('/'+process.env.mock_name+'/status', function(req, res){
   info={}
   info.status=status
+  info.SSID="test_wifi"
+  info.SIGNAL="50"
   console.log(info);
   res.status(200).json(info)
 });

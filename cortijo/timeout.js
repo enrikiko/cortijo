@@ -59,6 +59,7 @@ async function check(){
         try{
             var status = await joker.getDeviceStatus(name)
             var body = await myDevice.checkDeviceByName(name)
+            logs.log(body.SSID)
             if (body.SSID){
                 logs.log(body.SSID)
                 logs.log(body.SIGNAL)
