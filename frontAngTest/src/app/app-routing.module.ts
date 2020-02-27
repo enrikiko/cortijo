@@ -11,6 +11,7 @@ import { RequestsComponent } from './requests/requests.component';
 import { PhotosComponent } from './photos/photos.component';
 import { UsersComponent } from './users/users.component';
 import { FilesComponent } from './files/files.component';
+import { WifiComponent } from './wifi/wifi.component';
 
 const routes: Routes = [
   {path:'', component: BodyComponent, canActivate: [AuthGuard]},
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path:'requests', component: RequestsComponent, canActivate: [AuthGuard]},
   {path:'photos', component: PhotosComponent, canActivate: [AuthGuard]},
   {path:'users', component: UsersComponent},
-  {path:'files', component: FilesComponent, canActivate: [AuthGuard]}
+  {path:'files', component: FilesComponent, canActivate: [AuthGuard]},
+  {path:'wifi', component: WifiComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

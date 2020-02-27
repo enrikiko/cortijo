@@ -5,6 +5,7 @@ const myDevice = require('./devices');
 const watering = require('./watering');
 const joker = require('./joker');
 const logs = require('./logs');
+const wifi = require('./wifi');
 const myTemperature = require('./temperature');
 const myHumidity = require('./humidity');
 const requests = require('./requests');
@@ -67,6 +68,18 @@ app.get("/favicon.ico", async function(req, res) {
 // node
 app.get("/logo", async function(req, res) {
     res.status(200).send(fs.readFileSync('node.png'))
+})
+//
+//Get wifi signal
+app.get("/wifi/:wifi", async function(req, res) {
+    wifi = req.params.wifi;
+    try{
+        var signal = await wifi.getBySSID(wifi);
+        logs.log(signal);
+        res.status(200).send(signal)
+    }catch(e){
+        res.status(e.status).send()
+    }
 })
 //
 //Auth with user & password

@@ -23,6 +23,7 @@ import { RequestsComponent } from './requests/requests.component';
 import { HumidityComponent } from './humidity/humidity.component';
 import { ConfigComponent } from './config/config.component';
 import { FilesComponent } from './files/files.component';
+import { WifiComponent } from './wifi/wifi.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { FilesComponent } from './files/files.component';
     RequestsComponent,
     HumidityComponent,
     ConfigComponent,
-    FilesComponent
+    FilesComponent,
+    WifiComponent
   ],
   imports: [
     BrowserModule,
