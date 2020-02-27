@@ -19,7 +19,7 @@ export class BodyComponent implements OnInit {
   messages: Message[] = [];
   ioConnection: any;
 
-  constructor(private http: HttpClient, private socketService: SocketService) { }
+  constructor(private http: HttpClient, private socketService: SocketService ) { }
 
   ngOnInit()
   {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as CanvasJS from './canvasjs.min';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { SocketService } from '../socket.service';
 
 @Component({
   selector: 'app-humidity',
@@ -12,11 +13,16 @@ export class HumidityComponent implements OnInit {
 logs: any[]=null;
 sensorList: any[]=null;
 showGraphic=true;
+sensor:string=null;
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient, private socketService: SocketService ) { }
 
   ngOnInit() {
     this.getSensor()
+    this.socketService.getDeviceAlert().subscribe( (msg)=>{
+      //console.log(msg)
+      this.getData(this.sensor)
+    } )
   }
 
   getSensor(){
@@ -30,8 +36,12 @@ showGraphic=true;
     })
   }
 
+  wraperGetData(sensor){
+    this.sensor=sensor
+    this.getData(sensor)
+  }
+
   getData(sensor){
-    console.log(sensor)
       const host = (window.location.href.split("/")[2]).split(":")[0]
       let url = "http://" + host + ":8000/all/" + sensor.type + "/" + sensor.name
       switch(sensor.type) {

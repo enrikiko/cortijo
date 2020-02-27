@@ -49,7 +49,7 @@ async function getSensor(){
         }
 
     }
-    socket.device("getSensor()")
+    socket.data("getSensor()")
 }
 //
 async function check(){
@@ -75,6 +75,7 @@ async function check(){
         }
     }
     socket.wifi("check()")
+    socket.device("check()")
 }
 //
 function safeData(type,name,data){

@@ -17,10 +17,15 @@ io.on('connection', socket => {
     console.log(data);
     io.emit('alert_angular', data);
   });
-  
+
   socket.on('event_wifi', function (data) {
     console.log(data);
     io.emit('alert_wifi', data);
+  });
+
+  socket.on('event_data', function (data) {
+    console.log(data);
+    io.emit('alert_data', data);
   });
 
 });
