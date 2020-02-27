@@ -47,8 +47,7 @@ export class WifiComponent implements OnInit {
       dataPoints: data
     }]
   });
-
-  chart.render();
+    chart.render();
   }
 
 }
