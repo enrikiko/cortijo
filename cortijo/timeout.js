@@ -9,6 +9,7 @@ const request = require('superagent');
 const req = require('request');
 const mySwitch = require('./switch');
 const config = require('./config');
+const socket = require('./socket');
 //
 const TIMEOUT_SENSOR = config.get("timeout_sensor");
 const TIMEOUT_CHECK = config.get("timeout_check");
@@ -48,6 +49,7 @@ async function getSensor(){
         }
 
     }
+    socket.device("getSensor()")
 }
 //
 async function check(){
@@ -72,6 +74,7 @@ async function check(){
             await myDevice.blockDeviceByName(name);
         }
     }
+    socket.wifi("check()")
 }
 //
 function safeData(type,name,data){

@@ -10,11 +10,17 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 export class WifiComponent implements OnInit {
 
  wifis: any[]=["test_wifi","Cuarto2.4G","WifiSalon"];
+ wifi: string=null;
  //wifiData: any[]=null;
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient, private socketService: SocketService ) { }
 
   ngOnInit() {
+    this.socketService.getWifiAlert().subscribe( (msg)=>{
+      //console.log(msg)
+      if(this.wifi)
+        this.getData(this.wifi)
+    } )
   }
   getData(wifi){
     const host = (window.location.href.split("/")[2]).split(":")[0]
@@ -22,8 +28,7 @@ export class WifiComponent implements OnInit {
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        //this.wifiData = data
-        //console.log(this.wifiData)
+        this.wifi=wifi
         var signalList = []
         var signal
         for(var index in data){

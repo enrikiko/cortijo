@@ -37,7 +37,7 @@ module.exports={
             res.body = response
             return res
         }finally{
-                socket.send(name+" has changed to "+status)
+                socket.device(name+" has changed to "+status)
         }
        }
        return await getResponse();
