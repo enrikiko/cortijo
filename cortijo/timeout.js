@@ -1,6 +1,7 @@
 const mySensor = require('./sensors');
 const myDevice = require('./devices');
 const joker = require('./joker');
+const wifi = require('./wifi')
 const logs = require('./logs');
 const myTemperature = require('./temperature');
 const myHumidity = require('./humidity');
@@ -63,6 +64,8 @@ async function check(){
             if (body.SSID){
                 logs.log(body.SSID)
                 logs.log(body.SIGNAL)
+                let res = await wifi.newSignal(name,body.SSID,body.SIGNAL)
+                logs.log(res)
                 }
         }catch(e){
             logs.log(e)
