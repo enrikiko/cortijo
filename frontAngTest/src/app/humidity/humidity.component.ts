@@ -102,8 +102,8 @@ sensor:string=null;
 
     printGraphHumidity(name, data){
       let chart = new CanvasJS.Chart("humidityGraph", {
-  		animationEnabled: true,
-  		exportEnabled: true,
+  		animationEnabled: false,
+  		exportEnabled: false,
   		title: { text: name },
   		data: [{
   			type: "spline",
@@ -117,8 +117,8 @@ sensor:string=null;
 
     printGraphTemperature(name, temperature, humidity){
       let chart = new CanvasJS.Chart("humidityGraph", {
-  		animationEnabled: true,
-  		exportEnabled: true,
+  		animationEnabled: false,
+  		exportEnabled: false,
   		title: { text: name },
   		data: [
         {
