@@ -19,7 +19,7 @@ sensor:string=null;
 
   ngOnInit() {
     this.getSensor()
-    this.socketService.getDeviceAlert().subscribe( (msg)=>{
+    this.socketService.getDataAlert().subscribe( (msg)=>{
       //console.log(msg)
       this.getData(this.sensor)
     } )

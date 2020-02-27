@@ -21,4 +21,8 @@ export class SocketService {
   getWifiAlert() {
       return this.socket.fromEvent("alert_wifi").pipe(map( data => data ));
    }
+
+   getDataAlert() {
+       return this.socket.fromEvent("alert_data").pipe(map( data => data ));
+    }
 }
