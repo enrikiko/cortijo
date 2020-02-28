@@ -18,6 +18,7 @@ export class BodyComponent implements OnInit {
   lapse_time: number = 5;
   messages: Message[] = [];
   ioConnection: any;
+  subscription: Subscription;
 
   constructor(private http: HttpClient, private socketService: SocketService ) { }
 
@@ -32,13 +33,13 @@ export class BodyComponent implements OnInit {
   {
     this.getDevicesList()
     this.initIoConnection()
-    this.socketService.getDeviceAlert().subscribe( (msg)=>{
+    this.subscription = this.socketService.getDeviceAlert().subscribe( (msg)=>{
       this.getDevicesList()
     } )
   }
 
   ngOnDestroy() {
-    this.socketService.getDeviceAlert().unsubscribe()
+    this.subscription.unsubscribe()
   }
 
   changeStatus(device){
