@@ -137,5 +137,5 @@ async function analiceData(type,name,data) {
     }
 }
 //
-executeTimeoutCheckSensors()
-executeTimeoutCheckDevices()
+//executeTimeoutCheckSensors()
+//executeTimeoutCheckDevices()
