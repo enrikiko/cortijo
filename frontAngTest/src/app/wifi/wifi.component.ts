@@ -12,12 +12,13 @@ export class WifiComponent implements OnInit {
 
  wifis: any[]=["test_wifi","Cuarto2.4G","WifiSalon"];
  wifi: string=null;
+ subscription: any;
  //wifiData: any[]=null;
 
   constructor( private http: HttpClient, private socketService: SocketService ) { }
 
   ngOnInit() {
-    this.socketService.getWifiAlert().subscribe( (msg)=>{
+    this.subscription = this.socketService.getWifiAlert().subscribe( (msg)=>{
       //console.log(msg)
       if(this.wifi)
         this.getData(this.wifi)
@@ -25,6 +26,7 @@ export class WifiComponent implements OnInit {
   }
   ngOnDestroy() {
     this.wifi=null
+    this.subscription.unsubscribe()
   }
   wrapGetData(wifi){
     this.wifi=wifi

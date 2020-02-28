@@ -23,6 +23,6 @@ export class SocketService {
    }
 
    getDataAlert() {
-       return this.socket.fromEvent("alert_data").pipe(map( data => data ));
-    }
+      return this.socket.fromEvent("alert_data").pipe(map( data => data ));
+   }
 }

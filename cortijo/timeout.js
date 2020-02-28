@@ -47,7 +47,6 @@ async function getSensor(){
         }catch(e){
             logs.log(e)
         }
-
     }
     socket.data("getSensor()")
 }

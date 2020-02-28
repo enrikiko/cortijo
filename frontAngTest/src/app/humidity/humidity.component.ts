@@ -14,18 +14,20 @@ logs: any[]=null;
 sensorList: any[]=null;
 showGraphic=true;
 sensor:string=null;
+subscription: any;
 
   constructor( private http: HttpClient, private socketService: SocketService ) { }
 
   ngOnInit() {
     this.getSensor()
-    this.socketService.getDataAlert().subscribe( (msg)=>{
+    this.subscription = this.socketService.getDataAlert().subscribe( (msg)=>{
       //console.log(msg)
       this.getData(this.sensor)
     } )
   }
   ngOnDestroy() {
     this.sensor=null
+    this.subscription.unsubscribe()
   }
 
   getSensor(){
