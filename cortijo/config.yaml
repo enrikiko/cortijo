@@ -1,6 +1,6 @@
 ---
   log: "debug"
-  timeout_check:  3000
+  timeout_check:  300000
   timeout_sensor: 300000
   times_before_block: 5
   refresh_delay: 0
@@ -8,4 +8,5 @@
   switch_status_timeout: 5000
   get_data_timeout: 5000
   sensor_history: 1344
-  version: "1.0.1"
+  version: "1.0.4"
+  default_limit: 5000

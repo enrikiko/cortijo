@@ -3,7 +3,8 @@ const logs = require('./logs');
 let connString = 'mongodb://192.168.1.50:27017/cortijo';
 const db = mongoose.connection;
 mongoose.connect(connString, { useNewUrlParser: true });
-
+const config = require('./config');
+const DEFAULT_LIMIT = config.get("default_limit");
 db.on('error',function(){
     logs.log("Error to connect to MongoDB Wifi");
 });
@@ -49,7 +50,7 @@ module.exports = {
     },
 //
     getByDevice: async(device, time) => { return await myWifi.find({"device":device}).sort({time:-1}).limit(time)},
-    getBySSID: async(ssid, time) => { return await myWifi.find({"ssid":ssid}).sort({time:-1}).limit(time)},
+    getBySSID: async(ssid, time=DEFAULT_LIMIT) => { return await myWifi.find({"ssid":ssid}).sort({time:-1}).limit(time)},
     getByDeviceAndBySSID: async(device, ssid, time) => { return await myWifi.find({"ssid":ssid,"device":device}).sort({time:-1}).limit(time)}
 
 }
