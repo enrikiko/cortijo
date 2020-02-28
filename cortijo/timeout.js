@@ -73,8 +73,8 @@ async function check(){
             await myDevice.blockDeviceByName(name);
         }
     }
-    socket.wifi("check()")
-    socket.device("check()")
+    socket.wifi("check(wifi)")
+    socket.device("check(device)")
 }
 //
 function safeData(type,name,data){
