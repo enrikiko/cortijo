@@ -24,6 +24,9 @@ sensor:string=null;
       this.getData(this.sensor)
     } )
   }
+  ngOnDestroy() {
+    this.sensor=null
+  }
 
   getSensor(){
     const host = (window.location.href.split("/")[2]).split(":")[0]

@@ -23,6 +23,9 @@ export class WifiComponent implements OnInit {
         this.getData(this.wifi)
     } )
   }
+  ngOnDestroy() {
+    this.wifi=null
+  }
   wrapGetData(wifi){
     this.wifi=wifi
     this.getData(wifi)
