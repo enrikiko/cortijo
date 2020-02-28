@@ -18,7 +18,7 @@ export class BodyComponent implements OnInit {
   lapse_time: number = 5;
   messages: Message[] = [];
   ioConnection: any;
-  subscription: Subscription;
+  subscription: any;
 
   constructor(private http: HttpClient, private socketService: SocketService ) { }
 
