@@ -21,14 +21,24 @@ export class BodyComponent implements OnInit {
 
   constructor(private http: HttpClient, private socketService: SocketService ) { }
 
+
+
+  //------WebSocker-------//
+  initIoConnection(){
+    this.socketService.sendMessage("angular user connected");
+  }
+
   ngOnInit()
   {
     this.getDevicesList()
     this.initIoConnection()
     this.socketService.getDeviceAlert().subscribe( (msg)=>{
-      //console.log(msg)
       this.getDevicesList()
     } )
+  }
+
+  ngOnDestroy() {
+    this.socketService.getDeviceAlert().unsubscribe()
   }
 
   changeStatus(device){
@@ -95,12 +105,6 @@ export class BodyComponent implements OnInit {
       console.log('Database is empty')
       }
     })
-  }
-
-
-  //------WebSocker-------//
-   initIoConnection(){
-    this.socketService.sendMessage("angular user connected");
   }
 
 
