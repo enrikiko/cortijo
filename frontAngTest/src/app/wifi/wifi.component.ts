@@ -40,7 +40,7 @@ export class WifiComponent implements OnInit {
         var signal
         for(var index in data){
           // list.push(index+"-"+res[index])
-          signal={ y: parseInt(data[index].signal), label: new Date(parseInt(data[index].time)) }
+          signal={ y: parseInt(data[index].signal)+100, label: new Date(parseInt(data[index].time)) }
           signalList.push(signal)
         }
         this.printGraphWifi(wifi, signalList)
