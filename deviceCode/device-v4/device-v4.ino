@@ -15,7 +15,6 @@ String currentStatus = "false";
 String wifiName;
 
 int port = 80;
-
 IPAddress ipDevice(192, 168, 1, 100);
 IPAddress dns(80, 58, 61, 250);
 IPAddress gateway(192, 168, 1, 1);

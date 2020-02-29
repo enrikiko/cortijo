@@ -11,12 +11,14 @@ const char *password1 = "Lunohas13steps";
 const char *ssid2 = "WifiSalon";
 const char *password2 = "lunohas13steps";
 String deviceName = "Multi_device_1";
+String wifiName;
+
 int port = 80;
 IPAddress ipDevice(192, 168, 1, 100);
 IPAddress dns(80, 58, 61, 250);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 0, 0, 0);
-String certain;
+boolean certain;
 
 ESP8266WiFiMulti WiFiMulti;
 ESP8266WebServer server(port);
@@ -35,7 +37,10 @@ String gateway15 = "false";
 
 void setup() {
 
-  Serial.begin(115200);
+  //Serial.begin(115200);
+
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, HIGH);
 
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid1, password1);
@@ -48,15 +53,18 @@ void setup() {
     delay(1000);
   }
 
-  String ip = WiFi.localIP().toString();
-  Serial.println("");
-  Serial.println("");
-  Serial.println("");
-  Serial.print("IP:");
-  Serial.println(ip);
+  wifiName = WiFi.SSID();
 
+  String ip = WiFi.localIP().toString();
+  // Serial.println("");
+  // Serial.println("");
+  // Serial.println("");
+  // Serial.print("IP:");
+  // Serial.println(ip);
+
+  digitalWrite(LED_BUILTIN, LOW);
   char pins[9] = {16,5,4,0,2,14,12,13,15};
-  Serial.println(sizeof(pins));
+  //Serial.println(sizeof(pins));
 
   for (int i = 0; i < sizeof(pins); i++){
     Serial.println(pins[i]);
@@ -64,8 +72,6 @@ void setup() {
     digitalWrite(pins[i], HIGH);
     setIp(ip, pins[i]);
   }
-
-
 
   if (MDNS.begin("esp8266")) {
     Serial.println("MDNS responder started");
@@ -115,11 +121,10 @@ void loop() {
   WiFi.begin();
 
   while (WiFiMulti.run() != WL_CONNECTED) {
-    Serial.print(".");
     delay(1000);
-    Serial.println("");
-    Serial.print("Connected");
   }
+
+  wifiName = WiFi.SSID();
 
 }
 
@@ -267,31 +272,31 @@ void handleRoot5false() {
   server.send(200, "application/json", "{\"status\": false}");
 }
 void handleStatusGateway0() {
- server.send(200, "application/json", "{\"status\": " + gateway0 + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway0 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
 }
 void handleStatusGateway2() {
- server.send(200, "application/json", "{\"status\": " + gateway2 + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway2 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
 }
 void handleStatusGateway4() {
- server.send(200, "application/json", "{\"status\": " + gateway4 + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway4 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
 }
 void handleStatusGateway5() {
- server.send(200, "application/json", "{\"status\": " + gateway5 + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway5 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
 }
 void handleStatusGateway12() {
- server.send(200, "application/json", "{\"status\": " + gateway12 + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway12 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
 }
 void handleStatusGateway13() {
- server.send(200, "application/json", "{\"status\": " + gateway13 + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway13 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
 }
 void handleStatusGateway15() {
- server.send(200, "application/json", "{\"status\": " + gateway15 + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway15 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
 }
 void handleStatusGateway16() {
- server.send(200, "application/json", "{\"status\": " + gateway16 + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway16 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
 }
 void handleStatusGateway14() {
- server.send(200, "application/json", "{\"status\": " + gateway14 + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway14 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
 }
 //
 //void setPin(StaticJsonDocument<100> doc){

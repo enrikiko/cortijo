@@ -128,7 +128,7 @@ void handleStatus() {
   String state;
   if(certain){state="true";}
   else{state="false";};
-  server.send(200, "application/json", "{\"status\":" + state + ",\"SSID\":\"" + WiFi.SSID() + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+  server.send(200, "application/json", "{\"status\":" + state + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
 }
 
 void handleRoot5true() {
