@@ -133,33 +133,10 @@ void setIp(String ip){
 
 void handleStatus() {
   String state;
-  //New
-  int n = WiFi.scanNetworks();
-  String ssid[n] = {};
-  String signalSSID[n] = {};
-  if (n == 0) {
-    Serial.println("no networks found");
-  } else {
-    Serial.print(n);
-    Serial.println(" networks found");
-    for (int i = 0; i < n; ++i) {
-      Serial.print(i + 1);
-      Serial.print(": ");
-      Serial.print(WiFi.SSID(i));
-      Serial.print(" (");
-      Serial.print(WiFi.RSSI(i));
-      Serial.print(")");
-      Serial.println((WiFi.encryptionType(i) == ENC_TYPE_NONE) ? " " : "*");
-      delay(10);
-      ssid[i]=WiFi.SSID(i);
-      signalSSID[i]=WiFi.RSSI(i);
-    }
-  }
-  //End c
   Serial.print(digitalRead(LED_BUILTIN));
   if(certain){state="true";}
   else{state="false";};
-  server.send(200, "application/json", "{\"status\":" + state + ",\"SSID\":\"" + ssid + "\",\"SIGNAL\":" + signalSSID + "}");
+  server.send(200, "application/json", "{\"status\":" + state + ",\"SSID\":\"" + WiFi.SSID() + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
 }
 
 void handleRootOn() {
