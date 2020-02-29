@@ -11,15 +11,15 @@
           <div>
             <h3>Ip: </h3><h3 class="text-primary">  {{ sensorInfo.ip }}</h3>
           </div>
-          <div *ngIf="sensorInfo.max">
+          <div>
             <h3>Max: </h3>
             <input [(ngModel)]="max" value="{{ sensorInfo.max }}" class="form-control"type="number">
           </div>
-          <div *ngIf="sensorInfo.min">
+          <div>
             <h3>Min: </h3>
             <input [(ngModel)]="min" value="{{ sensorInfo.min }}" class="form-control"type="number">
           </div>
-          <div  *ngIf="sensorInfo.devices">
+          <div >
             <h3>List of devices associated: </h3>
             <ul *ngFor="let device of sensorInfo.devices">
               <li><input [(ngModel)]="min" value="{{ device }}" class="form-control"type="text">
