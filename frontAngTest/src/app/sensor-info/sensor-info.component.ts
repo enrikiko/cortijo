@@ -13,7 +13,7 @@ export class SensorInfoComponent implements OnInit {
   sensor:string=null;
 
   ngOnInit() {
-    this.sensor: string = this.route.snapshot.queryParamMap.get('sensor');
+    this.sensor = this.route.snapshot.queryParamMap.get('sensor');
     console.log(this.sensor)
   }
 
