@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { SocketService } from '../socket.service';
 import { Message } from '../message';
 import { Event } from '../event';
-
 
 
 @Component({
@@ -21,7 +21,10 @@ export class BodyComponent implements OnInit {
   ioConnection: any;
   subscription: any;
 
-  constructor(private http: HttpClient, private socketService: SocketService ) { }
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private socketService: SocketService ) { }
 
 
 
@@ -141,6 +144,10 @@ export class BodyComponent implements OnInit {
         }
       })
     }
+  }
+
+  infoSensor(sensor){
+    this.router.navigate(['sensor/'+sensor])
   }
 
 

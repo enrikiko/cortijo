@@ -24,6 +24,7 @@ import { HumidityComponent } from './humidity/humidity.component';
 import { ConfigComponent } from './config/config.component';
 import { FilesComponent } from './files/files.component';
 import { WifiComponent } from './wifi/wifi.component';
+import { SensorInfoComponent } from './sensor-info/sensor-info.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { WifiComponent } from './wifi/wifi.component';
     HumidityComponent,
     ConfigComponent,
     FilesComponent,
-    WifiComponent
+    WifiComponent,
+    SensorInfoComponent
   ],
   imports: [
     BrowserModule,
