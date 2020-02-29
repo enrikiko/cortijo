@@ -143,7 +143,7 @@ app.delete("/sensor/:name", async function(req, res) {
     var name = req.params.name;
     var id = await mySensor.getIdByName(name)
     if (id){
-      var response = await myDevice.removeSensorByName(name);
+      var response = await mySensor.removeSensorByName(name);
       logs.log(name+" Remove successfully");
       res.status(200).json("Sensor remove successfully")
     }else {
