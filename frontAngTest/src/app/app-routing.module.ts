@@ -12,7 +12,7 @@ import { PhotosComponent } from './photos/photos.component';
 import { UsersComponent } from './users/users.component';
 import { FilesComponent } from './files/files.component';
 import { WifiComponent } from './wifi/wifi.component';
-import { SensorInfoComponent } from './sensorInfo/wifi.component';
+import { SensorInfoComponent } from './sensor-info/sensor-info.component';
 
 const routes: Routes = [
   {path:'', component: BodyComponent, canActivate: [AuthGuard]},
