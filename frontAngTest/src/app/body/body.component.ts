@@ -147,7 +147,7 @@ export class BodyComponent implements OnInit {
   }
 
   infoSensor(sensor){
-    this.router.navigate(['sensor?sensor='+sensor])
+    this.router.navigate(['sensor/'+sensor])
   }
 
 

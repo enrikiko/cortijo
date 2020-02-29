@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sensor-info',
@@ -8,12 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SensorInfoComponent implements OnInit {
 
-  constructor( private route: ActivatedRoute ) { }
+  constructor( private router: Router ) { }
 
   sensor:string=null;
 
   ngOnInit() {
-    this.sensor = this.route.snapshot.queryParamMap.get('sensor');
+    this.sensor = this.router.url
     console.log(this.sensor)
   }
 
