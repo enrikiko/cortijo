@@ -13,7 +13,7 @@ export class SensorInfoComponent implements OnInit {
   sensor:string=null;
 
   ngOnInit() {
-    this.sensor = this.router.url.split()[1]
+    this.sensor = this.router.url.split("/")[1]
     console.log(this.sensor)
   }
 
