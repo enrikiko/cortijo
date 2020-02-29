@@ -1,26 +1,31 @@
-<div class="container-fluid bg-white body center m-5">
-  <form *ngIf="sensorInfo" (submit)="change($event)" class="form-signin m-5">
-        <div>
-          <h2>Name:</h2>
-          <input [(ngModel)]="name" value="{{ sensorInfo.name }}" class="form-control" id="userName" type="text">
-        </div>
-        <div>
-          <h3>Type: </h3><h3 class="text-primary">{{ sensorInfo.type }}</h3>
-        </div>
-        <div>
-          <h3>Ip: </h3><h3 class="text-primary">{{ sensorInfo.ip }}</h3>
-        </div>
-        <div *ngIf="sensorInfo.max">
-          <h3>Max: </h3><h3 class="text-danger">{{ sensorInfo.max }}</h3>
-        </div>
-        <div *ngIf="sensorInfo.min">
-          <h3>Min: </h3><h3 class="text-danger">{{ sensorInfo.min }}</h3>
-        </div>
-        <div  *ngIf="sensorInfo.devices">
-          <h3>List of devices associated: </h3>
-          <ol *ngFor="let device of sensorInfo.devices">
-            <li><h4 class="text-info">{{ device }}</h4></li>
-          </ol>
-        </div>
-  </form>
+<div class="container-fluid bg-white body center m-5 row">
+  <div class="col-6">
+    <form *ngIf="sensorInfo" (submit)="change($event)" class="form-signin m-5">
+          <div>
+            <h2>Name: </h2>
+            <h2 class="text-success"> {{ sensorInfo.name }}</h2>
+            </div>
+          <div>
+            <h3>Type: </h3><h3 class="text-primary">  {{ sensorInfo.type }}</h3>
+          </div>
+          <div>
+            <h3>Ip: </h3><h3 class="text-primary">  {{ sensorInfo.ip }}</h3>
+          </div>
+          <div *ngIf="sensorInfo.max">
+            <h3>Max: </h3>
+            <input [(ngModel)]="max" value="{{ sensorInfo.max }}" class="form-control"type="text">
+          </div>
+          <div *ngIf="sensorInfo.min">
+            <h3>Min: </h3>
+            <input [(ngModel)]="min" value="{{ sensorInfo.min }}" class="form-control"type="text">
+          </div>
+          <div  *ngIf="sensorInfo.devices">
+            <h3>List of devices associated: </h3>
+            <ol *ngFor="let device of sensorInfo.devices">
+              <li><h4 class="text-info">{{ device }}</h4></li>
+            </ol>
+            <button type="button" name="button" (click)="addDevice()" class="bg-success" >Add device</button>
+          </div>
+    </form>
+  </div>
 </div>

@@ -38,4 +38,8 @@ export class SensorInfoComponent implements OnInit {
     })
   }
 
+  addDevice(){
+    this.sensorInfo.devices.push("")
+  }
+
 }
