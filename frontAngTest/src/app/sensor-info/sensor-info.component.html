@@ -13,11 +13,11 @@
           </div>
           <div *ngIf="sensorInfo.max">
             <h3>Max: </h3>
-            <input [(ngModel)]="max" value="{{ sensorInfo.max }}" class="form-control"type="text">
+            <input [(ngModel)]="max" value="{{ sensorInfo.max }}" class="form-control"type="number">
           </div>
           <div *ngIf="sensorInfo.min">
             <h3>Min: </h3>
-            <input [(ngModel)]="min" value="{{ sensorInfo.min }}" class="form-control"type="text">
+            <input [(ngModel)]="min" value="{{ sensorInfo.min }}" class="form-control"type="number">
           </div>
           <div  *ngIf="sensorInfo.devices">
             <h3>List of devices associated: </h3>
