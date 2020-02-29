@@ -126,7 +126,7 @@ module.exports = {
      }
    },
 //
-   updateSensorIp: (id, ip, devices, min, max) => {
+   updateSensor: (id, ip, devices, min, max) => {
      var sensor = mySensor.findById(id, function(err, result) {
        if (err) throw err
        if(result){
