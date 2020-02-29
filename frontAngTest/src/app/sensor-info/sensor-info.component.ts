@@ -18,7 +18,7 @@ export class SensorInfoComponent implements OnInit {
 
   ngOnInit() {
     this.sensor = this.router.url.split("/")[2]
-    getInfo(this.sensor)
+    this.getInfo(this.sensor)
   }
 
   getInfo(sensor){
