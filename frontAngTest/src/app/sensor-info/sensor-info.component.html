@@ -22,9 +22,10 @@
           <div  *ngIf="sensorInfo.devices">
             <h3>List of devices associated: </h3>
             <ul *ngFor="let device of sensorInfo.devices">
-              <li><input [(ngModel)]="min" value="{{ device }}" class="form-control"type="text"></li>
+              <li><input [(ngModel)]="min" value="{{ device }}" class="form-control"type="text">
+              <button (click)="removeDevice(device)"></button></li>
             </ul>
-            <button type="button" name="button" (click)="addDevice()" class="bg-success" >Add device</button>
+            <button (click)="addDevice()" class="bg-success" >Add device</button>
           </div>
     </form>
   </div>

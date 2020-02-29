@@ -41,5 +41,11 @@ export class SensorInfoComponent implements OnInit {
   addDevice(){
     this.sensorInfo.devices.push("")
   }
+  removeDevice(device){
+    const index = this.sensorInfo.devices.indexOf(device);
+      if (index > -1) {
+          this.sensorInfo.devices.splice(index, 1);
+      }
+  }
 
 }
