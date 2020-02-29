@@ -21,11 +21,8 @@ subscription:any;
   ngOnInit() {
     this.getSensor()
     this.subscription = this.socketService.getDataAlert().subscribe( (msg)=>{
-      console.log(1)
-      if(this.sensor!=null)
-        console.log(2)
-        this.getData(this.sensor)
-    } )
+    this.getData(this.sensor
+    )
   }
   ngOnDestroy() {
     this.sensor=null
