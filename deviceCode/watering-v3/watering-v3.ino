@@ -1,4 +1,3 @@
-
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
@@ -20,16 +19,18 @@ IPAddress ipDevice(192, 168, 1, 102);
 IPAddress dns(80, 58, 61, 250);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
-String certain;
+boolean certain;
 
 ESP8266WiFiMulti WiFiMulti;
 ESP8266WebServer server(port);
 
 
 void setup() {
+
+  Serial.begin(115200);
+
   pinMode(5, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
-  Serial.begin(115200);
   digitalWrite(LED_BUILTIN, HIGH);
 
   WiFi.mode(WIFI_STA);
@@ -61,7 +62,6 @@ void setup() {
     Serial.println("MDNS responder started");
   }
 
-  digitalWrite(LED_BUILTIN, LOW);
   server.on("/"+deviceName+"/status/true", handleRoot5true);
   server.on("/"+deviceName+"/status/false", handleRoot5false);
   server.on("/"+deviceName+"/status", handleStatus);
@@ -89,6 +89,13 @@ void loop() {
 
 }
 
+void light(boolean val){
+  if(val){
+    digitalWrite(LED_BUILTIN, LOW);
+    }else{
+      digitalWrite(LED_BUILTIN, HIGH);
+      }
+}
 
 void setIp(String ip){
   boolean certain = false;
@@ -100,7 +107,6 @@ void setIp(String ip){
       if (http.begin(client, "http://192.168.1.50:8000/new/"+deviceName+"/"+currentStatus+"/"+ip+":"+port)) {
         Serial.print("[HTTP] GET CODE: ");
         int httpCode = http.GET();
-        Serial.println(httpCode);
         if (httpCode > 0) {
           Serial.println(httpCode);
           if (httpCode == 200 ) {
@@ -120,26 +126,26 @@ void setIp(String ip){
   }
 }
 
-void handleInfo() {
-  server.send(200, "application/json", certain);
-}
-
 void handleStatus() {
-  server.send(200, "application/json", "{\"status\": "+currentStatus+"}");
+  String state;
+  //Serial.print(digitalRead(LED_BUILTIN));
+  if(certain){state="true";}
+  else{state="false";};
+  server.send(200, "application/json", "{\"status\":" + state + ",\"SSID\":\"" + WiFi.SSID() + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
 }
 
 void handleRoot5true() {
   digitalWrite(5, true);
-  digitalWrite(LED_BUILTIN, true);
-  Serial.println("pin 5 true");
-  currentStatus="true";
+  light(true);
+  //Serial.println("pin 5 true");
+  certain=true;
   server.send(200, "application/json", "{\"status\": "+currentStatus+"}");
 }
 void handleRoot5false() {
   digitalWrite(5, false);
-  digitalWrite(LED_BUILTIN, false);
-  Serial.println("pin 5 false");
-  currentStatus="false";
+  light(false);
+  //Serial.println("pin 5 false");
+  certain=false;
   server.send(200, "application/json", "{\"status\": "+currentStatus+"}");
 }
 

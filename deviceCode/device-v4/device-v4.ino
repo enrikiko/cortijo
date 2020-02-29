@@ -6,19 +6,20 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 
-
 const char *ssid1 = "Cuarto2.4G";
 const char *password1 = "Lunohas13steps";
 const char *ssid2 = "WifiSalon";
 const char *password2 = "lunohas13steps";
 String deviceName = "Device_1";
+String currentStatus = "false";
+
 int port = 80;
+
 IPAddress ipDevice(192, 168, 1, 100);
 IPAddress dns(80, 58, 61, 250);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 0, 0, 0);
 boolean certain;
-
 
 ESP8266WiFiMulti WiFiMulti;
 ESP8266WebServer server(port);
@@ -27,6 +28,10 @@ ESP8266WebServer server(port);
 void setup() {
 
   Serial.begin(115200);
+
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, HIGH);
+
 
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid1, password1);
@@ -46,9 +51,7 @@ void setup() {
   Serial.print("IP:");
   Serial.println(ip);
 
-
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(LED_BUILTIN, LOW);
 
   setIp(ip);
 
@@ -59,13 +62,7 @@ void setup() {
   server.on("/"+deviceName+"/status/true", handleRootOn);
   server.on("/"+deviceName+"/status/false", handleRootOff);
   server.on("/"+deviceName+"/status", handleStatus);
-
-//  server.on("/inline", []() {
-//    server.send(200, "text/plain", "this works as well");
-//  });
-
   server.onNotFound(handleNotFound);
-
   server.begin();
   Serial.println("HTTP server started");
 }
@@ -107,10 +104,7 @@ void setIp(String ip){
       Serial.print("http://192.168.1.50:8000/new/"+deviceName+"/true/"+ip+":"+port);
       if (http.begin(client, "http://192.168.1.50:8000/new/"+deviceName+"/true/"+ip+":"+port)) {
         Serial.print("[HTTP] GET CODE: ");
-        // start connection and send HTTP header
         int httpCode = http.GET();
-
-        // httpCode will be negative on error
         if (httpCode > 0) {
           Serial.println(httpCode);
           if (httpCode == 200 ) {
@@ -121,7 +115,6 @@ void setIp(String ip){
         } else {
           Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
         }
-
         http.end();
       } else {
         Serial.printf("[HTTP} Unable to connect\n");
@@ -133,7 +126,7 @@ void setIp(String ip){
 
 void handleStatus() {
   String state;
-  Serial.print(digitalRead(LED_BUILTIN));
+  //Serial.print(digitalRead(LED_BUILTIN));
   if(certain){state="true";}
   else{state="false";};
   server.send(200, "application/json", "{\"status\":" + state + ",\"SSID\":\"" + WiFi.SSID() + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
