@@ -1,3 +1,12 @@
-<p>
-  sensor-info works!
-</p>
+<div class="container-fluid bg-white body center">
+  <div class="row justify-content-md-center m-5">
+        <h2>{{ sensorInfo.name }}</h2>
+        <h3>{{ sensorInfo.type }}</h3>
+        <h4>{{ sensorInfo.ip }}</h4>
+        <h3>{{ sensorInfo.max }}</h3>
+        <h3>{{ sensorInfo.min }}</h3>
+        <ol *ngFor="let device of sensorInfo.devices">
+          <li><h4>{{ device }}</h4></li>
+        </ol>
+  </div>
+</div>
