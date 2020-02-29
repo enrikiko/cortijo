@@ -133,7 +133,7 @@ export class BodyComponent implements OnInit {
         'Authorization': jwt
       })
       const host = (window.location.href.split("/")[2]).split(":")[0]
-      let url = "http://" + host + ":8000/sensor/" + device.name
+      let url = "http://" + host + ":8000/sensor/" + sensor.name
       this.http.delete(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){
