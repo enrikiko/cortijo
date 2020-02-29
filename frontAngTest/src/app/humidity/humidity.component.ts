@@ -10,19 +10,17 @@ import { SocketService } from '../socket.service';
 })
 export class HumidityComponent implements OnInit {
 
-logs: any[]=null;
-sensorList: any[]=null;
+logs:any[]=null;
+sensorList:any[]=null;
 showGraphic=true;
 sensor:string=null;
-subscription: any;
+subscription:any;
 
   constructor( private http: HttpClient, private socketService: SocketService ) { }
 
   ngOnInit() {
     this.getSensor()
     this.subscription = this.socketService.getDataAlert().subscribe( (msg)=>{
-      //console.log(msg)
-
       console.log(1)
       if(this.sensor)
         console.log(2)

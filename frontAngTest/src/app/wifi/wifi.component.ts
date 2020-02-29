@@ -10,9 +10,9 @@ import { SocketService } from '../socket.service';
 })
 export class WifiComponent implements OnInit {
 
- wifis: any[]=["test_wifi","Cuarto2.4G","WifiSalon"];
- wifi: string=null;
- subscription: any;
+ wifis:any[]=["test_wifi","Cuarto2.4G","WifiSalon"];
+ wifi:string=null;
+ subscription:any;
  //wifiData: any[]=null;
 
   constructor( private http: HttpClient, private socketService: SocketService ) { }
