@@ -19,10 +19,7 @@ export class WifiComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.socketService.getWifiAlert().subscribe( (msg)=>{
-      console.log(1)
-      console.log(this.wifi)
-      if(this.wifi!=null){
-        console.log(2)
+      if(this.wifi){
         this.getData(this.wifi)
       }
     })
