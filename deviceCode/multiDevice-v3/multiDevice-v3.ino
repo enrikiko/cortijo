@@ -158,9 +158,6 @@ void setIp(String ip, int pin){
   }
 }
 
-void handleInfo() {
-  server.send(200, "application/json", certain);
-}
 
 //16,5,4,0,2,14,12,13,15
 void handleRoot15true() {

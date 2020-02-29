@@ -140,9 +140,6 @@ void setIp(String ip, int pin){
   }
 }
 
-void handleInfo() {
-  server.send(200, "application/json", certain);
-}
 
 //16,5,4,0,2,14,12,13,15
 void handleRoot13true() {
@@ -155,7 +152,7 @@ void handleRoot13false() {
   digitalWrite(13, false);
   Serial.println("pin 13 false");
   current13Status="false";
-  server.send(200, "application/json", "{\"status\": "+current13Status "}");
+  server.send(200, "application/json", "{\"status\": "+current13Status +"}");
 }
 void handle13Status() {
   server.send(200, "application/json", "{\"status\": "+current13Status + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");

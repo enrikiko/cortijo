@@ -139,6 +139,18 @@ app.get("/all/sensor", async function(req, res) {
     var response = await mySensor.getAllSensor();
     res.status(200).json(response)
 })
+app.delete("/sensor/:name", async function(req, res) {
+    var name = req.params.name;
+    var id = await mySensor.getIdByName(name)
+    if (id){
+      var response = await myDevice.removeSensorByName(name);
+      logs.log(name+" Remove successfully");
+      res.status(200).json("Sensor remove successfully")
+    }else {
+      logs.log(name+" doesn't Exist");
+      res.status(200).json("Sensor doesn't Exist")
+    }
+})
 //
 // JWT verification
 app.get("/jwt", async function(req, res) {
