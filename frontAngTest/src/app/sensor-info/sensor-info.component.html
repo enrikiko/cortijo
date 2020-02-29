@@ -1,21 +1,22 @@
 <div class="container-fluid bg-white body center">
-  <div *ngIf="sensorInfo" class="row justify-content-md-center m-5">
+  <div *ngIf="sensorInfo" class="justify-content-md-center m-5">
         <div>
-          <h2>{{ sensorInfo.name }}</h2>
+          <h2>Name: {{ sensorInfo.name }}</h2>
         </div>
         <div>
-          <h3>{{ sensorInfo.type }}</h3>
+          <h3>Type: {{ sensorInfo.type }}</h3>
         </div>
         <div>
-          <h4>{{ sensorInfo.ip }}</h4>
+          <h4>Ip: {{ sensorInfo.ip }}</h4>
         </div>
-        <div>
-          <h3>{{ sensorInfo.max }}</h3>
+        <div *ngIf="sensorInfo.max">
+          <h3>Max: {{ sensorInfo.max }}</h3>
         </div>
-        <div>
-          <h3>{{ sensorInfo.min }}</h3>
+        <div *ngIf="sensorInfo.min">
+          <h3>Min: {{ sensorInfo.min }}</h3>
         </div>
-        <div>
+        <div  *ngIf="sensorInfo.devices">
+          <h3>List of devices associated: </h3>
           <ol *ngFor="let device of sensorInfo.devices">
             <li><h4>{{ device }}</h4></li>
           </ol>
