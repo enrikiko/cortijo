@@ -157,7 +157,7 @@ app.get("/sensor/:name", async function(req, res) {
     var id = await mySensor.getIdByName(name)
     if (id){
       var response = await mySensor.getSensorByName(name);
-      res.status(200).json(response)
+      res.status(200).json(response[0])
     }else {
       logs.log(name+" doesn't Exist");
       res.status(200).json("Sensor doesn't Exist")
