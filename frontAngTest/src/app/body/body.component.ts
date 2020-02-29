@@ -14,6 +14,7 @@ import { Event } from '../event';
 export class BodyComponent implements OnInit {
 
   devices: any[] = null;
+  sensors: any[] = null;
   lapse: number = null;
   lapse_time: number = 5;
   messages: Message[] = [];
