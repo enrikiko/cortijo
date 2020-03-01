@@ -1,7 +1,7 @@
 <div class="container-fluid center">
   <div  *ngFor="let elem of config">
     <button type="button" class="btn btn-primary m-2">
-      {{ elem.key }} <span class="badge badge-light">{{ elem.value }}</span>
+      {{ elem.key }} <input [(ngModel)]="elem.value">
       <span class="sr-only">{{ elem.key }}</span>
     </button>
   </div>
