@@ -61,9 +61,10 @@ app.get("/config", function(req, res) {
     res.status(200).json(config.getValues())
 })
 //
-app.get("/config/update", function(req, res) {
+app.get("/config/update",async function(req, res) {
     logs.log(req.body)
-    logs.log(req.body.timeout_check)
+    console.log(Object.keys(req.body))
+    await config.safeValues(req.body)
     res.status(200).json(config.getValues())
 })
 //
