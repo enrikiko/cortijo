@@ -62,7 +62,7 @@ app.get("/config", function(req, res) {
 })
 //
 app.get("/config/update", function(req, res) {
-    logs.log(req.query.config)
+    logs.log(req.body)
     res.status(200).json(config.getValues())
 })
 //
