@@ -2,7 +2,7 @@
   <form  *ngFor="let elem of config">
     <div class="form-group">
       <label for="exampleInputEmail1">{{ elem.key }}</label>
-      <input  type="name"  [(ngModel)]="elem.value">
+      <input  type="name"  [(ngModel)]="elem.value" name="elem.key">
     </div>
   </form>
 </div>
