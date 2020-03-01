@@ -8,6 +8,13 @@ const config = yaml.safeLoad(config_file);
 module.exports = {
 
   getValues: () => {return config},
-  get:  (value) => {return config[value]}
+  get:  (value) => {return config[value]},
+  safeValues: (obj) => {
+    fs.writeFile('./config.yaml', yaml.safeDump(obj), (err) => {
+    if (err) {
+        console.log(err);
+    }
+});
+}
 
 }
