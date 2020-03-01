@@ -1,8 +1,8 @@
 <div class="container-fluid center">
-  <div  *ngFor="let elem of config">
-    <button type="button" class="btn btn-primary m-2">
-      {{ elem.key }} <input [(ngModel)]="elem.value">
-      <span class="sr-only">{{ elem.key }}</span>
-    </button>
-  </div>
+  <form  *ngFor="let elem of config">
+    <div class="form-group">
+      <label for="exampleInputEmail1">{{ elem.key }}</label>
+      <input  type="name"  [(ngModel)]="elem.value">
+    </div>
+  </form>
 </div>
