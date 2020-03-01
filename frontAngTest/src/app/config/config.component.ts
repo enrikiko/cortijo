@@ -45,9 +45,7 @@ export class ConfigComponent implements OnInit {
     console.log(this.config);
     var configObject = {}
     this.config.forEach(element => {
-      var elementKey = element.key
-      console.log(elementKey);
-      configObject.elementKey = element.value
+      configObject[element.key] = element.value
     })
     console.log(configObject);
     console.log(Object.keys(configObject));
