@@ -43,6 +43,12 @@ export class ConfigComponent implements OnInit {
   change(event){
     event.preventDefault()
     console.log(this.config);
+    var object = {}
+    this.config.forEach(element => {
+      object.element.key == element.value
+    }
+    console.log(object);
+
 
   }
 
