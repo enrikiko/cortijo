@@ -3,7 +3,7 @@
     <div class="form-group">
       <label for="exampleInputEmail1">{{ elem.key }}</label>
       <input  type="name"  [(ngModel)]="elem.value" name="elem.key">
-      <div *ngIg="elem.key === LOG">
+      <div *ngIf="elem.key === LOG">
         <select class="form-control" id="exampleFormControlSelect1">
           <option>1</option>
           <option>2</option>
