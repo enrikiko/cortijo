@@ -42,10 +42,7 @@ export class ConfigComponent implements OnInit {
 
   change(event){
     event.preventDefault()
-    const target = event.target
-    console.log(target);
-    const log = target.querySelector('#key').value
-    console.log(log);
+    console.log(this.config);
 
   }
 
