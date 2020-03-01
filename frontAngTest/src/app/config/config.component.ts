@@ -44,7 +44,7 @@ export class ConfigComponent implements OnInit {
     event.preventDefault()
     const target = event.target
     console.log(target);
-    const log = target.querySelector('#log').value
+    const log = target.querySelector('#ng-reflect-model').value
     console.log(log);
 
   }
