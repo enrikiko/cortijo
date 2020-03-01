@@ -1,6 +1,6 @@
 <div class="container-fluid center">
-  <form  *ngFor="let elem of config">
-    <div (submit)="change($event)" class="form-group">
+  <form (submit)="change($event)" class="form-group">
+    <div *ngFor="let elem of config">
       <label for="exampleInputEmail1">{{ elem.key }}</label>
       <input  type="name"  [(ngModel)]="elem.value" name="elem.key">
     </div>
