@@ -47,8 +47,17 @@ export class ConfigComponent implements OnInit {
     this.config.forEach(element => {
       configObject[element.key] = element.value
     })
-    console.log(configObject);
-    console.log(Object.keys(configObject));
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    const url = "http://" + host + ":8000/config/update"+
+    this.http.get(url).set("config", configObject).subscribe( data =>
+    {
+      if(data!=null){
+        console.log(data)
+      }
+      else {
+       console.log('no response')
+      }
+    })
 
 
   }

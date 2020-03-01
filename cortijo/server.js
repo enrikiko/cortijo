@@ -61,6 +61,11 @@ app.get("/config", function(req, res) {
     res.status(200).json(config.getValues())
 })
 //
+app.get("/config/update", function(req, res) {
+    log(req.query.config)
+    res.status(200).json(config.getValues())
+})
+//
 //favicon.ico
 app.get("/favicon.ico", async function(req, res) {
     res.status(200).send(fs.readFileSync('favicon.ico'))
