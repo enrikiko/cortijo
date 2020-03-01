@@ -63,6 +63,7 @@ app.get("/config", function(req, res) {
 //
 app.get("/config/update", function(req, res) {
     logs.log(req.body)
+    logs.log(req.body.timeout_check)
     res.status(200).json(config.getValues())
 })
 //
