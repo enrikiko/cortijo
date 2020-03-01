@@ -1,17 +1,8 @@
 <div class="container-fluid center">
-  <form  *ngFor="let elem of config">
+  <form  *ngFor="let elem of config" (submit)="change($event)">
     <div class="form-group">
       <label for="exampleInputEmail1">{{ elem.key }}</label>
       <input  type="name"  [(ngModel)]="elem.value" name="elem.key">
-      <div *ngIf="elem.key === LOG">
-        <select class="form-control" id="exampleFormControlSelect1">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-      </div>
     </div>
   </form>
 </div>
