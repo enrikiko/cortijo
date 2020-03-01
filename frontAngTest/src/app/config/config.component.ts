@@ -48,8 +48,9 @@ export class ConfigComponent implements OnInit {
       configObject[element.key] = element.value
     })
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    const url = "http://" + host + ":8000/config/update"+
-    this.http.get(url).set("config", configObject).subscribe( data =>
+    const url = "http://" + host + ":8000/config/update"
+    let params = new HttpParams().set("config", configObject);
+    this.http.get(url, {params: params}).subscribe( data =>
     {
       if(data!=null){
         console.log(data)
