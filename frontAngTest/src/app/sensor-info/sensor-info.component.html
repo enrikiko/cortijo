@@ -21,14 +21,14 @@
           </div>
           <div >
             <h3>List of devices associated: </h3>
-            <ul>
+            <ul *ngFor="const device of sensorInfo.devices">
               <li>
                 <div class="row">
                   <div class="col-9">
-                    <input [(ngModel)]="devices" name="devices" class="form-control"type="text">
+                    <input [(ngModel)]="device" name="device" class="form-control"type="text">
                   </div>
                   <div class="col-3">
-                    <button type="button" class="bg-danger" (click)="removeDevice(devices)">Delete</button>
+                    <button type="button" class="bg-danger" (click)="removeDevice(device)">Delete</button>
                   </div>
                 </div>
               </li>
