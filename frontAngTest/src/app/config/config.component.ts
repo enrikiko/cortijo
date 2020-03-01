@@ -44,7 +44,7 @@ export class ConfigComponent implements OnInit {
     event.preventDefault()
     const target = event.target
     console.log(target);
-    const log = target.querySelector('#elem.key').value
+    const log = target.querySelector('#key').value
     console.log(log);
 
   }

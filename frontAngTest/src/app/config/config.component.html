@@ -1,6 +1,6 @@
 <div class="container-fluid center">
   <form  *ngFor="let elem of config" (submit)="change($event)" class="form-signin">
       <label for="exampleInputEmail1">{{ elem.key }}</label>
-      <input  type="name"  [(ngModel)]="elem.value" name="elem.key">
+      <input  type="name"  [(ngModel)]="elem.value" name="key">
   </form>
 </div>
