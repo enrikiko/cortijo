@@ -42,7 +42,7 @@ export class ConfigComponent implements OnInit {
 
   change(event){
     event.preventDefault()
-    console.log(this.config);
+    //console.log(this.config);
     var configObject = {}
     this.config.forEach(element => {
       configObject[element.key] = element.value
@@ -50,7 +50,7 @@ export class ConfigComponent implements OnInit {
     const host = (window.location.href.split("/")[2]).split(":")[0]
     const url = "http://" + host + ":8000/config/update"
     let params = new HttpParams().set("config", configObject);
-    this.http.get(url, JSON.stringify({params: params})).subscribe( data =>
+    this.http.get(url, JSON.stringify({params: configObject})).subscribe( data =>
     {
       if(data!=null){
         console.log(data)
