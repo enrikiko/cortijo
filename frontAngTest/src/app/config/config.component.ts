@@ -48,6 +48,7 @@ export class ConfigComponent implements OnInit {
       object[element.key] == element.value
     })
     console.log(object);
+    console.log(object.log);
 
 
   }
