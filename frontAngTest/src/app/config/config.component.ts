@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 export class ConfigComponent implements OnInit {
 
     config: any[] = null;
+    LOG: string = "log";
 
     constructor(private http: HttpClient) { }
 
