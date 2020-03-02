@@ -12,13 +12,11 @@ module.exports = {
   get:  (value) => {return config[value]},
   safeValues: (obj) => {
     console.log(obj);
-    fs.writeFile('./config.yaml', yaml.safeDump(
-      toYaml.stringify(obj);
-    ), (err) => {
+    fs.writeFile('./config.yaml', yaml.safeDump(toYaml.stringify(obj)), (err) => {
     if (err) {
         console.log(err);
-    }
-});
-}
+      }
+    });
+  }
 
 }
