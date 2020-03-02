@@ -20,7 +20,8 @@
     "js-yaml":"*",
     "delay":"*",
     "express-ws": "4.0.0",
-    "http": "*"
+    "http": "*",
+    "json2yaml":"1.1.0"
   },
   "author": "Enrique Ramos",
   "license": "ISC"
