@@ -62,9 +62,9 @@ app.get("/config", function(req, res) {
 })
 //
 app.get("/config/update",async function(req, res) {
-    logs.log(req.body)
-    console.log(Object.keys(req.body))
-    await config.safeValues(req.body)
+    logs.log(req.body.data)
+    console.log(Object.keys(req.body.data))
+    await config.safeValues(req.body.data)
     res.status(200).json(config.getValues())
 })
 //
