@@ -67,9 +67,9 @@ app.get("/config/update",async function(req, res) {
 })
 //
 //favicon.ico
-app.get("/favicon.ico", async function(req, res) {
-    res.status(200).send(fs.readFileSync('favicon.ico'))
-})
+//app.get("/favicon.ico", async function(req, res) {
+//    res.status(200).send(fs.readFileSync('favicon.ico'))
+//})
 // node
 app.get("/logo", async function(req, res) {
     res.status(200).send(fs.readFileSync('node.png'))
