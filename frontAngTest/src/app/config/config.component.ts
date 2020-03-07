@@ -53,7 +53,7 @@ export class ConfigComponent implements OnInit {
     // const headers = new HttpHeaders.set('Content-Type', 'application/json');
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    this.http.get(url, configObject, {headers: headers}).subscribe( data =>
+    this.http.post(url, configObject, {headers: headers}).subscribe( data =>
     {
       if(data!=null){
         console.log(data)

@@ -61,7 +61,7 @@ app.get("/config", function(req, res) {
     res.status(200).json(config.getValues())
 })
 //
-app.get("/config/update",async function(req, res) {
+app.post("/config/update",async function(req, res) {
     await config.safeValues(req.body)
     res.status(200).json(config.getValues())
 })
