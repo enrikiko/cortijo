@@ -12,7 +12,7 @@ module.exports = {
   get:  (value) => {return config[value]},
   safeValues: (obj) => {
     console.log(obj);
-    console.log(JSON.stringify(obj));
+    console.log(toYaml.stringify(obj));
     fs.writeFile('./config.yaml', yaml.safeDump(toYaml.stringify(obj)), (err) => {
     if (err) {
         console.log(err);
