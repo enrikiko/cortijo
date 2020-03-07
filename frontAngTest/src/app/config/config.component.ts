@@ -10,6 +10,7 @@ export class ConfigComponent implements OnInit {
 
     config: any[] = null;
     LOG: string = "log";
+    check: boolean = false;
 
     constructor(private http: HttpClient) { }
 
@@ -41,22 +42,21 @@ export class ConfigComponent implements OnInit {
   }
 
   change(event){
+    this.check=false
     event.preventDefault()
     //console.log(this.config);
     var configObject = {}
     this.config.forEach(element => {
       configObject[element.key] = element.value
     })
-    console.log(configObject);
     const host = (window.location.href.split("/")[2]).split(":")[0]
     const url = "http://" + host + ":8000/config/update"
-    // const headers = new HttpHeaders.set('Content-Type', 'application/json');
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     this.http.post(url, configObject, {headers: headers}).subscribe( data =>
     {
       if(data!=null){
-        console.log(data)
+        this.check=true
       }
       else {
        console.log('no response')
