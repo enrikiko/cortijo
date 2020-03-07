@@ -11,7 +11,6 @@ function refresh_config() {
   config = yaml.safeLoad(config_file);
 }
 module.exports = {
-
   getValues: () => {return config},
   get:  (value) => {return config[value]},
   safeValues: (obj) => {
