@@ -14,7 +14,7 @@ const timeout = require('./timeout');
 const config = require('./config');
 const mySwitch = require('./switch');
 const cors = require('cors');
-const delay = require('delay');
+//const delay = require('delay');
 const bodyParser = require('body-parser');
 const auth = require('basic-auth');
 const app = express();
@@ -28,8 +28,8 @@ app.options('*', cors());
 app.use(express.urlencoded())
 app.enable('trust proxy')
 const version = config.get("version");
-const REFRESH_DELAY = config.get("refresh_delay")
-const SENSOR_HISTORY = config.get("sensor_history")
+//const REFRESH_DELAY = config.get("refresh_delay")
+//const SENSOR_HISTORY = config.get("sensor_history")
 //
 app.get("/readiness", function(req, res) {res.status(200).send()})
 //
@@ -140,7 +140,6 @@ app.get("/newSensor/:type/:name/:ip", async (req, res) => {
 //
 //Get all device
 app.get("/all/sensor", async function(req, res) {
-    await delay(REFRESH_DELAY)
     var response = await mySensor.getAllSensor();
     res.status(200).json(response)
 })
@@ -194,7 +193,6 @@ app.get("/all/ip", async function(req, res) {
 //
 //Get all device
 app.get("/all/device", async function(req, res) {
-    await delay(REFRESH_DELAY)
     var response = await myDevice.getDevice();
     res.status(200).json(response)
 })
@@ -203,7 +201,7 @@ app.get("/all/device", async function(req, res) {
 //TODO add to documentation
 app.get("/all/temperature/:name",async function(req, res) {
    var name = req.params.name;
-   var time = SENSOR_HISTORY
+   var time = config.get("sensor_history")
    var temperature = await myTemperature.getByName(name, time)
    res.status(200).json(temperature.reverse())
 })
@@ -218,7 +216,7 @@ app.get("/all/temperature/:name/:times",async function(req, res) {
 //Get humidity history
 app.get("/all/humidity/:name",async function(req, res) {
    var name = req.params.name;
-   var time = SENSOR_HISTORY
+   var time = config.get("sensor_history")
    var humidity = await myHumidity.getAll(name, time)
    res.status(200).json(humidity.reverse())
 })
