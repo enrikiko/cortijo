@@ -86,7 +86,7 @@ services:
     - "8400:3000"
     volumes:
     - type: bind
-      source: /media/lenovo/ext_driver/eramos
+      source: /media/lenovo/ExtDriver/eramos
       target: /root/node/eramos
   file:
     container_name: file
@@ -96,7 +96,7 @@ services:
     - "8500:3000"
     volumes:
     - type: bind
-      source: /media/lenovo/ext_driver/eramosFiles
+      source: /media/lenovo/ExtDriver/eramosFiles
       target: /scr/files/
   mock2:
    container_name: mock2
