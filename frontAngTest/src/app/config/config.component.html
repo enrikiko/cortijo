@@ -1,5 +1,5 @@
 <div class="container-fluid center">
-  <h2 *ngIf="check" class="bg-success"> Config saved </h2>
+  <h2 *ngIf="check" class="text-success"> Config saved </h2>
   <form *ngFor="let elem of config" (submit)="change($event)" class="form-signin">
       <label for="exampleInputEmail1">{{ elem.key }}</label>
       <input  type="name"  [(ngModel)]="elem.value" name="elem.key">
