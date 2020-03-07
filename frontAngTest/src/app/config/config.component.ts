@@ -51,7 +51,9 @@ export class ConfigComponent implements OnInit {
     const host = (window.location.href.split("/")[2]).split(":")[0]
     const url = "http://" + host + ":8000/config/update"
     // const headers = new HttpHeaders.set('Content-Type', 'application/json');
-    this.http.get(url, configObject).subscribe( data =>
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    this.http.get(url, configObject, {headers: headers}).subscribe( data =>
     {
       if(data!=null){
         console.log(data)
