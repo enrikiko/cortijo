@@ -14,7 +14,8 @@ module.exports = {
   getValues: () => {return config},
   get:  (value) => {return config[value]},
   safeValues: (obj) => {
-    fs.writeFile('./config.yaml', yaml.safeDump(toYaml.stringify(obj)), (err) => {
+    console.log(toYaml.stringify(obj));
+    fs.writeFile('./config.yaml', yaml.safeDump(toYaml.stringify(obj), "utf8"), (err) => {
     if (err) {
         console.log(err);
       }
