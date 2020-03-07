@@ -11,23 +11,23 @@ const mySwitch = require('./switch');
 const config = require('./config');
 const socket = require('./socket');
 //
-const TIMEOUT_SENSOR = config.get("timeout_sensor");
-const TIMEOUT_CHECK = config.get("timeout_check");
-const TIMES_BEFORE_BLOCK = config.get("times_before_block");
+//const TIMEOUT_SENSOR = config.get("timeout_sensor");
+//const TIMEOUT_CHECK = config.get("timeout_check");
+//const TIMES_BEFORE_BLOCK = config.get("times_before_block");
 //
 function executeTimeoutCheckSensors(){
     setTimeout(function(){
             executeTimeoutCheckSensors()
-            logs.log("Time out sensor executing every " + TIMEOUT_SENSOR + " milliseconds")
+            logs.log("Time out sensor executing every " + parseInt(config.get("timeout_sensor")) + " milliseconds")
             getSensor()
-        }, TIMEOUT_SENSOR);
+        }, parseInt(config.get("timeout_sensor")));
 }
 function executeTimeoutCheckDevices(){
     setTimeout(function(){
             executeTimeoutCheckDevices()
-            logs.log("Time out check executing every " + TIMEOUT_CHECK + " milliseconds")
+            logs.log("Time out check executing every " + parseInt(config.get("timeout_check")) + " milliseconds")
             check()
-        }, TIMEOUT_CHECK);
+        }, parseInt(config.get("timeout_check")));
 }
 //
 async function getSensor(){
@@ -105,7 +105,7 @@ async function analiceData(type,name,data) {
         if ( list[name+"increase"] ) {
           if ( data.humidity <= max ){
             if ( list[name+"last"] >= data.humidity ) {
-              if (list[name+"count"] >= TIMES_BEFORE_BLOCK ) {
+              if (list[name+"count"] >= parseInt(config.get("times_before_block")) ) {
                 console.log("----------------------------------Sensor is block!!!----------------------------------");
               }else {
                 console.log("----------------------------------Alert!!!----------------------------------");

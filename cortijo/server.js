@@ -201,7 +201,7 @@ app.get("/all/device", async function(req, res) {
 //TODO add to documentation
 app.get("/all/temperature/:name",async function(req, res) {
    var name = req.params.name;
-   var time = config.get("sensor_history")
+   var time = parseInt(config.get("sensor_history"))
    var temperature = await myTemperature.getByName(name, time)
    res.status(200).json(temperature.reverse())
 })
@@ -216,7 +216,7 @@ app.get("/all/temperature/:name/:times",async function(req, res) {
 //Get humidity history
 app.get("/all/humidity/:name",async function(req, res) {
    var name = req.params.name;
-   var time = config.get("sensor_history")
+   var time = parseInt(config.get("sensor_history"))
    var humidity = await myHumidity.getAll(name, time)
    res.status(200).json(humidity.reverse())
 })
