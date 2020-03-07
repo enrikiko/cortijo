@@ -15,14 +15,8 @@ module.exports = {
   get:  (value) => {return config[value]},
   safeValues: (obj) => {
     console.log(toYaml.stringify(obj));
-    fs.writeFile('./config.yaml', yaml.safeDump(toYaml.stringify(obj), "utf8"), (err) => {
-    if (err) {
-        console.log(err);
-      }
-    else {
-      refresh_config()
-    }
-    });
+    console.log(yaml.safeDump(obj));
+    fs.writeFileSync('config.yaml', yaml.safeDump(obj));
   }
 
 }
