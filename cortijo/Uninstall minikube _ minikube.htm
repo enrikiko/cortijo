@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/ -->
+<html lang="en" class="no-js"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.59.0">
+
+<meta name="ROBOTS" content="INDEX, FOLLOW">
+
+
+
+<link rel="shortcut icon" href="https://minikube.sigs.k8s.io/favicons/favicon.ico">
+<link rel="apple-touch-icon" href="https://minikube.sigs.k8s.io/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="https://minikube.sigs.k8s.io/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="https://minikube.sigs.k8s.io/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="https://minikube.sigs.k8s.io/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="https://minikube.sigs.k8s.io/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="https://minikube.sigs.k8s.io/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="https://minikube.sigs.k8s.io/favicons/android-96x196.png" sizes="96x196">
+<link rel="icon" type="image/png" href="https://minikube.sigs.k8s.io/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="https://minikube.sigs.k8s.io/favicons/android-192x192.png" sizes="192x192">
+
+<title>Uninstall minikube | minikube</title><meta property="og:title" content="Uninstall minikube">
+<meta property="og:description" content="Reference on uninstalling minikube from your system completely.
+">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/">
+<meta property="article:published_time" content="2019-08-18T00:00:00+00:00">
+<meta property="article:modified_time" content="2019-08-18T02:58:04+05:30"><meta property="og:site_name" content="minikube">
+<meta itemprop="name" content="Uninstall minikube">
+<meta itemprop="description" content="Reference on uninstalling minikube from your system completely.
+">
+
+
+<meta itemprop="datePublished" content="2019-08-18T00:00:00+00:00">
+<meta itemprop="dateModified" content="2019-08-18T02:58:04+05:30">
+<meta itemprop="wordCount" content="579">
+
+
+
+<meta itemprop="keywords" content="">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Uninstall minikube">
+<meta name="twitter:description" content="Reference on uninstalling minikube from your system completely.
+">
+
+
+
+
+
+
+
+<link rel="preload" href="./Uninstall minikube _ minikube_files/main.min.c007115ed1afd0323ceb92dacef1b9080ece69332d71dfcd518e327eed35e09e.css" as="style">
+<link href="./Uninstall minikube _ minikube_files/main.min.c007115ed1afd0323ceb92dacef1b9080ece69332d71dfcd518e327eed35e09e.css" rel="stylesheet" integrity="">
+
+<script src="./Uninstall minikube _ minikube_files/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<link href="./Uninstall minikube _ minikube_files/tabs.css" rel="stylesheet">
+<script src="./Uninstall minikube _ minikube_files/tabs.js"></script>
+
+
+
+    <title>Uninstall minikube | minikube</title>
+  </head>
+  <body class="td-page">
+    <header>
+      
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
+        <a class="navbar-brand" href="https://minikube.sigs.k8s.io/">
+		<span class="navbar-logo"><svg width="702" height="683" viewBox="0 0 702 683" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>minikube</title><desc>Created with Sketch.</desc><defs><polygon id="path-1" points="701.060294 684.263047 701.060294 1.59247059 0 1.59247059 0 684.263047"></polygon></defs><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="minikube" transform="translate(0.000000, -4.000000)"><g id="border" transform="translate(0.000000, 2.554588)"><mask id="mask-2" fill="#fff"><use xlink:href="#path-1"></use></mask><g id="Clip-2"></g><path d="M351.210679 1.59081176C341.693179 1.59081176 332.171532 3.85925294 323.106062 7.93581176L93.7363853 117.637959C75.6012971 126.247253 62.9112971 142.1139 58.3785618 161.605076L1.71315 407.749606C-2.81958529 427.240782 1.71315 447.188135 14.4072971 463.054782L173.061326 660.239135C185.303444 675.653753 203.886415 684.263047 223.377591 684.263047H477.683532C497.174709 684.263047 515.757679 675.653753 527.999797 660.239135L686.653826 463.054782C699.347974 447.640165 703.880709 427.240782 699.347974 407.749606L642.682562 161.605076C638.149826 142.1139 625.459826 126.247253 607.324738 117.637959L378.863268 7.93581176C370.249826 3.85925294 360.728179 1.59081176 351.210679 1.59081176m0 21.30344114C357.555679 22.8942529 363.904826 24.2544882 369.797797 26.9749588L599.167474 136.220929C610.953415 142.1139 620.018885 152.995782 622.739356 165.685782L679.400621 411.830312C682.573121 424.976488 679.400621 438.574694 670.787179 449.0004L512.13315 646.1889C503.971738 656.614606 491.281738 662.507576 478.135562 662.507576H223.833768C210.687591 662.507576 197.993444 656.614606 189.836179 646.1889L31.1780029 449.0004C23.0207382 438.574694 19.8482382 424.976488 22.5645618 411.830312l56.6654117-246.14453C82.4024735 152.539606 91.0159147 141.661871 102.801856 136.220929L332.171532 26.5229294C338.064503 24.2544882 344.865679 22.8942529 351.210679 22.8942529" id="Fill-1" fill="#326de6" mask="url(#mask-2)"></path></g><path d="M218.498162 607.501403C226.630544 617.711462 238.827044 623.347315 251.558515 623.347315L451.127426 622.994815C463.863044 622.994815 475.930985 617.006462 484.063368 607.148903L605.721485 453.977285C609.234044 449.195726 608.844221 439.819226 608.844221 431.919079V218.026226L347.455103 368.527138V368.522991L86.3148088 218.167226V431.919079C86.3148088 439.947785 89.1513971 447.777432 94.3683971 454.329785L218.498162 607.501403z" id="kube-bottom" fill="#1fbfcf"></path><polygon id="kube-top" fill="#c9e9ec" points="347.455103 368.526309 608.844221 218.029544 347.210426 67.6198676 86.3148088 218.158103"></polygon><path d="M409.813182 484.797397C402.319447 489.566515 392.096947 488.206279 385.963447 480.708397 383.918947 478.663897 383.238829 475.939279 382.558712 473.214662L376.425212 362.143985C423.440418 367.597368 466.370771 388.718338 499.078624 421.426191L409.813182 484.797397zM317.143006 470.485897C316.458741 480.028279 308.965006 488.206279 298.742506 488.206279 296.017888 488.206279 292.613153 487.522015 290.568653 486.161779L199.938829 421.426191C227.877565 393.487456 262.629918 374.410985 301.471271 365.552868 308.965006 364.188485 315.778624 362.824103 323.276506 361.463868L317.143006 470.485897zm254.845059-45.650823L578.801682 418.701574V417.337191C578.801682 413.932456 579.4818 410.523574 582.210565 407.118838 590.384418 399.620956 600.606918 393.487456 612.869771 385.993721 614.914271 384.629338 616.958771 383.949221 619.003271 382.584838 623.092271 380.544485 626.501153 378.499985 630.590153 375.771221 631.270271 375.091103 632.630506 374.410985 633.994888 373.046603 634.675006 372.366485 635.359271 372.366485 635.359271 371.682221 644.897506 363.508368 646.942006 349.881132 640.128388 341.023015 636.719506 336.24975 630.590153 333.525132 624.456653 333.525132 619.003271 333.525132 614.234153 335.569632 609.465035 338.978515L608.100653 340.33875C606.740418 341.023015 606.056153 342.38325 604.695918 343.063368 601.287035 346.47225 598.562418 349.196868 595.8378 352.60575 594.473418 353.965985 593.113182 356.010485 591.068682 357.374868 581.5263 367.597368 572.668182 375.771221 563.810065 381.904721 561.765565 383.269103 559.721065 383.949221 557.676565 383.949221 556.316329 383.949221 554.951947 383.949221 553.587565 383.269103H552.227329L544.049329 388.718338C535.191212 379.180103 525.652976 371.002103 516.110594 362.824103 475.228888 330.800515 425.484918 311.039779 373.700594 306.270662L373.016329 297.412544 371.656094 296.048162C369.611594 294.003662 366.882829 291.959162 366.202712 287.190044 365.522594 276.287426 366.882829 264.020426 368.247212 250.393191V249.713074C368.247212 247.668574 368.927329 244.943956 369.611594 242.899456 370.291712 238.810456 370.971829 234.721456 371.656094 229.952338V225.863338 223.818838C371.656094 211.555985 362.113712 201.333485 350.530976 201.333485 345.081741 201.333485 339.628359 204.058103 335.539359 208.147103 331.450359 212.236103 329.405859 217.685338 329.405859 223.818838V225.183221 229.272221C329.405859 234.041338 330.090124 238.130338 331.450359 242.215191 332.134624 244.259691 332.134624 246.304191 332.814741 249.032956V249.713074C334.179124 263.340309 336.219476 275.607309 334.859241 286.509926 334.179124 291.279044 331.450359 293.323544 329.405859 295.368044 328.725741 296.048162 328.725741 296.048162 328.045624 296.728279L327.361359 305.586397C315.098506 306.950779 302.831506 308.315162 290.568653 311.039779 238.100065 322.622515 191.764976 349.196868 155.648241 387.358103L148.834624 382.584838H147.470241C146.110006 382.584838 144.745624 383.269103 143.385388 383.269103 141.340888 383.269103 139.296388 382.584838 137.251888 381.224603 128.393771 375.091103 119.535653 366.232985 109.993271 356.010485 108.633035 354.65025 107.268653 352.60575 105.224153 351.241368 102.499535 347.836632 99.7749176 345.107868 96.3660353 341.703132 95.6859176 341.023015 94.3215353 340.33875 92.9613 338.978515 92.2770353 338.29425 91.5969176 338.29425 91.5969176 337.614132 87.5079176 334.20525 82.0586824 332.16075 76.6053 332.16075 70.4718 332.16075 64.3424471 334.889515 60.9335647 339.658632 54.1199471 348.51675 56.1644471 362.143985 65.7026824 370.321985 66.3869471 370.321985 66.3869471 371.002103 67.0670647 371.002103 68.4273 371.682221 69.1115647 373.046603 70.4718 373.726721 74.5608 376.455485 77.9696824 378.499985 82.0586824 380.544485 84.1031824 381.224603 86.1476824 382.584838 88.1880353 383.949221 100.455035 391.447103 110.677535 397.576456 118.851388 405.074338 122.260271 408.479074 122.260271 411.887956 122.260271 415.292691V416.657074L129.073888 422.790574C127.709506 424.835074 126.349271 426.195309 125.669153 428.239809 117.677771 440.867603 110.893182 454.034515 105.232447 467.578809L144.077947 515.510515C149.332271 496.960721 157.025065 479.041279 167.230976 462.312044L248.318418 534.541368C255.8163 540.670721 256.496418 552.257603 250.362918 559.751338 248.318418 562.475956 245.5938 564.520456 242.189065 565.204721L195.364624 578.798779 218.629624 607.500574C226.762006 617.714779 238.954359 623.346485 251.689976 623.346485L451.258888 622.993985C463.990359 622.993985 476.0583 617.009779 484.194829 607.148074L506.037388 579.644779 458.192771 565.884838C448.654535 563.160221 443.201153 553.617838 445.245653 544.079603 445.925771 541.354985 447.290153 538.630368 449.334653 536.585868L531.786476 462.312044C541.822359 478.846368 549.805447 497.433485 555.304447 517.617221L594.925447 467.736397C588.530682 452.811132 580.858624 438.478897 571.988065 424.835074z" id="wheel" fill="#326de6"></path></g></g></svg></span><span class="text-uppercase font-weight-bold">minikube</span>
+	</a>
+	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
+		<ul class="navbar-nav mt-2 mt-lg-0">
+			
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link active" href="https://minikube.sigs.k8s.io/docs/"><span class="active">Documentation</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="https://minikube.sigs.k8s.io/blog/"><span>News</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="https://minikube.sigs.k8s.io/community/"><span>Community</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				<a class="nav-link" href="https://github.com/kubernetes/minikube" target="_blank"><span>GitHub</span></a>
+			</li>
+			
+			
+			
+		</ul>
+	</div>
+	<div class="navbar-nav d-none d-lg-block">
+ <input type="search" class="form-control td-search-input" placeholder=" Search this site…" aria-label="Search this site…" autocomplete="off">
+</div>
+</nav>
+
+    </header>
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <div class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            
+
+
+
+
+<div id="td-sidebar-menu" class="td-sidebar__inner">
+  
+  <form class="td-sidebar__search d-flex align-items-center">
+    
+ <input type="search" class="form-control td-search-input" placeholder=" Search this site…" aria-label="Search this site…" autocomplete="off">
+
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  
+  <nav class="collapse td-sidebar-nav pt-2 pl-4" id="td-section-nav">
+    
+    
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/" class="align-left pl-0 pr-2 td-sidebar-link td-sidebar-link__section">Documentation</a>
+  </li>
+  <ul>
+    <li class="collapse show" id="docs">
+      
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/overview/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Overview</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-overview">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/start/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Getting Started</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-start">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-start-linux" href="https://minikube.sigs.k8s.io/docs/start/linux/">Linux</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-start-macos" href="https://minikube.sigs.k8s.io/docs/start/macos/">macOS</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-start-windows" href="https://minikube.sigs.k8s.io/docs/start/windows/">Windows</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/examples/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Examples</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-examples">
+      
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/tasks/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Core Tasks</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-tasks">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-building" href="https://minikube.sigs.k8s.io/docs/tasks/building/">Building images within minikube</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-caching" href="https://minikube.sigs.k8s.io/docs/tasks/caching/">Caching images</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-dashboard" href="https://minikube.sigs.k8s.io/docs/tasks/dashboard/">Dashboard</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-accessing-host-resources" href="https://minikube.sigs.k8s.io/docs/tasks/accessing-host-resources/">Accessing host resources</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-addons" href="https://minikube.sigs.k8s.io/docs/tasks/addons/">Addons</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-mount" href="https://minikube.sigs.k8s.io/docs/tasks/mount/">Filesystem mounts</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-podman-service" href="https://minikube.sigs.k8s.io/docs/tasks/podman_service/">Using the Podman service</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-sync" href="https://minikube.sigs.k8s.io/docs/tasks/sync/">File Sync</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-loadbalancer" href="https://minikube.sigs.k8s.io/docs/tasks/loadbalancer/">LoadBalancer access</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-nodeport" href="https://minikube.sigs.k8s.io/docs/tasks/nodeport/">NodePort access</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-docker-daemon" href="https://minikube.sigs.k8s.io/docs/tasks/docker_daemon/">Using the Docker daemon</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-docker-registry" href="https://minikube.sigs.k8s.io/docs/tasks/docker_registry/">Using the Docker registry</a>
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/tasks/registry/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Working with Registries</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-tasks-registry">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-registry-private" href="https://minikube.sigs.k8s.io/docs/tasks/registry/private/">Private</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-registry-insecure" href="https://minikube.sigs.k8s.io/docs/tasks/registry/insecure/">Insecure</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tasks-debug" href="https://minikube.sigs.k8s.io/docs/tasks/debug/">Debugging</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/tutorials/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Tutorials</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-tutorials">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tutorials-using-psp" href="https://minikube.sigs.k8s.io/docs/tutorials/using_psp/">Using Minikube with Pod Security Policies</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tutorials-audit-policy" href="https://minikube.sigs.k8s.io/docs/tutorials/audit-policy/">Audit Policy</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tutorials-nginx-tcp-udp-ingress" href="https://minikube.sigs.k8s.io/docs/tutorials/nginx_tcp_udp_ingress/">Ingress nginx for TCP and UDP services</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tutorials-untrusted-root-certificate" href="https://minikube.sigs.k8s.io/docs/tutorials/untrusted_root_certificate/">Untrusted Root Certificate</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tutorials-continuous-integration" href="https://minikube.sigs.k8s.io/docs/tutorials/continuous_integration/">Continuous Integration</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tutorials-nvidia-gpu" href="https://minikube.sigs.k8s.io/docs/tutorials/nvidia_gpu/">NVIDIA GPU support</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-tutorials-openid-connect-auth" href="https://minikube.sigs.k8s.io/docs/tutorials/openid_connect_auth/">OpenID Connect Authentication</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/concepts/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Concepts</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-concepts">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-concepts-principles" href="https://minikube.sigs.k8s.io/docs/concepts/principles/">Principles</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/reference/" class="align-left pl-0 pr-2 active td-sidebar-link td-sidebar-link__section">Reference</a>
+  </li>
+  <ul>
+    <li class="collapse show" id="docs-reference">
+      
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/reference/commands/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Commands</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-reference-commands">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-pause" href="https://minikube.sigs.k8s.io/docs/reference/commands/pause/">pause</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-unpause" href="https://minikube.sigs.k8s.io/docs/reference/commands/unpause/">unpause</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-addons" href="https://minikube.sigs.k8s.io/docs/reference/commands/addons/">addons</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-cache" href="https://minikube.sigs.k8s.io/docs/reference/commands/cache/">cache</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-completion" href="https://minikube.sigs.k8s.io/docs/reference/commands/completion/">completion</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-config" href="https://minikube.sigs.k8s.io/docs/reference/commands/config/">config</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-dashboard" href="https://minikube.sigs.k8s.io/docs/reference/commands/dashboard/">dashboard</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-delete" href="https://minikube.sigs.k8s.io/docs/reference/commands/delete/">delete</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-docker-env" href="https://minikube.sigs.k8s.io/docs/reference/commands/docker-env/">docker-env</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-ip" href="https://minikube.sigs.k8s.io/docs/reference/commands/ip/">ip</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-kubectl" href="https://minikube.sigs.k8s.io/docs/reference/commands/kubectl/">kubectl</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-logs" href="https://minikube.sigs.k8s.io/docs/reference/commands/logs/">logs</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-mount" href="https://minikube.sigs.k8s.io/docs/reference/commands/mount/">mount</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-profile" href="https://minikube.sigs.k8s.io/docs/reference/commands/profile/">profile</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-service" href="https://minikube.sigs.k8s.io/docs/reference/commands/service/">service</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-ssh" href="https://minikube.sigs.k8s.io/docs/reference/commands/ssh/">ssh</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-ssh-key" href="https://minikube.sigs.k8s.io/docs/reference/commands/ssh-key/">sshs-key</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-start" href="https://minikube.sigs.k8s.io/docs/reference/commands/start/">start</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-status" href="https://minikube.sigs.k8s.io/docs/reference/commands/status/">status</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-stop" href="https://minikube.sigs.k8s.io/docs/reference/commands/stop/">stop</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-tunnel" href="https://minikube.sigs.k8s.io/docs/reference/commands/tunnel/">tunnel</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-update-check" href="https://minikube.sigs.k8s.io/docs/reference/commands/update-check/">update-check</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-update-context" href="https://minikube.sigs.k8s.io/docs/reference/commands/update-context/">update-context</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-commands-version" href="https://minikube.sigs.k8s.io/docs/reference/commands/version/"></a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/reference/configuration/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Configuration</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-reference-configuration">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-configuration-minikube" href="https://minikube.sigs.k8s.io/docs/reference/configuration/minikube/">minikube</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-configuration-kubernetes" href="https://minikube.sigs.k8s.io/docs/reference/configuration/kubernetes/">Kubernetes</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page  active" id="m-docs-reference-uninstalling-minikube" href="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/">Uninstall minikube</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-runtimes" href="https://minikube.sigs.k8s.io/docs/reference/runtimes/">Container Runtimes</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-disk-cache" href="https://minikube.sigs.k8s.io/docs/reference/disk_cache/">Disk cache</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-environment-variables" href="https://minikube.sigs.k8s.io/docs/reference/environment_variables/">Environment Variables</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-persistent-volumes" href="https://minikube.sigs.k8s.io/docs/reference/persistent_volumes/">Persistent Volumes</a>
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/reference/networking/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Networking</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-reference-networking">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-networking-dns" href="https://minikube.sigs.k8s.io/docs/reference/networking/dns/">DNS Domain</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-networking-vpn" href="https://minikube.sigs.k8s.io/docs/reference/networking/vpn/">Host VPN</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-networking-proxy" href="https://minikube.sigs.k8s.io/docs/reference/networking/proxy/">HTTP Proxies</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/reference/drivers/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Drivers</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-reference-drivers">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-drivers-hyperkit" href="https://minikube.sigs.k8s.io/docs/reference/drivers/hyperkit/">hyperkit</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-drivers-hyperv" href="https://minikube.sigs.k8s.io/docs/reference/drivers/hyperv/">hyperv</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-drivers-kvm2" href="https://minikube.sigs.k8s.io/docs/reference/drivers/kvm2/">kvm2</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-drivers-docker" href="https://minikube.sigs.k8s.io/docs/reference/drivers/docker/">docker</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-drivers-none" href="https://minikube.sigs.k8s.io/docs/reference/drivers/none/">none</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-drivers-parallels" href="https://minikube.sigs.k8s.io/docs/reference/drivers/parallels/">parallels</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-drivers-virtualbox" href="https://minikube.sigs.k8s.io/docs/reference/drivers/virtualbox/">virtualbox</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-reference-drivers-vmware" href="https://minikube.sigs.k8s.io/docs/reference/drivers/vmware/">vmware</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+      
+      
+
+
+
+
+
+
+<ul class="td-sidebar-nav__section pr-md-3">
+  <li class="td-sidebar-nav__section-title">
+    <a href="https://minikube.sigs.k8s.io/docs/contributing/" class="align-left pl-0 pr-2 collapsed td-sidebar-link td-sidebar-link__section">Contributing</a>
+  </li>
+  <ul>
+    <li class="collapse " id="docs-contributing">
+      
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-contributing-guide" href="https://minikube.sigs.k8s.io/docs/contributing/guide/">Guide</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-contributing-building" href="https://minikube.sigs.k8s.io/docs/contributing/building/">Building</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-contributing-documentation" href="https://minikube.sigs.k8s.io/docs/contributing/documentation/">Documentation</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-contributing-translations" href="https://minikube.sigs.k8s.io/docs/contributing/translations/">Translations</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-contributing-testing" href="https://minikube.sigs.k8s.io/docs/contributing/testing/">Testing</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-contributing-iso" href="https://minikube.sigs.k8s.io/docs/contributing/iso/">ISO</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-contributing-addons" href="https://minikube.sigs.k8s.io/docs/contributing/addons/">Addons</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-contributing-drivers" href="https://minikube.sigs.k8s.io/docs/contributing/drivers/">Drivers</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-contributing-roadmap" href="https://minikube.sigs.k8s.io/docs/contributing/roadmap/">Roadmap</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-contributing-releasing" href="https://minikube.sigs.k8s.io/docs/contributing/releasing/">Releasing</a>
+      
+      
+      
+      
+      
+      <a class="td-sidebar-link td-sidebar-link__page " id="m-docs-contributing-gvisor" href="https://minikube.sigs.k8s.io/docs/contributing/gvisor/">gVisor</a>
+      
+      
+    </li>
+  </ul>
+</ul>
+
+      
+      
+    </li>
+  </ul>
+</ul>
+
+  </nav>
+</div>
+
+
+
+
+          </div>
+          <div class="d-none d-xl-block col-xl-2 td-toc d-print-none">
+            
+
+
+
+
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+
+
+
+
+
+<a href="https://github.com/kubernetes/minikube/edit/master/site/content/en/docs/Reference/uninstalling_minikube.md" target="_blank"><i class="fa fa-edit fa-fw"></i> Edit this page</a>
+<a href="https://github.com/kubernetes/minikube/issues/new?title=Uninstall%20minikube" target="_blank"><i class="fab fa-github fa-fw"></i> Create documentation issue</a>
+
+</div>
+
+
+
+
+
+
+<nav id="TableOfContents">
+<ul>
+<li><a href="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/#uninstall-minikube-on-windows">Uninstall minikube on Windows</a>
+<ul>
+<li><a href="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/#chocolatey">Chocolatey</a></li>
+<li><a href="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/#windows-installer">Windows Installer</a></li>
+<li><a href="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/#binary-direct">Binary/Direct</a></li>
+</ul></li>
+<li><a href="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/#uninstall-minikube-on-linux">Uninstall minikube on Linux</a>
+<ul>
+<li><a href="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/#binary-direct-1">Binary/Direct</a></li>
+<li><a href="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/#debian-ubuntu-deb">Debian/Ubuntu (Deb)</a></li>
+<li><a href="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/#fedora-red-hat-rpm">Fedora/Red Hat (RPM)</a></li>
+</ul></li>
+<li><a href="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/#uninstall-minikube-on-macos">Uninstall minikube on MacOS</a>
+<ul>
+<li><a href="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/#binary-direct-2">Binary/Direct</a></li>
+<li><a href="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/#brew">Brew</a></li>
+</ul></li>
+</ul>
+</nav>
+
+
+
+          </div>
+          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+            <nav aria-label="breadcrumb" class="d-none d-md-block d-print-none">
+	<ol class="breadcrumb spb-1">
+		
+
+
+
+
+
+
+
+
+
+
+<li class="breadcrumb-item">
+	<a href="https://minikube.sigs.k8s.io/docs/">Documentation</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item">
+	<a href="https://minikube.sigs.k8s.io/docs/reference/">Reference</a>
+</li>
+
+
+
+
+<li class="breadcrumb-item active" aria-current="page">
+	<a href="https://minikube.sigs.k8s.io/docs/reference/uninstalling_minikube/">Uninstall minikube</a>
+</li>
+
+	</ol>
+</nav>
+
+            
+<div class="td-content">
+	<h1>Uninstall minikube</h1>
+	<div class="lead">Reference on uninstalling minikube from your system completely.</div>
+	
+
+<h1 id="uninstall-minikube-on-windows">Uninstall minikube on Windows</h1>
+
+<p>Following are the ways you can install minikube on Windows. Depending on how you installed minikube, please follow the guide appropriately.</p>
+
+<h2 id="chocolatey">Chocolatey</h2>
+
+<p>If you have installed minikube using Chocolatey package manager, follow the below steps to completely uninstall minikube from your system -
+- Open a command prompt with Administrator privileges.
+- We need to delete the cluster which was created by minikube - <code>minikube delete</code>
+- Run, <code>choco uninstall minikube</code> to remove the minikube package from your system.
+- Now, navigate to your User Folder - <code>C:\Users\YOUR_USER_NAME</code> (You can also find the path by expanding the environment variable <code>%USERPROFILE%</code>)
+- In this folder, delete the <code>.minikube</code> folder.</p>
+
+<h2 id="windows-installer">Windows Installer</h2>
+
+<p>If you have downloaded and installed minikube using the Windows Installer provided in our Releases, kindly follow the below steps -
+- Open a command prompt with Administrator privileges.
+- We need to delete the cluster which was created by minikube - <code>minikube delete</code>
+- Now, open the Run dialog box (<strong>Win+R</strong>), type in <code>appwiz.cpl</code> and hit <strong>Enter</strong> key.
+- In there, find an entry for the Minikube installer, right click on it &amp; click on <strong>Uninstall</strong>.
+- Follow the onscreen prompts to uninstall minikube from your system.
+- Now, navigate to your User Folder - <code>C:\Users\YOUR_USER_NAME</code> (You can also find the path by expanding the environment variable <code>%USERPROFILE%</code>)
+- In this folder, delete the <code>.minikube</code> folder.</p>
+
+<h2 id="binary-direct">Binary/Direct</h2>
+
+<p>If you have downloaded just the binary and are using it to run minikube, please follow the below steps -
+- Open a command prompt with Administrator privileges.
+- We need to delete the cluster which was created by minikube - <code>minikube delete</code>
+- Delete the minikube binary.
+- Now, navigate to your User Folder - <code>C:\Users\YOUR_USER_NAME</code> (You can also find the path by expanding the environment variable <code>%USERPROFILE%</code>)
+- In this folder, delete the <code>.minikube</code> folder.</p>
+
+<h1 id="uninstall-minikube-on-linux">Uninstall minikube on Linux</h1>
+
+<h2 id="binary-direct-1">Binary/Direct</h2>
+
+<p>If you have installed minikube using the direct download method, follow the below steps to uninstall minikube completely from your system -
+- In the shell, type in <code>minikube delete</code> to delete the minikube cluster.
+- Remove the binary using <code>rm /usr/local/bin/minikube</code>
+- Remove the directory containing the minikube configuration <code>rm -rf ~/.minikube</code></p>
+
+<h2 id="debian-ubuntu-deb">Debian/Ubuntu (Deb)</h2>
+
+<p>If you have installed minikube using the (deb) file, follow the below instructions -
+- In the shell, type in <code>minikube delete</code> to delete the minikube cluster.
+- Uninstall the minikube package completely - <code>sudo dpkg -P minikube</code>
+- Remove the minikube configuration directory - <code>rm -rf ~/.minikube</code></p>
+
+<h2 id="fedora-red-hat-rpm">Fedora/Red Hat (RPM)</h2>
+
+<p>If you have installed minikube using RPM, follow the below steps -
+- In the shell, type in <code>minikube delete</code> to delete the minikube cluster.
+- Uninstall the minikube package - <code>sudo rpm -e minikube</code>
+- Remove the minikube configuration directory - <code>rm -rf ~/.minikube</code></p>
+
+<h1 id="uninstall-minikube-on-macos">Uninstall minikube on MacOS</h1>
+
+<h2 id="binary-direct-2">Binary/Direct</h2>
+
+<p>If you have installed minikube using the direct download method, follow the below steps to uninstall minikube completely from your system -
+- In the shell, type in <code>minikube delete</code> to delete the minikube cluster.
+- Remove the binary using <code>rm /usr/local/bin/minikube</code>
+- Remove the directory containing the minikube configuration <code>rm -rf ~/.minikube</code></p>
+
+<h2 id="brew">Brew</h2>
+
+<p>If you have installed minikube using the direct download method, follow the below steps to uninstall minikube completely from your system -
+- In the shell, type in <code>minikube delete</code> to delete the minikube cluster.
+- Uninstall the minikube package using <code>brew uninstall minikube</code>
+- Remove the directory containing the minikube configuration <code>rm -rf ~/.minikube</code></p>
+
+	
+	
+	<div class="text-muted mt-5 pt-3 border-top">Last modified August 18, 2019: <a href="https://github.com/kubernetes/minikube/commit/7d8b4f7569515dd9a90a4d2b1c84cf29b8cfa069">Added uninstallation procedures for minikube (7d8b4f756)</a>
+</div>
+</div>
+
+
+          </main>
+        </div>
+      </div>
+      
+<footer class="bg-dark py-5 row d-print-none">
+  <div class="container-fluid mx-sm-5">
+    <div class="row">
+      <div class="col-6 col-sm-4 text-xs-center order-sm-2">
+        
+        
+        
+<ul class="list-inline mb-0">
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="" aria-label="Slack" data-original-title="Slack">
+    <a class="text-white" target="_blank" href="https://kubernetes.slack.com/messages/C1F5CT6Q1">
+      <i class="fab fa-slack"></i>
+    </a>
+  </li>
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="" aria-label="minikube-users mailing list" data-original-title="minikube-users mailing list">
+    <a class="text-white" target="_blank" href="https://groups.google.com/forum/#!forum/minikube-users">
+      <i class="fas fa-envelope"></i>
+    </a>
+  </li>
+  
+</ul>
+
+        
+        
+      </div>
+      <div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+        
+        
+        
+<ul class="list-inline mb-0">
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="" aria-label="GitHub" data-original-title="GitHub">
+    <a class="text-white" target="_blank" href="https://github.com/kubernetes/minikube">
+      <i class="fab fa-github"></i>
+    </a>
+  </li>
+  
+  <li class="list-inline-item mx-2 h3" data-toggle="tooltip" data-placement="top" title="" aria-label="minikube-dev mailing list" data-original-title="minikube-dev mailing list">
+    <a class="text-white" target="_blank" href="https://groups.google.com/forum/#!forum/minikube-dev">
+      <i class="fa fa-envelope"></i>
+    </a>
+  </li>
+  
+</ul>
+
+        
+        
+      </div>
+      <div class="col-12 col-sm-4 text-center py-2 order-sm-2">
+        <small class="text-white">© 2020 The Kubernetes Authors --  All Rights Reserved</small>
+        
+	
+		
+	
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    </div>
+    
+<script src="./Uninstall minikube _ minikube_files/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="./Uninstall minikube _ minikube_files/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+
+
+
+<script src="./Uninstall minikube _ minikube_files/main.min.3219defa809cd01f1113b08052dce4356abeca5601bac967393c779036102e3c.js" integrity="sha256-Mhne+oCc0B8RE7CAUtzkNWq+ylYBuslnOTx3kDYQLjw="></script>
+
+
+<script language="javascript">initTabs();</script>
+
+
+
+  
+</body></html>
