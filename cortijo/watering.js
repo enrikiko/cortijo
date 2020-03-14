@@ -1,13 +1,9 @@
 const mongoose = require('mongoose');
 const logs = require('./logs');
-const fs = require('fs');
-const yaml = require('js-yaml');
-let conf_map_file = fs.readFileSync('conf_map.yaml');
-let conf_map = yaml.safeLoad(conf_map_file);
-let connString = conf_map.db_url;
-//let connString = 'mongodb://192.168.1.50:27017/cortijo';
+const conf_map = require('./url');
+const mongo_db = conf_map.get("db_url");
 const db = mongoose.connection;
-mongoose.connect(connString, { useNewUrlParser: true });
+mongoose.connect(mongo_db, { useNewUrlParser: true });
 
 db.on('error',function(){
 logs.log("Error al conectarse a Mongo Watering");

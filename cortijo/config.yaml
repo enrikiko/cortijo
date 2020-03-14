@@ -3,9 +3,9 @@
   timeout_check:  300000
   timeout_sensor: 300000
   times_before_block: 10
-  get_device_status_timeout: 5000
+  device_status_timeout: 5000
   switch_status_timeout: 5000
-  get_data_timeout: 5000
+  data_timeout: 5000
   sensor_history: 1344 #1344
   version: "1.0.4"
   wifi_history: 1000 #1000

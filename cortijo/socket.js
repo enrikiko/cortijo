@@ -1,9 +1,6 @@
 var io = require('socket.io-client')
-const fs = require('fs');
-const yaml = require('js-yaml');
-let conf_map_file = fs.readFileSync('conf_map.yaml');
-let conf_map = yaml.safeLoad(conf_map_file);
-let socket_url = conf_map.socket_url;
+const conf_map = require('./url');
+const socket_url = conf_map.get("socket_url");
 var socket = io(socket_url);
 const logs = require('./logs');
 

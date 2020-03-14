@@ -1,17 +1,13 @@
 const request = require('superagent');
 const req = require('request');
-const fs = require('fs');
-const yaml = require('js-yaml')
 const myTemperature = require('./temperature');
 const watering = require('./watering');
 const myDevice = require('./devices');
 const logs = require('./logs');
 const socket = require('./socket');
-// Get config
-const config_file = fs.readFileSync('config.yaml');
-const config = yaml.safeLoad(config_file);
-SWITCH_STATUS_TIMEOUT = config.switch_status_timeout
-GET_DEVICE_STATUS_TIMEOUT = config.get_device_status_timeout
+const congig = require('./config')
+const SWITCH_STATUS_TIMEOUT = config.get("switch_status_timeout");
+const GET_DEVICE_STATUS_TIMEOUT = config.get("device_status_timeout");
 
 module.exports={
 

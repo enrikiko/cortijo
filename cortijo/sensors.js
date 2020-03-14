@@ -1,19 +1,12 @@
 const mongoose = require('mongoose')
 const logs = require('./logs')
-const fs = require('fs')
-const yaml = require('js-yaml')
+const congig = require('./config')
+const GET_DATA_TIMEOUT = config.get("data_timeout")
 const request = require('superagent')
-let conf_map_file = fs.readFileSync('conf_map.yaml');
-let conf_map = yaml.safeLoad(conf_map_file);
-let connString = conf_map.db_url;
-//let connString = 'mongodb://192.168.1.50:27017/cortijo'
-const db = mongoose.connection
-mongoose.connect(connString, { useNewUrlParser: true })
-// Get config
-const config_file = fs.readFileSync('config.yaml')
-const config = yaml.safeLoad(config_file)
-GET_DATA_TIMEOUT = config.get_data_timeout
-//
+const conf_map = require('./url');
+const mongo_db = conf_map.get("db_url");
+const db = mongoose.connection;
+mongoose.connect(mongo_db, { useNewUrlParser: true });
 db.on('error',function(){
 logs.log("Error to connect to MongoDB Services")
 });

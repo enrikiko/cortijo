@@ -366,6 +366,7 @@ app.get('/*', function(req, res){
   requests.newRequest(ip, fullUrl)
   res.sendFile(__dirname + '/info.html');
 });
+//
 app.post('/*', function(req, res){
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
@@ -373,6 +374,7 @@ app.post('/*', function(req, res){
   requests.newRequest(ip, fullUrl)
   res.sendFile(__dirname + '/info.html');
 });
+//
 app.delete('/*', function(req, res){
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
