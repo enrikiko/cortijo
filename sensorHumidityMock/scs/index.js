@@ -30,6 +30,16 @@ app.get('/data', function(req, res){
   res.status(200).json(info)
 });
 
+app.get('/'+process.env.mock_name+'/status', function(req, res){
+  info={}
+  info.status=status
+  info.SSID="test_wifi"
+  signal=signal - Math.floor((Math.random() * 24) - 12)
+  info.SIGNAL=signal
+  console.log(info);
+  res.status(200).json(info)
+});
+
 app.get('/test', function(req, res){
   value = value + Math.floor((Math.random() * 20000) + 1)
   info={}
