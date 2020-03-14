@@ -14,6 +14,7 @@ const char *password1 = "Lunohas13steps";
 const char *ssid2 = "WifiSalon";
 const char *password2 = "lunohas13steps";
 String deviceName = "wemos_ground_humidity_1";
+String wifiName;
 
 IPAddress ipDevice(192, 168, 1, 120);
 IPAddress dns(80, 58, 61, 250);
@@ -28,26 +29,28 @@ ESP8266WebServer server(port);
 
 void setup() {
 
-  Serial.begin(115200);
+  //Serial.begin(115200);
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid1, password1);
   WiFiMulti.addAP(ssid2, password2);
   WiFi.begin();
 
   while (WiFiMulti.run() != WL_CONNECTED) {
-    Serial.print(".");
+    //Serial.print(".");
     delay(1000);
   }
 
+  wifiName = WiFi.SSID();
+
   String ip = WiFi.localIP().toString();
-  Serial.println("");
-  Serial.println("");
-  Serial.println("");
-  Serial.print("IP:");
-  Serial.println(ip);
+  // //Serial.println("");
+  // //Serial.println("");
+  // //Serial.println("");
+  // Serial.print("IP:");
+  // //Serial.println(ip);
 
   if (MDNS.begin("esp8266")) {
-    Serial.println("MDNS responder started");
+    //Serial.println("MDNS responder started");
   }
 
   setIp(ip);
@@ -66,16 +69,15 @@ void loop() {
     server.handleClient();
     }
 
-  Serial.println("Desconnected");
+  //Serial.println("Desconnected");
 
   WiFi.begin();
 
   while (WiFiMulti.run() != WL_CONNECTED) {
-    Serial.print(".");
     delay(1000);
-    Serial.println("");
-    Serial.print("Connected");
   }
+
+  wifiName = WiFi.SSID();
 
 }
 
@@ -88,11 +90,11 @@ int getInfo(){
     total += analogRead(analogInPin);
     //delay(5);
   }
-  Serial.println(total);
+  //Serial.println(total);
   sensorValue = total/measureNumbers;
   mapValue = map(sensorValue,670, 1024, 1000000, 0);
   return mapValue;
-  Serial.println(mapValue);
+  //Serial.println(mapValue);
 }
 
  void setIp(String ip){
@@ -101,28 +103,28 @@ int getInfo(){
      if ((WiFiMulti.run() == WL_CONNECTED)) {
        WiFiClient client;
        HTTPClient http;
-       Serial.print("[HTTP] begin...\n");
-       Serial.print("http://192.168.1.50:8000/newSensor/humidity/"+deviceName+"/"+ip+":"+port);
+       //Serial.print("[HTTP] begin...\n");
+       //Serial.print("http://192.168.1.50:8000/newSensor/humidity/"+deviceName+"/"+ip+":"+port);
        if (http.begin(client, "http://192.168.1.50:8000/newSensor/humidity/"+deviceName+"/"+ip+":"+port)) {
-         Serial.print("[HTTP] GET CODE: ");
+         //Serial.print("[HTTP] GET CODE: ");
          // start connection and send HTTP header
          int httpCode = http.GET();
 
          // httpCode will be negative on error
          if (httpCode > 0) {
-           Serial.println(httpCode);
+           //Serial.println(httpCode);
            if (httpCode == 200 ) {
              certain = true;
-             Serial.print("[HTTP] GET BODY: ");
-             Serial.println(http.getString());
+             //Serial.print("[HTTP] GET BODY: ");
+             //Serial.println(http.getString());
            }
          } else {
-           Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
+           //Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
          }
 
          http.end();
        } else {
-         Serial.printf("[HTTP} Unable to connect\n");
+         //Serial.printf("[HTTP} Unable to connect\n");
        }
      }
      delay(1000);
@@ -130,7 +132,7 @@ int getInfo(){
  }
 
  void sendData() {
-   Serial.printf("Getting data");
+   //Serial.printf("Getting data");
    int data = getInfo();
    blinkLight();
    server.send(200, "application/json", "{\"name\":\"" + deviceName + "\",\"type\":\"Humidity\",\"content\":{\"humidity\": " + String(data) + "}}");
@@ -144,6 +146,6 @@ int getInfo(){
  }
 
  void handleStatus() {
-   server.send(200, "application/json", "{\"status\":" + state + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+   server.send(200, "application/json", "{\"status\":true,\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
    blinkLight()
  }
