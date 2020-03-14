@@ -39,21 +39,21 @@ void setup() {
   WiFi.begin();
 
   while (WiFiMulti.run() != WL_CONNECTED) {
-    Serial.print(".");
+    //Serial.print(".");
     delay(1000);
   }
 
   String ip = WiFi.localIP().toString();
-  // Serial.println("");
-  // Serial.println("");
-  // Serial.println("");
-  // Serial.print("IP:");
-  // Serial.println(ip);
+  // //Serial.println("");
+  // //Serial.println("");
+  // //Serial.println("");
+  // //Serial.print("IP:");
+  // //Serial.println(ip);
 
   dht.begin();
 
   if (MDNS.begin("esp8266")) {
-    // Serial.println("MDNS responder started");
+    // //Serial.println("MDNS responder started");
   }
 
   setIp(ip);
@@ -72,20 +72,20 @@ void loop() {
     server.handleClient();
     }
 
-  Serial.println("Desconnected");
+  //Serial.println("Desconnected");
 
   WiFi.begin();
 
   while (WiFiMulti.run() != WL_CONNECTED) {
-    Serial.print(".");
+    //Serial.print(".");
     delay(1000);
-    Serial.println("");
-    Serial.print("Connected");
+    //Serial.println("");
+    //Serial.print("Connected");
   }
 }
 
 void sendData() {
-   Serial.printf("Sending data");
+   //Serial.printf("Sending data");
    blinkLight();
    server.send(200, "application/json", "{\"name\":\"" + deviceName + "\",\"type\":\"Temperature\",\"content\":{\"temperature\": " + getTemperature() + ",\"humidity\": " + getHumidity() + "}}");
 }
@@ -117,28 +117,28 @@ void setIp(String ip){
      if ((WiFiMulti.run() == WL_CONNECTED)) {
        WiFiClient client;
        HTTPClient http;
-       Serial.print("[HTTP] begin...\n");
-       Serial.print("http://192.168.1.50:8000/newSensor/temperature/"+deviceName+"/"+ip+":"+port);
+       //Serial.print("[HTTP] begin...\n");
+       //Serial.print("http://192.168.1.50:8000/newSensor/temperature/"+deviceName+"/"+ip+":"+port);
        if (http.begin(client, "http://192.168.1.50:8000/newSensor/temperature/"+deviceName+"/"+ip+":"+port)) {
-         Serial.print("[HTTP] GET CODE: ");
+         //Serial.print("[HTTP] GET CODE: ");
          // start connection and send HTTP header
          int httpCode = http.GET();
 
          // httpCode will be negative on error
          if (httpCode > 0) {
-           Serial.println(httpCode);
+           //Serial.println(httpCode);
            if (httpCode == 200 ) {
              certain = true;
-             Serial.print("[HTTP] GET BODY: ");
-             Serial.println(http.getString());
+             //Serial.print("[HTTP] GET BODY: ");
+             //Serial.println(http.getString());
            }
          } else {
-           Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
+           //Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
          }
 
          http.end();
        } else {
-         Serial.printf("[HTTP} Unable to connect\n");
+         //Serial.printf("[HTTP} Unable to connect\n");
        }
      }
      delay(1000);

@@ -147,5 +147,5 @@ int getInfo(){
 
  void handleStatus() {
    server.send(200, "application/json", "{\"status\":true,\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
-   blinkLight()
+   blinkLight();
  }

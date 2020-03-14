@@ -55,7 +55,7 @@ services:
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /root/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
-    - /root/cortijo/deployment/config.yaml:/root/node/config.yaml:ro
+    # - /root/cortijo/deployment/config.yaml:/root/node/config.yaml:ro
   auth:
     container_name: auth
     restart: always
