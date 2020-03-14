@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 const logs = require('./logs');
-let connString = 'mongodb://192.168.1.50:27017/cortijo';
+const fs = require('fs');
+const yaml = require('js-yaml');
+let conf_map = fs.readFileSync('conf_map.yaml');
+let config = yaml.safeLoad(conf_map);
+let connString = config.db_url;
+//let connString = 'mongodb://192.168.1.50:27017/cortijo';
 const db = mongoose.connection;
 //mongoose.connect("mongodb://user_name:password@172.18.0.5:27017/cortijo");
 mongoose.connect(connString, { useNewUrlParser: true });

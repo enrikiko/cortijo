@@ -1,5 +1,10 @@
 var io = require('socket.io-client')
-var socket = io('http://192.168.1.50:8200');
+const fs = require('fs');
+const yaml = require('js-yaml');
+let conf_map = fs.readFileSync('conf_map.yaml');
+let config = yaml.safeLoad(conf_map);
+let socket_url = config.socket_url;
+var socket = io(socket_url);
 const logs = require('./logs');
 
 socket.on('alert_device', function (data) {

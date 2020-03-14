@@ -3,7 +3,10 @@ const logs = require('./logs')
 const fs = require('fs')
 const yaml = require('js-yaml')
 const request = require('superagent')
-let connString = 'mongodb://192.168.1.50:27017/cortijo'
+let conf_map = fs.readFileSync('conf_map.yaml');
+let config_map = yaml.safeLoad(conf_map);
+let connString = config.db_url;
+//let connString = 'mongodb://192.168.1.50:27017/cortijo'
 const db = mongoose.connection
 mongoose.connect(connString, { useNewUrlParser: true })
 // Get config
