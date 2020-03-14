@@ -31,7 +31,7 @@ module.exports = {
       case SILENCE:
         break
       default:
-        console.log(test)
+        console.log(text)
     }
   },
   //
