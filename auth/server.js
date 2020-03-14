@@ -104,7 +104,7 @@ app.get("/all/:token", async function(req, res) {
 })
 
 
-app.get('/removeuser/:user/:password/:token', async function(req, res){
+app.delete('/user/:user/:password/:token', async function(req, res){
      user = req.params.user;
      password = req.params.password;
      token = req.params.token;

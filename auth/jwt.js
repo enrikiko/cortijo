@@ -7,7 +7,7 @@ const publicKey = fs.readFileSync("privatekey.pub");
 module.exports = {
     decodeJwt: async (token) => {
         var payload = await jwt.decode(token)
-        console.log(payload)
+        //console.log(payload)
         return payload
     },
     verifyJwt: async (token) => {
@@ -21,7 +21,7 @@ module.exports = {
     },
     signAuthJwt: async (user, password) => {
         var generatedJWT = await jwt.sign({user:user}, privateKey, {expiresIn: "1y"})
-        console.log(generatedJWT)
+        //console.log(generatedJWT)
         return generatedJWT
     }
 }
