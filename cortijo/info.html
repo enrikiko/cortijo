@@ -11,7 +11,6 @@
       const url="http://"+text+"/"+post;
       xmlHttp.open( "GET", url, false ); // false for synchronous request
       xmlHttp.send( null );
-      // console.log(xmlHttp.responseText);
       var newContent = document.createTextNode(xmlHttp.responseText);
       var newRequest = document.createElement("div");
       newRequest.appendChild(newContent);

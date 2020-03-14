@@ -48,7 +48,7 @@ module.exports = {
                                 logs.error("Error changing back " + name + " to false")
                         }
                         } catch (e) {
-                            console.log(e)
+                            logs.error(e)
                             var responseBack = {}
                             responseBack.code = 404
                         }
@@ -59,7 +59,7 @@ module.exports = {
                  }
               }
         } catch (e) {
-             console.log(e)
+             logs.error(e)
              var response = {}
              response.code = 404
         }

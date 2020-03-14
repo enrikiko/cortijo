@@ -322,12 +322,12 @@ app.get("/status/:device", async function(req, res) {
 //
 app.delete("/device/*", async function(req, res, next) {
     const jwt = req.headers.authorization
-    console.log(req)
+    //console.log(req)
     try{
        user = await joker.getUserByJWT(jwt)
        next()
     }catch(e){
-       console.log(e)
+       logs.error(e)
        res.status(404).json({"jwt":"Error"})
     }
 })
@@ -338,7 +338,7 @@ app.get("/update/*", async function(req, res, next) {
        user = await joker.getUserByJWT(jwt)
        next()
     }catch(e){
-       console.log(e)
+       log.error(e)
        res.status(404).json({"jwt":"Error"})
     }
 })

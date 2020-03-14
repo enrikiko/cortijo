@@ -38,7 +38,6 @@ async function getSensor(){
             dataName = name
             dataType = data.type
             dataContent = data.content
-            //console.log(dataType,dataName,dataContent)
             safeData(dataType,dataName,dataContent)
             analiceData(dataType,dataName,dataContent)
         }catch(e){
@@ -124,9 +123,9 @@ async function analiceData(type,name,data) {
           if ( data.humidity <= max ){
             if ( list[name+"last"] >= data.humidity ) {
               if (list[name+"count"] >= parseInt(config.get("times_before_block")) ) {
-                console.log("----------------------------------Sensor is block!!!----------------------------------");
+                logs.error("----------------------------------Sensor is block!!!----------------------------------");
               }else {
-                console.log("----------------------------------Alert!!!----------------------------------");
+                logs.error("----------------------------------Alert!!!----------------------------------");
                 list[name+"count"]++
                 for (var i in devices) {
                   mySwitch.changeStatusToTrue(devices[i] , 1000)
