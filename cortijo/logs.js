@@ -1,5 +1,4 @@
 const config = require('./config');
-const LOG = config.get("log")
 const DEBUG = "debug"
 const ERROR = "error"
 const SILENCE = "silence"
@@ -19,7 +18,7 @@ function newLogs(ip, request) {
 //
 module.exports = {
   log: (text) => {
-    switch (LOG) {
+    switch (config.get("log")) {
       case DEBUG:
         logs(text)
         break;
@@ -34,7 +33,7 @@ module.exports = {
   },
   //
   newLog: (ip, request) => {
-    switch (LOG) {
+    switch (config.get("log")) {
       case DEBUG:
         newLogs(ip, request)
         break;
