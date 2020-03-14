@@ -15,7 +15,8 @@
     "superagent": "*",
     "jsonwebtoken": "*",
     "cookie-parser":"*",
-    "js-yaml":"*"
+    "js-yaml":"*",
+    "json2yaml":"1.1.0"
   },
   "author": "Enrique Ramos",
   "license": "ISC"
