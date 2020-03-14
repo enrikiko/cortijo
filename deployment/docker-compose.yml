@@ -55,6 +55,7 @@ services:
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /root/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
+    - /root/cortijo/deployment/config.yaml:/root/node/config.yaml:ro
   auth:
     container_name: auth
     restart: always
@@ -65,6 +66,8 @@ services:
     - "8010:3000"
     networks:
     - network
+    volumes:
+      - /root/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
   front:
     container_name: front
     restart: always
