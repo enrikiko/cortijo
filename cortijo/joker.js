@@ -5,7 +5,7 @@ const watering = require('./watering');
 const myDevice = require('./devices');
 const logs = require('./logs');
 const socket = require('./socket');
-const congig = require('./config')
+const config = require('./config')
 const SWITCH_STATUS_TIMEOUT = config.get("switch_status_timeout");
 const GET_DEVICE_STATUS_TIMEOUT = config.get("device_status_timeout");
 
