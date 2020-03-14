@@ -1,10 +1,10 @@
 ---
   log: "error"
-  timeout_check:  3000
+  timeout_check:  300000
   timeout_sensor: 300000
   times_before_block: 10
-  device_status_timeout: 5000
-  switch_status_timeout: 5000
+  device_status_timeout: 2500
+  switch_status_timeout: 2500
   data_timeout: 5000
   sensor_history: 1344 #1344
   version: "1.0.4"
