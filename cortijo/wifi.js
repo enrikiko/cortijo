@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 const logs = require('./logs');
-const fs = require('fs');
-const yaml = require('js-yaml');
-let conf_map_file = fs.readFileSync('conf_map.yaml');
-let conf_map = yaml.safeLoad(conf_map_file);
-let connString = conf_map.db_url;
+const conf_map = require('./conf_map');
+let connString = conf_map.get("db_url");
 const db = mongoose.connection;
 mongoose.connect(connString, { useNewUrlParser: true });
 const config = require('./config');
