@@ -3,7 +3,7 @@ const logs = require('./logs');
 const fs = require('fs');
 const yaml = require('js-yaml');
 let conf_map_file = fs.readFileSync('conf_map.yaml');
-let conf_map = yaml.safeLoad(conf_map);
+let conf_map = yaml.safeLoad(onf_map_file);
 let connString = conf_map.db_url;
 const db = mongoose.connection;
 mongoose.connect(connString, { useNewUrlParser: true });
