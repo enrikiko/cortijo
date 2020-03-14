@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const logs = require('./logs')
-const congig = require('./config')
+const config = require('./config')
 const GET_DATA_TIMEOUT = config.get("data_timeout")
 const request = require('superagent')
 const conf_map = require('./url');
