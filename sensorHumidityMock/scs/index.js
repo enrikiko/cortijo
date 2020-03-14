@@ -7,6 +7,7 @@ app.use(express.urlencoded()) // middleware Bodyparse
 var http = require('http').Server(app);
 var status = true;
 var value = 1000000;
+var signal = 50;
 
 
 app.get("/*", function(req, res, next) {

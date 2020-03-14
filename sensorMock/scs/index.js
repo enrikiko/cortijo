@@ -8,6 +8,7 @@ var http = require('http').Server(app);
 var status = true;
 var temperature = 25;
 var humidity = 43;
+var signal = 50;
 
 app.get("/*", function(req, res, next) {
   var request={}
