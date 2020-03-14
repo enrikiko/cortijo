@@ -72,7 +72,7 @@ module.exports={
         async function status() {
             ip= await mySensor.getIpByName(name)
             //let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
-            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({config.get("device_status_timeout"));
+            let response = await request.get("http://"+ip+"/"+name+"/status").timeout(config.get("device_status_timeout"));
             return response["body"];
         }
      return await status();
