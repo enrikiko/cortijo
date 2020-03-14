@@ -18,7 +18,8 @@ module.exports={
        async function getResponse() {
         try{
             ip = await myDevice.getIpByName(name)
-            let response = await request.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: config.get("switch_status_timeout")});
+            //let response = await request.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: config.get("switch_status_timeout")});
+            let response = await request.get("http://"+ip+"/"+name+"/status/"+status).timeout(config.get("switch_status_timeout"));
             if(response.statusCode==200){
                 id = await myDevice.getIdByName(name)
                 await myDevice.updateDevice(id, status)
@@ -61,7 +62,8 @@ module.exports={
      getDeviceStatus: async (name) => {
         async function status() {
             ip= await myDevice.getIpByName(name)
-            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
+            //let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
+            let response = await request.get("http://"+ip+"/"+name+"/status").timeout(config.get("device_status_timeout"));
             return response["body"];
         }
      return await status();
@@ -69,7 +71,8 @@ module.exports={
      getSensorStatus: async (name) => {
         async function status() {
             ip= await mySensor.getIpByName(name)
-            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
+            //let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
+            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({config.get("device_status_timeout"));
             return response["body"];
         }
      return await status();
