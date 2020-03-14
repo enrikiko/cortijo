@@ -77,11 +77,11 @@ async function checkDevices(){
 async function chechSensors() {
   logs.log("Checking sensors: ")
   var sensorsList = await mySensor.getAllSensor()
-  for (var index in devicesList){
+  for (var index in sensorsList){
       var name = sensorsList[index].name
       logs.log("Checking " + name )
       try{
-        var status = await joker.getDeviceStatus(name)
+        var status = await joker.getSensorStatus(name)
         if (status.SSID){
             //logs.log(status.SSID)
             //logs.log(status.SIGNAL)
