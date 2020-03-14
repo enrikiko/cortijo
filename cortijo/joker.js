@@ -3,6 +3,7 @@ const req = require('request');
 const myTemperature = require('./temperature');
 const watering = require('./watering');
 const myDevice = require('./devices');
+const mySensor = require('./sensors');
 const logs = require('./logs');
 const socket = require('./socket');
 const config = require('./config')
