@@ -151,7 +151,7 @@ app.delete("/sensor/:name", async function(req, res) {
       logs.log(name+" Remove successfully");
       res.status(200).json("Sensor remove successfully")
     }else {
-      logs.log(name+" doesn't Exist");
+      logs.error(name+" doesn't Exist");
       res.status(200).json("Sensor doesn't Exist")
     }
 })
@@ -163,7 +163,7 @@ app.get("/sensor/:name", async function(req, res) {
       var response = await mySensor.getSensorByName(name);
       res.status(200).json(response[0])
     }else {
-      logs.log(name+" doesn't Exist");
+      logs.error(name+" doesn't Exist");
       res.status(200).json("Sensor doesn't Exist")
     }
 })
@@ -278,7 +278,7 @@ app.delete("/device/:name", async function(req, res) {
       logs.log(name+" Remove successfully");
       res.status(200).json("Device Remove successfully")
     }else {
-      logs.log(name+" Doesn't Exist");
+      logs.error(name+" Doesn't Exist");
       res.status(200).json("Device Doesn't Exist")
     }
 })
@@ -309,7 +309,7 @@ app.get("/status/:device", async function(req, res) {
       await myDevice.checkDeviceByName(name)
       res.status(200).json(status)
     }catch (e) {
-      logs.log(name + " doesn't response")
+      logs.error(name + " doesn't response")
       await myDevice.blockDeviceByName(name);
       res.status(404).json({"error": e})
       }

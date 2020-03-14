@@ -1,5 +1,5 @@
 ---
-  log: "debug"
+  log: "error"
   timeout_check:  3000
   timeout_sensor: 300000
   times_before_block: 10

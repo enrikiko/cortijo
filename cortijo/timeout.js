@@ -42,7 +42,7 @@ async function getSensor(){
             safeData(dataType,dataName,dataContent)
             analiceData(dataType,dataName,dataContent)
         }catch(e){
-            logs.log(e)
+            logs.error(e)
         }
     }
     socket.data("getSensor(data)")
@@ -66,7 +66,7 @@ async function checkDevices(){
                 //logs.log(res)
                 }
         }catch(e){
-            logs.log(e)
+            logs.error(e)
             await myDevice.blockDeviceByName(name);
         }
     }
@@ -89,7 +89,7 @@ async function chechSensors() {
             //logs.log(res)
             }
       }catch(e){
-          logs.log(e)
+          logs.error(e)
           //await myDevice.blockDeviceByName(name);
       }
     }

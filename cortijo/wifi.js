@@ -5,6 +5,7 @@ const mongo_db = conf_map.get("db_url");
 const db = mongoose.connection;
 mongoose.connect(mongo_db, { useNewUrlParser: true });
 const config = require('./config');
+
 db.on('error',function(){
     logs.log("Error to connect to MongoDB Wifi");
 });

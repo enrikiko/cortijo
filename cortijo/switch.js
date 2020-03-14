@@ -19,7 +19,7 @@ module.exports = {
                 res.status(response.code).send(response)
             }
         } catch (e) {
-            console.log(e)
+            logs.error(e)
             var response = {}
             response.code = 404
         }
@@ -45,7 +45,7 @@ module.exports = {
                                 logs.log("Changed back automatically due to timeout " + name + " to false")
                             }
                             else {
-                                logs.log("Error changing back " + name + " to false")
+                                logs.error("Error changing back " + name + " to false")
                         }
                         } catch (e) {
                             console.log(e)

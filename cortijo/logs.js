@@ -17,13 +17,16 @@ function newLogs(ip, request) {
 }
 //
 module.exports = {
+  error: (text) => {
+    newLogs("Error!", text)
+  },
+  //
   log: (text) => {
     switch (config.get("log")) {
       case DEBUG:
         logs(text)
         break;
       case ERROR:
-        console.log(test)
         break;
       case SILENCE:
         break
@@ -40,7 +43,6 @@ module.exports = {
       case SILENCE:
         break
       case ERROR:
-        console.log(request)
         break;
       default:
         console.log(request)

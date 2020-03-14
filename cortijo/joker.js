@@ -30,7 +30,7 @@ module.exports={
             }
         }catch (e) {
             let response = await myDevice.blockDeviceByName(name)
-            logs.log(e)
+            logs.error(e)
             res = {};
             res.code = 400;
             res.body = response
