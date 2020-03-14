@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const logs = require('./logs');
-let connString = 'mongodb://192.168.1.50:27017/cortijo';
+let connString = 'mongodb://192.168.1.53:27017/cortijo';
 const db = mongoose.connection;
 mongoose.connect(connString, { useNewUrlParser: true });
 const config = require('./config');
