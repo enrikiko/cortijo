@@ -65,6 +65,14 @@ module.exports={
         }
      return await status();
      },
+     getSensorStatus: async (name) => {
+        async function status() {
+            ip= await mySensor.getIpByName(name)
+            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: GET_DEVICE_STATUS_TIMEOUT});
+            return response["body"];
+        }
+     return await status();
+     },
 //
     // readLog: () => {
     //     var jsonString = '{'+fs.readFileSync("log.txt", {encoding: 'ASCII'})+'}'

@@ -5,22 +5,26 @@
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
+#include "DHT.h"
+#define DHTPIN 2
+#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
 
-const int analogInPin = A0;
+int port = 80;
 
+float h;
+float t;
 
 const char *ssid1 = "Cuarto2.4G";
 const char *password1 = "Lunohas13steps";
 const char *ssid2 = "WifiSalon";
 const char *password2 = "lunohas13steps";
-String deviceName = "wemos_ground_humidity_1";
+String deviceName = "wemos_temperature_1";
 
 IPAddress ipDevice(192, 168, 1, 120);
 IPAddress dns(80, 58, 61, 250);
 IPAddress gateway(192, 168, 1, 1);
 IPAddress subnet(255, 255, 255, 0);
-String certain;
-int port = 80;
 
 ESP8266WiFiMulti WiFiMulti;
 ESP8266WebServer server(port);
@@ -28,10 +32,10 @@ ESP8266WebServer server(port);
 
 void setup() {
 
-  Serial.begin(115200);
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid1, password1);
   WiFiMulti.addAP(ssid2, password2);
+  //WiFi.config(ipDevice, dns, gateway, subnet);
   WiFi.begin();
 
   while (WiFiMulti.run() != WL_CONNECTED) {
@@ -40,19 +44,22 @@ void setup() {
   }
 
   String ip = WiFi.localIP().toString();
-  Serial.println("");
-  Serial.println("");
-  Serial.println("");
-  Serial.print("IP:");
-  Serial.println(ip);
+  // Serial.println("");
+  // Serial.println("");
+  // Serial.println("");
+  // Serial.print("IP:");
+  // Serial.println(ip);
+
+  dht.begin();
 
   if (MDNS.begin("esp8266")) {
-    Serial.println("MDNS responder started");
+    // Serial.println("MDNS responder started");
   }
 
   setIp(ip);
 
   server.on("/data", sendData);
+    server.on("/"+deviceName+"/status", handleStatus);
   server.begin();
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW);
@@ -75,34 +82,44 @@ void loop() {
     Serial.println("");
     Serial.print("Connected");
   }
-
 }
 
-int getInfo(){
-  float total = 0;
-  int measureNumbers = 10000;
-  int sensorValue;
-  int mapValue;
-  for (int i = 0; i < measureNumbers; i++) {
-    total += analogRead(analogInPin);
-    //delay(5);
-  }
-  Serial.println(total);
-  sensorValue = total/measureNumbers;
-  mapValue = map(sensorValue,670, 1024, 1000000, 0);
-  return mapValue;
-  Serial.println(mapValue);
+void sendData() {
+   Serial.printf("Sending data");
+   blinkLight();
+   server.send(200, "application/json", "{\"name\":\"" + deviceName + "\",\"type\":\"Temperature\",\"content\":{\"temperature\": " + getTemperature() + ",\"humidity\": " + getHumidity() + "}}");
 }
 
- void setIp(String ip){
+String getTemperature(){
+    float val = dht.readTemperature();
+    if(!isnan(val)){return String(val);}else{return "0";}
+}
+
+String getHumidity(){
+    float val = dht.readHumidity();
+    if(!isnan(val)){return String(val);}else{return "0";}
+}
+
+void blinkLight(){
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(200);
+    digitalWrite(LED_BUILTIN, LOW);
+}
+
+void handleStatus() {
+  server.send(200, "application/json", "{\"status\":" + state + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+  blinkLight()
+}
+
+void setIp(String ip){
    boolean certain = false;
    while(!certain){
      if ((WiFiMulti.run() == WL_CONNECTED)) {
        WiFiClient client;
        HTTPClient http;
        Serial.print("[HTTP] begin...\n");
-       Serial.print("http://192.168.1.50:8000/newSensor/humidity/"+deviceName+"/"+ip+":"+port);
-       if (http.begin(client, "http://192.168.1.50:8000/newSensor/humidity/"+deviceName+"/"+ip+":"+port)) {
+       Serial.print("http://192.168.1.50:8000/newSensor/temperature/"+deviceName+"/"+ip+":"+port);
+       if (http.begin(client, "http://192.168.1.50:8000/newSensor/temperature/"+deviceName+"/"+ip+":"+port)) {
          Serial.print("[HTTP] GET CODE: ");
          // start connection and send HTTP header
          int httpCode = http.GET();
@@ -126,18 +143,4 @@ int getInfo(){
      }
      delay(1000);
    }
- }
-
- void sendData() {
-   Serial.printf("Getting data");
-   int data = getInfo();
-   blinkLight();
-   server.send(200, "application/json", "{\"name\":\"" + deviceName + "\",\"type\":\"Humidity\",\"content\":{\"humidity\": " + String(data) + "}}");
-
- }
-
- void blinkLight(){
-    digitalWrite(LED_BUILTIN, HIGH);
-    delay(200);
-    digitalWrite(LED_BUILTIN, LOW);
  }

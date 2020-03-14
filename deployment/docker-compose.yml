@@ -67,7 +67,7 @@ services:
     networks:
     - network
     volumes:
-      - /root/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
+    - /root/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
   front:
     container_name: front
     restart: always

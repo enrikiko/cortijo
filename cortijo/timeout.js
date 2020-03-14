@@ -11,13 +11,9 @@ const mySwitch = require('./switch');
 const config = require('./config');
 const socket = require('./socket');
 //
-//const TIMEOUT_SENSOR = config.get("timeout_sensor");
-//const TIMEOUT_CHECK = config.get("timeout_check");
-//const TIMES_BEFORE_BLOCK = config.get("times_before_block");
-//
-function executeTimeoutCheckSensors(){
+function executeTimeoutGetSensors(){
     setTimeout(function(){
-            executeTimeoutCheckSensors()
+            executeTimeoutGetSensors()
             logs.log("Time out sensor executing every " + parseInt(config.get("timeout_sensor")) + " milliseconds")
             getSensor()
         }, parseInt(config.get("timeout_sensor")));
@@ -26,7 +22,8 @@ function executeTimeoutCheckDevices(){
     setTimeout(function(){
             executeTimeoutCheckDevices()
             logs.log("Time out check executing every " + parseInt(config.get("timeout_check")) + " milliseconds")
-            check()
+            checkDevices()
+            chechSensors()
         }, parseInt(config.get("timeout_check")));
 }
 //
@@ -51,7 +48,7 @@ async function getSensor(){
     socket.data("getSensor(data)")
 }
 //
-async function check(){
+async function checkDevices(){
     logs.log("Checking devices: ")
     var devicesList = await myDevice.getDevice()
     //logs.log(devicesList)
@@ -75,6 +72,27 @@ async function check(){
     }
     socket.wifi("check(wifi)")
     socket.device("check(device)")
+}
+
+async function chechSensors() {
+  logs.log("Checking sensors: ")
+  var sensorsList = await mySensor.getAllSensor()
+  for (var index in devicesList){
+      var name = sensorsList[index].name
+      logs.log("Checking " + name )
+      try{
+        var status = await joker.getDeviceStatus(name)
+        if (status.SSID){
+            //logs.log(status.SSID)
+            //logs.log(status.SIGNAL)
+            await wifi.newSignal(name,status.SSID,status.SIGNAL)
+            //logs.log(res)
+            }
+      }catch(e){
+          logs.log(e)
+          //await myDevice.blockDeviceByName(name);
+      }
+    }
 }
 //
 function safeData(type,name,data){
@@ -137,5 +155,5 @@ async function analiceData(type,name,data) {
     }
 }
 //
-executeTimeoutCheckSensors()
+executeTimeoutGetSensors()
 executeTimeoutCheckDevices()
