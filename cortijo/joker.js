@@ -6,8 +6,10 @@ const myDevice = require('./devices');
 const logs = require('./logs');
 const socket = require('./socket');
 const config = require('./config')
+const url = require('./url')
 const SWITCH_STATUS_TIMEOUT = config.get("switch_status_timeout");
 const GET_DEVICE_STATUS_TIMEOUT = config.get("device_status_timeout");
+const AUTH_JWT =url.get("auth_url")
 
 module.exports={
 
@@ -70,7 +72,7 @@ module.exports={
     //  },
 //
      auth: async (user, password) => {
-       const url = "http://192.168.1.50:8010/auth/"+user+"/"+password
+       const url = AUTH_JWT+"/auth/"+user+"/"+password
        async function getResponse(url) {
          let response = await request.get(url);
          return response.body.jwt;
@@ -79,7 +81,7 @@ module.exports={
      },
 
      verifyJwt: async (jwt) => {
-       const url = "http://192.168.1.50:8010/auth/jwt/"+jwt
+       const url = AUTH_JWT+"/auth/jwt/"+jwt
        async function getResponse(url) {
          let response = await request.get(url);
          return response.jwt;
@@ -88,7 +90,7 @@ module.exports={
      },
 
      getUserByJWT: async (jwt) => {
-        const url = "http://192.168.1.50:8010/jwt/"+jwt
+        const url = AUTH_JWT+"/jwt/"+jwt
         async function getResponse(url) {
             let response = await request.get(url);
             if(response.status==200){return response}

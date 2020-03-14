@@ -1,3 +1,4 @@
 ---
   db_url: mongodb://192.168.1.50:27017/cortijo
   socket_url: http://192.168.1.50:8200
+  auth_url: http://192.168.1.50:8010
