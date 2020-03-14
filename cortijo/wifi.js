@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const logs = require('./logs');
-const conf_map = require('./conf_map');
+const conf_map = require('./url');
 let connString = conf_map.get("db_url");
 const db = mongoose.connection;
 mongoose.connect(connString, { useNewUrlParser: true });
