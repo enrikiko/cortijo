@@ -16,4 +16,4 @@ COPY . .
 # RUN apt install -y mc
 # RUN apt install -y yum
 # RUN apt install -y dnf
-ENTRYPOINT ["sh", "init.sh"]
+ENTRYPOINT ["node", "server.js"]
