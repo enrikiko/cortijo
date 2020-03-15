@@ -43,14 +43,13 @@ module.exports = {
 
   newRequest: (name, lapse, status, ip) => {
     logs.error(ip)
-    logs.error(toString(ip))
     let request = new myRequest(
       {
         time: new Date().toLocaleString(),
         name: name,
         status: status,
         lapse: lapse/60000,
-        ip: toString(ip)
+        ip: ip
       });
     request.save(function(err, result) {
       if (err) throw err;
