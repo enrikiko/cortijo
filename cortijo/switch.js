@@ -3,6 +3,7 @@ const joker = require('./joker');
 const myDevice = require('./devices');
 module.exports = {
   changeStatusToFalse: async (name, res, ip) => {
+    logs.error(ip)
     var id = await myDevice.getIdByName(name) //Get ID of the device //
 
     if ( !id ) {
@@ -27,6 +28,7 @@ module.exports = {
     }
   },
   changeStatusToTrue: async (name, lapse, res, ip) => {
+  logs.error(ip)
     var id = await myDevice.getDeviceByName(name) //Get ID of the device //
     if ( !id ) {
       logs.error({"Request": "Incorrect", "Device": "Not found"});
