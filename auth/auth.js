@@ -4,7 +4,7 @@ const mongo_db = conf_map.get("db_url");
 //const connString = 'mongodb://192.168.1.50:27017/cortijo';
 //mongoose.connect("mongodb://localhost:27017/cortijo");
 const db = mongoose.connection;
-mongoose.connect(mongo_db, { useNewUrlParser: true });
+mongoose.connect(mongo_db, { useNewUrlParser: true, useUnifiedTopology: true  });
 
 db.on('error',function(){
 console.log("Error al conectarse a Mongo");
