@@ -42,7 +42,7 @@ let myRequest = mongoose.model('Watering', requestSchema);
 module.exports = {
 
   newRequest: (name, lapse, status, ip) => {
-    //console.log(name, lapse);
+    logs.error(toString(ip))
     let request = new myRequest(
       {
         time: new Date().toLocaleString(),
