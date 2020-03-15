@@ -6,6 +6,7 @@ module.exports = {
     var id = await myDevice.getIdByName(name) //Get ID of the device //
 
     if ( !id ) {
+        logs.error({"Request": "Incorrect", "Device": "Not found"});
         res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
     }else {
         //logs.log(JSON.stringify(isUpdating))
@@ -28,6 +29,7 @@ module.exports = {
   changeStatusToTrue: async (name, lapse, res) => {
     var id = await myDevice.getDeviceByName(name) //Get ID of the device //
     if ( !id ) {
+      logs.error({"Request": "Incorrect", "Device": "Not found"});
       return res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
     }else {
       //logs.log(JSON.stringify(isUpdating))
@@ -36,6 +38,7 @@ module.exports = {
               response = await joker.switchStatus(true, name) //Change device status
               if (response.code == 200) {
                 if(res!=null){
+                switchAlertLapse(name, lapse);
                 res.status(response.code).send(response)
                 }
                 setTimeout(async function(){  //Change back to false
