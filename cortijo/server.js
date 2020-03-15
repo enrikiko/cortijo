@@ -25,7 +25,8 @@ app.enable('trust proxy');
 app.use(bodyParser.json());
 app.use(cors());
 app.options('*', cors());
-app.use(express.urlencoded())
+//app.use(express.urlencoded())
+app.use(express())
 app.enable('trust proxy')
 const version = config.get("version");
 //const REFRESH_DELAY = config.get("refresh_delay")
