@@ -38,7 +38,7 @@ module.exports = {
               response = await joker.switchStatus(true, name) //Change device status
               if (response.code == 200) {
                 if(res!=null){
-                switchAlertLapse(name, lapse);
+                joker.switchAlertLapse(name, lapse);
                 res.status(response.code).send(response)
                 }
                 setTimeout(async function(){  //Change back to false
