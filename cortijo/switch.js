@@ -4,7 +4,6 @@ const myDevice = require('./devices');
 module.exports = {
   changeStatusToFalse: async (name, res, ip) => {
     var id = await myDevice.getIdByName(name) //Get ID of the device //
-
     if ( !id ) {
         logs.error({"Request": "Incorrect", "Device": "Not found"});
         res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
