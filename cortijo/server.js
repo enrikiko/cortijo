@@ -25,8 +25,8 @@ app.enable('trust proxy');
 app.use(bodyParser.json());
 app.use(cors());
 app.options('*', cors());
-//app.use(express.urlencoded())
-app.use(express())
+app.use(express.urlencoded())
+//app.use(express())
 app.enable('trust proxy')
 const version = config.get("version");
 //const REFRESH_DELAY = config.get("refresh_delay")
@@ -353,10 +353,8 @@ app.get("/update/:name/false", async function(req, res){
   var response = await mySwitch.changeStatusToFalse(name, res, ip)
 })
 app.get("/update/:name/true/:lapse_time", async function(req, res){
-
-  var lapse = req.params.lapse_time
   var name = req.params.name
-
+  var lapse = req.params.lapse_time
   var ip = req.ip
   var response = await mySwitch.changeStatusToTrue(name, lapse, res, ip)
 })
