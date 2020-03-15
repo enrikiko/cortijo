@@ -128,12 +128,12 @@ async function analiceData(type,name,data) {
                 logs.error("----------------------------------Alert!!!----------------------------------");
                 list[name+"count"]++
                 for (var i in devices) {
-                  mySwitch.changeStatusToTrue(devices[i] , 1000)
+                  mySwitch.changeStatusToTrue(devices[i] , 1000, null, "timeout")
                 }
               }
             }else {
               for (var i in devices) {
-                mySwitch.changeStatusToTrue(devices[i] , 1000)
+                mySwitch.changeStatusToTrue(devices[i] , 1000, null, "timeout")
               }
             }
           }else {
@@ -145,7 +145,7 @@ async function analiceData(type,name,data) {
             list[name+"last"]=data.humidity
             list[name+"count"]=0
             for (var i in devices) {
-              mySwitch.changeStatusToTrue(devices[i] , 1000)
+              mySwitch.changeStatusToTrue(devices[i] , 1000, null, "timeout")
             }
           }
         }

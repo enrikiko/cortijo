@@ -2,7 +2,7 @@ const logs = require('./logs');
 const joker = require('./joker');
 const myDevice = require('./devices');
 module.exports = {
-  changeStatusToFalse: async (name, res) => {
+  changeStatusToFalse: async (name, res, ip) => {
     var id = await myDevice.getIdByName(name) //Get ID of the device //
 
     if ( !id ) {
@@ -13,7 +13,7 @@ module.exports = {
         logs.log("Change status of "+name+" to false");
         try {
             var response = await joker.switchStatus(false, name) //Change device status
-            joker.switchAlert( name )
+            joker.switchAlert( name, ip )
             if (response.code == 200) {
                 res.status(response.code).send(response)
             }else {
@@ -26,19 +26,18 @@ module.exports = {
         }
     }
   },
-  changeStatusToTrue: async (name, lapse, res) => {
+  changeStatusToTrue: async (name, lapse, res, ip) => {
     var id = await myDevice.getDeviceByName(name) //Get ID of the device //
     if ( !id ) {
       logs.error({"Request": "Incorrect", "Device": "Not found"});
       return res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
     }else {
-      //logs.log(JSON.stringify(isUpdating))
       logs.log("Change status of "+name+" to true");
         try {
               response = await joker.switchStatus(true, name) //Change device status
               if (response.code == 200) {
                 if(res!=null){
-                joker.switchAlertLapse(name, lapse);
+                joker.switchAlertLapse(name, lapse, ip);
                 res.status(response.code).send(response)
                 }
                 setTimeout(async function(){  //Change back to false

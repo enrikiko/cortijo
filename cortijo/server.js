@@ -347,16 +347,16 @@ app.get("/update/*", async function(req, res, next) {
 //update device
 //var isUpdating={}
 app.get("/update/:name/false", async function(req, res){
-
   var name = req.params.name
   var lapse = req.params.lapse_time
-  var response = await mySwitch.changeStatusToFalse(name, res)
+  var ip = req.ip
+  var response = await mySwitch.changeStatusToFalse(name, res, ip)
 })
 app.get("/update/:name/true/:lapse_time", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
-  var response = await mySwitch.changeStatusToTrue(name, lapse, res)
-
+  var ip = req.ip
+  var response = await mySwitch.changeStatusToTrue(name, lapse, res, ip)
 })
 //
 //Handel all bad requests
