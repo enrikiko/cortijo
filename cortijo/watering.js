@@ -42,6 +42,7 @@ let myRequest = mongoose.model('Watering', requestSchema);
 module.exports = {
 
   newRequest: (name, lapse, status, ip) => {
+    logs.error(ip)
     logs.error(toString(ip))
     let request = new myRequest(
       {
