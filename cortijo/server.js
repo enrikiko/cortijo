@@ -353,8 +353,10 @@ app.get("/update/:name/false", async function(req, res){
   var response = await mySwitch.changeStatusToFalse(name, res, ip)
 })
 app.get("/update/:name/true/:lapse_time", async function(req, res){
-  var name = req.params.name
+
   var lapse = req.params.lapse_time
+  var name = req.params.name
+
   var ip = req.ip
   var response = await mySwitch.changeStatusToTrue(name, lapse, res, ip)
 })
