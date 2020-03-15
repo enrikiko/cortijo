@@ -339,7 +339,7 @@ app.get("/update/*", async function(req, res, next) {
        user = await joker.getUserByJWT(jwt)
        next()
     }catch(e){
-       log.error(e)
+       logs.error(e)
        res.status(404).json({"jwt":"Error"})
     }
 })
