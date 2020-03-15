@@ -49,7 +49,7 @@ module.exports = {
         name: name,
         status: status,
         lapse: lapse/60000,
-        ip: ip
+        ip: toString(ip)
       });
     request.save(function(err, result) {
       if (err) throw err;
