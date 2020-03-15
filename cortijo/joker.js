@@ -42,20 +42,20 @@ module.exports={
        return await getResponse();
      },
 
-     switchAlertLapse: async ( name, lapse, ip ) => {
-        ip = myDevice.getIdByName(name)
+     switchAlertLapse: async ( name, lapse, ipRequest ) => {
+        //ip = myDevice.getIdByName(name)
         text = name+" has changed to true during "+lapse+" miliseconds"
         const url = "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=dPM2s9vYj4o:APA91bG3LiZsdvj7EPqBlTHKNXCiDbpWDdxKhONAO_qpIf_8uomgVW5QFtxM2AIX0kJPPt3RBzPJVeMNMgkCTtfkUoJFAHYtPBROh6bupxDkxW647z7J4A8Y3690q7OV6_lkYIvt7dlA&title=" + text
         await request.get(url);
-        watering.newRequest(name, lapse, true, ip)
+        watering.newRequest(name, lapse, true, ipRequest)
      },
 //
-     switchAlert: async ( name, ip ) => {
-        ip = myDevice.getIdByName(name)
+     switchAlert: async ( name, ipRequest ) => {
+        //ip = myDevice.getIdByName(name)
         text = name+" has changed to false"
         const url = "https://us-central1-afrodita-2e204.cloudfunctions.net/triggerPushNotification?token=dPM2s9vYj4o:APA91bG3LiZsdvj7EPqBlTHKNXCiDbpWDdxKhONAO_qpIf_8uomgVW5QFtxM2AIX0kJPPt3RBzPJVeMNMgkCTtfkUoJFAHYtPBROh6bupxDkxW647z7J4A8Y3690q7OV6_lkYIvt7dlA&title=" + text
         await request.get(url);
-        watering.newRequest(name, null, false, ip)
+        watering.newRequest(name, null, false, ipRequest)
      },
 //
      getDeviceStatus: async (name) => {
