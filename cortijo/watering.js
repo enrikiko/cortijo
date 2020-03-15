@@ -6,7 +6,7 @@ const db = mongoose.connection;
 mongoose.connect(mongo_db, { useNewUrlParser: true });
 
 db.on('error',function(){
-logs.log("Error al conectarse a Mongo Watering");
+logs.error("Error al conectarse a Mongo Watering");
 });
 
 db.once('open', function() {

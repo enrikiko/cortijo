@@ -10,7 +10,6 @@ RUN mkdir /root/node
 WORKDIR /root/node
 COPY package/. .
 RUN npm install
-RUN touch log.txt
 COPY . .
 # RUN apt install -y more
 # RUN apt install -y mc

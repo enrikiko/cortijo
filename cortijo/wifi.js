@@ -7,7 +7,7 @@ mongoose.connect(mongo_db, { useNewUrlParser: true });
 const config = require('./config');
 
 db.on('error',function(){
-    logs.log("Error to connect to MongoDB Wifi");
+    logs.error("Error to connect to MongoDB Wifi");
 });
 
 db.once('open', function() {

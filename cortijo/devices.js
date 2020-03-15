@@ -6,7 +6,7 @@ const db = mongoose.connection;
 mongoose.connect(mongo_db, { useNewUrlParser: true });
 //mongoose.connect("mongodb://user_name:password@172.18.0.5:27017/cortijo");
 db.on('error',function(){
-logs.log("Error al conectarse a Mongo Device");
+logs.error("Error al conectarse a Mongo Device");
 });
 
 db.once('open', function() {

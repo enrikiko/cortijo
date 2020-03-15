@@ -74,12 +74,7 @@ module.exports={
         }
      return await status();
      },
-//
-    // readLog: () => {
-    //     var jsonString = '{'+fs.readFileSync("log.txt", {encoding: 'ASCII'})+'}'
-    //     return JSON.parse(jsonString)
-    //  },
-//
+     
      auth: async (user, password) => {
        const url = AUTH_JWT+"/auth/"+user+"/"+password
        async function getResponse(url) {

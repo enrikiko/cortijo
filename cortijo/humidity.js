@@ -6,7 +6,7 @@ const db = mongoose.connection;
 mongoose.connect(mongo_db, { useNewUrlParser: true  });
 
 db.on('error',function(){
-logs.log("Error to connect to MongoDB Humidity");
+logs.error("Error to connect to MongoDB Humidity");
 });
 
 db.once('open', function() {
