@@ -34,6 +34,7 @@ void setup() {
   WiFiMulti.addAP(ssid1, password1);
   WiFiMulti.addAP(ssid2, password2);
   WiFi.begin();
+  WiFi.setHostname(deviceName);
 
   while (WiFiMulti.run() != WL_CONNECTED) {
     //Serial.print(".");

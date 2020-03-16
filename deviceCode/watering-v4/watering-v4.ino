@@ -10,7 +10,7 @@ const char *ssid1 = "Cuarto2.4G";
 const char *password1 = "Lunohas13steps";
 const char *ssid2 = "WifiSalon";
 const char *password2 = "lunohas13steps";
-String deviceName = "Watering";
+String deviceName = "Wemos-watering";
 String currentStatus = "false";
 String wifiName;
 
@@ -39,6 +39,7 @@ void setup() {
   WiFiMulti.addAP(ssid2, password2);
   //WiFi.config(ipDevice, dns, gateway, subnet);
   WiFi.begin();
+  WiFi.setHostname(deviceName);
 
   while (WiFiMulti.run() != WL_CONNECTED) {
     //Serial.print(".");
