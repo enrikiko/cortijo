@@ -3,6 +3,7 @@
 #include <ESP8266WiFiMulti.h>
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
+#include <WiFiNINA.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 
@@ -10,6 +11,8 @@ const char *ssid1 = "Cuarto2.4G";
 const char *password1 = "Lunohas13steps";
 const char *ssid2 = "WifiSalon";
 const char *password2 = "lunohas13steps";
+const char *ssid3 = "Cuarto2.4G_2";
+const char *password3 = "Lunohas13steps";
 String deviceName = "Device_1";
 String currentStatus = "false";
 String wifiName;
@@ -34,11 +37,12 @@ void setup() {
 
 
   WiFi.mode(WIFI_STA);
+  WiFiMulti.addAP(ssid3, password3);
   WiFiMulti.addAP(ssid1, password1);
   WiFiMulti.addAP(ssid2, password2);
   //WiFi.config(ipDevice,dns, gateway, subnet);
   WiFi.begin();
-  WiFi.setHostname(deviceName);
+  WiFi.hostname(deviceName);
 
   while (WiFiMulti.run() != WL_CONNECTED) {
     //Serial.print(".");
