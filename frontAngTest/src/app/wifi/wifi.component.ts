@@ -18,6 +18,7 @@ export class WifiComponent implements OnInit {
   constructor( private http: HttpClient, private socketService: SocketService ) { }
 
   ngOnInit() {
+    this.getWifis()
     this.subscription = this.socketService.getWifiAlert().subscribe( (msg)=>{
       if(this.wifi){
         this.getData(this.wifi)
@@ -31,6 +32,18 @@ export class WifiComponent implements OnInit {
   wrapGetData(wifi){
     this.wifi = wifi
     this.getData(wifi)
+  }
+  getWifis(){
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    let url = "http://" + host + ":8000/wifis"
+    this.http.get<any[]>(url).subscribe( data =>
+    {
+      if(data!=null){
+        console.log(this.wifis)
+        this.wifis = data
+        console.log(this.wifis)
+      }
+    })
   }
   getData(wifi){
     const host = (window.location.href.split("/")[2]).split(":")[0]

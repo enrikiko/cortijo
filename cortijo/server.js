@@ -83,6 +83,11 @@ app.get("/wifi/:wifi", async function(req, res) {
     res.status(200).send(signal.reverse())
 })
 //
+app.get("/wifis", async function(req, res) {
+    wifiList = ["test_wifi","Cuarto2.4G","WifiSalon","Cuarto2.4G_2"];
+    res.status(200).send(wifiList)
+})
+//
 //Auth with user & password
 app.get("/auth/:user/:password", async function(req, res) {
     user = req.params.user;
