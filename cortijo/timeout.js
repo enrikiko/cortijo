@@ -65,10 +65,9 @@ async function checkDevices(){
                 await wifi.newSignal(name,status.SSID,status.SIGNAL)
                 statusMap[name] = {"SSID":status.SSID, "SIGNAL":status.SIGNAL}
                 console.log(statusMap)
-                console.log(statusMap[name].SSID)
-                console.log(statusMap[name].SIGNAL)
                 //logs.log(res)
                 }
+             else(statusMap[name] = 0)
         }catch(e){
             logs.error(e)
             await myDevice.blockDeviceByName(name);
@@ -78,6 +77,7 @@ async function checkDevices(){
 
         }
     }
+    console.log(statusMap)
     socket.wifi("check(wifi)")
     socket.device("check(device)")
 }
