@@ -94,13 +94,21 @@ async function chechSensors() {
             //logs.log(status.SSID)
             //logs.log(status.SIGNAL)
             await wifi.newSignal(name,status.SSID,status.SIGNAL)
+            statusMap[name] = {"SSID":status.SSID, "SIGNAL":status.SIGNAL}
+            console.log(statusMap)
             //logs.log(res)
             }
+         else(statusMap[name] = 0)
       }catch(e){
           logs.error(e)
           //await myDevice.blockDeviceByName(name);
+          if(statusMap[name] && statusMap[name].SSID){
+                await wifi.newSignal(name,statusMap[name].SSID,0)
+                }
       }
     }
+    console.log(statusMap)
+    socket.wifi("check(wifi)")
 }
 //
 function safeData(type,name,data){
