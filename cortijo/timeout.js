@@ -103,7 +103,7 @@ async function chechSensors() {
           logs.error(e)
           //await myDevice.blockDeviceByName(name);
           if(statusMap[name] && statusMap[name].SSID){
-                await wifi.newSignal(name,statusMap[name].SSID,0)
+                await wifi.newSignal(name,statusMap[name].SSID,-100)
                 }
       }
     }
