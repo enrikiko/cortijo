@@ -47,6 +47,7 @@ async function getSensor(){
     socket.data("getSensor(data)")
 }
 //
+statusMap={}
 async function checkDevices(){
     logs.log("Checking devices: ")
     var devicesList = await myDevice.getDevice()
@@ -58,15 +59,23 @@ async function checkDevices(){
             var status = await joker.getDeviceStatus(name)
             await myDevice.checkDeviceByName(name)
             //logs.log(status.SSID)
-            if (status.SSID){
+            if (status.SSID && status.SIGNAL){
                 //logs.log(status.SSID)
                 //logs.log(status.SIGNAL)
                 await wifi.newSignal(name,status.SSID,status.SIGNAL)
+                statusMap[name] = {"SSID":status.SSID, "SIGNAL":status.SIGNAL}
+                console.log(statusMap)
+                console.log(statusMap[name].SSID)
+                console.log(statusMap[name].SIGNAL)
                 //logs.log(res)
                 }
         }catch(e){
             logs.error(e)
             await myDevice.blockDeviceByName(name);
+            if(statusMap[name].SSID){
+                await wifi.newSignal(name,statusMap[name].SSID,0)
+                }
+
         }
     }
     socket.wifi("check(wifi)")
