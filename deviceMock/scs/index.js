@@ -7,7 +7,7 @@ app.enable('trust proxy')
 app.use(express.urlencoded()) // middleware Bodyparse
 var http = require('http').Server(app);
 var status = true;
-var signal = 50;
+var signal = -100;
 
 
 app.get("/*", function(req, res, next) {
@@ -54,7 +54,7 @@ app.get('/'+process.env.mock_name+'/status', function(req, res){
   info={}
   info.status=status
   info.SSID="test_wifi"
-  signal=signal - Math.floor((Math.random() * 24) - 12)
+  signal=signal - Math.floor((Math.random() * 10) - 5)
   info.SIGNAL=signal
   console.log(info);
   res.status(200).json(info)
