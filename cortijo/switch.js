@@ -18,6 +18,7 @@ async function changeBackFalse(name) {
       responseBack.code = 404
   }
 }
+timeOutMap={}
 module.exports = {
   changeStatusToFalse: async (name, res, ip) => {
     var id = await myDevice.getIdByName(name) //Get ID of the device //
@@ -54,9 +55,10 @@ module.exports = {
                 if(res!=null){  //TODO is this nessesary?
                 //joker.switchAlertLapse(name, lapse, ip);
                 watering.newRequest(name, lapse, true, ip)
+                clearTimeout(timeOutMap.[name])
+                timeOutMap.[name] = setTimeout(changeBackFalse, lapse, name);
                 res.status(response.code).send(response)
                 }
-                setTimeout(changeBackFalse, lapse, name);
               }else {
                  if(res!=null){
                    return res.status(200).send(response)
