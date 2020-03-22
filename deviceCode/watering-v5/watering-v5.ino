@@ -14,7 +14,10 @@ const char *ssid3 = "Cuarto2.4G_2";
 const char *password3 = "Lunohas13steps";
 String deviceName = "Wemos-watering";
 String currentStatus = "false";
+int saveTime = 1000; //1seg
 String wifiName;
+long timeout;
+boolean checkTimeout = false;
 
 int port = 80;
 
@@ -30,7 +33,7 @@ ESP8266WebServer server(port);
 
 void setup() {
 
-  //Serial.begin(115200);
+  Serial.begin(115200);
 
   pinMode(5, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
@@ -79,17 +82,26 @@ void loop() {
 
   while(WiFiMulti.run() == WL_CONNECTED){
     server.handleClient();
+    checkTime();
     }
-
   WiFi.begin();
-
   while (WiFiMulti.run() != WL_CONNECTED) {
     delay(1000);
+    checkTime();
   }
-
   wifiName = WiFi.SSID();
 
 }
+void checkTime(){
+  if(checkTimeout){
+    Serial.println("Checkin...");
+    Serial.println(timeout-millis());
+    if(timeout<=millis()){
+      Serial.println("auto swich off");
+      swich(false);
+     }
+   }
+ }
 
 void light(boolean val){
   if(val){
@@ -129,24 +141,32 @@ void setIp(String ip){
 }
 
 void handleStatus() {
-  String state;
-  if(certain){state="true";}
-  else{state="false";};
-  server.send(200, "application/json", "{\"status\":" + state + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+  server.send(200, "application/json", "{\"status\":" + currentStatus + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
 }
 
 void handleRoot5true() {
-  digitalWrite(5, true);
-  light(true);
-  certain=true;
-  server.send(200, "application/json", "{\"status\": "+currentStatus+"}");
+  swich(true);
+  for (uint8_t i = 0; i < server.args(); i++) {
+    if(server.argName(i)=="time"){settimeout(server.arg(i));}
+  }
 }
 void handleRoot5false() {
-  digitalWrite(5, false);
-  light(false);
-  certain=false;
+  swich(false);
+}
+void swich(boolean state){
+  digitalWrite(5, state);
+  light(state);
+  certain=state;
+  checkTimeout=state;
+  if(certain){currentStatus="true";}
+  else{currentStatus="false";};
   server.send(200, "application/json", "{\"status\": "+currentStatus+"}");
 }
+void settimeout(String lapse){
+  int lapseTime=lapse.toInt();
+  timeout=millis()+lapseTime+saveTime;
+  Serial.println(timeout);
+  }
 
 void handleNotFound() {
   String message = "File Not Found\n\n";
