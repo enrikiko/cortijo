@@ -8,6 +8,7 @@ async function changeBackFalse(name) {
       var responseBack = await joker.switchStatus(false, name) //Change device status
       if (responseBack.code == 200) {
           logs.log("Changed back automatically due to timeout " + name + " to false")
+          watering.newRequest(name, null, false, "timeout")
       }
       else {
           logs.error("Error changing back " + name + " to false")
@@ -32,7 +33,8 @@ module.exports = {
             var response = await joker.switchStatus(false, name) //Change device status //TODO make sure this is ejecute
             //joker.switchAlert( name, ip )
             if (response.code == 200) {
-                watering.newRequest(name, null, false, ip)
+              clearTimeout(timeOutMap[name])
+              watering.newRequest(name, null, false, ip)
             }
             res.status(response.code).send(response)
         } catch (e) {
@@ -55,7 +57,6 @@ module.exports = {
                 if(res!=null){  //TODO is this nessesary?
                 //joker.switchAlertLapse(name, lapse, ip);
                 watering.newRequest(name, lapse, true, ip)
-                clearTimeout(timeOutMap[name])
                 timeOutMap[name] = setTimeout(changeBackFalse, lapse, name);
                 res.status(response.code).send(response)
                 }
