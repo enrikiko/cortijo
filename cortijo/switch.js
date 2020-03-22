@@ -55,8 +55,8 @@ module.exports = {
                 if(res!=null){  //TODO is this nessesary?
                 //joker.switchAlertLapse(name, lapse, ip);
                 watering.newRequest(name, lapse, true, ip)
-                clearTimeout(timeOutMap.[name])
-                timeOutMap.[name] = setTimeout(changeBackFalse, lapse, name);
+                clearTimeout(timeOutMap[name])
+                timeOutMap[name] = setTimeout(changeBackFalse, lapse, name);
                 res.status(response.code).send(response)
                 }
               }else {
