@@ -1,6 +1,23 @@
 const logs = require('./logs');
 const joker = require('./joker');
 const myDevice = require('./devices');
+const watering = require('./watering');
+async function changeBackFalse(name) {
+  //Change back to false
+  try {
+      var responseBack = await joker.switchStatus(false, name) //Change device status
+      if (responseBack.code == 200) {
+          logs.log("Changed back automatically due to timeout " + name + " to false")
+      }
+      else {
+          logs.error("Error changing back " + name + " to false")
+  }
+  } catch (e) {
+      logs.error(e)
+      var responseBack = {}
+      responseBack.code = 404
+  }
+}
 module.exports = {
   changeStatusToFalse: async (name, res, ip) => {
     var id = await myDevice.getIdByName(name) //Get ID of the device //
@@ -11,13 +28,12 @@ module.exports = {
         //logs.log(JSON.stringify(isUpdating))
         logs.log("Change status of "+name+" to false");
         try {
-            var response = await joker.switchStatus(false, name) //Change device status
-            joker.switchAlert( name, ip )
+            var response = await joker.switchStatus(false, name) //Change device status //TODO make sure this is ejecute
+            //joker.switchAlert( name, ip )
             if (response.code == 200) {
-                res.status(response.code).send(response)
-            }else {
-                res.status(response.code).send(response)
+                watering.newRequest(name, null, false, ip)
             }
+            res.status(response.code).send(response)
         } catch (e) {
             logs.error(e)
             var response = {}
@@ -35,25 +51,12 @@ module.exports = {
         try {
               response = await joker.switchStatus(true, name) //Change device status
               if (response.code == 200) {
-                if(res!=null){
-                joker.switchAlertLapse(name, lapse, ip);
+                if(res!=null){  //TODO is this nessesary?
+                //joker.switchAlertLapse(name, lapse, ip);
+                watering.newRequest(name, lapse, true, ip)
                 res.status(response.code).send(response)
                 }
-                setTimeout(async function(){  //Change back to false
-                        try {
-                            var responseBack = await joker.switchStatus(false, name) //Change device status
-                            if (responseBack.code == 200) {
-                                logs.log("Changed back automatically due to timeout " + name + " to false")
-                            }
-                            else {
-                                logs.error("Error changing back " + name + " to false")
-                        }
-                        } catch (e) {
-                            logs.error(e)
-                            var responseBack = {}
-                            responseBack.code = 404
-                        }
-                    }, lapse);
+                setTimeout(changeBackFalse, lapse, name);
               }else {
                  if(res!=null){
                    return res.status(200).send(response)

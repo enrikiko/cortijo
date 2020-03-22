@@ -1,7 +1,7 @@
 ---
-  log: "error"
-  timeout_check:  3000
-  timeout_sensor: 3000
+  log: "debug"
+  timeout_check:  30000
+  timeout_sensor: 30000
   times_before_block: 10
   device_status_timeout: 2500
   switch_status_timeout: 2500
