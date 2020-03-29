@@ -14,7 +14,7 @@ export class TaskComponent implements OnInit {
 
   ngOnInit() { this.getTodoTasks() }
 
-  getDevicesList(){
+  getTodoTasks(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://" + host + ":8000/task/todo"
     this.http.get<any[]>(url).subscribe( data =>
