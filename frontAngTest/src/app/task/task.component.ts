@@ -107,7 +107,7 @@ export class TaskComponent implements OnInit {
     this.http.post(url, object).subscribe( data =>
     {
       if(data!=null){
-        this.getInprogresTasks()
+        this.getTodoTasks()
         this.getDoneTasks()
       }
       else {
