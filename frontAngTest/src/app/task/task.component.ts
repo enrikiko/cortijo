@@ -80,4 +80,22 @@ export class TaskComponent implements OnInit {
     })
   }
 
+  finish(name){
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    let url = "http://" + host + ":8000/task/update"
+    let object={}
+    object["status"]="done"
+    object["name"]=name
+    this.http.post(url, object).subscribe( data =>
+    {
+      if(data!=null){
+        this.getTodoTasks()
+          this.getDoneTasks()
+      }
+      else {
+      console.log('Database is empty')
+      }
+    })
+  }
+
 }
