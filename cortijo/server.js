@@ -60,6 +60,15 @@ app.post("/task",async function (req, res) {
     res.status(200)
   }
 })
+app.post("/task/:name/:description",async function (req, res) {
+  name = req.params.name;
+  description = req.params.description;
+  var result = await myTask.newTask(name, description)
+  if(result){res.status(201)}
+  else {
+    res.status(200)
+  }
+})
 app.post("/task/update",async function (req, res) {
   name = req.body.name;
   status = req.body.status;
