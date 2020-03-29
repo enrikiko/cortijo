@@ -29,10 +29,14 @@ export class UsersComponent implements OnInit {
     const password = target.querySelector('#password').value
     const secret = target.querySelector('#secret').value
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/auth/"+user+"/"+password+"/"+secret
+    let url = "http://" + host + ":8000/auth"
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    this.http.post(url, secret, {headers: headers}).subscribe( data =>
+    var object = {};
+    object.secret=secret;
+    object.user=user;
+    object.password=password;
+    this.http.post(url, object, {headers: headers}).subscribe( data =>
     {
       if(data){
         console.log(data)

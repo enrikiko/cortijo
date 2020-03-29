@@ -107,10 +107,10 @@ app.get("/auth/:user/:password", async function(req, res) {
     }
 })
 //Create new user
-aap.post("/auth/:user/:password/:secret", async function(req, res) {
-  user = req.params.user;
-  password = req.params.password;
-  secret = req.params.secret;
+aap.post("/auth", async function(req, res) {
+  user = req.body.user;
+  password = req.body.password;
+  secret = req.body.secret;
   try {
     var response = await joker.newUser(user, password, secret);
     if(jwt){res.status(200).json(response)}
