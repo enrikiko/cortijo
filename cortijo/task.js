@@ -37,14 +37,14 @@ module.exports = {
 
       let task = await myTask.find({"name":name})
       if (task.length <= 0){
-        let myTask = new myTask(
+        let task = new myTask(
           {
             time: new Date().getTime(),
             name: name,
             description: description,
             status: "todo"
           });
-        myTask.save(function(err) {
+        task.save(function(err) {
           if (err) throw err;
         });
         return true;
