@@ -115,8 +115,9 @@ app.post("/auth", async function(req, res) {
   try {
     var response = await joker.newUser(user, password, secret);
     jwt = response.jwt
-    if(jwt){res.status(200).json(response)}
-    else{res.status(401).json(response)}
+    logs.log(response.status)
+    if(jwt){res.status(201).json(response)}
+    else{res.status(200).json(response)}
   } catch (e) {
     logs.error(e);
     res.status(500).json({"status":e})
