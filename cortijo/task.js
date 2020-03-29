@@ -34,8 +34,8 @@ let myTask = mongoose.model('Task', taskSchema);
 //
 module.exports = {
   newTask: async(name, description) => {
-      let task = await myTask.find({"name":name})
-      if (task.length <= 0){
+      let isTask = await myTask.find({"name":name})
+      if (isTask.length <= 0){
         let task = new myTask(
           {
             time: new Date().getTime(),
