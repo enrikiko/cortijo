@@ -168,18 +168,6 @@ app.get("/sensor/all", async function(req, res) {
     var response = await mySensor.getAllSensor();
     res.status(200).json(response)
 })
-app.delete("/sensor/:name", async function(req, res) {
-    var name = req.params.name;
-    var id = await mySensor.getIdByName(name)
-    if (id){
-      var response = await mySensor.removeSensorByName(name);
-      logs.log(name+" Remove successfully");
-      res.status(200).json("Sensor remove successfully")
-    }else {
-      logs.error(name+" doesn't Exist");
-      res.status(200).json("Sensor doesn't Exist")
-    }
-})
 //
 app.get("/sensor/:name", async function(req, res) {
     var name = req.params.name;
@@ -262,28 +250,11 @@ app.get("/set/humidity/:humidity", function(req, res) {
   myHumidity.newHumidity(req.params.humidity)
   res.status(200).send()
 })
-//
-//
-//Set temperature and humidity
-//app.get("/set/:temperature/:humidity", function(req, res) {
-//  temperature = req.params.temperature;
-//  humidity = req.params.humidity;
-//  myTemperature.newTemperature(temperature, humidity)
-//  res.status(200).send()
-//})
-//
-//Get temperature and humidity
-// app.get("/current/temperature/humidity", function(req, res) {
-//   response={}
-//   response.temperature=temperature;
-//   response.humidity=humidity;
-//   res.status(200).json(response)
-// })
 //TODO
 //Delete temperature history
 app.delete("/temperature/history/:name",async function(req, res) {
      var name = req.params.name;
-     var result = await myTemperature.deleteName(name)
+     var result = await myTemperature.deleteByName(name)
      res.status(200).send(result)
 })
 //
@@ -293,34 +264,6 @@ app.get("/device/:name", async function(req, res) {
     var deviceList = await myDevice.getDeviceByName(name);
     res.status(200).json(deviceList[0])
 })
-//
-//Remove device by id
-app.delete("/device/:name", async function(req, res) {
-    var name = req.params.name;
-    var id = await myDevice.getIdByName(name)
-    if (id){
-      var response = await myDevice.removeDeviceByName(name);
-      logs.log(name+" Remove successfully");
-      res.status(200).json("Device Remove successfully")
-    }else {
-      logs.error(name+" Doesn't Exist");
-      res.status(200).json("Device Doesn't Exist")
-    }
-})
-//
-//Block device by id
-//app.get("/block/:name", async function(req, res) {
-//    var name = req.params.name;
-//    var id = await myDevice.getIdByName(name)
-//    if (id){
-//      var response = await myDevice.blockDeviceByName(name);
-//      logs.log(name+" block successfully");
-//      res.status(200).json("Device block successfully")
-//    }else {
-//      logs.log(name+" Doesn't Exist");
-//      res.status(200).json("Device Doesn't Exist")
-//    }
-//})
 //
 //Get status of device
 app.get("/status/:device", async function(req, res) {
@@ -341,30 +284,30 @@ app.get("/status/:device", async function(req, res) {
   }
 })
 //
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////                     Secure request JWT needed                 /////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////                     Secure request JWT needed                 /////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-app.delete("/device/*", async function(req, res, next) {
-    const jwt = req.headers.authorization
+app.delete("/*", async function(req, res, next) {
     //console.log(req)
     try{
-       user = await joker.getUserByJWT(jwt)
-       next()
+        let jwt = req.headers.authorization
+        let user = await joker.getUserByJWT(jwt)
+        next()
     }catch(e){
        logs.error(e)
-       res.status(404).json({"jwt":"Error"})
+       res.status(401).json({"jwt":"Error"})
     }
 })
 app.get("/update/*", async function(req, res, next) {
-    const jwt = req.headers.authorization
     //console.log(req)
     try{
-       user = await joker.getUserByJWT(jwt)
-       next()
+        let jwt = req.headers.authorization
+        let user = await joker.getUserByJWT(jwt)
+        next()
     }catch(e){
        logs.error(e)
-       res.status(404).json({"jwt":"Error"})
+       res.status(401).json({"jwt":"Error"})
     }
 })
 //
@@ -381,6 +324,32 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
   var lapse = req.params.lapse_time
   var ip = req.ip
   var response = await mySwitch.changeStatusToTrue(name, lapse, res, ip)
+})
+//Remove device by id
+app.delete("/device/:name", async function(req, res) {
+    var name = req.params.name;
+    var id = await myDevice.getIdByName(name)
+    if (id){
+      var response = await myDevice.removeDeviceByName(name);
+      logs.log(name+" Remove successfully");
+      res.status(200).json("Device Remove successfully")
+    }else {
+      logs.error(name+" Doesn't Exist");
+      res.status(200).json("Device Doesn't Exist")
+    }
+})
+//Delete sensor
+app.delete("/sensor/:name", async function(req, res) {
+    var name = req.params.name;
+    var id = await mySensor.getIdByName(name)
+    if (id){
+      var response = await mySensor.removeSensorByName(name);
+      logs.log(name+" Remove successfully");
+      res.status(200).json("Sensor remove successfully")
+    }else {
+      logs.error(name+" doesn't Exist");
+      res.status(200).json("Sensor doesn't Exist")
+    }
 })
 //
 //Handel all bad requests

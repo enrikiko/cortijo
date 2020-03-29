@@ -12,7 +12,7 @@ module.exports = {
     },
     verifyJwt: async (token) => {
         try {
-            var decoded = await jwt.verify(token, privateKey);
+            var decoded = await jwt.verify(token, publicKey);
             return decoded
         } catch(err) {
              console.log(err.message)

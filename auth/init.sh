@@ -1,2 +1,2 @@
-ssh-keygen -q -N '' -f ./privatekey
+#ssh-keygen -q -N '' -f ./privatekey
 node server.js
