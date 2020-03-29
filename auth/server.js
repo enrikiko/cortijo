@@ -139,7 +139,7 @@ app.post('/user/:user/:password/:token', async function(req, res){
         }
     }else{
         console.log("Token incorrect")
-        res.status(401).json({"status":"Unauthorized"})
+        res.status(200).json({"status":"Unauthorized"})
     }
 });
 
