@@ -85,7 +85,8 @@ module.exports={
      newUser: async (user, password, secret) => {
        const url = AUTH_JWT+"/user/"+user+"/"+password+"/"+secret
        async function getResponse(url) {
-         return await request.post(url).body;
+         response = await request.post(url);
+         return response.body
        }
        return await getResponse(url);
      },
