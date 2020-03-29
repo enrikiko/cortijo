@@ -89,9 +89,9 @@ app.get("/wifis", async function(req, res) {
 })
 //
 //Auth with user & password
-app.get("/auth/:user/:password", async function(req, res) {
-    user = req.params.user;
-    password = req.params.password;
+app.get("/auth", async function(req, res) {
+    user = req.body.user;
+    password = req.body.password;
     try{
         var jwt = await joker.auth(user, password);
         logs.log("jwt: "+jwt);
@@ -125,25 +125,6 @@ app.post("/auth", async function(req, res) {
 })
 //
 //New device
-// app.get("/new/:name/:status/:ip", async (req, res) => {
-//      var name = req.params.name
-//      var ip = req.params.ip
-//      var status = joker.getStatus(req.params.status)
-//      var id = await myDevice.getIdByName(name)
-//      if(status===null){
-//             res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
-//        }else{
-//           if (!id) {
-//              var response = await myDevice.newDevice(name, status, ip)
-//              logs.log(name+' have been created successfully');
-//              res.status(200).json(name+' create successfully')
-//           }else {
-//              var lastIp = await myDevice.updateDeviceIp(id, ip)
-//              res.status(200).json({"Previous Ip": lastIp, "New Ip": ip})
-//           }
-//      }
-// })
-//New device
 app.post("/device/:name/:status/:ip", async (req, res) => {
      var name = req.params.name
      var ip = req.params.ip
@@ -163,24 +144,6 @@ app.post("/device/:name/:status/:ip", async (req, res) => {
      }
 })
 //
-//New sensor
-// app.get("/newSensor/:type/:name/:ip", async (req, res) => {
-//      var name = req.params.name
-//      var ip = req.params.ip
-//      var type = req.params.type
-//      var devices = req.query.devices
-//      var min = req.query.min
-//      var max = req.query.max
-//      var id = await mySensor.getIdByName(name)
-//       if (!id) {
-//          var response = await mySensor.newSensor(name, ip, type, devices, min, max)
-//          logs.log(name+' have been created successfully');
-//          res.status(200).json(name+' create successfully')
-//       }else {
-//          var lastIp = await mySensor.updateSensor(id, ip, devices, min, max)
-//          res.status(200).json({"Previous Ip": lastIp, "New Ip": ip, "Devices": devices})
-//       }
-// })
 //New sensor
 app.post("/sensor/:type/:name/:ip", async (req, res) => {
      var name = req.params.name
@@ -248,7 +211,7 @@ app.get("/jwt", async function(req, res) {
 //    res.status(200).json({response})
 //})
 //
-app.get("/all/ip", async function(req, res) {
+app.get("/ip/all", async function(req, res) {
    var response = await requests.getAllIp();
    res.status(200).json([response])
 })
