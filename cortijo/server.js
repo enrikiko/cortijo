@@ -114,6 +114,7 @@ app.post("/auth", async function(req, res) {
   logs.log(user+password+secret);
   try {
     var response = await joker.newUser(user, password, secret);
+    logs.log(response.jwt);
     if(jwt){res.status(200).json(response)}
     else{res.status(401).json(response)}
   } catch (e) {
