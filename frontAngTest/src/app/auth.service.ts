@@ -50,7 +50,7 @@ export class AuthService {
       let object={}
       object["user"]=user;
       object["password"]=password;
-      this.http.get<any>(url, object).subscribe( data =>
+      this.http.put<any>(url, object).subscribe( data =>
       {
         if(data.status==true){
           window.localStorage.setItem('jwt', data.jwt)
