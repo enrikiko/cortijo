@@ -5,7 +5,7 @@
       <button *ngFor="let taskTodo of tasksTodo" class="col-12 my-1">
         <h2>{{ taskTodo.name }}</h2>
         <h3>{{ taskTodo.description }}</h3>
-        <h3>{{ taskTodo.time }}</h3>
+        <h3>{{ taskTodo.time | date:'dd/MM/yyyy'}}</h3>
          <button class="btn btn-outline-success btn-sm" (click)="start(taskTodo.name)">Start</button>
       </button>
     </div>
@@ -13,7 +13,7 @@
       <button *ngFor="let taskInprogres of tasksInprogres" class="col-12 my-1">
         <h2>{{ taskInprogres.name }} </h2>
         <h3>{{ taskInprogres.description }}</h3>
-        <h3>{{ taskInprogres.time }}</h3>
+        <h3>{{ taskInprogres.time | date:'dd/MM/yyyy'}}</h3>
         <button class="btn btn-outline-danger btn-sm" (click)="finish(taskInprogres.name)">Done!</button>
       </button>
     </div>
@@ -21,7 +21,7 @@
       <button *ngFor="let taskDone of tasksDone" class="col-12 my-1">
         <h2>{{ taskDone.name }} </h2>
         <h3>{{ taskDone.description }}</h3>
-        <h3>{{ taskDone.time }}todo</h3>
+        <h3>{{ taskDone.time | date:'dd/MM/yyyy'}}</h3>
         <button class="btn btn-outline-primary btn-sm" (click)="todo(taskDone.name)">TODO</button>
       </button>
     </div>
