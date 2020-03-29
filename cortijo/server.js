@@ -60,7 +60,7 @@ app.post("/task",async function (req, res) {
     res.status(200)
   }
 })
-app.post("/task/:name/:description",async function (req, res) {
+app.get("/task/:name/:description",async function (req, res) {
   name = req.params.name;
   description = req.params.description;
   var result = await myTask.newTask(name, description)
