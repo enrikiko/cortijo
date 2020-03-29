@@ -3,9 +3,10 @@
   <div class="row justify-content-md-center">
     <div *ngFor="let taskTodo of tasksTodo" class="col-6">
       <button class="col-12 my-1">
-        <h2>{{ taskTodo.name }} </h2>
+        <h2>{{ taskTodo.name }}</h2>
         <h3>{{ taskTodo.description }}</h3>
         <h3>{{ taskTodo.time }}</h3>
+         <button class="btn btn-outline-danger btn-sm" (click)="start(taskTodo.name)">Start</button>
       </button>
     </div>
     <div *ngFor="let taskInprogres of tasksInprogres" class="col-6">

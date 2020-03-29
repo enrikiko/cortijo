@@ -36,7 +36,7 @@ export class TaskComponent implements OnInit {
 
   getInprogresTasks(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/task/todo"
+    let url = "http://" + host + ":8000/task/Inprogres"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -55,6 +55,24 @@ export class TaskComponent implements OnInit {
     {
       if(data!=null){
         this.tasksDone=data;
+      }
+      else {
+      console.log('Database is empty')
+      }
+    })
+  }
+
+  start(name){
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    let url = "http://" + host + ":8000/task/update"
+    let object={}
+    object["status"]="Inprogres"
+    object["name"]=name
+    this.http.post<any[]>(url).subscribe( data =>
+    {
+      if(data!=null){
+        this.getTodoTasks()
+        this.getInprogresTasks()
       }
       else {
       console.log('Database is empty')
