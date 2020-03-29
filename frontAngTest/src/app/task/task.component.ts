@@ -9,10 +9,16 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 export class TaskComponent implements OnInit {
 
   tasksTodo: any[] = null;
+  tasksInprogres: any[] = null;
+  tasksDone: any[] = null;
 
   constructor( private http: HttpClient ) { }
 
-  ngOnInit() { this.getTodoTasks() }
+  ngOnInit() {
+    this.getTodoTasks()
+    this.getInprogresTasks()
+    this.getDoneTasks()
+  }
 
   getTodoTasks(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
@@ -21,6 +27,34 @@ export class TaskComponent implements OnInit {
     {
       if(data!=null){
         this.tasksTodo=data;
+      }
+      else {
+      console.log('Database is empty')
+      }
+    })
+  }
+
+  getInprogresTasks(){
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    let url = "http://" + host + ":8000/task/todo"
+    this.http.get<any[]>(url).subscribe( data =>
+    {
+      if(data!=null){
+        this.tasksInprogres=data;
+      }
+      else {
+      console.log('Database is empty')
+      }
+    })
+  }
+
+  getDoneTasks(){
+    const host = (window.location.href.split("/")[2]).split(":")[0]
+    let url = "http://" + host + ":8000/task/todo"
+    this.http.get<any[]>(url).subscribe( data =>
+    {
+      if(data!=null){
+        this.tasksDone=data;
       }
       else {
       console.log('Database is empty')

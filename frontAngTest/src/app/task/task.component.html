@@ -8,5 +8,20 @@
         <h3>{{ taskTodo.time }}</h3>
       </button>
     </div>
+    <div *ngFor="let taskInprogres of tasksInprogres" class="col-6">
+      <button class="col-12 my-1">
+        <h2>{{ taskInprogres.name }} </h2>
+        <h3>{{ taskInprogres.description }}</h3>
+        <h3>{{ taskInprogres.time }}</h3>
+      </button>
+    </div>
+    <div *ngFor="let taskDone of tasksDone" class="col-6">
+      <button class="col-12 my-1">
+        <h2>{{ taskDone.name }} </h2>
+        <h3>{{ taskDone.description }}</h3>
+        <h3>{{ taskDone.time }}</h3>
+      </button>
+    </div>
+  </div>
 
 </div>
