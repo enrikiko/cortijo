@@ -54,7 +54,7 @@ module.exports = {
   getTasks: async (status) => {return await myTask.find({"status":status})},
   //
   updateTask: async (name, status) => {
-    return myTask.find({"name":name},function(err, result) {
+    return myTask.findOne({"name":name},function(err, result) {
       if (err) throw err
       if(result){
         result.status = status
