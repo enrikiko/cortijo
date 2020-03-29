@@ -90,7 +90,7 @@ export class TaskComponent implements OnInit {
     {
       if(data!=null){
         this.getTodoTasks()
-          this.getDoneTasks()
+        this.getDoneTasks()
       }
       else {
       console.log('Database is empty')
