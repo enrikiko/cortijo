@@ -123,10 +123,10 @@ void setIp(String ip){
        HTTPClient http;
        //Serial.print("[HTTP] begin...\n");
        //Serial.print("http://192.168.1.50:8000/newSensor/temperature/"+deviceName+"/"+ip+":"+port);
-       if (http.begin(client, "http://192.168.1.50:8000/newSensor/temperature/"+deviceName+"/"+ip+":"+port)) {
+       if (http.begin(client, "http://192.168.1.50:8000/sensor/temperature/"+deviceName+"/"+ip+":"+port)) {
          //Serial.print("[HTTP] GET CODE: ");
          // start connection and send HTTP header
-         int httpCode = http.GET();
+         int httpCode = http.POST();
 
          // httpCode will be negative on error
          if (httpCode > 0) {

@@ -109,10 +109,10 @@ int getInfo(){
        HTTPClient http;
        //Serial.print("[HTTP] begin...\n");
        //Serial.print("http://192.168.1.50:8000/newSensor/humidity/"+deviceName+"/"+ip+":"+port);
-       if (http.begin(client, "http://192.168.1.50:8000/newSensor/humidity/"+deviceName+"/"+ip+":"+port)) {
+       if (http.begin(client, "http://192.168.1.50:8000/sensor/humidity/"+deviceName+"/"+ip+":"+port)) {
          //Serial.print("[HTTP] GET CODE: ");
          // start connection and send HTTP header
-         int httpCode = http.GET();
+         int httpCode = http.POST();
 
          // httpCode will be negative on error
          if (httpCode > 0) {

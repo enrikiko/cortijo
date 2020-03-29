@@ -78,7 +78,7 @@ app.get("/jwt/:jwt", async function(req, res) {
         }
      }catch(e){
         console.log(e)
-        res.status(404).send("ERROR2")
+        res.status(501).send("ERROR2")
      }
 })
 //
@@ -100,10 +100,8 @@ app.get("/all/:token", async function(req, res) {
           var all = await auth.getAll()
           res.status(200).json(all)
      }else{res.status(401).send(false)}
-
 })
-
-
+//
 app.delete('/user/:user/:password/:token', async function(req, res){
      user = req.params.user;
      password = req.params.password;
@@ -125,14 +123,14 @@ app.delete('/user/:user/:password/:token', async function(req, res){
      }
 });
 
-app.get('/newuser/:user/:password/:token', async function(req, res){
+app.post('/user/:user/:password/:token', async function(req, res){
     user = req.params.user;
     password = req.params.password;
     token = req.params.token;
     if(token==process.env.TOKEN){
         console.log("Token correct")
         isCreateUser = await auth.createUser(user, password)
-        if ( isCreateUser == true ) {
+        if ( isCreateUser ) {
             generatedJWT = await jwt_auth.signAuthJwt(user)
             res.status(201).json({"status":"User created successfuly","jwt":generatedJWT})
         }else {

@@ -29,8 +29,8 @@ export class UsersComponent implements OnInit {
     const password = target.querySelector('#password').value
     const secret = target.querySelector('#secret').value
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8010/newuser/"+user+"/"+password+"/"+secret
-    this.http.get<any>(url).subscribe( data =>
+    let url = "http://" + host + ":8000/auth/"+user+"/"+password+"/"+secret
+    this.http.post<any>(url).subscribe( data =>
     {
       if(data){
         console.log(data)

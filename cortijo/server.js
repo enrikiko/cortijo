@@ -14,9 +14,8 @@ const timeout = require('./timeout');
 const config = require('./config');
 const mySwitch = require('./switch');
 const cors = require('cors');
-//const delay = require('delay');
 const bodyParser = require('body-parser');
-const auth = require('basic-auth');
+//const auth = require('basic-auth');
 const app = express();
 const fs = require('fs')
 const yaml = require('js-yaml')
@@ -62,6 +61,7 @@ app.get("/config", function(req, res) {
     res.status(200).json(config.getValues())
 })
 //
+//TODO after JWT
 app.post("/config/update",async function(req, res) {
     await config.safeValues(req.body)
     res.status(200).json(config.getValues())
@@ -100,13 +100,49 @@ app.get("/auth/:user/:password", async function(req, res) {
         data.jwt=jwt
         if(jwt!="Invalid credentials"){res.status(200).json(data)}
         else{res.status(401).json({"status":false})}
-    }catch(e){
+    } catch(e){
         res.status(e.status).json({"status":false})
+    } finally {
+      logs.log(user +" has log-in")
     }
+})
+//Create new user
+aap.post("/auth/:user/:password/:secret", async function(req, res) {
+  user = req.params.user;
+  password = req.params.password;
+  secret = req.params.secret;
+  try {
+    var response = await joker.newUser(user, password, secret);
+    if(jwt){res.status(200).json(response)}
+    else{res.status(401).json(response)}
+  } catch (e) {
+    res.status(e.status).json({"status":e})
+  } finally {
+    logs.log("User " + user +" has been create")
+  }
 })
 //
 //New device
-app.get("/new/:name/:status/:ip", async (req, res) => {
+// app.get("/new/:name/:status/:ip", async (req, res) => {
+//      var name = req.params.name
+//      var ip = req.params.ip
+//      var status = joker.getStatus(req.params.status)
+//      var id = await myDevice.getIdByName(name)
+//      if(status===null){
+//             res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
+//        }else{
+//           if (!id) {
+//              var response = await myDevice.newDevice(name, status, ip)
+//              logs.log(name+' have been created successfully');
+//              res.status(200).json(name+' create successfully')
+//           }else {
+//              var lastIp = await myDevice.updateDeviceIp(id, ip)
+//              res.status(200).json({"Previous Ip": lastIp, "New Ip": ip})
+//           }
+//      }
+// })
+//New device
+app.post("/device/:name/:status/:ip", async (req, res) => {
      var name = req.params.name
      var ip = req.params.ip
      var status = joker.getStatus(req.params.status)
@@ -125,8 +161,26 @@ app.get("/new/:name/:status/:ip", async (req, res) => {
      }
 })
 //
-//New device
-app.get("/newSensor/:type/:name/:ip", async (req, res) => {
+//New sensor
+// app.get("/newSensor/:type/:name/:ip", async (req, res) => {
+//      var name = req.params.name
+//      var ip = req.params.ip
+//      var type = req.params.type
+//      var devices = req.query.devices
+//      var min = req.query.min
+//      var max = req.query.max
+//      var id = await mySensor.getIdByName(name)
+//       if (!id) {
+//          var response = await mySensor.newSensor(name, ip, type, devices, min, max)
+//          logs.log(name+' have been created successfully');
+//          res.status(200).json(name+' create successfully')
+//       }else {
+//          var lastIp = await mySensor.updateSensor(id, ip, devices, min, max)
+//          res.status(200).json({"Previous Ip": lastIp, "New Ip": ip, "Devices": devices})
+//       }
+// })
+//New sensor
+app.post("/sensor/:type/:name/:ip", async (req, res) => {
      var name = req.params.name
      var ip = req.params.ip
      var type = req.params.type
@@ -145,7 +199,7 @@ app.get("/newSensor/:type/:name/:ip", async (req, res) => {
 })
 //
 //Get all device
-app.get("/all/sensor", async function(req, res) {
+app.get("/sensor/all", async function(req, res) {
     var response = await mySensor.getAllSensor();
     res.status(200).json(response)
 })

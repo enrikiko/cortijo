@@ -121,9 +121,9 @@ void setIp(String ip, int pin){
       WiFiClient client;
       HTTPClient http;
       Serial.print("[HTTP] begin...\n");
-      if (http.begin(client, "http://192.168.1.50:8000/new/"+deviceName+"-"+pin+"/false/"+ip+":"+port)) {
+      if (http.begin(client, "http://192.168.1.50:8000/device/"+deviceName+"-"+pin+"/false/"+ip+":"+port)) {
         Serial.print("[HTTP] GET CODE: ");
-        int httpCode = http.GET();
+        int httpCode = http.POST();
         Serial.println(httpCode);
         if (httpCode > 0) {
           Serial.println(httpCode);

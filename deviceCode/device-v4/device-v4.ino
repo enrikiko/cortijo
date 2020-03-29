@@ -106,9 +106,9 @@ void setIp(String ip){
       HTTPClient http;
       //Serial.print("[HTTP] begin...\n");
       //Serial.print("http://192.168.1.50:8000/new/"+deviceName+"/true/"+ip+":"+port);
-      if (http.begin(client, "http://192.168.1.50:8000/new/"+deviceName+"/true/"+ip+":"+port)) {
+      if (http.begin(client, "http://192.168.1.50:8000/device/"+deviceName+"/true/"+ip+":"+port)) {
         //Serial.print("[HTTP] GET CODE: ");
-        int httpCode = http.GET();
+        int httpCode = http.POST();
         if (httpCode > 0) {
           //Serial.println(httpCode);
           if (httpCode == 200 ) {
