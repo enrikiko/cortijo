@@ -79,7 +79,7 @@ app.post("/task/update",async function (req, res) {
   }
 })
 app.get("/task/:status",async function (req, res) {
-  name = req.params.status;
+  status = req.params.status;
   var result = await myTask.getTasks(status)
   if(result){res.status(200).json(result)}
   else {
