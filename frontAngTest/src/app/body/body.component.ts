@@ -101,7 +101,7 @@ export class BodyComponent implements OnInit {
 
   getDevicesList(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/all/device"
+    let url = "http://" + host + ":8000/device/all"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -115,7 +115,7 @@ export class BodyComponent implements OnInit {
 
   getSensorList(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/all/sensor"
+    let url = "http://" + host + ":8000/sensor/all"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){

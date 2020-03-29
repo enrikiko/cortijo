@@ -111,11 +111,9 @@ app.post("/auth", async function(req, res) {
   user = req.body.user;
   password = req.body.password;
   secret = req.body.secret;
-  logs.log(user+password+secret);
   try {
     var response = await joker.newUser(user, password, secret);
     jwt = response.jwt
-    logs.log(response.status)
     if(jwt){res.status(201).json(response)}
     else{res.status(200).json(response)}
   } catch (e) {
@@ -256,7 +254,7 @@ app.get("/all/ip", async function(req, res) {
 })
 //
 //Get all device
-app.get("/all/device", async function(req, res) {
+app.get("/device/all", async function(req, res) {
     var response = await myDevice.getDevice();
     res.status(200).json(response)
 })
