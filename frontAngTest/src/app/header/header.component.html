@@ -8,6 +8,10 @@
               <a class="nav-link">{{ jwt }}</a>
             </li>
 
+            <li class="nav-item" (click)="task()">
+              <a class="nav-link" [ngClass]="{'active': active=='task'}" routerLink="task">Device</a>
+            </li>
+
             <li class="nav-item" (click)="device()">
               <a class="nav-link" [ngClass]="{'active': active=='device'}" routerLink="">Device</a>
             </li>

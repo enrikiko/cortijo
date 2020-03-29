@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
 
 
   device(){this.active="device"}
+  task(){this.active="task"}
   config(){this.active="config"}
   sensor(){this.active="sensor"}
   files(){this.active="files"}

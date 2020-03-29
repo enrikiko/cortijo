@@ -12,6 +12,7 @@ const requests = require('./requests');
 const mySensor = require('./sensors');
 const timeout = require('./timeout');
 const config = require('./config');
+const myTask = require('./task');
 const mySwitch = require('./switch');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -49,6 +50,32 @@ app.post("/*", function(req, res, next) {
   var ip = req.ip
   logs.newLog(ip, fullUrl)
   next()
+})
+app.post("/task",function (req, res) {
+  name = req.body.name;
+  description = req.body.description;
+  var result = await myTask.newTask(name, description)
+  if(result){res.status(201)}
+  else {
+    res.status(200)
+  }
+})
+app.post("/task/update",function (req, res) {
+  name = req.body.name;
+  status = req.body.status;
+  var result = await myTask.updateTask(name, status)
+  if(result){res.status(201)}
+  else {
+    res.status(200)
+  }
+})
+app.get("/task/:status",function (req, res) {
+  name = req.params.status;
+  var result = await myTask.getTask(name, status)
+  if(result){res.status(200).json(result)}
+  else {
+    res.status(200)
+  }
 })
 //
 //Get log

@@ -25,6 +25,7 @@ import { ConfigComponent } from './config/config.component';
 import { FilesComponent } from './files/files.component';
 import { WifiComponent } from './wifi/wifi.component';
 import { SensorInfoComponent } from './sensor-info/sensor-info.component';
+import { TaskComponent } from './task/task.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SensorInfoComponent } from './sensor-info/sensor-info.component';
     ConfigComponent,
     FilesComponent,
     WifiComponent,
-    SensorInfoComponent
+    SensorInfoComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
