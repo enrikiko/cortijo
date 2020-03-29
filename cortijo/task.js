@@ -52,7 +52,7 @@ module.exports = {
       return false;
     }
   },
-  getTask: async (status) => {return await myTask.find({"status":status})},
+  getTasks: async (status) => {return await myTask.find({"status":status})},
   //
   updateTask: async (name, status) => {
     let currentTask = myTask.find({"name":name},function(err, result) {
