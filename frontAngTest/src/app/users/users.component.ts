@@ -36,7 +36,7 @@ export class UsersComponent implements OnInit {
     object.secret=secret;
     object.user=user;
     object.password=password;
-    this.http.post<Object>(url, object, {headers: headers}).subscribe( data =>
+    this.http.post<any>(url, object, {headers: headers}).subscribe( data =>
     {
       if(data){
         console.log(data)
