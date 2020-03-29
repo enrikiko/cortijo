@@ -55,27 +55,27 @@ app.post("/task",async function (req, res) {
   name = req.body.name;
   description = req.body.description;
   var result = await myTask.newTask(name, description)
-  if(result){res.status(201)}
+  if(result){res.status(201).send()}
   else {
-    res.status(200)
+    res.status(200).send()
   }
 })
 app.get("/task/:name/:description",async function (req, res) {
   name = req.params.name;
   description = req.params.description;
   var result = await myTask.newTask(name, description)
-  if(result){res.status(201)}
+  if(result){res.status(201).send()}
   else {
-    res.status(200)
+    res.status(200).send()
   }
 })
 app.post("/task/update",async function (req, res) {
   name = req.body.name;
   status = req.body.status;
   var result = await myTask.updateTask(name, status)
-  if(result){res.status(201)}
+  if(result){res.status(201).send()}
   else {
-    res.status(200)
+    res.status(200).send()
   }
 })
 app.get("/task/:status",async function (req, res) {
@@ -83,7 +83,7 @@ app.get("/task/:status",async function (req, res) {
   var result = await myTask.getTasks(status)
   if(result){res.status(200).json(result)}
   else {
-    res.status(200)
+    res.status(200).send()
   }
 })
 //
