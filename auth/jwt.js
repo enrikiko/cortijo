@@ -1,8 +1,9 @@
 const fs = require('fs');
 var jwt = require('jsonwebtoken');
-
-const privateKey = fs.readFileSync("privatekey");
-const publicKey = fs.readFileSync("privatekey.pub");
+const conf_map = require('./url');
+const mongo_db = conf_map.get("db_url");
+const privateKey = conf_map.get("privatekey");
+const publicKey = conf_map.get("publickey");
 
 module.exports = {
     decodeJwt: async (token) => {
@@ -21,7 +22,6 @@ module.exports = {
     },
     signAuthJwt: async (user, password) => {
         var generatedJWT = await jwt.sign({user:user}, publicKey, {expiresIn: "1y"})
-        //console.log(generatedJWT)
         return generatedJWT
     }
 }
