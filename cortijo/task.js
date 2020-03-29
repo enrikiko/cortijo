@@ -57,8 +57,8 @@ module.exports = {
     let currentTask = myTask.find({"name":name},function(err, result) {
       if (err) throw err
       if(result){
-        result.status = status
-        result.save()
+        currentTask.status = status
+        currentTask.save()
       }
     });
     return true;
