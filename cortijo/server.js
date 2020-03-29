@@ -73,7 +73,7 @@ app.post("/task/update",async function (req, res) {
   name = req.body.name;
   status = req.body.status;
   var result = await myTask.updateTask(name, status)
-  if(result){res.status(201).send()}
+  if(result){res.status(201).send(true)}
   else {
     res.status(200).send()
   }
