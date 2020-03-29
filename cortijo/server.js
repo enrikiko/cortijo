@@ -120,7 +120,7 @@ app.post("/auth", async function(req, res) {
     else{res.status(200).json(response)}
   } catch (e) {
     logs.error(e);
-    res.status(200).json({"status":e.status})
+    res.status(200).json(e)
   } finally {
     logs.log("User " + user +" has been create")
   }
