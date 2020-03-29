@@ -50,7 +50,7 @@ export class TaskComponent implements OnInit {
 
   getDoneTasks(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/task/todo"
+    let url = "http://" + host + ":8000/task/done"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
