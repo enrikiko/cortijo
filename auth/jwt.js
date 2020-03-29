@@ -21,7 +21,7 @@ module.exports = {
         }
     },
     signAuthJwt: async (user, password) => {
-        var generatedJWT = await jwt.sign({user:user}, publicKey, {expiresIn: "1y"})
+        var generatedJWT = await jwt.sign({user:user}, privateKey, {expiresIn: "1y"})
         return generatedJWT
     }
 }
