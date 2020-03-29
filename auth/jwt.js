@@ -12,7 +12,7 @@ module.exports = {
     },
     verifyJwt: async (token) => {
         try {
-            var decoded = await jwt.verify(token, publicKey);
+            var decoded = await jwt.verify(token, privateKey);
             return decoded
         } catch(err) {
              console.log(err.message)
@@ -20,7 +20,7 @@ module.exports = {
         }
     },
     signAuthJwt: async (user, password) => {
-        var generatedJWT = await jwt.sign({user:user}, privateKey, {expiresIn: "1y"})
+        var generatedJWT = await jwt.sign({user:user}, publicKey, {expiresIn: "1y"})
         //console.log(generatedJWT)
         return generatedJWT
     }
