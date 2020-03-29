@@ -107,7 +107,7 @@ app.get("/auth/:user/:password", async function(req, res) {
     }
 })
 //Create new user
-aap.post("/auth", async function(req, res) {
+app.post("/auth", async function(req, res) {
   user = req.body.user;
   password = req.body.password;
   secret = req.body.secret;
