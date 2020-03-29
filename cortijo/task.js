@@ -54,11 +54,11 @@ module.exports = {
   getTasks: async (status) => {return await myTask.find({"status":status})},
   //
   updateTask: async (name, status) => {
-    let currentTask = myTask.find({"name":name},function(err, result) {
+    return myTask.find({"name":name},function(err, result) {
       if (err) throw err
       if(result){
-        currentTask.status = status
-        currentTask.save()
+        result.status = status
+        result.save()
       }
     });
     return true;
