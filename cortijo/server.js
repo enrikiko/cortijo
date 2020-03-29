@@ -118,7 +118,7 @@ app.post("/auth", async function(req, res) {
     if(jwt){res.status(200).json(response)}
     else{res.status(401).json(response)}
   } catch (e) {
-    res.status(e.status).json({"status":e})
+    res.status(500).json({"status":e})
   } finally {
     logs.log("User " + user +" has been create")
   }
