@@ -51,7 +51,7 @@ app.post("/*", function(req, res, next) {
   logs.newLog(ip, fullUrl)
   next()
 })
-app.post("/task",function (req, res) {
+app.post("/task",async function (req, res) {
   name = req.body.name;
   description = req.body.description;
   var result = await myTask.newTask(name, description)
@@ -60,7 +60,7 @@ app.post("/task",function (req, res) {
     res.status(200)
   }
 })
-app.post("/task/update",function (req, res) {
+app.post("/task/update",async function (req, res) {
   name = req.body.name;
   status = req.body.status;
   var result = await myTask.updateTask(name, status)
@@ -69,7 +69,7 @@ app.post("/task/update",function (req, res) {
     res.status(200)
   }
 })
-app.get("/task/:status",function (req, res) {
+app.get("/task/:status",async function (req, res) {
   name = req.params.status;
   var result = await myTask.getTask(name, status)
   if(result){res.status(200).json(result)}
