@@ -33,9 +33,9 @@ export class UsersComponent implements OnInit {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     var object = {};
-    object.secret=secret;
-    object.user=user;
-    object.password=password;
+    object["secret"]=secret;
+    object["user"]=user;
+    object["password"]=password;
     this.http.post<any>(url, object, {headers: headers}).subscribe( data =>
     {
       if(data){
