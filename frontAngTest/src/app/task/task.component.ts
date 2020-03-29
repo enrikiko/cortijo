@@ -68,7 +68,7 @@ export class TaskComponent implements OnInit {
     let object={}
     object["status"]="Inprogres"
     object["name"]=name
-    this.http.post<any[]>(url).subscribe( data =>
+    this.http.post(url, object).subscribe( data =>
     {
       if(data!=null){
         this.getTodoTasks()
