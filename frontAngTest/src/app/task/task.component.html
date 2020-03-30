@@ -6,7 +6,7 @@
         <h2>{{ taskTodo.name }}</h2>
         <h3>{{ taskTodo.description }}</h3>
         <h3>{{ taskTodo.time | date:'dd/MM/yyyy'}}</h3>
-         <button class="btn btn-outline-success btn-sm" (click)="start(taskTodo.name)">Start</button>
+         <button class="btn btn-primary btn-sm" (click)="start(taskTodo.name)">Start</button>
       </button>
     </div>
     <div class="col-4">
@@ -14,7 +14,7 @@
         <h2>{{ taskInprogres.name }} </h2>
         <h3>{{ taskInprogres.description }}</h3>
         <h3>{{ taskInprogres.time | date:'dd/MM/yyyy'}}</h3>
-        <button class="btn btn-outline-danger btn-sm" (click)="finish(taskInprogres.name)">Done!</button>
+        <button class="btn btn-success btn-sm" (click)="finish(taskInprogres.name)">Done!</button>
       </button>
     </div>
     <div class="col-4">
@@ -22,7 +22,7 @@
         <h2>{{ taskDone.name }} </h2>
         <h3>{{ taskDone.description }}</h3>
         <h3>{{ taskDone.time | date:'dd/MM/yyyy'}}</h3>
-        <button class="btn btn-outline-primary btn-sm" (click)="todo(taskDone.name)">TODO</button>
+        <button class="btn btn-secondary btn-sm" (click)="todo(taskDone.name)">TODO</button>
       </button>
     </div>
   </div>
