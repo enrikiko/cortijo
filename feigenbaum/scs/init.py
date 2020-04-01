@@ -1,4 +1,4 @@
-from flask import Flask, escape, request
+from flask import Flask, escape, request, jsonify
 growSensibility = int(0.01)
 periodeTimes = int(1000)
 humidity = int(1)
@@ -19,4 +19,4 @@ def getHumidity():
 @app.route('/data')
 def data():
     info = {"humidity":getHumidity()}
-    return info
+    return jsonify(info)
