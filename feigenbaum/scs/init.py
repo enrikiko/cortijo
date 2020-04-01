@@ -1,8 +1,8 @@
 from flask import Flask, escape, request, jsonify
 growSensibility = float(0.01)
-periodeTimes = int(1000)
-humidity = float(0.1)
-grow = float(0.9)
+periodeTimes = int(100)
+humidity = float(0.01)
+grow = float(1)
 app = Flask(__name__)
 
 def getHumidity():
