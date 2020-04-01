@@ -13,7 +13,7 @@ def getHumidity():
     for n in range(periodeTimes) :
         humidity = grow *  humidity * ( 1 - humidity )
     grow += growSensibility
-    return humidity
+    return humidity * 1000
 
 
 @app.route('/data')
