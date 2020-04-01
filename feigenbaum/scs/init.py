@@ -3,15 +3,12 @@ growSensibility=int(0.01)
 periodeTimes=int(1000)
 humidity=int(1)
 grow=growSensibility
-periode=periodeTimes
 app = Flask(__name__)
 
 def getHumidity():
-    periode -= 1
-    if periode <= 0:
-        grow += growSensibility
-        periode = periodeTimes
-    humidity = grow * humidity * ( 1 - humidity )
+    for n in periodeTimes :
+        humidity = grow * humidity * ( 1 - humidity )
+    grow += growSensibility
     return humidity
 
 @app.route('/')
