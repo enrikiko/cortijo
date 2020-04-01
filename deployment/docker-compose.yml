@@ -52,6 +52,18 @@ services:
     - "8106:3000"
     networks:
     - network
+  feigenbaum:
+    container_name: feigenbaum
+    restart: on-failure
+    build: ../feigenbaum/.
+    environment:
+    - mock_name=feigenbaum
+    - mock_port=8107
+    - local_ip=192.168.1.50
+    ports:
+    - "8107:5000"
+    networks:
+    - network
   cortijo:
     container_name: cortijo
     restart: on-failure
