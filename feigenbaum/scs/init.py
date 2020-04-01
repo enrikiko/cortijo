@@ -19,3 +19,4 @@ def getHumidity():
 @app.route('/data')
 def data():
     info = {"humidity":getHumidity()}
+    return info
