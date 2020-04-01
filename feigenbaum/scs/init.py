@@ -11,10 +11,6 @@ def getHumidity():
     grow += growSensibility
     return humidity
 
-@app.route('/')
-def hello():
-    name = request.args.get("name", "World")
-    return f'Hello, {escape(name)}!'
 
 @app.route('/data')
 def data():
