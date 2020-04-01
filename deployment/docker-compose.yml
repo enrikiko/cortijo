@@ -61,7 +61,7 @@ services:
     - mock_port=8107
     - local_ip=192.168.1.50
     ports:
-    - "8107:5000"
+    - "8107:3000"
     networks:
     - network
   cortijo:
