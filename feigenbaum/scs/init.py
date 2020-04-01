@@ -1,7 +1,7 @@
 from flask import Flask, escape, request, jsonify
 growSensibility = int(0.01)
 periodeTimes = int(1000)
-humidity = int(0.01)
+humidity = int(0.5)
 grow = int(1)
 app = Flask(__name__)
 
