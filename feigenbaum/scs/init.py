@@ -11,10 +11,10 @@ def getHumidity():
     global grow
     global growSensibility
     for n in range(periodeTimes) :
-        print periodeTimes
-        print humidity
-        print grow
-        print growSensibility
+        print(periodeTimes)
+        print(humidity)
+        print(grow)
+        print(growSensibility)
         humidity = grow *  humidity * ( 1 - humidity )
     grow += growSensibility
     return humidity
