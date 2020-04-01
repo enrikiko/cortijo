@@ -11,7 +11,7 @@ def getHumidity():
     global grow
     global growSensibility
     for n in range(periodeTimes) :
-        humidity = grow * global humidity * ( 1 - global humidity )
+        humidity = grow *  humidity * ( 1 - global humidity )
     grow += growSensibility
     return humidity
 
