@@ -1,8 +1,8 @@
 from flask import Flask, escape, request, jsonify
-growSensibility = int(0.01)
+growSensibility = float(0.01)
 periodeTimes = int(1000)
-humidity = int(0.5)
-grow = int(1)
+humidity = float(0.1)
+grow = float(0.9)
 app = Flask(__name__)
 
 def getHumidity():
@@ -11,10 +11,6 @@ def getHumidity():
     global grow
     global growSensibility
     for n in range(periodeTimes) :
-        print(periodeTimes)
-        print(humidity)
-        print(grow)
-        print(growSensibility)
         humidity = grow *  humidity * ( 1 - humidity )
     grow += growSensibility
     return humidity
