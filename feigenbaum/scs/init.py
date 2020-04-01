@@ -6,7 +6,7 @@ grow = int(0.01)
 app = Flask(__name__)
 
 def getHumidity():
-    for n in range(global periodeTimes) :
+    for n in range(periodeTimes) :
         global humidity = global grow * global humidity * ( 1 - global humidity )
     global grow += global growSensibility
     return humidity
