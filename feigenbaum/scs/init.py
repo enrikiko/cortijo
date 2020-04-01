@@ -18,5 +18,5 @@ def getHumidity():
 
 @app.route('/data')
 def data():
-    info = {"humidity":getHumidity()}
+    info = {"name":"feigenbaum","type":"Humidity","content":{"humidity":getHumidity()}}
     return jsonify(info)
