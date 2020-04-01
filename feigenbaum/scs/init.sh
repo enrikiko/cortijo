@@ -1,2 +1,2 @@
 #!/bin/sh
-python init.py & sh request.sh
+env FLASK_APP=init.py  flask run & sh request.sh
