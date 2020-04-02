@@ -112,7 +112,7 @@ subscription:any;
   		exportEnabled: false,
   		title: { text: name },
   		data: [{
-  			type: "spline",
+  			type: "scatter",
                  color: "rgba(255,0,0,1)", //red
   			dataPoints: data
   		}]
