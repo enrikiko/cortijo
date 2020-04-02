@@ -112,7 +112,7 @@ subscription:any;
   		exportEnabled: false,
   		title: { text: name },
   		data: [{
-  			type: "scatter",
+  			type: "spline",
                  color: "rgba(255,0,0,1)", //red
   			dataPoints: data
   		}]
@@ -128,13 +128,13 @@ subscription:any;
   		title: { text: name },
   		data: [
         {
-    			type: "splineArea",
-          color: "rgba(0,75,141,0.3)", //blue
+    			type: "spline",
+          color: "rgba(255,0,0,1)", //red
     			dataPoints: temperature
   		  },
         {
-          type: "scatter",//type: "splineArea",
-          color: "rgba(255,0,0,1)", //red
+          type: "splineArea",
+          color: "rgba(0,75,141,0.3)", //Blue
           dataPoints: humidity
         }]
   	});

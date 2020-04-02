@@ -28,5 +28,5 @@ def getTemperature():
 
 @app.route('/data')
 def data():
-    info = {"name":"feigenbaum","type":"Temperature","content":{"humidity":getHumidity(),"temperature":getTemperature()}}
+    info = {"name":"feigenbaum","type":"Humidity","content":{"humidity":getHumidity(),"temperature":getTemperature()}}
     return jsonify(info)
