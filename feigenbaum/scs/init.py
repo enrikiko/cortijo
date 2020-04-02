@@ -16,6 +16,7 @@ def getHumidity():
         humidity = grow *  humidity * ( 1 - humidity )
     times -= 1
     if times<=0:
+        times = 10
         grow += growSensibility
     return humidity * 1000
 
