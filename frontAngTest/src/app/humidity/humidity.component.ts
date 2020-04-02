@@ -128,13 +128,13 @@ subscription:any;
   		title: { text: name },
   		data: [
         {
-    			type: "spline",
-          color: "rgba(255,0,0,1)", //red
+    			type: "splineArea",
+          color: "rgba(0,75,141,0.3)", //blue
     			dataPoints: temperature
   		  },
         {
-          type: "splineArea",
-          color: "rgba(0,75,141,0.3)", //Blue
+          type: "scatter",//type: "splineArea",
+          color: "rgba(255,0,0,1)", //red
           dataPoints: humidity
         }]
   	});
