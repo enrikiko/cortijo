@@ -1,4 +1,5 @@
 from flask import Flask, escape, request, jsonify
+import random
 growSensibility = float(0.005)
 periodeTimes = int(1000)
 humidity = float(0.01)
@@ -8,7 +9,7 @@ app = Flask(__name__)
 
 def getHumidity():
     global periodeTimes
-    humidity = float(0.1)
+    humidity = random.uniform(0, 1)
     global grow
     global growSensibility
     global times
