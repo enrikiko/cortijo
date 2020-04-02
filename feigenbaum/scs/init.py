@@ -21,12 +21,12 @@ def getHumidity():
         grow += growSensibility
     return humidity * 1000
 
-def getHumidity():
+def getTemperature():
     global grow
     return grow * 1000
 
 
 @app.route('/data')
 def data():
-    info = {"name":"feigenbaum","type":"Humidity","content":{"humidity":getHumidity(),"temperature":}}
+    info = {"name":"feigenbaum","type":"Humidity","content":{"humidity":getHumidity(),"temperature":getTemperature()}}
     return jsonify(info)
