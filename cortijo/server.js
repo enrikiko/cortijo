@@ -161,7 +161,7 @@ app.post("/auth", async function(req, res) {
 })
 //
 //New device
-app.post("/device/:name/:status/:ip", async (req, res) => {
+app.get("/device/:name/:status/:ip", async (req, res) => {
      var name = req.params.name
      var ip = req.params.ip
      var status = joker.getStatus(req.params.status)

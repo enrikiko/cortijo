@@ -39,7 +39,7 @@ String gateway15 = "false";
 
 void setup() {
 
-  //Serial.begin(115200);
+  Serial.begin(115200);
 
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, HIGH);
@@ -63,8 +63,8 @@ void setup() {
   // Serial.println("");
   // Serial.println("");
   // Serial.println("");
-  // Serial.print("IP:");
-  // Serial.println(ip);
+  Serial.print("IP:");
+  Serial.println(ip);
 
   digitalWrite(LED_BUILTIN, LOW);
   char pins[9] = {16,5,4,0,2,14,12,13,15};
@@ -142,7 +142,7 @@ void setIp(String ip, int pin){
       Serial.print("[HTTP] begin...\n");
       if (http.begin(client, "http://192.168.1.50:8000/device/"+deviceName+"-"+pin+"/true/"+ip+":"+port)) {
         Serial.print("[HTTP] GET CODE: ");
-        int httpCode = http.POST();
+        int httpCode = http.POST("1");
         if (httpCode > 0) {
           Serial.println(httpCode);
           if (httpCode == 200 ) {

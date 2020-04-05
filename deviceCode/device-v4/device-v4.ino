@@ -3,9 +3,10 @@
 #include <ESP8266WiFiMulti.h>
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
-#include <WiFiNINA.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
+#include <WiFiUdp.h>
+#include <ArduinoOTA.h>
 
 const char *ssid1 = "Cuarto2.4G";
 const char *password1 = "Lunohas13steps";
@@ -16,6 +17,7 @@ const char *password3 = "Lunohas13steps";
 String deviceName = "Device_1";
 String currentStatus = "false";
 String wifiName;
+boolean useOTA = false;
 
 int port = 80;
 IPAddress ipDevice(192, 168, 1, 100);
@@ -30,11 +32,10 @@ ESP8266WebServer server(port);
 
 void setup() {
 
-  //Serial.begin(115200);
+  Serial.begin(115200);
 
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, HIGH);
-
 
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid3, password3);
@@ -69,15 +70,20 @@ void setup() {
   server.on("/"+deviceName+"/status/true", handleRootOn);
   server.on("/"+deviceName+"/status/false", handleRootOff);
   server.on("/"+deviceName+"/status", handleStatus);
+  server.on("/"+deviceName+"/ota", startOTA);
   server.onNotFound(handleNotFound);
   server.begin();
-  //Serial.println("HTTP server started");
+  Serial.println("HTTP server started");
 }
 
 void loop() {
 
   while(WiFiMulti.run() == WL_CONNECTED){
+    while(useOTA == true) {
+      ArduinoOTA.handle();
+    }
     server.handleClient();
+
   }
 
   WiFi.begin();
@@ -107,14 +113,14 @@ void setIp(String ip){
       //Serial.print("[HTTP] begin...\n");
       //Serial.print("http://192.168.1.50:8000/new/"+deviceName+"/true/"+ip+":"+port);
       if (http.begin(client, "http://192.168.1.50:8000/device/"+deviceName+"/true/"+ip+":"+port)) {
-        //Serial.print("[HTTP] GET CODE: ");
-        int httpCode = http.POST();
+        Serial.print("[HTTP] GET CODE: ");
+        int httpCode = http.GET();
         if (httpCode > 0) {
-          //Serial.println(httpCode);
+          Serial.println(httpCode);
           if (httpCode == 200 ) {
             certain = true;
-            //Serial.print("[HTTP] GET BODY: ");
-            //Serial.println(http.getString());
+            Serial.print("[HTTP] GET BODY: ");
+            Serial.println(http.getString());
           }
         } else {
           //Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
@@ -161,4 +167,41 @@ void handleNotFound() {
     message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
   }
   server.send(404, "text/plain", message);
+}
+
+void startOTA(){
+  useOTA = true;
+  ArduinoOTA.onStart([]() {
+    String type;
+    if (ArduinoOTA.getCommand() == U_FLASH) {
+      type = "sketch";
+    } else { // U_SPIFFS
+      type = "filesystem";
+    }
+
+    // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
+    //Serial.println("Start updating " + type);
+  });
+  ArduinoOTA.onEnd([]() {
+    //Serial.println("\nEnd");
+    useOTA = false;
+  });
+  ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
+    //Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
+  });
+  ArduinoOTA.onError([](ota_error_t error) {
+    //Serial.printf("Error[%u]: ", error);
+    if (error == OTA_AUTH_ERROR) {
+      //Serial.println("Auth Failed");
+    } else if (error == OTA_BEGIN_ERROR) {
+      //Serial.println("Begin Failed");
+    } else if (error == OTA_CONNECT_ERROR) {
+      //Serial.println("Connect Failed");
+    } else if (error == OTA_RECEIVE_ERROR) {
+      //Serial.println("Receive Failed");
+    } else if (error == OTA_END_ERROR) {
+      //Serial.println("End Failed");
+    }
+  });
+  ArduinoOTA.begin();
 }
