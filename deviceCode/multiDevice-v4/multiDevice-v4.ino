@@ -45,9 +45,9 @@ void setup() {
   digitalWrite(LED_BUILTIN, HIGH);
 
   WiFi.mode(WIFI_STA);
-  WiFiMulti.addAP(ssid3, password3);
   WiFiMulti.addAP(ssid1, password1);
   WiFiMulti.addAP(ssid2, password2);
+  WiFiMulti.addAP(ssid3, password3);
   //WiFi.config(ipDevice, dns, gateway, subnet);
   WiFi.begin();
   WiFi.hostname(deviceName);
@@ -142,7 +142,7 @@ void setIp(String ip, int pin){
       Serial.print("[HTTP] begin...\n");
       if (http.begin(client, "http://192.168.1.50:8000/device/"+deviceName+"-"+pin+"/true/"+ip+":"+port)) {
         Serial.print("[HTTP] GET CODE: ");
-        int httpCode = http.POST("1");
+        int httpCode = http.POST("");
         if (httpCode > 0) {
           Serial.println(httpCode);
           if (httpCode == 200 ) {
