@@ -14,7 +14,8 @@ const char *ssid2 = "WifiSalon";
 const char *password2 = "lunohas13steps";
 const char *ssid3 = "Cuarto2.4G_2";
 const char *password3 = "Lunohas13steps";
-String deviceName = "Device_1";
+const String deviceName = "Device_1";
+const char *deviceNameHost = "Device_1";
 String currentStatus = "false";
 String wifiName;
 boolean useOTA = false;
@@ -38,26 +39,28 @@ void setup() {
   digitalWrite(LED_BUILTIN, HIGH);
 
   WiFi.mode(WIFI_STA);
-  WiFiMulti.addAP(ssid3, password3);
   WiFiMulti.addAP(ssid1, password1);
   WiFiMulti.addAP(ssid2, password2);
+  WiFiMulti.addAP(ssid3, password3);
   //WiFi.config(ipDevice,dns, gateway, subnet);
   WiFi.begin();
   WiFi.hostname(deviceName);
 
   while (WiFiMulti.run() != WL_CONNECTED) {
-    //Serial.print(".");
+    Serial.println("Conecting to "+WiFi.SSID()+"...");
     delay(1000);
   }
 
   wifiName = WiFi.SSID();
+
+    Serial.println("Conected to "+wifiName+".");
 
   String ip = WiFi.localIP().toString();
   //Serial.println("");
   //Serial.println("");
   //Serial.println("");
   //Serial.print("IP:");
-  //Serial.println(ip);
+  Serial.println(ip);
 
   digitalWrite(LED_BUILTIN, LOW);
 
@@ -70,7 +73,9 @@ void setup() {
   server.on("/"+deviceName+"/status/true", handleRootOn);
   server.on("/"+deviceName+"/status/false", handleRootOff);
   server.on("/"+deviceName+"/status", handleStatus);
-  server.on("/"+deviceName+"/ota", startOTA);
+  server.on("/"+deviceName+"/ota/true", startOTA);
+  server.on("/"+deviceName+"/ota/false", stopOTA);
+
   server.onNotFound(handleNotFound);
   server.begin();
   Serial.println("HTTP server started");
@@ -79,9 +84,13 @@ void setup() {
 void loop() {
 
   while(WiFiMulti.run() == WL_CONNECTED){
-    while(useOTA == true) {
+
+    if(useOTA == true) {
+
       ArduinoOTA.handle();
+
     }
+
     server.handleClient();
 
   }
@@ -113,8 +122,9 @@ void setIp(String ip){
       //Serial.print("[HTTP] begin...\n");
       //Serial.print("http://192.168.1.50:8000/new/"+deviceName+"/true/"+ip+":"+port);
       if (http.begin(client, "http://192.168.1.50:8000/device/"+deviceName+"/true/"+ip+":"+port)) {
-        Serial.print("[HTTP] GET CODE: ");
-        int httpCode = http.GET();
+        Serial.print("[HTTP] POST CODE: ");
+        int httpCode = http.POST("");
+        Serial.println(httpCode);
         if (httpCode > 0) {
           Serial.println(httpCode);
           if (httpCode == 200 ) {
@@ -139,7 +149,7 @@ void handleStatus() {
   ////Serial.print(digitalRead(LED_BUILTIN));
   if(certain){state="true";}
   else{state="false";};
-  server.send(200, "application/json", "{\"status\":" + state + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+  server.send(200, "application/json", "{\"status\":" + state + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + ",\"OTA\":" + useOTA + "}");
 }
 
 void handleRootOn() {
@@ -169,8 +179,19 @@ void handleNotFound() {
   server.send(404, "text/plain", message);
 }
 
+void stopOTA(){
+
+  server.send(200, "application/json", "{\"OTA\": false}");
+  useOTA = false;
+
+}
+
 void startOTA(){
-  useOTA = true;
+  //
+  server.send(200, "application/json", "{\"OTA\": true}");
+  delay(1000);
+  ArduinoOTA.setHostname(deviceNameHost);
+  ArduinoOTA.setPassword(deviceNameHost);
   ArduinoOTA.onStart([]() {
     String type;
     if (ArduinoOTA.getCommand() == U_FLASH) {
@@ -204,4 +225,5 @@ void startOTA(){
     }
   });
   ArduinoOTA.begin();
+  useOTA = true;
 }

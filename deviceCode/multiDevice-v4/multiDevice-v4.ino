@@ -5,6 +5,8 @@
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
+#include <WiFiUdp.h>
+#include <ArduinoOTA.h>
 
 const char *ssid1 = "Cuarto2.4G";
 const char *password1 = "Lunohas13steps";
@@ -13,6 +15,8 @@ const char *password2 = "lunohas13steps";
 const char *ssid3 = "Cuarto2.4G_2";
 const char *password3 = "Lunohas13steps";
 String deviceName = "Multi_device_1";
+const char *deviceNameHost = "Multi_device_1";
+boolean useOTA = false;
 String wifiName;
 
 int port = 80;
@@ -117,7 +121,15 @@ void setup() {
 void loop() {
 
    while(WiFiMulti.run() == WL_CONNECTED){
+
+     if(useOTA == true) {
+
+       ArduinoOTA.handle();
+
+     }
+
     server.handleClient();
+
     }
 
   Serial.println("Desconnected");
@@ -141,7 +153,7 @@ void setIp(String ip, int pin){
       HTTPClient http;
       Serial.print("[HTTP] begin...\n");
       if (http.begin(client, "http://192.168.1.50:8000/device/"+deviceName+"-"+pin+"/true/"+ip+":"+port)) {
-        Serial.print("[HTTP] GET CODE: ");
+        Serial.print("[HTTP] POST CODE: ");
         int httpCode = http.POST("");
         if (httpCode > 0) {
           Serial.println(httpCode);
@@ -273,41 +285,32 @@ void handleRoot5false() {
   server.send(200, "application/json", "{\"status\": false}");
 }
 void handleStatusGateway0() {
- server.send(200, "application/json", "{\"status\": " + gateway0 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway0 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + ",\"OTA\":" + useOTA + "}");
 }
 void handleStatusGateway2() {
- server.send(200, "application/json", "{\"status\": " + gateway2 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway2 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + ",\"OTA\":" + useOTA + "}");
 }
 void handleStatusGateway4() {
- server.send(200, "application/json", "{\"status\": " + gateway4 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway4 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + ",\"OTA\":" + useOTA + "}");
 }
 void handleStatusGateway5() {
- server.send(200, "application/json", "{\"status\": " + gateway5 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway5 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + ",\"OTA\":" + useOTA + "}");
 }
 void handleStatusGateway12() {
- server.send(200, "application/json", "{\"status\": " + gateway12 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway12 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + ",\"OTA\":" + useOTA + "}");
 }
 void handleStatusGateway13() {
- server.send(200, "application/json", "{\"status\": " + gateway13 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway13 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + ",\"OTA\":" + useOTA + "}");
 }
 void handleStatusGateway15() {
- server.send(200, "application/json", "{\"status\": " + gateway15 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway15 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + ",\"OTA\":" + useOTA + "}");
 }
 void handleStatusGateway16() {
- server.send(200, "application/json", "{\"status\": " + gateway16 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway16 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + ",\"OTA\":" + useOTA + "}");
 }
 void handleStatusGateway14() {
- server.send(200, "application/json", "{\"status\": " + gateway14 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+ server.send(200, "application/json", "{\"status\": " + gateway14 + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + ",\"OTA\":" + useOTA + "}");
 }
-//
-//void setPin(StaticJsonDocument<100> doc){
-//  int pins[9] = {16,5,4,0,2,14,12,13,15};
-//  int tmpVal;
-//  for (int i = 0; i < 9; i++){
-//    tmpVal=doc[String(pins[i])];
-//    digitalWrite(pins[i], !tmpVal);
-//  }
-//}
 
 void handleNotFound() {
   String message = "File Not Found\n\n";
@@ -322,4 +325,53 @@ void handleNotFound() {
     message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
   }
   server.send(404, "text/plain", message);
+}
+
+void stopOTA(){
+
+  server.send(200, "application/json", "{\"OTA\": false}");
+  useOTA = false;
+
+}
+
+void startOTA(){
+  //
+  server.send(200, "application/json", "{\"OTA\": true}");
+  delay(1000);
+  ArduinoOTA.setHostname(deviceNameHost);
+  ArduinoOTA.setPassword(deviceNameHost);
+  ArduinoOTA.onStart([]() {
+    String type;
+    if (ArduinoOTA.getCommand() == U_FLASH) {
+      type = "sketch";
+    } else { // U_SPIFFS
+      type = "filesystem";
+    }
+
+    // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
+    //Serial.println("Start updating " + type);
+  });
+  ArduinoOTA.onEnd([]() {
+    //Serial.println("\nEnd");
+    useOTA = false;
+  });
+  ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
+    //Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
+  });
+  ArduinoOTA.onError([](ota_error_t error) {
+    //Serial.printf("Error[%u]: ", error);
+    if (error == OTA_AUTH_ERROR) {
+      //Serial.println("Auth Failed");
+    } else if (error == OTA_BEGIN_ERROR) {
+      //Serial.println("Begin Failed");
+    } else if (error == OTA_CONNECT_ERROR) {
+      //Serial.println("Connect Failed");
+    } else if (error == OTA_RECEIVE_ERROR) {
+      //Serial.println("Receive Failed");
+    } else if (error == OTA_END_ERROR) {
+      //Serial.println("End Failed");
+    }
+  });
+  ArduinoOTA.begin();
+  useOTA = true;
 }

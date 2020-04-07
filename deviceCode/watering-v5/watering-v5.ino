@@ -5,6 +5,8 @@
 #include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
+#include <WiFiUdp.h>
+#include <ArduinoOTA.h>
 
 const char *ssid1 = "Cuarto2.4G";
 const char *password1 = "Lunohas13steps";
@@ -12,12 +14,14 @@ const char *ssid2 = "WifiSalon";
 const char *password2 = "lunohas13steps";
 const char *ssid3 = "Cuarto2.4G_2";
 const char *password3 = "Lunohas13steps";
-String deviceName = "Wemos-watering";
+const String deviceName = "Wemos-watering";
+const char *deviceNameHost = "Device_1";
 String currentStatus = "false";
 int saveTime = 1000; //1seg
 String wifiName;
 long timeout;
 boolean checkTimeout = false;
+boolean useOTA = false;
 
 int port = 80;
 
@@ -74,6 +78,8 @@ void setup() {
   server.on("/"+deviceName+"/status/true", handleRoot5true);
   server.on("/"+deviceName+"/status/false", handleRoot5false);
   server.on("/"+deviceName+"/status", handleStatus);
+  server.on("/"+deviceName+"/ota/true", startOTA);
+  server.on("/"+deviceName+"/ota/false", stopOTA);
   server.onNotFound(handleNotFound);
   server.begin();
 }
@@ -141,7 +147,7 @@ void setIp(String ip){
 }
 
 void handleStatus() {
-  server.send(200, "application/json", "{\"status\":" + currentStatus + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "}");
+  server.send(200, "application/json", "{\"status\":" + currentStatus + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" +  WiFi.RSSI() + ",\"OTA\":" + useOTA + "}");
 }
 
 void handleRoot5true() {
@@ -181,4 +187,54 @@ void handleNotFound() {
     message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
   }
   server.send(404, "text/plain", message);
+}
+
+
+void stopOTA(){
+
+  server.send(200, "application/json", "{\"OTA\": false}");
+  useOTA = false;
+
+}
+
+void startOTA(){
+  //
+  server.send(200, "application/json", "{\"OTA\": true}");
+  delay(1000);
+  ArduinoOTA.setHostname(deviceNameHost);
+  ArduinoOTA.setPassword(deviceNameHost);
+  ArduinoOTA.onStart([]() {
+    String type;
+    if (ArduinoOTA.getCommand() == U_FLASH) {
+      type = "sketch";
+    } else { // U_SPIFFS
+      type = "filesystem";
+    }
+
+    // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
+    //Serial.println("Start updating " + type);
+  });
+  ArduinoOTA.onEnd([]() {
+    //Serial.println("\nEnd");
+    useOTA = false;
+  });
+  ArduinoOTA.onProgress([](unsigned int progress, unsigned int total) {
+    //Serial.printf("Progress: %u%%\r", (progress / (total / 100)));
+  });
+  ArduinoOTA.onError([](ota_error_t error) {
+    //Serial.printf("Error[%u]: ", error);
+    if (error == OTA_AUTH_ERROR) {
+      //Serial.println("Auth Failed");
+    } else if (error == OTA_BEGIN_ERROR) {
+      //Serial.println("Begin Failed");
+    } else if (error == OTA_CONNECT_ERROR) {
+      //Serial.println("Connect Failed");
+    } else if (error == OTA_RECEIVE_ERROR) {
+      //Serial.println("Receive Failed");
+    } else if (error == OTA_END_ERROR) {
+      //Serial.println("End Failed");
+    }
+  });
+  ArduinoOTA.begin();
+  useOTA = true;
 }
