@@ -4,4 +4,5 @@ RUN apt update
 RUN apt-get -y install vsftpd
 RUN mkdir data
 RUN chmod 777 data
-ENTRYPOINT ["service", "vsftpd", "start", "&&", "sleep","infinity"]
+COPY init.sh init.sh
+ENTRYPOINT ["bash","init.sh"]
