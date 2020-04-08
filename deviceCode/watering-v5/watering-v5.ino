@@ -87,6 +87,9 @@ void setup() {
 void loop() {
 
   while(WiFiMulti.run() == WL_CONNECTED){
+    if(useOTA == true) {
+      ArduinoOTA.handle();
+    }
     server.handleClient();
     checkTime();
     }
@@ -98,17 +101,6 @@ void loop() {
   wifiName = WiFi.SSID();
 
 }
-void checkTime(){
-  if(checkTimeout){
-    Serial.println("Checkin...");
-    Serial.println(timeout-millis());
-    if(timeout<=millis()){
-      Serial.println("auto swich off");
-      swich(false);
-     }
-   }
- }
-
 void light(boolean val){
   if(val){
     digitalWrite(LED_BUILTIN, LOW);
@@ -162,18 +154,27 @@ void handleRoot5false() {
 void swich(boolean state){
   digitalWrite(5, state);
   light(state);
-  certain=state;
-  checkTimeout=state;
-  if(certain){currentStatus="true";}
+  if(state){currentStatus="true";}
   else{currentStatus="false";};
   server.send(200, "application/json", "{\"status\": "+currentStatus+"}");
 }
 void settimeout(String lapse){
   int lapseTime=lapse.toInt();
   timeout=millis()+lapseTime+saveTime;
-  Serial.println(timeout);
+  checkTimeout=true;
+  //Serial.println(timeout);
   }
-
+void checkTime(){
+  if(checkTimeout){
+    //Serial.println("Checkin...");
+    //Serial.println(timeout-millis());
+    if(timeout<=millis()){
+      Serial.println("auto swich off");
+      swich(false);
+      checkTimeout=false;
+     }
+   }
+ }
 void handleNotFound() {
   String message = "File Not Found\n\n";
   message += "URI: ";
