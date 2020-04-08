@@ -16,6 +16,7 @@ const char *ssid3 = "Cuarto2.4G_2";
 const char *password3 = "Lunohas13steps";
 const String deviceName = "Wemos_watering";
 const char *deviceNameHost = "Wemos_watering";
+const string defaultTimeOut = "1200000"
 String currentStatus = "false";
 int saveTime = 1000; //1seg
 String wifiName;
@@ -144,7 +145,7 @@ void handleStatus() {
 
 void handleRoot5true() {
   swich(true);
-  settimeout(10000);
+  settimeout(defaultTimeOut);
   for (uint8_t i = 0; i < server.args(); i++) {
     if(server.argName(i)=="time"){settimeout(server.arg(i));}
   }
