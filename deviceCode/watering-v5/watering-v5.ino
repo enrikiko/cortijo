@@ -14,8 +14,8 @@ const char *ssid2 = "WifiSalon";
 const char *password2 = "lunohas13steps";
 const char *ssid3 = "Cuarto2.4G_2";
 const char *password3 = "Lunohas13steps";
-const String deviceName = "Wemos-watering";
-const char *deviceNameHost = "Device_1";
+const String deviceName = "Wemos_watering";
+const char *deviceNameHost = "Wemos_watering";
 String currentStatus = "false";
 int saveTime = 1000; //1seg
 String wifiName;
@@ -126,7 +126,7 @@ void setIp(String ip){
       //Serial.print("[HTTP] begin...\n");
       if (http.begin(client, "http://192.168.1.50:8000/device/"+deviceName+"/"+currentStatus+"/"+ip+":"+port)) {
         //Serial.print("[HTTP] GET CODE: ");
-        int httpCode = http.POST();
+        int httpCode = http.POST("");
         if (httpCode > 0) {
           //Serial.println(httpCode);
           if (httpCode == 200 ) {
