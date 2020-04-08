@@ -6,4 +6,4 @@ RUN mkdir data
 RUN chmod 777 data
 COPY init.sh init.sh
 ENTRYPOINT ["bash","init.sh"]
-EXPOSE 21 
+#EXPOSE 20

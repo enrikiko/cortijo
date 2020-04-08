@@ -127,7 +127,7 @@ services:
     restart: on-failure
     build: ../ftp/.
     ports:
-    - "2121:21"
+    - "2121:20"
     volumes:
     - type: bind
       source: /media/lenovo/ExtDriver/eramos
