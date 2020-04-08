@@ -120,7 +120,7 @@ app.get("/wifi/:wifi", async function(req, res) {
 })
 //
 app.get("/wifis", async function(req, res) {
-    wifiList = ["test_wifi","Cuarto2.4G","WifiSalon","Cuarto2.4G_2"];
+    wifiList = ["test_wifi","Cuarto2.4G","WifiSalon"];
     res.status(200).send(wifiList)
 })
 //

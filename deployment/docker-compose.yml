@@ -122,6 +122,16 @@ services:
     - type: bind
       source: /media/lenovo/ExtDriver/eramosFiles
       target: /scr/files/
+  ftp:
+    container_name: ftp
+    restart: on-failure
+    build: ../ftp/.
+    ports:
+    - "2121:21"
+    volumes:
+    - type: bind
+      source: /media/lenovo/ExtDriver/eramos
+      target: /data
   # mock2:
   #  container_name: mock2
   #  restart: always
