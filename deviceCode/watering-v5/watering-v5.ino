@@ -146,6 +146,7 @@ void handleRoot5true() {
   swich(true);
   for (uint8_t i = 0; i < server.args(); i++) {
     if(server.argName(i)=="time"){settimeout(server.arg(i));}
+    else{settimeout(10000);}
   }
 }
 void handleRoot5false() {
