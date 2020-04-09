@@ -1,13 +1,37 @@
 version: "3.3"
 services:
-  mongo:
-    container_name: mongo
+  # mongo:
+  #   container_name: mongo
+  #   restart: on-failure
+  #   build: ../mongo/.
+  #   ports:
+  #   - "27017:27017"
+  #   networks:
+  #   - network
+  cortijo:
+    container_name: cortijo
     restart: on-failure
-    build: ../mongo/.
+    build: ../cortijo/.
     ports:
-    - "27017:27017"
+    - "8000:3000"
     networks:
     - network
+    volumes:
+    - /etc/localtime:/etc/localtime:ro
+    - /home/pi/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
+    - /home/pi/cortijo/deployment/config.yaml:/root/node/config.yaml
+  auth:
+    container_name: auth
+    restart: always
+    build: ../auth/.
+    environment:
+    - token_password=cortijo1
+    ports:
+    - "8010:3000"
+    networks:
+    - network
+    volumes:
+    - /home/pi/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
   websocket:
     container_name: websocket
     restart: always
@@ -64,30 +88,6 @@ services:
     - "8107:3000"
     networks:
     - network
-  cortijo:
-    container_name: cortijo
-    restart: on-failure
-    build: ../cortijo/.
-    ports:
-    - "8000:3000"
-    networks:
-    - network
-    volumes:
-    - /etc/localtime:/etc/localtime:ro
-    - /root/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
-    # - /root/cortijo/deployment/config.yaml:/root/node/config.yaml:ro
-  auth:
-    container_name: auth
-    restart: always
-    build: ../auth/.
-    environment:
-    - token_password=cortijo1
-    ports:
-    - "8010:3000"
-    networks:
-    - network
-    volumes:
-    - /root/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
   front:
     container_name: front
     restart: always
@@ -127,7 +127,7 @@ services:
     restart: on-failure
     build: ../ftp/.
     ports:
-    - "2121:20"
+    - "2121:21"
     volumes:
     - type: bind
       source: /media/lenovo/ExtDriver/eramos
