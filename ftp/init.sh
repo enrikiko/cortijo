@@ -1,1 +1,1 @@
-service vsftpd start && sleep infinity
+sudo service vsftpd start && sleep infinity
