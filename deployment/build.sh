@@ -5,8 +5,6 @@ if [ -z "$2" ]
   else
     version=$2
 fi
-echo $version
-exit
 pushd ~/cortijo
 git checkout -- .
 git pull
