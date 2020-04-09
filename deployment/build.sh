@@ -13,6 +13,6 @@ docker-compose build --build-arg MONGO_USER=user_name --build-arg MONGO_PASSWORD
 docker-compose up -d --remove-orphans
 if [ "$1" == "push" ]
       then
-      	bash push.sh
+      	bash push.sh $version
 fi
 popd
