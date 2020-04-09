@@ -19,7 +19,7 @@ services:
     volumes:
     - /etc/localtime:/etc/localtime:ro
     - /home/pi/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
-    - /home/pi/cortijo/deployment/config.yaml:/root/node/config.yaml
+    - /home/pi/cortijo/cortijo/config.yaml:/root/node/config.yaml
   auth:
     container_name: auth
     restart: always
