@@ -105,11 +105,14 @@ app.post("/config/update",async function(req, res) {
 //
 //favicon.ico
 app.get("/favicon.ico", async function(req, res) {
-    res.status(200).send(fs.readFileSync('favicon.ico'))
+    res.status(200).send(fs.readFileSync('files/favicon.ico'))
 })
 // node
 app.get("/logo", async function(req, res) {
-    res.status(200).send(fs.readFileSync('node.png'))
+    res.status(200).send(fs.readFileSync('files/node.png'))
+})
+app.get("/StrobeMediaPlayback.swf", async function(req, res) {
+    res.status(200).send(fs.readFileSync('files/StrobeMediaPlayback.swf'))
 })
 //
 //Get wifi signal
@@ -394,7 +397,7 @@ app.get('/*', function(req, res){
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
   requests.newRequest(ip, fullUrl)
-  res.sendFile(__dirname + '/info.html');
+  res.sendFile(__dirname + 'files/info.html');
 });
 //
 app.post('/*', function(req, res){
@@ -402,7 +405,7 @@ app.post('/*', function(req, res){
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
   requests.newRequest(ip, fullUrl)
-  res.sendFile(__dirname + '/info.html');
+  res.sendFile(__dirname + 'files/info.html');
 });
 //
 app.delete('/*', function(req, res){
@@ -410,7 +413,7 @@ app.delete('/*', function(req, res){
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
   requests.newRequest(ip, fullUrl)
-  res.sendFile(__dirname + '/info.html');
+  res.sendFile(__dirname + 'files/info.html');
 });
 //
 // activate the listenner
