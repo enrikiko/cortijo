@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   }
 
 
-
+  camera(){this.active="camera"}
   device(){this.active="device"}
   task(){this.active="task"}
   config(){this.active="config"}
