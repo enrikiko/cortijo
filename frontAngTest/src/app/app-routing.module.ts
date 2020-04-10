@@ -13,7 +13,7 @@ import { UsersComponent } from './users/users.component';
 import { FilesComponent } from './files/files.component';
 import { WifiComponent } from './wifi/wifi.component';
 import { TaskComponent } from './task/task.component';
-import { CamaraComponent } from './camara/camara.component';
+import { CameraComponent } from './camera/camera.component';
 import { SensorInfoComponent } from './sensor-info/sensor-info.component';
 
 const routes: Routes = [
@@ -30,7 +30,7 @@ const routes: Routes = [
   {path:'sensor/:sensor', component: SensorInfoComponent, canActivate: [AuthGuard]},
   {path:'wifi', component: WifiComponent, canActivate: [AuthGuard]},
   {path:'task', component: TaskComponent, canActivate: [AuthGuard]},
-  {path:'camara', component: CamaraComponent, canActivate: [AuthGuard]}
+  {path:'camera', component: CameraComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
