@@ -7,16 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CameraComponent implements OnInit {
 
-  url: string = "88.8.36.129";
-  password: string = "tfuvjk765frvlnj";
-  user : string = "admin";
-  autoPlay: string = "http://"+this.url+":8000/StrobeMediaPlayback.swf";
-  flash: string = "&amp;src=rtmp://"+this.url+":9981/flash/11:"+this.user+":"+this.password+"&amp;autoHideControlBar=true&amp;streamType=live&amp;autoPlay=true";
-
+  autoPlay: string = '<embed src="http://88.8.36.129:8000/StrobeMediaPlayback.swf" width="1280" height="720" quality="high" bgcolor="#000000" name="StrobeMediaPlayback" allowfullscreen="true" pluginspage="http://www.adobe.com/go/getflashplayer" flashvars="&amp;src=rtmp://88.8.36.129:9981/flash/11:admin:tfuvjk765frvlnj&amp;autoHideControlBar=true&amp;streamType=live&amp;autoPlay=true" type="application/x-shockwave-flash">';
+  active: string="camera1";
 
   constructor() { }
 
   ngOnInit() {
   }
+
+  camera1(){
+    this.active="camera1";
+    this.autoPlay='<embed src="http://88.8.36.129:8000/StrobeMediaPlayback.swf" width="1280" height="720" quality="high" bgcolor="#000000" name="StrobeMediaPlayback" allowfullscreen="true" pluginspage="http://www.adobe.com/go/getflashplayer" flashvars="&amp;src=rtmp://88.8.36.129:9981/flash/11:admin:tfuvjk765frvlnj&amp;autoHideControlBar=true&amp;streamType=live&amp;autoPlay=true" type="application/x-shockwave-flash">'
+  }
+  camera2(){
+    this.active="camera2";
+    this.autoPlay='<embed src="http://88.8.36.129:8000/StrobeMediaPlayback.swf" width="1280" height="720" quality="high" bgcolor="#000000" name="StrobeMediaPlayback" allowfullscreen="true" pluginspage="http://www.adobe.com/go/getflashplayer" flashvars="&amp;src=rtmp://88.8.36.129:9981/flash/11:admin:tfuvjk765frvlnj&amp;autoHideControlBar=true&amp;streamType=live&amp;autoPlay=true" type="application/x-shockwave-flash">'}
 
 }
