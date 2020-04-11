@@ -111,8 +111,11 @@ app.get("/favicon.ico", async function(req, res) {
 app.get("/logo", async function(req, res) {
     res.status(200).send(fs.readFileSync('files/node.png'))
 })
-app.get("/StrobeMediaPlayback.swf", async function(req, res) {
-    res.status(200).send(fs.readFileSync('files/StrobeMediaPlayback.swf'))
+app.get("/StrobeMediaPlayback1.swf", async function(req, res) {
+    res.status(200).send(fs.readFileSync('files/StrobeMediaPlayback1.swf'))
+})
+app.get("/StrobeMediaPlayback2.swf", async function(req, res) {
+    res.status(200).send(fs.readFileSync('files/StrobeMediaPlayback2.swf'))
 })
 //
 //Get wifi signal
