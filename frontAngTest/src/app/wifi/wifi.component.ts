@@ -79,8 +79,12 @@ export class WifiComponent implements OnInit {
     var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
         type: 'line',
-        data: data,
-        label: name,
+        data: {
+            datasets: [{
+                label: name,
+                data: data
+            }]
+        },
         options: {
             scales: {
                 yAxes: [{
