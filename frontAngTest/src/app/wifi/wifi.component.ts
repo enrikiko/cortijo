@@ -82,7 +82,13 @@ export class WifiComponent implements OnInit {
         data: {
             datasets: [{
                 label: name,
-                data: data,
+                data: data: [{
+                                x: 10,
+                                y: 20
+                            }, {
+                                x: 15,
+                                y: 10
+                            }],
                 type: 'line'
             }]
         },
