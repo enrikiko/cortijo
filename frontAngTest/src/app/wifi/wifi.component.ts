@@ -75,7 +75,7 @@ export class WifiComponent implements OnInit {
   //   }]
   // });
   //   chart.render();
-  var ctx = document.getElementById('myChart').getContext('2d');
+  var ctx = document.getElementById('myChart');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
