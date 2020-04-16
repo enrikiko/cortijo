@@ -85,15 +85,7 @@ export class WifiComponent implements OnInit {
                 data: data
             }]
         },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
+        options: {}
     });
   }
 
