@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as CanvasJS from './canvasjs.min';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { SocketService } from '../socket.service';
+import Chart from 'chart.js';
 
 @Component({
   selector: 'app-wifi',
