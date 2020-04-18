@@ -99,7 +99,12 @@ export class WifiComponent implements OnInit {
                       beginAtZero: true,
                   }
               }]
-          }
+          },
+          elements: {
+                    point:{
+                        radius: 0
+                    }
+                }
         }
     });
     //console.log(dataList);
