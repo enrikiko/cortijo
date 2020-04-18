@@ -92,7 +92,7 @@ export class WifiComponent implements OnInit {
         },
         options: {}
     });
-    console.log(data);
+    console.log(dataList);
 
   }
 
