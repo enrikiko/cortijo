@@ -138,7 +138,7 @@ subscription:any;
                   //fillColor: "#36a2eb",
                   //strokeColor : "#000000",
                   //background: "#36a2eb",
-                  //backgroundColor: "#36a2eb",
+                  backgroundColor: "rgba(54, 162, 235, 0.3)",
                   pointBackgroundColor: "rgba(54, 162, 235, 0.3)",
               }],
               labels: labelList
@@ -195,7 +195,7 @@ subscription:any;
                   borderColor: "#eb5136",
                   // fillColor: "#eb5136",
                   // background: "#eb5136",
-                  // backgroundColor: "#36a2eb",
+                  backgroundColor: "rgba(235, 81, 54, 0.3)",
                   pointBackgroundColor: "rgba(235, 81, 54, 0.3)",
               },{
                   label: name+"-humi",
@@ -204,7 +204,7 @@ subscription:any;
                   borderColor: "#36a2eb",
                   // fillColor: "#36a2eb",
                   // background: "#36a2eb",
-                  // backgroundColor: "#36a2eb",
+                  backgroundColor: "rgba(54, 162, 235, 0.3)",
                   pointBackgroundColor: "rgba(54, 162, 235, 0.3)",
               }],
               labels: labelList
