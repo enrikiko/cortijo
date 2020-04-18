@@ -138,6 +138,8 @@ subscription:any;
                   fillColor: "#36a2eb",
                   strokeColor : "#000000",
                   background: "#36a2eb",
+                  backgroundColor: "#36a2eb",
+                  pointBackgroundColor: "#36a2eb",
               }],
               labels: labelList
           },
@@ -193,6 +195,8 @@ subscription:any;
                   borderColor: "#eb5136",
                   fillColor: "#eb5136",
                   background: "#eb5136",
+                  backgroundColor: "#36a2eb",
+                  pointBackgroundColor: "#36a2eb",
               },{
                   label: name+"-humi",
                   data: humidity,
@@ -200,6 +204,8 @@ subscription:any;
                   borderColor: "#36a2eb",
                   fillColor: "#36a2eb",
                   background: "#36a2eb",
+                  backgroundColor: "#36a2eb",
+                  pointBackgroundColor: "#36a2eb",
               }],
               labels: labelList
           },
