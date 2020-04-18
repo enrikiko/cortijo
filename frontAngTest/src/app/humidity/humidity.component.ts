@@ -73,7 +73,7 @@ subscription:any;
           var dataFormat
           var label
           for(var index in data){
-            dataFormat = parseInt(data[index].humidity
+            dataFormat = parseInt(data[index].humidity)
             dataList.push(dataFormat)
             label = new Date(parseInt(data[index].time)
             labelList.push(label.getDate())
