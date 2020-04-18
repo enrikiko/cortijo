@@ -54,12 +54,12 @@ export class WifiComponent implements OnInit {
       if(data!=null){
         var dataList = []
         var labelList = []
-        var data
+        var wifiData
         var label
         for(var index in data){
           // list.push(index+"-"+res[index])
-          data = parseInt(data[index].signal)+100
-          dataList.push(data)
+          wifiData = parseInt(data[index].signal)+100
+          dataList.push(wifiData)
           label = new Date(parseInt(data[index].time))
           labelList.push(label)
         }
