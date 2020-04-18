@@ -136,7 +136,8 @@ subscription:any;
                   fill: true,
                   borderColor: "#36a2eb",
                   fillColor: "#36a2eb",
-                  strokeColor : "#000000"
+                  strokeColor : "#000000",
+                  background: "#36a2eb",
               }],
               labels: labelList
           },
@@ -190,13 +191,15 @@ subscription:any;
                   data: temperature,
                   fill: false,
                   borderColor: "#eb5136",
-                  fillColor: "#eb5136"
+                  fillColor: "#eb5136",
+                  background: "#eb5136",
               },{
                   label: name+"-humi",
                   data: humidity,
                   fill: true,
                   borderColor: "#36a2eb",
-                  fillColor: "#36a2eb"
+                  fillColor: "#36a2eb",
+                  background: "#36a2eb",
               }],
               labels: labelList
           },
