@@ -89,7 +89,7 @@ export class WifiComponent implements OnInit {
                 data: dataList,
                 fill: false
             }],
-            labels: labelList
+            //labels: labelList
         },
         options: {
           scales: {
