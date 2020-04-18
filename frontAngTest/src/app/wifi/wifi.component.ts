@@ -90,6 +90,9 @@ export class WifiComponent implements OnInit {
                 fill: false,
                 backgroundColor: "#36a2eb",
                 pointBorderColor: "#55bae7",
+                borderColor: "#bae755",
+                pointHoverBackgroundColor: "#55bae7",
+                pointHoverBorderColor: "#55bae7",
             }],
             labels: labelList
         },
