@@ -52,19 +52,23 @@ export class WifiComponent implements OnInit {
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        var signalList = []
-        var signal
+        var dataList = []
+        var labelList = []
+        var data
+        var label
         for(var index in data){
           // list.push(index+"-"+res[index])
-          signal={ y: parseInt(data[index].signal)+100, label: new Date(parseInt(data[index].time)) }
-          signalList.push(signal)
+          data = parseInt(data[index].signal)+100
+          dataList.push(data)
+          label = new Date(parseInt(data[index].time))
+          labelList.push(label)
         }
-        this.printGraphWifi(wifi, signalList)
+        this.printGraphWifi(wifi, dataList, labelList)
       }
     })
   }
 
-  printGraphWifi(name, data){
+  printGraphWifi(name, dataList, labelList){
   //   let chart = new CanvasJS.Chart("wifiGraph", {
   //   animationEnabled: false,
   //   exportEnabled: false,
@@ -81,10 +85,10 @@ export class WifiComponent implements OnInit {
         type: 'line',
         data: {
             datasets: [{
-                label: 'First dataset',
-                data: [0, 20, 40, 50]
+                label: name,
+                data: dataList
             }],
-            labels: ['January', 'February', 'March', 'April']
+            labels: labelList
         },
         options: {}
     });
