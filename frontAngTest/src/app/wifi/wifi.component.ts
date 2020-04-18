@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as CanvasJS from './canvasjs.min';
+//import * as CanvasJS from './canvasjs.min';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { SocketService } from '../socket.service';
 import Chart from 'chart.js';
@@ -57,7 +57,6 @@ export class WifiComponent implements OnInit {
         var wifiData
         var label
         for(var index in data){
-          // list.push(index+"-"+res[index])
           wifiData = parseInt(data[index].signal)+100
           dataList.push(wifiData)
           label = new Date(parseInt(data[index].time))
@@ -88,11 +87,7 @@ export class WifiComponent implements OnInit {
                 label: name,
                 data: dataList,
                 fill: false,
-                //backgroundColor: "#36a2eb",
-                //pointBorderColor: "#55bae7",
                 borderColor: "#36a2eb",
-                //pointHoverBackgroundColor: "#55bae7",
-                //pointHoverBorderColor: "#55bae7",
             }],
             labels: labelList
         },
@@ -115,8 +110,6 @@ export class WifiComponent implements OnInit {
                 }
         }
     });
-    //console.log(dataList);
-
   }
 
 }

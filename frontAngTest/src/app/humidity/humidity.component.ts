@@ -69,12 +69,16 @@ subscription:any;
       {
         if(data!=null){
           var dataList = []
+          var labelList = []
           var dataFormat
+          var label
           for(var index in data){
-            dataFormat={ y: parseInt(data[index].humidity), label: new Date(parseInt(data[index].time)) }
+            dataFormat = parseInt(data[index].humidity
             dataList.push(dataFormat)
+            label = new Date(parseInt(data[index].time)
+            labelList.push(label.getDate())
           }
-          this.printGraphHumidity(name, dataList);
+          this.printGraphHumidity(name, dataList, labelList);
         }
         else {
           console.log("No logs")
@@ -86,19 +90,21 @@ subscription:any;
       this.http.get<HttpResponse<object>>(url).subscribe( data =>
       {
         if(data!=null){
-          // var res = data["response"]
           var temperature = []
           var humidity = []
+          var labelList = []
           var temp
           var humi
+          var label
           for(var index in data){
-            // list.push(index+"-"+res[index])
-            temp={ y: parseInt(data[index].temperature), label: new Date(parseInt(data[index].time)) }
-            humi={ y: parseInt(data[index].humidity), label: new Date(parseInt(data[index].time)) }
+            temp = parseInt(data[index].temperature)
+            humi = parseInt(data[index].humidity)
             temperature.push(temp)
             humidity.push(humi)
+            label = new Date(parseInt(data[index].time)
+            labelList.push(label.getDate())
           }
-          this.printGraphTemperature(name, temperature, humidity);
+          this.printGraphTemperature(name, temperature, humidity, labelList);
         }
         else {
         console.log('No logs')
@@ -106,40 +112,107 @@ subscription:any;
       })
     }
 
-    printGraphHumidity(name, data){
-      let chart = new CanvasJS.Chart("humidityGraph", {
-  		animationEnabled: false,
-  		exportEnabled: false,
-  		title: { text: name },
-  		data: [{
-  			type: "spline",
-                 color: "rgba(255,0,0,1)", //red
-  			dataPoints: data
-  		}]
-  	});
-
-  	chart.render();
+    printGraphHumidity(name, dataList, labelList){
+    //   let chart = new CanvasJS.Chart("humidityGraph", {
+  	// 	animationEnabled: false,
+  	// 	exportEnabled: false,
+  	// 	title: { text: name },
+  	// 	data: [{
+  	// 		type: "spline",
+    //              color: "rgba(255,0,0,1)", //red
+  	// 		dataPoints: data
+  	// 	}]
+  	// });
+    //
+  	// chart.render();
+      var ctx = document.getElementById('humidityGraph');
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              datasets: [{
+                  label: name,
+                  data: dataList,
+                  fill: false,
+                  borderColor: "#36a2eb",
+              }],
+              labels: labelList
+          },
+          options: {
+            animation: {
+                duration: 0
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        beginAtZero: true,
+                    }
+                }]
+            },
+            elements: {
+                      point:{
+                          radius: 0
+                      }
+                  }
+          }
+      });
     }
 
-    printGraphTemperature(name, temperature, humidity){
-      let chart = new CanvasJS.Chart("humidityGraph", {
-  		animationEnabled: false,
-  		exportEnabled: false,
-  		title: { text: name },
-  		data: [
-        {
-    			type: "spline",
-          color: "rgba(255,0,0,1)", //red
-    			dataPoints: temperature
-  		  },
-        {
-          type: "splineArea",
-          color: "rgba(0,75,141,0.3)", //Blue
-          dataPoints: humidity
-        }]
-  	});
-
-  	chart.render();
+    printGraphTemperature(name, temperature, humidity, labelList){
+    //   let chart = new CanvasJS.Chart("humidityGraph", {
+  	// 	animationEnabled: false,
+  	// 	exportEnabled: false,
+  	// 	title: { text: name },
+  	// 	data: [
+    //     {
+    // 			type: "spline",
+    //       color: "rgba(255,0,0,1)", //red
+    // 			dataPoints: temperature
+  	// 	  },
+    //     {
+    //       type: "splineArea",
+    //       color: "rgba(0,75,141,0.3)", //Blue
+    //       dataPoints: humidity
+    //     }]
+  	// });
+    //
+  	// chart.render();
+    // }
+      var ctx = document.getElementById('humidityGraph');
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              datasets: [{
+                  label: name+"-temp",
+                  data: temperature,
+                  fill: false,
+                  borderColor: "#36a2eb",
+              },{
+                  label: name+"-humi",
+                  data: humidity,
+                  fill: false,
+                  borderColor: "#36a2eb",
+              }],
+              labels: labelList
+          },
+          options: {
+            animation: {
+                duration: 0
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        beginAtZero: true,
+                    }
+                }]
+            },
+            elements: {
+                      point:{
+                          radius: 0
+                      }
+                  }
+          }
+      });
     }
-
 }
