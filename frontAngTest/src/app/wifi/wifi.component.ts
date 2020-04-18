@@ -86,13 +86,23 @@ export class WifiComponent implements OnInit {
         data: {
             datasets: [{
                 label: name,
-                data: dataList
+                data: dataList,
+                fill: false
             }],
             labels: labelList
         },
-        options: {}
+        options: {
+          scales: {
+              yAxes: [{
+                  ticks: {
+                      min: 0,
+                      beginAtZero: true,
+                  }
+              }]
+          }
+        }
     });
-    console.log(dataList);
+    //console.log(dataList);
 
   }
 
