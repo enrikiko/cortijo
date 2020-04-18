@@ -90,7 +90,7 @@ export class WifiComponent implements OnInit {
                 borderColor: "#36a2eb",
                 // fillColor: "#36a2eb",
                 backgroundColor: "rgba(54, 162, 235, 0.3)",
-                pointBackgroundColor: "rgba(54, 162, 235, 0.3)",
+                // pointBackgroundColor: "rgba(54, 162, 235, 0.3)",
             }],
             labels: labelList
         },
