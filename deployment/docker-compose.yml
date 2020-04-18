@@ -59,7 +59,7 @@ services:
     environment:
     - mock_name=mockSensorTemperature
     - mock_port=8105
-    - local_ip=192.168.1.53
+    - local_ip=192.168.1.51
     ports:
     - "8105:3000"
     networks:
@@ -71,7 +71,7 @@ services:
     environment:
     - mock_name=mockSensorHumidity
     - mock_port=8106
-    - local_ip=192.168.1.53
+    - local_ip=192.168.1.51
     ports:
     - "8106:3000"
     networks:
@@ -83,7 +83,7 @@ services:
     environment:
     - mock_name=feigenbaum
     - mock_port=8107
-    - local_ip=192.168.1.53
+    - local_ip=192.168.1.51
     ports:
     - "8107:3000"
     networks:
