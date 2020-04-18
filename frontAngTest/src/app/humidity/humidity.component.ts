@@ -191,7 +191,7 @@ subscription:any;
               datasets: [{
                   label: name+"-temp",
                   data: temperature,
-                  fill: false,
+                  fill: true,
                   borderColor: "#eb5136",
                   // fillColor: "#eb5136",
                   // background: "#eb5136",
