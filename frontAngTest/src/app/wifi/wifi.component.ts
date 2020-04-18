@@ -81,7 +81,6 @@ export class WifiComponent implements OnInit {
         type: 'line',
         label: [20,10,20,15],
         data: [10,15,20,25]
-        },
         options: {}
     });
     console.log(data);
