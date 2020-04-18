@@ -133,7 +133,7 @@ subscription:any;
               datasets: [{
                   label: name,
                   data: dataList,
-                  fill: false,
+                  fill: true,
                   borderColor: "#36a2eb",
               }],
               labels: labelList
@@ -187,11 +187,11 @@ subscription:any;
                   label: name+"-temp",
                   data: temperature,
                   fill: false,
-                  borderColor: "#36a2eb",
+                  borderColor: "#eb5136",
               },{
                   label: name+"-humi",
                   data: humidity,
-                  fill: false,
+                  fill: true,
                   borderColor: "#36a2eb",
               }],
               labels: labelList
