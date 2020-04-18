@@ -11,4 +11,4 @@ ENV mock_name=$NAME
 ENV mock_port=$PORT
 ENV local_ip=$IP
 
-ENTRYPOINT [ "sh", "init.sh" ]
+CMD sh init.sh

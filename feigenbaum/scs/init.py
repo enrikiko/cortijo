@@ -30,3 +30,9 @@ def getTemperature():
 def data():
     info = {"name":"feigenbaum","type":"Temperature","content":{"humidity":getHumidity(),"temperature":getTemperature()}}
     return jsonify(info)
+
+
+@app.route('/feigenbaum/status')
+def status():
+    info = {"name":"feigenbaum","type":"Temperature","content":{"humidity":getHumidity(),"temperature":getTemperature()}}
+    return jsonify(info)
