@@ -97,6 +97,9 @@ export class WifiComponent implements OnInit {
             labels: labelList
         },
         options: {
+          animation: {
+              duration: 0
+          }.
           scales: {
               yAxes: [{
                   ticks: {
