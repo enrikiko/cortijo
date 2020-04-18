@@ -75,7 +75,7 @@ subscription:any;
           for(var index in data){
             dataFormat = parseInt(data[index].humidity)
             dataList.push(dataFormat)
-            label = new Date(parseInt(data[index].time)
+            label = new Date(parseInt(data[index].time))
             labelList.push(label.getDate())
           }
           this.printGraphHumidity(name, dataList, labelList);
@@ -101,7 +101,7 @@ subscription:any;
             humi = parseInt(data[index].humidity)
             temperature.push(temp)
             humidity.push(humi)
-            label = new Date(parseInt(data[index].time)
+            label = new Date(parseInt(data[index].time))
             labelList.push(label.getDate())
           }
           this.printGraphTemperature(name, temperature, humidity, labelList);
