@@ -135,7 +135,8 @@ subscription:any;
                   data: dataList,
                   fill: true,
                   borderColor: "#36a2eb",
-                  fillColor: "#36a2eb"
+                  fillColor: "#36a2eb",
+                  strokeColor : "#000000"
               }],
               labels: labelList
           },
