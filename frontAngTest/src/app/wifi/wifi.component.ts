@@ -87,7 +87,8 @@ export class WifiComponent implements OnInit {
             datasets: [{
                 label: name,
                 data: dataList,
-                fill: false
+                fill: false,
+                backgroundColor: "#36a2eb"
             }],
             labels: labelList
         },
