@@ -1,9 +1,9 @@
 version: "3.3"
 services:
   mongo:
+    image: mongo-express
     container_name: mongo
     restart: on-failure
-    build: ../mongo/.
     ports:
     - "27017:27017"
     networks:
@@ -46,62 +46,6 @@ services:
     - "8200:3000"
     networks:
     - network
-  mock:
-    container_name: mock
-    restart: always
-    build: ../deviceMock/.
-    environment:
-    - mock_name=mock
-    - mock_port=8101
-    - local_ip=192.168.1.50
-    ports:
-    - "8101:3000"
-    networks:
-    - network
-    depends_on:
-    - cortijo
-  sensortemperature:
-    container_name: mockSensorTemperature
-    restart: always
-    build: ../sensorMock/.
-    environment:
-    - mock_name=mockSensorTemperature
-    - mock_port=8105
-    - local_ip=192.168.1.50
-    ports:
-    - "8105:3000"
-    networks:
-    - network
-    depends_on:
-    - cortijo
-  sensorhumidity:
-    container_name: mockSensorHumidity
-    restart: always
-    build: ../sensorHumidityMock/.
-    environment:
-    - mock_name=mockSensorHumidity
-    - mock_port=8106
-    - local_ip=192.168.1.50
-    ports:
-    - "8106:3000"
-    networks:
-    - network
-    depends_on:
-    - cortijo
-  feigenbaum:
-    container_name: feigenbaum
-    restart: on-failure
-    build: ../feigenbaum/.
-    environment:
-    - mock_name=feigenbaum
-    - mock_port=8107
-    - local_ip=192.168.1.50
-    ports:
-    - "8107:3000"
-    networks:
-    - network
-    depends_on:
-    - cortijo
   front:
     container_name: front
     restart: always
@@ -146,6 +90,62 @@ services:
     - type: bind
       source: /media/lenovo/ExtDriver/eramos
       target: /data
+  device:
+    container_name: deviceMock
+    restart: always
+    build: ../mock/deviceMock/.
+    environment:
+    - mock_name=deviceMock
+    - mock_port=8101
+    - local_ip=192.168.1.50
+    ports:
+    - "8101:3000"
+    networks:
+    - network
+    depends_on:
+    - cortijo
+  sensortemperature:
+    container_name: sensorTemperatureMock
+    restart: always
+    build: ../mock/sensorMock/.
+    environment:
+    - mock_name=sensorTemperatureMock
+    - mock_port=8105
+    - local_ip=192.168.1.50
+    ports:
+    - "8105:3000"
+    networks:
+    - network
+    depends_on:
+    - cortijo
+  sensorhumidity:
+    container_name: sensorHumidityMock
+    restart: always
+    build: ../mock/sensorHumidityMock/.
+    environment:
+    - mock_name=sensorHumidityMock
+    - mock_port=8106
+    - local_ip=192.168.1.50
+    ports:
+    - "8106:3000"
+    networks:
+    - network
+    depends_on:
+    - cortijo
+  feigenbaum:
+    container_name: feigenbaumMock
+    restart: on-failure
+    build: ../mock/feigenbaum/.
+    environment:
+    - mock_name=feigenbaumMock
+    - mock_port=8107
+    - local_ip=192.168.1.50
+    ports:
+    - "8107:3000"
+    networks:
+    - network
+    depends_on:
+    - cortijo
   # mock2:
   #  container_name: mock2
   #  restart: always

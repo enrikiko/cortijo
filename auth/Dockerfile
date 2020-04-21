@@ -1,5 +1,4 @@
-#FROM enriqueramosmunoz/rolling:mongo
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 RUN apt update
 RUN apt-get update
 RUN apt install -y man less
