@@ -5,4 +5,4 @@ WORKDIR angular/.
 COPY package.json package.json
 RUN npm install
 COPY . .
-CMD init.sh
+CMD exec init.sh
