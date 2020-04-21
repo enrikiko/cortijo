@@ -1,2 +1,3 @@
 #!/bin/bash
-ng serve
+ng serve --host app.cortijodemazas.com
+#--disable-host-check
