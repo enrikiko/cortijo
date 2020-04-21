@@ -18,8 +18,8 @@ services:
     - network
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    - /home/miso/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
-    - /home/miso/cortijo/cortijo/config.yaml:/root/node/config.yaml
+    - /home/miso/Document/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
+    - /home/miso/Document/cortijo/cortijo/config.yaml:/root/node/config.yaml
     depends_on:
     - mongo
     - auth
@@ -35,7 +35,7 @@ services:
     networks:
     - network
     volumes:
-    - /home/miso/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
+    - /home/miso/Document/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
     depends_on:
     - mongo
   websocket:
