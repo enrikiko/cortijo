@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   mongo:
-    image: mongo-express
+    image: mongo
     container_name: mongo
     restart: on-failure
     ports:
