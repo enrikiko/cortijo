@@ -1,13 +1,13 @@
 version: "3.3"
 services:
-  # mongo:
-  #   container_name: mongo
-  #   restart: on-failure
-  #   build: ../mongo/.
-  #   ports:
-  #   - "27017:27017"
-  #   networks:
-  #   - network
+  mongo:
+    container_name: mongo
+    restart: on-failure
+    build: ../mongo/.
+    ports:
+    - "27017:27017"
+    networks:
+    - network
   cortijo:
     container_name: cortijo
     restart: on-failure
@@ -20,6 +20,10 @@ services:
     - /etc/localtime:/etc/localtime:ro
     - /root/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
     - /root/cortijo/cortijo/config.yaml:/root/node/config.yaml
+    depends_on:
+    - mongo
+    - auth
+    - websocket
   auth:
     container_name: auth
     restart: always
@@ -32,6 +36,8 @@ services:
     - network
     volumes:
     - /root/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
+    depends_on:
+    - mongo
   websocket:
     container_name: websocket
     restart: always
@@ -52,6 +58,8 @@ services:
     - "8101:3000"
     networks:
     - network
+    depends_on:
+    - cortijo
   sensortemperature:
     container_name: mockSensorTemperature
     restart: always
@@ -64,6 +72,8 @@ services:
     - "8105:3000"
     networks:
     - network
+    depends_on:
+    - cortijo
   sensorhumidity:
     container_name: mockSensorHumidity
     restart: always
@@ -76,6 +86,8 @@ services:
     - "8106:3000"
     networks:
     - network
+    depends_on:
+    - cortijo
   feigenbaum:
     container_name: feigenbaum
     restart: on-failure
@@ -88,20 +100,22 @@ services:
     - "8107:3000"
     networks:
     - network
+    depends_on:
+    - cortijo
   front:
     container_name: front
     restart: always
     build: ../frontAngTest/.
     ports:
     - "8300:4200"
-#  git:
-#    container_name: git
-#    restart: on-failure
-#    build: ../git/.
-#  ip:
-#    container_name: ip
-#    restart: on-failure
-#    build: ../ip/.
+  git:
+    container_name: git
+    restart: on-failure
+    build: ../git/.
+  ip:
+    container_name: ip
+    restart: on-failure
+    build: ../ip/.
   camera:
     container_name: camera
     restart: on-failure
