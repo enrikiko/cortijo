@@ -1,4 +1,4 @@
-FROM ubuntu:19.04
+FROM ubuntu:18.04
 RUN apt update
 RUN apt install -y ansible
 RUN apt install -y apt openssh-client
