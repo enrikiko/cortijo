@@ -1,2 +1,2 @@
 #!/bin/bash
-ng serve --host app.cortijodemazas.com --disable-host-check --port 4200
+ng serve --host 0.0.0.0 --disable-host-check --port 4200
