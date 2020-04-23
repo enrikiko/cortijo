@@ -1,3 +1,2 @@
-curl $ROUTE53_URL --header \"Content-Type: application/json\" --request POST --data \'{\"password\":\"${ROUTE53_PASSWORD}\"}\' 2>/dev/null > /tmp/curl.out
-echo $ROUTE53_URL --header \"Content-Type: application/json\" --request POST --data \'{\"password\":\"${ROUTE53_PASSWORD}\"}\' 
+curl $ROUTE53_URL --header "Content-Type: application/json" --data '{"password":"'${ROUTE53_PASSWORD}'"}' 2>/dev/null > /tmp/curl.out
 cat /tmp/curl.out
