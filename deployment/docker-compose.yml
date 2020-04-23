@@ -67,7 +67,7 @@ services:
     environment:
     - route53_url=https://t5018nbtn5.execute-api.eu-central-1.amazonaws.com/final/DNS_setting_lambda
     - route53_password=${route53_password}
-    camera:
+  camera:
     container_name: camera
     restart: on-failure
     build: ../camera/.
