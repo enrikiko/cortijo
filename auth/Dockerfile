@@ -9,5 +9,5 @@ WORKDIR /root/node
 COPY package/. .
 RUN npm install
 COPY . .
-ENV TOKEN=cortijo1
+ARG TOKEN
 ENTRYPOINT ["sh", "init.sh"]

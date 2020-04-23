@@ -29,7 +29,7 @@ services:
     restart: always
     build: ../auth/.
     environment:
-    - token=cortijo1
+    - TOKEN=${AUTH_TOKEN}
     ports:
     - "8010:3000"
     networks:
@@ -65,8 +65,8 @@ services:
     restart: on-failure
     build: ../router53/.
     environment:
-    - route53_url=https://t5018nbtn5.execute-api.eu-central-1.amazonaws.com/final/DNS_setting_lambda
-    - route53_password=${route53_password}
+    - ROUTE53_URL=https://t5018nbtn5.execute-api.eu-central-1.amazonaws.com/final/DNS_setting_lambda
+    - ROUTE53_PASSWORD=${route53_password}
   camera:
     container_name: camera
     restart: on-failure
