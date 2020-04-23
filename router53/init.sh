@@ -9,5 +9,5 @@ do
     cat /tmp/curl.out
     echo "Route53 have been set correctly"
   fi
-	sleep 10
+	sleep 300
 done
