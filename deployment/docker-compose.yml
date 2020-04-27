@@ -21,7 +21,6 @@ services:
     - /home/miso/Document/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
     - /home/miso/Document/cortijo/cortijo/config.yaml:/root/node/config.yaml
     depends_on:
-    - mongo
     - auth
     - websocket
   auth:
@@ -36,8 +35,6 @@ services:
     - network
     volumes:
     - /home/miso/Document/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
-    depends_on:
-    - mongo
   websocket:
     container_name: websocket
     restart: always
@@ -52,21 +49,6 @@ services:
     build: ../frontAngTest/.
     ports:
     - "8300:4200"
-  git:
-    container_name: git
-    restart: on-failure
-    build: ../git/.
-  ip:
-    container_name: ip
-    restart: on-failure
-    build: ../ip/.
-  set_router:
-    container_name: set_router
-    restart: on-failure
-    build: ../router53/.
-    environment:
-    - ROUTE53_URL=https://t5018nbtn5.execute-api.eu-central-1.amazonaws.com/final/DNS_setting_lambda
-    - ROUTE53_PASSWORD=${ROUTE53_PASSWORD}
   camera:
     container_name: camera
     restart: on-failure
