@@ -12,4 +12,5 @@ RUN chmod 777 data
 COPY vsftpd.conf /etc/vsftpd.conf
 CMD service vsftpd start
 # ENTRYPOINT ["bash","init.sh"]
+RUN adduser -D -g '' miso
 EXPOSE 20
