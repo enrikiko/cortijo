@@ -1,4 +1,4 @@
-FROM ubuntu:17.04
+FROM ubuntu
 RUN apt-get update
 RUN apt update
 RUN apt-get -y install vsftpd vim
