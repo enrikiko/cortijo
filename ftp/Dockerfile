@@ -1,7 +1,7 @@
 FROM alpine
 RUN apt-get update
 RUN apt update
-RUN apt-get -y install vsftpd vim
+RUN apk -y install vsftpd vim
 USER root
 # COPY vsftpd.conf /etc/vsftpd.conf
 # RUN adduser --disabled-password --gecos '' miso
