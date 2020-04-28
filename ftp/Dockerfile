@@ -10,6 +10,7 @@ WORKDIR /root/
 RUN mkdir data
 RUN chmod 777 data
 COPY vsftpd.conf /etc/vsftpd.conf
+COPY vsftpd.chroot_list /etc/vsftpd.chroot_list
 CMD service vsftpd start
 # ENTRYPOINT ["bash","init.sh"]
 RUN adduser -D -g '' miso
