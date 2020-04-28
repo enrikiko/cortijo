@@ -9,4 +9,4 @@ USER root
 # RUN mkdir data
 # RUN chmod 777 data
 # CMD service vsftpd start
-EXPOSE 20
+# EXPOSE 20
