@@ -13,5 +13,5 @@ COPY vsftpd.conf /etc/vsftpd.conf
 COPY vsftpd.chroot_list /etc/vsftpd.chroot_list
 CMD service vsftpd start
 # ENTRYPOINT ["bash","init.sh"]
-RUN adduser --disabled-password --gecos '' newuser
+RUN adduser --disabled-password --gecos '' miso
 EXPOSE 20
