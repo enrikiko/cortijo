@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM alpine
 RUN apt-get update
 RUN apt update
 RUN apt-get -y install vsftpd vim
