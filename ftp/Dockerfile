@@ -9,5 +9,5 @@ WORKDIR /root/
 COPY init.sh init.sh
 RUN mkdir data
 RUN chmod 777 data
-ENTRYPOINT ["bash","init.sh"]
-#EXPOSE 20
+# ENTRYPOINT ["bash","init.sh"]
+# EXPOSE 20
