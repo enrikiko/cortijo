@@ -31,8 +31,7 @@ export class LoginComponent implements OnInit {
     this.fail=true
   }
   getUrl(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    const url = "http://" + host + ":8000/logo"
+    const url = "http://back.app.cortijodemazas.com/logo"
     this.url=url
     }
 

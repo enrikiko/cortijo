@@ -17,17 +17,11 @@ export class LogsComponent implements OnInit {
   }
 
   getLogs(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    // const host = "88.8.65.164"
-    let url = "http://" + host + ":8000/all/log"
-    //this.http.get<HttpResponse<object>>(url).subscribe( data =>
+    let url = "http://back.app.cortijodemazas.com/all/log"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
         console.log(data)
-        // var res = data["response"]
-        // var list = []
-        // for(var index in res){list.push(index+"-"+res[index])}
         this.logs=data;
       }
       else {

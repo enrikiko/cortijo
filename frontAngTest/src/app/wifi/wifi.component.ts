@@ -35,8 +35,7 @@ export class WifiComponent implements OnInit {
     this.getData(wifi)
   }
   getWifis(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/wifis"
+    let url = "http://back.app.cortijodemazas.com/wifis"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -47,8 +46,7 @@ export class WifiComponent implements OnInit {
     })
   }
   getData(wifi){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/wifi/" + wifi
+    let url = "http://back.app.cortijodemazas.com/wifi/" + wifi
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){

@@ -17,8 +17,7 @@ export class RequestsComponent implements OnInit {
   }
 
   getRequests(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/all/watering"
+    let url = "http://back.app.cortijodemazas.com/all/watering"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){

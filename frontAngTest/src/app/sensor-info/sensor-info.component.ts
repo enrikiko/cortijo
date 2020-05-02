@@ -27,8 +27,7 @@ export class SensorInfoComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/sensor/" + sensor
+    let url = "http://back.app.cortijodemazas.com/sensor/" + sensor
     this.http.get(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){

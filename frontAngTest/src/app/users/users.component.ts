@@ -23,13 +23,11 @@ export class UsersComponent implements OnInit {
   }
 
   createUser(event) {
-    // const host = "88.7.66.22"
     const target = event.target
     const user = target.querySelector('#userName').value
     const password = target.querySelector('#password').value
     const secret = target.querySelector('#secret').value
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/auth"
+    let url = "http://back.app.cortijodemazas.com/auth"
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     var object = {};
@@ -54,8 +52,7 @@ export class UsersComponent implements OnInit {
   }
 
   getUrl(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    const url = "http://" + host + ":8000/logo"
+    const url = "http://back.app.cortijodemazas.com/logo"
     this.url=url
     }
 

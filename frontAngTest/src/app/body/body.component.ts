@@ -54,7 +54,6 @@ export class BodyComponent implements OnInit {
       'Authorization': jwt
     })
     let newStatus=null
-    const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = null
     if(device.status){
       url = "http://back.app.cortijodemazas.com/update/" + device.name +"/false/"
@@ -83,7 +82,6 @@ export class BodyComponent implements OnInit {
         'Content-Type': 'application/json',
         'Authorization': jwt
       })
-      const host = (window.location.href.split("/")[2]).split(":")[0]
       let url = "http://back.app.cortijodemazas.com/device/" + device.name
       this.http.delete(url, { headers: headers }).subscribe( data =>
       {
@@ -100,7 +98,6 @@ export class BodyComponent implements OnInit {
   }
 
   getDevicesList(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://back.app.cortijodemazas.com/device/all"
     this.http.get<any[]>(url).subscribe( data =>
     {
@@ -114,7 +111,6 @@ export class BodyComponent implements OnInit {
   }
 
   getSensorList(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = "http://back.app.cortijodemazas.com/sensor/all"
     this.http.get<any[]>(url).subscribe( data =>
     {
@@ -135,7 +131,7 @@ export class BodyComponent implements OnInit {
         'Content-Type': 'application/json',
         'Authorization': jwt
       })
-      const host = (window.location.href.split("/")[2]).split(":")[0]
+
       let url = "http://back.app.cortijodemazas.com/sensor/" + sensor.name
       this.http.delete(url, { headers: headers }).subscribe( data =>
       {

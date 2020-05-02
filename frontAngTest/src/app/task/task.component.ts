@@ -21,8 +21,7 @@ export class TaskComponent implements OnInit {
   }
 
   getTodoTasks(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/task/todo"
+    let url = "http://back.app.cortijodemazas.com/task/todo"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -35,8 +34,7 @@ export class TaskComponent implements OnInit {
   }
 
   getInprogresTasks(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/task/Inprogres"
+    let url = "http://back.app.cortijodemazas.com/task/Inprogres"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -49,8 +47,7 @@ export class TaskComponent implements OnInit {
   }
 
   getDoneTasks(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/task/done"
+    let url = "http://back.app.cortijodemazas.com/task/done"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -63,8 +60,7 @@ export class TaskComponent implements OnInit {
   }
 
   start(name){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/task/update"
+    let url = "http://back.app.cortijodemazas.com/task/update"
     let object={}
     object["status"]="Inprogres"
     object["name"]=name
@@ -81,8 +77,7 @@ export class TaskComponent implements OnInit {
   }
 
   finish(name){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/task/update"
+    let url = "http://back.app.cortijodemazas.com/task/update"
     let object={}
     object["status"]="done"
     object["name"]=name
@@ -99,8 +94,7 @@ export class TaskComponent implements OnInit {
   }
 
   todo(name){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/task/update"
+    let url = "http://back.app.cortijodemazas.com/task/update"
     let object={}
     object["status"]="todo"
     object["name"]=name

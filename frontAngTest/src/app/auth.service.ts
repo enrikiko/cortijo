@@ -23,8 +23,7 @@ export class AuthService {
       'Content-Type': 'application/json',
       'Authorization': jwt
       })
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    const url = "http://" + host + ":8000/jwt"
+    const url = "http://back.app.cortijodemazas.com/jwt"
     this.http.get<any>(url, { headers: headers }).subscribe( data => {
       if(data!=null){
         if(data.status){

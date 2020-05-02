@@ -19,8 +19,7 @@ export class ConfigComponent implements OnInit {
   }
 
   getConfig(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    const url = "http://" + host + ":8000/config/"
+    const url = "http://back.app.cortijodemazas.com/config/"
     this.http.get(url).subscribe( data =>
     {
       if(data!=null){
@@ -49,8 +48,7 @@ export class ConfigComponent implements OnInit {
     this.config.forEach(element => {
       configObject[element.key] = element.value
     })
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    const url = "http://" + host + ":8000/config/update"
+    const url = "http://back.app.cortijodemazas.com/config/update"
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     this.http.post(url, configObject, {headers: headers}).subscribe( data =>
