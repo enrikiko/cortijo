@@ -57,10 +57,10 @@ export class BodyComponent implements OnInit {
     const host = (window.location.href.split("/")[2]).split(":")[0]
     let url = null
     if(device.status){
-      url = "http://" + host + ":8000/update/" + device.name +"/false/"
+      url = "http://back.app.cortijodemazas.com/update/" + device.name +"/false/"
     }
     else if (!device.status){
-      url = "http://" + host + ":8000/update/" + device.name +"/true/"+ this.lapse_time*60000
+      url = "http://back.app.cortijodemazas.com/update/" + device.name +"/true/"+ this.lapse_time*60000
     }
     let startTime = new Date().getTime()
     this.http.get(url, { headers: headers }).subscribe( data =>
@@ -84,7 +84,7 @@ export class BodyComponent implements OnInit {
         'Authorization': jwt
       })
       const host = (window.location.href.split("/")[2]).split(":")[0]
-      let url = "http://" + host + ":8000/device/" + device.name
+      let url = "http://back.app.cortijodemazas.com/device/" + device.name
       this.http.delete(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){
@@ -101,7 +101,7 @@ export class BodyComponent implements OnInit {
 
   getDevicesList(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/device/all"
+    let url = "http://back.app.cortijodemazas.com/device/all"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -115,7 +115,7 @@ export class BodyComponent implements OnInit {
 
   getSensorList(){
     const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8000/sensor/all"
+    let url = "http://back.app.cortijodemazas.com/sensor/all"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -136,7 +136,7 @@ export class BodyComponent implements OnInit {
         'Authorization': jwt
       })
       const host = (window.location.href.split("/")[2]).split(":")[0]
-      let url = "http://" + host + ":8000/sensor/" + sensor.name
+      let url = "http://back.app.cortijodemazas.com/sensor/" + sensor.name
       this.http.delete(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){
