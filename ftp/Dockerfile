@@ -5,4 +5,5 @@ USER root
 RUN mkdir data
 RUN chmod 777 data
 RUN adduser --disabled-password --gecos '' miso
+CMD service vsftpd start
 #EXPOSE 20
