@@ -11,7 +11,7 @@ export class TaskComponent implements OnInit {
   tasksTodo: any[] = null;
   tasksInprogres: any[] = null;
   tasksDone: any[] = null;
-  task: {} = null;
+  task: object = {"name": null, "description": null};
 
   constructor( private http: HttpClient ) { }
 
