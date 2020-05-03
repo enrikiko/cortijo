@@ -20,6 +20,28 @@ export class TaskComponent implements OnInit {
     this.getDoneTasks()
   }
 
+  createTask(event) {
+    const target = event.target
+    const task = target.querySelector('#task').value
+    const description = target.querySelector('#description').value
+    let url = "http://back.app.cortijodemazas.com/task"
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    var object = {};
+    object["name"]=task;
+    object["description"]=description;
+    this.http.post<any>(url, object, {headers: headers}).subscribe( data =>
+    {
+      if(data){
+        console.log(data)
+        this.getTodoTasks()
+      }
+      else {
+        console.log('no data')
+      }
+    })
+  }
+
   getTodoTasks(){
     let url = "http://back.app.cortijodemazas.com/task/todo"
     this.http.get<any[]>(url).subscribe( data =>

@@ -1,6 +1,14 @@
 <div class="container-fluid bg-white body center">
 
-  <div class="row justify-content-md-center">
+  <div class="text-center center">
+    <form (submit)="createTask($event)" class="form-signin">
+      <input [(ngModel)]="task" class="form-control" placeholder="Task-N" aria-label="Task" aria-describedby="addon-wrapping">
+      <input [(ngModel)]="description" class="form-control" placeholder="Description" aria-label="Description" aria-describedby="addon-wrapping">
+      <button class="btn btn-lg btn-primary btn-block mt-2" type="submit" name="button" >Create task</button>
+    </form>
+  </div>
+
+  <div class="row justify-content-md-center mx-2">
     <div  class="col-4 bg-primary">
       <h1>To Do</h1>
     </div>
