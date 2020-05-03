@@ -26,8 +26,8 @@ export class TaskComponent implements OnInit {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     var object = {};
-    object["name"]=this.task.name;
-    object["description"]=this.description.name;
+    object["name"] = this.task.name;
+    object["description"] = this.task.description;
     this.http.post<any>(url, object, {headers: headers}).subscribe( data =>
     {
       if(data){
