@@ -2,8 +2,8 @@
 
   <div class="text-center center">
     <form (submit)="createTask($event)" class="form-signin">
-      <input [(ngModel)]="task.name" class="form-control" placeholder="Task-N" aria-label="Task" aria-describedby="addon-wrapping">
-      <input [(ngModel)]="task.description" class="form-control" placeholder="Description" aria-label="Description" aria-describedby="addon-wrapping">
+      <input [(ngModel)]="task.name" id="name" type="text" class="form-control" placeholder="Task-N" aria-label="Task" aria-describedby="addon-wrapping">
+      <input [(ngModel)]="task.description" id="description" type="text" class="form-control" placeholder="Description" aria-label="Description" aria-describedby="addon-wrapping">
       <button class="btn btn-lg btn-primary btn-block mt-2" type="submit" name="button" >Create task</button>
     </form>
   </div>
