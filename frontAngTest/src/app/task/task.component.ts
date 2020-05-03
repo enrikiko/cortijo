@@ -36,6 +36,7 @@ export class TaskComponent implements OnInit {
       }
       else {
         console.log('no data')
+        this.getTodoTasks()
       }
     })
   }
