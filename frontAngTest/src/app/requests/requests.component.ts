@@ -9,11 +9,40 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 export class RequestsComponent implements OnInit {
 
   requests: any[]=null;
+  deviceList: any[]=null;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.getRequests()
+    this.getDevices()
+  }
+
+  getDevices(){
+    let url = "http://back.app.cortijodemazas.com/device/all"
+    this.http.get<any[]>(url).subscribe( data =>
+    {
+      if(data!=null){
+        this.deviceList=data;
+      }
+      else {
+      console.log('Database is empty')
+      }
+    })
+  }
+
+  GetRequestsByDevice(device){
+    let url = "http://back.app.cortijodemazas.com/all/watering/" + device
+    this.http.get<any[]>(url).subscribe( data =>
+    {
+      if(data!=null){
+        console.log(data)
+        this.requests=data;
+      }
+      else {
+      console.log('No logs')
+      }
+    })
   }
 
   getRequests(){

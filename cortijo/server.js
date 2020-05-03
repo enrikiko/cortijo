@@ -243,7 +243,7 @@ app.get("/jwt", async function(req, res) {
 //
 app.get("/ip/all", async function(req, res) {
    var response = await requests.getAllIp();
-   res.status(200).json([response])
+   res.status(200).json(response)
 })
 //
 //Get all device
@@ -284,6 +284,12 @@ app.get("/all/humidity/:name/:times",async function(req, res) {
 //
 app.get("/all/watering", async function(req, res) {
   const watering_list = await watering.getAllRequest()
+  res.status(200).json(watering_list)
+})
+//
+app.get("/all/watering/:device", async function(req, res) {
+  var device = req.params.device;
+  const watering_list = await watering.getAllRequestByDevice(device)
   res.status(200).json(watering_list)
 })
 //

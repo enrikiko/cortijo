@@ -1,19 +1,33 @@
-<div class="container-fluid center">
-  <div *ngFor="let request of requests" class="row m-2">
-    <div class="col-3 alert-success">
-      <p>Component: {{ request.name }} </p>
+<div class="container-fluid center"  style="height: 100%; width: 100%;">
+  <div class="row mt-5">
+    <div class="col-2 sidebar d-none d-lg-block bg-dark">
+        <nav class="navbar navbar-dark">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item" *ngFor="let device of deviceList" (click)="GetRequestsByDevice(device.name)">
+                <a class="nav-link active text-white-50">{{ device.name }}</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
     </div>
-    <div class="col-3 alert-success">
-      <p>Time: {{ request.time }} </p>
-    </div>
-    <div class="col-2 alert-success">
-      <p>Status: {{ request.status }} </p>
-    </div>
-    <div class="col-2 alert-success">
-      <p>Duration: {{ request.lapse }}min</p>
-    </div>
-    <div class="col-2 alert-success">
-      <p>Ip: {{ request.ip }}</p>
+  <div class="">
+    <div *ngFor="let request of requests" class="row m-2">
+      <div class="col-3 alert-success">
+        <p>Component: {{ request.name }} </p>
+      </div>
+      <div class="col-3 alert-success">
+        <p>Time: {{ request.time }} </p>
+      </div>
+      <div class="col-2 alert-success">
+        <p>Status: {{ request.status }} </p>
+      </div>
+      <div class="col-2 alert-success">
+        <p>Duration: {{ request.lapse }}min</p>
+      </div>
+      <div class="col-2 alert-success">
+        <p>Ip: {{ request.ip }}</p>
+      </div>
     </div>
   </div>
 </div>
