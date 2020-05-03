@@ -21,7 +21,7 @@ export class TaskComponent implements OnInit {
     this.getDoneTasks()
   }
 
-  createTask(event) {
+  createTask() {
     let url = "http://back.app.cortijodemazas.com/task"
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');

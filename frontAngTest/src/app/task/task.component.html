@@ -4,7 +4,7 @@
     <form (submit)="createTask($event)" class="form-signin">
       <input [(ngModel)]="task.name" name="name" id="name" type="text" class="form-control" placeholder="Task-N" aria-label="Task" aria-describedby="addon-wrapping">
       <input [(ngModel)]="task.description" name="description" id="description" type="text" class="form-control" placeholder="Description" aria-label="Description" aria-describedby="addon-wrapping">
-      <button class="btn btn-lg btn-primary btn-block mt-2" type="button" name="button" >Create task</button>
+      <button class="btn btn-lg btn-primary btn-block mt-2" (click)="createTask()" type="button" name="button" >Create task</button>
     </form>
   </div>
 
