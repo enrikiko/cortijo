@@ -1,7 +1,7 @@
 <div class="container-fluid center"  style="height: 100%; width: 100%;">
   <div class="row mt-5">
-    <div class="col-2 bd-sidebar bg-dark">
-        <nav class="navbar navbar-dark" style="height: 100%;">
+    <div class="col-2 bd-sidebar bg-dark overflow-auto">
+        <nav class="navbar navbar-dark">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item" *ngFor="let device of deviceList" (click)="GetRequestsByDevice(device.name)">
@@ -11,7 +11,7 @@
           </div>
         </nav>
     </div>
-    <div class="col-10">
+    <div class="col-10 overflow-auto">
       <div *ngFor="let request of requests" class="row m-2">
         <div class="col-3 alert-success">
           <p>Component: {{ request.name }} </p>
