@@ -17,8 +17,7 @@ export class FilesComponent implements OnInit {
   }
 
   getFiles(){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8500/list"
+    let url = "http://file.cortijodemazas.com/list"
     this.http.get<any>(url).subscribe( data =>
     {
       if(data!=null){
@@ -31,15 +30,13 @@ export class FilesComponent implements OnInit {
   }
 
   download(file){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8500/download/" + file
+    let url = "http://file.cortijodemazas.com/download/" + file
     window.location.href = url
   }
 
   fileupload(file: FileList){
     event.preventDefault()
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8500/fileupload"
+    let url = "http://file.cortijodemazas.com/fileupload"
     event.preventDefault()
     //const file = event.target.files
     console.log(file)

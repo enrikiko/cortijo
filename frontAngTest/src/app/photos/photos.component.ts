@@ -38,8 +38,7 @@ export class PhotosComponent implements OnInit {
     this.years = null
     this.months = null
     this.days = null
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8400/camera"
+    let url = "http://camera.cortijodemazas.com/camera"
     this.http.get<any[]>(url).subscribe( data =>
       {
         if(data!=null){
@@ -53,8 +52,7 @@ export class PhotosComponent implements OnInit {
 
   getDatesYear(key){
     this.camera=key
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8400/camera/" + key
+    let url = "http://camera.cortijodemazas.com/camera/" + key
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -115,8 +113,7 @@ export class PhotosComponent implements OnInit {
    getPhotos(key){
       let file = this.year + this.month + key
       this.date = file
-      const host = (window.location.href.split("/")[2]).split(":")[0]
-      let url = "http://" + host + ":8400/camera/" + this.camera + "/" + file
+      let url = "http://camera.cortijodemazas.com/camera/" + this.camera + "/" + file
       this.http.get<any[]>(url).subscribe( data =>
       {
         if(data!=null){
@@ -167,9 +164,8 @@ export class PhotosComponent implements OnInit {
 //   }
 
   getPhoto(key){
-    const host = (window.location.href.split("/")[2]).split(":")[0]
     const photo = this.dataMap[key]
-    let url = "http://" + host + ":8400/camera/" + this.camera + "/" + this.date + "/" + photo
+    let url = "http://camera.cortijodemazas.com/camera/" + this.camera + "/" + this.date + "/" + photo
     this.url=url;
   }
 
