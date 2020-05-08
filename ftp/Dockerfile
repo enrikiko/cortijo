@@ -10,5 +10,6 @@ RUN useradd -m ${USER} --uid=${UID} && echo "${USER}:${PW}" | chpasswd
 RUN mkdir /home/${USER}/data
 RUN chmod 777 /home/${USER}/data
 #COPY ./vsftpd.conf /etc/vsftpd.conf
-CMD service vsftpd start
+#CMD service vsftpd start
+CMD sleep infinity
 EXPOSE 21
