@@ -4,7 +4,7 @@ RUN apt -y install vsftpd
 USER root
 RUN mkdir data
 RUN chmod 777 data
-ARG USER=ftp
+ARG USER=ftp_test
 ARG UID=1000
 ARG GID=1000
 ARG PW=ftppass
