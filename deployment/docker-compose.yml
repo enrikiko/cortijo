@@ -77,8 +77,8 @@ services:
     - "2121:21"
     volumes:
     - type: bind
-      source: /media/miso/ExtDriver/eramos
-      target: /data
+      source: /media/lenovo/ExtDriver/eramos
+      target: /home/ftp_test/data
   device:
     container_name: deviceMock
     restart: always
