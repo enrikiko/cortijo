@@ -77,7 +77,7 @@ services:
     - "2121:21"
     volumes:
     - type: bind
-      source: /media/lenovo/ExtDriver/eramos
+      source: /media/miso/ExtDriver/eramos
       target: /data
   device:
     container_name: deviceMock
