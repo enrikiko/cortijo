@@ -29,10 +29,10 @@ class Handler(FileSystemEventHandler):
         elif event.event_type == 'created':
             # Take any action here when a file is first created.
             print ("Received created event - %s." % event.src_path)
-            upload_to_aws(event.src_path)
         elif event.event_type == 'modified':
             # Taken any action here when a file is modified.
             print ("Received modified event - %s." % event.src_path)
+            upload_to_aws(event.src_path)
 
 
 if __name__ == '__main__':

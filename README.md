@@ -1,2 +1,2 @@
 ##Build the server:
-sh build.sh
+sh deployment/build.sh
