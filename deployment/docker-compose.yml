@@ -62,7 +62,7 @@ services:
   file:
     container_name: file
     restart: on-failure
-    build: ../fileApi/.
+    build: ../file/.
     ports:
     - "8500:3000"
     volumes:
@@ -79,6 +79,18 @@ services:
     - type: bind
       source: /media/lenovo/ExtDriver/eramos
       target: /home/ftp_test/data
+  s3:
+    container_name: s3
+    restart: on-failure
+    build: ../s3/.
+    environment:
+    - ACCESS_KEY=${ACCESS_KEY}
+    - SECRET_KEY=${SECRET_KEY}
+    volumes:
+    - type: bind
+      source: /media/lenovo/ExtDriver/eramos
+      target: /usr/src/app/data
+    source:
   device:
     container_name: deviceMock
     restart: always
