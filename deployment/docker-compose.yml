@@ -89,7 +89,7 @@ services:
     - BUCKETS_NAME=${BUCKETS_NAME}
     volumes:
     - type: bind
-      source: /media/lenovo/ExtDriver/eramos
+      source: /media/lenovo/ExtDriver
       target: /usr/src/app/data
   device:
     container_name: deviceMock
