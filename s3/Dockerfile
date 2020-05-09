@@ -7,4 +7,5 @@ COPY ./watcher.py ./watcher.py
 ARG ACCESS_KEY
 ARG SECRET_KEY
 ARG BUCKETS_NAME
-CMD python3 watcher.py
+#CMD python3 watcher.py
+CMD sleep infinity
