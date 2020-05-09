@@ -79,8 +79,8 @@ services:
     - type: bind
       source: /media/lenovo/ExtDriver/eramos
       target: /home/ftp_test/data
-  cloud:
-    container_name: cloud
+  s3:
+    container_name: s3
     restart: on-failure
     build: ../s3/.
     environment:
@@ -90,7 +90,6 @@ services:
     - type: bind
       source: /media/lenovo/ExtDriver/eramos
       target: /usr/src/app/data
-    source:
   device:
     container_name: deviceMock
     restart: always
