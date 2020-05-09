@@ -5,7 +5,7 @@ from upload import upload_to_aws
 
 
 class Watcher:
-    DIRECTORY_TO_WATCH = "/files"
+    DIRECTORY_TO_WATCH = "/usr/src/app"
     def __init__(self):
         self.observer = Observer()
     def run(self):
