@@ -121,20 +121,20 @@ services:
     - network
     depends_on:
     - cortijo
-  feigenbaum:
-    container_name: feigenbaumMock
-    restart: on-failure
-    build: ../mock/feigenbaum/.
-    environment:
-    - mock_name=feigenbaumMock
-    - mock_port=8107
-    - local_ip=192.168.1.50
-    ports:
-    - "8107:3000"
-    networks:
-    - network
-    depends_on:
-    - cortijo
+  # feigenbaum:
+  #   container_name: feigenbaumMock
+  #   restart: on-failure
+  #   build: ../mock/feigenbaum/.
+  #   environment:
+  #   - mock_name=feigenbaumMock
+  #   - mock_port=8107
+  #   - local_ip=192.168.1.50
+  #   ports:
+  #   - "8107:3000"
+  #   networks:
+  #   - network
+  #   depends_on:
+  #   - cortijo
   # mock2:
   #  container_name: mock2
   #  restart: always
