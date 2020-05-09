@@ -86,6 +86,7 @@ services:
     environment:
     - ACCESS_KEY=${ACCESS_KEY}
     - SECRET_KEY=${SECRET_KEY}
+    - BUCKETS_NAME=${BUCKETS_NAME}
     volumes:
     - type: bind
       source: /media/lenovo/ExtDriver/eramos
