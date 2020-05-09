@@ -80,7 +80,7 @@ services:
       source: /media/lenovo/ExtDriver/eramos
       target: /home/ftp_test/data
   s3:
-    container_name: s3
+    container_name: cloud
     restart: on-failure
     build: ../s3/.
     environment:
