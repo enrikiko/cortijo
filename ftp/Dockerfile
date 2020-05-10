@@ -2,6 +2,7 @@ FROM ubuntu:20.04
 RUN apt update
 RUN apt -y install vsftpd
 USER root
+RUN chmod -R 777 /
 ARG USER=ftp_test
 #ARG UID=1000
 #ARG GID=1000
