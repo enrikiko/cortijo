@@ -3,13 +3,16 @@ RUN apt update
 RUN apt -y install vsftpd
 USER root
 ARG USER=ftp_test
-ARG UID=1000
-ARG GID=1000
+#ARG UID=1000
+#ARG GID=1000
 ARG PW=ftppass
-RUN useradd -m ${USER} --uid=${UID} && echo "${USER}:${PW}" | chpasswd
+#RUN useradd -m ${USER} --uid=${UID} && echo "${USER}:${PW}" | chpasswd
+RUN useradd -ms /bin/bash ${USER}
+RUN adduser --disabled-password ${USER} sudo
+RUN echo ${USER}:${PW} | chpasswd
 RUN mkdir /home/${USER}/data
 RUN chmod 777 /home/${USER}/data
 COPY ./vsftpd.conf /etc/vsftpd.conf
-CMD service vsftpd start && sleep infinity
+CMD service vsftpd start && tail -f /var/log/vsftpd.log
 #CMD sleep infinity
 EXPOSE 21
