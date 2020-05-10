@@ -78,7 +78,7 @@ services:
     volumes:
     - type: bind
       source: /media/lenovo/ExtDriver/eramos
-      target: /home/ftp_test/data
+      target: /root/data
   s3:
     container_name: s3
     restart: on-failure
