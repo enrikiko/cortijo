@@ -1,18 +1,8 @@
-#FROM enriqueramosmunoz/rolling:mongo
-#FROM ubuntu:18.04
 FROM alpine
-#RUN apt-get update
-#RUN apt update
-#RUN apt-get install -y curl nodejs npm
-#RUN apt install -y man less
 RUN apk add npm
 RUN mkdir /root/node
 WORKDIR /root/node
 COPY package/. .
 RUN npm install
 COPY . .
-# RUN apt install -y more
-# RUN apt install -y mc
-# RUN apt install -y yum
-# RUN apt install -y dnf
 ENTRYPOINT ["node", "server.js"]

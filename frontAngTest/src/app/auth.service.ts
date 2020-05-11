@@ -43,9 +43,7 @@ export class AuthService {
   }
 
   login( user, password ) {
-      const host = (window.location.href.split("/")[2]).split(":")[0]
-      // const host = "88.8.65.164"
-      let url = "http://" + host + ":8000/auth"
+      const url = "http://back.app.cortijodemazas.com/auth"
       let object={}
       object["user"]=user;
       object["password"]=password;
