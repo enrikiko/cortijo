@@ -17,6 +17,7 @@ export class AuthService {
   constructor(private router: Router,
               private http: HttpClient ) { };
 
+
   authJWT(){
     const jwt = window.localStorage.getItem('jwt')
     const headers = new HttpHeaders({
