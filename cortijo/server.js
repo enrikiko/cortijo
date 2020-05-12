@@ -134,6 +134,8 @@ app.get("/wifis", async function(req, res) {
 app.put("/auth", async function(req, res) {
     user = req.body.user;
     password = req.body.password;
+    if (user==null||password==null) {res.status(401).json({"status":false})}
+    if (user==""||password=="") {res.status(401).json({"status":false})}
     try{
         var jwt = await joker.auth(user, password);
         logs.log("jwt: "+jwt);
