@@ -11,8 +11,8 @@ RUN pip3 install tensorflow
 RUN pip3 install --upgrade keras
 RUN pip3 install Theano
 RUN pip3 install pillow
-RUN pip3 install Flask
 RUN pip3 install Werkzeug
+RUN pip3 install Flask
 RUN updatedb
 RUN mkdir /src/
 #COPY ./dataset/ /src/dataset/
