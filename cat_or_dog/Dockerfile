@@ -3,7 +3,6 @@ RUN apt update
 RUN apt-get update
 RUN apt install -y curl
 RUN apt install -y python3-pip
-RUN apt install -y python-pip
 RUN apt install -y git
 RUN pip install tensorflow
 RUN pip install --upgrade keras
