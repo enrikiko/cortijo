@@ -10,9 +10,9 @@ RUN pip install Theano
 RUN apt-get install tree
 RUN apt-get install locate
 RUN apt-get install unzip -y
-RUN pip install pillow
-RUN pip install Flask
-RUN pip install Werkzeug
+RUN pip3 install pillow
+RUN pip3 install Flask
+RUN pip3 install Werkzeug
 RUN updatedb
 RUN mkdir /src/
 #COPY ./dataset/ /src/dataset/
