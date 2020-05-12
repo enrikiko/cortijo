@@ -134,20 +134,21 @@ app.get("/wifis", async function(req, res) {
 app.put("/auth", async function(req, res) {
     user = req.body.user;
     password = req.body.password;
-    if (user==null||password==null) {res.status(401).json({"status":false})}
-    if (user==""||password=="") {res.status(401).json({"status":false})}
-    try{
-        var jwt = await joker.auth(user, password);
-        logs.log("jwt: "+jwt);
-        res.cookie('jwt',jwt);
-        data={"status":true}
-        data.jwt=jwt
-        if(jwt!="Invalid credentials"){res.status(200).json(data)}
-        else{res.status(401).json({"status":false})}
-    } catch(e){
-        res.status(e.status).json({"status":false})
-    } finally {
-      logs.log(user +" has log-in")
+    if (user==null||password==null||user==""||password=="") {res.status(401).json({"status":false})}
+    else {
+      try{
+          var jwt = await joker.auth(user, password);
+          logs.log("jwt: "+jwt);
+          res.cookie('jwt',jwt);
+          data={"status":true}
+          data.jwt=jwt
+          if(jwt!="Invalid credentials"){res.status(200).json(data)}
+          else{res.status(401).json({"status":false})}
+      } catch(e){
+          res.status(e.status).json({"status":false})
+      } finally {
+        logs.log(user +" has log-in")
+      }
     }
 })
 //Create new user
@@ -155,16 +156,19 @@ app.post("/auth", async function(req, res) {
   user = req.body.user;
   password = req.body.password;
   secret = req.body.secret;
-  try {
-    var response = await joker.newUser(user, password, secret);
-    jwt = response.jwt
-    if(jwt){res.status(201).json(response)}
-    else{res.status(200).json(response)}
-  } catch (e) {
-    logs.error(e);
-    res.status(200).json(e)
-  } finally {
-    logs.log("User " + user +" has been create")
+  if (user==null||password==null||secret==null||user==""||password==""||secret=="") {res.status(401).json({"status":false})}
+  else {
+    try {
+      var response = await joker.newUser(user, password, secret);
+      jwt = response.jwt
+      if(jwt){res.status(201).json(response)}
+      else{res.status(200).json(response)}
+    } catch (e) {
+      logs.error(e);
+      res.status(200).json(e)
+    } finally {
+      logs.log("User " + user +" has been create")
+    }
   }
 })
 //
