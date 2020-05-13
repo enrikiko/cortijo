@@ -2,13 +2,13 @@
     <div class="container-fluid col-lg-6 col-12 row">
 
       <div class="col-3">
-        <div *ngFor="let camera of cameras" class=" my-2">
+        <div *ngFor="let camera of cameras" class=" my-1">
           <button (click)="getDatesYear(camera)" type="button" class="btn btn-outline-success btn-block" name="button">{{ camera }}</button>
         </div>
       </div>
 
       <div class="col-2">
-        <div *ngFor="let year of years" class=" my-2">
+        <div *ngFor="let year of years" class=" my-1">
           <button (click)="getDatesMonth(year)" type="button" class="btn btn-outline-success btn-block" name="button">{{ year }}</button>
         </div>
       </div>
@@ -25,8 +25,8 @@
         </div>
       </div>
 
-      <div class="col-3" data-spy="scroll" data-target="#list-example" data-offset="0">
-        <div *ngFor="let picture of photos">
+      <div class="col-3 row" data-spy="scroll" data-target="#list-example" data-offset="0">
+        <div class="col-6" *ngFor="let picture of photos">
             <button type="button" (click)="getPhoto(picture)" class="btn btn-outline-success btn-block" name="button">{{ picture }}</button>
         </div>
       </div>
