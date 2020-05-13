@@ -1,17 +1,19 @@
 <div class="container-fluid" style="height: 100%; width: 100%;">
   <div class="row mt-5">
-    <div class="col-2 sidebar d-none d-lg-block bg-dark">
+    <div class="col-3 sidebar d-none d-lg-block bg-dark">
         <nav class="navbar navbar-dark">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item" *ngFor="let wifi of wifis" (click)="wrapGetData(wifi)">
-                <a class="nav-link active text-white-50">{{ wifi }}</a>
+                <a class="nav-link active text-white-50">
+                  <button type="button" class="btn btn-danger">{{ wifi }}</button>
+                </a>
               </li>
             </ul>
           </div>
         </nav>
     </div>
-    <div class="col-10 sidebar-right">
+    <div class="col-9 sidebar-right">
         <!-- <div id="wifiGraph" style="height: 100%;"></div> -->
         <canvas id="myChart" ></canvas>
     </div>
