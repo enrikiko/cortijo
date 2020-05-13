@@ -149,12 +149,12 @@ return {"status":status}
 
 app.get('/*', function(req, res){
      var info = {"Version": version, "Start time": startDate, "URL": "incorrect"}
-     res.status(200).json(info)
+     res.status(401).send(response(false))
 });
 
 app.post('/*', function(req, res){
      var info = {"Version": version, "Start time": startDate, "URL": "incorrect"}
-     res.status(200).json(info)
+     res.status(401).send(response(false))
 });
 
 
