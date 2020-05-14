@@ -147,7 +147,7 @@ app.put("/auth", async function(req, res) {
       } catch(e){
           res.status(e.status).json({"status":false})
       } finally {
-        logs.log(user +" has log-in")
+        //logs.log(user +" has log-in")
       }
     }
 })
