@@ -51,6 +51,15 @@ app.post("/*", function(req, res, next) {
   logs.newLog(ip, fullUrl)
   next()
 })
+app.put("/*", function(req, res, next) {
+  var user = req.body.user;
+  var password = req.body.password;
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl + "/" + user + "/" + password;
+  var ip = req.ip
+  logs.newLog(ip, fullUrl)
+  next()
+})
 app.post("/task",async function (req, res) {
   name = req.body.name;
   description = req.body.description;
