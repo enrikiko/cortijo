@@ -77,7 +77,7 @@ async function checkDevices(){
 
         }
     }
-    console.log(statusMap)
+    //console.log(statusMap)
     socket.wifi("check(wifi)")
     socket.device("check(device)")
 }
