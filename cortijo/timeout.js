@@ -83,11 +83,11 @@ async function checkDevices(){
 }
 
 async function chechSensors() {
-  logs.log("Checking sensors: ")
+  //logs.log("Checking sensors: ")
   var sensorsList = await mySensor.getAllSensor()
   for (var index in sensorsList){
       var name = sensorsList[index].name
-      logs.log("Checking " + name )
+      //logs.log("Checking " + name )
       try{
         var status = await joker.getSensorStatus(name)
         if (status.SSID){
@@ -95,7 +95,7 @@ async function chechSensors() {
             //logs.log(status.SIGNAL)
             await wifi.newSignal(name,status.SSID,status.SIGNAL)
             statusMap[name] = {"SSID":status.SSID, "SIGNAL":status.SIGNAL}
-            console.log(statusMap)
+            //console.log(statusMap)
             //logs.log(res)
             }
          else(statusMap[name] = 0)
