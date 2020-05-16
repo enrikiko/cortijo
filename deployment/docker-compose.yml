@@ -1,13 +1,5 @@
 version: "3.3"
 services:
-  # mongo:
-  #   image: mongo
-  #   container_name: mongo
-  #   restart: on-failure
-  #   ports:
-  #   - "27017:27017"
-  #   networks:
-  #   - network
   cortijo:
     container_name: cortijo
     restart: on-failure

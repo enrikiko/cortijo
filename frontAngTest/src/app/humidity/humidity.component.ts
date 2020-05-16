@@ -148,7 +148,7 @@ subscription:any;
             scales: {
                 yAxes: [{
                     ticks: {
-                        min: 600000,
+                        min: 0,
                         beginAtZero: true,
                     }
                 }]
