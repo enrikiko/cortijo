@@ -1,7 +1,7 @@
 ---
   db_url: mongodb://192.168.1.50:27017/cortijo
-  socket_url: http://192.168.1.50:8200
-  auth_url: http://192.168.1.50:8010
+  socket_url: http://192.168.1.53:8200
+  auth_url: http://192.168.1.53:8010
   set_Router53: https://t5018nbtn5.execute-api.eu-central-1.amazonaws.com/final/DNS_setting_lambda
   privatekey: -----BEGIN OPENSSH PRIVATE KEY-----\
     b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn\
