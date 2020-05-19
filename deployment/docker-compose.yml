@@ -41,48 +41,6 @@ services:
     build: ../frontAngTest/.
     ports:
     - "8300:4200"
-  camera:
-    container_name: camera
-    restart: on-failure
-    build: ../camera/.
-    ports:
-    - "8400:3000"
-    volumes:
-    - type: bind
-      source: /media/lenovo/ExtDriver/eramos
-      target: /root/node/eramos
-  file:
-    container_name: file
-    restart: on-failure
-    build: ../file/.
-    ports:
-    - "8500:3000"
-    volumes:
-    - type: bind
-      source: /media/lenovo/ExtDriver/eramosFiles
-      target: /scr/files/
-  ftp:
-    container_name: ftp
-    restart: on-failure
-    build: ../ftp/.
-    ports:
-    - "2121:21"
-    volumes:
-    - type: bind
-      source: /media/lenovo/ExtDriver/eramos
-      target: /root/data
-  s3:
-    container_name: s3
-    restart: on-failure
-    build: ../s3/.
-    environment:
-    - ACCESS_KEY=${ACCESS_KEY}
-    - SECRET_KEY=${SECRET_KEY}
-    - BUCKETS_NAME=${BUCKETS_NAME}
-    volumes:
-    - type: bind
-      source: /media/lenovo/ExtDriver
-      target: /usr/src/app/data
   device:
     container_name: deviceMock
     restart: always
