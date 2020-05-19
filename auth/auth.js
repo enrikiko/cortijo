@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const conf_map = require('./url');
 const mongo_db = conf_map.get("db_url");
-//const connString = 'mongodb://192.168.1.50:27017/cortijo';
-//mongoose.connect("mongodb://localhost:27017/cortijo");
 const db = mongoose.connection;
 mongoose.connect(mongo_db, { useNewUrlParser: true  });
 

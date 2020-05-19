@@ -16,7 +16,6 @@ const myTask = require('./task');
 const mySwitch = require('./switch');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-//const auth = require('basic-auth');
 const app = express();
 const fs = require('fs')
 const yaml = require('js-yaml')
@@ -25,12 +24,9 @@ app.enable('trust proxy');
 app.use(bodyParser.json());
 app.use(cors());
 app.options('*', cors());
-//app.use(express.urlencoded())
 app.use(express())
 app.enable('trust proxy')
 const version = config.get("version");
-//const REFRESH_DELAY = config.get("refresh_delay")
-//const SENSOR_HISTORY = config.get("sensor_history")
 //
 app.get("/readiness", function(req, res) {res.status(200).send()})
 //
@@ -170,13 +166,16 @@ app.post("/auth", async function(req, res) {
     try {
       var response = await joker.newUser(user, password, secret);
       jwt = response.jwt
-      if(jwt){res.status(201).json(response)}
+      if(jwt){
+          logs.log("User " + user +" has been create")
+          res.status(201).json(response)
+        }
       else{res.status(200).json(response)}
     } catch (e) {
       logs.error(e);
       res.status(200).json(e)
     } finally {
-      logs.log("User " + user +" has been create")
+      //
     }
   }
 })

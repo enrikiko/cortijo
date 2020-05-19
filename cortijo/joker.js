@@ -10,7 +10,7 @@ const config = require('./config')
 const url = require('./url')
 //const SWITCH_STATUS_TIMEOUT = config.get("switch_status_timeout");
 //const GET_DEVICE_STATUS_TIMEOUT = config.get("device_status_timeout");
-const AUTH_JWT =url.get("auth_url")
+const AUTH_JWT = url.get("auth_url")
 
 module.exports={
 

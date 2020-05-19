@@ -20,8 +20,9 @@ export class UsersComponent implements OnInit {
 
   accion() {
     // const host = "88.7.66.22"
-    const host = (window.location.href.split("/")[2]).split(":")[0]
-    let url = "http://" + host + ":8010/newuser/"+this.userName+"/"+this.userPassword+"/"+this.password
+    // const host = (window.location.href.split("/")[2]).split(":")[0]
+    // let host = "http://back.app.cortijodemazas.com/device/"
+    let url = "http://back.app.cortijodemazas.com/newuser/"+this.userName+"/"+this.userPassword+"/"+this.password
     console.log(url)
 
     this.http.get<any>(url).subscribe( data =>
