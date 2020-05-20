@@ -152,7 +152,7 @@ void setIp(String ip, int pin){
       WiFiClient client;
       HTTPClient http;
       Serial.print("[HTTP] begin...\n");
-      if (http.begin(client, "http://192.168.1.50:8000/device/"+deviceName+"-"+pin+"/true/"+ip+":"+port)) {
+      if (http.begin(client, "http://back.app.cortijodemazas.com/device/"+deviceName+"-"+pin+"/true/"+ip+":"+port)) {
         Serial.print("[HTTP] POST CODE: ");
         int httpCode = http.POST("");
         if (httpCode > 0) {
