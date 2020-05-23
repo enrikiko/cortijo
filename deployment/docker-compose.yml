@@ -48,7 +48,7 @@ services:
     environment:
     - mock_name=deviceMock
     - mock_port=8101
-    - local_ip=192.168.1.53
+    - local_ip=192.168.1.50
     ports:
     - "8101:3000"
     networks:
@@ -62,7 +62,7 @@ services:
     environment:
     - mock_name=sensorTemperatureMock
     - mock_port=8105
-    - local_ip=192.168.1.53
+    - local_ip=192.168.1.50
     ports:
     - "8105:3000"
     networks:
@@ -76,7 +76,7 @@ services:
     environment:
     - mock_name=sensorHumidityMock
     - mock_port=8106
-    - local_ip=192.168.1.53
+    - local_ip=192.168.1.50
     ports:
     - "8106:3000"
     networks:
