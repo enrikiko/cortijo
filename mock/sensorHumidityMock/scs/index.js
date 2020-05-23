@@ -6,7 +6,7 @@ app.enable('trust proxy')
 app.use(express.urlencoded()) // middleware Bodyparse
 var http = require('http').Server(app);
 var status = true;
-var value = 1000000;
+var value = 500000;
 var signal = -100;
 
 
