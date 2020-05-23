@@ -8,4 +8,4 @@ COPY scs/. .
 ENV mock_name=$NAME
 ENV mock_port=$PORT
 ENV local_ip=$IP
-CMD sh init.sh
+CMD node index.js & sh request.sh
