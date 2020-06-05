@@ -10,4 +10,5 @@ COPY package/. .
 RUN npm install
 COPY . .
 ARG TOKEN
-ENTRYPOINT ["sh", "init.sh"]
+#ENTRYPOINT ["node", "server.js"]
+CMD node server.js

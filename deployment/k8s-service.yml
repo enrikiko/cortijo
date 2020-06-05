@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cortijo-service
+spec:
+  ports:
+    - protocol: TCP
+      port: 27027
+      nodePort: 27027 
+  selector:
+    app: mongo
+  type: NodePort

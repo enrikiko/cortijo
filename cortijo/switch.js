@@ -1,14 +1,14 @@
 const logs = require('./logs');
 const joker = require('./joker');
 const myDevice = require('./devices');
-const watering = require('./watering');
+const myRequest = require('./request');
 async function changeBackFalse(name) {
   //Change back to false
   try {
       var responseBack = await joker.switchStatus(false, name) //Change device status
       if (responseBack.code == 200) {
           logs.log("Changed back automatically due to timeout " + name + " to false")
-          watering.newRequest(name, null, false, "timeout")
+          myRequest.newRequest(name, null, false, "timeout")
       }
       else {
           logs.error("Error changing back " + name + " to false")
@@ -34,7 +34,7 @@ module.exports = {
             //joker.switchAlert( name, ip )
             if (response.code == 200) {
               clearTimeout(timeOutMap[name])
-              watering.newRequest(name, null, false, ip)
+              myRequest.newRequest(name, null, false, ip)
             }
             res.status(response.code).send(response)
         } catch (e) {
@@ -56,7 +56,7 @@ module.exports = {
               if (response.code == 200) {
                 if(res!=null){  //TODO is this nessesary?
                 //joker.switchAlertLapse(name, lapse, ip);
-                watering.newRequest(name, lapse, true, ip)
+                myRequest.newRequest(name, lapse, true, ip)
                 timeOutMap[name] = setTimeout(changeBackFalse, lapse, name);
                 res.status(response.code).send(response)
                 }

@@ -32,7 +32,7 @@ export class RequestsComponent implements OnInit {
   }
 
   GetRequestsByDevice(device){
-    let url = "http://back.app.cortijodemazas.com/all/watering/" + device
+    let url = "http://back.app.cortijodemazas.com/all/requests/" + device
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -46,7 +46,7 @@ export class RequestsComponent implements OnInit {
   }
 
   getRequests(){
-    let url = "http://back.app.cortijodemazas.com/all/watering"
+    let url = "http://back.app.cortijodemazas.com/all/requests"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){

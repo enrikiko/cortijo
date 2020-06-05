@@ -2,7 +2,7 @@ const startDate = Date();
 const { exec } = require('child_process');
 const express = require("express");
 const myDevice = require('./devices');
-const watering = require('./watering');
+const myRequest = require('./request');
 const joker = require('./joker');
 const logs = require('./logs');
 const wifi = require('./wifi');
@@ -296,15 +296,15 @@ app.get("/all/humidity/:name/:times",async function(req, res) {
    res.status(200).json(humidity.reverse())
 })
 //
-app.get("/all/watering", async function(req, res) {
-  const watering_list = await watering.getAllRequest()
-  res.status(200).json(watering_list)
+app.get("/all/requests", async function(req, res) {
+  const request_list = await myRequest.getAllRequest()
+  res.status(200).json(request_list)
 })
 //
-app.get("/all/watering/:device", async function(req, res) {
+app.get("/all/requests/:device", async function(req, res) {
   var device = req.params.device;
-  const watering_list = await watering.getAllRequestByDevice(device)
-  res.status(200).json(watering_list)
+  const request_list = await myRequest.getAllRequestByDevice(device)
+  res.status(200).json(request_list)
 })
 //
 //Set temperature and humidity

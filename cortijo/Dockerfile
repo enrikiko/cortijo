@@ -5,4 +5,5 @@ WORKDIR /root/node
 COPY package/. .
 RUN npm install
 COPY . .
-ENTRYPOINT ["node", "server.js"]
+#ENTRYPOINT ["node", "server.js"]
+CMD node server.js
