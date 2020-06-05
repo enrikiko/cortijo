@@ -46,5 +46,6 @@ export class SensorInfoComponent implements OnInit {
           this.sensorInfo.devices.splice(index, 1);
       }
   }
+  change(){}
 
 }
