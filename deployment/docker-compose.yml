@@ -38,7 +38,7 @@ services:
   front:
     container_name: front
     restart: always
-    build: ../frontAng/.
+    build: ../frontAngTest/.
     ports:
     - "8300:4200"
   device:
