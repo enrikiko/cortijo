@@ -38,9 +38,9 @@ services:
   front:
     container_name: front
     restart: always
-    build: ../frontAngTest/.
+    build: ../frontAng/.
     ports:
-    - "8300:4200"
+    - "8300:80"
   device:
     container_name: deviceMock
     restart: always
