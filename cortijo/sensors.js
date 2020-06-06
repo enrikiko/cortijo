@@ -83,8 +83,10 @@ async function getList(name){
    return sensorList
 }
 async function getSensor(name){
-   var sensor = await mySensor.find({name: name})[0]
-   return sensor
+   var sensor = await mySensor.find({name: name})
+   console.log(sensor);
+   console.log(sensor)[0];
+   return sensor[0]
 }
 async function getIpByName(sensorName){
      var list = await getList(sensorName)
