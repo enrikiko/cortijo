@@ -309,7 +309,7 @@ module.exports = {
           // console.log(sensor)
           return sensor.block
         },
-    isBlocked: async(name, status)=>{
+    blocked: async(name, status)=>{
       await mySensor.find({name: name}, function(err, result) {
          if (err) throw err
          if(result){
