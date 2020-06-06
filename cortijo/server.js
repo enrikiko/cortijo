@@ -337,11 +337,11 @@ app.get("/status/:device", async function(req, res) {
   }else {
     try {
       var status = await joker.getDeviceStatus(name) //Get device status
-      await myDevice.checkDeviceByName(name)
+      await myDevice.setCheckDeviceByName(name, true)
       res.status(200).json(status)
     }catch (e) {
       logs.error(name + " doesn't response")
-      await myDevice.blockDeviceByName(name);
+      await myDevice.setCheckDeviceByName(name, false);
       res.status(404).json({"error": e})
       }
   }

@@ -22,14 +22,14 @@ module.exports={
             if(response.statusCode==200){
                 id = await myDevice.getIdByName(name)
                 await myDevice.updateDevice(id, status)
-                await myDevice.checkDeviceByName(name)
+                await myDevice.setCheckDeviceByName(name, true)
                 res = {};
                 res.code = response.statusCode;
                 res.body = response.body
                 return res;
             }
         }catch (e) {
-            let response = await myDevice.blockDeviceByName(name)
+            let response = await myDevice.setCheckDeviceByName(name, false)
             logs.error(e)
             res = {};
             res.code = 400;
