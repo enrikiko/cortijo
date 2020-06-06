@@ -79,10 +79,10 @@ const sensorSchema = new mongoose.Schema({
 let mySensor = mongoose.model('Sensors', sensorSchema);
 //
 async function getList(name){
-   return mySensor.find({name: name})
+   return await mySensor.find({name: name})
 }
 async function getSensor(name){
-   return mySensor.find({name: name})[0]
+   return await mySensor.find({name: name})[0]
 }
 async function getIpByName(sensorName){
      var list = await getList(sensorName)
