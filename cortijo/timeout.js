@@ -150,7 +150,7 @@ async function analiceHumidity(type, name, data) {
   var lastValue = await mySensor.getLastValue(name)
   var increasing = await mySensor.increasing(name)
   if (min!=undefined&max!=undefined&devices.length>0) {
-    console.log("data.increasing= "+data.increasing);
+    console.log("increasing= "+increasing);
     console.log("data.humidity= "+data.humidity);
     console.log("max= "+max);
     if ( increasing ){
