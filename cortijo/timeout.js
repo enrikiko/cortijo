@@ -148,7 +148,7 @@ async function analiceHumidity(type, name, data) {
   var count = await mySensor.getCount(name)
   var devices = await mySensor.getDevices(name)
   var lastValue = await mySensor.getLastValue(name)
-  var increasing = await mySensor.isIncreasing(name)
+  var increasing = await mySensor.increasing(name)
   if (min!=undefined&max!=undefined&devices.length>0) {
     console.log("data.increasing= "+data.increasing);
     console.log("data.humidity= "+data.humidity);
@@ -157,7 +157,7 @@ async function analiceHumidity(type, name, data) {
       if ( data.humidity >= max ){
         //list[name+"_increase"]=false
         console.log("data.humidity >= max");
-        await mySensor.isIncreasing(name, false)
+        await mySensor.setIncreasing(name, false)
       }else {
         if ( lastValue >= data.humidity ) {
           if ( count >= parseInt(config.get("times_before_block")) ) {
@@ -179,7 +179,7 @@ async function analiceHumidity(type, name, data) {
     }else {
       if ( data.humidity <= min ){
         //list[name+"_increase"]=true
-        await mySensor.isIncreasing(name, true)
+        await mySensor.setIncreasing(name, true)
         //list[name+"_last"]=data.humidity
         await mySensor.setLastValue(name, data.humidity)
         //list[name+"_count"]=0

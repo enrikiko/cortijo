@@ -258,12 +258,12 @@ module.exports = {
         return null
       }
     },
-    isIncreasing: async(name)=>{
+    increasing: async(name)=>{
           var sensor = await getSensor(name)
           console.log(sensor.increasing)
           return sensor.increasing
         },
-    isIncreasing: async(name, status)=>{
+    setIncreasing: async(name, status)=>{
       console.log("function")
       await mySensor.find({name: name}, function(err, result) {
          if (err) throw err
