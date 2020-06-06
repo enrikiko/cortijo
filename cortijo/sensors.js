@@ -84,8 +84,8 @@ async function getList(name){
 }
 async function getSensor(name){
    var sensor = await mySensor.find({name: name})
-   console.log(sensor);
-   console.log(sensor[0]);
+   // console.log(sensor);
+   // console.log(sensor[0]);
    return sensor[0]
 }
 async function getIpByName(sensorName){
@@ -260,6 +260,7 @@ module.exports = {
     },
     isIncreasing: async(name)=>{
           var sensor = await getSensor(name)
+          console.log(sensor)
           return sensor.increasing
         },
     isIncreasing: async(name, status)=>{
@@ -289,6 +290,7 @@ module.exports = {
     },
     getLastValue: async(name)=>{
           var sensor = await getSensor(name)
+          console.log(sensor)
           return sensor.lastValue
         },
     setLastValue: async(name, lastValue)=>{
@@ -303,6 +305,7 @@ module.exports = {
     },
     isBlocked: async(name)=>{
           var sensor = await getSensor(name)
+          console.log(sensor)
           return sensor.block
         },
     isBlocked: async(name, status)=>{
