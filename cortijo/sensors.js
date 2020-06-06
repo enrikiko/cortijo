@@ -38,22 +38,53 @@ const sensorSchema = new mongoose.Schema({
   },
   min: {
     type: Number,
-     min: 0,
-     max: 1000000
+    required: false,
+    min: 0,
+    max: 1000000
   },
   max: {
     type: Number,
-     min: 0,
-     max: 1000000
+    required: false,
+    min: 0,
+    max: 1000000
+  },
+  lapse: {
+    type: Number,
+    required: false,
+    min: 0,
+    max: 30
+  },
+  increasing: {
+    type: Boolean,
+    required: false
+  },
+  lastValue: {
+    type: Number,
+    required: false,
+    min: 0,
+    max: 1000000
+  },
+  count: {
+    type: Number,
+    required: false,
+    min: 0,
+    max: 100
+  },
+  block: {
+    type: Boolean,
+    required: true
   }
 });
 //
 let mySensor = mongoose.model('Sensors', sensorSchema);
 //
+async function getList(name){
+   return mySensor.find({name: name})
+}
+async function getSensor(name){
+   return mySensor.find({name: name})[0]
+}
 async function getIpByName(sensorName){
-     async function getList(name){
-        return mySensor.find({name: name})
-     }
      var list = await getList(sensorName)
      if (list.length > 1) {
        return "The Database is corrupted";
@@ -72,7 +103,7 @@ module.exports = {
 //
    getSensorByName: (Name) => { return mySensor.find({name: Name})},
 //
-   newSensor: (name, ip, type, devices, min, max ) => {
+   newSensor: (name, ip, type, devices, min, max, lapse) => {
      let sensor = new mySensor(
        {
          name: name,
@@ -80,7 +111,9 @@ module.exports = {
          type: type,
          devices: devices,
          min: min,
-         max: max
+         max: max,
+         lapse: lapse,
+         block: false
        });
      sensor.save(function(err, result) {
        if (err) throw err;
@@ -91,9 +124,6 @@ module.exports = {
    },
 //
    getIdByName: async (sensorName) => {
-     async function getList(name){
-        return mySensor.find({name: name})
-     }
      var list = await getList(sensorName)
      if (list.length > 1) {
        return "The Database is corrupted";
@@ -107,9 +137,6 @@ module.exports = {
    },
 //
    getIpByName: async (sensorName) => {
-     async function getList(name){
-        return mySensor.find({name: name})
-     }
      var list = await getList(sensorName)
      if (list.length > 1) {
        return "The Database is corrupted";
@@ -122,7 +149,7 @@ module.exports = {
      }
    },
 //
-   updateSensor: (id, ip, devices, min, max) => {
+   updateSensor: (id, ip, devices, min, max, lapse) => {
      var sensor = mySensor.findById(id, function(err, result) {
        if (err) throw err
        if(result){
@@ -130,6 +157,8 @@ module.exports = {
          result.devices = devices
          result.min = min
          result.max = max
+         result.lapse = lapse
+         result.block = false
          result.save()
        }
      });
@@ -145,23 +174,12 @@ module.exports = {
       });
     },
 //
-    blockSensorByName: async (sensorName) => {
-    return mySensor.find({name: sensorName}, function(err, result) {
+    setCheckSensorByName: async (name, status) => {
+    return mySensor.find({name: name}, function(err, result) {
        if (err) throw err
        if(result){
          result=result[0]
-         result.check = false
-         result.save()
-       }
-     });
-    },
-//
-    checkSensorByName: async (sensorName) => {
-    return mySensor.find({name: sensorName}, function(err, result) {
-       if (err) throw err
-       if(result){
-         result=result[0]
-         result.check = true
+         result.check = status
          result.save()
        }
      });
@@ -181,9 +199,6 @@ module.exports = {
         return await data();
     },
     getMin: async (name) => {
-      async function getList(name){
-         return mySensor.find({name: name})
-      }
       var list = await getList(name)
       if (list.length > 1) {
         return "The Database is corrupted";
@@ -196,9 +211,6 @@ module.exports = {
       }
     },
     getMax: async (name) => {
-      async function getList(name){
-         return mySensor.find({name: name})
-      }
       var list = await getList(name)
       if (list.length > 1) {
         return "The Database is corrupted";
@@ -210,10 +222,19 @@ module.exports = {
         return null
       }
     },
-    getDevices: async (name) => {
-      async function getList(name){
-         return mySensor.find({name: name})
+    getLapse: async (name) => {
+      var list = await getList(name)
+      if (list.length > 1) {
+        return "The Database is corrupted";
       }
+      else if (list.length > 0) {
+        var sensor = list[0]
+        return sensor.lapse
+      }else {
+        return null
+      }
+    },
+    getDevices: async (name) => {
       var list = await getList(name)
       if (list.length > 1) {
         return "The Database is corrupted";
@@ -233,4 +254,56 @@ module.exports = {
         return null
       }
     },
+    isIncreasing: async(name)=>{
+          return await getList(name)[0].increasing
+        },
+    isIncreasing: async(name, status)=>{
+      await mySensor.find({name: name}, function(err, result) {
+         if (err) throw err
+         if(result){
+           result=result[0]
+           result.increasing = status
+           result.save()
+         }
+       });
+    },
+    getCount: async(name)=>{
+          return await getList(name)[0].count
+        },
+    setCount: async(name, count)=>{
+      await mySensor.find({name: name}, function(err, result) {
+         if (err) throw err
+         if(result){
+           result=result[0]
+           result.count = count
+           result.save()
+         }
+       });
+    },
+    getLastValue: async(name)=>{
+          return await getList(name)[0].lastValue
+        },
+    setLastValue: async(name, lastValue)=>{
+      await mySensor.find({name: name}, function(err, result) {
+         if (err) throw err
+         if(result){
+           result=result[0]
+           result.lastValue = lastValue
+           result.save()
+         }
+       });
+    },
+    isBlocked: async(name)=>{
+          return await getList(name)[0].block
+        },
+    isBlocked: async(name, status)=>{
+      await mySensor.find({name: name}, function(err, result) {
+         if (err) throw err
+         if(result){
+           result=result[0]
+           result.block = status
+           result.save()
+         }
+       });
+    }
 }

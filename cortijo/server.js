@@ -208,13 +208,14 @@ app.post("/sensor/:type/:name/:ip", async (req, res) => {
      var devices = req.query.devices
      var min = req.query.min
      var max = req.query.max
+     var lapse = req.query.lapse
      var id = await mySensor.getIdByName(name)
       if (!id) {
-         var response = await mySensor.newSensor(name, ip, type, devices, min, max)
+         var response = await mySensor.newSensor(name, ip, type, devices, min, max, lapse)
          logs.log(name+' have been created successfully');
          res.status(200).json(name+' create successfully')
       }else {
-         var lastIp = await mySensor.updateSensor(id, ip, devices, min, max)
+         var lastIp = await mySensor.updateSensor(id, ip, devices, min, max, lapse)
          res.status(200).json({"Previous Ip": lastIp, "New Ip": ip, "Devices": devices})
       }
 })

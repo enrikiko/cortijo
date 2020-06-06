@@ -52,7 +52,7 @@ module.exports = {
     }else {
       logs.log("Change status of "+name+" to true");
         try {
-              response = await joker.switchStatus(true, name) //Change device status
+              var response = await joker.switchStatus(true, name) //Change device status
               if (response.code == 200) {
                 if(res!=null){  //TODO is this nessesary?
                 //joker.switchAlertLapse(name, lapse, ip);
