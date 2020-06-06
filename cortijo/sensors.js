@@ -255,7 +255,7 @@ module.exports = {
       }
     },
     isIncreasing: async(name)=>{
-          var sensor = await getSensor(name)[0]
+          var sensor = await getSensor(name)
           return sensor.increasing
         },
     isIncreasing: async(name, status)=>{
@@ -269,7 +269,8 @@ module.exports = {
        });
     },
     getCount: async(name)=>{
-          var sensor = await getSensor(name)[0]
+          var sensor = await getSensor(name)
+          console.log(sensor)
           return sensor.count
         },
     setCount: async(name, count)=>{
@@ -283,7 +284,7 @@ module.exports = {
        });
     },
     getLastValue: async(name)=>{
-          var sensor = await getSensor(name)[0]
+          var sensor = await getSensor(name)
           return sensor.lastValue
         },
     setLastValue: async(name, lastValue)=>{
@@ -297,7 +298,7 @@ module.exports = {
        });
     },
     isBlocked: async(name)=>{
-          var sensor = await getSensor(name)[0]
+          var sensor = await getSensor(name)
           return sensor.block
         },
     isBlocked: async(name, status)=>{
