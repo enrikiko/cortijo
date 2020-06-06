@@ -121,26 +121,26 @@ module.exports = {
       });
     },
 //
-    blockDeviceByName: async (deviceName) => {
+    setCheckDeviceByName: async (deviceName, status) => {
     return myDevice.find({name: deviceName}, function(err, result) {
        if (err) throw err
        if(result.length==1){
          result=result[0]
-         result.check = false
+         result.check = status
          result.save()
        }
      });
     },
 //
-    checkDeviceByName: async (deviceName) => {
-    return myDevice.find({name: deviceName}, function(err, result) {
-       if (err) throw err
-       if(result){
-         result=result[0]
-         result.check = true
-         result.save()
-       }
-     });
-   },
+   //  checkDeviceByName: async (deviceName) => {
+   //  return myDevice.find({name: deviceName}, function(err, result) {
+   //     if (err) throw err
+   //     if(result){
+   //       result=result[0]
+   //       result.check = true
+   //       result.save()
+   //     }
+   //   });
+   // },
 //
 }

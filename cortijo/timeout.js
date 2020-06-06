@@ -66,7 +66,7 @@ async function checkDevices(){
         //logs.log("Checking " + name )
         try{
             var status = await joker.getDeviceStatus(name)
-            await myDevice.setCheckSensorByName(name, true)
+            await myDevice.setCheckDeviceByName(name, true)
             //logs.log(status.SSID)
             if (status.SSID && status.SIGNAL){
                 //logs.log(status.SSID)
@@ -79,7 +79,7 @@ async function checkDevices(){
              else(statusMap[name] = 0)
         }catch(e){
             logs.error(e)
-            await myDevice.setCheckSensorByName(name, false);
+            await myDevice.setCheckDeviceByName(name, false);
             if(statusMap[name] && statusMap[name].SSID){
                 await wifi.newSignal(name,statusMap[name].SSID,-100)
                 }
