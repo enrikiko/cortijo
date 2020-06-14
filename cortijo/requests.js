@@ -4,6 +4,7 @@ const conf_map = require('./url');
 const mongo_db = conf_map.get("db_url");
 const db = mongoose.connection;
 mongoose.connect(mongo_db, { useNewUrlParser: true, useUnifiedTopology: true});
+
 db.on('error',function(){
 logs.error("Error al conectarse a Mongo Requests");
 });
