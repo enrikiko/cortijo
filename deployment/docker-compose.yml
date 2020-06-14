@@ -10,8 +10,8 @@ services:
     - network
     volumes:
     - /etc/localtime:/etc/localtime:ro
-    - /home/ubuntu/Document/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
-    - /home/ubuntu/Document/cortijo/cortijo/config.yaml:/root/node/config.yaml
+    - /home/ubuntu/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
+    - /home/ubuntu/cortijo/cortijo/config.yaml:/root/node/config.yaml
     depends_on:
     - auth
     - websocket
@@ -26,7 +26,7 @@ services:
     networks:
     - network
     volumes:
-    - /home/ubuntu/Document/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
+    - /home/ubuntu/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
   websocket:
     container_name: websocket
     restart: always
