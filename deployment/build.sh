@@ -9,7 +9,7 @@ pushd ~/Document/cortijo
 #sudo git checkout -- .
 sudo git pull
 cd ~/Document/cortijo/deployment
-docker-compose build --build-arg MONGO_USER=user_name --build-arg MONGO_PASSWORD=user_password --build-arg PASSWORD=GordoCabron#Darwinex
+docker-compose build --ulimit core=-1 --build-arg MONGO_USER=user_name --build-arg MONGO_PASSWORD=user_password --build-arg PASSWORD=GordoCabron#Darwinex
 docker-compose up -d --remove-orphans
 if [ "$1" == "push" ]
       then
