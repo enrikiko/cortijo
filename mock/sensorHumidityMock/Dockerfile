@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 RUN apt update
-RUN apt install curl -y
+RUN apt install curl npm -y
 WORKDIR /usr/src/app
 COPY scs/package/. .
 RUN npm install
