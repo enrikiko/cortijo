@@ -27,6 +27,7 @@ app.get("/*", function(req, res, next) {
 //   res.status(200).json(info)
 // });
 
+
 app.get('/'+process.env.mock_name+'/status/true', async function(req, res){
     await delay(300);
     info={}
