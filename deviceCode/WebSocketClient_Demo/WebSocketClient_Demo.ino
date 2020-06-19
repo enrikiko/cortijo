@@ -1,4 +1,5 @@
 #include <ESP8266WiFi.h>
+#include <ESP8266WiFiMulti.h>
 #include <WebSocketClient.h>
 #include <SPI.h>
 #include <Wire.h>
@@ -11,107 +12,97 @@ Adafruit_SSD1306 display(OLED_RESET);
 const char* ssid     = "Seagull";
 const char* password = "Dober96Mila";
 char path[] = "/";
-char host[] = "192.168.1.148";
-  
-WebSocketClient webSocketClient;
+char host[] = "88.18.59.58";
+const String deviceName = "Wemos_001";
 
-// Use WiFiClient class to create TCP connections
+boolean enrolled = false;
+
+ESP8266WiFiMulti WiFiMulti;
+WebSocketClient webSocketClient;
 WiFiClient client;
 
 void setup() {
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, HIGH); 
   Serial.begin(115200);
-  delay(10);
-
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3C (for the 64x48)
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
   display.display();
-  
   display.clearDisplay();
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0,0);
-  // We start by connecting to a WiFi network
+
+  WiFiMulti.addAP(ssid, password);
+  //WiFi.begin();
+  WiFi.hostname(deviceName);
   
-  display.print("ssid:");
-  display.println(ssid);
-  
-  WiFi.begin(ssid, password);
-  
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-
-
-  display.println("IP: ");
-  display.println(WiFi.localIP());
-
-  display.display();
-  delay(5000);
-  display.clearDisplay();
-  display.setCursor(0,0);
-
-  // Connect to the websocket server
-  if (client.connect("192.168.1.148", 3000)) {
-    display.println("Connected");
-    display.display();
-  } else {
-    display.println("Connection failed.");
-    display.display();
-    while(1) {
-      // Hang on failure
-    }
-  }
-
-  // Handshake with the server
-  webSocketClient.path = path;
-  webSocketClient.host = host;
-  if (webSocketClient.handshake(client)) {
-    display.println("Handshake successful");
-    display.display();
-  } else {
-    display.println("Handshake failed.");
-    display.display();
-    while(1) {
-      // Hang on failure
-    }  
-  }
-display.display();
+//  while (WiFi.status() != WL_CONNECTED) {
+//    delay(500);
+//    Serial.print(".");
+//  }
+//  delay(200);
 }
 
 
 void loop() {
-  String data;
-  Serial.println("loop()");
-  while (client.connected()) {
-    // Serial.println("client.connected()");
-    webSocketClient.getData(data);
-    Serial.println(data);
-    if (data.length() > 0) {
-      Serial.println("(data.length() > 0)");
-      display.clearDisplay();
-      display.setCursor(0,0);
-      display.print("Received data: ");
-      display.println(data);
-      display.display();
-    }
+
+  while (WiFiMulti.run() == WL_CONNECTED) {
+  
+    while (client.connected()) {
+      String data;
+      webSocketClient.getData(data);
+      Serial.println(data);
+      if (data.length() > 0) {
+        Serial.println("(data.length() > 0)");
+        show(data);
+        if ( data=="true" ){led(true);}
+        else if ( data=="false" ){led(false);}
+      }
+    } 
     
-    // capture the value of analog 1, send it along
-    // data = "Hello Miso";
-    // 
-    // webSocketClient.sendData(data);
-    
-  } 
-    Serial.println("else");
-    display.clearDisplay();
-    display.setCursor(0,0);
-    display.println("Client disconnected.");
-    display.display();
-    while (1) {
-      // Hang on disconnect.
-    
+    delay(300);
+    show("Disconected");
+    web_reconnect();
+
+  }
+
+  WiFi.begin();
+  while (WiFiMulti.run() != WL_CONNECTED) {
+    delay(1000);
   }
   
-  // wait to fully let the client disconnect
-  delay(3000);
+}
+
+void show(String msn){
+    display.clearDisplay();
+    display.setCursor(0,0);
+    display.println(msn);
+    display.display();
+    }
+    
+void led(boolean statu){
+  digitalWrite(LED_BUILTIN, !statu);
+  }
   
+void blink(){
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(100);
+  digitalWrite(LED_BUILTIN, HIGH);
+  }
+  
+void web_reconnect() {
+  blink();
+  if (client.connect("88.18.59.58", 3000)) {
+    show("Connected");
+  } else {
+    show("Connected fails.");
+  }
+  webSocketClient.path = path;
+  webSocketClient.host = host;
+  if (webSocketClient.handshake(client)) {
+    show("Handshake successful");
+  } else {
+    show("Handshake failed.");
+  }
+  webSocketClient.sendData("{\"name\":\""+deviceName+"\"}");
 }
