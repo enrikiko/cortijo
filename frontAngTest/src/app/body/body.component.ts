@@ -122,6 +122,7 @@ export class BodyComponent implements OnInit {
       'Authorization': jwt
     })
     let url = null
+    console.log(device.status);
     if(device.status){
       url = "http://back.app.cortijodemazas.com/updateWebSocket/" + device.name +"/false/"
     }

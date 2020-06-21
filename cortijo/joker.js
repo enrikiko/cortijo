@@ -92,7 +92,8 @@ module.exports={
        } catch (e) {
          console.error(e);
        } finally {
-         return response.status;
+         console.log(response);
+         return response;
        }
      },
 
