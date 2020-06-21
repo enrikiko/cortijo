@@ -20,8 +20,14 @@ var io = http;
 //   console.log(name + " not exit.")}
 // }
 
-app.get("/devices", function(req, res) { //OK
+app.get("/devices", function(req, res) {
   var devices = getDevices()
+  res.status(200).json(devices)
+})
+
+app.get("/test/:device", async function(req, res) {
+  device = req.params.device
+  var devices = await getDeviceStatus(device)
   res.status(200).json(devices)
 })
 
@@ -49,7 +55,7 @@ function getDevices() {
   return devices
 }
 
-function addDevice(device, ws) {
+async function addDevice(device, ws) {
   if(checkIfDeviceExist(device)){
     //console.log("device exist");
     return false
@@ -57,14 +63,16 @@ function addDevice(device, ws) {
   else {
     console.log('%s enrolled', device );
     ws.name = device
-    ws.status = getDeviceStatus(device)
+    status = await getDeviceStatus(device)
+    ws.status = status
     return true;
   }
 }
 
-function getDeviceStatus(device) {
+async function getDeviceStatus(device) {
   //TODO
-  return false;
+  var status = await deviceStatus.getDevice(device)
+  return status;
 }
 
 function checkIfDeviceExist(device){
