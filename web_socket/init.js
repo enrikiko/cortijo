@@ -62,19 +62,26 @@ async function addDevice(device, ws) {
   }
   else {
     console.log('%s enrolled', device );
-    ws.name = device
-    //status = await getDeviceStatus(device)
     status = await getDeviceStatus(device)
+    if (!status) {
+      console.log("Creating device in db");
+      await deviceStatus.createDevice(device, status)
+    }
+    ws.name = device
     ws.status = status
-    await deviceStatus.createDevice(device, status)
     return true;
   }
 }
 
 async function getDeviceStatus(device) {
-  //TODO
-  var status = await deviceStatus.getDevice(device)
-  return status;
+
+  var device = await deviceStatus.getDevice(device)
+  if (device) {
+    return device.status
+  }else{
+    return false
+  }
+
 }
 
 function checkIfDeviceExist(device){
@@ -96,6 +103,7 @@ function updateDevice(device, status) {
         client.send(status)
         client.status = stringToboolean(status)
         certain = true
+        deviceStatus.updateDevice(device, status)
       //}
     }
   })
