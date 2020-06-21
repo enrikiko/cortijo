@@ -20,7 +20,7 @@ const deviceSchema = new mongoose.Schema({
   },
   status: {
     type: Boolean,
-    required: truee
+    required: true
   },
 });
 
