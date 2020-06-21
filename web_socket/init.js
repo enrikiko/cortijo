@@ -67,6 +67,7 @@ async function addDevice(device, ws) {
       console.log("Creating device in db");
       await deviceStatus.createDevice(device, status)
     }else {
+      console.log("Updata device form db");
       updateDevice(device, status)
     }
     ws.name = device
