@@ -66,7 +66,7 @@ async function addDevice(device, ws) {
     //status = await getDeviceStatus(device)
     status=getDeviceStatus(device)
     ws.status = status
-    await deviceStatus.createDevice(device, status)
+    deviceStatus.createDevice(device, status)
     return true;
   }
 }
