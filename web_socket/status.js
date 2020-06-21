@@ -51,7 +51,6 @@ module.exports = {
      return myDevice.find({device: device}, function(err, result) {
         if (err) throw err
         if(result){
-          console.log(result);
           result[0].status = status
           result[0].save()
         }
