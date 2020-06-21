@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "ws": "7.3.0",
-    "express": "*",
-    "mongoose": "5.7.7"
+    "mongoose": "5.7.7",
+    "express": "*"
   },
   "author": "Enrique Ramos",
   "license": "ISC"
