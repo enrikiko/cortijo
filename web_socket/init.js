@@ -51,12 +51,19 @@ function getDevices() {
 function addDevice(device, ws) {
   if(checkIfDeviceExist(device)){
     //console.log("device exist");
-    return false }
+    return false
+  }
   else {
     console.log('%s enrolled', device );
     ws.name = device
+    ws.status = getDeviceStatus(device)
     return true;
   }
+}
+
+function getDeviceStatus(device) {
+  //TODO
+  return false;
 }
 
 function checkIfDeviceExist(device){
@@ -76,7 +83,7 @@ function updateDevice(device, status) {
       //status=statusToString(status)
       //if (status) {
         client.send(status)
-        client.status=stringToboolean(status)
+        client.status = stringToboolean(status)
         certain = true
       //}
     }
