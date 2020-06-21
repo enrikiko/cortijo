@@ -24,6 +24,7 @@
       <button class="col-12 my-1" id="{{ webSocketDevice.name }}" (click)="changeWebSocketStatus(webSocketDevice)" [ngClass]="{'bg-secondary': webSocketDevice.status==false, 'bg-success': webSocketDevice.status==true}" >
         <h2>{{ webSocketDevice.name }} </h2>
         <h3>Status:{{ webSocketDevice.status }}</h3>
+        <h4>{{ webSocketDevice.ip }}</h4>
       </button><!-- <h2>Ip:{{ device.ip }}</h2> -->
     </div>
 
