@@ -26,7 +26,7 @@ app.get("/devices", function(req, res) { //OK
 
 app.post("/:device/:status", function(req, res) {
   device = req.params.device
-  status = statusToStatus(req.params.status)
+  status = statusToStatus(req.params.status) //Check status is "true" or "false"
   var result
   if(status){
     updateDevice(device, status)
@@ -76,7 +76,7 @@ function updateDevice(device, status) {
       //status=statusToString(status)
       //if (status) {
         client.send(status)
-        //client.status=status
+        client.status=stringToboolean(status)
         certain = true
       //}
     }
@@ -85,6 +85,15 @@ function updateDevice(device, status) {
 }
 
 function statusToStatus(status) {
+  if ( typeof status == 'string' && ( status == "true" || status == "false" )) {
+    return status
+  }
+  else {
+    return false;
+  }
+}
+
+function stringToboolean(status) {
   if ( typeof status == 'string' && ( status == "true" || status == "false" )) {
     return status
   }
@@ -147,8 +156,8 @@ wss.on('connection', function connection(ws, request, client) {
   console.log('\nNew connection from ip: %s' , request.socket.remoteAddress);
 
   /*Check connection*/
-  ws.isAlive = true;
-
+  ws.isAlive = true
+  ws.status=false
   ws.on('pong', heartbeat);
 
   ws.on('close', function close() {
