@@ -94,12 +94,12 @@ function statusToStatus(status) {
 }
 
 function stringToboolean(status) {
-  if ( typeof status == 'string' && ( status == "true" || status == "false" )) {
-    return status
+  if ( typeof status == 'string' && status == "true") {
+    return true
   }
-  else {
+  else if ( typeof status == 'string' && status == "false") {
     return false;
-  }
+  }else {return "Error";}
 }
 
 function check() {
