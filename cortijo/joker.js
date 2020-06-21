@@ -92,8 +92,8 @@ module.exports={
        } catch (e) {
          console.error(e);
        } finally {
-         console.log(response.status);
-         return response.status;
+         console.log(response);
+         return response;
        }
      },
 
