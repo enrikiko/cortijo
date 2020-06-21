@@ -272,6 +272,13 @@ app.get("/websocketDevice/all", async function(req, res) {
     res.status(200).json(response)
 })
 //
+app.get("/updateWebSocket/:name/:status", async function(req, res){
+  var name = req.params.name
+  var name = req.params.status
+  var response = await joker.changeWebSocketStatus(name, status)
+})
+//
+//
 //Get temperature and humidity history
 //TODO add to documentation
 app.get("/all/temperature/:name",async function(req, res) {
@@ -386,12 +393,14 @@ app.get("/update/:name/false", async function(req, res){
   var lapse = req.params.lapse_time
   var ip = req.ip
   var response = await mySwitch.changeStatusToFalse(name, res, ip)
+  res.status(200).json(response)
 })
 app.get("/update/:name/true/:lapse_time", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
   var ip = req.ip
   var response = await mySwitch.changeStatusToTrue(name, lapse, res, ip)
+  res.status(200).json(response)
 })
 //Remove device by id
 app.delete("/device/:name", async function(req, res) {

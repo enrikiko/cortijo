@@ -55,7 +55,6 @@ export class BodyComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let newStatus=null
     let url = null
     if(device.status){
       url = "http://back.app.cortijodemazas.com/update/" + device.name +"/false/"
@@ -110,6 +109,32 @@ export class BodyComponent implements OnInit {
       }
       else {
       console.log('Database is empty')
+      }
+    })
+  }
+
+  changeWebSocketStatus(device){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
+    let url = null
+    if(device.status){
+      url = "http://back.app.cortijodemazas.com/updateWebSocket/" + device.name +"/false/"
+    }
+    else if (!device.status){
+      url = "http://back.app.cortijodemazas.com/updateWebSocket/" + device.name +"/true/"
+    }
+    this.http.get(url, { headers: headers }).subscribe( data =>
+    {
+      if(data!=null){
+        let finishTime = new Date().getTime()
+        this.getDifference(startTime, finishTime)
+        this.getWebSocketDeviceList()
+      }
+      else {
+      // console.log('no response')
       }
     })
   }

@@ -77,11 +77,18 @@ module.exports={
      getWebSocketDevice: async () => {
        const url = WEBSOCKET_URL+"/devices"
        let response = await request.get(url);
-       console.log(response.body);
+       //console.log(response.body);
        // response = JSON.parse(response.body)
        // console.log(response.body);
        return response.body;
      },
+
+     changeWebSocketStatus: async (name, status) => {
+       const url = WEBSOCKET_URL+"/"+name+"/"+status
+       let response = await request.get(url);
+       //console.log(response.body);
+       return response.body;
+     }
 
      auth: async (user, password) => {
        const url = AUTH_JWT+"/auth/"+user+"/"+password
