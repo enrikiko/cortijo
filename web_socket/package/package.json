@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "ws": "7.3.0",
+    "js-yaml":"*",
     "mongoose": "5.7.7",
     "express": "*"
   },
