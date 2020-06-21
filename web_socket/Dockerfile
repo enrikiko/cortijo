@@ -1,7 +1,7 @@
 FROM alpine
 RUN apk add npm
-RUN mkdir scr
-WORKDIR scr
+RUN mkdir /root/scr
+WORKDIR /root/scr
 COPY package/. .
 RUN npm install
 COPY . .
