@@ -11,6 +11,7 @@ const url = require('./url')
 //const SWITCH_STATUS_TIMEOUT = config.get("switch_status_timeout");
 //const GET_DEVICE_STATUS_TIMEOUT = config.get("device_status_timeout");
 const AUTH_JWT = url.get("auth_url")
+const WEBSOCKET_URL = url.get("websocket_url")
 
 module.exports={
 
@@ -71,6 +72,12 @@ module.exports={
             return response["body"];
         }
      return await status();
+     },
+
+     getWebSocketDevice: async () => {
+       const url = WEBSOCKET_URL+"/devices"
+       let response = await request.get(url);
+       return response;
      },
 
      auth: async (user, password) => {

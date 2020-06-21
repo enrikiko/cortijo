@@ -13,6 +13,7 @@ import { Event } from '../event';
 })
 export class BodyComponent implements OnInit {
 
+  webSocketDevices: any[] = null;
   devices: any[] = null;
   sensors: any[] = null;
   lapse: number = null;
@@ -35,6 +36,7 @@ export class BodyComponent implements OnInit {
 
   ngOnInit()
   {
+    this.getWebSocketDeviceList()
     this.getDevicesList()
     this.getSensorList()
     this.initIoConnection()
@@ -95,6 +97,21 @@ export class BodyComponent implements OnInit {
   getDifference(startTime, finishTime){
     let lapse = finishTime - startTime
     this.lapse = lapse
+  }
+
+  getWebSocketDeviceList(){
+    let url = "http://back.app.cortijodemazas.com/websocketDevice/all"
+    this.http.get<any[]>(url).subscribe( data =>
+    {
+      if(data!=null){
+        this.webSocketDevices=data;
+        console.log(data);
+
+      }
+      else {
+      console.log('Database is empty')
+      }
+    })
   }
 
   getDevicesList(){

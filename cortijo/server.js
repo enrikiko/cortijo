@@ -220,7 +220,7 @@ app.post("/sensor/:type/:name/:ip", async (req, res) => {
       }
 })
 //
-//Get all device
+//Get all sensor
 app.get("/sensor/all", async function(req, res) {
     var response = await mySensor.getAllSensor();
     res.status(200).json(response)
@@ -264,6 +264,11 @@ app.get("/ip/all", async function(req, res) {
 //Get all device
 app.get("/device/all", async function(req, res) {
     var response = await myDevice.getDevice();
+    res.status(200).json(response)
+})
+//
+app.get("/websocketDevice/all", async function(req, res) {
+    var response = await joker.getWebSocketDevice();
     res.status(200).json(response)
 })
 //
