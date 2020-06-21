@@ -15,6 +15,15 @@ services:
     depends_on:
     - auth
     - websocket
+  cortijo_websocket:
+    container_name: cortijo_websocket
+    restart: on-failure
+    build: ../web_socket/.
+    ports:
+    - "3000:3000"
+    - "3001:3001"
+    volumes:
+    - /home/ubuntu/cortijo/deployment/config_url.yaml:/root/scr/config_url.yaml:ro
   auth:
     container_name: auth
     restart: always
