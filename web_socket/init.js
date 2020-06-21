@@ -26,8 +26,11 @@ app.get("/devices", function(req, res) { //OK
 
 app.post("/:device/:status", function(req, res) {
   device = req.params.device
-  status = req.params.status
-  var result = updateDevice(device, status)
+  status = statusToStatus(req.params.status)
+  var result
+  if(status){
+    updateDevice(device, status)
+  }
   if (result) {
     res.status(200).send(status)
   }else{
@@ -80,11 +83,9 @@ function updateDevice(device, status) {
   return certain;
 }
 
-function statusToString(status) {
-  if (status && typeof status == 'boolean') {
-    return "true"
-  }else if (!status && typeof status == 'boolean') {
-    return "false";
+function statusToStatus(status) {
+  if ( typeof status == 'string' && ( status == "true" || status == "false" )) {
+    return status
   }
   else {
     return false;
