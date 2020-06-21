@@ -75,12 +75,14 @@ async function addDevice(device, ws) {
 
 async function getDeviceStatus(device) {
 
+  let status
   var device = await deviceStatus.getDevice(device)
   if (device) {
-    return device.status
+    status = device.status
   }else{
-    return false
+    status = false
   }
+  return status
 
 }
 
