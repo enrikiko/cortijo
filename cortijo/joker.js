@@ -77,6 +77,7 @@ module.exports={
      getWebSocketDevice: async () => {
        const url = WEBSOCKET_URL+"/devices"
        let response = await request.get(url);
+       const response = JSON.parse(response)
        return response;
      },
 
