@@ -19,7 +19,7 @@ app.options('*', cors());
 app.use(express.urlencoded())
 app.enable('trust proxy')
 var http = require('http').Server(app);
-var io = http;
+//var io = http;
 
 //Middleware
 app.get("/*", function(req, res, next) {

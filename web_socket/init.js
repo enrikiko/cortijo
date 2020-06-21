@@ -1,72 +1,169 @@
-
+const express = require("express");
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 3000 });
+const app = express();
+var http = require('http').Server(app);
+var io = http;
 
-var devices={}
+// function send(name, msg) {
+//   certain=false
+//   wss.clients.forEach(function each(client) {
+//     if (client.name == name && ws.isAlive == true) {
+//       client.send(msg)
+//       certain=true
+//     }
+//   });
+//   if(certain){
+//   console.log("Message send successfully")
+// }else {
+//   console.log(name + " not exit.")}
+// }
 
-function send(name, msg) {
-  certain=false
+app.get("/devices", function(req, res) { //OK
+  var devices = getDevices()
+  res.status(200).json(devices)
+})
+
+app.post("/:device/:status", function(req, res) {
+  device = req.params.device
+  status = req.params.status
+  var result = updateDevice(device, status)
+  if (result) {
+    res.status(200).send(status)
+  }else{
+    res.status(500).send()
+  }
+})
+
+function getDevices() {
+  devices={}
   wss.clients.forEach(function each(client) {
-    if (client.name == name) {
-      client.send(msg);
-      certain=true
+    if (client.name) {
+      devices[client.name]=client.isAlive
     }
-  });
-  if(certain){
-  console.log("Message send successfully")
-}else {
-  console.log(name + " not exit.")}
+  })
+  return devices
 }
 
-function addDevice(device) {
-  devices[device]=false
+function addDevice(device, ws) {
+  if(checkIfDeviceExist(device)){
+    //console.log("device exist");
+    return false }
+  else {
+    console.log('%s enrolled', device );
+    ws.name = device
+    return true;
+  }
 }
 
-function removeDevice(device) {
-  delete devices[device]
+function checkIfDeviceExist(device){
+  var certain = false
+  wss.clients.forEach(function each(client) {
+    if (client.name) {
+      if (client.name == device) { certain = true }
+    }
+  })
+  return certain;
 }
 
 function updateDevice(device, status) {
-  devices[device]=status
+  certain = false
+  wss.clients.forEach(function each(client) {
+    if (client.name == device && client.isAlive == true) {
+      status=statusToString(status)
+      if (status) {
+        client.send(status)
+        certain = true
+      }
+    }
+  })
+  return certain;
+}
+
+function statusToString(status) {
+  if (status && typeof status == 'boolean') {
+    return "true"
+  }else if (!status && typeof status == 'boolean') {
+    return "false";
+  }
+  else {
+    return false;
+  }
+}
+
+function check() {
+  wss.clients.forEach(function each(client) {
+        console.log("\nDevice: %s Status: %s" , client.name, client.isAlive);
+  })
+}
+
+const interval = setInterval(function ping() {
+  wss.clients.forEach(function each(ws) {
+    if (ws.isAlive === false) {
+      return ws.terminate()
+    }
+    ws.isAlive = false;
+    ws.ping(noop);
+  });
+}, 1000);
+
+function noop() {}
+
+function heartbeat() {
+  this.isAlive = true;
+}
+
+function getMsg(message) {
+  try {
+    const msg = JSON.parse(message)
+    return msg;
+  } catch (error) {
+    console.error("\nError 001. Cannot parse the message");
+    return false;
+  }
+}
+
+
+function logic(message, ws) {
+  if(message.name){
+    const name = message.name
+    if(addDevice(name, ws)){
+      ws.send('Welcome ' + ws.name)
+    }else{
+      ws.send('Error 001. Device already exist')
+    }
+  }
+  // else if (message.device & message.status) {
+  //   send(message.device, message.status)
+  //   updateDevice(message.device, message.status)
+  // }
 }
 
 wss.on('connection', function connection(ws, request, client) {
 
-  console.log('connection');
+  /*Get request IP*/
+  console.log('\nNew connection from ip: %s' , request.socket.remoteAddress);
 
+  /*Check connection*/
+  ws.isAlive = true;
 
-  ws.on('open', function open() {
-    console.log('open');
-  });
+  ws.on('pong', heartbeat);
 
   ws.on('close', function close() {
     console.log('close');
-    removeDevice(ws.name)
   });
 
   ws.on('message', function incoming(message) {
-
-    console.log('received: %s', message);
-    const message_obj = JSON.parse(message);
-    if(message_obj.name){
-      ws.name=message_obj.name;
-      console.log('%s enrolled', ws.name );
-      ws.send('Welcome ' + ws.name)
-      addDevice(ws.name)
-    }else if (message_obj.device) {
-      if (message_obj.status) {
-        send(message_obj.device, message_obj.status)
-        updateDevice(message_obj.device, message_obj.status)
-      }
+    message=getMsg(message)
+    if (message) {
+      logic(message, ws)
     }
-
-    wss.clients.forEach(function each(client) {
-      if (client.readyState === WebSocket.OPEN) {
-        //client.send(message);
-      }
-    });
-    //console.log(wss.clients.length)
   });
 
-  // ws.send('something');
+/*End of wss*/
 });
+
+
+http.listen(3001, function () {
+    console.log('Servidor activo en http://localhost:3001');
+  })

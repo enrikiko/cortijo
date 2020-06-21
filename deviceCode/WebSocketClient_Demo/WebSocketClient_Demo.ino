@@ -13,6 +13,7 @@ const char* ssid     = "Seagull";
 const char* password = "Dober96Mila";
 char path[] = "/";
 char host[] = "88.18.59.58";
+int port = 3000;
 const String deviceName = "Wemos_001";
 
 boolean enrolled = false;
@@ -33,14 +34,8 @@ void setup() {
   display.setCursor(0,0);
 
   WiFiMulti.addAP(ssid, password);
-  //WiFi.begin();
   WiFi.hostname(deviceName);
   
-//  while (WiFi.status() != WL_CONNECTED) {
-//    delay(500);
-//    Serial.print(".");
-//  }
-//  delay(200);
 }
 
 
@@ -51,13 +46,8 @@ void loop() {
     while (client.connected()) {
       String data;
       webSocketClient.getData(data);
-      Serial.println(data);
-      if (data.length() > 0) {
-        Serial.println("(data.length() > 0)");
-        show(data);
-        if ( data=="true" ){led(true);}
-        else if ( data=="false" ){led(false);}
-      }
+      //Serial.println(data);
+      logic(data);
     } 
     
     delay(300);
@@ -74,17 +64,19 @@ void loop() {
 }
 
 void show(String msn){
-    display.clearDisplay();
-    display.setCursor(0,0);
-    display.println(msn);
-    display.display();
-    }
+  display.clearDisplay();
+  display.setCursor(0,0);
+  display.println(msn);
+  display.display();
+  }
     
 void led(boolean statu){
   digitalWrite(LED_BUILTIN, !statu);
   }
   
 void blink(){
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(100);
   digitalWrite(LED_BUILTIN, LOW);
   delay(100);
   digitalWrite(LED_BUILTIN, HIGH);
@@ -92,17 +84,28 @@ void blink(){
   
 void web_reconnect() {
   blink();
-  if (client.connect("88.18.59.58", 3000)) {
+  webSocketClient.path = path;
+  webSocketClient.host = host;
+  if (client.connect(host, port)) {
     show("Connected");
   } else {
     show("Connected fails.");
   }
-  webSocketClient.path = path;
-  webSocketClient.host = host;
   if (webSocketClient.handshake(client)) {
     show("Handshake successful");
   } else {
     show("Handshake failed.");
   }
-  webSocketClient.sendData("{\"name\":\""+deviceName+"\"}");
+  send("{\"name\":\""+deviceName+"\"}");
 }
+void send(String msg){webSocketClient.sendData(msg);}
+
+void logic(String data){
+  if (data.length() > 0) {
+        //show(data);
+        if ( data=="true" ){led(true);}
+        else if ( data=="false" ){led(false);}
+        else if ( data=="ping" ){send("pong");}
+        blink();
+      }
+  }
