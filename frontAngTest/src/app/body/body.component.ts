@@ -114,7 +114,7 @@ export class BodyComponent implements OnInit {
   }
 
   changeWebSocketStatus(device){
-    console.log(device);
+    //console.log(device);
 
     const jwt = window.localStorage.getItem('jwt')
     const headers = new HttpHeaders({
@@ -122,7 +122,7 @@ export class BodyComponent implements OnInit {
       'Authorization': jwt
     })
     let url = null
-    console.log(device.status);
+    //console.log(device.status);
     if(device.status){
       url = "http://back.app.cortijodemazas.com/updateWebSocket/" + device.name +"/false/"
     }
