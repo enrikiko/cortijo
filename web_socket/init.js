@@ -48,6 +48,7 @@ function getDevices() {
     if (client.name) {
       device.name=client.name
       device.status=client.status
+      device.ip=client.ip
       devices.push(device)
     }
   })
@@ -186,6 +187,7 @@ wss.on('connection', function connection(ws, request, client) {
   /*Check connection*/
   ws.isAlive = true
   ws.status=false
+  ws.ip=request.socket.remoteAddress
   ws.on('pong', heartbeat);
 
   ws.on('close', function close() {

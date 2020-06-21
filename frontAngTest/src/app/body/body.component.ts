@@ -127,11 +127,14 @@ export class BodyComponent implements OnInit {
     else if (!device.status){
       url = "http://back.app.cortijodemazas.com/updateWebSocket/" + device.name +"/true/"
     }
+    let startTime = new Date().getTime()
     this.http.get(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
         let finishTime = new Date().getTime()
         this.getDifference(startTime, finishTime)
+        console.log(data);
+
         this.getWebSocketDeviceList()
       }
       else {
