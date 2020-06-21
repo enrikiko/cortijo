@@ -42,7 +42,7 @@ function getDevices() {
   devices={}
   wss.clients.forEach(function each(client) {
     if (client.name) {
-      devices[client.name]=client.isAlive
+      devices[client.name]=client.status
     }
   })
   return devices
@@ -76,6 +76,7 @@ function updateDevice(device, status) {
       //status=statusToString(status)
       //if (status) {
         client.send(status)
+        //client.status=status
         certain = true
       //}
     }
