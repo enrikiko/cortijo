@@ -63,16 +63,18 @@ async function addDevice(device, ws) {
   else {
     console.log('%s enrolled', device );
     ws.name = device
-    status = await getDeviceStatus(device)
+    //status = await getDeviceStatus(device)
+    status=getDeviceStatus(device)
     ws.status = status
+    await deviceStatus.createDevice(device, status)
     return true;
   }
 }
 
 async function getDeviceStatus(device) {
   //TODO
-  var status = await deviceStatus.getDevice(device)
-  return status;
+  //var status = await deviceStatus.getDevice(device)
+  return false;
 }
 
 function checkIfDeviceExist(device){
@@ -151,7 +153,7 @@ function getMsg(message) {
 }
 
 
-function logic(message, ws) {
+async function logic(message, ws) {
   if(message.name){
     const name = message.name
     if(addDevice(name, ws)){
@@ -180,10 +182,10 @@ wss.on('connection', function connection(ws, request, client) {
     console.log('close');
   });
 
-  ws.on('message', function incoming(message) {
+  ws.on('message', async function incoming(message) {
     message=getMsg(message)
     if (message) {
-      logic(message, ws)
+      await logic(message, ws)
     }
   });
 
