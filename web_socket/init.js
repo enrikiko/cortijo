@@ -64,17 +64,17 @@ async function addDevice(device, ws) {
     console.log('%s enrolled', device );
     ws.name = device
     //status = await getDeviceStatus(device)
-    status=getDeviceStatus(device)
+    status = await getDeviceStatus(device)
     ws.status = status
-    let newDevice = await deviceStatus.createDevice(device, true)
+    await deviceStatus.createDevice(device, status)
     return true;
   }
 }
 
 async function getDeviceStatus(device) {
   //TODO
-  //var status = await deviceStatus.getDevice(device)
-  return false;
+  var status = await deviceStatus.getDevice(device)
+  return status;
 }
 
 function checkIfDeviceExist(device){
