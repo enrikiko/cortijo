@@ -168,7 +168,7 @@ async function logic(message, ws) {
   if(message.name){
     const name = message.name
     if(addDevice(name, ws)){
-      ws.send('Welcome ' + ws.name)
+      ws.send('Welcome ' + name)
     }else{
       ws.send('Error 001. Device already exist')
     }
