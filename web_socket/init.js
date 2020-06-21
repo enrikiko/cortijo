@@ -46,12 +46,10 @@ app.post("/:device/:status", function(req, res) {
 })
 
 function getDevices() {
-  let devices=[]
+  devices={}
   wss.clients.forEach(function each(client) {
-    let device = {}
     if (client.name) {
-      device[client.name]=client.status
-      devices.push(device)
+      devices[client.name]=client.status
     }
   })
   return devices
