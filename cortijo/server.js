@@ -276,7 +276,7 @@ app.get("/updateWebSocket/:name/:status", async function(req, res){
   var name = req.params.name
   var status = req.params.status
   var response = await joker.changeWebSocketStatus(name, status)
-  res.status(response).send()
+  res.status(response).send(status)
 })
 //
 //

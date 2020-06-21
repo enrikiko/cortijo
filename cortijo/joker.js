@@ -85,7 +85,7 @@ module.exports={
 
      changeWebSocketStatus: async (name, status) => {
        const url = WEBSOCKET_URL+"/"+name+"/"+status
-       console.log(url);
+       //console.log(url);
        let response
        try {
          response = await request.post(url);
