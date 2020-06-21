@@ -27,9 +27,8 @@ app.get("/devices", function(req, res) {
 
 app.get("/test/:device", async function(req, res) {
   device = req.params.device
-  var devices = await getDeviceStatus(device)
-  console.log(devices);
-  res.status(200).json(devices)
+  var status = await getDeviceStatus(device)
+  res.status(200).json(status)
 })
 
 app.post("/:device/:status", function(req, res) {
@@ -79,7 +78,7 @@ async function getDeviceStatus(device) {
   let status
   var device = await deviceStatus.getDevice(device)
   //console.log(device);
-  if (device) {
+  if (device.length == 1) {
     status = device[0].status
   }else{
     status = false
