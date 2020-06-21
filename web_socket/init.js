@@ -50,7 +50,8 @@ function getDevices() {
   wss.clients.forEach(function each(client) {
     let device = {}
     if (client.name) {
-      device[client.name]=client.status
+      device[name]=client.name
+      device[status]=client.status
       devices.push(device)
     }
   })
