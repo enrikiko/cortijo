@@ -88,7 +88,7 @@ module.exports={
        let response = await request.get(url);
        //console.log(response.body);
        return response.body;
-     }
+     },
 
      auth: async (user, password) => {
        const url = AUTH_JWT+"/auth/"+user+"/"+password
