@@ -78,9 +78,9 @@ async function getDeviceStatus(device) {
 
   let status
   var device = await deviceStatus.getDevice(device)
-  console.log(device);
+  //console.log(device);
   if (device) {
-    status = device.status
+    status = device[0].status
   }else{
     status = false
   }
