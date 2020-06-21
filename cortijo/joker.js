@@ -87,7 +87,7 @@ module.exports={
        const url = WEBSOCKET_URL+"/"+name+"/"+status
        let response = await request.get(url);
        //console.log(response.body);
-       return response.body;
+       return response;
      },
 
      auth: async (user, password) => {
