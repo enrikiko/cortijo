@@ -70,11 +70,11 @@ function updateDevice(device, status) {
   certain = false
   wss.clients.forEach(function each(client) {
     if (client.name == device && client.isAlive == true) {
-      status=statusToString(status)
-      if (status) {
+      //status=statusToString(status)
+      //if (status) {
         client.send(status)
         certain = true
-      }
+      //}
     }
   })
   return certain;
