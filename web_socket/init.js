@@ -34,10 +34,9 @@ app.get("/test/:device", async function(req, res) {
 app.post("/:device/:status", function(req, res) {
   device = req.params.device
   status = statusToStatus(req.params.status) //Check status is "true" or "false"
-  console.log(status);
-  var result
+  //console.log(status);
   if(status){
-    updateDevice(device, status)
+      var result = updateDevice(device, status)
   }
   if (result) {
     res.status(200).send(status)
