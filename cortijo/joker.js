@@ -78,9 +78,9 @@ module.exports={
        const url = WEBSOCKET_URL+"/devices"
        let response = await request.get(url);
        console.log(response.body);
-       response = JSON.parse(response.body)
-       console.log(response.body);
-       return response;
+       // response = JSON.parse(response.body)
+       // console.log(response.body);
+       return response.body;
      },
 
      auth: async (user, password) => {
