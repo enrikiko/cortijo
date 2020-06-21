@@ -91,10 +91,8 @@ module.exports={
          response = await request.post(url);
        } catch (e) {
          console.error(e);
-       } finally {
-         console.log(response);
-         return response;
        }
+       return response.statusCode;
      },
 
      auth: async (user, password) => {
