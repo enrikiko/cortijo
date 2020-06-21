@@ -30,19 +30,22 @@ let myDevice = mongoose.model('WebSocket', deviceSchema);
 module.exports = {
 
     getDevice: (device) => { return myDevice.find({device: device}) },
-    createDevice: (device, status) => {
-          let device = new myDevice(
-            {
-              device: device,
-              status: status
-          });
-          device.save(function(err, result) {
-              if (err) throw err;
-              if(result) {
-                  console.log(result);
-              }
-          });
-          return true
+    createDevice: async (device, status) => {
+        deviceList = await myDevice.find({device: device})
+        if( deviceList.length > 0 ){return false}
+        else{
+            let newDevice = new myDevice({
+                device: device,
+                status: status
+            });
+            newDevice.save(function(err, result) {
+                if (err) throw err;
+                if(result) {
+                    console.log(result);
+                }
+            });
+            return true
+        }
     },
     updateDevice: (device, status) => {
      return myDevice.find({device: device}, function(err, result) {
