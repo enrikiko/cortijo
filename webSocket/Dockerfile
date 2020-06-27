@@ -5,4 +5,4 @@ WORKDIR scr
 COPY package/. .
 COPY . .
 RUN npm install
-CMD sh init.sh
+CMD node server.js

@@ -14,6 +14,7 @@ socket.on('alert_angular', function (data) {
 
 module.exports = {
   device:(msg)=>{socket.emit('event_device', msg);},
+  deviceSocket:(msg)=>{socket.emit('event_device_socket', msg);},
   wifi:(msg)=>{socket.emit('event_wifi', msg);},
   data:(msg)=>{socket.emit('event_data', msg);}
   }

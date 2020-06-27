@@ -43,6 +43,9 @@ export class BodyComponent implements OnInit {
     this.subscription = this.socketService.getDeviceAlert().subscribe( (msg)=>{
       this.getDevicesList()
     } )
+    this.subscription = this.socketService.getDeviceSocketAlert().subscribe( (msg)=>{
+      this.getWebSocketDeviceList()
+    } )
   }
 
   ngOnDestroy() {

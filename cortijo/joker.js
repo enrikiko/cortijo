@@ -91,6 +91,8 @@ module.exports={
          response = await request.post(url);
        } catch (e) {
          console.error(e);
+       }finally{
+         socket.deviceSocket(name+" has changed to "+status)
        }
        return response.statusCode;
      },

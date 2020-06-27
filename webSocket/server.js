@@ -13,6 +13,11 @@ io.on('connection', socket => {
     io.emit('alert_device', data);
   });
 
+  socket.on('event_device_socket', function (data) {
+    console.log(data);
+    io.emit('alert_device_socket', data);
+  });
+
   socket.on('event_angular', function (data) {
     console.log(data);
     io.emit('alert_angular', data);
