@@ -90,7 +90,7 @@ export class BodyComponent implements OnInit {
       this.http.delete(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){
-          this.getDevicesList()
+          //this.getDevicesList()
         }
       })
     }
@@ -138,7 +138,7 @@ export class BodyComponent implements OnInit {
         this.getDifference(startTime, finishTime)
         console.log(data);
 
-        this.getWebSocketDeviceList()
+        //this.getWebSocketDeviceList()
       }
       else {
       // console.log('no response')

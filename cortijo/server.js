@@ -250,11 +250,11 @@ app.get("/jwt", async function(req, res) {
    }
 })
 //
-//TODO too much data is create the app collapse
-//app.get("/all/request", async function(req, res) {
-//    var response = await requests.getAllRequest();
-//    res.status(200).json({response})
-//})
+//TODO too much data is create the container collapse
+app.get("/all/request", async function(req, res) {
+   var response = await requests.getAllRequest();
+   res.status(200).json({response})
+})
 //
 app.get("/ip/all", async function(req, res) {
    var response = await requests.getAllIp();
