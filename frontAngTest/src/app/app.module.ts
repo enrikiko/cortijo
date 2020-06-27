@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const host = (window.location.href.split("/")[2]).split(":")[0]
+var host = (window.location.href.split("/")[2]).split(":")[0]
+host = "88.18.59.58"
 const config: SocketIoConfig = { url: 'http://'+host+':8200', options: {} };
 
 import { HttpClientModule } from '@angular/common/http';

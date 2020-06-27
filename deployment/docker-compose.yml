@@ -4,6 +4,8 @@ services:
     container_name: cortijo
     restart: on-failure
     build: ../cortijo/.
+    environment:
+    - TZ='Europe/London'
     ports:
     - "8000:3000"
     networks:
