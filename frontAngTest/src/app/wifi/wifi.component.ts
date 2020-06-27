@@ -58,7 +58,7 @@ export class WifiComponent implements OnInit {
           wifiData = parseInt(data[index].signal)+100
           dataList.push(wifiData)
           label = new Date(parseInt(data[index].time))
-          labelList.push(label.getDate())
+          labelList.push(""+label.getHours()+":"+label.getMinutes()+" "+label.getDate())
         }
         this.printGraphWifi(wifi, dataList, labelList)
       }
