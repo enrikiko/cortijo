@@ -37,9 +37,9 @@ module.exports = {
             //joker.switchAlert( name, ip )
             if (response.code == 200) {
               clearTimeout(timeOutMap[name])
-              console.log("changeStatusToFalse");
+              //console.log("changeStatusToFalse");
               await myDevicesChanges.newRequest(name, null, false, ip)
-              console.log("changeStatusToFalse After");
+              //console.log("changeStatusToFalse After");
               if(res!=null){  //TODO is this nessesary?
               //joker.switchAlertLapse(name, lapse, ip);
                 res.status(response.code).send(response)
@@ -66,7 +66,7 @@ module.exports = {
         try {
               var response = await joker.switchStatus(true, name) //Change device status
               if (response.code == 200) {
-                await myDevicesChanges.newRequest(name, null, true, ip)
+                await myDevicesChanges.newRequest(name, lapse, true, ip)
                 timeOutMap[name] = setTimeout(changeBackFalse, lapse, name);
                 if(res!=null){  //TODO is this nessesary?
                 //joker.switchAlertLapse(name, lapse, ip);
