@@ -2,6 +2,7 @@ const request = require('superagent');
 const req = require('request');
 const myTemperature = require('./temperature');
 // const myRequest = require('./request');
+const myDevicesChanges = require('./devicesChanges');
 const myDevice = require('./devices');
 const mySensor = require('./sensors');
 const logs = require('./logs');
@@ -93,6 +94,7 @@ module.exports={
          console.error(e);
        }finally{
          socket.deviceSocket(name+" has changed to "+status)
+         myDevicesChanges.newRequest(name, lapse, true, ip)
        }
        return response.statusCode;
      },
