@@ -94,7 +94,7 @@ module.exports={
          console.error(e);
        }finally{
          socket.deviceSocket(name+" has changed to "+status)
-         myDevicesChanges.newRequest(name, lapse, true, ip)
+         myDevicesChanges.newRequest(name, null, status, null)
        }
        return response.statusCode;
      },
