@@ -67,14 +67,9 @@ async function checkDevices(){
         try{
             var status = await joker.getDeviceStatus(name)
             await myDevice.setCheckDeviceByName(name, true)
-            //logs.log(status.SSID)
             if (status.SSID && status.SIGNAL){
-                //logs.log(status.SSID)
-                //logs.log(status.SIGNAL)
                 await wifi.newSignal(name,status.SSID,status.SIGNAL)
                 statusMap[name] = {"SSID":status.SSID, "SIGNAL":status.SIGNAL}
-                //console.log(statusMap)
-                //logs.log(res)
                 }
              else(statusMap[name] = 0)
         }catch(e){
@@ -86,37 +81,28 @@ async function checkDevices(){
 
         }
     }
-    //console.log(statusMap)
     socket.wifi("check(wifi)")
     socket.device("check(device)")
 }
 
 async function chechSensors() {
-  //logs.log("Checking sensors: ")
   var sensorsList = await mySensor.getAllSensor()
   for (var index in sensorsList){
       var name = sensorsList[index].name
-      //logs.log("Checking " + name )
       try{
         var status = await joker.getSensorStatus(name)
         if (status.SSID){
-            //logs.log(status.SSID)
-            //logs.log(status.SIGNAL)
             await wifi.newSignal(name,status.SSID,status.SIGNAL)
             statusMap[name] = {"SSID":status.SSID, "SIGNAL":status.SIGNAL}
-            //console.log(statusMap)
-            //logs.log(res)
             }
          else(statusMap[name] = 0)
       }catch(e){
           logs.error(e)
-          //await myDevice.blockDeviceByName(name);
           if(statusMap[name] && statusMap[name].SSID){
                 await wifi.newSignal(name,statusMap[name].SSID,-100)
                 }
       }
     }
-    //console.log(statusMap)
     socket.wifi("check(wifi)")
 }
 //
@@ -154,13 +140,14 @@ async function analiceHumidity(type, name, data) {
     if ( increasing ){
       if ( data.humidity >= max ){
         await mySensor.setIncreasing(name, false)
+        await mySwitch.changeStatusToFalse(devices[i], null, "auto")
       }else {
         if ( lastValue >= data.humidity ) {
           if ( count >= parseInt(config.get("times_before_block")) ) {
-            await mySensor.blocked(name, false)
-            logs.error("----------------------------------Sensor is block!!!----------------------------------");
+            await mySensor.blocked(name, true)
+            logs.error("----------------------------------"+name+" is block!!!----------------------------------");
           }else {
-            logs.error("---------------------------------------Alert!!!---------------------------------------");
+            logs.error("-----------------------Alert, "+name+" is not changing the value!!!--------------------------------");
             await mySensor.setCount(name, count++)
             for (var i in devices) {
               mySwitch.changeStatusToTrue(devices[i] , lapse, null, "auto")

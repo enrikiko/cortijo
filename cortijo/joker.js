@@ -78,15 +78,11 @@ module.exports={
      getWebSocketDevice: async () => {
        const url = WEBSOCKET_URL+"/devices"
        let response = await request.get(url);
-       //console.log(response.body);
-       // response = JSON.parse(response.body)
-       // console.log(response.body);
        return response.body;
      },
 
      changeWebSocketStatus: async (name, status) => {
        const url = WEBSOCKET_URL+"/"+name+"/"+status
-       //console.log(url);
        let response
        try {
          response = await request.post(url);
