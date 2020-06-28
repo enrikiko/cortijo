@@ -7,6 +7,9 @@
               <li class="nav-item" *ngFor="let device of deviceList" (click)="getDeviceschangesByDevice(device.name)">
                 <a class="nav-link active text-white-50">{{ device.name }}</a>
               </li>
+              <li class="nav-item" *ngFor="let deviceSocket of deviceSocketList" (click)="getDeviceschangesByDevice(deviceSocket.name)">
+                <a class="nav-link active text-white-50">{{ deviceSocket.name }}</a>
+              </li>
             </ul>
           </div>
         </nav>

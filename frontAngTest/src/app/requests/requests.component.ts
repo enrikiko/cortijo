@@ -10,6 +10,7 @@ export class RequestsComponent implements OnInit {
 
   requests: any[]=null;
   deviceList: any[]=null;
+  deviceSocketList: any[]=null;
 
   constructor(private http: HttpClient) { }
 
@@ -19,11 +20,21 @@ export class RequestsComponent implements OnInit {
   }
 
   getDevices(){
-    let url = "http://back.app.cortijodemazas.com/device/all"
+    const url = "http://back.app.cortijodemazas.com/device/all"
+    const urlSocket = "http://back.app.cortijodemazas.com/websocketDevice/all"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
         this.deviceList=data;
+      }
+      else {
+      console.log('Database is empty')
+      }
+    })
+    this.http.get<any[]>(urlSocket).subscribe( data =>
+    {
+      if(data!=null){
+        this.deviceSocketList=data;
       }
       else {
       console.log('Database is empty')
