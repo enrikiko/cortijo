@@ -4,7 +4,7 @@
         <nav class="navbar navbar-dark">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
-              <li class="nav-item" *ngFor="let device of deviceList" (click)="GetRequestsByDevice(device.name)">
+              <li class="nav-item" *ngFor="let device of deviceList" (click)="getDeviceschangesByDevice(device.name)">
                 <a class="nav-link active text-white-50">{{ device.name }}</a>
               </li>
             </ul>

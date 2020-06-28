@@ -6,15 +6,15 @@ const db = mongoose.connection;
 mongoose.connect(mongo_db, { useNewUrlParser: true, useUnifiedTopology: true});
 
 db.on('error',function(){
-logs.error("Error al conectarse a Mongo Watering");
+logs.error("Error al conectarse a Mongo DevicesChanges");
 });
 
 db.once('open', function() {
-logs.log("Conectado a MongoDB Watering");
+logs.log("Conectado a MongoDB DevicesChanges");
 });
 
 // definicion de esquema del artículo
-const requestSchema = new mongoose.Schema({
+const devicesChangesSchema = new mongoose.Schema({
   time: {
     type: String,
     required: true
@@ -37,7 +37,7 @@ const requestSchema = new mongoose.Schema({
   }
 });
 
-let myRequest = mongoose.model('Watering', requestSchema);
+let myRequest = mongoose.model('DevicesChanges', devicesChangesSchema);
 
 module.exports = {
 

@@ -14,7 +14,7 @@ export class RequestsComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.getRequests()
+    this.getDeviceschanges()
     this.getDevices()
   }
 
@@ -31,8 +31,8 @@ export class RequestsComponent implements OnInit {
     })
   }
 
-  GetRequestsByDevice(device){
-    let url = "http://back.app.cortijodemazas.com/all/requests/" + device
+  getDeviceschangesByDevice(device){
+    let url = "http://back.app.cortijodemazas.com/all/deviceschanges/" + device
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -45,8 +45,8 @@ export class RequestsComponent implements OnInit {
     })
   }
 
-  getRequests(){
-    let url = "http://back.app.cortijodemazas.com/all/requests"
+  getDeviceschanges(){
+    let url = "http://back.app.cortijodemazas.com/all/deviceschanges"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){

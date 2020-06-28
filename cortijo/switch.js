@@ -1,14 +1,17 @@
 const logs = require('./logs');
 const joker = require('./joker');
 const myDevice = require('./devices');
-const myRequest = require('./request');
+const myDevicesChanges = require('./devicesChanges');
+
+let timeOutMap={}
+
 async function changeBackFalse(name) {
   //Change back to false
   try {
       var responseBack = await joker.switchStatus(false, name) //Change device status
       if (responseBack.code == 200) {
           logs.log("Changed back automatically due to timeout " + name + " to false")
-          myRequest.newRequest(name, null, false, "timeout")
+          myDevicesChanges.newRequest(name, null, false, "timeout")
       }
       else {
           logs.error("Error changing back " + name + " to false")
@@ -19,7 +22,7 @@ async function changeBackFalse(name) {
       responseBack.code = 404
   }
 }
-timeOutMap={}
+
 module.exports = {
   changeStatusToFalse: async (name, res, ip) => {
     var id = await myDevice.getIdByName(name) //Get ID of the device //
@@ -34,7 +37,7 @@ module.exports = {
             //joker.switchAlert( name, ip )
             if (response.code == 200) {
               clearTimeout(timeOutMap[name])
-              myRequest.newRequest(name, null, false, ip)
+              myDevicesChanges.newRequest(name, null, false, ip)
             }
             res.status(response.code).send(response)
         } catch (e) {
@@ -56,7 +59,7 @@ module.exports = {
               if (response.code == 200) {
                 if(res!=null){  //TODO is this nessesary?
                 //joker.switchAlertLapse(name, lapse, ip);
-                myRequest.newRequest(name, lapse, true, ip)
+                myDevicesChanges.newRequest(name, lapse, true, ip)
                 timeOutMap[name] = setTimeout(changeBackFalse, lapse, name);
                 res.status(response.code).send(response)
                 }
