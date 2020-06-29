@@ -42,7 +42,7 @@ app.get('/'+process.env.mock_name+'/status', function(req, res){
 });
 
 app.get('/test', function(req, res){
-  value = value + Math.floor((Math.random() * 20000) + 1)
+  value = value + Math.floor(Math.random() * 100000)
   info={}
   info.content={"humidity":value}
   res.status(200).json(value)

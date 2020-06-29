@@ -58,8 +58,8 @@ module.exports = {
     });
   },
 
-  getAllRequest: () => { return myRequest.find() },
+  getAllRequest: () => { return myRequest.find().sort({time:-1}) },
 
-  getAllRequestByDevice: (device) => { return myRequest.find({name:device }).sort({time:1}) }
+  getAllRequestByDevice: (device) => { return myRequest.find({name:device }).sort({time:-1}) }
 
 }
