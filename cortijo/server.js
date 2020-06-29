@@ -367,7 +367,7 @@ app.delete("/*", async function(req, res, next) {
     try{
         let jwt = req.headers.authorization
         let user = await joker.getUserByJWT(jwt)
-        req.params.user="user"
+        req.params.user = "user"
         next()
     }catch(e){
        logs.error(e)
@@ -378,7 +378,7 @@ app.get("/update/*", async function(req, res, next) {
     try{
         let jwt = req.headers.authorization
         let user = await joker.getUserByJWT(jwt)
-        req.params.user="user"
+        req.params.user = "user"
         next()
     }catch(e){
        logs.error(e)
@@ -391,14 +391,14 @@ app.get("/update/*", async function(req, res, next) {
 app.get("/update/:name/false", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
-  var user = req.params.user
+  var user = "user"
   var response = await mySwitch.changeStatusToFalse(name, res, user)
   //res.status(200).json(response)
 })
 app.get("/update/:name/true/:lapse_time", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
-  var user = req.params.user
+  var user = "user"
   var response = await mySwitch.changeStatusToTrue(name, lapse, res, user)
   //res.status(200).json(response)
 })
