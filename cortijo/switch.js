@@ -24,7 +24,7 @@ async function changeBackFalse(name) {
 }
 
 module.exports = {
-  changeStatusToFalse: async (name, res, name) => {
+  changeStatusToFalse: async (name, res, user) => {
     var id = await myDevice.getIdByName(name) //Get ID of the device //
     if ( !id ) {
         logs.error({"Request": "Incorrect", "Device": "Not found"});
@@ -38,7 +38,7 @@ module.exports = {
             if (response.code == 200) {
               clearTimeout(timeOutMap[name])
               //console.log("changeStatusToFalse");
-              await myDevicesChanges.newRequest(name, null, false, name)
+              await myDevicesChanges.newRequest(name, null, false, user)
               //console.log("changeStatusToFalse After");
               if(res!=null){  //TODO is this nessesary?
               //joker.switchAlertLapse(name, lapse, ip);
@@ -56,7 +56,7 @@ module.exports = {
         }
     }
   },
-  changeStatusToTrue: async (name, lapse, res, name) => {
+  changeStatusToTrue: async (name, lapse, res, user) => {
     var id = await myDevice.getDeviceByName(name) //Get ID of the device //
     if ( !id ) {
       logs.error({"Request": "Incorrect", "Device": "Not found"});
@@ -66,7 +66,7 @@ module.exports = {
         try {
               var response = await joker.switchStatus(true, name) //Change device status
               if (response.code == 200) {
-                await myDevicesChanges.newRequest(name, lapse, true, name)
+                await myDevicesChanges.newRequest(name, lapse, true, user)
                 timeOutMap[name] = setTimeout(changeBackFalse, lapse, name);
                 if(res!=null){  //TODO is this nessesary?
                 //joker.switchAlertLapse(name, lapse, ip);
