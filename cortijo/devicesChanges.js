@@ -41,7 +41,7 @@ let myRequest = mongoose.model('DevicesChanges', devicesChangesSchema);
 
 module.exports = {
 
-  newRequest: (name, lapse, status, user) => {
+  newRequest: (name, status, user, lapse) => {
     let request = new myRequest(
       {
         time: new Date().toLocaleString(),

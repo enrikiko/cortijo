@@ -11,7 +11,7 @@ async function changeBackFalse(name) {
       var responseBack = await joker.switchStatus(false, name) //Change device status
       if (responseBack.code == 200) {
           logs.log("Changed back automatically due to timeout " + name + " to false")
-          myDevicesChanges.newRequest(name, null, false, "node.js")
+          myDevicesChanges.newRequest(name, false, "node.js", lapse)
       }
       else {
           logs.error("Error changing back " + name + " to false")
@@ -38,7 +38,7 @@ module.exports = {
             if (response.code == 200) {
               clearTimeout(timeOutMap[name])
               //console.log("changeStatusToFalse");
-              await myDevicesChanges.newRequest(name, null, false, user)
+              await myDevicesChanges.newRequest(name, false, user, null)
               //console.log("changeStatusToFalse After");
               if(res!=null){  //TODO is this nessesary?
               //joker.switchAlertLapse(name, lapse, ip);
@@ -66,7 +66,7 @@ module.exports = {
         try {
               var response = await joker.switchStatus(true, name) //Change device status
               if (response.code == 200) {
-                await myDevicesChanges.newRequest(name, lapse, true, user)
+                await myDevicesChanges.newRequest(name, true, user, lapse)
                 timeOutMap[name] = setTimeout(changeBackFalse, lapse, name);
                 if(res!=null){  //TODO is this nessesary?
                 //joker.switchAlertLapse(name, lapse, ip);
