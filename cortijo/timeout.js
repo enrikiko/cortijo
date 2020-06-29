@@ -140,7 +140,7 @@ async function analiceHumidity(type, name, data) {
     if ( increasing ){
       if ( data.humidity >= max ){
         await mySensor.setIncreasing(name, false)
-        await mySwitch.changeStatusToFalse(devices[i], null, "auto")
+        await mySwitch.changeStatusToFalse(devices[i], null, "node.js")
       }else {
         if ( lastValue >= data.humidity ) {
           if ( count >= parseInt(config.get("times_before_block")) ) {
@@ -150,12 +150,12 @@ async function analiceHumidity(type, name, data) {
             logs.error("-----------------------Alert, "+name+" is not changing the value!!!--------------------------------");
             await mySensor.setCount(name, count++)
             for (var i in devices) {
-              mySwitch.changeStatusToTrue(devices[i] , lapse, null, "auto")
+              mySwitch.changeStatusToTrue(devices[i] , lapse, null, "node.js")
             }
           }
         }else {
           for (var i in devices) {
-            mySwitch.changeStatusToTrue(devices[i] , lapse, null, "auto")
+            mySwitch.changeStatusToTrue(devices[i] , lapse, null, "node.js")
           }
         }
       }
@@ -165,7 +165,7 @@ async function analiceHumidity(type, name, data) {
         await mySensor.setLastValue(name, data.humidity)
         await mySensor.setCount(name, 0)
         for (var i in devices) {
-          mySwitch.changeStatusToTrue(devices[i] , lapse, null, "auto")
+          mySwitch.changeStatusToTrue(devices[i] , lapse, null, "node.js")
         }
       }
     }

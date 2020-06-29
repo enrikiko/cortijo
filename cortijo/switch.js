@@ -11,7 +11,7 @@ async function changeBackFalse(name) {
       var responseBack = await joker.switchStatus(false, name) //Change device status
       if (responseBack.code == 200) {
           logs.log("Changed back automatically due to timeout " + name + " to false")
-          myDevicesChanges.newRequest(name, null, false, "timeout")
+          myDevicesChanges.newRequest(name, null, false, "timeout", "node.js")
       }
       else {
           logs.error("Error changing back " + name + " to false")
@@ -24,7 +24,7 @@ async function changeBackFalse(name) {
 }
 
 module.exports = {
-  changeStatusToFalse: async (name, res, ip) => {
+  changeStatusToFalse: async (name, res, name) => {
     var id = await myDevice.getIdByName(name) //Get ID of the device //
     if ( !id ) {
         logs.error({"Request": "Incorrect", "Device": "Not found"});
@@ -38,7 +38,7 @@ module.exports = {
             if (response.code == 200) {
               clearTimeout(timeOutMap[name])
               //console.log("changeStatusToFalse");
-              await myDevicesChanges.newRequest(name, null, false, ip)
+              await myDevicesChanges.newRequest(name, null, false, name)
               //console.log("changeStatusToFalse After");
               if(res!=null){  //TODO is this nessesary?
               //joker.switchAlertLapse(name, lapse, ip);
@@ -56,7 +56,7 @@ module.exports = {
         }
     }
   },
-  changeStatusToTrue: async (name, lapse, res, ip) => {
+  changeStatusToTrue: async (name, lapse, res, name) => {
     var id = await myDevice.getDeviceByName(name) //Get ID of the device //
     if ( !id ) {
       logs.error({"Request": "Incorrect", "Device": "Not found"});
@@ -66,7 +66,7 @@ module.exports = {
         try {
               var response = await joker.switchStatus(true, name) //Change device status
               if (response.code == 200) {
-                await myDevicesChanges.newRequest(name, lapse, true, ip)
+                await myDevicesChanges.newRequest(name, lapse, true, name)
                 timeOutMap[name] = setTimeout(changeBackFalse, lapse, name);
                 if(res!=null){  //TODO is this nessesary?
                 //joker.switchAlertLapse(name, lapse, ip);

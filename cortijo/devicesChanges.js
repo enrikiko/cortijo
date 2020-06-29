@@ -31,7 +31,7 @@ const devicesChangesSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  ip: {
+  user: {
     type: String,
     required: true
   }
@@ -41,14 +41,14 @@ let myRequest = mongoose.model('DevicesChanges', devicesChangesSchema);
 
 module.exports = {
 
-  newRequest: (name, lapse, status, ip) => {
+  newRequest: (name, lapse, status, user) => {
     let request = new myRequest(
       {
         time: new Date().toLocaleString(),
         name: name,
         status: status,
         lapse: lapse/60000,
-        ip: ip
+        user: user
       });
     request.save(function(err, result) {
       if (err) throw err;
@@ -60,6 +60,8 @@ module.exports = {
 
   getAllRequest: () => { return myRequest.find().sort({time:-1}) },
 
-  getAllRequestByDevice: (device) => { return myRequest.find({name:device }).sort({time:-1}) }
+  getAllRequestByDevice: (device) => { return myRequest.find({name:device }).sort({time:-1}) },
+
+  getAllRequestByUser: (user) => { return myRequest.find({user:user }).sort({time:-1}) }
 
 }

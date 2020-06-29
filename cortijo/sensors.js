@@ -51,8 +51,8 @@ const sensorSchema = new mongoose.Schema({
   lapse: {
     type: Number,
     required: false,
-    min: 0,
-    max: 30000
+    min: 1000,
+    max: 600000
   },
   increasing: {
     type: Boolean,
