@@ -11,7 +11,7 @@ async function changeBackFalse(name) {
       var responseBack = await joker.switchStatus(false, name) //Change device status
       if (responseBack.code == 200) {
           logs.log("Changed back automatically due to timeout " + name + " to false")
-          myDevicesChanges.newRequest(name, null, false, "timeout", "node.js")
+          myDevicesChanges.newRequest(name, null, false, "node.js")
       }
       else {
           logs.error("Error changing back " + name + " to false")
