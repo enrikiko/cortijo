@@ -393,7 +393,7 @@ app.get("/update/:name/false", async function(req, res){
   var lapse = req.params.lapse_time
   var ip = req.ip
   var user = req.user
-  var response = await mySwitch.changeStatusToFalse(name, res, ip, user)
+  var response = await mySwitch.changeStatusToFalse(name, res, user)
   //res.status(200).json(response)
 })
 app.get("/update/:name/true/:lapse_time", async function(req, res){
@@ -401,7 +401,7 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
   var lapse = req.params.lapse_time
   var ip = req.ip
   var user = req.user
-  var response = await mySwitch.changeStatusToTrue(name, lapse, res, ip, user)
+  var response = await mySwitch.changeStatusToTrue(name, lapse, res, user)
   //res.status(200).json(response)
 })
 //Remove device by id
