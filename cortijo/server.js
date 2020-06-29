@@ -367,7 +367,7 @@ app.delete("/*", async function(req, res, next) {
     try{
         let jwt = req.headers.authorization
         let user = await joker.getUserByJWT(jwt)
-        req.params.user=user
+        req.params.user="user"
         next()
     }catch(e){
        logs.error(e)
@@ -378,7 +378,7 @@ app.get("/update/*", async function(req, res, next) {
     try{
         let jwt = req.headers.authorization
         let user = await joker.getUserByJWT(jwt)
-        req.params.user=user
+        req.params.user="user"
         next()
     }catch(e){
        logs.error(e)
