@@ -378,8 +378,7 @@ app.get("/update/*", async function(req, res, next) {
     try{
         let jwt = req.headers.authorization
         let user = await joker.getUserByJWT(jwt)
-        console.log(user.text);
-        req.user = "user"
+        req.user = user.text
         next()
     }catch(e){
        logs.error(e)
