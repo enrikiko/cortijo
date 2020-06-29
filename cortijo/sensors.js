@@ -52,7 +52,7 @@ const sensorSchema = new mongoose.Schema({
     type: Number,
     required: false,
     min: 0,
-    max: 30
+    max: 30000
   },
   increasing: {
     type: Boolean,
