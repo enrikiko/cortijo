@@ -90,7 +90,7 @@ module.exports={
          console.error(e);
        }finally{
          socket.deviceSocket(name+" has changed to "+status)
-         myDevicesChanges.newRequest(name, null, status, "webSocket")
+         myDevicesChanges.newRequest(name, status, "webSocket", null)
        }
        return response.statusCode;
      },
