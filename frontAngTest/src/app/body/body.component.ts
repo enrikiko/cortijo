@@ -71,7 +71,7 @@ export class BodyComponent implements OnInit {
       if(data!=null){
         let finishTime = new Date().getTime()
         this.getDifference(startTime, finishTime)
-        this.getDevicesList()
+        //this.getDevicesList()
       }
       else {
       // console.log('no response')

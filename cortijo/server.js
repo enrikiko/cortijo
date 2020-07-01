@@ -36,7 +36,7 @@ app.get("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
-  logs.newLog(ip, fullUrl)
+  //logs.newLog(ip, fullUrl)
   next()
 })
 //
@@ -44,7 +44,7 @@ app.post("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
-  logs.newLog(ip, fullUrl)
+  //logs.newLog(ip, fullUrl)
   next()
 })
 app.put("/*", function(req, res, next) {
@@ -53,7 +53,7 @@ app.put("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl + "/" + user + "/" + password;
   var ip = req.ip
-  logs.newLog(ip, fullUrl)
+  //logs.newLog(ip, fullUrl)
   next()
 })
 app.post("/task",async function (req, res) {
