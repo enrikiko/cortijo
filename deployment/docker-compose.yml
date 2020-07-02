@@ -6,6 +6,8 @@ services:
     build: ../cortijo/.
     environment:
     - TZ='Europe/London'
+    - TELEGRAM_ID=${TELEGRAM_ID}
+    - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
     ports:
     - "8000:3000"
     networks:
