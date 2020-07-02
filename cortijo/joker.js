@@ -16,10 +16,10 @@ const AUTH_JWT = url.get("auth_url")
 const WEBSOCKET_URL = url.get("websocket_url")
 
 
-//const telegram_token = process.env.TELEGRAM_TOKEN;
-//const telegram_id = process.env.TELEGRAM_ID;
-const telegram_token = "1115189692:AAGlp_M3Ybx_4hclhFibEsSPLJyzBjsODvA"
-const telegram_id = "1103465535"
+const telegram_token = process.env.TELEGRAM_TOKEN;
+const telegram_id = process.env.TELEGRAM_ID;
+// const telegram_token = "1115189692:AAGlp_M3Ybx_4hclhFibEsSPLJyzBjsODvA"
+// const telegram_id = "1103465535"
 
 // Created instance of TelegramBot
 const bot = new TelegramBot(telegram_token, {polling: true});
@@ -28,7 +28,7 @@ module.exports={
 
     telegramAlert: (name, lapse, user) => {
        if (lapse){
-         bot.sendMessage(telegram_id,  user + ' has activated ' + name + " for " + lapse + "millisecond");
+         bot.sendMessage(telegram_id,  user + ' has activated ' + name + " for " + lapse/1000 + " seconds");
        }
        else {
          bot.sendMessage(telegram_id,  user + ' has deactivated ' + name );
