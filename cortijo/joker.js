@@ -28,7 +28,7 @@ module.exports={
 
     telegramAlert: (name, lapse, user) => {
        if (lapse){
-         bot.sendMessage(telegram_id,  user + ' has activated ' + name + " for " + lapse/1000 + " seconds");
+         bot.sendMessage(telegram_id,  user + ' has activated ' + name + " for " + lapse/60000 + " minutes");
        }
        else {
          bot.sendMessage(telegram_id,  user + ' has deactivated ' + name );
