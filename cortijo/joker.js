@@ -15,8 +15,6 @@ const TelegramBot = require('node-telegram-bot-api');
 const AUTH_JWT = url.get("auth_url")
 const WEBSOCKET_URL = url.get("websocket_url")
 
-require('dotenv').config();
-
 
 const telegram_token = process.env.TELEGRAM_TOKEN;
 const telegram_id = process.env.TELEGRAM_ID;
