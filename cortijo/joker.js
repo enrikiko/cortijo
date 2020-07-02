@@ -27,11 +27,12 @@ const bot = new TelegramBot(telegram_token, {polling: true});
 module.exports={
 
     telegramAlert: (name, lapse, user) => {
-       // 'msg' is the received Message from Telegram
-       // 'match' is the result of executing the regexp above on the text content
-       // of the message
-       bot.sendMessage(telegram_id, user + 'modify' + name);
-
+       if (lapse){
+         bot.sendMessage(telegram_id,  user + ' has activated ' + name + " for " + lapse + "millisecond");
+       }
+       else {
+         bot.sendMessage(telegram_id,  user + ' has deactivated ' + name );
+       }
     },
 
      switchStatus: async (status, name) => {
