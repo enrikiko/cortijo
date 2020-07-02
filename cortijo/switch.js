@@ -42,6 +42,7 @@ module.exports = {
               //console.log("changeStatusToFalse");
               await myDevicesChanges.newRequest(name, false, user, null)
               //console.log("changeStatusToFalse After");
+              joker.telegramAlert(name, lapse, user);
               if(res!=null){  //TODO is this nessesary?
               //joker.switchAlertLapse(name, lapse, ip);
                 res.status(response.code).send(response)
@@ -72,8 +73,8 @@ module.exports = {
               if (response.code == 200) {
                 await myDevicesChanges.newRequest(name, true, user, lapse)
                 timeOutMap[name] = setTimeout(changeBackFalse, lapse, name);
+                joker.telegramAlert(name, lapse, user);
                 if(res!=null){  //TODO is this nessesary?
-                //joker.switchAlertLapse(name, lapse, ip);
                   res.status(response.code).send(response)
                 }
               }else {

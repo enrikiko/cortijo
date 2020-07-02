@@ -9,12 +9,33 @@ const logs = require('./logs');
 const socket = require('./socket');
 const config = require('./config')
 const url = require('./url')
+const TelegramBot = require('node-telegram-bot-api');
 //const SWITCH_STATUS_TIMEOUT = config.get("switch_status_timeout");
 //const GET_DEVICE_STATUS_TIMEOUT = config.get("device_status_timeout");
 const AUTH_JWT = url.get("auth_url")
 const WEBSOCKET_URL = url.get("websocket_url")
 
+require('dotenv').config();
+
+
+const telegram_token = process.env.TELEGRAM_TOKEN;
+const telegram_id = process.env.TELEGRAM_ID;
+
+// Created instance of TelegramBot
+const bot = new TelegramBot(token, {polling: true});
+
 module.exports={
+
+    telegramAlert: (name, lapse, user) => {
+
+       const chatId = msg.chat.id;
+       const url = match.input.split(' ')[1];
+       // 'msg' is the received Message from Telegram
+       // 'match' is the result of executing the regexp above on the text content
+       // of the message
+       bot.sendMessage(chatId, user + 'modify' + name);
+
+    },
 
      switchStatus: async (status, name) => {
        async function getResponse() {

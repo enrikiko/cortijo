@@ -21,7 +21,8 @@
     "delay":"*",
     "express-ws": "4.0.0",
     "http": "*",
-    "json2yaml":"1.1.0"
+    "json2yaml":"1.1.0",
+    "node-telegram-bot-api":"*"
   },
   "author": "Enrique Ramos",
   "license": "ISC"
