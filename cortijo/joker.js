@@ -20,7 +20,7 @@ const telegram_token = process.env.TELEGRAM_TOKEN;
 const telegram_id = process.env.TELEGRAM_ID;
 
 // Created instance of TelegramBot
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(telegram_token, {polling: true});
 
 module.exports={
 
