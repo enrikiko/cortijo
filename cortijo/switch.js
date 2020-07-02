@@ -28,7 +28,9 @@ module.exports = {
     var id = await myDevice.getIdByName(name) //Get ID of the device //
     if ( !id ) {
         logs.error({"Request": "Incorrect", "Device": "Not found"});
-        res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
+        if(res!=null){
+          res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
+        }
     }else {
         //logs.log(JSON.stringify(isUpdating))
         logs.log("Change status of "+name+" to false");
@@ -60,7 +62,9 @@ module.exports = {
     var id = await myDevice.getDeviceByName(name) //Get ID of the device //
     if ( !id ) {
       logs.error({"Request": "Incorrect", "Device": "Not found"});
-      return res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
+      if(res!=null){
+        res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
+      }
     }else {
       logs.log("Change status of "+name+" to true");
         try {
