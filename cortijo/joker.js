@@ -18,6 +18,8 @@ const WEBSOCKET_URL = url.get("websocket_url")
 
 const telegram_token = process.env.TELEGRAM_TOKEN;
 const telegram_id = process.env.TELEGRAM_ID;
+console.log(telegram_token);
+console.log(telegram_id);
 // const telegram_token = "1115189692:AAGlp_M3Ybx_4hclhFibEsSPLJyzBjsODvA"
 // const telegram_id = "1103465535"
 
