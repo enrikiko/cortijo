@@ -18,24 +18,21 @@ const WEBSOCKET_URL = url.get("websocket_url")
 
 const telegram_token = process.env.TELEGRAM_TOKEN;
 const telegram_id = process.env.TELEGRAM_ID;
-console.log(telegram_token);
-console.log(telegram_id);
 // const telegram_token = "1115189692:AAGlp_M3Ybx_4hclhFibEsSPLJyzBjsODvA"
 // const telegram_id = "1103465535"
 
 // Created instance of TelegramBot
-//const bot = new TelegramBot(telegram_token, {polling: true});
+const bot = new TelegramBot(telegram_token, {polling: true});
 
 module.exports={
 
     telegramAlert: (name, lapse, user) => {
-       // if (lapse){
-       //   bot.sendMessage(telegram_id,  user + ' has activated ' + name + " for " + lapse/1000 + " seconds");
-       // }
-       // else {
-       //   bot.sendMessage(telegram_id,  user + ' has deactivated ' + name );
-       // }
-       console.log(telegram_token);
+       if (lapse){
+         bot.sendMessage(telegram_id,  user + ' has activated ' + name + " for " + lapse/1000 + " seconds");
+       }
+       else {
+         bot.sendMessage(telegram_id,  user + ' has deactivated ' + name );
+       }
     },
 
      switchStatus: async (status, name) => {
