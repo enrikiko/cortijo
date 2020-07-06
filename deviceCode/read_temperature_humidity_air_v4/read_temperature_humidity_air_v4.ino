@@ -130,8 +130,8 @@ void blinkLight(){
 }
 
 void handleStatus() {
-  server.send(200, "application/json", "{\"status\":" + state + ",\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "\"OTA\":" + useOTA + "}");
-  blinkLight()
+  server.send(200, "application/json", "{\"status\":true,\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "\"OTA\":" + useOTA + "}");
+  blinkLight();
 }
 
 void setIp(String ip){
@@ -140,28 +140,17 @@ void setIp(String ip){
      if ((WiFiMulti.run() == WL_CONNECTED)) {
        WiFiClient client;
        HTTPClient http;
-       //Serial.print("[HTTP] begin...\n");
-       //Serial.print("http://192.168.1.50:8000/newSensor/temperature/"+deviceName+"/"+ip+":"+port);
        if (http.begin(client, "http://back.app.cortijodemazas.com/sensor/temperature/"+deviceName+"/"+ip+":"+port)) {
-         //Serial.print("[HTTP] GET CODE: ");
-         // start connection and send HTTP header
-         int httpCode = http.POST();
-
-         // httpCode will be negative on error
+         int httpCode = http.POST("");
          if (httpCode > 0) {
-           //Serial.println(httpCode);
            if (httpCode == 200 ) {
              certain = true;
-             //Serial.print("[HTTP] GET BODY: ");
-             //Serial.println(http.getString());
            }
          } else {
-           //Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
          }
 
          http.end();
        } else {
-         //Serial.printf("[HTTP} Unable to connect\n");
        }
      }
      delay(1000);
