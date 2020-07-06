@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 //var host = (window.location.href.split("/")[2]).split(":")[0]
-const host = "88.18.59.58"
+const host = "95.120.131.125"
 const config: SocketIoConfig = { url: 'http://'+host+':8200', options: {} };
 
 import { HttpClientModule } from '@angular/common/http';
