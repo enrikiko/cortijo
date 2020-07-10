@@ -2,9 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-//var host = (window.location.href.split("/")[2]).split(":")[0]
-const host = "95.120.131.125"
-const config: SocketIoConfig = { url: 'http://'+host+':8200', options: {} };
+const config: SocketIoConfig = { url: 'http://socket.cortijodemazas.com', options: {} };
 
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';

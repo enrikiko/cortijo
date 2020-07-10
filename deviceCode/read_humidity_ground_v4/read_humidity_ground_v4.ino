@@ -10,7 +10,6 @@
 
 const int analogInPin = A0;
 
-
 const char *ssid1 = "Cuarto2.4G";
 const char *password1 = "Lunohas13steps";
 const char *ssid2 = "WifiSalon";
@@ -32,10 +31,8 @@ int port = 80;
 ESP8266WiFiMulti WiFiMulti;
 ESP8266WebServer server(port);
 
-
 void setup() {
 
-  //Serial.begin(115200);
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid3, password3);
   WiFiMulti.addAP(ssid1, password1);
@@ -44,21 +41,14 @@ void setup() {
   WiFi.hostname(deviceName);
 
   while (WiFiMulti.run() != WL_CONNECTED) {
-    //Serial.print(".");
     delay(1000);
   }
 
   wifiName = WiFi.SSID();
 
   String ip = WiFi.localIP().toString();
-  // //Serial.println("");
-  // //Serial.println("");
-  // //Serial.println("");
-  // Serial.print("IP:");
-  // //Serial.println(ip);
 
   if (MDNS.begin("esp8266")) {
-    //Serial.println("MDNS responder started");
   }
 
   setIp(ip);
@@ -78,16 +68,12 @@ void loop() {
   while(WiFiMulti.run() == WL_CONNECTED){
 
     if(useOTA == true) {
-
       ArduinoOTA.handle();
-
     }
 
     server.handleClient();
 
     }
-
-  //Serial.println("Desconnected");
 
   WiFi.begin();
 
@@ -106,13 +92,10 @@ int getInfo(){
   int mapValue;
   for (int i = 0; i < measureNumbers; i++) {
     total += analogRead(analogInPin);
-    //delay(5);
   }
-  //Serial.println(total);
   sensorValue = total/measureNumbers;
-  mapValue = map(sensorValue,670, 1024, 1000000, 0);
+  mapValue = map(sensorValue,600, 1024, 1000000, 0);
   return mapValue;
-  //Serial.println(mapValue);
 }
 
  void setIp(String ip){
@@ -121,28 +104,14 @@ int getInfo(){
      if ((WiFiMulti.run() == WL_CONNECTED)) {
        WiFiClient client;
        HTTPClient http;
-       //Serial.print("[HTTP] begin...\n");
-       //Serial.print("http://192.168.1.50:8000/sensor/humidity/"+deviceName+"/"+ip+":"+port);
-       if (http.begin(client, "http://back.app.cortijodemazas.com/sensor/humidity/"+deviceName+"/"+ip+":"+port)) {
-         //Serial.print("[HTTP] GET CODE: ");
-         // start connection and send HTTP header
+       if (http.begin(client, "http://back.app.cortijodemazas.com/sensor/humidity/"+deviceName+"/"+ip+":"+port+"?devices=Wemos_watering&min=2500000&max=800000&lapse=301000")) {
          int httpCode = http.POST("");
-
-         // httpCode will be negative on error
          if (httpCode > 0) {
-           //Serial.println(httpCode);
            if (httpCode == 200 ) {
              certain = true;
-             //Serial.print("[HTTP] GET BODY: ");
-             //Serial.println(http.getString());
            }
-         } else {
-           //Serial.printf("[HTTP] GET... failed, error: %s\n", http.errorToString(httpCode).c_str());
          }
-
          http.end();
-       } else {
-         //Serial.printf("[HTTP} Unable to connect\n");
        }
      }
      delay(1000);
@@ -150,11 +119,9 @@ int getInfo(){
  }
 
  void sendData() {
-   //Serial.printf("Getting data");
    int data = getInfo();
    blinkLight();
    server.send(200, "application/json", "{\"name\":\"" + deviceName + "\",\"type\":\"Humidity\",\"content\":{\"humidity\": " + String(data) + "}}");
-
  }
 
  void blinkLight(){
@@ -169,10 +136,8 @@ int getInfo(){
  }
 
  void stopOTA(){
-
    server.send(200, "application/json", "{\"OTA\": false}");
    useOTA = false;
-
  }
 
  void startOTA(){
