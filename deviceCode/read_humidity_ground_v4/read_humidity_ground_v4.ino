@@ -94,7 +94,7 @@ int getInfo(){
     total += analogRead(analogInPin);
   }
   sensorValue = total/measureNumbers;
-  mapValue = map(sensorValue,600, 1024, 1000000, 0);
+  mapValue = map(sensorValue,0, 1024, 1000000, 0);
   return mapValue;
 }
 
