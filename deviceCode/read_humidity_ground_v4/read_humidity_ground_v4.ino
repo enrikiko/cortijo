@@ -104,7 +104,7 @@ int getInfo(){
      if ((WiFiMulti.run() == WL_CONNECTED)) {
        WiFiClient client;
        HTTPClient http;
-       if (http.begin(client, "http://back.app.cortijodemazas.com/sensor/humidity/"+deviceName+"/"+ip+":"+port+"?devices=Wemos_watering&min=2500000&max=800000&lapse=301000")) {
+       if (http.begin(client, "http://back.app.cortijodemazas.com/sensor/humidity/"+deviceName+"/"+ip+":"+port+"?devices=Wemos_watering&min=2500000&max=600000&lapse=150000")) {
          int httpCode = http.POST("");
          if (httpCode > 0) {
            if (httpCode == 200 ) {
