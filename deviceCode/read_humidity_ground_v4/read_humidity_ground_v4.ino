@@ -18,6 +18,9 @@ const char *ssid3 = "Cuarto2.4G_2";
 const char *password3 = "Lunohas13steps";
 String deviceName = "wemos_ground_humidity_1";
 const char *deviceNameHost = "wemos_ground_humidity_1";
+const String lapse = "600000";
+const String min = "150000";
+const String max = "160000";
 String wifiName;
 boolean useOTA = false;
 
@@ -104,7 +107,7 @@ int getInfo(){
      if ((WiFiMulti.run() == WL_CONNECTED)) {
        WiFiClient client;
        HTTPClient http;
-       if (http.begin(client, "http://back.app.cortijodemazas.com/sensor/humidity/"+deviceName+"/"+ip+":"+port+"?devices=Wemos_watering&min=250000&max=600000&lapse=150000")) {
+       if (http.begin(client, "http://back.app.cortijodemazas.com/sensor/humidity/"+deviceName+"/"+ip+":"+port+"?devices=Wemos_watering&min="+min+"&max="+max+"&lapse="+lapse)) {
          int httpCode = http.POST("");
          if (httpCode > 0) {
            if (httpCode == 200 ) {
