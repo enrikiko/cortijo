@@ -23,8 +23,8 @@ const char *ssid2 = "WifiSalon";
 const char *password2 = "lunohas13steps";
 const char *ssid3 = "Cuarto2.4G_2";
 const char *password3 = "Lunohas13steps";
-const String deviceName = "wemos_temperature_1";
-const char *deviceNameHost = "wemos_temperature_1";
+const String deviceName = "Temperature_1";
+const char *deviceNameHost = "Temperature_1";
 String wifiName;
 boolean useOTA = false;
 
