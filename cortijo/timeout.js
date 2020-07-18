@@ -35,8 +35,6 @@ executeTimeoutCheckDevices:
 function executeTimeoutCheck(){
     setTimeout(function(){
             executeTimeoutCheck()
-            console.log("Test");
-            console.log(statusMap);
             checkDevices()
             chechSensors()
         }, parseInt(config.get("timeout_check")));

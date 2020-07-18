@@ -1,11 +1,11 @@
 ---
   log: "debug"
-  timeout_check:  10000
-  timeout_sensor: 10000
+  timeout_check:  60000
+  timeout_sensor: 600000
   times_before_block: 10
   device_status_timeout: 2500
   switch_status_timeout: 2500
   data_timeout: 5000
   sensor_history: 1344
   version: "1.0.4"
-  wifi_history: 1000 
+  wifi_history: 1000
