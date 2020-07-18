@@ -32,19 +32,14 @@ module.exports = {
           res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
         }
     }else {
-        //logs.log(JSON.stringify(isUpdating))
         logs.log("Change status of "+name+" to false");
         try {
             var response = await joker.switchStatus(false, name) //Change device status //TODO make sure this is ejecute
-            //joker.switchAlert( name, ip )
             if (response.code == 200) {
               clearTimeout(timeOutMap[name])
-              //console.log("changeStatusToFalse");
               await myDevicesChanges.newRequest(name, false, user, null)
-              //console.log("changeStatusToFalse After");
               joker.telegramAlert(name, null, user);
               if(res!=null){  //TODO is this nessesary?
-              //joker.switchAlertLapse(name, lapse, ip);
                 res.status(response.code).send(response)
               }
             }else {

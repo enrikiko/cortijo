@@ -37,6 +37,7 @@ function executeTimeoutCheckDevices(){
             executeTimeoutCheckDevices()
             checkDevices()
             chechSensors()
+            console.log(statusMap);
         }, parseInt(config.get("timeout_check")));
 }
 //
@@ -58,12 +59,9 @@ async function getSensor(){
 }
 //
 async function checkDevices(){
-    //logs.log("Checking devices: ")
     var devicesList = await myDevice.getDevice()
-    //logs.log(devicesList)
     for (var index in devicesList){
         var name = devicesList[index].name
-        //logs.log("Checking " + name )
         try{
             var status = await joker.getDeviceStatus(name)
             await myDevice.setCheckDeviceByName(name, true)

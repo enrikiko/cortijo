@@ -6,6 +6,6 @@
   device_status_timeout: 2500
   switch_status_timeout: 2500
   data_timeout: 5000
-  sensor_history: 1344 #1344
+  sensor_history: 1344
   version: "1.0.4"
-  wifi_history: 1000 #1000
+  wifi_history: 1000 

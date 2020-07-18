@@ -10,16 +10,12 @@ const socket = require('./socket');
 const config = require('./config')
 const url = require('./url')
 const TelegramBot = require('node-telegram-bot-api');
-//const SWITCH_STATUS_TIMEOUT = config.get("switch_status_timeout");
-//const GET_DEVICE_STATUS_TIMEOUT = config.get("device_status_timeout");
 const AUTH_JWT = url.get("auth_url")
 const WEBSOCKET_URL = url.get("websocket_url")
 
 
 const telegram_token = process.env.TELEGRAM_TOKEN;
 const telegram_id = process.env.TELEGRAM_ID;
-// const telegram_token = "1115189692:AAGlp_M3Ybx_4hclhFibEsSPLJyzBjsODvA"
-// const telegram_id = "1103465535"
 
 // Created instance of TelegramBot
 const bot = new TelegramBot(telegram_token, {polling: true});
