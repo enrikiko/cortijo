@@ -21,9 +21,9 @@ executeTimeoutGetSensors:
   - safeData: Save data from sensor
   - analiceData: Analice data from sensor
 */
-function executeTimeoutGetSensors(){
+function executeTimeoutGetSensorsData(){
     setTimeout(function(){
-            executeTimeoutGetSensors()
+            executeTimeoutGetSensorsData()
             getSensor()
         }, parseInt(config.get("timeout_sensor")));
 }
@@ -32,12 +32,13 @@ executeTimeoutCheckDevices:
   checkDevices:
   chechSensors:
 */
-function executeTimeoutCheckDevices(){
+function executeTimeoutCheck(){
     setTimeout(function(){
-            executeTimeoutCheckDevices()
+            executeTimeoutCheck()
+            console.log("Test");
+            console.log(statusMap);
             checkDevices()
             chechSensors()
-            console.log(statusMap);
         }, parseInt(config.get("timeout_check")));
 }
 //
@@ -170,5 +171,5 @@ async function analiceHumidity(type, name, data) {
   }
 }
 //
-executeTimeoutGetSensors()
-executeTimeoutCheckDevices()
+executeTimeoutGetSensorsData()
+executeTimeoutCheck()
