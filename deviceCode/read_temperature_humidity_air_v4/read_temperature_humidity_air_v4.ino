@@ -114,13 +114,13 @@ void sendData() {
 }
 
 String getTemperature(){
-    int val = (int) dht.readTemperature();
-    if(!isnan(val)){return val;}else{return 0;}
+    float val = dht.readTemperature();
+    if(!isnan(val)){return String(val);}else{return "0";}
 }
 
 String getHumidity(){
-    int val = (int) dht.readHumidity();
-    if(!isnan(val)){return val;}else{return 0;}
+    float val = dht.readHumidity();
+    if(!isnan(val)){return String(val);}else{return "0";}
 }
 
 void blinkLight(){
@@ -130,7 +130,7 @@ void blinkLight(){
 }
 
 void handleStatus() {
-  server.send(200, "application/json", "{\"status\":true,\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + "\"OTA\":" + useOTA + "}");
+  server.send(200, "application/json", "{\"status\":true,\"SSID\":\"" + wifiName + "\",\"SIGNAL\":" + WiFi.RSSI() + ",\"OTA\":" + useOTA + "}");
   blinkLight();
 }
 
