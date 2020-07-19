@@ -114,13 +114,13 @@ void sendData() {
 }
 
 String getTemperature(){
-    float val = dht.readTemperature();
-    if(!isnan(val)){return String(val);}else{return "0";}
+    int val = (int) dht.readTemperature();
+    if(!isnan(val)){return val;}else{return 0;}
 }
 
 String getHumidity(){
-    float val = dht.readHumidity();
-    if(!isnan(val)){return String(val);}else{return "0";}
+    int val = (int) dht.readHumidity();
+    if(!isnan(val)){return val;}else{return 0;}
 }
 
 void blinkLight(){
