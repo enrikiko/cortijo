@@ -18,9 +18,10 @@ const char *ssid3 = "Cuarto2.4G_2";
 const char *password3 = "Lunohas13steps";
 String deviceName = "Ground_sensor_frontyard";
 const char *deviceNameHost = "Ground_sensor_frontyard";
-const String lapse = "600000";
+const String lapse = "601000";
 const String minValue = "150000";
 const String maxValue = "160000";
+const String linkDevices = "Watering_frontyard";
 String wifiName;
 boolean useOTA = false;
 
@@ -107,7 +108,7 @@ int getInfo(){
      if ((WiFiMulti.run() == WL_CONNECTED)) {
        WiFiClient client;
        HTTPClient http;
-       if (http.begin(client, "http://back.app.cortijodemazas.com/sensor/humidity/"+deviceName+"/"+ip+":"+port+"?devices=Watering_frontyard&min="+minValue+"&max="+maxValue+"&lapse="+lapse)) {
+       if (http.begin(client, "http://back.app.cortijodemazas.com/sensor/humidity/"+deviceName+"/"+ip+":"+port+"?devices="+linkDevices+"&min="+minValue+"&max="+maxValue+"&lapse="+lapse)) {
          int httpCode = http.POST("");
          if (httpCode > 0) {
            if (httpCode == 200 ) {
