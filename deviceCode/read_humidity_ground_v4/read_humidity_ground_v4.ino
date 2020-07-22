@@ -91,7 +91,7 @@ void loop() {
 
 int getInfo(){
   float total = 0;
-  int measureNumbers = 30000;
+  int measureNumbers = 2000;
   int sensorValue;
   int mapValue;
   for (int i = 0; i < measureNumbers; i++) {
