@@ -18,9 +18,9 @@ const char *ssid3 = "Cuarto2.4G_2";
 const char *password3 = "Lunohas13steps";
 String deviceName = "Ground_sensor_frontyard";
 const char *deviceNameHost = "Ground_sensor_frontyard";
-const String lapse = "601000";
-const String minValue = "150000";
-const String maxValue = "160000";
+const String lapse = "599000";
+const String minValue = "10000";
+const String maxValue = "60000";
 const String linkDevices = "Watering_frontyard";
 String wifiName;
 boolean useOTA = false;
@@ -91,7 +91,7 @@ void loop() {
 
 int getInfo(){
   float total = 0;
-  int measureNumbers = 10000;
+  int measureNumbers = 30000;
   int sensorValue;
   int mapValue;
   for (int i = 0; i < measureNumbers; i++) {

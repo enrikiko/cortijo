@@ -25,15 +25,15 @@
           </div>
           <div>
             <h3>Block: </h3>
-            <input [(ngModel)]="sensorInfo.block" name="block" class="form-control" type="text">
+            <input [(ngModel)]="sensorInfo.block" name="block" class="form-control" type="boolean">
           </div>
           <div >
             <h3>List of devices associated: </h3>
-            <ul *ngFor="let device of sensorInfo.devices">
+            <ul *ngFor="let device of sensorInfo.devices; index as i">
               <li>
                 <div class="row">
                   <div class="col-9">
-                    <input [(ngModel)]="device" name="device" class="form-control"type="text">
+                    <input [(ngModel)]=device name="device{{i}}" class="form-control"type="text">
                   </div>
                   <div class="col-3">
                     <button type="button" class="bg-danger" (click)="removeDevice(device)">Delete</button>
