@@ -41,19 +41,11 @@
                 </div>
               </li>
             </ul>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
-                <div class="dropdown-menu" *ngFor="let newDevice of avaliableDevices">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <div role="separator" class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Separated link</a>
-                </div>
-              </div>
-              <input type="text" class="form-control" aria-label="Text input with dropdown button">
-            </div>
+            <select [(ngModel)]="avaliableDevices.Title">
+                <option *ngFor="let avaliableDevice of avaliableDevices" [value]="avaliableDevice.Value">
+                  {{avaliableDevices.Text}}
+                </option>
+            </select>
             <input type="text" name="" value=""><button type="button" (click)="addDevice()" class="bg-success" >Add device</button>
           </div>
     </form>

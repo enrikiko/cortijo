@@ -91,11 +91,12 @@ void loop() {
 
 int getInfo(){
   float total = 0;
-  int measureNumbers = 2000;
+  int measureNumbers = 1500;
   int sensorValue;
   int mapValue;
   for (int i = 0; i < measureNumbers; i++) {
     total += analogRead(analogInPin);
+    delay(1)
   }
   sensorValue = total/measureNumbers;
   mapValue = map(sensorValue,0, 1024, 1000000, 0);

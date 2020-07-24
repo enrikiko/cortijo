@@ -15,10 +15,12 @@ export class SensorInfoComponent implements OnInit {
 
   sensor:string=null;
   sensorInfo:any=null;
+  avaliableDevices:any[] = ["test1", "test2"];
 
   ngOnInit() {
     this.sensor = this.router.url.split("/")[2]
     this.getInfo(this.sensor)
+    this.getAvaliableDevices()
   }
 
   getInfo(sensor){
@@ -47,5 +49,17 @@ export class SensorInfoComponent implements OnInit {
       }
   }
   change(){}
+  getAvaliableDevices(){
+    let url = "http://back.app.cortijodemazas.com/device/all"
+    this.http.get<any[]>(url).subscribe( data =>
+    {
+      if(data!=null){
+        this.avaliableDevices=data;
+      }
+      else {
+      console.log('Database is empty')
+      }
+    })
+  }
 
 }
