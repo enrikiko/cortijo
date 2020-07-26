@@ -219,6 +219,22 @@ app.post("/sensor/:type/:name/:ip", async (req, res) => {
          res.status(200).json({"Previous Ip": lastIp, "New Ip": ip, "Devices": devices})
       }
 })
+//UpdateSensor
+app.put("/sensor/:name", async (req, res) => {
+     var name = req.params.name
+     var devices = req.query.devices
+     var min = req.query.min
+     var max = req.query.max
+     var lapse = req.query.lapse
+     var block = req.block.lapse
+     var id = await mySensor.getIdByName(name)
+      if (id) {
+         var lastIp = await mySensor.updateSensor(id, ip, devices, min, max, lapse)
+         res.status(200).send()
+      }else {
+        res.status(404).send("Sensor not found")
+      }
+})
 //
 //Get all sensor
 app.get("/sensor/all", async function(req, res) {

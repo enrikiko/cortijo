@@ -96,7 +96,6 @@ int getInfo(){
   int mapValue;
   for (int i = 0; i < measureNumbers; i++) {
     total += analogRead(analogInPin);
-    delay(1)
   }
   sensorValue = total/measureNumbers;
   mapValue = map(sensorValue,0, 1024, 1000000, 0);
