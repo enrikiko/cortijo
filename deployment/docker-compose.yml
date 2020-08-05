@@ -18,11 +18,11 @@ services:
     - /home/ubuntu/cortijo/cortijo/config.yaml:/root/node/config.yaml
     depends_on:
     - auth
-    - websocket
-  cortijo_websocket:
-    container_name: cortijo_websocket
+    - socket
+  ws:
+    container_name: ws
     restart: on-failure
-    build: ../web_socket/.
+    build: ../ws/.
     ports:
     - "3000:3000"
     - "3001:3001"
@@ -40,10 +40,10 @@ services:
     - network
     volumes:
     - /home/ubuntu/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
-  websocket:
-    container_name: websocket
+  socket:
+    container_name: socket
     restart: always
-    build: ../webSocket/.
+    build: ../socket/.
     ports:
     - "8200:3000"
     networks:
