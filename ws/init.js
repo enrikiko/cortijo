@@ -1,7 +1,7 @@
 const express = require("express");
 const WebSocket = require('ws');
 const deviceStatus = require('./status');
-const wss = new WebSocket.Server({ port: 3000 });
+const wss = new WebSocket.Server({ port: 8200 });
 const app = express();
 var http = require('http').Server(app);
 var io = http;

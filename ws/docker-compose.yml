@@ -5,7 +5,6 @@ services:
     restart: on-failure
     build: .
     ports:
-    - "3000:3000"
-    - "3001:3001"
+    - "8200:8200"
     volumes:
     - /home/ubuntu/cortijo/deployment/config_url.yaml:/root/scr/config_url.yaml:ro
