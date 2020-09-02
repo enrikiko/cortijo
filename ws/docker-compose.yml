@@ -1,10 +1,11 @@
 version: "3.3"
 services:
-  cortijo_socket:
-    container_name: cortijo_socket
+  cortijo_websocket:
+    container_name: cortijo_websocket
     restart: on-failure
     build: .
     ports:
-    - "8200:8200"
+    - "3000:3000"
+    - "3001:3001"
     volumes:
     - /home/ubuntu/cortijo/deployment/config_url.yaml:/root/scr/config_url.yaml:ro

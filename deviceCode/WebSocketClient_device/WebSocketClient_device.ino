@@ -1,12 +1,12 @@
 #include <ArduinoWebsockets.h>
-##include <ESP8266WiFi.h>
+#include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
 
 const char* ssid = "Cuarto2.4G"; //Enter SSID
 const char* password = "Lunohas13steps"; //Enter Password
-const char* websockets_server_host = "ws.cortijodemazas.com"; //Enter server adress
+const char* websockets_server_host = "88.18.59.194"; //Enter server adress
 const String path = "/";
-const uint16_t websockets_server_port = 80; // Enter server port
+const uint16_t websockets_server_port = 3000; // Enter server port
 const String deviceName = "Wemos_001";
 bool certain = false;
 
