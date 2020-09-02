@@ -1,7 +1,7 @@
 version: "3.3"
 services:
-  cortijo_websocket:
-    container_name: cortijo_websocket
+  cortijo_socket:
+    container_name: cortijo_socket
     restart: on-failure
     build: .
     ports:
