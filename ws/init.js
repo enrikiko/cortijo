@@ -63,19 +63,15 @@ async function addDevice(device, ws) {
   else {
     console.log('%s enrolled', device )
     status = await getDeviceStatus(device)
-    console.log("1")
     ws.name = device
     ws.status = status
     if (!status) {
-      console.log("2")
       console.log("Creating device in db");
       await deviceStatus.createDevice(device, status)
     }else {
-      console.log("3")
       console.log("Updata device form db")
       updateDevice(device, status)
     }
-    console.log("4")
     return true;
   }
 }
@@ -176,10 +172,8 @@ async function logic(message, ws) {
     const name = message.name
     if(addDevice(name, ws)){
       ws.send('Welcome ' + name)
-      console.log("5")
     }else{
       ws.send('Error 001. Device already exist')
-      console.log("6")
     }
   }
   // else if (message.device & message.status) {
