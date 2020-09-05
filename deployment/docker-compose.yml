@@ -54,48 +54,48 @@ services:
     build: ../frontAng/.
     ports:
     - "8300:80"
-  device:
-    container_name: deviceMock
-    restart: always
-    build: ../mock/deviceMock/.
-    environment:
-    - mock_name=deviceMock
-    - mock_port=8101
-    - local_ip=192.168.1.53
-    ports:
-    - "8101:3000"
-    networks:
-    - network
-    depends_on:
-    - cortijo
-  sensortemperature:
-    container_name: sensorTemperatureMock
-    restart: always
-    build: ../mock/sensorMock/.
-    environment:
-    - mock_name=sensorTemperatureMock
-    - mock_port=8105
-    - local_ip=192.168.1.53
-    ports:
-    - "8105:3000"
-    networks:
-    - network
-    depends_on:
-    - cortijo
-  sensorhumidity:
-    container_name: sensorHumidityMock
-    restart: always
-    build: ../mock/sensorHumidityMock/.
-    environment:
-    - mock_name=sensorHumidityMock
-    - mock_port=8106
-    - local_ip=192.168.1.53
-    ports:
-    - "8106:3000"
-    networks:
-    - network
-    depends_on:
-    - cortijo
+  # device:
+  #   container_name: deviceMock
+  #   restart: always
+  #   build: ../mock/deviceMock/.
+  #   environment:
+  #   - mock_name=deviceMock
+  #   - mock_port=8101
+  #   - local_ip=192.168.1.53
+  #   ports:
+  #   - "8101:3000"
+  #   networks:
+  #   - network
+  #   depends_on:
+  #   - cortijo
+  # sensortemperature:
+  #   container_name: sensorTemperatureMock
+  #   restart: always
+  #   build: ../mock/sensorMock/.
+  #   environment:
+  #   - mock_name=sensorTemperatureMock
+  #   - mock_port=8105
+  #   - local_ip=192.168.1.53
+  #   ports:
+  #   - "8105:3000"
+  #   networks:
+  #   - network
+  #   depends_on:
+  #   - cortijo
+  # sensorhumidity:
+  #   container_name: sensorHumidityMock
+  #   restart: always
+  #   build: ../mock/sensorHumidityMock/.
+  #   environment:
+  #   - mock_name=sensorHumidityMock
+  #   - mock_port=8106
+  #   - local_ip=192.168.1.53
+  #   ports:
+  #   - "8106:3000"
+  #   networks:
+  #   - network
+  #   depends_on:
+  #   - cortijo
   # feigenbaum:
   #   container_name: feigenbaumMock
   #   restart: on-failure

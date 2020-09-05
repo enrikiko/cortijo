@@ -2,13 +2,19 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
 
-const char* ssid = "Cuarto2.4G"; //Enter SSID
-const char* password = "Lunohas13steps"; //Enter Password
-const char* websockets_server_host = "88.18.59.194"; //Enter server adress
+const char *ssid1 = "Cuarto2.4G";
+const char *password1 = "Lunohas13steps";
+const char *ssid2 = "WifiSalon";
+const char *password2 = "lunohas13steps";
+const char *ssid4 = "Seagull";
+const char *password4 = "Dober96Mila";
+const char* websockets_server_host = "ws.cortijodemazas.com"; //Enter server adress
 const String path = "/";
 const uint16_t websockets_server_port = 3000; // Enter server port
-const String deviceName = "Wemos_001";
+const String deviceName = "Wemos_002";
 bool certain = false;
+//int RelayPin = D1; //Wemos
+int RelayPin = 0;
 
 using namespace websockets;
 WebsocketsClient client;
@@ -16,8 +22,12 @@ ESP8266WiFiMulti WiFiMulti;
 
 void setup() {
   Serial.begin(115200);
-  WiFiMulti.addAP(ssid, password);
+  WiFi.mode(WIFI_STA);
+  WiFiMulti.addAP(ssid1, password1);
+  WiFiMulti.addAP(ssid2, password2);
+  WiFiMulti.addAP(ssid4, password4);
   pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(RelayPin, OUTPUT);
   digitalWrite(LED_BUILTIN, HIGH);
 }
 
@@ -67,7 +77,8 @@ void logic(String data){
 
 void led(boolean statu){
   certain=statu;
-  digitalWrite(LED_BUILTIN, !statu);
+  digitalWrite(RelayPin, statu);
+  digitalWrite(LED_BUILTIN, statu);
   }
 
 void blink(){
