@@ -13,8 +13,8 @@ const String path = "/";
 const uint16_t websockets_server_port = 3000; // Enter server port
 const String deviceName = "Wemos_002";
 bool certain = false;
-//int RelayPin = D1; //Wemos
-int RelayPin = 0;
+int RelayPin = D1; //Wemos
+//int RelayPin = 0;
 
 using namespace websockets;
 WebsocketsClient client;
