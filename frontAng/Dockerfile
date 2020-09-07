@@ -1,7 +1,6 @@
 FROM ubuntu:18.04
 RUN apt-get update
 RUN apt update
-RUN apt install curl -y
 RUN apt install apache2 -y
 RUN apt-get update
 RUN mkdir angular
