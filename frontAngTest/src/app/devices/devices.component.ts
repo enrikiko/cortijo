@@ -17,7 +17,7 @@ export class DevicesComponent implements OnInit {
   devices: any[] = null;
   sensors: any[] = null;
   lapse: number = null;
-  lapse_time: number = 5;
+  lapse_time: number = 10;
   messages: Message[] = [];
   ioConnection: any;
   subscription: any;
