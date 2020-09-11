@@ -8,10 +8,10 @@ import { Event } from '../event';
 
 @Component({
   selector: 'app-body',
-  templateUrl: './body.component.html',
-  styleUrls: ['./body.component.css']
+  templateUrl: './devices.component.html',
+  styleUrls: ['./devices.component.css']
 })
-export class BodyComponent implements OnInit {
+export class DevicesComponent implements OnInit {
 
   webSocketDevices: any[] = null;
   devices: any[] = null;
