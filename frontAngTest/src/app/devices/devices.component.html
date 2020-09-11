@@ -1,6 +1,6 @@
 <div class="container-fluid bg-white body center">
   <div class="row justify-content-center">
-    <div class="input-group mt-1 mt-md-2 mb-1 col-4">
+    <div class="input-group mt-1 mt-md-2 mb-1 mb-md-2 col-12 col-sm-9 col-md-6 col-lg-5 col-xl-3">
          <div class="input-group-append">
               <span class="input-group-text">Time: </span>
          </div>
@@ -11,7 +11,7 @@
     </div>
   </div>
   <div class="row justify-content-md-center mb-1 mb-md-2">
-    <div *ngFor="let device of devices" class="col-12 col-md-6 col-lg-3">
+    <div *ngFor="let device of devices" class="col-12 col-sm-6 col-md-4 col-lg-3">
       <button class="col-12 my-1" id="{{ device.name }}" (click)="changeStatus(device)" [ngClass]="{'bg-primary': true, 'bg-secondary': device.status==false&&device.check==true, 'bg-success': device.status==true&&device.check==true, 'bg-danger': device.check==false}" >
         <h2>{{ device.name }} <button class="btn btn-outline-danger btn-sm" (click)="deleteDevice(device)">x</button></h2>
         <h3>Status:{{ device.status }}</h3>
@@ -20,7 +20,7 @@
       </button><!-- <h2>Ip:{{ device.ip }}</h2> -->
     </div>
 
-    <div *ngFor="let webSocketDevice of webSocketDevices" class="col-12 col-md-6 col-lg-3">
+    <div *ngFor="let webSocketDevice of webSocketDevices" class="col-12 col-sm-6 col-md-4 col-lg-3">
       <button class="col-12 my-1" id="{{ webSocketDevice.name }}" (click)="changeWebSocketStatus(webSocketDevice)" [ngClass]="{'bg-secondary': webSocketDevice.status==false, 'bg-success': webSocketDevice.status==true}" >
         <h2>{{ webSocketDevice.name }} </h2>
         <h3>Status:{{ webSocketDevice.status }}</h3>
@@ -28,7 +28,7 @@
       </button><!-- <h2>Ip:{{ device.ip }}</h2> -->
     </div>
 
-    <div *ngFor="let sensor of sensors" class="col-12 col-md-6 col-lg-3">
+    <div *ngFor="let sensor of sensors" class="col-12 col-sm-6 col-md-4 col-lg-3">
       <button class="col-12 my-1 bg-info" id="{{ sensor.name }}" (click)="infoSensor(sensor.name)">
         <h2>{{ sensor.name }} <button class="btn btn-outline-danger btn-sm" (click)="deleteSensor(sensor)">x</button></h2>
         <h4>{{ sensor.type }}</h4>
