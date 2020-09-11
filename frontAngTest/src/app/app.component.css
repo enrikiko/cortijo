@@ -20,3 +20,7 @@
   overflow: hidden;
   z-index: 100;
 }
+
+p{
+  white-space: nowrap;
+}

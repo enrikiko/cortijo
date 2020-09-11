@@ -20,8 +20,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.getJwt()
   }
-
-
+  
   camera(){this.active="camera"}
   device(){this.active="device"}
   task(){this.active="task"}
