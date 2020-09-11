@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LogsComponent } from './logs/logs.component';
-import { BodyComponent } from './body/body.component';
+import { DevicesComponent } from './devices/devices.component';
 import { ConfigComponent } from './config/config.component';
 import { HumidityComponent } from './humidity/humidity.component';
 import { AuthGuard } from './auth.guard';
@@ -17,7 +17,7 @@ import { CameraComponent } from './camera/camera.component';
 import { SensorInfoComponent } from './sensor-info/sensor-info.component';
 
 const routes: Routes = [
-  {path:'', component: BodyComponent, canActivate: [AuthGuard]},
+  {path:'', component: DevicesComponent, canActivate: [AuthGuard]},
   {path:'logs', component: LogsComponent, canActivate: [AuthGuard]},
   {path:'config', component: ConfigComponent, canActivate: [AuthGuard]},
   {path:'sensor', component: HumidityComponent, canActivate: [AuthGuard]},

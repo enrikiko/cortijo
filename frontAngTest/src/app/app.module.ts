@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { BodyComponent } from './body/body.component';
+import { DevicesComponent } from './devices/devices.component';
 import { FooterComponent } from './footer/footer.component';
 import { LogsComponent } from './logs/logs.component';
 import { WeatherComponent } from './weather/weather.component';
@@ -31,7 +31,7 @@ import { CameraComponent } from './camera/camera.component';
   declarations: [
     AppComponent,
     HeaderComponent,
-    BodyComponent,
+    DevicesComponent,
     FooterComponent,
     LogsComponent,
     WeatherComponent,

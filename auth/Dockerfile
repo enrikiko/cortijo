@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu
 RUN apt update
 RUN apt-get update
 RUN apt-get install -y nodejs npm
