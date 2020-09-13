@@ -1,9 +1,16 @@
-<div class="container-fluid bg-light p-1 p-md-2 p-lg-3 mt-5">
-  <p>
-    <a class="text-dark mx-5" href="https://github.com/enrikiko/cortijo">GitHub</a>
-    <a class="text-dark mx-5" href="https://www.linkedin.com/in/enriqueramosmunoz/">Linkedink</a>
-    <a class="text-dark mx-5" href="https://www.instagram.com/enriqueramosmunoz/">Instagram</a>
-  </p>
+<div [ngClass]="{'footer_cortijo_login': status,'footer_cortijo': !status }" class="container-fluid bg-light p-1 p-md-2 p-lg-3 mt-5 footer_cortijo">
+    <div class="row">
+      <div class="col-12 col-sm-4">
+        <a class="text-dark mx-5" href="https://github.com/enrikiko/cortijo"><h5>GitHub</h5></a>
+      </div>
+      <div class="col-12 col-sm-4">
+        <a class="text-dark mx-5" href="https://www.linkedin.com/in/enriqueramosmunoz/"><h5>Linkedink</h5></a>
+      </div>
+      <div class="col-12 col-sm-4">
+        <a class="text-dark mx-5" href="https://www.instagram.com/enriqueramosmunoz/"><h5>Instagram</h5></a>
+      </div>
+    </div>
+  <p></p>
   <p class="mx-5">Designed and built with all the love in the world by the <a class="text-dark" href="https://www.linkedin.com/in/enriqueramosmunoz/">Enrique Ramos</a></p>
   <p class="mx-5">This aplication manage the interactive Cortijo de Mazas</p>
 </div>

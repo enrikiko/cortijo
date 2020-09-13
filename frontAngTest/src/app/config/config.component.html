@@ -1,4 +1,4 @@
-<div class="container-fluid center">
+<div class="container-fluid body_cortijo">
   <h2 *ngIf="check" class="text-success"> Config saved </h2>
   <form *ngFor="let elem of config" (submit)="change($event)" class="form-signin">
       <label for="exampleInputEmail1">{{ elem.key }}</label>

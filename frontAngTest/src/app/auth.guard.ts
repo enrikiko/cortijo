@@ -17,6 +17,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(this.auth.isLogin()){
       return true
+
       }
     //else if(this.auth.authJWT()){return true}
     else {

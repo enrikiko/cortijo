@@ -18,6 +18,7 @@ import { SensorInfoComponent } from './sensor-info/sensor-info.component';
 
 const routes: Routes = [
   {path:'', component: DevicesComponent, canActivate: [AuthGuard]},
+  {path:'devices', component: DevicesComponent, canActivate: [AuthGuard]},
   {path:'logs', component: LogsComponent, canActivate: [AuthGuard]},
   {path:'config', component: ConfigComponent, canActivate: [AuthGuard]},
   {path:'sensor', component: HumidityComponent, canActivate: [AuthGuard]},

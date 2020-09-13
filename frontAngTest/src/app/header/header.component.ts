@@ -10,17 +10,39 @@ import { AuthService } from '../auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  active: string="device";
-  data : any[]=null;
-  jwt : string=null;
+  active  : string  = "device";
+  data    : any[]   = null;
+  user    : string  = null;
+  jwt     : any     = null;
 
-  constructor(private Http: HttpClient,
-              private Auth: AuthService) { }
+  constructor(private http: HttpClient,
+              private auth: AuthService) { }
 
   ngOnInit() {
-    this.getJwt()
+    this.getUserFromJwtLocalStorage()
+    this.auth.jwtEventEmitter().subscribe(jwt => this.changeJWT(jwt));
   }
-  
+
+  changeJWT(newJWT){
+    this.jwt=newJWT
+    this.getUser(this.jwt)
+    this.active="device"
+  }
+
+  getUser(jwt){
+    const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': jwt
+      })
+    let url = "http://back.app.cortijodemazas.com/jwt"
+    this.http.get<any>(url, { headers: headers }).subscribe( data =>
+      {
+        if(data!=null){
+          this.user=data.jwt;
+        }
+      })
+  }
+
   camera(){this.active="camera"}
   device(){this.active="device"}
   task(){this.active="task"}
@@ -32,25 +54,25 @@ export class HeaderComponent implements OnInit {
   photos(){this.active="photos"}
   users(){this.active="users"}
   logs(){this.active="logs"}
+
   logOut(){
-    this.Auth.logOut()
-    this.active="logOut"
-    this.jwt=null
+    this.auth.logOut()
+    this.active = "logOut"
+    this.jwt    = null
+    this.user   = null
   }
-  getJwt(){
+
+  getUserFromJwtLocalStorage(){
   const jwt = window.localStorage.getItem('jwt')
   const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
   let url = "http://back.app.cortijodemazas.com/jwt"
-  this.Http.get<any>(url, { headers: headers }).subscribe( data =>
+  this.http.get<any>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
-        this.jwt=data.jwt;
-      }
-      else {
-      console.log('Database is empty')
+        this.user=data.jwt;
       }
     })
   }

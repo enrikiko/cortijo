@@ -27,6 +27,7 @@ import { SensorInfoComponent } from './sensor-info/sensor-info.component';
 import { TaskComponent } from './task/task.component';
 import { CameraComponent } from './camera/camera.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

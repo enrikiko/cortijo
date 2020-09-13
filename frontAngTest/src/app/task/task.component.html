@@ -1,4 +1,4 @@
-<div class="container-fluid bg-white body center">
+<div class="container-fluid bg-white body body_cortijo">
 
   <div class="text-center center">
     <form (submit)="createTask()" class="form-signin">
@@ -8,43 +8,49 @@
     </form>
   </div>
 
-  <div class="row justify-content-md-center mt-1 mt-md-2">
-    <div class="row col-12 col-lg-4">
-      <div  class="col-12 bg-primary">
-        <h1>To Do</h1>
+  <div class="row justify-content-md-center mt-1 mt-md-2 mt-lg-4 mx-1">
+    <div class="col-12 col-lg-4 my-1">
+      <div class="row">
+        <div class="bg-primary col-12 border border-dark">
+          <h1>To Do</h1>
+        </div>
       </div>
-      <div  class="col-12">
-        <button *ngFor="let taskTodo of tasksTodo" class="col-12 my-1">
+      <div  class="row">
+        <button *ngFor="let taskTodo of tasksTodo" class="col-12 col-md-6">
           <h2>{{ taskTodo.name }}</h2>
           <h3>{{ taskTodo.description }}</h3>
           <h3>{{ taskTodo.time | date:'dd/MM/yyyy'}}</h3>
-           <button class="btn btn-primary btn-sm" (click)="start(taskTodo.name)">Start</button>
+           <button class="btn btn-primary btn-sm mb-2" (click)="start(taskTodo.name)">Start</button>
         </button>
       </div>
     </div>
-    <div class="row col-12 col-lg-4">
-      <div  class="col-12 bg-success">
-        <h1>In progress</h1>
+    <div class="col-12 col-lg-4 my-1">
+      <div class="row">
+        <div  class="col-12 bg-success border border-dark">
+          <h1>In progress</h1>
+        </div>
       </div>
-      <div class="col-12">
-        <button *ngFor="let taskInprogres of tasksInprogres" class="col-12 my-1">
+      <div class="row">
+        <button *ngFor="let taskInprogres of tasksInprogres" class="col-12 col-md-6">
           <h2>{{ taskInprogres.name }} </h2>
           <h3>{{ taskInprogres.description }}</h3>
           <h3>{{ taskInprogres.time | date:'dd/MM/yyyy'}}</h3>
-          <button class="btn btn-success btn-sm" (click)="finish(taskInprogres.name)">Done!</button>
+          <button class="btn btn-success btn-sm mb-2" (click)="finish(taskInprogres.name)">Done!</button>
         </button>
       </div>
     </div>
-    <div class="row col-12 col-lg-4">
-      <div  class="col-12 bg-secondary">
-        <h1>Done</h1>
+    <div class="col-12 col-lg-4 my-1">
+      <div class="row">
+        <div  class="col-12 bg-secondary border border-dark">
+          <h1>Done</h1>
+        </div>
       </div>
-      <div class="col-12">
-        <button *ngFor="let taskDone of tasksDone" class="col-12 my-1">
+      <div class="row">
+        <button *ngFor="let taskDone of tasksDone" class="col-12 col-md-6">
           <h2>{{ taskDone.name }} </h2>
           <h3>{{ taskDone.description }}</h3>
           <h3>{{ taskDone.time | date:'dd/MM/yyyy'}}</h3>
-          <button class="btn btn-secondary btn-sm" (click)="todo(taskDone.name)">TODO</button>
+          <button class="btn btn-secondary btn-sm mb-2" (click)="todo(taskDone.name)">TODO</button>
         </button>
       </div>
     </div>

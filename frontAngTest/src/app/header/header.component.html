@@ -1,59 +1,62 @@
-<div class="container-fluid bg-dark">
+<div *ngIf="user" class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar bg-dark">
       <!-- <nav class=""> -->
 
         <!-- <div class="col-12"> -->
-          <ul class="nav nav-pills nav-fill">
-
-            <li *ngIf="jwt" class="nav-item text-light">
-              <a class="nav-link">User: {{ jwt }}</a>
-            </li>
+          <ul *ngIf="user" class="nav nav-pills nav-fill">
 
             <!-- <li class="nav-item" (click)="camera()">
               <a class="nav-link" [ngClass]="{'active': active=='camera'}" routerLink="camera">Cameras</a>
             </li> -->
 
-            <li class="nav-item" (click)="task()">
+            <li *ngIf="user" class="nav-item" (click)="task()">
               <a class="nav-link" [ngClass]="{'active': active=='task'}" routerLink="task">Task</a>
             </li>
 
-            <li class="nav-item" (click)="device()">
-              <a class="nav-link" [ngClass]="{'active': active=='device'}" routerLink="">Devices</a>
+            <li *ngIf="user" class="nav-item" (click)="device()">
+              <a class="nav-link" [ngClass]="{'active': active=='device'}" routerLink="devices">Devices</a>
             </li>
 
-            <li class="nav-item" (click)="sensor()">
+            <!-- <li class="nav-item" (click)="sensor()">
               <a class="nav-link" [ngClass]="{'active': active=='sensor'}" routerLink="sensor">Sensors</a>
-            </li>
+            </li> -->
 
-            <li class="nav-item" (click)="wifi()">
+            <li *ngIf="user" class="nav-item" (click)="wifi()">
               <a class="nav-link" [ngClass]="{'active': active=='wifi'}" routerLink="wifi">Wifi</a>
             </li>
 
-            <li class="nav-item" (click)="photos()">
+            <li *ngIf="user" class="nav-item" (click)="photos()">
               <a class="nav-link" [ngClass]="{'active': active=='photos'}" routerLink="photos">Photos</a>
             </li>
 
-            <li class="nav-item" (click)="files()">
+            <li *ngIf="user" class="nav-item" (click)="files()">
               <a class="nav-link" [ngClass]="{'active': active=='files'}" routerLink="files">Files</a>
             </li>
 
-            <li class="nav-item" (click)="requests()">
+            <li *ngIf="user" class="nav-item" (click)="requests()">
               <a class="nav-link" [ngClass]="{'active': active=='requests'}" routerLink="requests">Requests</a>
             </li>
 
-            <li class="nav-item" (click)="users()">
+          </ul>
+          <ul class="nav nav-pills nav-fill">
+
+            <li *ngIf="user" class="nav-item">
+              <div class="nav-link">
+                <a class="text-success">User: </a>
+                <a class="text-light">{{ user }}</a>
+              </div>
+            </li>
+
+            <li *ngIf="user" class="nav-item" (click)="users()">
               <a class="nav-link" [ngClass]="{'active': active=='users'}" routerLink="users">New user</a>
             </li>
 
-            <li class="nav-item" (click)="config()">
+            <li *ngIf="user" class="nav-item" (click)="config()">
               <a class="nav-link" [ngClass]="{'active': active=='config'}" routerLink="config">Config</a>
             </li>
 
-            <li *ngIf="jwt" class="nav-item" (click)="logOut()">
+            <li *ngIf="user" class="nav-item" (click)="logOut()">
               <a class="nav-link text-danger" [ngClass]="{'active': active=='logOut'}" routerLink="login">Log Out</a>
             </li>
 
           </ul>
-        <!-- </div> -->
-
-      <!-- </nav> -->
 </div>

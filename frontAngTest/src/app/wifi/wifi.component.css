@@ -3,6 +3,7 @@
     height: 100%;
     padding-left: 0;
     padding-right: 0;
+    z-index: -1;
 }
 
 .sidebar-right{
@@ -11,8 +12,4 @@
     right: 0;
     padding-left: 0;
     padding-right: 0;
-}
-
-.center{
-  margin-top: 3rem!important;
 }

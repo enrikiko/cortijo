@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { SocketService } from '../socket.service';
+import { AuthService } from '../auth.service';
 import { Message } from '../message';
 import { Event } from '../event';
 
@@ -21,11 +22,13 @@ export class DevicesComponent implements OnInit {
   messages: Message[] = [];
   ioConnection: any;
   subscription: any;
+  status: Boolean = false;
 
   constructor(
     private router: Router,
     private http: HttpClient,
-    private socketService: SocketService ) { }
+    private socketService: SocketService,
+    private auth: AuthService ) { }
 
 
 
@@ -46,11 +49,14 @@ export class DevicesComponent implements OnInit {
     this.subscription = this.socketService.getDeviceSocketAlert().subscribe( (msg)=>{
       this.getWebSocketDeviceList()
     } )
+    this.auth.statusEventEmitter().subscribe(status => this.changeLoginResult(status))
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe()
   }
+
+  changeLoginResult(status){this.status=status}
 
   changeStatus(device){
     const jwt = window.localStorage.getItem('jwt')
