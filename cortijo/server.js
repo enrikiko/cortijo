@@ -94,7 +94,7 @@ app.get("/task/:status",async function (req, res) {
 //
 //Get log
 app.get("/info", function(req, res) {
-    var info = {"Version": version, "Start time": startDate}
+    var info = {"Version": version, "StartTime": startDate}
     res.status(200).json(info)
 })
 //

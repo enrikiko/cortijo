@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
   this.auth.statusEventEmitter().subscribe(status => this.changeLoginResult(status));
 
 }
+  singIn(){
+    this.router.navigate(['users'])
+  }
 
   changeLoginResult(loginSuccess){
     if(loginSuccess)

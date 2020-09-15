@@ -22,6 +22,10 @@ export class UsersComponent implements OnInit {
     this.getUrl()
   }
 
+  logIn(){
+    this.router.navigate(['login'])
+  }
+
   createUser(event) {
     const target = event.target
     const user = target.querySelector('#userName').value
