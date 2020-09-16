@@ -1,6 +1,6 @@
 <div class="container-fluid body_cortijo">
   <div class="row mt-5">
-    <div class="col-2 bd-sidebar bg-dark overflow-auto">
+    <!-- <div class="col-2 bd-sidebar bg-dark overflow-auto">
         <nav class="navbar navbar-dark">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
@@ -13,14 +13,14 @@
             </ul>
           </div>
         </nav>
-    </div>
-    <div class="col-10 overflow-auto">
+    </div> -->
+    <div *ngIf="requests" class="col-12 overflow-auto">
       <div *ngFor="let request of requests" class="row m-2">
         <div class="col-3 alert-success">
           <p>Component: {{ request.name }} </p>
         </div>
         <div class="col-3 alert-success">
-          <p>Time: {{ request.time }} </p>
+          <p>Time: {{ getRealTime(request.time) }} </p>
         </div>
         <div class="col-2 alert-success">
           <p>Status: {{ request.status }} </p>

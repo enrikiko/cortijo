@@ -84,6 +84,9 @@ export class DevicesComponent implements OnInit {
       }
     })
   }
+  requestsDevice(device){
+    this.router.navigate(['requests/'+device])
+  }
 
   deleteDevice(device){
     if (confirm("Delete " + device.name + "?")) {

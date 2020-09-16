@@ -24,7 +24,7 @@ const routes: Routes = [
   {path:'sensorInfo/:sensor', component: SensorGraphicComponent, canActivate: [AuthGuard]},
   {path:'login', component: LoginComponent},
   {path:'catordog', component: CatordogComponent, canActivate: [AuthGuard]},
-  {path:'requests', component: RequestsComponent, canActivate: [AuthGuard]},
+  {path:'requests/:device', component: RequestsComponent, canActivate: [AuthGuard]},
   {path:'photos', component: PhotosComponent, canActivate: [AuthGuard]},
   {path:'users', component: UsersComponent},
   {path:'files', component: FilesComponent, canActivate: [AuthGuard]},

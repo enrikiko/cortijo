@@ -44,7 +44,7 @@ module.exports = {
   newRequest: (name, status, user, lapse) => {
     let request = new myRequest(
       {
-        time: new Date().toLocaleString(),
+        time: new Date().getTime()),
         name: name,
         status: status,
         lapse: lapse/60000,

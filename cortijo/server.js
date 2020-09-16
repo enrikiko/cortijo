@@ -337,12 +337,12 @@ app.get("/all/humidity/:name/:times",async function(req, res) {
    res.status(200).json(humidity.reverse())
 })
 //
-app.get("/all/deviceschanges", async function(req, res) {
-  const request_list = await myDevicesChanges.getAllRequest()
-  res.status(200).json(request_list)
-})
+// app.get("/all/requests/", async function(req, res) {
+//   const request_list = await myDevicesChanges.getAllRequest()
+//   res.status(200).json(request_list)
+// })
 //
-app.get("/all/deviceschanges/:device", async function(req, res) {
+app.get("/all/requests/:device", async function(req, res) {
   var device = req.params.device;
   const request_list = await myDevicesChanges.getAllRequestByDevice(device)
   res.status(200).json(request_list)
