@@ -57,7 +57,7 @@ subscription:any;
   // }
 
   getData(sensor, type){
-      let url = "http://back.app.cortijodemazas.com/all/" + type + "/" + name
+      let url = "http://back.app.cortijodemazas.com/all/" + type + "/" + sensor
       switch(type) {
         case "humidity":
           this.getHumidity(url, name)
