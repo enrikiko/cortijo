@@ -56,6 +56,7 @@ app.put("/*", function(req, res, next) {
   //logs.newLog(ip, fullUrl)
   next()
 })
+//
 app.post("/task",async function (req, res) {
   name = req.body.name;
   description = req.body.description;
@@ -111,6 +112,10 @@ app.post("/config/update",async function(req, res) {
 //favicon.ico
 app.get("/favicon.ico", async function(req, res) {
     res.status(200).send(fs.readFileSync('files/favicon.ico'))
+})
+//Robots.txt
+app.get("/robots.txt", async function(req, res) {
+    res.status(200).send(fs.readFileSync('files/Robots.txt'))
 })
 // node
 app.get("/logo", async function(req, res) {

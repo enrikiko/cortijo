@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /config/
+Disallow: /jwt/
+Disallow: /*.pdf$
+
+Sitemap: http://www.cortijodemazas.com

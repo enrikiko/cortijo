@@ -53,24 +53,24 @@ export class RequestsComponent implements OnInit {
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
-        console.log(data)
         this.requests=data;
-      }
-      else {
-      console.log('No logs')
       }
     })
   }
 
-  getRealTime(timestamp){
-    var todate=new Date(timestamp).getDate();
-    var tomonth=new Date(timestamp).getMonth()+1;
-    var toyear=new Date(timestamp).getFullYear();
-    var tohour=new Date(timestamp).getUTCHours();
-    var tomin=new Date(timestamp).getUTCMinutes();
-    var toseg=new Date(timestamp).getUTCSeconds();
-    var original_date=tohour+':'+tomin+':'+toseg+ ' ' +tomonth+'/'+todate+'/'+toyear;
-    return original_date
+  getRealTime(timestam){
+    var data = parseInt(timestam)
+    var todate = new Date(data).getDate();
+    var tomonth = new Date(data).getMonth()+1;
+    var toyear = new Date(data).getFullYear();
+    var tohour = new Date(data).getUTCHours();
+    var tomin = new Date(data).getUTCMinutes();
+    var toseg = new Date(data).getUTCSeconds();
+    return tohour + ':' + tomin + ':' + toseg + ' ' + tomonth + '/' + todate + '/' +toyear;
+  }
+
+  toSeg(min){
+    return min*60
   }
 
   // getDeviceschanges(){

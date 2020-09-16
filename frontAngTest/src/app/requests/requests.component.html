@@ -20,13 +20,13 @@
           <p>Component: {{ request.name }} </p>
         </div>
         <div class="col-3 alert-success">
-          <p>Time: {{ getRealTime(request.time) }} </p>
+          <p>Time: {{ getRealTime( request.time ) }} </p>
         </div>
         <div class="col-2 alert-success">
           <p>Status: {{ request.status }} </p>
         </div>
         <div class="col-2 alert-success">
-          <p>Duration: {{ request.lapse }}min</p>
+          <p>Duration: {{ toSeg( request.lapse ) }}seconds</p>
         </div>
         <div class="col-2 alert-success">
           <p>User: {{ request.user }}</p>
