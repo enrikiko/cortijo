@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LogsComponent } from './logs/logs.component';
 import { DevicesComponent } from './devices/devices.component';
 import { ConfigComponent } from './config/config.component';
-import { HumidityComponent } from './humidity/humidity.component';
+import { SensorGraphicComponent } from './sensorGraphic/sensorGraphic.component';
 import { AuthGuard } from './auth.guard';
 import { LoginComponent } from './login/login.component';
 import { CatordogComponent } from './catordog/catordog.component';
@@ -21,14 +21,14 @@ const routes: Routes = [
   {path:'devices', component: DevicesComponent, canActivate: [AuthGuard]},
   {path:'logs', component: LogsComponent, canActivate: [AuthGuard]},
   {path:'config', component: ConfigComponent, canActivate: [AuthGuard]},
-  {path:'sensor', component: HumidityComponent, canActivate: [AuthGuard]},
+  {path:'sensorInfo/:sensor', component: SensorGraphicComponent, canActivate: [AuthGuard]},
   {path:'login', component: LoginComponent},
   {path:'catordog', component: CatordogComponent, canActivate: [AuthGuard]},
   {path:'requests', component: RequestsComponent, canActivate: [AuthGuard]},
   {path:'photos', component: PhotosComponent, canActivate: [AuthGuard]},
   {path:'users', component: UsersComponent},
   {path:'files', component: FilesComponent, canActivate: [AuthGuard]},
-  {path:'sensor/:sensor', component: SensorInfoComponent, canActivate: [AuthGuard]},
+  {path:'sensorSetting/:sensor', component: SensorInfoComponent, canActivate: [AuthGuard]},
   {path:'wifi', component: WifiComponent, canActivate: [AuthGuard]},
   {path:'task', component: TaskComponent, canActivate: [AuthGuard]},
   {path:'camera', component: CameraComponent, canActivate: [AuthGuard]}

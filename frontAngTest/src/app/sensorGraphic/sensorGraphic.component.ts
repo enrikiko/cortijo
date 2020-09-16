@@ -1,29 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 //import * as CanvasJS from './canvasjs.min';
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { SocketService } from '../socket.service';
 import Chart from 'chart.js';
 
 @Component({
   selector: 'app-humidity',
-  templateUrl: './humidity.component.html',
-  styleUrls: ['./humidity.component.css']
+  templateUrl: './sensorGraphic.component.html',
+  styleUrls: ['./sensorGraphic.component.css']
 })
-export class HumidityComponent implements OnInit {
+export class SensorGraphicComponent implements OnInit {
 
 logs:any[]=null;
 sensorList:any[]=null;
 showGraphic=true;
 sensor:string=null;
+type:any=null;
 subscription:any;
 
-  constructor( private http: HttpClient, private socketService: SocketService ) { }
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private socketService: SocketService ) { }
 
   ngOnInit() {
-    this.getSensor()
+    this.sensor = this.router.url.split("/")[2]
+    this.getSensorType(this.sensor)
+    //this.getSensor()
     this.subscription = this.socketService.getDataAlert().subscribe( (msg)=>{
       if(this.sensor){
-        this.getData(this.sensor)
+        this.getData(this.sensor, this.type,)
       }
     })
   }
@@ -32,30 +39,32 @@ subscription:any;
     this.subscription.unsubscribe()
   }
 
-  getSensor(){
-    let url = "http://back.app.cortijodemazas.com/sensor/all"
-    this.http.get<any[]>(url).subscribe( data =>
+  getSensorType( sensorName ){
+    let url = "http://back.app.cortijodemazas.com/sensor/type/" + sensorName
+    this.http.get(url).subscribe( data =>
     {
-      if(data!=null){
-        this.sensorList = data
+      if(data != null){
+        //this.sensorList = data
+        this.type = data
+        this.getData(this.sensor, this.type)
       }
     })
   }
 
-  wraperGetData(sensor){
-    this.sensor=sensor
-    this.getData(sensor)
-  }
+  // wraperGetData(sensor){
+  //   this.sensor=sensor
+  //   this.getData(sensor)
+  // }
 
-  getData(sensor){
-      let url = "http://back.app.cortijodemazas.com/all/" + sensor.type + "/" + sensor.name
-      switch(sensor.type) {
+  getData(sensor, type){
+      let url = "http://back.app.cortijodemazas.com/all/" + type + "/" + name
+      switch(type) {
         case "humidity":
-          this.getHumidity(url, sensor.name)
+          this.getHumidity(url, name)
           // code block
           break;
         case "temperature":
-        this.getTemperature(url, sensor.name)
+        this.getTemperature(url, name)
           // code block
           break;
         default:

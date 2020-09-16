@@ -29,13 +29,26 @@
     </div>
 
     <div *ngFor="let sensor of sensors" class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <button class="col-12 my-1 bg-info" id="{{ sensor.name }}" (click)="infoSensor(sensor.name)">
-        <h2>{{ sensor.name }} <button class="btn btn-outline-danger btn-sm" (click)="deleteSensor(sensor)">x</button></h2>
-        <h4>{{ sensor.type }}</h4>
-        <h4>{{ sensor.ip }}</h4>
-      </button><!-- <h2>Ip:{{ device.ip }}</h2> -->
+        <button class="col-12 my-1 bg-info" id="{{ sensor.name }}">
+          <div class="row">
+            <div class="col-10" (click)="infoSensor(sensor.name)">
+              <h2>{{ sensor.name }}</h2>
+              <h4>{{ sensor.type }}</h4>
+              <h4>{{ sensor.ip }}</h4>
+            </div>
+            <div class="col-2 row">
+              <div class="col-12">
+                <button class="btn btn-outline-danger btn-sm" (click)="deleteSensor(sensor)">x</button>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-outline-secondary btn-sm" (click)="settingSensor(sensor.name)">x</button>
+              </div>
+            </div>
+          </div>
+        </button>
     </div>
   </div>
+  
   <div *ngIf="lapse" class="row justify-content-md-center">
     <div class="col-3">
       <h3>Lapse= {{ lapse }}ms</h3>

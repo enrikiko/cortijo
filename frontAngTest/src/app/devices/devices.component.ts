@@ -197,8 +197,12 @@ export class DevicesComponent implements OnInit {
     }
   }
 
+  settingSensor(sensor){
+    this.router.navigate(['sensorSetting/'+sensor])
+  }
+
   infoSensor(sensor){
-    this.router.navigate(['sensor/'+sensor])
+    this.router.navigate(['sensorInfo/'+sensor])
   }
 
 

@@ -19,7 +19,7 @@ import { UsersComponent } from './users/users.component';
 import { PhotosComponent } from './photos/photos.component';
 import { PhotoComponent } from './photo/photo.component';
 import { RequestsComponent } from './requests/requests.component';
-import { HumidityComponent } from './humidity/humidity.component';
+import { SensorGraphicComponent } from './sensorGraphic/sensorGraphic.component';
 import { ConfigComponent } from './config/config.component';
 import { FilesComponent } from './files/files.component';
 import { WifiComponent } from './wifi/wifi.component';
@@ -42,7 +42,7 @@ import { CameraComponent } from './camera/camera.component';
     PhotosComponent,
     PhotoComponent,
     RequestsComponent,
-    HumidityComponent,
+    SensorGraphicComponent,
     ConfigComponent,
     FilesComponent,
     WifiComponent,

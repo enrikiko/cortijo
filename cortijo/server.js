@@ -254,6 +254,18 @@ app.get("/sensor/:name", async function(req, res) {
     }
 })
 //
+app.get("/sensor/type/:name", async function(req, res) {
+    var name = req.params.name;
+    var id = await mySensor.getIdByName(name)
+    if (id){
+      var response = await mySensor.getSensorByName(name);
+      res.status(200).json(response[0].type)
+    }else {
+      logs.error(name+" doesn't Exist");
+      res.status(404).json("Sensor doesn't Exist")
+    }
+})
+//
 // JWT verification
 app.get("/jwt", async function(req, res) {
    const jwt = req.headers.authorization
