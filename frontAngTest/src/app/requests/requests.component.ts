@@ -69,8 +69,9 @@ export class RequestsComponent implements OnInit {
     return tohour + ':' + tomin + ':' + toseg + ' ' + tomonth + '/' + todate + '/' +toyear;
   }
 
-  toSeg(min){
-    return min*60
+  toSegOrMin(min){
+    if (min >= 2){ return min + " minutes"}
+    else if ( min < 2 ){ return min*60 + " seconds" }
   }
 
   // getDeviceschanges(){

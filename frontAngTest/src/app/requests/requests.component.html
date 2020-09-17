@@ -1,5 +1,5 @@
 <div class="container-fluid body_cortijo">
-  <div class="row mt-5">
+  <div class="row mt-2">
     <!-- <div class="col-2 bd-sidebar bg-dark overflow-auto">
         <nav class="navbar navbar-dark">
           <div class="sidebar-sticky">
@@ -15,20 +15,20 @@
         </nav>
     </div> -->
     <div *ngIf="requests" class="col-12 overflow-auto">
-      <div *ngFor="let request of requests" class="row m-2">
-        <div class="col-3 alert-success">
+      <div *ngFor="let request of requests" class="row m-2" [ngClass]="{'alert-success': request.status=='true', 'alert-danger': request.status=='false'}">
+        <div class="col-3" >
           <p>Component: {{ request.name }} </p>
         </div>
-        <div class="col-3 alert-success">
+        <div class="col-3">
           <p>Time: {{ getRealTime( request.time ) }} </p>
         </div>
-        <div class="col-2 alert-success">
-          <p>Status: {{ request.status }} </p>
+        <div class="col-2">
+          <p>{{ request.status }} </p>
         </div>
-        <div class="col-2 alert-success">
-          <p>Duration: {{ toSeg( request.lapse ) }}seconds</p>
+        <div class="col-2">
+          <p *ngIf="request.status=='true'">Duration: {{ toSegOrMin( request.lapse ) }}</p>
         </div>
-        <div class="col-2 alert-success">
+        <div class="col-2">
           <p>User: {{ request.user }}</p>
         </div>
       </div>

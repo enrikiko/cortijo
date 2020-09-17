@@ -1,7 +1,7 @@
-<div *ngIf="user" class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar bg-dark">
+<div *ngIf="user" class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar bg-dark justify-content-between">
       <!-- <nav class=""> -->
 
-        <!-- <div class="col-12"> -->
+        <div class="col-6">
           <ul *ngIf="user" class="nav nav-pills nav-fill">
 
             <!-- <li class="nav-item" (click)="camera()">
@@ -37,6 +37,8 @@
             </li> -->
 
           </ul>
+            </div>
+            <div class="col-4">
           <ul class="nav nav-pills nav-fill">
 
             <li *ngIf="user" class="nav-item">
@@ -59,4 +61,6 @@
             </li>
 
           </ul>
+
+        </div>
 </div>
