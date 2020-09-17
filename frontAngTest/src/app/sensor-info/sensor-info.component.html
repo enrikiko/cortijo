@@ -1,25 +1,130 @@
-<div class="container-fluid bg-white body body_cortijo m-5 row">
-  <div class="col-6">
+<div class="container-fluid body_cortijo">
+
     <form (submit)="change()" class="form-signin m-5">
-          <div>
-            <h2>Name: </h2>
-            <h2 class="text-success"> {{ sensorInfo.name }}</h2>
+      <div class="row">
+        <div class="input-group mb-3 col-6 col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Sensor  </span>
+          </div>
+          <input type="text" class="form-control"  aria-describedby="basic-addon1">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"> {{ sensorInfo.name }} </span>
+          </div>
+        </div>
+        <div class="input-group mb-3 col-6 col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Type     </span>
+          </div>
+          <input type="text" class="form-control"  aria-describedby="basic-addon1">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"> {{ sensorInfo.type }} </span>
+          </div>
+        </div>
+        <div class="input-group mb-3 col-6 col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">IP address</span>
+          </div>
+          <input type="text" class="form-control" aria-describedby="basic-addon1">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"> {{ sensorInfo.ip }} </span>
+          </div>
+        </div>
+        <div class="input-group mb-3 col-6 col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Is blocked    </span>
+          </div>
+          <input type="text" class="form-control" aria-describedby="basic-addon1">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">{{ sensorInfo.block }}</span>
+          </div>
+        </div>
+        <div class="input-group mb-3 col-6 col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Value Max</span>
+          </div>
+          <input type="text" class="form-control" placeholder="{{ sensorInfo.max }}" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3 col-6 col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Value Min</span>
+          </div>
+          <input type="text" class="form-control" placeholder="{{ sensorInfo.min }}" aria-describedby="basic-addon1">
+        </div>
+        <div class="input-group mb-3 col-6 col-md-12">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">Lapse    </span>
+          </div>
+          <input type="text" class="form-control" placeholder="{{ sensorInfo.min }}" aria-describedby="basic-addon1">
+        </div>
+        <!-- TODO  -->
+        <div *ngFor="let device of sensorInfo.devices" class="input-group mb-3 col-6 col-md-12">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="inputGroupSelect01">Associated device</label>
+          </div>
+          <input type="text" class="form-control" placeholder="{{ device }}" aria-describedby="basic-addon1">
+          <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1" (click)="removeDevice(device)">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                </svg>
+              </span>
+          </div>
+        </div>
+              <!-- <div class="row">
+                <div class="col-9">
+                  <input placeholder="{{ device }}" class="form-control" type="text">
+                </div>
+                <div class="col-3">
+                  <button type="button" class="bg-danger" (click)="removeDevice(device)">Delete</button>
+                </div>
+              </div> -->
+
+
+
+        <div class="col-6 col-md-12 input-group">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Avaliables devices</label>
             </div>
-          <div>
-            <h3>Type: </h3><h3 class="text-primary">  {{ sensorInfo.type }}</h3>
-          </div>
-          <div>
+            <select [(ngModel)]="selectedDevice" class="custom-select">
+              <option *ngFor="let avaliableDevice of avaliableDevices" [ngValue]="avaliableDevice.name">
+                {{ avaliableDevice.name }}
+              </option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-outline-success" type="button" (click)="addDevice()">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-plus-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V10a.5.5 0 0 0 1 0V8.5H10a.5.5 0 0 0 0-1H8.5V6z"/>
+                </svg>
+              </button>
+            </div>
+          <!-- <select [(ngModel)]="avaliableDevices">
+              <option *ngFor="let avaliableDevice of avaliableDevices" [value]="avaliableDevice.Value">
+                {{avaliableDevice.name}}
+              </option>
+          </select> -->
+        </div>
+        <!-- <div class="col-6 col-md-12">
+          <h2>Sensor:
+          <h2 class="text-success"> {{ sensorInfo.name }} </h2>
+          </h2>
+        </div> -->
+        <!-- <div class="col-6 col-md-12">
+          <h3>Type: </h3><h3 class="text-primary">  {{ sensorInfo.type }}</h3>
+        </div> -->
+      </div>
+
+          <!-- <div>
             <h3>Ip: </h3><h3 class="text-primary">  {{ sensorInfo.ip }}</h3>
-          </div>
-          <div>
+          </div> -->
+          <!-- <div>
             <h3>Max: </h3>
             <input [(ngModel)]="sensorInfo.max" name="max" class="form-control" type="number">
           </div>
           <div>
             <h3>Min: </h3>
             <input [(ngModel)]="sensorInfo.min" name="min" class="form-control" type="number">
-          </div>
-          <div>
+          </div> -->
+          <!-- <div>
             <h3>Lapse: </h3>
             <input [(ngModel)]="sensorInfo.lapse" name="lapse" class="form-control" type="number">
           </div>
@@ -27,8 +132,8 @@
             <h3>Block: </h3>
             <input [(ngModel)]="sensorInfo.block" name="block" class="form-control" type="boolean">
           </div>
-          <div >
-            <h3>List of devices associated: </h3>
+          <div > -->
+            <!-- <h3>List of devices associated: </h3>
             <ul *ngFor="let device of sensorInfo.devices; index as i">
               <li>
                 <div class="row">
@@ -46,8 +151,8 @@
                   {{avaliableDevices.Text}}
                 </option>
             </select>
-            <input type="text" name="" value=""><button type="button" (click)="addDevice()" class="bg-success" >Add device</button>
-          </div>
+            <input type="text" name="" value=""><button type="button" (click)="addDevice()" class="bg-success" >Add device</button> -->
+          <!-- </div> -->
     </form>
-  </div>
+
 </div>

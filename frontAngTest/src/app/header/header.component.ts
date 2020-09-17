@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 
@@ -16,7 +17,8 @@ export class HeaderComponent implements OnInit {
   jwt     : any     = null;
 
   constructor(private http: HttpClient,
-              private auth: AuthService) { }
+              private auth: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
     this.getUserFromJwtLocalStorage()
@@ -76,5 +78,6 @@ export class HeaderComponent implements OnInit {
       }
     })
   }
+
 
 }
