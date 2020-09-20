@@ -8,8 +8,7 @@ COPY ./init.sh angular/init.sh
 WORKDIR angular/.
 RUN rm -r /var/www/html
 RUN mv ./dist/frondAng /var/www/html
-# ENTRYPOINT ["sh", "init.sh"]
-CMD /etc/init.d/apache2 restart
+ENTRYPOINT ["sh", "init.sh"]
 
 #FROM httpd:2.4
 #COPY ./dist/frondAng/ /usr/local/apache2/htdocs/
