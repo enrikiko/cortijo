@@ -1,39 +1,29 @@
 <div class="container-fluid row photos body_cortijo">
-    <div class="container-fluid col-6 row">
+    <div class="container-fluid col-6 row my-3">
 
-      <div class="container-fluid col-3">
-        <div class="container-fluid" *ngFor="let camera of cameras" class=" my-1">
-          <button (click)="getDatesYear(camera)" type="button" class="btn btn-outline-success btn-block" name="button">{{ camera }}</button>
-        </div>
+      <div class="container-fluid col-12 col-md-6 col-lg-3">
+          <button *ngFor="let camera of cameras" (click)="getDatesYear(camera)" type="button" class="btn btn-outline-success btn-block btn-lg" name="button">{{ camera }}</button>
       </div>
 
-      <div class="container-fluid col-2">
-        <div class="container-fluid" *ngFor="let year of years" class=" my-1">
-          <button (click)="getDatesMonth(year)" type="button" class="btn btn-outline-success btn-block" name="button">{{ year }}</button>
-        </div>
+      <div class="container-fluid col-12 col-md-6 col-lg-3">
+          <button *ngFor="let year of years" (click)="getDatesMonth(year)" type="button" class="btn btn-outline-success btn-block btn-lg" name="button">{{ year }}</button>
       </div>
 
-      <div class="container-fluid col-2">
-        <div class="container-fluid" *ngFor="let month of months">
-            <button (click)="getDatesDay(month)" type="button" class="btn btn-outline-success btn-block" name="button">{{ month }}</button>
-        </div>
+      <div class="container-fluid col-12 col-md-4 col-lg-1">
+            <button *ngFor="let month of months" (click)="getDatesDay(month)" type="button" class="btn btn-outline-success btn-block btn-lg" name="button">{{ month }}</button>
       </div>
 
-      <div class="container-fluid col-3" data-spy="scroll" data-target="#list-example" data-offset="0">
-        <div class="container-fluid" *ngFor="let day of days">
-            <button (click)="getPhotos(day)" type="button" class="btn btn-outline-success btn-block" name="button">{{ day }}</button>
-        </div>
+      <div class="container-fluid col-12 col-md-4 col-lg-1" data-spy="scroll" data-target="#list-example" data-offset="0">
+            <button *ngFor="let day of days" (click)="getPhotos(day)" type="button" class="btn btn-outline-success btn-block btn-lg" name="button">{{ day }}</button>
       </div>
 
-      <div class="container-fluid col-2" data-spy="scroll" data-target="#list-example" data-offset="0">
-        <div class="container-fluid" *ngFor="let picture of photos">
-            <button type="button" (click)="getPhoto(picture)" class="btn btn-outline-success" name="button">{{ picture }}</button>
-        </div>
+      <div class="container-fluid col-12 col-md-4 col-lg-4" data-spy="scroll" data-target="#list-example" data-offset="0">
+            <button *ngFor="let picture of photos" type="button" (click)="getPhoto(picture)" class="btn btn-outline-success btn-block btn-lg" name="button">{{ picture }}</button>
       </div>
 
     </div>
 
-    <div class="container-fluid col-lg-6 sidebar-right" *ngIf="url">
+    <div class="container-fluid col-6 sidebar-right my-3" *ngIf="url">
         <img src="{{ url }}" class="img-fluid photo" alt="Responsive image">
     </div>
 
