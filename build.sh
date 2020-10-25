@@ -1,5 +1,5 @@
 sudo git pull
-&&
+
 docker-compose build \
 --build-arg API_URL=$API_URL \
 --build-arg API_KEY=$API_KEY \
@@ -8,6 +8,6 @@ docker-compose build \
 --build-arg SECRET_KEY=$SECRET_KEY \
 --build-arg ROUTE53_URL=$ROUTE53_URL \
 --build-arg BUCKETS_NAME=$BUCKETS_NAME \
---build-arg ROUTE53_PASSWORD=$ROUTE53_PASSWORD 
-&&
+--build-arg ROUTE53_PASSWORD=$ROUTE53_PASSWORD
+
 docker-compose up -d
