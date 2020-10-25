@@ -8,6 +8,8 @@ services:
     - "80:80"
     - "443:443"
     - "9000:9000"
+    volumes:
+    - /etc/letsencrypt/live/www.cortijodemazas.com/fullchain.pem:/etc/letsencrypt/live/www.cortijodemazas.com/fullchain.pem:ro
   mongo:
     image: mongo
     container_name: mongo
