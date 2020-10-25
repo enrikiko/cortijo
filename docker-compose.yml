@@ -2,7 +2,7 @@ version: "3.3"
 services:
   haproxy:
     container_name: haproxy
-    build: ./haproxy/.
+    build: ./haproxy2/.
     restart: on-failure
     ports:
     - "80:80"
