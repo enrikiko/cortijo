@@ -35,7 +35,6 @@ services:
     depends_on:
     - mongo
     - auth
-    - socket
   ws:
     container_name: ws
     restart: on-failure
