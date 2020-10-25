@@ -1,15 +1,31 @@
 version: "3.3"
 services:
+  haproxy:
+    container_name: haproxy
+    build: ./haproxy/.
+    restart: on-failure
+    ports:
+    - "80:80"
+    - "443:443"
+    - "9000:9000"
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: on-failure
+    ports:
+    - "27017:27017"
+    volumes:
+    - /media/ubuntu/db1:/data/db
   cortijo:
     container_name: cortijo
     restart: on-failure
-    build: ../cortijo/.
+    build: ./cortijo/.
     environment:
     - TZ='Europe/London'
     - TELEGRAM_ID=${TELEGRAM_ID}
     - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
     ports:
-    - "8000:3000"
+    - "11000:3000"
     networks:
     - network
     volumes:
@@ -17,43 +33,85 @@ services:
     - /home/ubuntu/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
     - /home/ubuntu/cortijo/cortijo/config.yaml:/root/node/config.yaml
     depends_on:
+    - mongo
     - auth
     - socket
   ws:
     container_name: ws
     restart: on-failure
-    build: ../ws/.
+    build: ./ws/.
     ports:
     - "3000:3000"
     - "3001:3001"
     volumes:
     - /home/ubuntu/cortijo/deployment/config_url.yaml:/root/scr/config_url.yaml:ro
+    depends_on:
+    - mongo
+    - cortijo
   auth:
     container_name: auth
     restart: always
-    build: ../auth/.
+    build: ./auth/.
     environment:
     - TOKEN=${AUTH_TOKEN}
     ports:
-    - "8010:3000"
+    - "12000:3000"
     networks:
     - network
     volumes:
     - /home/ubuntu/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
+    depends_on:
+    - mongo
   socket:
     container_name: socket
     restart: always
-    build: ../socket/.
+    build: ./socket/.
     ports:
-    - "8200:3000"
+    - "13000:3000"
     networks:
     - network
+    depends_on:
+    - mongo
+    - cortijo
   front:
     container_name: front
     restart: always
-    build: ../frontAng/.
+    build: ./frontAng/.
     ports:
-    - "8300:80"
+    - "10000:80"
+  git:
+    container_name: git
+    restart: on-failure
+    build: ./git/.
+    environment:
+    - PASSWORD=${GIT_PASSWORD}
+  setip:
+    container_name: setip
+    restart: on-failure
+    build: ./router53/.
+    environment:
+    - ROUTE53_URL=${ROUTE53_URL}
+    - ROUTE53_KEY=${ROUTE53_KEY}
+  camera:
+    container_name: camera
+    restart: on-failure
+    build: ./camera/.
+    ports:
+    - "14000:3000"
+    volumes:
+    - type: bind
+      source: /media/ubuntu/ExtDriver/eramos
+      target: /root/node/eramos
+  file:
+    container_name: file
+    restart: on-failure
+    build: ./file/.
+    ports:
+    - "15000:3000"
+    volumes:
+    - type: bind
+      source: /media/ubuntu/ExtDriver/eramosFiles
+      target: /scr/files/
   # device:
   #   container_name: deviceMock
   #   restart: always
