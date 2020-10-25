@@ -77,7 +77,7 @@ services:
   front:
     container_name: front
     restart: always
-    build: ./frontAngTest/.
+    build: ./frontAng/.
     ports:
     - "10000:80"
   git:
