@@ -1,7 +1,7 @@
 ##Build the server:
 sh deployment/build.sh
 
-docker-compose up -d --build \
+docker-compose build \
 --build-arg API_URL=$API_URL \
 --build-arg API_KEY=$API_KEY \
 --build-arg PASSWORD=$GIT_PASSWORD \
@@ -11,7 +11,7 @@ docker-compose up -d --build \
 --build-arg BUCKETS_NAME=$BUCKETS_NAME \
 --build-arg ROUTE53_PASSWORD=$ROUTE53_PASSWORD \
 
-
+docker-compose up -d
 
 
 docker rm -f $(docker ps -qa) \

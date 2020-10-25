@@ -1,5 +1,5 @@
 sudo git pull \
-docker-compose up -d --build \
+docker-compose build \
 --build-arg API_URL=$API_URL \
 --build-arg API_KEY=$API_KEY \
 --build-arg PASSWORD=$GIT_PASSWORD \
