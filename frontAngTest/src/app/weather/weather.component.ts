@@ -18,7 +18,7 @@ export class WeatherComponent implements OnInit {
     this.getData()
   }
   getData(){
-    let url = "https://back.app.cortijodemazas.com/all/sensorMock/temperature"
+    let url = "https://www.back.app.cortijodemazas.com/all/sensorMock/temperature"
     this.http.get<HttpResponse<object>>(url).subscribe( data =>
     {
       if(data!=null){

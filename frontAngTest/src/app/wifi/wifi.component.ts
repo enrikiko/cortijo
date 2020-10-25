@@ -35,7 +35,7 @@ export class WifiComponent implements OnInit {
     this.getData(wifi)
   }
   getWifis(){
-    let url = "https://back.app.cortijodemazas.com/wifis"
+    let url = "https://www.back.app.cortijodemazas.com/wifis"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -46,7 +46,7 @@ export class WifiComponent implements OnInit {
     })
   }
   getData(wifi){
-    let url = "https://back.app.cortijodemazas.com/wifi/" + wifi
+    let url = "https://www.back.app.cortijodemazas.com/wifi/" + wifi
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){

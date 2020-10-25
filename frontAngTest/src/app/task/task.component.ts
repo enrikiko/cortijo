@@ -22,7 +22,7 @@ export class TaskComponent implements OnInit {
   }
 
   createTask() {
-    let url = "https://back.app.cortijodemazas.com/task"
+    let url = "https://www.back.app.cortijodemazas.com/task"
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     var object = {};
@@ -46,7 +46,7 @@ export class TaskComponent implements OnInit {
   }
 
   getTodoTasks(){
-    let url = "https://back.app.cortijodemazas.com/task/todo"
+    let url = "https://www.back.app.cortijodemazas.com/task/todo"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -59,7 +59,7 @@ export class TaskComponent implements OnInit {
   }
 
   getInprogresTasks(){
-    let url = "https://back.app.cortijodemazas.com/task/Inprogres"
+    let url = "https://www.back.app.cortijodemazas.com/task/Inprogres"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -72,7 +72,7 @@ export class TaskComponent implements OnInit {
   }
 
   getDoneTasks(){
-    let url = "https://back.app.cortijodemazas.com/task/done"
+    let url = "https://www.back.app.cortijodemazas.com/task/done"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -85,7 +85,7 @@ export class TaskComponent implements OnInit {
   }
 
   start(name){
-    let url = "https://back.app.cortijodemazas.com/task/update"
+    let url = "https://www.back.app.cortijodemazas.com/task/update"
     let object={}
     object["status"]="Inprogres"
     object["name"]=name
@@ -102,7 +102,7 @@ export class TaskComponent implements OnInit {
   }
 
   finish(name){
-    let url = "https://back.app.cortijodemazas.com/task/update"
+    let url = "https://www.back.app.cortijodemazas.com/task/update"
     let object={}
     object["status"]="done"
     object["name"]=name
@@ -119,7 +119,7 @@ export class TaskComponent implements OnInit {
   }
 
   todo(name){
-    let url = "https://back.app.cortijodemazas.com/task/update"
+    let url = "https://www.back.app.cortijodemazas.com/task/update"
     let object={}
     object["status"]="todo"
     object["name"]=name

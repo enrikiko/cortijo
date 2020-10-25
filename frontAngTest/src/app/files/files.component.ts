@@ -17,7 +17,7 @@ export class FilesComponent implements OnInit {
   }
 
   getFiles(){
-    let url = "https://file.cortijodemazas.com/list"
+    let url = "https://www.file.cortijodemazas.com/list"
     this.http.get<any>(url).subscribe( data =>
     {
       if(data!=null){
@@ -30,13 +30,13 @@ export class FilesComponent implements OnInit {
   }
 
   download(file){
-    let url = "https://file.cortijodemazas.com/download/" + file
+    let url = "https://www.file.cortijodemazas.com/download/" + file
     window.location.href = url
   }
 
   fileupload(file: FileList){
     event.preventDefault()
-    let url = "https://file.cortijodemazas.com/fileupload"
+    let url = "https://www.file.cortijodemazas.com/fileupload"
     event.preventDefault()
     //const file = event.target.files
     console.log(file)

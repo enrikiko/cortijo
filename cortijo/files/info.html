@@ -4,11 +4,11 @@
     <script>
     const host = (window.location.href.split("/")[2]).split(":")[0]
     const port = 8200
-    function getIA(){console.log("getIA");window.location.href =  "https://"+host+":"+port+"/http"}
+    function getIA(){console.log("getIA");window.location.href =  "https://www."+host+":"+port+"/http"}
     function getURL(post) {
       var xmlHttp = new XMLHttpRequest();
       const text=window.location.href.split("/")[2]
-      const url="https://"+text+"/"+post;
+      const url="https://www."+text+"/"+post;
       xmlHttp.open( "GET", url, false ); // false for synchronous request
       xmlHttp.send( null );
       var newContent = document.createTextNode(xmlHttp.responseText);

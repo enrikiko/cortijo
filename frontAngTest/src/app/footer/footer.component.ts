@@ -31,7 +31,7 @@ export class FooterComponent implements OnInit {
   alarm(){this.active="alarm"}
 
   getInfo(){
-    let url = "https://back.app.cortijodemazas.com/info"
+    let url = "https://www.back.app.cortijodemazas.com/info"
     this.http.get<any>(url).subscribe( data =>
     {
       if(data!=null){

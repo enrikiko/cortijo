@@ -38,7 +38,7 @@ export class PhotosComponent implements OnInit {
     this.years = null
     this.months = null
     this.days = null
-    let url = "https://camera.cortijodemazas.com/camera"
+    let url = "https://www.camera.cortijodemazas.com/camera"
     this.http.get<any[]>(url).subscribe( data =>
       {
         if(data!=null){
@@ -52,7 +52,7 @@ export class PhotosComponent implements OnInit {
 
   getDatesYear(key){
     this.camera=key
-    let url = "https://camera.cortijodemazas.com/camera/" + key
+    let url = "https://www.camera.cortijodemazas.com/camera/" + key
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -113,7 +113,7 @@ export class PhotosComponent implements OnInit {
    getPhotos(key){
       let file = this.year + this.month + key
       this.date = file
-      let url = "https://camera.cortijodemazas.com/camera/" + this.camera + "/" + file
+      let url = "https://www.camera.cortijodemazas.com/camera/" + this.camera + "/" + file
       this.http.get<any[]>(url).subscribe( data =>
       {
         if(data!=null){
@@ -165,7 +165,7 @@ export class PhotosComponent implements OnInit {
 
   getPhoto(key){
     const photo = this.dataMap[key]
-    let url = "https://camera.cortijodemazas.com/camera/" + this.camera + "/" + this.date + "/" + photo
+    let url = "https://www.camera.cortijodemazas.com/camera/" + this.camera + "/" + this.date + "/" + photo
     this.url=url;
   }
 

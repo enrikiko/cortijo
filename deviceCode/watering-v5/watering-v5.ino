@@ -117,7 +117,7 @@ void setIp(String ip){
       WiFiClient client;
       HTTPClient http;
       //Serial.print("[HTTP] begin...\n");
-      if (http.begin(client, "https://back.app.cortijodemazas.com/device/"+deviceName+"/"+currentStatus+"/"+ip+":"+port)) {
+      if (http.begin(client, "https://www.back.app.cortijodemazas.com/device/"+deviceName+"/"+currentStatus+"/"+ip+":"+port)) {
         //Serial.print("[HTTP] GET CODE: ");
         int httpCode = http.POST("");
         if (httpCode > 0) {
