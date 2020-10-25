@@ -1,7 +1,7 @@
 ##Build the server:
 sh deployment/build.sh
 
-docker-compose build \
+docker-compose up -d --build \
 --build-arg API_URL=$API_URL \
 --build-arg API_KEY=$API_KEY \
 --build-arg PASSWORD=$GIT_PASSWORD \
@@ -9,4 +9,10 @@ docker-compose build \
 --build-arg SECRET_KEY=$SECRET_KEY \
 --build-arg ROUTE53_URL=$ROUTE53_URL \
 --build-arg BUCKETS_NAME=$BUCKETS_NAME \
---build-arg ROUTE53_PASSWORD=$ROUTE53_PASSWORD 
+--build-arg ROUTE53_PASSWORD=$ROUTE53_PASSWORD \
+
+
+
+
+docker rm -f $(docker ps -qa) \
+docker rmi -f $(docker images -qa)

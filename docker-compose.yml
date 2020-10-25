@@ -40,8 +40,8 @@ services:
     restart: on-failure
     build: ./ws/.
     ports:
-    - "3000:3000"
-    - "3001:3001"
+    - "16000:3000"
+    - "16001:3001"
     volumes:
     - /home/ubuntu/cortijo/deployment/config_url.yaml:/root/scr/config_url.yaml:ro
     depends_on:
