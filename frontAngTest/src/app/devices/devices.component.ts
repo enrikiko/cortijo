@@ -66,10 +66,10 @@ export class DevicesComponent implements OnInit {
     })
     let url = null
     if(device.status){
-      url = "http://back.app.cortijodemazas.com/update/" + device.name +"/false/"
+      url = "https://back.app.cortijodemazas.com/update/" + device.name +"/false/"
     }
     else if (!device.status){
-      url = "http://back.app.cortijodemazas.com/update/" + device.name +"/true/"+ this.lapse_time*60000
+      url = "https://back.app.cortijodemazas.com/update/" + device.name +"/true/"+ this.lapse_time*60000
     }
     let startTime = new Date().getTime()
     this.http.get(url, { headers: headers }).subscribe( data =>
@@ -95,7 +95,7 @@ export class DevicesComponent implements OnInit {
         'Content-Type': 'application/json',
         'Authorization': jwt
       })
-      let url = "http://back.app.cortijodemazas.com/device/" + device.name
+      let url = "https://back.app.cortijodemazas.com/device/" + device.name
       this.http.delete(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){
@@ -111,7 +111,7 @@ export class DevicesComponent implements OnInit {
   }
 
   getWebSocketDeviceList(){
-    let url = "http://back.app.cortijodemazas.com/websocketDevice/all"
+    let url = "https://back.app.cortijodemazas.com/websocketDevice/all"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -134,10 +134,10 @@ export class DevicesComponent implements OnInit {
     })
     let url = null
     if(device.status){
-      url = "http://back.app.cortijodemazas.com/updateWebSocket/" + device.name +"/false/"
+      url = "https://back.app.cortijodemazas.com/updateWebSocket/" + device.name +"/false/"
     }
     else if (!device.status){
-      url = "http://back.app.cortijodemazas.com/updateWebSocket/" + device.name +"/true/"
+      url = "https://back.app.cortijodemazas.com/updateWebSocket/" + device.name +"/true/"
     }
     let startTime = new Date().getTime()
     this.http.get(url, { headers: headers }).subscribe( data =>
@@ -156,7 +156,7 @@ export class DevicesComponent implements OnInit {
   }
 
   getDevicesList(){
-    let url = "http://back.app.cortijodemazas.com/device/all"
+    let url = "https://back.app.cortijodemazas.com/device/all"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -169,7 +169,7 @@ export class DevicesComponent implements OnInit {
   }
 
   getSensorList(){
-    let url = "http://back.app.cortijodemazas.com/sensor/all"
+    let url = "https://back.app.cortijodemazas.com/sensor/all"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -190,7 +190,7 @@ export class DevicesComponent implements OnInit {
         'Authorization': jwt
       })
 
-      let url = "http://back.app.cortijodemazas.com/sensor/" + sensor.name
+      let url = "https://back.app.cortijodemazas.com/sensor/" + sensor.name
       this.http.delete(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){

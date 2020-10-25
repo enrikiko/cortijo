@@ -26,8 +26,8 @@ export class RequestsComponent implements OnInit {
   }
 
   // getDevices(){
-  //   const url = "http://back.app.cortijodemazas.com/device/all"
-  //   const urlSocket = "http://back.app.cortijodemazas.com/websocketDevice/all"
+  //   const url = "https://back.app.cortijodemazas.com/device/all"
+  //   const urlSocket = "https://back.app.cortijodemazas.com/websocketDevice/all"
   //   this.http.get<any[]>(url).subscribe( data =>
   //   {
   //     if(data!=null){
@@ -49,7 +49,7 @@ export class RequestsComponent implements OnInit {
   // }
 
   getDeviceschangesByDevice(device){
-    let url = "http://back.app.cortijodemazas.com/all/requests/" + device
+    let url = "https://back.app.cortijodemazas.com/all/requests/" + device
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -75,7 +75,7 @@ export class RequestsComponent implements OnInit {
   }
 
   // getDeviceschanges(){
-  //   let url = "http://back.app.cortijodemazas.com/all/deviceschanges"
+  //   let url = "https://back.app.cortijodemazas.com/all/deviceschanges"
   //   this.http.get<any[]>(url).subscribe( data =>
   //   {
   //     if(data!=null){

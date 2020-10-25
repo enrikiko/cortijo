@@ -17,7 +17,7 @@ export class LogsComponent implements OnInit {
   }
 
   getLogs(){
-    let url = "http://back.app.cortijodemazas.com/all/log"
+    let url = "https://back.app.cortijodemazas.com/all/log"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
