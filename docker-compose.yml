@@ -9,7 +9,7 @@ services:
     - "443:443"
     - "9000:9000"
     volumes:
-    - /etc/letsencrypt/live/www.cortijodemazas.com/fullchain.pem:/etc/letsencrypt/live/www.cortijodemazas.com/fullchain.pem:ro
+    - /etc/letsencrypt/haproxy.pem:/etc/letsencrypt/haproxy.pem:ro
   mongo:
     image: mongo
     container_name: mongo
