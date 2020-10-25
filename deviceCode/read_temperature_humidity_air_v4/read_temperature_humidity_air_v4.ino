@@ -140,7 +140,7 @@ void setIp(String ip){
      if ((WiFiMulti.run() == WL_CONNECTED)) {
        WiFiClient client;
        HTTPClient http;
-       if (http.begin(client, "https://www.back.app.cortijodemazas.com/sensor/temperature/"+deviceName+"/"+ip+":"+port)) {
+       if (http.begin(client, "https://back.app.cortijodemazas.com/sensor/temperature/"+deviceName+"/"+ip+":"+port)) {
          int httpCode = http.POST("");
          if (httpCode > 0) {
            if (httpCode == 200 ) {

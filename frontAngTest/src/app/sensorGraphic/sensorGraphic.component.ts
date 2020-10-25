@@ -40,7 +40,7 @@ subscription:any;
   }
 
   getSensorType( sensorName ){
-    let url = "https://www.back.app.cortijodemazas.com/sensor/type/" + sensorName
+    let url = "https://back.app.cortijodemazas.com/sensor/type/" + sensorName
     this.http.get(url).subscribe( data =>
     {
       if(data != null){
@@ -57,7 +57,7 @@ subscription:any;
   // }
 
   getData(sensor, type){
-      let url = "https://www.back.app.cortijodemazas.com/all/" + type + "/" + sensor
+      let url = "https://back.app.cortijodemazas.com/all/" + type + "/" + sensor
       switch(type) {
         case "humidity":
           this.getHumidity(url, name)

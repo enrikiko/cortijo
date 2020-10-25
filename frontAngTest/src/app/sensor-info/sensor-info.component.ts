@@ -32,7 +32,7 @@ export class SensorInfoComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "https://www.back.app.cortijodemazas.com/sensor/" + sensor
+    let url = "https://back.app.cortijodemazas.com/sensor/" + sensor
     this.http.get(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -63,7 +63,7 @@ export class SensorInfoComponent implements OnInit {
   }
 
   getAvaliableDevices(){
-    let url = "https://www.back.app.cortijodemazas.com/device/all"
+    let url = "https://back.app.cortijodemazas.com/device/all"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){

@@ -34,7 +34,7 @@ export class AuthService {
       'Content-Type': 'application/json',
       'Authorization': jwt
       })
-    const url = "https://www.back.app.cortijodemazas.com/jwt"
+    const url = "https://back.app.cortijodemazas.com/jwt"
     this.http.get<any>(url, { headers: headers }).subscribe( data => {
       if(data!=null){
         if(data.status){
@@ -55,7 +55,7 @@ export class AuthService {
   }
 
   login( user, password ) {
-      const url = "https://www.back.app.cortijodemazas.com/auth"
+      const url = "https://back.app.cortijodemazas.com/auth"
       let object={}
       object["user"]=user;
       object["password"]=password;

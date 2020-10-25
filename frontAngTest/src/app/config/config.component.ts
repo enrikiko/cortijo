@@ -19,7 +19,7 @@ export class ConfigComponent implements OnInit {
   }
 
   getConfig(){
-    const url = "https://www.back.app.cortijodemazas.com/config/"
+    const url = "https://back.app.cortijodemazas.com/config/"
     this.http.get(url).subscribe( data =>
     {
       if(data!=null){
@@ -48,7 +48,7 @@ export class ConfigComponent implements OnInit {
     this.config.forEach(element => {
       configObject[element.key] = element.value
     })
-    const url = "https://www.back.app.cortijodemazas.com/config/update"
+    const url = "https://back.app.cortijodemazas.com/config/update"
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     this.http.post(url, configObject, {headers: headers}).subscribe( data =>

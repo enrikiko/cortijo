@@ -49,7 +49,7 @@ export class RequestsComponent implements OnInit {
   // }
 
   getDeviceschangesByDevice(device){
-    let url = "https://www.back.app.cortijodemazas.com/all/requests/" + device
+    let url = "https://back.app.cortijodemazas.com/all/requests/" + device
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
