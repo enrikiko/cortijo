@@ -37,7 +37,7 @@ module.exports = {
 
    getTenants: () => { return myTenants.find() },
 
-   createTenant: (tenant) => {
+   createTenant: async (tenant) => {
      if( await checkTenant(name) ){
        let newTenant = new myTenants(
          {
