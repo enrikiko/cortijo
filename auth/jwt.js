@@ -20,8 +20,8 @@ module.exports = {
              return {user:"Invalid JWT"}
         }
     },
-    signAuthJwt: async (user, password) => {
-        var generatedJWT = await jwt.sign({user:user}, privateKey, {expiresIn: "1y"})
+    signAuthJwt: async (tenant, user, password) => {
+        var generatedJWT = await jwt.sign({'user':user, 'tenant':tenant}, privateKey, {expiresIn: "1y"})
         return generatedJWT
     }
 }
