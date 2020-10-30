@@ -31,22 +31,36 @@ const taskSchema = new mongoose.Schema({
 });
 //
 let myTask = mongoose.model('Task', taskSchema);
+function checkTask(name, description) {
+  let isTask = await myTask.find({"name":name})
+  if (isTask.length <= 0){
+    return true
+  }else {
+    return false
+  }
+}
+function verifyTask(name, description) {
+  if ( name!=null &&  description!=null && checkTask(name, description) ){
+    return true
+  }else {
+    return false
+  }
+}
 //
 module.exports = {
   newTask: async(name, description) => {
-      let isTask = await myTask.find({"name":name})
-      if (isTask.length <= 0){
-        let task = new myTask(
-          {
-            time: new Date().getTime(),
-            name: name,
-            description: description,
-            status: "todo"
-          });
-        task.save(function(err) {
-          if (err) throw err;
+    if ( verifyTask(name, description )){
+      let task = new myTask(
+        {
+          time: new Date().getTime(),
+          name: name,
+          description: description,
+          status: "todo"
         });
-        return true;
+      task.save(function(err) {
+        if (err) throw err;
+      });
+      return true;
     } else {
       return false;
     }
