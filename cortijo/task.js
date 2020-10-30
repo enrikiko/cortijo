@@ -31,7 +31,7 @@ const taskSchema = new mongoose.Schema({
 });
 //
 let myTask = mongoose.model('Task', taskSchema);
-function checkTask(name, description) {
+async function checkTask(name, description) {
   let isTask = await myTask.find({"name":name})
   if (isTask.length <= 0){
     return true
@@ -39,7 +39,7 @@ function checkTask(name, description) {
     return false
   }
 }
-function verifyTask(name, description) {
+async function verifyTask(name, description) {
   if ( name!=null &&  description!=null && checkTask(name, description) ){
     return true
   }else {
