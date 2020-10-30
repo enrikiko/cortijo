@@ -43,7 +43,7 @@ async function checkTask(name, description) {
 async function verifyTask(name, description) {
   let isTask = await checkTask(name, description)
   console.log(isTask);
-  if ( name!=null &&  description!=null && isTask ){
+  if ( name!=null && description!=null && isTask ){
     return true
   }else {
     return false
@@ -52,7 +52,7 @@ async function verifyTask(name, description) {
 //
 module.exports = {
   newTask: async(name, description) => {
-    if ( verifyTask(name, description )){
+    if ( await verifyTask(name, description) ){
       let task = new myTask(
         {
           time: new Date().getTime(),
