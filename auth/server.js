@@ -30,7 +30,7 @@ app.get("/*", function(req, res, next) {
   next()
 })
 
-//Get log
+// Get log
 app.get("/info", function(req, res) { //OK
     var info = {"Version": version, "Start time": startDate}
     res.status(200).json(info)

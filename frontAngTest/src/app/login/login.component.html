@@ -6,6 +6,8 @@
         <input placeholder="User" [(ngModel)]="userName" name="userName" class="form-control" id="userName" type="text">
         <label for="password" class="sr-only">Password</label>
         <input placeholder="Password" [(ngModel)]="password" name="password" class="form-control" id="password" type="password">
+        <label for="tenant" class="sr-only">Tenant</label>
+        <input placeholder="Tenant" [(ngModel)]="tenant" name="tenant" class="form-control" id="tenant" type="tenant">
         <button class="btn btn-lg btn-primary btn-block mt-5" type="submit">Log in</button>
         <h2 *ngIf="loginFail" class="bg-danger"> Auth fail! </h2>
         <h2 *ngIf="loginSuccess" class="bg-danger"> Auth Success! </h2>

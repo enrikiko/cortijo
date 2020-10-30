@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
     const target = event.target
     const user = target.querySelector('#userName').value
     const password = target.querySelector('#password').value
-    const loginResult = this.auth.login(user, password)
+    const tenant = target.querySelector('#tenant').value
+    const loginResult = this.auth.login(tenant, user, password)
 
   }
   getUrl(){
