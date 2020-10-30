@@ -66,9 +66,9 @@ app.get("/liveness", function(req, res) {res.status(200).send()})
 app.post("/newTenant", async function (req, res) {
   name = req.body.name;
   var result = await tenants.createTenant(name)
-  if(result){res.status(201).send()}
+  if(result){res.status(201).send(name)}
   else {
-    res.status(200).send()
+    res.status(400).send()
   }
 })
 

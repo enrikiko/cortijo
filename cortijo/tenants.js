@@ -24,22 +24,37 @@ const tenantSchema = new mongoose.Schema({
 // definicion del modelo de dato de nuevos articulos
 let myTenants = mongoose.model('Tenants', tenantSchema);
 
+async function checkTenant(name) {
+  let isTenantNameAvaliable = await myTenants.find({"name":name})
+  if ( isTenantNameAvaliable.length <= 0 ){
+    return true
+  }else {
+    return false
+  }
+}
+
 module.exports = {
 
    getTenants: () => { return myTenants.find() },
 
    createTenant: (tenant) => {
-     let newTenant = new myTenants(
-       {
-         name: tenant
-       });
+     if(checkTenant(name)){
+       let newTenant = new myTenants(
+         {
+           name: tenant
+         });
        newTenant.save( function(err, result) {
          if (err) throw err;
          if(result) {
-           console.log('Tenant % have been create', tenant)
+           console.log('Tenant %t have been create', tenant)
            logs.log(result);
          }
        });
+       return true
+     }else {
+       return false
+     }
+
      }
 
 }
