@@ -34,17 +34,26 @@ const deviceSchema = new mongoose.Schema({
 });
 
 // definicion del modelo de dato de nuevos articulos
-let myDevice = mongoose.model('Devices', deviceSchema);
+// let myDevice = mongoose.model('Devices', deviceSchema);
 
 module.exports = {
 //
-   getDevice: () => { return myDevice.find() },
+   getDevice: (tenant) => {
+     let myDevice = mongoose.model(tenant+'-Devices', deviceSchema);
+     return myDevice.find() },
 //
-   getDeviceByName: (name) => { return myDevice.find({name: name})},
+   getDeviceByName: (tenant, name) => {
+       let myDevice = mongoose.model(tenant+'-Devices', deviceSchema);
+       return myDevice.find({name: name})
+     },
 //
-   getDeviceById: (id) => { return myDevice.findById(id)},
+   getDeviceById: (tenant, id) => {
+       let myDevice = mongoose.model(tenant+'-Devices', deviceSchema);
+       return myDevice.findById(id)
+     },
 //
-   newDevice: (name, status, ip) => {
+   newDevice: (tenant, name, status, ip) => {
+     let myDevice = mongoose.model(tenant+'-Devices', deviceSchema);
      let device = new myDevice(
        {
          name: name,
@@ -59,7 +68,8 @@ module.exports = {
      });
    },
 //
-   getIdByName: async (deviceName) => {
+   getIdByName: async (tenant, deviceName) => {
+     let myDevice = mongoose.model(tenant+'-Devices', deviceSchema);
      async function getList(name){
         return myDevice.find({name: name})
      }
@@ -75,7 +85,8 @@ module.exports = {
      }
    },
 //
-   getIpByName: async (deviceName) => {
+   getIpByName: async (tenant,deviceName) => {
+     let myDevice = mongoose.model(tenant+'-Devices', deviceSchema);
      async function getList(name){
         return myDevice.find({name: name})
      }
@@ -91,7 +102,8 @@ module.exports = {
      }
    },
 //
-   updateDevice: (id, status) => {
+   updateDevice: (tenant, id, status) => {
+    let myDevice = mongoose.model(tenant+'-Devices', deviceSchema);
     return myDevice.findById(id, function(err, result) {
        if (err) throw err
        if(result){
@@ -101,7 +113,8 @@ module.exports = {
      });
    },
 //
-   updateDeviceIp: (id, ip) => {
+   updateDeviceIp: (tenant,id, ip) => {
+     let myDevice = mongoose.model(tenant+'-Devices', deviceSchema);
      var device = myDevice.findById(id, function(err, result) {
        if (err) throw err
        if(result){
@@ -112,7 +125,8 @@ module.exports = {
      return device.ip;
    },
 //
-   removeDeviceByName: (deviceName) => {
+   removeDeviceByName: (tenant, deviceName) => {
+    let myDevice = mongoose.model(tenant+'-Devices', deviceSchema);
     return myDevice.deleteOne({name: deviceName}, function(err, result) {
       if (err) throw err
       if(result){
@@ -121,8 +135,9 @@ module.exports = {
       });
     },
 //
-    setCheckDeviceByName: async (deviceName, status) => {
-    return myDevice.find({name: deviceName}, function(err, result) {
+    setCheckDeviceByName: async (tenant, deviceName, status) => {
+     let myDevice = mongoose.model(tenant+'-Devices', deviceSchema);
+     return myDevice.find({name: deviceName}, function(err, result) {
        if (err) throw err
        if(result.length==1){
          result=result[0]

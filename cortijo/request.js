@@ -94,8 +94,8 @@ module.exports={
        return response.statusCode;
      },
 
-     auth: async (user, password) => {
-       const url = AUTH_JWT+"/auth/"+user+"/"+password
+     auth: async (user, password, tenant) => {
+       const url = AUTH_JWT+"/auth/"+tenant+"/"+user+"/"+password
        async function getResponse(url) {
          let response = await superagent.get(url);
          return response.body.jwt;
@@ -103,8 +103,8 @@ module.exports={
        return await getResponse(url);
      },
 
-     newUser: async (user, password, secret) => {
-       const url = AUTH_JWT+"/user/"+user+"/"+password+"/"+secret
+     newUser: async (user, password, tenant, secret) => {
+       const url = AUTH_JWT+"/user/"+tenant+"/"+user+"/"+password+"/"+secret
        async function getResponse(url) {
          response = await superagent.post(url);
          return response.body
@@ -121,11 +121,11 @@ module.exports={
        return await getResponse(url);
      },
 
-     getUserByJWT: async (jwt) => {
+     getDataJWT: async (jwt) => {
         const url = AUTH_JWT+"/jwt/"+jwt
         async function getResponse(url) {
             let response = await superagent.get(url);
-            if(response.status==200){return response}
+            if(response.status==200){return response.body}
             else{ throw false }
         }
        return await getResponse(url);

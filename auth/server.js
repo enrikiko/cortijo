@@ -41,12 +41,13 @@ app.get("/favicon.ico", async function(req, res) {
     res.status(200).send(fs.readFileSync('favicon.ico'))
   })
 
-app.get("/auth/:user/:password", async function(req, res) {
+app.get("/auth/:tenant/:user/:password", async function(req, res) {
+     tenant = req.params.tenant;
      user = req.params.user;
      password = req.params.password;
-     var status = await auth.isUser(user, password)
-     if(status==true){
-          generatedJWT = await jwt_auth.signAuthJwt(user)
+     var status = await auth.isUser(tenant, user, password)
+     if(status){
+          generatedJWT = await jwt_auth.signAuthJwt(tenant, user)
           var responseJson = {"jwt": generatedJWT}
           res.status(200).json(responseJson)
      }
@@ -56,10 +57,11 @@ app.get("/auth/:user/:password", async function(req, res) {
 
 })
 
-app.get('/user/:user/:password',async function(req, res){
+app.get('/user/:tenant/:user/:password',async function(req, res){
+     tenant = req.params.tenant;
      user = req.params.user;
      password = req.params.password;
-     var status = await auth.isUser(user,password)
+     var status = await auth.isUser(tenant, user, password)
      if(status==true){res.status(200).send(response(true))}
      else{res.status(401).send(response(false))}
 });
@@ -68,9 +70,9 @@ app.get("/jwt/:jwt", async function(req, res) {
      jwt = req.params.jwt;
      try{
         payload = await jwt_auth.verifyJwt(jwt)
-        isUser = await auth.isValidUser(payload.user)
+        isUser = await auth.isValidUser(payload.tenant, payload.user)
         if(isUser){
-            res.status(200).send(payload.user)
+            res.status(200).json({ 'tenant': payload.tenant, 'user': payload.user })
         }
         else{
             console.log("Unauthorized")
@@ -94,23 +96,24 @@ app.get("/jwt/:jwt", async function(req, res) {
 //      res.status(200).json(payload.val)
 // })
 //
-app.get("/all/:token", async function(req, res) {
-     token = req.params.token;
-     if(token==process.env.TOKEN){
-          var all = await auth.getAll()
-          res.status(200).json(all)
-     }else{res.status(401).send(false)}
-})
+// app.get("/all/:token", async function(req, res) {
+//      token = req.params.token;
+//      if(token==process.env.TOKEN){
+//           var all = await auth.getAll()
+//           res.status(200).json(all)
+//      }else{res.status(401).send(false)}
+// })
 //
-app.delete('/user/:user/:password/:token', async function(req, res){
+app.delete('/user/:tenant/:user/:password/:token', async function(req, res){
+     tenant = req.params.tenant;
      user = req.params.user;
      password = req.params.password;
      token = req.params.token;
      if(token==process.env.TOKEN){
           console.log("Token correct")
-          var status = await auth.isUser(user,password)
+          var status = await auth.isUser(tenant, user, password)
           if(status){
-               var result = await auth.removeUser(user, password)
+               var result = await auth.removeUser(tenant, user, password)
                console.log(result)
                res.status(200).send("User removed successfuly")
           }else{
@@ -123,15 +126,17 @@ app.delete('/user/:user/:password/:token', async function(req, res){
      }
 });
 
-app.post('/user/:user/:password/:token', async function(req, res){
+app.post('/user/:tenant/:token/:user/:password/:token', async function(req, res){
+    tenant = req.params.tenant;
+    token = req.params.token;
     user = req.params.user;
     password = req.params.password;
     token = req.params.token;
     if(token==process.env.TOKEN){
         console.log("Token correct")
-        isCreateUser = await auth.createUser(user, password)
+        isCreateUser = await auth.createUser(tenant, user, password)
         if ( isCreateUser ) {
-            generatedJWT = await jwt_auth.signAuthJwt(user)
+            generatedJWT = await jwt_auth.signAuthJwt(tenant, user)
             res.status(201).json({"status":"User created successfuly","jwt":generatedJWT})
         }else {
             response.status="User already exist"

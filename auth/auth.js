@@ -25,31 +25,40 @@ const authSchema = new mongoose.Schema({
 });
 
 // definicion del modelo de dato de nuevos articulos
-let myAuth = mongoose.model('Auth', authSchema);
+// let myAuth = mongoose.model('Auth', authSchema);
 
 module.exports = {
 
-    getAll: () => { return myAuth.find() },
-    getUser: (user) => { return myAuth.find({user: user})},
-    createUser: async (user, password) => {
-        userList = await myAuth.find({user: user})
-        if( userList.length > 0 ){return false}
-        else{
-            let auth = new myAuth({
-                user: user,
-                password: password
-            });
-            auth.save(function(err, result) {
-                if (err) throw err;
-                if(result) {
-                    console.log(result);
-                }
-            });
-            return true
-        }
+    getAll: (tenant) => {
+      let myAuth = mongoose.model(tenant+'-Auth', authSchema);
+      return myAuth.find()
     },
-   removeUser: (user) => {
+
+    getUser: (tenant, user) => {
+      let myAuth = mongoose.model(tenant+'-Auth', authSchema);
+      return myAuth.find({user: user})},
+
+    createUser: async (tenant, user, password) => {
+      let myAuth = mongoose.model(tenant+'-Auth', authSchema);
+      userList = await myAuth.find({user: user})
+      if( userList.length > 0 ){return false}
+      else{
+          let auth = new myAuth({
+              user: user,
+              password: password
+          });
+          auth.save(function(err, result) {
+              if (err) throw err;
+              if(result) {
+                  console.log(result);
+              }
+          });
+          return true
+      }
+    },
+   removeUser: (tenant, user) => {
      console.log("Removing "+user+"...")
+     let myAuth = mongoose.model(tenant+'-Auth', authSchema);
      return myAuth.remove({user: user}, function(err, result) {
      if (err) throw err
      if(result){
@@ -58,7 +67,8 @@ module.exports = {
     });
    },
 
-   isUser: async (name, password) => {
+   isUser: async (tenant, name, password) => {
+     let myAuth = mongoose.model(tenant+'-Auth', authSchema);
      async function getUser(userName){
         return myAuth.find({user: userName})
      }
@@ -69,8 +79,9 @@ module.exports = {
      }else { return false }
    },
 
-   isValidUser: async(name) => {
-   async function getUser(userName){
+   isValidUser: async(tenant, name) => {
+     let myAuth = mongoose.model(tenant+'-Auth', authSchema);
+     async function getUser(userName){
         return myAuth.find({user: userName})
      }
      var userList = await getUser(name)

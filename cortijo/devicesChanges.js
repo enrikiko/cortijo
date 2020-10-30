@@ -37,11 +37,12 @@ const devicesChangesSchema = new mongoose.Schema({
   }
 });
 
-let myRequest = mongoose.model('DevicesChanges', devicesChangesSchema);
+// let myRequest = mongoose.model('DevicesChanges', devicesChangesSchema);
 
 module.exports = {
 
-  newRequest: (name, status, user, lapse) => {
+  newRequest: (tenant, name, status, user, lapse) => {
+    let myRequest = mongoose.model(tenant+'-DevicesChanges', devicesChangesSchema);
     let request = new myRequest(
       {
         time: new Date().getTime(),
@@ -58,10 +59,16 @@ module.exports = {
     });
   },
 
-  getAllRequest: () => { return myRequest.find().sort({time:-1}) },
+  getAllRequest: (tenant) => {
+    let myRequest = mongoose.model(tenant+'-DevicesChanges', devicesChangesSchema);
+    return myRequest.find().sort({time:-1}) },
 
-  getAllRequestByDevice: (device) => { return myRequest.find({name:device }).sort({time:-1}) },
+  getAllRequestByDevice: (tenant, device) => {
+    let myRequest = mongoose.model(tenant+'-DevicesChanges', devicesChangesSchema);
+    return myRequest.find({name:device }).sort({time:-1}) },
 
-  getAllRequestByUser: (user) => { return myRequest.find({user:user }).sort({time:-1}) }
+  getAllRequestByUser: (tenant, user) => {
+    let myRequest = mongoose.model(tenant+'-DevicesChanges', devicesChangesSchema);
+    return myRequest.find({user:user }).sort({time:-1}) }
 
 }

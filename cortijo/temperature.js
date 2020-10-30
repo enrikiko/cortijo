@@ -31,24 +31,29 @@ const temperatureSchema = new mongoose.Schema({
   },
 });
 //
-let myTemperature = mongoose.model('Temperature', temperatureSchema);
+// let myTemperature = mongoose.model('Temperature', temperatureSchema);
 //
 module.exports = {
 //
-    deleteByName: async (name) => { return myTemperature.deleteMany({"name":name}) } ,
+    deleteByName: async (tenant, name) => {
+      let myTemperature = mongoose.model(tenant+'-Temperature', temperatureSchema);
+      return myTemperature.deleteMany({"name":name}) } ,
 //
-    newTemperature: (name, temperature, humidity) => {
-        let newMeasure = new myTemperature(
-          {
-            time: new Date().getTime(),
-            temperature: temperature,
-            humidity: humidity,
-            name: name
-          });
-        newMeasure.save(function(err) {
-          if (err) throw err;
+    newTemperature: (tenant, name, temperature, humidity) => {
+      let myTemperature = mongoose.model(tenant+'-Temperature', temperatureSchema);
+      let newMeasure = new myTemperature(
+        {
+          time: new Date().getTime(),
+          temperature: temperature,
+          humidity: humidity,
+          name: name
         });
+      newMeasure.save(function(err) {
+        if (err) throw err;
+      });
     },
 //
-    getByName: async(name, time) => { return await myTemperature.find({"name":name}).sort({time:-1}).limit(time)}
+    getByName: async(tenant, name, time) => {
+      let myTemperature = mongoose.model(tenant+'-Temperature', temperatureSchema);
+      return await myTemperature.find({"name":name}).sort({time:-1}).limit(time)}
 }

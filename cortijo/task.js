@@ -30,8 +30,9 @@ const taskSchema = new mongoose.Schema({
   },
 });
 //
-let myTask = mongoose.model('Task', taskSchema);
-async function checkTask(name, description) {
+// let myTask = mongoose.model('Task', taskSchema);
+async function checkTask(tenant, name, description) {
+  let myTask = mongoose.model(tenant+'-Task', taskSchema);
   let isTask = await myTask.find({"name":name})
   if (isTask.length <= 0){
     return true
@@ -39,8 +40,8 @@ async function checkTask(name, description) {
     return false
   }
 }
-async function verifyTask(name, description) {
-  if ( name!=null && description!=null && await checkTask(name, description) ){
+async function verifyTask(tenant, name, description) {
+  if ( name!=null && description!=null && await checkTask(tenant, name, description) ){
     return true
   }else {
     return false
@@ -48,7 +49,8 @@ async function verifyTask(name, description) {
 }
 //
 module.exports = {
-  newTask: async(name, description) => {
+  newTask: async(tenant, name, description) => {
+    let myTask = mongoose.model(tenant+'-Task', taskSchema);
     if ( await verifyTask(name, description) ){
       let task = new myTask(
         {
@@ -65,9 +67,12 @@ module.exports = {
       return false;
     }
   },
-  getTasks: async (status) => {return await myTask.find({"status":status})},
+  getTasks: async (tenant, status) => {
+    let myTask = mongoose.model(tenant+'-Task', taskSchema);
+    return await myTask.find({"status":status})},
   //
-  updateTask: async (name, status) => {
+  updateTask: async (tenant, name, status) => {
+    let myTask = mongoose.model(tenant+'-Task', taskSchema);
     return myTask.findOne({"name":name},function(err, result) {
       if (err) throw err
       if(result){
