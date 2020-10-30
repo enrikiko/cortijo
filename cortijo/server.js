@@ -389,17 +389,17 @@ app.get("/status/:device", async function(req, res) {
 ///////////////////////////                     Secure request JWT needed                 /////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-app.get("/*", async function(req, res, next) {
-    try{
-        let jwt = req.headers.authorization
-        let user = await request.getUserByJWT(jwt)
-        req.params.user = "user"
-        next()
-    }catch(e){
-       logs.error(e)
-       res.status(401).json({"jwt":"Error"})
-    }
-})
+// app.get("/*", async function(req, res, next) {
+//     try{
+//         let jwt = req.headers.authorization
+//         let user = await request.getUserByJWT(jwt)
+//         req.params.user = "user"
+//         next()
+//     }catch(e){
+//        logs.error(e)
+//        res.status(401).json({"jwt":"Error"})
+//     }
+// })
 //
 app.post("/*", async function(req, res, next) {
     try{
@@ -433,17 +433,17 @@ app.post("/config/update",async function(req, res) {
     await config.safeValues(req.body)
     res.status(200).json(config.getValues())
 })
-// app.get("/update/*", async function(req, res, next) {
-//     try{
-//         let jwt = req.headers.authorization
-//         let user = await request.getUserByJWT(jwt)
-//         req.user = user.text
-//         next()
-//     }catch(e){
-//        logs.error(e)
-//        res.status(401).json({"jwt":"Error"})
-//     }
-// })
+app.get("/update/*", async function(req, res, next) {
+    try{
+        let jwt = req.headers.authorization
+        let user = await request.getUserByJWT(jwt)
+        req.user = user.text
+        next()
+    }catch(e){
+       logs.error(e)
+       res.status(401).json({"jwt":"Error"})
+    }
+})
 //
 //update device
 //var isUpdating={}
