@@ -1,4 +1,4 @@
-const request = require('superagent');
+const superagent = require('superagent');
 const req = require('request');
 const myTemperature = require('./temperature');
 const myDevicesChanges = require('./devicesChanges');
@@ -32,7 +32,7 @@ module.exports={
        async function getResponse() {
         try{
             ip = await myDevice.getIpByName(name)
-            let response = await request.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: config.get("switch_status_timeout")});
+            let response = await superagent.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: config.get("switch_status_timeout")});
             if(response.statusCode==200){
                 id = await myDevice.getIdByName(name)
                 await myDevice.updateDevice(id, status)
@@ -59,7 +59,7 @@ module.exports={
      getDeviceStatus: async (name) => {
         async function status() {
             ip= await myDevice.getIpByName(name)
-            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
+            let response = await superagent.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
             return response["body"];
         }
      return await status();
@@ -68,7 +68,7 @@ module.exports={
      getSensorStatus: async (name) => {
         async function status() {
             ip= await mySensor.getIpByName(name)
-            let response = await request.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
+            let response = await superagent.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
             return response["body"];
         }
      return await status();
@@ -76,7 +76,7 @@ module.exports={
 
      getWebSocketDevice: async () => {
        const url = WEBSOCKET_URL+"/devices"
-       let response = await request.get(url);
+       let response = await superagent.get(url);
        return response.body;
      },
 
@@ -84,7 +84,7 @@ module.exports={
        const url = WEBSOCKET_URL+"/"+name+"/"+status
        let response
        try {
-         response = await request.post(url);
+         response = await superagent.post(url);
        } catch (e) {
          console.error(e);
        }finally{
@@ -97,7 +97,7 @@ module.exports={
      auth: async (user, password) => {
        const url = AUTH_JWT+"/auth/"+user+"/"+password
        async function getResponse(url) {
-         let response = await request.get(url);
+         let response = await superagent.get(url);
          return response.body.jwt;
        }
        return await getResponse(url);
@@ -106,7 +106,7 @@ module.exports={
      newUser: async (user, password, secret) => {
        const url = AUTH_JWT+"/user/"+user+"/"+password+"/"+secret
        async function getResponse(url) {
-         response = await request.post(url);
+         response = await superagent.post(url);
          return response.body
        }
        return await getResponse(url);
@@ -115,7 +115,7 @@ module.exports={
      verifyJwt: async (jwt) => {
        const url = AUTH_JWT+"/auth/jwt/"+jwt
        async function getResponse(url) {
-         let response = await request.get(url);
+         let response = await superagent.get(url);
          return response.jwt;
        }
        return await getResponse(url);
@@ -124,7 +124,7 @@ module.exports={
      getUserByJWT: async (jwt) => {
         const url = AUTH_JWT+"/jwt/"+jwt
         async function getResponse(url) {
-            let response = await request.get(url);
+            let response = await superagent.get(url);
             if(response.status==200){return response}
             else{ throw false }
         }
