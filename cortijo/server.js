@@ -3,12 +3,12 @@ const { exec } = require('child_process');
 const express = require("express");
 const myDevice = require('./devices');
 const myDevicesChanges = require('./devicesChanges');
-const joker = require('./joker');
+const request = require('./request');
 const logs = require('./logs');
 const wifi = require('./wifi');
 const myTemperature = require('./temperature');
 const myHumidity = require('./humidity');
-const requests = require('./requests');
+const requests = require('./saveRequests');
 const mySensor = require('./sensors');
 const timeout = require('./timeout');
 const config = require('./config');
@@ -20,12 +20,13 @@ const app = express();
 const fs = require('fs')
 const yaml = require('js-yaml')
 const cookieParser = require('cookie-parser');
+
 app.enable('trust proxy');
 app.use(bodyParser.json());
 app.use(cors());
 app.options('*', cors());
 app.use(express())
-app.enable('trust proxy')
+
 const version = config.get("version");
 //
 app.get("/readiness", function(req, res) {res.status(200).send()})
@@ -36,7 +37,7 @@ app.get("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
-  //logs.newLog(ip, fullUrl)
+  saveRequests.newRequest(ip, fullUrl)
   next()
 })
 //
@@ -44,7 +45,7 @@ app.post("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
-  //logs.newLog(ip, fullUrl)
+  saveRequests.newRequest(ip, fullUrl)
   next()
 })
 app.put("/*", function(req, res, next) {
@@ -53,9 +54,10 @@ app.put("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl + "/" + user + "/" + password;
   var ip = req.ip
-  //logs.newLog(ip, fullUrl)
+  saveRequests.newRequest(ip, fullUrl)
   next()
 })
+// Tasks
 //
 app.post("/task",async function (req, res) {
   name = req.body.name;
@@ -93,20 +95,11 @@ app.get("/task/:status",async function (req, res) {
   }
 })
 //
-//Get log
+//  Get log
+//
 app.get("/info", function(req, res) {
     var info = {"Version": version, "StartTime": startDate}
     res.status(200).json(info)
-})
-//
-app.get("/config", function(req, res) {
-    res.status(200).json(config.getValues())
-})
-//
-//TODO after JWT
-app.post("/config/update",async function(req, res) {
-    await config.safeValues(req.body)
-    res.status(200).json(config.getValues())
 })
 //
 //favicon.ico
@@ -147,7 +140,7 @@ app.put("/auth", async function(req, res) {
     if (user==null||password==null||user==""||password=="") {res.status(401).json({"status":false})}
     else {
       try{
-          var jwt = await joker.auth(user, password);
+          var jwt = await request.auth(user, password);
           logs.log("jwt: "+jwt);
           res.cookie('jwt',jwt);
           data={"status":true}
@@ -169,7 +162,7 @@ app.post("/auth", async function(req, res) {
   if (user==null||password==null||secret==null||user==""||password==""||secret=="") {res.status(401).json({"status":false})}
   else {
     try {
-      var response = await joker.newUser(user, password, secret);
+      var response = await request.newUser(user, password, secret);
       jwt = response.jwt
       if(jwt){
           logs.log("User " + user +" has been create")
@@ -189,7 +182,7 @@ app.post("/auth", async function(req, res) {
 app.post("/device/:name/:status/:ip", async (req, res) => {
      var name = req.params.name
      var ip = req.params.ip
-     var status = joker.getStatus(req.params.status)
+     var status = request.getStatus(req.params.status)
      var id = await myDevice.getIdByName(name)
      if(status===null){
             res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
@@ -275,7 +268,7 @@ app.get("/sensor/type/:name", async function(req, res) {
 app.get("/jwt", async function(req, res) {
    const jwt = req.headers.authorization
    try{
-       user = await joker.getUserByJWT(jwt)
+       user = await request.getUserByJWT(jwt)
        res.status(200).json({"jwt":user.text,"status":true})
    }catch(e){
        res.status(401).json({"jwt":"Incorrect","status":false})
@@ -284,12 +277,12 @@ app.get("/jwt", async function(req, res) {
 //
 //TODO too much data is create the container collapse
 app.get("/all/request", async function(req, res) {
-   var response = await requests.getAllRequest();
+   var response = await saveRequests.getAllRequest();
    res.status(200).json({response})
 })
 //
 app.get("/ip/all", async function(req, res) {
-   var response = await requests.getAllIp();
+   var response = await saveRequests.getAllIp();
    res.status(200).json(response)
 })
 //
@@ -300,14 +293,14 @@ app.get("/device/all", async function(req, res) {
 })
 //
 app.get("/websocketDevice/all", async function(req, res) {
-    var response = await joker.getWebSocketDevice();
+    var response = await request.getWebSocketDevice();
     res.status(200).json(response)
 })
 //
 app.get("/updateWebSocket/:name/:status", async function(req, res){
   var name = req.params.name
   var status = req.params.status
-  var response = await joker.changeWebSocketStatus(name, status)
+  var response = await request.changeWebSocketStatus(name, status)
   res.status(response).send(status)
 })
 //
@@ -381,7 +374,7 @@ app.get("/status/:device", async function(req, res) {
     res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
   }else {
     try {
-      var status = await joker.getDeviceStatus(name) //Get device status
+      var status = await request.getDeviceStatus(name) //Get device status
       await myDevice.setCheckDeviceByName(name, true)
       res.status(200).json(status)
     }catch (e) {
@@ -396,10 +389,10 @@ app.get("/status/:device", async function(req, res) {
 ///////////////////////////                     Secure request JWT needed                 /////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-app.delete("/*", async function(req, res, next) {
+app.get("/*", async function(req, res, next) {
     try{
         let jwt = req.headers.authorization
-        let user = await joker.getUserByJWT(jwt)
+        let user = await request.getUserByJWT(jwt)
         req.params.user = "user"
         next()
     }catch(e){
@@ -407,11 +400,12 @@ app.delete("/*", async function(req, res, next) {
        res.status(401).json({"jwt":"Error"})
     }
 })
-app.get("/update/*", async function(req, res, next) {
+//
+app.post("/*", async function(req, res, next) {
     try{
         let jwt = req.headers.authorization
-        let user = await joker.getUserByJWT(jwt)
-        req.user = user.text
+        let user = await request.getUserByJWT(jwt)
+        req.params.user = "user"
         next()
     }catch(e){
        logs.error(e)
@@ -419,8 +413,41 @@ app.get("/update/*", async function(req, res, next) {
     }
 })
 //
+app.delete("/*", async function(req, res, next) {
+    try{
+        let jwt = req.headers.authorization
+        let user = await request.getUserByJWT(jwt)
+        req.params.user = "user"
+        next()
+    }catch(e){
+       logs.error(e)
+       res.status(401).json({"jwt":"Error"})
+    }
+})
+// Get config
+app.get("/config", function(req, res) {
+    res.status(200).json(config.getValues())
+})
+//
+app.post("/config/update",async function(req, res) {
+    await config.safeValues(req.body)
+    res.status(200).json(config.getValues())
+})
+// app.get("/update/*", async function(req, res, next) {
+//     try{
+//         let jwt = req.headers.authorization
+//         let user = await request.getUserByJWT(jwt)
+//         req.user = user.text
+//         next()
+//     }catch(e){
+//        logs.error(e)
+//        res.status(401).json({"jwt":"Error"})
+//     }
+// })
+//
 //update device
 //var isUpdating={}
+// TODO change get to post
 app.get("/update/:name/false", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
@@ -467,7 +494,7 @@ app.get('/*', function(req, res){
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
-  requests.newRequest(ip, fullUrl)
+  // saveRequests.newRequest(ip, fullUrl)
   res.sendFile(__dirname + 'files/info.html');
 });
 //
@@ -475,7 +502,7 @@ app.post('/*', function(req, res){
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
-  requests.newRequest(ip, fullUrl)
+  // saveRequests.newRequest(ip, fullUrl)
   res.sendFile(__dirname + 'files/info.html');
 });
 //
@@ -483,7 +510,7 @@ app.delete('/*', function(req, res){
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
   var ip = req.ip
-  requests.newRequest(ip, fullUrl)
+  // saveRequests.newRequest(ip, fullUrl)
   res.sendFile(__dirname + 'files/info.html');
 });
 //
