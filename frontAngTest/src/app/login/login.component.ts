@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   userName:     String  = "";
   password:     String  = "";
+  tenant:     String  = "";
   loginFail:    Boolean = false;
   loginSuccess: Boolean = false;
   url                   = null;

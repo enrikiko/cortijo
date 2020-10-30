@@ -54,11 +54,12 @@ export class AuthService {
     return this.status
   }
 
-  login( user, password ) {
+  login( tenant, user, password ) {
       const url = "https://back.app.cortijodemazas.com/auth"
       let object={}
-      object["user"]=user;
-      object["password"]=password;
+      object["tenant"] = tenant;
+      object["user"] = user;
+      object["password"] = password;
       this.http.put<any>(url, object).subscribe( data =>
       {
         console.log(data);
