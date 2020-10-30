@@ -5,7 +5,7 @@ const wifi = require('./wifi')
 const logs = require('./logs');
 const myTemperature = require('./temperature');
 const myHumidity = require('./humidity');
-const request = require('superagent');
+const superagent = require('superagent');
 const req = require('request');
 const mySwitch = require('./switch');
 const config = require('./config');
@@ -62,8 +62,8 @@ async function checkDevices(){
     for (var index in devicesList){
         var name = devicesList[index].name
         try{
-            var status = await request.getDeviceStatus(name)
-            var status = await request.getDeviceStatus(name)
+            var status = await superagent.getDeviceStatus(name)
+            var status = await superagent.getDeviceStatus(name)
             await myDevice.setCheckDeviceByName(name, true)
             if (status.SSID && status.SIGNAL){
                 await wifi.newSignal(name,status.SSID,status.SIGNAL)
@@ -88,8 +88,8 @@ async function chechSensors() {
   for (var index in sensorsList){
       var name = sensorsList[index].name
       try{
-        var status = await request.getSensorStatus(name)
-        var status = await request.getSensorStatus(name)
+        var status = await superagent.getSensorStatus(name)
+        var status = await superagent.getSensorStatus(name)
         if (status.SSID){
             await wifi.newSignal(name,status.SSID,status.SIGNAL)
             statusMap[name] = {"SSID":status.SSID, "SIGNAL":status.SIGNAL}
