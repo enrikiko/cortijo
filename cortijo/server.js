@@ -1,25 +1,29 @@
 const startDate = Date();
+
 const { exec } = require('child_process');
 const express = require("express");
-const myDevice = require('./devices');
-const myDevicesChanges = require('./devicesChanges');
-const request = require('./request');
-const logs = require('./logs');
-const wifi = require('./wifi');
-const myTemperature = require('./temperature');
-const myHumidity = require('./humidity');
-const saveRequests = require('./saveRequests');
-const mySensor = require('./sensors');
-const timeout = require('./timeout');
-const config = require('./config');
-const myTask = require('./task');
-const mySwitch = require('./switch');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const fs = require('fs')
 const yaml = require('js-yaml')
 const cookieParser = require('cookie-parser');
+
+const myDevicesChanges = require('./devicesChanges');
+const saveRequests = require('./saveRequests');
+const myTemperature = require('./temperature');
+const myHumidity = require('./humidity');
+const mySensor = require('./sensors');
+const myDevice = require('./devices');
+const mySwitch = require('./switch');
+const timeout = require('./timeout');
+const request = require('./request');
+const config = require('./config');
+const myTask = require('./task');
+const logs = require('./logs');
+const wifi = require('./wifi');
+const tenants = require('./tenants')
+
 
 app.enable('trust proxy');
 app.use(bodyParser.json());
@@ -33,32 +37,49 @@ app.get("/readiness", function(req, res) {res.status(200).send()})
 //
 app.get("/liveness", function(req, res) {res.status(200).send()})
 //
-app.get("/*", function(req, res, next) {
-  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
-  var fullUrl = req.protocol + '://' + host + req.originalUrl;
-  var ip = req.ip
-  saveRequests.newRequest(ip, fullUrl)
-  next()
-})
+// app.get("/*", function(req, res, next) {
+//   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+//   var fullUrl = req.protocol + '://' + host + req.originalUrl;
+//   var ip = req.ip
+//   saveRequests.newRequest(ip, fullUrl)
+//   next()
+// })
 //
-app.post("/*", function(req, res, next) {
-  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
-  var fullUrl = req.protocol + '://' + host + req.originalUrl;
-  var ip = req.ip
-  saveRequests.newRequest(ip, fullUrl)
-  next()
-})
-app.put("/*", function(req, res, next) {
-  var user = req.body.user;
-  var password = req.body.password;
-  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
-  var fullUrl = req.protocol + '://' + host + req.originalUrl + "/" + user + "/" + password;
-  var ip = req.ip
-  saveRequests.newRequest(ip, fullUrl)
-  next()
-})
+// app.post("/*", function(req, res, next) {
+//   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+//   var fullUrl = req.protocol + '://' + host + req.originalUrl;
+//   var ip = req.ip
+//   saveRequests.newRequest(ip, fullUrl)
+//   next()
+// })
+// app.put("/*", function(req, res, next) {
+//   var user = req.body.user;
+//   var password = req.body.password;
+//   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+//   var fullUrl = req.protocol + '://' + host + req.originalUrl + "/" + user + "/" + password;
+//   var ip = req.ip
+//   saveRequests.newRequest(ip, fullUrl)
+//   next()
+// })
 // Tasks
 //
+app.post("/newTenant", async function (req, res) {
+  name = req.body.name;
+  var result = await tenants.createTenant(name)
+  if(result){res.status(201).send()}
+  else {
+    res.status(200).send()
+  }
+})
+
+app.get("/tenants", async function (req, res) {
+  var result = await tenants.getTenants(name)
+  if(result){res.status(201).send(result)}
+  else {
+    res.status(200).send()
+  }
+})
+
 app.post("/task",async function (req, res) {
   name = req.body.name;
   description = req.body.description;

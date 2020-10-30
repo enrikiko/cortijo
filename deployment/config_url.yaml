@@ -1,5 +1,5 @@
 ---
-  db_url: mongodb://192.168.1.53:27017/cortijo
+  db_url: mongodb://192.168.1.53:27017
   socket_url: http://192.168.1.53:13000
   websocket_url: http://192.168.1.53:16001
   auth_url: http://192.168.1.53:12000
