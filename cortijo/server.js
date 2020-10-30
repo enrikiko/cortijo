@@ -73,7 +73,7 @@ app.post("/newTenant", async function (req, res) {
 })
 
 app.get("/tenants", async function (req, res) {
-  var result = await tenants.getTenants(name)
+  var result = await tenants.getTenants()
   if(result){res.status(201).send(result)}
   else {
     res.status(200).send()
