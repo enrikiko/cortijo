@@ -70,7 +70,7 @@ module.exports = {
      if (tenantList.length > 0) {
        return false
      }else { return false }
-   }
+   },
 
    createTenantPassword: () => {
      var length = 16
