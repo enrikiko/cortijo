@@ -1,5 +1,5 @@
 const logs = require('./logs');
-const joker = require('./joker');
+const request = require('./request');
 const myDevice = require('./devices');
 const myDevicesChanges = require('./devicesChanges');
 
@@ -8,7 +8,7 @@ let timeOutMap={}
 async function changeBackFalse(name) {
   //Change back to false
   try {
-      var responseBack = await joker.switchStatus(false, name) //Change device status
+      var responseBack = await request.switchStatus(false, name) //Change device status
       if (responseBack.code == 200) {
           logs.log("Changed back automatically due to timeout " + name + " to false")
           myDevicesChanges.newRequest(name, false, "node.js", null)
@@ -34,11 +34,11 @@ module.exports = {
     }else {
         logs.log("Change status of "+name+" to false");
         try {
-            var response = await joker.switchStatus(false, name) //Change device status //TODO make sure this is ejecute
+            var response = await request.switchStatus(false, name) //Change device status //TODO make sure this is ejecute
             if (response.code == 200) {
               clearTimeout(timeOutMap[name])
               await myDevicesChanges.newRequest(name, false, user, null)
-              joker.telegramAlert(name, null, user);
+              request.telegramAlert(name, null, user);
               if(res!=null){  //TODO is this nessesary?
                 res.status(response.code).send(response)
               }
@@ -64,11 +64,11 @@ module.exports = {
     }else {
       logs.log("Change status of "+name+" to true");
         try {
-              var response = await joker.switchStatus(true, name) //Change device status
+              var response = await request.switchStatus(true, name) //Change device status
               if (response.code == 200) {
                 await myDevicesChanges.newRequest(name, true, user, lapse)
                 timeOutMap[name] = setTimeout(changeBackFalse, lapse, name);
-                joker.telegramAlert(name, lapse, user);
+                request.telegramAlert(name, lapse, user);
                 if(res!=null){  //TODO is this nessesary?
                   res.status(response.code).send(response)
                 }

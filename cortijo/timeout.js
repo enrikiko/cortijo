@@ -1,6 +1,6 @@
 const mySensor = require('./sensors');
 const myDevice = require('./devices');
-const joker = require('./joker');
+const request = require('./request');
 const wifi = require('./wifi')
 const logs = require('./logs');
 const myTemperature = require('./temperature');
@@ -62,7 +62,8 @@ async function checkDevices(){
     for (var index in devicesList){
         var name = devicesList[index].name
         try{
-            var status = await joker.getDeviceStatus(name)
+            var status = await request.getDeviceStatus(name)
+            var status = await request.getDeviceStatus(name)
             await myDevice.setCheckDeviceByName(name, true)
             if (status.SSID && status.SIGNAL){
                 await wifi.newSignal(name,status.SSID,status.SIGNAL)
@@ -87,7 +88,8 @@ async function chechSensors() {
   for (var index in sensorsList){
       var name = sensorsList[index].name
       try{
-        var status = await joker.getSensorStatus(name)
+        var status = await request.getSensorStatus(name)
+        var status = await request.getSensorStatus(name)
         if (status.SSID){
             await wifi.newSignal(name,status.SSID,status.SIGNAL)
             statusMap[name] = {"SSID":status.SSID, "SIGNAL":status.SIGNAL}
