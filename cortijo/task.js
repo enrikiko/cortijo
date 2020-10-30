@@ -40,7 +40,7 @@ async function checkTask(name, description) {
   }
 }
 async function verifyTask(name, description) {
-  if ( name!=null &&  description!=null && checkTask(name, description) ){
+  if ( name!=null &&  description!=null && await checkTask(name, description) ){
     return true
   }else {
     return false
