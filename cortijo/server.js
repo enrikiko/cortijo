@@ -138,11 +138,11 @@ app.post("/device/:tenant/:name/:status/:ip", async (req, res) => {
         res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
    }else{
       if (!id) {
-         var response = await myDevice.newDevice(name, status, ip)
+         var response = await myDevice.newDevice(tenant, name, status, ip)
          logs.log(name+' have been created successfully');
          res.status(200).json(name+' create successfully')
       }else {
-         var lastIp = await myDevice.updateDeviceIp(id, ip)
+         var lastIp = await myDevice.updateDeviceIp(tenant, id, ip)
          res.status(200).json({"Previous Ip": lastIp, "New Ip": ip})
       }
   }
@@ -158,13 +158,13 @@ app.post("/sensor/:tenant/:type/:name/:ip", async (req, res) => {
   var min = req.query.min
   var max = req.query.max
   var lapse = req.query.lapse
-  var id = await mySensor.getIdByName(name)
+  var id = await mySensor.getIdByName(tenant, name)
   if (!id) {
-     var response = await mySensor.newSensor(name, ip, type, devices, min, max, lapse)
+     var response = await mySensor.newSensor(tenant, name, ip, type, devices, min, max, lapse)
      logs.log(name+' have been created successfully');
      res.status(200).json(name+' create successfully')
   }else {
-     var lastIp = await mySensor.updateSensor(id, ip, devices, min, max, lapse)
+     var lastIp = await mySensor.updateSensor(tenant, id, ip, devices, min, max, lapse)
      res.status(200).json({"Previous Ip": lastIp, "New Ip": ip, "Devices": devices})
   }
 })
@@ -307,7 +307,7 @@ app.get("/task/:name/:description",async function (req, res) {
   var tenant = req.tenant;
   var name = req.params.name;
   var description = req.params.description;
-  var result = await myTask.newTask(name, description)
+  var result = await myTask.newTask(tenant, name, description)
   if(result){res.status(201).send()}
   else {
     res.status(200).send()
@@ -318,7 +318,7 @@ app.post("/task/update",async function (req, res) {
   var tenant = req.tenant;
   var name = req.body.name;
   var status = req.body.status;
-  var result = await myTask.updateTask(name, status)
+  var result = await myTask.updateTask(tenant, name, status)
   if(result){res.status(201).send(true)}
   else {
     res.status(200).send()
@@ -327,7 +327,7 @@ app.post("/task/update",async function (req, res) {
 app.get("/task/:status",async function (req, res) {
   var tenant = req.tenant;
   var status = req.params.status;
-  var result = await myTask.getTasks(status)
+  var result = await myTask.getTasks(tenant, status)
   if(result){res.status(200).json(result)}
   else {
     res.status(200).send()
@@ -337,16 +337,16 @@ app.get("/task/:status",async function (req, res) {
 //Get all sensor
 app.get("/sensor/all", async function(req, res) {
   var tenant = req.tenant;
-  var response = await mySensor.getAllSensor();
+  var response = await mySensor.getAllSensor(tenant);
   res.status(200).json(response)
 })
 //
 app.get("/sensor/:name", async function(req, res) {
   var tenant = req.tenant;
   var name = req.params.name;
-  var id = await mySensor.getIdByName(name)
+  var id = await mySensor.getIdByName(tenant, name)
   if (id){
-    var response = await mySensor.getSensorByName(name);
+    var response = await mySensor.getSensorByName(tenant, name);
     res.status(200).json(response[0])
   }else {
     logs.error(name+" doesn't Exist");
@@ -357,9 +357,9 @@ app.get("/sensor/:name", async function(req, res) {
 app.get("/sensor/type/:name", async function(req, res) {
   var tenant = req.tenant;
   var name = req.params.name;
-  var id = await mySensor.getIdByName(name)
+  var id = await mySensor.getIdByName(tenant, name)
   if (id){
-    var response = await mySensor.getSensorByName(name);
+    var response = await mySensor.getSensorByName(tenant, name);
     res.status(200).json(response[0].type)
   }else {
     logs.error(name+" doesn't Exist");
@@ -376,9 +376,9 @@ app.put("/sensor/:name", async (req, res) => {
   var max = req.query.max
   var lapse = req.query.lapse
   var block = req.block.lapse
-  var id = await mySensor.getIdByName(name)
+  var id = await mySensor.getIdByName(tenant, name)
   if (id) {
-     var lastIp = await mySensor.updateSensor(id, ip, devices, min, max, lapse)
+     var lastIp = await mySensor.updateSensor(tenant, id, ip, devices, min, max, lapse)
      res.status(200).send()
   }else {
     res.status(404).send("Sensor not found")
@@ -398,13 +398,13 @@ app.put("/sensor/:name", async (req, res) => {
 //Get all device
 app.get("/device/all", async function(req, res) {
   var tenant = req.tenant;
-  var response = await myDevice.getDevice();
+  var response = await myDevice.getDevice(tenant);
   res.status(200).json(response)
 })
 //
 app.get("/websocketDevice/all", async function(req, res) {
   var tenant = req.tenant;
-  var response = await request.getWebSocketDevice();
+  var response = await request.getWebSocketDevice(tenant);
   res.status(200).json(response)
 })
 //
@@ -412,7 +412,7 @@ app.get("/updateWebSocket/:name/:status", async function(req, res){
   var tenant = req.tenant;
   var name = req.params.name
   var status = req.params.status
-  var response = await request.changeWebSocketStatus(name, status)
+  var response = await request.changeWebSocketStatus(tenant, name, status)
   res.status(response).send(status)
 })
 //
@@ -423,7 +423,7 @@ app.get("/all/temperature/:name",async function(req, res) {
   var tenant = req.tenant;
   var name = req.params.name;
   var time = parseInt(config.get("sensor_history"))
-  var temperature = await myTemperature.getByName(name, time)
+  var temperature = await myTemperature.getByName(tenant, name, time)
   res.status(200).json(temperature.reverse())
 })
 //TODO add to documentation
@@ -431,7 +431,7 @@ app.get("/all/temperature/:name/:times",async function(req, res) {
   var tenant = req.tenant;
   var name = req.params.name;
   var time = req.params.times
-  var temperature = await myTemperature.getByName(name, time)
+  var temperature = await myTemperature.getByName(tenant, name, time)
   res.status(200).json(temperature.reverse())
 })
 //
@@ -440,14 +440,14 @@ app.get("/all/humidity/:name",async function(req, res) {
   var tenant = req.tenant;
   var name = req.params.name;
   var time = parseInt(config.get("sensor_history"))
-  var humidity = await myHumidity.getAll(name, time)
+  var humidity = await myHumidity.getAll(tenant, name, time)
   res.status(200).json(humidity.reverse())
 })
 app.get("/all/humidity/:name/:times",async function(req, res) {
   var tenant = req.tenant;
   var name = req.params.name;
   var time = req.params.times
-  var humidity = await myHumidity.getAll(name, time)
+  var humidity = await myHumidity.getAll(tenant, name, time)
   res.status(200).json(humidity.reverse())
 })
 //
@@ -460,7 +460,7 @@ app.get("/all/requests/:device", async function(req, res) {
   var tenant = req.tenant;
   var tenant = req.tenant;
   var device = req.params.device;
-  const request_list = await myDevicesChanges.getAllRequestByDevice(device)
+  const request_list = await myDevicesChanges.getAllRequestByDevice(tenant, device)
   res.status(200).json(request_list)
 })
 //
@@ -475,7 +475,7 @@ app.get("/all/requests/:device", async function(req, res) {
 app.delete("/temperature/history/:name",async function(req, res) {
   var tenant = req.tenant;
   var name = req.params.name;
-  var result = await myTemperature.deleteByName(name)
+  var result = await myTemperature.deleteByName(tenant, name)
   res.status(200).send(result)
 })
 //
@@ -483,7 +483,7 @@ app.delete("/temperature/history/:name",async function(req, res) {
 app.get("/device/:name", async function(req, res) {
   var tenant = req.tenant;
   var name = req.params.name;
-  var deviceList = await myDevice.getDeviceByName(name);
+  var deviceList = await myDevice.getDeviceByName(tenant, name);
   res.status(200).json(deviceList[0])
 })
 //
@@ -491,17 +491,17 @@ app.get("/device/:name", async function(req, res) {
 app.get("/status/:device", async function(req, res) {
   var tenant = req.tenant;
   var name = req.params.device;
-  var id = await myDevice.getIdByName(name) //Get ID of the device
+  var id = await myDevice.getIdByName(tenant, name) //Get ID of the device
   if ( !id ) {
     res.status(404).json({"Request": "Incorrect", "Device": "Not found"})
   }else {
     try {
-      var status = await request.getDeviceStatus(name) //Get device status
-      await myDevice.setCheckDeviceByName(name, true)
+      var status = await request.getDeviceStatus(tenant, name) //Get device status
+      await myDevice.setCheckDeviceByName(tenant, name, true)
       res.status(200).json(status)
     }catch (e) {
       logs.error(name + " doesn't response")
-      await myDevice.setCheckDeviceByName(name, false);
+      await myDevice.setCheckDeviceByName(tenant, name, false);
       res.status(404).json({"error": e})
       }
   }
@@ -548,7 +548,7 @@ app.get("/update/:name/false", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
   var user = req.user
-  var response = await mySwitch.changeStatusToFalse(name, res, user)
+  var response = await mySwitch.changeStatusToFalse(tenant, name, res, user)
   //res.status(200).json(response)
 })
 app.get("/update/:name/true/:lapse_time", async function(req, res){
@@ -556,16 +556,16 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
   var user = req.user
-  var response = await mySwitch.changeStatusToTrue(name, lapse, res, user)
+  var response = await mySwitch.changeStatusToTrue(tenant, name, lapse, res, user)
   //res.status(200).json(response)
 })
 //Remove device by id
 app.delete("/device/:name", async function(req, res) {
   var tenant = req.tenant;
   var name = req.params.name;
-  var id = await myDevice.getIdByName(name)
+  var id = await myDevice.getIdByName(tenant, name)
   if (id){
-    var response = await myDevice.removeDeviceByName(name);
+    var response = await myDevice.removeDeviceByName(tenant, name);
     logs.log(name+" Remove successfully");
     res.status(200).json("Device Remove successfully")
   }else {
@@ -577,9 +577,9 @@ app.delete("/device/:name", async function(req, res) {
 app.delete("/sensor/:name", async function(req, res) {
   var tenant = req.tenant;
   var name = req.params.name;
-  var id = await mySensor.getIdByName(name)
+  var id = await mySensor.getIdByName(tenant, name)
   if (id){
-    var response = await mySensor.removeSensorByName(name);
+    var response = await mySensor.removeSensorByName(tenant, name);
     logs.log(name+" Remove successfully");
     res.status(200).json("Sensor remove successfully")
   }else {
