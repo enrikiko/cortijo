@@ -159,6 +159,11 @@ app.post("/sensor/:tenant/:type/:name/:ip", async (req, res) => {
   var max = req.query.max
   var lapse = req.query.lapse
   var id = await mySensor.getIdByName(tenant, name)
+  console.log(tenant);
+  console.log(name);
+  console.log(ip);
+  console.log(type);
+  console.log(id);
   if (!id) {
      var response = await mySensor.newSensor(tenant, name, ip, type, devices, min, max, lapse)
      logs.log(name+' have been created successfully');
