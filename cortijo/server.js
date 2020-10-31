@@ -123,7 +123,7 @@ app.post("/auth", async function(req, res) {
 })
 //
 //New device
-app.post("/:tenant/device/:name/:status/:ip", async (req, res) => {
+app.post("/device/:tenant/:name/:status/:ip", async (req, res) => {
   var tenant = req.params.tenant;
   var name = req.params.name
   var ip = req.params.ip
@@ -144,7 +144,7 @@ app.post("/:tenant/device/:name/:status/:ip", async (req, res) => {
 })
 //
 //New sensor
-app.post("/:tenant/sensor/:type/:name/:ip", async (req, res) => {
+app.post("/sensor/:tenant/:type/:name/:ip", async (req, res) => {
   var tenant = req.params.tenant;
   var name = req.params.name
   var ip = req.params.ip
