@@ -129,6 +129,11 @@ app.post("/device/:tenant/:name/:status/:ip", async (req, res) => {
   var ip = req.params.ip
   var status = request.getStatus(req.params.status)
   var id = await myDevice.getIdByName(name)
+  console.log(tenant);
+  console.log(name);
+  console.log(ip);
+  console.log(status);
+  console.log(id);
   if(status===null){
         res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
    }else{
