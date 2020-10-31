@@ -30,16 +30,16 @@ const authSchema = new mongoose.Schema({
 module.exports = {
 
     getAll: (tenant) => {
-      let myAuth = mongoose.model(tenant+'-Auth', authSchema);
+      let myAuth = mongoose.model(tenant+'_Auth', authSchema);
       return myAuth.find()
     },
 
     getUser: (tenant, user) => {
-      let myAuth = mongoose.model(tenant+'-Auth', authSchema);
+      let myAuth = mongoose.model(tenant+'_Auth', authSchema);
       return myAuth.find({user: user})},
 
     createUser: async (tenant, user, password) => {
-      let myAuth = mongoose.model(tenant+'-Auth', authSchema);
+      let myAuth = mongoose.model(tenant+'_Auth', authSchema);
       userList = await myAuth.find({user: user})
       if( userList.length > 0 ){return false}
       else{
@@ -58,7 +58,7 @@ module.exports = {
     },
    removeUser: (tenant, user) => {
      console.log("Removing "+user+"...")
-     let myAuth = mongoose.model(tenant+'-Auth', authSchema);
+     let myAuth = mongoose.model(tenant+'_Auth', authSchema);
      return myAuth.remove({user: user}, function(err, result) {
      if (err) throw err
      if(result){
@@ -68,7 +68,7 @@ module.exports = {
    },
 
    isUser: async (tenant, name, password) => {
-     let myAuth = mongoose.model(tenant+'-Auth', authSchema);
+     let myAuth = mongoose.model(tenant+'_Auth', authSchema);
      async function getUser(userName){
         return myAuth.find({user: userName})
      }
@@ -80,7 +80,7 @@ module.exports = {
    },
 
    isValidUser: async(tenant, name) => {
-     let myAuth = mongoose.model(tenant+'-Auth', authSchema);
+     let myAuth = mongoose.model(tenant+'_Auth', authSchema);
      async function getUser(userName){
         return myAuth.find({user: userName})
      }
