@@ -111,8 +111,13 @@ export class DevicesComponent implements OnInit {
   }
 
   getWebSocketDeviceList(){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+      })
     let url = "https://back.app.cortijodemazas.com/websocketDevice/all"
-    this.http.get<any[]>(url).subscribe( data =>
+    this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
         this.webSocketDevices=data;
@@ -156,8 +161,13 @@ export class DevicesComponent implements OnInit {
   }
 
   getDevicesList(){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
     let url = "https://back.app.cortijodemazas.com/device/all"
-    this.http.get<any[]>(url).subscribe( data =>
+    this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
         this.devices=data;
@@ -169,8 +179,13 @@ export class DevicesComponent implements OnInit {
   }
 
   getSensorList(){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
     let url = "https://back.app.cortijodemazas.com/sensor/all"
-    this.http.get<any[]>(url).subscribe( data =>
+    this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
         this.sensors=data;

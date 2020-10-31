@@ -232,6 +232,8 @@ app.get("/*", async function(req, res, next) {
       let data = await request.getDataJWT(jwt)
       req.user = data.user
       req.tenant = data.tenant
+      console.log(req.tenant);
+      console.log(req.user);
       next()
   }catch(e){
      logs.error(e)
@@ -244,6 +246,8 @@ app.post("/*", async function(req, res, next) {
       let data = await request.getDataJWT(jwt)
       req.user = data.user
       req.tenant = data.tenant
+      console.log(req.tenant);
+      console.log(req.user);
       next()
   }catch(e){
      logs.error(e)
@@ -256,6 +260,8 @@ app.delete("/*", async function(req, res, next) {
       let data = await request.getDataJWT(jwt)
       req.user = data.user
       req.tenant = data.tenant
+      console.log(req.tenant);
+      console.log(req.user);
       next()
   }catch(e){
      logs.error(e)
@@ -268,6 +274,8 @@ app.put("/*", async function(req, res, next) {
       let data = await request.getDataJWT(jwt)
       req.user = data.user
       req.tenant = data.tenant
+      console.log(req.tenant);
+      console.log(req.user);
       next()
   }catch(e){
      logs.error(e)

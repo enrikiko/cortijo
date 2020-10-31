@@ -49,8 +49,13 @@ export class RequestsComponent implements OnInit {
   // }
 
   getDeviceschangesByDevice(device){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
     let url = "https://back.app.cortijodemazas.com/all/requests/" + device
-    this.http.get<any[]>(url).subscribe( data =>
+    this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
         this.requests=data;
