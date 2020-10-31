@@ -136,8 +136,7 @@ module.exports = {
    getIdByName: async (tenant, sensorName) => {
      console.log(tenant);
      console.log(sensorName);
-     let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
-     var list = await getList(sensorName)
+     var list = await getList(tenant, sensorName)
      console.log(list);
      if (list.length > 1) {
        return "The Database is corrupted";
@@ -151,8 +150,7 @@ module.exports = {
    },
 //
    getIpByName: async (tenant, sensorName) => {
-     let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
-     var list = await getList(sensorName)
+     var list = await getList(tenant, sensorName)
      if (list.length > 1) {
        return "The Database is corrupted";
      }
@@ -206,7 +204,7 @@ module.exports = {
     getData: async (tenant, name) => {
       let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
       async function data() {
-          ip = await getIpByName(name)
+          ip = await getIpByName(tenant, name)
           try{
               let response = await request.get("http://"+ip+"/data").timeout({response: GET_DATA_TIMEOUT});
               return response["body"];
@@ -217,8 +215,7 @@ module.exports = {
         return await data();
     },
     getMin: async (tenant, name) => {
-      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
-      var list = await getList(name)
+      var list = await getList(tenant, name)
       if (list.length > 1) {
         return "The Database is corrupted";
       }
@@ -230,8 +227,7 @@ module.exports = {
       }
     },
     getMax: async (tenant, name) => {
-      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
-      var list = await getList(name)
+      var list = await getList(tenant, name)
       if (list.length > 1) {
         return "The Database is corrupted";
       }
@@ -243,8 +239,7 @@ module.exports = {
       }
     },
     getLapse: async (tenant, name) => {
-      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
-      var list = await getList(name)
+      var list = await getList(tenant, name)
       if (list.length > 1) {
         return "The Database is corrupted";
       }
@@ -256,8 +251,7 @@ module.exports = {
       }
     },
     getDevices: async (tenant, name) => {
-      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
-      var list = await getList(name)
+      var list = await getList(tenant, name)
       if (list.length > 1) {
         return "The Database is corrupted";
       }
@@ -277,8 +271,7 @@ module.exports = {
       }
     },
     increasing: async(tenant, name)=>{
-      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
-      var sensor = await getSensor(name)
+      var sensor = await getSensor(tenant, name)
       return sensor.increasing
         },
     setIncreasing: async(tenant, name, status)=>{
@@ -293,8 +286,7 @@ module.exports = {
        });
     },
     getCount: async(tenant, name)=>{
-      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
-      var sensor = await getSensor(name)
+      var sensor = await getSensor(tenant, name)
       return sensor.count
     },
     setCount: async(tenant, name, count)=>{
@@ -309,8 +301,7 @@ module.exports = {
        });
     },
     getLastValue: async(tenant, name)=>{
-      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
-      var sensor = await getSensor(name)
+      var sensor = await getSensor(tenant, name)
       return sensor.lastValue
     },
     setLastValue: async(tenant, name, lastValue)=>{
@@ -325,8 +316,7 @@ module.exports = {
        });
     },
     isBlocked: async(tenant, name)=>{
-      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
-      var sensor = await getSensor(name)
+      var sensor = await getSensor(tenant, name)
       return sensor.block
     },
     blocked: async(tenant, name, status)=>{
