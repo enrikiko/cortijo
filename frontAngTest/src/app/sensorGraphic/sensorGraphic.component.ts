@@ -40,8 +40,13 @@ subscription:any;
   }
 
   getSensorType( sensorName ){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
     let url = "https://back.app.cortijodemazas.com/sensor/type/" + sensorName
-    this.http.get(url).subscribe( data =>
+    this.http.get(url, { headers: headers }).subscribe( data =>
     {
       if(data != null){
         //this.sensorList = data
@@ -57,23 +62,28 @@ subscription:any;
   // }
 
   getData(sensor, type){
-      let url = "https://back.app.cortijodemazas.com/all/" + type + "/" + sensor
-      switch(type) {
-        case "humidity":
-          this.getHumidity(url, name)
-          // code block
-          break;
-        case "temperature":
-        this.getTemperature(url, name)
-          // code block
-          break;
-        default:
-          console.log("switch default")
-      }
+    let url = "https://back.app.cortijodemazas.com/all/" + type + "/" + sensor
+    switch(type) {
+      case "humidity":
+        this.getHumidity(url, name)
+        // code block
+        break;
+      case "temperature":
+      this.getTemperature(url, name)
+        // code block
+        break;
+      default:
+        console.log("switch default")
+    }
     }
 
     getHumidity(url, name){
-      this.http.get<HttpResponse<object>>(url).subscribe( data =>
+      const jwt = window.localStorage.getItem('jwt')
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': jwt
+      })
+      this.http.get<HttpResponse<object>>(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){
           var dataList = []
@@ -95,7 +105,12 @@ subscription:any;
     }
 
     getTemperature(url, name){
-      this.http.get<HttpResponse<object>>(url).subscribe( data =>
+      const jwt = window.localStorage.getItem('jwt')
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': jwt
+      })
+      this.http.get<HttpResponse<object>>(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){
           var temperature = []
