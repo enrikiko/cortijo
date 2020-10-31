@@ -18,8 +18,13 @@ export class WeatherComponent implements OnInit {
     this.getData()
   }
   getData(){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
     let url = "https://back.app.cortijodemazas.com/all/sensorMock/temperature"
-    this.http.get<HttpResponse<object>>(url).subscribe( data =>
+    this.http.get<HttpResponse<object>>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
         var temperature = []

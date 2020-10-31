@@ -19,8 +19,13 @@ export class ConfigComponent implements OnInit {
   }
 
   getConfig(){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
     const url = "https://back.app.cortijodemazas.com/config/"
-    this.http.get(url).subscribe( data =>
+    this.http.get(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
         var list = []
@@ -41,6 +46,12 @@ export class ConfigComponent implements OnInit {
   }
 
   change(event){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+      'Authorization': jwt
+    })
+    // headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     this.check=false
     event.preventDefault()
     //console.log(this.config);
@@ -49,8 +60,7 @@ export class ConfigComponent implements OnInit {
       configObject[element.key] = element.value
     })
     const url = "https://back.app.cortijodemazas.com/config/update"
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+
     this.http.post(url, configObject, {headers: headers}).subscribe( data =>
     {
       if(data!=null){

@@ -22,9 +22,14 @@ export class TaskComponent implements OnInit {
   }
 
   createTask() {
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json; charset=utf-8',
+      'Authorization': jwt
+    })
     let url = "https://back.app.cortijodemazas.com/task"
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    // let headers = new HttpHeaders();
+    // headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     var object = {};
     object["name"] = this.task.name;
     object["description"] = this.task.description;
@@ -39,15 +44,19 @@ export class TaskComponent implements OnInit {
       else {
         console.log('no data')
         this.getTodoTasks()
-        this.task.name=null
-        this.task.description=null
+        this.task.name=this.task.name+1
       }
     })
   }
 
   getTodoTasks(){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
     let url = "https://back.app.cortijodemazas.com/task/todo"
-    this.http.get<any[]>(url).subscribe( data =>
+    this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
         this.tasksTodo=data;
@@ -59,8 +68,13 @@ export class TaskComponent implements OnInit {
   }
 
   getInprogresTasks(){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
     let url = "https://back.app.cortijodemazas.com/task/Inprogres"
-    this.http.get<any[]>(url).subscribe( data =>
+    this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
         this.tasksInprogres=data;
@@ -72,8 +86,13 @@ export class TaskComponent implements OnInit {
   }
 
   getDoneTasks(){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
     let url = "https://back.app.cortijodemazas.com/task/done"
-    this.http.get<any[]>(url).subscribe( data =>
+    this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
         this.tasksDone=data;
@@ -85,11 +104,16 @@ export class TaskComponent implements OnInit {
   }
 
   start(name){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
     let url = "https://back.app.cortijodemazas.com/task/update"
     let object={}
     object["status"]="Inprogres"
     object["name"]=name
-    this.http.post(url, object).subscribe( data =>
+    this.http.post(url, { headers: headers }, object).subscribe( data =>
     {
       if(data!=null){
         this.getTodoTasks()
@@ -102,11 +126,16 @@ export class TaskComponent implements OnInit {
   }
 
   finish(name){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
     let url = "https://back.app.cortijodemazas.com/task/update"
     let object={}
     object["status"]="done"
     object["name"]=name
-    this.http.post(url, object).subscribe( data =>
+    this.http.post(url, { headers: headers }, object).subscribe( data =>
     {
       if(data!=null){
         this.getInprogresTasks()
@@ -119,11 +148,16 @@ export class TaskComponent implements OnInit {
   }
 
   todo(name){
+    const jwt = window.localStorage.getItem('jwt')
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': jwt
+    })
     let url = "https://back.app.cortijodemazas.com/task/update"
     let object={}
     object["status"]="todo"
     object["name"]=name
-    this.http.post(url, object).subscribe( data =>
+    this.http.post(url, { headers: headers }, object).subscribe( data =>
     {
       if(data!=null){
         this.getTodoTasks()
