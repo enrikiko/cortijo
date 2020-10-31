@@ -131,7 +131,6 @@ export class DevicesComponent implements OnInit {
 
   changeWebSocketStatus(device){
     //console.log(device);
-
     const jwt = window.localStorage.getItem('jwt')
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

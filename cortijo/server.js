@@ -169,21 +169,19 @@ app.post("/sensor/:tenant/:type/:name/:ip", async (req, res) => {
   }
 })
 //
-// app.get("/*", function(req, res, next) {
-//   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
-//   var fullUrl = req.protocol + '://' + host + req.originalUrl;
-//   var ip = req.ip
-//   saveRequests.newRequest(ip, fullUrl)
-//   next()
-// })
-//
-// app.post("/*", function(req, res, next) {
-//   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
-//   var fullUrl = req.protocol + '://' + host + req.originalUrl;
-//   var ip = req.ip
-//   saveRequests.newRequest(ip, fullUrl)
-//   next()
-// })
+app.get("/*", function(req, res, next) {
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
+  console.log(fullUrl);
+  next()
+})
+
+app.post("/*", function(req, res, next) {
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
+  console.log(fullUrl);
+  next()
+})
 // app.put("/*", function(req, res, next) {
 //   var user = req.body.user;
 //   var password = req.body.password;
