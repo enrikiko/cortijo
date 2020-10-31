@@ -134,6 +134,8 @@ module.exports = {
    },
 //
    getIdByName: async (tenant, sensorName) => {
+     console.log(tenant);
+     console.log(sensorName);
      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
      var list = await getList(sensorName)
      console.log(list);
