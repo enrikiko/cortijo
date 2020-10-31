@@ -83,7 +83,7 @@ app.put("/auth", async function(req, res) {
     if (user==null||password==null||tenant==null||user==""||password==""||tenant=="") {res.status(401).json({"status":false})}
     else {
       try{
-          var jwt = await request.auth(user, password, tenant);
+          var jwt = await request.auth(tenant, user, password);
           logs.log("jwt: "+jwt);
           res.cookie('jwt',jwt);
           data={"status":true}
@@ -106,7 +106,7 @@ app.post("/auth", async function(req, res) {
   if (user==null||password==null||secret==null||tenant==null||user==""||password==""||secret==""||tenant=="") {res.status(401).json({"status":false})}
   else {
     try {
-      var response = await request.newUser(user, password, tenant, secret);
+      var response = await request.newUser(tenant, user, password, secret);
       jwt = response.jwt
       if(jwt){
           logs.log("User " + user +" has been create")
@@ -551,7 +551,7 @@ app.get("/update/:name/false", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
   var user = req.user
-  var response = await mySwitch.changeStatusToFalse(tenant, name, res, user)
+  await mySwitch.changeStatusToFalse(tenant, name, res, user)
   //res.status(200).json(response)
 })
 app.get("/update/:name/true/:lapse_time", async function(req, res){
@@ -559,7 +559,7 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
   var user = req.user
-  var response = await mySwitch.changeStatusToTrue(tenant, name, lapse, res, user)
+  mySwitch.changeStatusToTrue(tenant, name, lapse, res, user)
   //res.status(200).json(response)
 })
 //Remove device by id

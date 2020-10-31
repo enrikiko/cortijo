@@ -28,24 +28,24 @@ module.exports={
          bot.sendMessage(telegram_id,  user + ' has deactivated ' + name );
        }
     },
-     switchStatus: async (status, name) => {
+     switchStatus: async (tenant,status, name) => {
        async function getResponse() {
         try{
-            ip = await myDevice.getIpByName(name)
+            ip = await myDevice.getIpByName(tenant, name)
             let response = await superagent.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: config.get("switch_status_timeout")});
             if(response.statusCode==200){
-                id = await myDevice.getIdByName(name)
-                await myDevice.updateDevice(id, status)
-                await myDevice.setCheckDeviceByName(name, true)
-                res = {};
+                id = await myDevice.getIdByName(tenant, name)
+                await myDevice.updateDevice(tenant, id, status)
+                await myDevice.setCheckDeviceByName(tenant, name, true)
+                let res = {};
                 res.code = response.statusCode;
                 res.body = response.body
                 return res;
             }
         }catch (e) {
-            let response = await myDevice.setCheckDeviceByName(name, false)
+            let response = await myDevice.setCheckDeviceByName(tenant, name, false)
             logs.error(e)
-            res = {};
+            let res = {};
             res.code = 400;
             res.body = response
             return res
@@ -56,31 +56,31 @@ module.exports={
        return await getResponse();
      },
 
-     getDeviceStatus: async (name) => {
-        async function status() {
-            ip= await myDevice.getIpByName(name)
+     getDeviceStatus: async (tenant, name) => {
+        async function status(tenant, name) {
+            let ip = await myDevice.getIpByName(tenant, name)
             let response = await superagent.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
             return response["body"];
         }
-     return await status();
+     return await status(tenant, name);
      },
 
-     getSensorStatus: async (name) => {
-        async function status() {
-            ip= await mySensor.getIpByName(name)
+     getSensorStatus: async (tenant, name) => {
+        async function status(tenant, name) {
+            ip= await mySensor.getIpByName(tenant, name)
             let response = await superagent.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
             return response["body"];
         }
-     return await status();
+     return await status(tenant, name);
      },
 
-     getWebSocketDevice: async () => {
+     getWebSocketDevice: async (tenant) => {
        const url = WEBSOCKET_URL+"/devices"
        let response = await superagent.get(url);
        return response.body;
      },
 
-     changeWebSocketStatus: async (name, status) => {
+     changeWebSocketStatus: async (tenant, name, status) => {
        const url = WEBSOCKET_URL+"/"+name+"/"+status
        let response
        try {
@@ -94,7 +94,7 @@ module.exports={
        return response.statusCode;
      },
 
-     auth: async (user, password, tenant) => {
+     auth: async (tenant, user, password) => {
        const url = AUTH_JWT+"/auth/"+tenant+"/"+user+"/"+password
        async function getResponse(url) {
          let response = await superagent.get(url);
@@ -103,7 +103,7 @@ module.exports={
        return await getResponse(url);
      },
 
-     newUser: async (user, password, tenant, secret) => {
+     newUser: async (tenant, user, password, secret) => {
        const url = AUTH_JWT+"/user/"+tenant+"/"+user+"/"+password+"/"+secret
        async function getResponse(url) {
          response = await superagent.post(url);

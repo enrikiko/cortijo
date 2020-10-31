@@ -24,8 +24,8 @@ async function changeBackFalse(name) {
 }
 
 module.exports = {
-  changeStatusToFalse: async (name, res, user) => {
-    var id = await myDevice.getIdByName(name) //Get ID of the device //
+  changeStatusToFalse: async (tenant, name, res, user) => {
+    var id = await myDevice.getIdByName(tenant, name) //Get ID of the device //
     if ( !id ) {
         logs.error({"Request": "Incorrect", "Device": "Not found"});
         if(res!=null){
@@ -54,8 +54,8 @@ module.exports = {
         }
     }
   },
-  changeStatusToTrue: async (name, lapse, res, user) => {
-    var id = await myDevice.getDeviceByName(name) //Get ID of the device //
+  changeStatusToTrue: async (tenant, name, lapse, res, user) => {
+    var id = await myDevice.getDeviceByName(tenant, name) //Get ID of the device //
     if ( !id ) {
       logs.error({"Request": "Incorrect", "Device": "Not found"});
       if(res!=null){
