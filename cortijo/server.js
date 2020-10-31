@@ -123,7 +123,7 @@ app.post("/auth", async function(req, res) {
 })
 //
 //New device
-app.post("/:tenant:tenant/device/:name/:status/:ip", async (req, res) => {
+app.post("/:tenant/device/:name/:status/:ip", async (req, res) => {
   var tenant = req.params.tenant;
   var name = req.params.name
   var ip = req.params.ip
