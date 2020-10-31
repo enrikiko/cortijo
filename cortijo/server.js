@@ -128,7 +128,7 @@ app.post("/device/:tenant/:name/:status/:ip", async (req, res) => {
   var name = req.params.name
   var ip = req.params.ip
   var status = request.getStatus(req.params.status)
-  var id = await myDevice.getIdByName(name)
+  var id = await myDevice.getIdByName(tenant, name)
   console.log(tenant);
   console.log(name);
   console.log(ip);
