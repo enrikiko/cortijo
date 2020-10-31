@@ -34,12 +34,12 @@ const deviceSchema = new mongoose.Schema({
 module.exports = {
 
   deleteAll: async (tenant) => {
-    let myHumidity = mongoose.model(tenant+'-Humidity', deviceSchema);
+    let myHumidity = mongoose.model(tenant+'_Humidity', deviceSchema);
     return myHumidity.deleteMany({})
   },
 
   newHumidity: (tenant, name, humidity) => {
-    let myHumidity = mongoose.model(tenant+'-Humidity', deviceSchema);
+    let myHumidity = mongoose.model(tenant+'_Humidity', deviceSchema);
     let newMesure = new myHumidity(
       {
         time: new Date().getTime(),
@@ -52,6 +52,6 @@ module.exports = {
   },
 
   getAll: async(tenant, name, time) => {
-    let myHumidity = mongoose.model(tenant+'-Humidity', deviceSchema);
+    let myHumidity = mongoose.model(tenant+'_Humidity', deviceSchema);
     return await myHumidity.find({"name":name}).sort({time:-1}).limit(time)}
 }

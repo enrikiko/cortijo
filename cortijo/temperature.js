@@ -36,11 +36,11 @@ const temperatureSchema = new mongoose.Schema({
 module.exports = {
 //
     deleteByName: async (tenant, name) => {
-      let myTemperature = mongoose.model(tenant+'-Temperature', temperatureSchema);
+      let myTemperature = mongoose.model(tenant+'_Temperature', temperatureSchema);
       return myTemperature.deleteMany({"name":name}) } ,
 //
     newTemperature: (tenant, name, temperature, humidity) => {
-      let myTemperature = mongoose.model(tenant+'-Temperature', temperatureSchema);
+      let myTemperature = mongoose.model(tenant+'_Temperature', temperatureSchema);
       let newMeasure = new myTemperature(
         {
           time: new Date().getTime(),
@@ -54,6 +54,6 @@ module.exports = {
     },
 //
     getByName: async(tenant, name, time) => {
-      let myTemperature = mongoose.model(tenant+'-Temperature', temperatureSchema);
+      let myTemperature = mongoose.model(tenant+'_Temperature', temperatureSchema);
       return await myTemperature.find({"name":name}).sort({time:-1}).limit(time)}
 }
