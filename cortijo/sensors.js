@@ -136,6 +136,7 @@ module.exports = {
    getIdByName: async (tenant, sensorName) => {
      let mySensor = mongoose.model(tenant+'_Sensors', sensorSchema);
      var list = await getList(sensorName)
+     console.log(list);
      if (list.length > 1) {
        return "The Database is corrupted";
      }
