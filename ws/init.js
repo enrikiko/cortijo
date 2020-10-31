@@ -20,8 +20,9 @@ var io = http;
 //   console.log(name + " not exit.")}
 // }
 
-app.get("/devices", function(req, res) {
-  var devices = getDevices()
+app.get("/devices/:tenant", function(req, res) {
+  var name = req.params.tenant
+  var devices = getDevices(tenant)
   res.status(200).json(devices)
 })
 
@@ -31,21 +32,23 @@ app.get("/test/:device", async function(req, res) {
   res.status(200).json(status)
 })
 
-app.post("/:device/:status", function(req, res) {
-  device = req.params.device
-  status = statusToStatus(req.params.status) //Check status is "true" or "false"
+app.post("/:tenant/:device/:status", function(req, res) {
+  var tenant = req.params.tenant
+  var device = req.params.device
+  var status = statusToStatus(req.params.status) //Check status is "true" or "false"
   //console.log(status);
   if(status){
-      var result = updateDevice(device, status)
+      var result = updateDevice(tenant, device, status)
   }
   res.status(200).send(status)
 })
 
-function getDevices() {
+function getDevices(tenant) {
   let devices=[]
   wss.clients.forEach(function each(client) {
     let device = {}
-    if (client.name) {
+    if ( client.name && ( client.tenant == tenant ) ) {
+      device.tenant=client.tenant
       device.name=client.name
       device.status=client.status
       device.ip=client.ip
@@ -65,12 +68,13 @@ async function addDevice(device, ws) {
     status = await getDeviceStatus(device)
     ws.name = device
     ws.status = status
+    ws.tenant = tenant
     if (!status) {
       console.log("Creating device in db");
-      await deviceStatus.createDevice(device, status)
+      await deviceStatus.createDevice(tenant, device, status)
     }else {
       console.log("Updata device form db")
-      updateDevice(device, status)
+      updateDevice(tenant, device, status)
     }
     return true;
   }
@@ -100,16 +104,16 @@ function checkIfDeviceExist(device){
   return certain;
 }
 
-function updateDevice(device, status) {
+function updateDevice(tenant, device, status) {
   certain = false
   wss.clients.forEach(function each(client) {
-    if (client.name == device && client.isAlive == true) {
+    if (client.name == device && client.isAlive == true && client.tenant == tenant) {
       //status=statusToString(status)
       //if (status) {
         client.send(status)
         client.status = stringToboolean(status)
         certain = true
-        deviceStatus.updateDevice(device, status)
+        deviceStatus.updateDevice(tenant, device, status)
       //}
     }
   })
