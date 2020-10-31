@@ -415,6 +415,7 @@ app.get("/updateWebSocket/:name/:status", async function(req, res){
   var tenant = req.tenant;
   var name = req.params.name
   var status = req.params.status
+  console.log(tenant);
   var response = await request.changeWebSocketStatus(tenant, name, status)
   res.status(response).send(status)
 })
