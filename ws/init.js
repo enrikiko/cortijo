@@ -21,7 +21,7 @@ var io = http;
 // }
 
 app.get("/devices/:tenant", function(req, res) {
-  var name = req.params.tenant
+  var tenant = req.params.tenant
   var devices = getDevices(tenant)
   res.status(200).json(devices)
 })
