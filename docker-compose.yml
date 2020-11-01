@@ -74,12 +74,18 @@ services:
     depends_on:
     - mongo
     - cortijo
-  front:
-    container_name: front
+  front1:
+    container_name: front2
     restart: always
     build: ./frontAngTest/.
     ports:
     - "10000:4200"
+  front2:
+    container_name: front2
+    restart: always
+    build: ./frontAng/.
+    ports:
+    - "10001:80"
   git:
     container_name: git
     restart: on-failure
