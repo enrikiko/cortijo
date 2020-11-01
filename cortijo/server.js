@@ -552,8 +552,9 @@ app.post("/config/update",async function(req, res) {
 app.get("/update/:name/false", async function(req, res){
   var tenant = req.tenant;
   var name = req.params.name
-  var lapse = req.params.lapse_time
+  // var lapse = req.params.lapse_time
   var user = req.user
+  console.log("/update/:name/false");
   await mySwitch.changeStatusToFalse(tenant, name, res, user)
   //res.status(200).json(response)
 })
@@ -562,6 +563,7 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
   var user = req.user
+  console.log("/update/:name/true/:lapse_time");
   mySwitch.changeStatusToTrue(tenant, name, lapse, res, user)
   //res.status(200).json(response)
 })

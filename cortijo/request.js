@@ -18,6 +18,31 @@ const telegram_id = process.env.TELEGRAM_ID;
 // Created instance of TelegramBot
 const bot = new TelegramBot(telegram_token, {polling: true});
 
+async function getResponse(tenant, status, name) {
+ try{
+     ip = await myDevice.getIpByName(tenant, name)
+     let response = await superagent.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: config.get("switch_status_timeout")});
+     if(response.statusCode==200){
+         id = await myDevice.getIdByName(tenant, name)
+         await myDevice.updateDevice(tenant, id, status)
+         await myDevice.setCheckDeviceByName(tenant, name, true)
+         let res = {};
+         res.code = response.statusCode;
+         res.body = response.body
+         return res;
+     }
+ }catch (e) {
+     let response = await myDevice.setCheckDeviceByName(tenant, name, false)
+     logs.error(e)
+     let res = {};
+     res.code = 400;
+     res.body = response
+     return res
+ }finally{
+         socket.device(name+" has changed to "+status)
+ }
+}
+
 module.exports={
 
     telegramAlert: (name, lapse, user) => {
@@ -29,31 +54,11 @@ module.exports={
        }
     },
      switchStatus: async (tenant, status, name) => {
-       async function getResponse() {
-        try{
-            ip = await myDevice.getIpByName(tenant, name)
-            let response = await superagent.get("http://"+ip+"/"+name+"/status/"+status).timeout({response: config.get("switch_status_timeout")});
-            if(response.statusCode==200){
-                id = await myDevice.getIdByName(tenant, name)
-                await myDevice.updateDevice(tenant, id, status)
-                await myDevice.setCheckDeviceByName(tenant, name, true)
-                let res = {};
-                res.code = response.statusCode;
-                res.body = response.body
-                return res;
-            }
-        }catch (e) {
-            let response = await myDevice.setCheckDeviceByName(tenant, name, false)
-            logs.error(e)
-            let res = {};
-            res.code = 400;
-            res.body = response
-            return res
-        }finally{
-                socket.device(name+" has changed to "+status)
-        }
-       }
-       return await getResponse();
+       console.log('switchStatus');
+       console.log(tenant);
+       console.log(status);
+       console.log(name);
+       return await getResponse(tenant, status, name);
      },
 
      getDeviceStatus: async (tenant, name) => {

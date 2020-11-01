@@ -56,6 +56,8 @@ module.exports = {
   },
   changeStatusToTrue: async (tenant, name, lapse, res, user) => {
     var id = await myDevice.getDeviceByName(tenant, name) //Get ID of the device //
+    console.log('changeStatusToTrue');
+    console.log(id);
     if ( !id ) {
       logs.error({"Request": "Incorrect", "Device": "Not found"});
       if(res!=null){
@@ -64,7 +66,7 @@ module.exports = {
     }else {
       logs.log("Change status of "+name+" to true");
         try {
-              var response = await request.switchStatus(true, true, name) //Change device status
+              var response = await request.switchStatus(tenant, true, name) //Change device status
               if (response.code == 200) {
                 await myDevicesChanges.newRequest(tenant, name, true, user, lapse)
                 timeOutMap[name] = setTimeout(changeBackFalse, lapse, name);
