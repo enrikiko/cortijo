@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:16.04
 RUN apt update
 RUN apt install curl npm -y
 WORKDIR /usr/src/app
