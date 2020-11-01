@@ -1,6 +1,6 @@
 sudo git pull
 
-docker-compose build --remove-orphans \
+docker-compose build \
 --build-arg API_URL=$API_URL \
 --build-arg API_KEY=$API_KEY \
 --build-arg PASSWORD=$GIT_PASSWORD \
@@ -10,4 +10,4 @@ docker-compose build --remove-orphans \
 --build-arg BUCKETS_NAME=$BUCKETS_NAME \
 --build-arg ROUTE53_PASSWORD=$ROUTE53_PASSWORD
 
-docker-compose up -d
+docker-compose up -d  --remove-orphans 
