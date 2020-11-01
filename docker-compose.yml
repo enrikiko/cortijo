@@ -79,7 +79,7 @@ services:
     restart: always
     build: ./frontAngTest/.
     ports:
-    - "10000:80"
+    - "10000:4200"
   git:
     container_name: git
     restart: on-failure
