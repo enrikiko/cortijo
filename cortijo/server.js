@@ -297,6 +297,7 @@ app.put("/*", async function(req, res, next) {
 //
 app.post("/task",async function (req, res) {
   var tenant = req.tenant;
+  console.log('Tenant: s%', tenant);
   var name = req.body.name;
   var description = req.body.description;
   var result = await myTask.newTask(tenant, name, description)
@@ -319,6 +320,7 @@ app.get("/task/:name/:description",async function (req, res) {
 
 app.post("/task/update",async function (req, res) {
   var tenant = req.tenant;
+  console.log('Tenant: s%', tenant);
   var name = req.body.name;
   var status = req.body.status;
   var result = await myTask.updateTask(tenant, name, status)

@@ -51,7 +51,7 @@ async function verifyTask(tenant, name, description) {
 module.exports = {
   newTask: async(tenant, name, description) => {
     let myTask = mongoose.model(tenant+'_Task', taskSchema);
-    if ( await verifyTask(name, description) ){
+    if ( await verifyTask(tenant, name, description) ){
       let task = new myTask(
         {
           time: new Date().getTime(),

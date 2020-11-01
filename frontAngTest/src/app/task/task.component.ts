@@ -33,7 +33,7 @@ export class TaskComponent implements OnInit {
     var object = {};
     object["name"] = this.task.name;
     object["description"] = this.task.description;
-    this.http.post<any>(url, object, {headers: headers}).subscribe( data =>
+    this.http.post<any>(url, {headers: headers}, object).subscribe( data =>
     {
       if(data){
         console.log(data)
