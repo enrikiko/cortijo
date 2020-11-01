@@ -1,6 +1,6 @@
-FROM ubuntu:16.04
-RUN apt update
-RUN apt install curl npm -y
+FROM alpine
+RUN apk add npm
+RUN apk add curl
 WORKDIR /usr/src/app
 COPY scs/package/. .
 RUN npm install
