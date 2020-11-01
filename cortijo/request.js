@@ -18,6 +18,12 @@ const telegram_id = process.env.TELEGRAM_ID;
 // Created instance of TelegramBot
 const bot = new TelegramBot(telegram_token, {polling: true});
 
+async function status(tenant, name) {
+    let ip = await myDevice.getIpByName(tenant, name)
+    let response = await superagent.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
+    return response["body"];
+}
+
 async function getResponse(tenant, status, name) {
  try{
      ip = await myDevice.getIpByName(tenant, name)
@@ -54,29 +60,20 @@ module.exports={
        }
     },
      switchStatus: async (tenant, status, name) => {
-       console.log('switchStatus');
-       console.log(tenant);
-       console.log(status);
-       console.log(name);
        return await getResponse(tenant, status, name);
      },
 
      getDeviceStatus: async (tenant, name) => {
-        async function status(tenant, name) {
-            let ip = await myDevice.getIpByName(tenant, name)
-            let response = await superagent.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
-            return response["body"];
-        }
-     return await status(tenant, name);
+       return await status(tenant, name);
      },
 
      getSensorStatus: async (tenant, name) => {
-        async function status(tenant, name) {
-            ip= await mySensor.getIpByName(tenant, name)
-            let response = await superagent.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
-            return response["body"];
-        }
-     return await status(tenant, name);
+        // async function status(tenant, name) {
+        //     ip= await mySensor.getIpByName(tenant, name)
+        //     let response = await superagent.get("http://"+ip+"/"+name+"/status").timeout({response: config.get("device_status_timeout")});
+        //     return response["body"];
+        // }
+        return await status(tenant, name);
      },
 
      getWebSocketDevice: async (tenant) => {

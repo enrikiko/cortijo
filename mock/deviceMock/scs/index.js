@@ -34,14 +34,14 @@ app.get('/'+process.env.mock_name+'/status/true', async function(req, res){
     info.status=true
     console.log(info);
     status=true;
-    try{
-        var value = await superagent.get("https://192.168.1.53:8106/test")
-        res.status(200).json(info)
-    }catch (e) {
-        console.log(e);
-        res.status(200).json(info)
-    }
-
+    res.status(200).json(info)
+    // try{
+    //     var value = await superagent.get("https://192.168.1.53:8106/test")
+    //     res.status(200).json(info)
+    // }catch (e) {
+    //     console.log(e);
+    //     res.status(200).json(info)
+    // }
 });
 app.get('/'+process.env.mock_name+'/status/false', async function(req, res){
     await delay(300);
@@ -49,8 +49,8 @@ app.get('/'+process.env.mock_name+'/status/false', async function(req, res){
     info.status=false
     console.log(info);
     status=false;
-res.status(200).json(info)
-});
+    res.status(200).json(info)
+}); 
 app.get('/'+process.env.mock_name+'/status', function(req, res){
   info={}
   info.status=status
