@@ -20,7 +20,7 @@ var io = http;
 //   console.log(name + " not exit.")}
 // }
 
-app.get("/devices/:tenant", function(req, res) {
+app.get("/:tenant/devices", function(req, res) {
   var tenant = req.params.tenant
   var devices = getDevices(tenant)
   res.status(200).json(devices)
@@ -36,7 +36,7 @@ app.post("/:tenant/:device/:status", function(req, res) {
   var tenant = req.params.tenant
   var device = req.params.device
   var status = statusToStatus(req.params.status) //Check status is "true" or "false"
-  //console.log(status);
+  console.log('change status');
   if(status){
       var result = updateDevice(tenant, device, status)
   }

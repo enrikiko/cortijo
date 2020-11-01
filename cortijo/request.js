@@ -75,12 +75,13 @@ module.exports={
      },
 
      getWebSocketDevice: async (tenant) => {
-       const url = WEBSOCKET_URL+"/devices/"+tenant
+       const url = WEBSOCKET_URL+"/"+tenant+"/devices"
        let response = await superagent.get(url);
        return response.body;
      },
 
      changeWebSocketStatus: async (tenant, name, status) => {
+       console.log('changeWebSocketStatus');
        const url = WEBSOCKET_URL+"/"+tenant+"/"+name+"/"+status
        let response
        try {
