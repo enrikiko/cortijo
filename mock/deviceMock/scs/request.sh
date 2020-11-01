@@ -1,6 +1,6 @@
 IP=$local_ip
 STATUS="false"
-SERVERIP="back.app.cortijodemazas.com"
+SERVERIP="https://back.app.cortijodemazas.com"
 TENANT="cortijo"
 echo "$SERVERIP"/new/"$TENANT/$mock_name/$STATUS/$IP:$mock_port"
 RES=$(curl -X POST $SERVERIP"/device/"$TENANT/$mock_name/$STATUS/$IP:$mock_port)
