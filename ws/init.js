@@ -28,7 +28,7 @@ app.get("/devices/:tenant", function(req, res) {
 
 app.get("/test/:device", async function(req, res) {
   device = req.params.device
-  var status = await getDeviceStatus(device)
+  var status = await getDeviceStatus(tenant, device)
   res.status(200).json(status)
 })
 
@@ -58,14 +58,14 @@ function getDevices(tenant) {
   return devices
 }
 
-async function addDevice(device, ws) {
-  if(checkIfDeviceExist(device)){
+async function addDevice(tenant, device, ws) {
+  if(checkIfDeviceExist(tenant, device)){
     console.log("device exist");
     return false
   }
   else {
     console.log('%s enrolled', device )
-    status = await getDeviceStatus(device)
+    status = await getDeviceStatus(tenant, device)
     ws.name = device
     ws.status = status
     ws.tenant = tenant
@@ -80,10 +80,10 @@ async function addDevice(device, ws) {
   }
 }
 
-async function getDeviceStatus(device) {
+async function getDeviceStatus(tenant, device) {
 
   let status
-  var device = await deviceStatus.getDevice(device)
+  var device = await deviceStatus.getDevice(tenant, device)
   //console.log(device);
   if (device.length == 1) {
     status = device[0].status
@@ -174,7 +174,8 @@ function getMsg(message) {
 async function logic(message, ws) {
   if(message.name){
     const name = message.name
-    if(addDevice(name, ws)){
+    const tenant = message.tenant
+    if(addDevice(tenant, name, ws)){
       ws.send('Welcome ' + name)
     }else{
       ws.send('Error 001. Device already exist')
@@ -193,8 +194,8 @@ wss.on('connection', function connection(ws, request, client) {
 
   /*Check connection*/
   ws.isAlive = true
-  ws.status=false
-  ws.ip=request.socket.remoteAddress
+  ws.status = false
+  ws.ip = request.socket.remoteAddress
   ws.on('pong', heartbeat);
 
   ws.on('close', function close() {
@@ -202,7 +203,7 @@ wss.on('connection', function connection(ws, request, client) {
   });
 
   ws.on('message', async function incoming(message) {
-    message=getMsg(message)
+    message = getMsg(message)
     if (message) {
       await logic(message, ws)
     }
