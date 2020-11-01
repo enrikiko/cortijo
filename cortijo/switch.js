@@ -11,7 +11,7 @@ async function changeBackFalse(name) {
       var responseBack = await request.switchStatus(false, name) //Change device status
       if (responseBack.code == 200) {
           logs.log("Changed back automatically due to timeout " + name + " to false")
-          myDevicesChanges.newRequest(name, false, "node.js", null)
+          myDevicesChanges.newRequest(tenant, name, false, "node.js", null)
       }
       else {
           logs.error("Error changing back " + name + " to false")
@@ -34,10 +34,10 @@ module.exports = {
     }else {
         logs.log("Change status of "+name+" to false");
         try {
-            var response = await request.switchStatus(false, name) //Change device status //TODO make sure this is ejecute
+            var response = await request.switchStatus(tenant, false, name) //Change device status //TODO make sure this is ejecute
             if (response.code == 200) {
               clearTimeout(timeOutMap[name])
-              await myDevicesChanges.newRequest(name, false, user, null)
+              await myDevicesChanges.newRequest(tenant, name, false, user, null)
               request.telegramAlert(name, null, user);
               if(res!=null){  //TODO is this nessesary?
                 res.status(response.code).send(response)
@@ -64,9 +64,9 @@ module.exports = {
     }else {
       logs.log("Change status of "+name+" to true");
         try {
-              var response = await request.switchStatus(true, name) //Change device status
+              var response = await request.switchStatus(true, true, name) //Change device status
               if (response.code == 200) {
-                await myDevicesChanges.newRequest(name, true, user, lapse)
+                await myDevicesChanges.newRequest(tenant, name, true, user, lapse)
                 timeOutMap[name] = setTimeout(changeBackFalse, lapse, name);
                 request.telegramAlert(name, lapse, user);
                 if(res!=null){  //TODO is this nessesary?

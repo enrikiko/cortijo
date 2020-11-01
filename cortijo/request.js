@@ -28,7 +28,7 @@ module.exports={
          bot.sendMessage(telegram_id,  user + ' has deactivated ' + name );
        }
     },
-     switchStatus: async (tenant,status, name) => {
+     switchStatus: async (tenant, status, name) => {
        async function getResponse() {
         try{
             ip = await myDevice.getIpByName(tenant, name)
