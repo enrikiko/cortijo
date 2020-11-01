@@ -10,4 +10,4 @@ docker-compose build \
 --build-arg BUCKETS_NAME=$BUCKETS_NAME \
 --build-arg ROUTE53_PASSWORD=$ROUTE53_PASSWORD
 
-docker-compose up -d  --remove-orphans 
+docker-compose up -d --remove-orphans 
