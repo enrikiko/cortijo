@@ -75,7 +75,7 @@ services:
     - mongo
     - cortijo
   front1:
-    container_name: front2
+    container_name: front1
     restart: always
     build: ./frontAngTest/.
     ports:
