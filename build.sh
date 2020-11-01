@@ -1,6 +1,6 @@
 sudo git pull
 
-docker-compose build \
+docker-compose build --remove-orphans \
 --build-arg API_URL=$API_URL \
 --build-arg API_KEY=$API_KEY \
 --build-arg PASSWORD=$GIT_PASSWORD \
