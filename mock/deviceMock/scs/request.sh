@@ -1,7 +1,8 @@
 IP=$local_ip
 STATUS="false"
 SERVERIP="back.app.cortijodemazas.com"
-echo "$SERVERIP"/new/"$mock_name/$STATUS/$IP:$mock_port"
+TENANT="cortijo"
+echo "$SERVERIP"/new/"$TENANT/$mock_name/$STATUS/$IP:$mock_port"
 RES=$(curl -X POST $SERVERIP"/device/"$mock_name/$STATUS/$IP:$mock_port)
 # sleep 1000
 # RES=$(curl -X POST $SERVERIP"/device/"$mock_name/$STATUS/$IP:$mock_port)
