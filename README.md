@@ -20,3 +20,9 @@ docker rmi -f $(docker images -qa)
 
 
 [website]: https://www.cortijodemazas.com
+[github]: https://github.com/enrikiko
+
+
+wireshark commads:
+icmp for ping
+http
