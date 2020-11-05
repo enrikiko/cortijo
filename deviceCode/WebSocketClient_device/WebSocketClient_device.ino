@@ -10,10 +10,11 @@ const char *ssid4 = "Seagull";
 const char *password4 = "Dober96Mila";
 const char* websockets_server_host = "ws.cortijodemazas.com"; //Enter server adress
 const String path = "/";
-const uint16_t websockets_server_port = 3000; // Enter server port
+const uint16_t websockets_server_port = 80; // Enter server port
 const String deviceName = "Wemos_002";
 bool certain = false;
-int RelayPin = D1; //Wemos
+int RelayPin = 5; //Wemos
+const uint32_t connectTimeoutMs = 5000;
 //int RelayPin = 0;
 
 using namespace websockets;
@@ -22,6 +23,7 @@ ESP8266WiFiMulti WiFiMulti;
 
 void setup() {
   Serial.begin(115200);
+  delay(500);
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid1, password1);
   WiFiMulti.addAP(ssid2, password2);
@@ -32,15 +34,17 @@ void setup() {
 }
 
 void loop() {
-  while(WiFi.status() == WL_CONNECTED) {
+  if (WiFiMulti.run(connectTimeoutMs) == WL_CONNECTED) {  
+    Serial.println("IP address: ");
+    Serial.println(WiFi.localIP());
+    web_reconnect();
     while(client.available()) {
     client.poll();
     }
     delay(500);
-    web_reconnect();
     }
-  WiFi.begin();
-  while(WiFi.status() != WL_CONNECTED) {
+  //WiFi.begin();
+  while(WiFiMulti.run() != WL_CONNECTED) {
     Serial.println("No Wifi!");
     delay(1000);
   }
@@ -52,9 +56,9 @@ void web_reconnect() {
   //bool connected = client.connect(websockets_server_host, websockets_server_port, path);
   if(client.connect(websockets_server_host, websockets_server_port, path)) {
     Serial.println("Connecetd!");
-    client.send("{\"name\":\""+deviceName+"\"}");
+    client.send("{\"name\":\""+deviceName+"\",\"tenant\":\"cortijo\"}");
   } else {
-    Serial.println("Not Connected!");
+    Serial.println("WS not connected!");
   }
     // run callback when messages are received
   client.onMessage([&](WebsocketsMessage message) {

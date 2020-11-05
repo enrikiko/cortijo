@@ -36,7 +36,7 @@ app.post("/:tenant/:device/:status", function(req, res) {
   var tenant = req.params.tenant
   var device = req.params.device
   var status = statusToStatus(req.params.status) //Check status is "true" or "false"
-  console.log('change status');
+  console.log('%s change status to %s', req.params.device, req.params.status);
   if(status){
       var result = updateDevice(tenant, device, status)
   }
@@ -172,7 +172,7 @@ function getMsg(message) {
 
 
 async function logic(message, ws) {
-  if(message.name){
+  if(message.name&&message.tenant){
     const name = message.name
     const tenant = message.tenant
     if(addDevice(tenant, name, ws)){
