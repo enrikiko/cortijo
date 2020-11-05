@@ -115,7 +115,6 @@ async function updateDevice(tenant, device, status) {
         certain = true
         deviceStatus.updateDevice(tenant, device, status)
 
-
     }
   })
   if (!certain) {
