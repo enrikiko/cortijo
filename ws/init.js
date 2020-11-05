@@ -38,8 +38,9 @@ app.post("/:tenant/:device/:status", async function(req, res) {
   var status = statusToStatus(req.params.status) //Check status is "true" or "false"
   console.log('%s change status to %s', req.params.device, req.params.status);
   if( status && device && tenant ){
+    
       updateDevice(tenant, device, status)
-    }
+
   }
   res.status(200).send(result)
 })
