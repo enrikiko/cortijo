@@ -106,7 +106,8 @@ function checkIfDeviceExist(device){
 
 function updateDevice(tenant, device, status) {
   certain = false
-  while(!certain){
+  countDown = 10
+  while(!certain && countDown > 0){
     wss.clients.forEach(function each(client) {
       if (client.name == device && client.isAlive == true && client.tenant == tenant) {
         //status=statusToString(status)
@@ -118,6 +119,7 @@ function updateDevice(tenant, device, status) {
         //}
       }
     })
+    countDown = countDown - 1
   }
   return certain;
 }
