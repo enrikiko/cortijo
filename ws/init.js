@@ -111,19 +111,18 @@ function checkIfDeviceExist(device){
 }
 
 async function updateDevice(tenant, device, status) {
-  certain = false
+  let certain = false
   wss.clients.forEach(function each(client) {
     if (client.name == device && client.isAlive == true && client.tenant == tenant) {
-      //status=statusToString(status)
-      //if (status) {
+
         client.send(status)
         client.status = stringToboolean(status)
         certain = true
-        deviceStatus.updateDevice(tenant, device, status)
-      //}
+        await deviceStatus.updateDevice(tenant, device, status)
+        return certain
+
     }
   })
-  return certain;
 }
 
 function statusToStatus(status) {

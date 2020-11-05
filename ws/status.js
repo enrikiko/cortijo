@@ -50,7 +50,7 @@ module.exports = {
           return true
       }
     },
-    updateDevice: (tenant, device, status) => {
+    updateDevice: async (tenant, device, status) => {
       let myDevice = mongoose.model(tenant+'_WebSocket', deviceSchema);
       return myDevice.find({device: device}, function(err, result) {
         if (err) throw err
