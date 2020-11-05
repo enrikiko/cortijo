@@ -32,7 +32,7 @@ app.get("/test/:device", async function(req, res) {
   res.status(200).json(status)
 })
 
-app.post("/:tenant/:device/:status", function(req, res) {
+app.post("/:tenant/:device/:status", async function(req, res) {
   var tenant = req.params.tenant
   var device = req.params.device
   var status = statusToStatus(req.params.status) //Check status is "true" or "false"
@@ -42,7 +42,7 @@ app.post("/:tenant/:device/:status", function(req, res) {
     var count =1
     while (!result) {
       console.log("s% try", count);
-      result = updateDevice(tenant, device, status)
+      result = await updateDevice(tenant, device, status)
       count=count+1
     }
   }
@@ -110,7 +110,7 @@ function checkIfDeviceExist(device){
   return certain;
 }
 
-function updateDevice(tenant, device, status) {
+async function updateDevice(tenant, device, status) {
   certain = false
   wss.clients.forEach(function each(client) {
     if (client.name == device && client.isAlive == true && client.tenant == tenant) {
