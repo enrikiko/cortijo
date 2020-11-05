@@ -37,8 +37,14 @@ app.post("/:tenant/:device/:status", function(req, res) {
   var device = req.params.device
   var status = statusToStatus(req.params.status) //Check status is "true" or "false"
   console.log('%s change status to %s', req.params.device, req.params.status);
-  if(status){
-      var result = updateDevice(tenant, device, status)
+  if( status && device && tenant ){
+    var result = false
+    var count =1
+    while (!result) {
+      console.log("s% try", count);
+      result = updateDevice(tenant, device, status)
+      count=count+1
+    }
   }
   res.status(200).send(status)
 })
@@ -106,21 +112,17 @@ function checkIfDeviceExist(device){
 
 function updateDevice(tenant, device, status) {
   certain = false
-  countDown = 10
-  while(!certain && countDown > 0){
-    wss.clients.forEach(function each(client) {
-      if (client.name == device && client.isAlive == true && client.tenant == tenant) {
-        //status=statusToString(status)
-        //if (status) {
-          client.send(status)
-          client.status = stringToboolean(status)
-          certain = true
-          deviceStatus.updateDevice(tenant, device, status)
-        //}
-      }
-    })
-    countDown = countDown - 1
-  }
+  wss.clients.forEach(function each(client) {
+    if (client.name == device && client.isAlive == true && client.tenant == tenant) {
+      //status=statusToString(status)
+      //if (status) {
+        client.send(status)
+        client.status = stringToboolean(status)
+        certain = true
+        deviceStatus.updateDevice(tenant, device, status)
+      //}
+    }
+  })
   return certain;
 }
 
