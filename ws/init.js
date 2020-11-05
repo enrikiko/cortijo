@@ -106,17 +106,19 @@ function checkIfDeviceExist(device){
 
 function updateDevice(tenant, device, status) {
   certain = false
-  wss.clients.forEach(function each(client) {
-    if (client.name == device && client.isAlive == true && client.tenant == tenant) {
-      //status=statusToString(status)
-      //if (status) {
-        client.send(status)
-        client.status = stringToboolean(status)
-        certain = true
-        deviceStatus.updateDevice(tenant, device, status)
-      //}
-    }
-  })
+  while(!certain){
+    wss.clients.forEach(function each(client) {
+      if (client.name == device && client.isAlive == true && client.tenant == tenant) {
+        //status=statusToString(status)
+        //if (status) {
+          client.send(status)
+          client.status = stringToboolean(status)
+          certain = true
+          deviceStatus.updateDevice(tenant, device, status)
+        //}
+      }
+    })
+  }
   return certain;
 }
 
