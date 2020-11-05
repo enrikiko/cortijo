@@ -38,15 +38,10 @@ app.post("/:tenant/:device/:status", async function(req, res) {
   var status = statusToStatus(req.params.status) //Check status is "true" or "false"
   console.log('%s change status to %s', req.params.device, req.params.status);
   if( status && device && tenant ){
-    var result = false
-    var count =1
-    while (!result) {
-      console.log("s% try", count);
-      result = await updateDevice(tenant, device, status)
-      count=count+1
+      updateDevice(tenant, device, status)
     }
   }
-  res.status(200).send(status)
+  res.status(200).send(result)
 })
 
 function getDevices(tenant) {
@@ -118,11 +113,15 @@ async function updateDevice(tenant, device, status) {
         client.send(status)
         client.status = stringToboolean(status)
         certain = true
-        await deviceStatus.updateDevice(tenant, device, status)
-        return certain
+        deviceStatus.updateDevice(tenant, device, status)
+
 
     }
   })
+  if (!certain) {
+    console.log("Error switching s% s% ", device, status);
+  }
+  return certain
 }
 
 function statusToStatus(status) {
