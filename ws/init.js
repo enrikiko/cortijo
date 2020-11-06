@@ -31,31 +31,33 @@ app.post("/:tenant/:device/:status", async function(req, res) {
   res.status(200).send()
 })
 
-function getDeviceData(tenant, device){
+async function getDeviceData(tenant, device){
   let data = false
-  return new Promise(
-    async function(){
-      setTimeout(
-        async function() {
-          while (!data) {
-            data = await retrieveData(tenant, device)
-            console.log('Waiting...');
-          }
-          return data;
-        }, 1000
-      )
-    }
-  )
+  await retrieveData(tenant, device)
+  // return new Promise(
+  //   async function(){
+  //     setTimeout(
+  //       async function() {
+  //         while (!data) {
+  //           data = await retrieveData(tenant, device)
+  //           console.log('Waiting...');
+  //         }
+  //         return data;
+  //       }, 1000
+  //     )
+  //   }
+  // )
 }
 
 async function retrieveData(tenant, device) {
   wss.clients.forEach(async function each(client) {
     if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
 
-        client.send("D")
-        return "OK";
+        client.send("data")
+
 
     }
+    return "OK";
   })
 }
 
@@ -194,6 +196,8 @@ async function logic(message, ws) {
     }else{
       ws.send('Error 001. Device already exist')
     }
+  }else if (message.data) {
+    console.log(message.data);
   }
   // else if (message.device & message.status) {
   //   send(message.device, message.status)

@@ -75,6 +75,7 @@ void logic(String data){
     //show(data);
     if ( data=="true" ){led(true);}
     else if ( data=="false" ){led(false);}
+    else if ( data=="data" ){client.send("{\"data\":\""+deviceName+"\"}");}
     else {blink();}
     Serial.println(data);
     }
