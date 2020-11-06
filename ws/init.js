@@ -166,13 +166,10 @@ const interval = setInterval(function ping() {
 }, 10000);
 
 function noop(name) {
-  console.log('noop');
-  console.log(name);
+  //console.log(name);
 }
 
 function heartbeat(data) {
-  console.log(typeof data);
-  console.log(Object.keys(data));
   this.isAlive = true;
 }
 
