@@ -57,8 +57,8 @@ async function retrieveData(tenant, device) {
 
 
     }
-    return "OK";
   })
+  return "OK";
 }
 
 function getDevices(tenant) {
