@@ -11,7 +11,7 @@ const char *password4 = "Dober96Mila";
 const char* websockets_server_host = "ws.cortijodemazas.com"; //Enter server adress
 const String path = "/";
 const uint16_t websockets_server_port = 80; // Enter server port
-const String deviceName = "Wemos_002";
+const String deviceName = "Wemos_ws_001";
 bool certain = false;
 int RelayPin = 5; //Wemos
 const uint32_t connectTimeoutMs = 5000;
@@ -70,12 +70,13 @@ void web_reconnect() {
 
 void logic(String data){
   if (data.length() > 0) {
-    Serial.println(data);
+    
     //Serial.println(data.length());
     //show(data);
     if ( data=="true" ){led(true);}
     else if ( data=="false" ){led(false);}
     else {blink();}
+    Serial.println(data);
     }
   }
 
