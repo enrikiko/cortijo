@@ -13,11 +13,12 @@ app.get("/:tenant/devices", function(req, res) {
   res.status(200).json(devices)
 })
 
-// app.get("/test/:device", async function(req, res) {
-//   device = req.params.device
-//   var status = await getDeviceStatus(tenant, device)
-//   res.status(200).json(status)
-// })
+app.get("/:tenant/:device/data", async function(req, res) {
+  var tenant = req.params.tenant
+  var device = req.params.device
+  var data = await getDeviceData(tenant, device)
+  res.status(200).json(data)
+})
 
 app.post("/:tenant/:device/:status", async function(req, res) {
   var tenant = req.params.tenant
@@ -25,12 +26,26 @@ app.post("/:tenant/:device/:status", async function(req, res) {
   var status = statusToStatus(req.params.status) //Check status is "true" or "false"
   console.log('%s change status to %s', req.params.device, req.params.status);
   if( status && device && tenant ){
-
       updateDevice(tenant, device, status)
-
   }
   res.status(200).send()
 })
+
+function getDeviceData(tenant, device){
+  let data = false
+  return new Promise(
+    function(){
+      setTimeout(
+        function() {
+          retrieveData(tenant, device)
+          while (!null) {
+            console.log('Waiting...');
+          }
+        }, 1000
+      )
+    }
+  )
+}
 
 function getDevices(tenant) {
   let devices=[]
