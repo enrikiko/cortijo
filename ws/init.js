@@ -165,9 +165,12 @@ const interval = setInterval(function ping() {
   });
 }, 10000);
 
-function noop() {}
+function noop() {
+  console.log('noop');
+}
 
-function heartbeat() {
+function heartbeat(data) {
+  console.log(data);
   this.isAlive = true;
 }
 
