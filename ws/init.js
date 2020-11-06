@@ -161,15 +161,17 @@ const interval = setInterval(function ping() {
       return ws.terminate()
     }
     ws.isAlive = false;
-    ws.ping(noop);
+    ws.ping(noop(ws.name));
   });
 }, 10000);
 
-function noop() {
+function noop(name) {
   console.log('noop');
+  console.log(name);
 }
 
 function heartbeat(data) {
+  console.log(typeof data);
   console.log(data);
   this.isAlive = true;
 }
