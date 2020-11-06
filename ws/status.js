@@ -32,6 +32,9 @@ module.exports = {
     getDevice: async (tenant, device) => {
       let myDevice = mongoose.model(tenant+'_WebSocket', deviceSchema);
       let deviceList = await myDevice.find({device: device})
+      if ( deviceList.length == 1 ) {
+        status = deviceList[0].status
+      }
       return deviceList
     },
     createDevice: async (tenant, device, status) => {

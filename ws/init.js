@@ -70,12 +70,7 @@ async function addDevice(tenant, device, ws) {
 }
 
 async function getDeviceStatus(tenant, device) {
-  let status = null
-  let deviceList = await deviceStatus.getDevice(tenant, device)
-  console.log(deviceList);
-  if (deviceList.length && ( deviceList.length == 1) ) {
-    status = device[0].status
-  }
+  let status = await deviceStatus.getDevice(tenant, device)
   console.log('status: %s', status);
   return status
 
