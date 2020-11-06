@@ -34,17 +34,29 @@ app.post("/:tenant/:device/:status", async function(req, res) {
 function getDeviceData(tenant, device){
   let data = false
   return new Promise(
-    function(){
+    async function(){
       setTimeout(
-        function() {
-          retrieveData(tenant, device)
-          while (!null) {
+        async function() {
+          data=await retrieveData(tenant, device)
+          while (!data) {
             console.log('Waiting...');
           }
+          return data;
         }, 1000
       )
     }
   )
+}
+
+async function retrieveData(tenant, device) {
+  wss.clients.forEach(async function each(client) {
+    if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
+
+        client.send("D")
+        return "OK";
+
+    }
+  })
 }
 
 function getDevices(tenant) {
