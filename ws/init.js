@@ -62,7 +62,7 @@ async function retrieveData(tenant, device) {
     }
   })
   while (count!=0&&!certain) {
-
+    console.log(count);
   }
   return "OK";
 }
