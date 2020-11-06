@@ -49,7 +49,7 @@ function getDevices(tenant) {
 
 async function addDevice(tenant, device, ws) {
   if(checkIfDeviceExist(tenant, device)){
-    console.log('s% device alrady exist', device);
+    console.log('%s device alrady exist', device);
     return false
   }
   else {
@@ -58,11 +58,11 @@ async function addDevice(tenant, device, ws) {
     ws.name = device
     ws.status = status
     ws.tenant = tenant
-    if (status != null) {
-      console.log('Creating s% in db', device);
+    if (status == null) {
+      console.log('Creating %s in db', device);
       await deviceStatus.createDevice(tenant, device, status)
     }else {
-      console.log('Update s% form db', device)
+      console.log('Update %s form db', device)
       updateDevice(tenant, device, status)
     }
     return true;
@@ -98,7 +98,7 @@ async function updateDevice(tenant, device, status) {
     }
   })
   if (!certain) {
-    console.log("Error switching s% s% ", device, status);
+    console.log("Error switching %s %s ", device, status);
   }
   return certain
 }
