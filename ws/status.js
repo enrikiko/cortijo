@@ -33,7 +33,7 @@ module.exports = {
       let status = null
       let myDevice = mongoose.model(tenant+'_WebSocket', deviceSchema);
       let deviceList = await myDevice.find({device: device})
-      if (deviceList.length == 1) {
+      if (deviceList.length && ( deviceList.length == 1) ) {
         status = device[0].status
       }
       return status

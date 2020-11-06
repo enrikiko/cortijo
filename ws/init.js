@@ -72,6 +72,7 @@ async function addDevice(tenant, device, ws) {
 async function getDeviceStatus(tenant, device) {
   let status = await deviceStatus.getDevice(tenant, device)
   console.log('status: %s', status);
+  console.log('status: %s', null);
   return status
 
 }
@@ -136,7 +137,7 @@ const interval = setInterval(function ping() {
     ws.isAlive = false;
     ws.ping(noop);
   });
-}, 1000);
+}, 10000);
 
 function noop() {}
 
@@ -147,9 +148,10 @@ function heartbeat() {
 function getMsg(message) {
   try {
     const msg = JSON.parse(message)
+    console.log(msg);
     return msg;
   } catch (error) {
-    console.error("\nError 001. Cannot parse the message");
+    console.error("\n%s\nError 001. Cannot parse the message", message);
     return false;
   }
 }
@@ -183,7 +185,7 @@ wss.on('connection', function connection(ws, request, client) {
   ws.on('pong', heartbeat);
 
   ws.on('close', function close() {
-    console.log('close');
+    console.log('%s close', ws.name);
   });
 
   ws.on('message', async function incoming(message) {
