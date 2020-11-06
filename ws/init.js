@@ -6,19 +6,6 @@ const app = express();
 var http = require('http').Server(app);
 var io = http;
 
-// function send(name, msg) {
-//   certain=false
-//   wss.clients.forEach(function each(client) {
-//     if (client.name == name && ws.isAlive == true) {
-//       client.send(msg)
-//       certain=true
-//     }
-//   });
-//   if(certain){
-//   console.log("Message send successfully")
-// }else {
-//   console.log(name + " not exit.")}
-// }
 
 app.get("/:tenant/devices", function(req, res) {
   var tenant = req.params.tenant
@@ -26,11 +13,11 @@ app.get("/:tenant/devices", function(req, res) {
   res.status(200).json(devices)
 })
 
-app.get("/test/:device", async function(req, res) {
-  device = req.params.device
-  var status = await getDeviceStatus(tenant, device)
-  res.status(200).json(status)
-})
+// app.get("/test/:device", async function(req, res) {
+//   device = req.params.device
+//   var status = await getDeviceStatus(tenant, device)
+//   res.status(200).json(status)
+// })
 
 app.post("/:tenant/:device/:status", async function(req, res) {
   var tenant = req.params.tenant
@@ -62,20 +49,20 @@ function getDevices(tenant) {
 
 async function addDevice(tenant, device, ws) {
   if(checkIfDeviceExist(tenant, device)){
-    console.log("device exist");
+    console.log('s% device alrady exist', device);
     return false
   }
   else {
-    console.log('%s enrolled', device )
+    console.log('%s has been connected', device )
     status = await getDeviceStatus(tenant, device)
     ws.name = device
     ws.status = status
     ws.tenant = tenant
     if (!status) {
-      console.log("Creating device in db");
+      console.log('Creating s% in db', device);
       await deviceStatus.createDevice(tenant, device, status)
     }else {
-      console.log("Updata device form db")
+      console.log('Update s% form db', device)
       updateDevice(tenant, device, status)
     }
     return true;
@@ -84,14 +71,7 @@ async function addDevice(tenant, device, ws) {
 
 async function getDeviceStatus(tenant, device) {
 
-  let status
-  var device = await deviceStatus.getDevice(tenant, device)
-  //console.log(device);
-  if (device.length == 1) {
-    status = device[0].status
-  }else{
-    status = false
-  }
+  let status = await deviceStatus.getDevice(tenant, device)
   return status
 
 }
