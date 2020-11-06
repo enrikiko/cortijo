@@ -212,7 +212,10 @@ wss.on('connection', function connection(ws, request, client) {
   ws.isAlive = true
   ws.status = false
   ws.ip = request.socket.remoteAddress
-  ws.on('pong', heartbeat(data));
+  ws.on('pong', function (data) {
+      console.log(typeof data);
+      console.log(Object.keys(data));
+  });
 
   ws.on('close', function close() {
     console.log('%s close', ws.name);
