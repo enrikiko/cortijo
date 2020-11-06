@@ -62,7 +62,7 @@ async function addDevice(tenant, device, ws) {
       console.log('Creating %s in db', device);
       await deviceStatus.createDevice(tenant, device, status)
     }else {
-      console.log('Update %s form db', device)
+      console.log('Get privious status of %s form db', device)
       updateDevice(tenant, device, status)
     }
     return true;
@@ -71,6 +71,7 @@ async function addDevice(tenant, device, ws) {
 
 async function getDeviceStatus(tenant, device) {
   let status = await deviceStatus.getDevice(tenant, device)
+  console.log('status: %s', status);
   return status
 
 }
