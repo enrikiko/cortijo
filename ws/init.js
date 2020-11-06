@@ -172,7 +172,7 @@ function noop(name) {
 
 function heartbeat(data) {
   console.log(typeof data);
-  console.log(data);
+  console.log(Object.entries(data));
   this.isAlive = true;
 }
 
