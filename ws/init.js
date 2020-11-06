@@ -37,8 +37,8 @@ function getDeviceData(tenant, device){
     async function(){
       setTimeout(
         async function() {
-          data=await retrieveData(tenant, device)
           while (!data) {
+            data = await retrieveData(tenant, device)
             console.log('Waiting...');
           }
           return data;
