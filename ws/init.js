@@ -58,7 +58,7 @@ async function addDevice(tenant, device, ws) {
     ws.name = device
     ws.status = status
     ws.tenant = tenant
-    if (!status) {
+    if (status != null) {
       console.log('Creating s% in db', device);
       await deviceStatus.createDevice(tenant, device, status)
     }else {

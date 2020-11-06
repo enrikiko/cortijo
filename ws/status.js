@@ -30,7 +30,7 @@ const deviceSchema = new mongoose.Schema({
 module.exports = {
 
     getDevice: async (tenant, device) => {
-      let status
+      let status = null
       let myDevice = mongoose.model(tenant+'_WebSocket', deviceSchema);
       let deviceList = await myDevice.find({device: device})
       if (deviceList.length == 1) {
