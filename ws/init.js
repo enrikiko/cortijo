@@ -94,6 +94,17 @@ async function getDeviceData(tenant, device){
   wss.clients.forEach( function each(client) {
     if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
         client.send("data")
+        await client.on('message',async function(message) {
+          if (message.device==device) {
+            console.log("Eureka");
+            console.log(message);
+            return true;
+          }else {
+            console.log("Fuck!");
+            console.log(message);
+            return false;
+          }
+        })
         logs(['Asking for data...']);
     }
   })
