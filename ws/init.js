@@ -4,7 +4,9 @@ const deviceStatus = require('./status');
 const wss = new WebSocket.Server({ port: 3000 });
 const app = express();
 var http = require('http').Server(app);
+const httpPort = 3001
 var io = http;
+var dataObj={}
 
 
 app.get("/:tenant/devices", function(req, res) {
@@ -31,27 +33,43 @@ app.post("/:tenant/:device/:status", async function(req, res) {
   res.status(200).send()
 })
 
+http.listen(httpPort, function () {
+    logs(['Servidor activo en http://localhost:' + httpPort]);
+  })
+
+wss.on('connection', function connection(ws, request, client) {
+
+  /*Get request IP*/
+  logs(['New connection from ip: ' , request.socket.remoteAddress]);
+
+  /*Check connection*/
+  ws.isAlive = true
+  ws.status = false
+  ws.ip = request.socket.remoteAddress
+
+  ws.on('pong', heartbeat);
+
+  ws.on('ping', sendPing)
+
+  ws.on('close', function close() {
+    logs(['%s close', ws.name]);
+  });
+
+  ws.on('message', async function incoming(message) {
+    message = getMsg(message)
+    if (message) {
+      await logic(message, ws)
+    }
+  });
+
+/*End of wss*/
+});
+
 async function getDeviceData(tenant, device){
   return await retrieveData(tenant, device)
-  // return new Promise(
-  //   async function(){
-  //     setTimeout(
-  //       async function() {
-  //         while (!data) {
-  //           data = await retrieveData(tenant, device)
-  //           logs(['Waiting...');
-  //         }
-  //         return data;
-  //       }, 1000
-  //     )
-  //   }
-  // )
 }
 
-var dataObj={}
-
 async function retrieveData(tenant, device) {
-
   wss.clients.forEach( function each(client) {
     if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
 
@@ -59,7 +77,6 @@ async function retrieveData(tenant, device) {
         logs(['Sending data']);
     }
   })
-
   return 'OK';
 }
 
@@ -80,20 +97,20 @@ function getDevices(tenant) {
 
 async function addDevice(tenant, device, ws) {
   if(checkIfDeviceExist(tenant, device)){
-    logs(['%s device alrady exist', device]);
+    logs([device + ' device alrady exist']);
     return false
   }
   else {
-    logs(['%s has been connected', device])
+    logs([device + ' has been connected'])
     status = await getDeviceStatus(tenant, device)
     ws.name = device
     ws.status = status
     ws.tenant = tenant
     if (status == null) {
-      logs(['Creating %s in db', device]);
+      logs(['Creating '+device+' in db']);
       await deviceStatus.createDevice(tenant, device, false)
     }else {
-      logs(['Get privious status of %s form db', device])
+      logs(['Get privious status of '+device+' form db'])
       updateDevice(tenant, device, status)
     }
     return true;
@@ -102,7 +119,7 @@ async function addDevice(tenant, device, ws) {
 
 async function getDeviceStatus(tenant, device) {
   let status = await deviceStatus.getDevice(tenant, device)
-  logs(['status: %s', status]);
+  logs(['status: ', status]);
   return status
 
 }
@@ -133,7 +150,7 @@ async function updateDevice(tenant, device, status) {
     return true
   }
   else {
-    logs(["Error switching %s %s ", device, status]);
+    logs(["Error switching " + device + ' to ' + status]);
     return false ;
   }
 }
@@ -158,7 +175,7 @@ function stringToboolean(status) {
 
 function check() {
   wss.clients.forEach(function each(client) {
-        logs(["\nDevice: %s Status: %s" , client.name, client.isAlive]);
+        logs(['Device: '+client.name+', Status: ' + client.isAlive]);
   })
 }
 
@@ -173,7 +190,7 @@ const interval = setInterval(function ping() {
 }, 10000);
 
 function noop(ws) {
-  logs(['Ping to %s', ws.name]);
+  logs(['Ping to ', ws.name]);
 }
 
 function heartbeat() {
@@ -190,7 +207,8 @@ function getMsg(message) {
     logs([msg]);
     return msg;
   } catch (error) {
-    console.error("\n%s\nError 001. Cannot parse the message", message);
+    logs("Error 001. Cannot parse the message");
+    logs(message)
     return false;
   }
 }
@@ -217,42 +235,11 @@ async function logic(message, ws) {
   // }
 }
 
-wss.on('connection', function connection(ws, request, client) {
 
-  /*Get request IP*/
-  logs(['\nNew connection from ip: %s' , request.socket.remoteAddress]);
-
-  /*Check connection*/
-  ws.isAlive = true
-  ws.status = false
-  ws.ip = request.socket.remoteAddress
-
-  ws.on('pong', heartbeat);
-
-  ws.on('ping', sendPing)
-
-  ws.on('close', function close() {
-    logs(['%s close', ws.name]);
-  });
-
-  ws.on('message', async function incoming(message) {
-    message = getMsg(message)
-    if (message) {
-      await logic(message, ws)
-    }
-  });
-
-/*End of wss*/
-});
 
 function logs(text) {
      let time = new Date().toLocaleString({timeZone: 'Europe/Spain'})
      let str = ' '.repeat(25 - time.length)
-     text="\""+time+"\"" + str +"  :    "+"\""+text+"\""
+     text="\""+time+"\"" + str +": "+"\""+text+"\""
      console.log(text);
 }
-
-
-http.listen(3001, function () {
-    logs(['Servidor activo en http://localhost:3001']);
-  })
