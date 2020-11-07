@@ -62,7 +62,8 @@ async function retrieveData(tenant, device) {
   while (!dataObj[tenant][device]) {
     console.log(count);
   }
-  return dataObj[tenant][device];
+  data=dataObj[tenant][device]
+  return data;
 }
 
 function getDevices(tenant) {
