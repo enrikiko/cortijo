@@ -165,6 +165,7 @@ async function updateDevice(tenant, device, status) {
             return true;
           }else {
             console.log("Fuck!");
+            console.log(message);
             return false;
           }
         })
