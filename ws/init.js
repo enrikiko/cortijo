@@ -245,7 +245,7 @@ wss.on('connection', function connection(ws, request, client) {
 /*End of wss*/
 });
 
-function logs([text) {
+function logs(text) {
      let time = new Date().toLocaleString({timeZone: 'Europe/Spain'})
      let str = ' '.repeat(25 - time.length)
      text="\""+time+"\"" + str +"  :    "+"\""+text+"\""
