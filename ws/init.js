@@ -55,18 +55,21 @@ async function retrieveData(tenant, device) {
   wss.clients.forEach( function each(client) {
     count=count+1
     certain=true
-    } 
+    console.log(1);
+    }
   )
   wss.clients.forEach( function each(client) {
     if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
 
         client.send("data")
         count=count-1
+        console.log(2);
     }
   })
   while (count!=0||!certain) {
     console.log(count);
   }
+  console.log(3);
   return "OK";
 }
 
