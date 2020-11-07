@@ -5,11 +5,11 @@ const db = mongoose.connection;
 mongoose.connect(mongo_db, { useNewUrlParser: true  });
 
 db.on('error',function(){
-console.log("Error al conectarse a Mongo");
+logs("Error al conectarse a Mongo");
 });
 
 db.once('open', function() {
-console.log("Conectado a MongoDB");
+logs("Conectado a MongoDB");
 });
 
 // definicion de esquema del artículo
@@ -23,6 +23,13 @@ const deviceSchema = new mongoose.Schema({
     required: true
   },
 });
+
+function logs([text) {
+     let time = new Date().toLocaleString({timeZone: 'Europe/Spain'})
+     let str = ' '.repeat(25 - time.length)
+     text="\""+time+"\"" + str +"  :    "+"\""+text+"\""
+     console.log(text);
+}
 
 // definicion del modelo de dato de nuevos articulos
 // let myDevice = mongoose.model('WebSocket', deviceSchema);
@@ -50,7 +57,7 @@ module.exports = {
           newDevice.save(function(err, result) {
               if (err) throw err;
               if(result) {
-                  console.log(result);
+                  logs(result);
               }
           });
           return true
