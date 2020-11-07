@@ -60,12 +60,13 @@ async function retrieveData(tenant, device) {
     }
   })
   while (!dataObj[tenant]) {
-    //console.log(tenant);
+    console.log(tenant);
   }
   while (!dataObj[tenant][device]) {
     console.log(device);
   }
   data=dataObj[tenant][device]
+  dataObj[tenant][device]=false
   return data;
 }
 
