@@ -65,6 +65,31 @@ wss.on('connection', function connection(ws, request, client) {
 /*End of wss*/
 });
 
+function noop(ws) {
+  logs(['Ping to ', ws.name]);
+  return "noop"
+}
+
+function heartbeat() {
+  this.isAlive = true;
+}
+
+function sendPing() {
+  logs(["There is a ping"]);
+}
+
+function getMsg(message) {
+  try {
+    const msg = JSON.parse(message)
+    logs([msg]);
+    return msg;
+  } catch (error) {
+    logs("Error 001. Cannot parse the message");
+    logs(message)
+    return false;
+  }
+}
+
 async function getDeviceData(tenant, device){
   return await retrieveData(tenant, device)
 }
@@ -119,7 +144,6 @@ async function addDevice(tenant, device, ws) {
 
 async function getDeviceStatus(tenant, device) {
   let status = await deviceStatus.getDevice(tenant, device)
-  logs(['status: ', status]);
   return status
 
 }
@@ -173,47 +197,6 @@ function stringToboolean(status) {
   }else {return "Error";}
 }
 
-function check() {
-  wss.clients.forEach(function each(client) {
-        logs(['Device: '+client.name+', Status: ' + client.isAlive]);
-  })
-}
-
-const interval = setInterval(function ping() {
-  wss.clients.forEach(function each(ws) {
-    if (ws.isAlive === false) {
-      return ws.terminate()
-    }
-    ws.isAlive = false;
-    ws.ping(noop(ws));
-  });
-}, 10000);
-
-function noop(ws) {
-  logs(['Ping to ', ws.name]);
-}
-
-function heartbeat() {
-  this.isAlive = true;
-}
-
-function sendPing() {
-  logs(["There is a ping"]);
-}
-
-function getMsg(message) {
-  try {
-    const msg = JSON.parse(message)
-    logs([msg]);
-    return msg;
-  } catch (error) {
-    logs("Error 001. Cannot parse the message");
-    logs(message)
-    return false;
-  }
-}
-
-
 async function logic(message, ws) {
   if(message.name&&message.tenant){
     const name = message.name
@@ -225,9 +208,6 @@ async function logic(message, ws) {
     }
   }else if (message.data) {
     logs([message.data]);
-    obj={}
-    obj[ws.name]=message.data
-    dataObj[ws.tenant]=obj
   }
   // else if (message.device & message.status) {
   //   send(message.device, message.status)
@@ -235,11 +215,19 @@ async function logic(message, ws) {
   // }
 }
 
-
-
 function logs(text) {
      let time = new Date().toLocaleString({timeZone: 'Europe/Spain'})
      let str = ' '.repeat(25 - time.length)
      text="\""+time+"\"" + str +": "+"\""+text+"\""
      console.log(text);
 }
+
+setInterval(function ping() {
+  wss.clients.forEach(function each(ws) {
+    if (ws.isAlive === false) {
+      return ws.terminate()
+    }
+    ws.isAlive = false;
+    ws.ping(noop(ws));
+  });
+}, 10000);

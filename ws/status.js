@@ -27,7 +27,7 @@ const deviceSchema = new mongoose.Schema({
 function logs(text) {
      let time = new Date().toLocaleString({timeZone: 'Europe/Spain'})
      let str = ' '.repeat(25 - time.length)
-     text="\""+time+"\"" + str +"  :    "+"\""+text+"\""
+     text="\""+time+"\"" + str +": "+"\""+text+"\""
      console.log(text);
 }
 
