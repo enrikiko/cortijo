@@ -98,7 +98,7 @@ void logic(String data){
   if (data.length() > 0) {
     if ( data=="true" ){led(true);}
     else if ( data=="false" ){led(false);}
-    else if ( data=="data" ){client.send("{\"data\":\""+deviceName+"\", \"name\":\""+deviceName+"\"}");}
+    else if ( data=="data" ){client.send("{\"data\":\""+deviceName+"\", \"device\":\""+deviceName+"\"}");}
     else {blink();}
     Serial.println(data);
     }

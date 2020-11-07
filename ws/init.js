@@ -95,6 +95,7 @@ async function getDeviceData(tenant, device){
     if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
         client.send("data")
         await client.on('message',async function(message) {
+          console.log(typeof message);
           if (message.device==device) {
             console.log("Eureka");
             console.log(message);
