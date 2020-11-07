@@ -159,17 +159,6 @@ async function updateDevice(tenant, device, status) {
     if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
 
         client.send(status)
-        await client.on('message',async function(message) {
-          if (message.device==device) {
-            console.log("Eureka");
-            console.log(message);
-            return true;
-          }else {
-            console.log("Fuck!");
-            console.log(message);
-            return false;
-          }
-        })
         client.status = stringToboolean(status)
         certain = true
         await deviceStatus.updateDevice(tenant, device, status)
