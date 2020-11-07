@@ -65,18 +65,18 @@ wss.on('connection', function connection(ws, request, client) {
 /*End of wss*/
 });
 
-function noop(ws) {
-  logs(['Ping to ', ws.name]);
-  return "noop"
+function noop() {
+  // logs(['Ping to ' + this.name]);
+  // return "noop"
 }
 
 function heartbeat() {
   this.isAlive = true;
 }
 
-function sendPing() {
-  logs(["There is a ping"]);
-}
+// function sendPing() {
+//   logs(["There is a ping"]);
+// }
 
 function getMsg(message) {
   try {
@@ -91,18 +91,13 @@ function getMsg(message) {
 }
 
 async function getDeviceData(tenant, device){
-  return await retrieveData(tenant, device)
-}
-
-async function retrieveData(tenant, device) {
   wss.clients.forEach( function each(client) {
     if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
-
         client.send("data")
-        logs(['Sending data']);
+        logs(['Asking for data...']);
     }
   })
-  return 'OK';
+  return true;
 }
 
 function getDevices(tenant) {
@@ -228,6 +223,6 @@ setInterval(function ping() {
       return ws.terminate()
     }
     ws.isAlive = false;
-    ws.ping(noop(ws));
+    ws.ping(noop());
   });
 }, 10000);

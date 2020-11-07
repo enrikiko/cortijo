@@ -32,12 +32,9 @@ void onEventsCallback(WebsocketsEvent event, String data) {
     } else if(event == WebsocketsEvent::ConnectionClosed) {
         Serial.println("Connnection Closed");
     } else if(event == WebsocketsEvent::GotPing) {
-        Serial.println("Got a Ping!");
-        client.ping();
-        Serial.println(data);
+        //Serial.println("Got a Ping!");
     } else if(event == WebsocketsEvent::GotPong) {
-        Serial.println("Got a Pong!");
-        Serial.println(data);
+        //Serial.println("Got a Pong!");
     }
 }
 
@@ -63,6 +60,7 @@ void setup() {
 
 void loop() {
   if (WiFiMulti.run(connectTimeoutMs) == WL_CONNECTED) {  
+    Serial.println("Connected to wifi");
     Serial.println("IP address: ");
     Serial.println(WiFi.localIP());
     web_reconnect();
@@ -72,10 +70,12 @@ void loop() {
     delay(500);
     }
   //WiFi.begin();
+ Serial.print("Connecting to Wifi...");
   while(WiFiMulti.run() != WL_CONNECTED) {
-    Serial.println("No Wifi!");
+    Serial.print(".");
     delay(1000);
   }
+  Serial.println();
 }
 
 void web_reconnect() {
@@ -83,7 +83,7 @@ void web_reconnect() {
   // try to connect to Websockets server
   //bool connected = client.connect(websockets_server_host, websockets_server_port, path);
   if(client.connect(websockets_server_host, websockets_server_port, path)) {
-    Serial.println("Connecetd!");
+    //Serial.println("Connecetd!");
     client.send("{\"name\":\""+deviceName+"\",\"tenant\":\"cortijo\"}");
   } else {
     Serial.println("WS not connected!");
@@ -96,9 +96,6 @@ void web_reconnect() {
 
 void logic(String data){
   if (data.length() > 0) {
-    
-    //Serial.println(data.length());
-    //show(data);
     if ( data=="true" ){led(true);}
     else if ( data=="false" ){led(false);}
     else if ( data=="data" ){client.send("{\"data\":\""+deviceName+"\"}");}
