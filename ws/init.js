@@ -59,8 +59,11 @@ async function retrieveData(tenant, device) {
         console.log('Sending data');
     }
   })
-  while (!dataObj[tenant]&&!dataObj[tenant][device]) {
-    console.log(count);
+  while (!dataObj[tenant]) {
+    console.log(tenant);
+  }
+  while (!dataObj[tenant][device]) {
+    console.log(device);
   }
   data=dataObj[tenant][device]
   return data;
