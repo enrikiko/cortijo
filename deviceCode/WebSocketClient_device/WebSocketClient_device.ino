@@ -18,6 +18,19 @@ const uint32_t connectTimeoutMs = 5000;
 //int RelayPin = 0;
 
 using namespace websockets;
+
+void onEventsCallback(WebsocketsEvent event, String data) {
+    if(event == WebsocketsEvent::ConnectionOpened) {
+        Serial.println("Connnection Opened");
+    } else if(event == WebsocketsEvent::ConnectionClosed) {
+        Serial.println("Connnection Closed");
+    } else if(event == WebsocketsEvent::GotPing) {
+        Serial.println("Got a Ping!");
+    } else if(event == WebsocketsEvent::GotPong) {
+        Serial.println("Got a Pong!");
+    }
+}
+
 WebsocketsClient client;
 ESP8266WiFiMulti WiFiMulti;
 
