@@ -96,6 +96,8 @@ async function getDeviceData(tenant, device){
         client.send("data")
         await client.on('message',async function(message) {
           console.log(typeof message);
+          const message = JSON.parse(message)
+          console.log(typeof message);
           if (message.device==device) {
             console.log("Eureka");
             console.log(message);
