@@ -32,8 +32,8 @@ app.post("/:tenant/:device/:status", async function(req, res) {
 })
 
 async function getDeviceData(tenant, device){
-  let data = false
-  await retrieveData(tenant, device)
+  let data = await retrieveData(tenant, device)
+  return data
   // return new Promise(
   //   async function(){
   //     setTimeout(
