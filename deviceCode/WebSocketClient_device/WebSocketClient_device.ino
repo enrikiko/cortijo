@@ -24,6 +24,7 @@ ESP8266WiFiMulti WiFiMulti;
 void onMessageCallback(WebsocketsMessage message) {
     Serial.print("Got Message: ");
     Serial.println(message.data());
+    logic(message.data());
 }
 void onEventsCallback(WebsocketsEvent event, String data) {
     if(event == WebsocketsEvent::ConnectionOpened) {
@@ -32,9 +33,9 @@ void onEventsCallback(WebsocketsEvent event, String data) {
         Serial.println("Connnection Closed");
     } else if(event == WebsocketsEvent::GotPing) {
         Serial.println("Got a Ping!");
+        client.ping("Hey there Server!");
     } else if(event == WebsocketsEvent::GotPong) {
         Serial.println("Got a Pong!");
-        client.ping("Hey there Server!");
     }
 }
 
@@ -86,11 +87,9 @@ void web_reconnect() {
     Serial.println("WS not connected!");
   }
     // run callback when messages are received
-  client.onMessage([&](WebsocketsMessage message) {
-
-      logic(message.data());
-
-  });
+  //client.onMessage([&](WebsocketsMessage message) {
+    //logic(message.data());
+  //});
 }
 
 void logic(String data){

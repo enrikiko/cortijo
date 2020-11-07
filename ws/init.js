@@ -23,7 +23,7 @@ app.get("/:tenant/:device/data", async function(req, res) {
 app.post("/:tenant/:device/:status", async function(req, res) {
   var tenant = req.params.tenant
   var device = req.params.device
-  var status = statusToStatus(req.params.status) //Check status is "true" or "false"
+  var status = verifyStatus(req.params.status)
   console.log('%s change status to %s', req.params.device, req.params.status);
   if( status && device && tenant ){
       updateDevice(tenant, device, status)
@@ -129,13 +129,16 @@ async function updateDevice(tenant, device, status) {
 
     }
   })
-  if (!certain) {
-    console.log("Error switching %s %s ", device, status);
+  if (certain) {
+    return true
   }
-  return certain
+  else {
+    console.log("Error switching %s %s ", device, status);
+    return false ;
+  }
 }
 
-function statusToStatus(status) {
+function verifyStatus(status) {
   if ( typeof status == 'string' && ( status == "true" || status == "false" )) {
     return status
   }
@@ -170,14 +173,14 @@ const interval = setInterval(function ping() {
 }, 10000);
 
 function noop(ws) {
-  console.log(JSON.stringify(ws));
+  console.log('Ping to %s', ws.name);
 }
 
 function heartbeat() {
   this.isAlive = true;
 }
 
-function ping() {
+function sendPing() {
   console.log("There is a ping");
 }
 
@@ -223,8 +226,10 @@ wss.on('connection', function connection(ws, request, client) {
   ws.isAlive = true
   ws.status = false
   ws.ip = request.socket.remoteAddress
+
   ws.on('pong', heartbeat);
-  ws.on('ping', ping)
+
+  ws.on('ping', sendPing)
 
   ws.on('close', function close() {
     console.log('%s close', ws.name);
