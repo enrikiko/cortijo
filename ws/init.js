@@ -60,7 +60,7 @@ async function retrieveData(tenant, device) {
     }
   })
   while (!dataObj[tenant]) {
-    console.log(tenant);
+    //console.log(tenant);
   }
   while (!dataObj[tenant][device]) {
     console.log(device);
@@ -206,7 +206,9 @@ async function logic(message, ws) {
     }
   }else if (message.data) {
     console.log(message.data);
-    dataObj[ws.tenant][ws.name]=message.data
+    obj={}
+    obj[ws.name]=message.data
+    dataObj[ws.tenant]=obj
   }
   // else if (message.device & message.status) {
   //   send(message.device, message.status)
