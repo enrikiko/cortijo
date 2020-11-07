@@ -160,8 +160,9 @@ async function updateDevice(tenant, device, status) {
 
         client.send(status)
         await client.on('message',async function(message) {
-          if (message=='ok') {
+          if (message.device==device) {
             console.log("Eureka");
+            console.log(message);
             return true;
           }else {
             console.log("Fuck!");

@@ -98,7 +98,7 @@ void logic(String data){
   if (data.length() > 0) {
     if ( data=="true" ){led(true);}
     else if ( data=="false" ){led(false);}
-    else if ( data=="data" ){client.send("{\"data\":\""+deviceName+"\"}");}
+    else if ( data=="data" ){client.send("{\"data\":\""+deviceName+"\", \"name\":\""+deviceName+"\"}");}
     else {blink();}
     Serial.println(data);
     }
@@ -108,7 +108,6 @@ void led(boolean statu){
   certain=statu;
   digitalWrite(RelayPin, statu);
   digitalWrite(LED_BUILTIN, statu);
-  client.send("ok");
   }
 
 void blink(){
