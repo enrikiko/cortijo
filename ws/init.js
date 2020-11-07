@@ -91,34 +91,23 @@ function getMsg(message) {
 }
 
 async function getDeviceData(tenant, device){
-  let wait = true
-  let result
-  wss.clients.forEach( async function(client) {
+  wss.clients.forEach( function(client) {
    if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
        client.send("data")
-       await client.on('message',async function(message) {
-         console.log(typeof message);
+       logs(['Asking for data...']);
+       client.on('message', function(message) {
          message = JSON.parse(message)
          console.log(typeof message);
          if (message.device==device) {
            console.log("Eureka");
-           console.log(message);
-           result = message.data;
 
          }else {
            console.log("Fuck!");
-           console.log(message);
-           return false;
          }
-         wait=false
        })
-       logs(['Asking for data...']);
    }
  })
-
-  while (wait) {
-  }
-  return true
+ return true
 }
 
 function getDevices(tenant) {
