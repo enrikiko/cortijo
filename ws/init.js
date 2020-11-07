@@ -24,7 +24,7 @@ app.post("/:tenant/:device/:status", async function(req, res) {
   var tenant = req.params.tenant
   var device = req.params.device
   var status = verifyStatus(req.params.status)
-  console.log('%s change status to %s', req.params.device, req.params.status);
+  logs('%s change status to %s', req.params.device, req.params.status);
   if( status && device && tenant ){
       updateDevice(tenant, device, status)
   }
@@ -39,7 +39,7 @@ async function getDeviceData(tenant, device){
   //       async function() {
   //         while (!data) {
   //           data = await retrieveData(tenant, device)
-  //           console.log('Waiting...');
+  //           logs('Waiting...');
   //         }
   //         return data;
   //       }, 1000
@@ -56,7 +56,7 @@ async function retrieveData(tenant, device) {
     if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
 
         client.send("data")
-        console.log('Sending data');
+        logs('Sending data');
     }
   })
 
@@ -80,20 +80,20 @@ function getDevices(tenant) {
 
 async function addDevice(tenant, device, ws) {
   if(checkIfDeviceExist(tenant, device)){
-    console.log('%s device alrady exist', device);
+    logs('%s device alrady exist', device);
     return false
   }
   else {
-    console.log('%s has been connected', device )
+    logs('%s has been connected', device )
     status = await getDeviceStatus(tenant, device)
     ws.name = device
     ws.status = status
     ws.tenant = tenant
     if (status == null) {
-      console.log('Creating %s in db', device);
+      logs('Creating %s in db', device);
       await deviceStatus.createDevice(tenant, device, false)
     }else {
-      console.log('Get privious status of %s form db', device)
+      logs('Get privious status of %s form db', device)
       updateDevice(tenant, device, status)
     }
     return true;
@@ -102,7 +102,7 @@ async function addDevice(tenant, device, ws) {
 
 async function getDeviceStatus(tenant, device) {
   let status = await deviceStatus.getDevice(tenant, device)
-  console.log('status: %s', status);
+  logs('status: %s', status);
   return status
 
 }
@@ -133,7 +133,7 @@ async function updateDevice(tenant, device, status) {
     return true
   }
   else {
-    console.log("Error switching %s %s ", device, status);
+    logs("Error switching %s %s ", device, status);
     return false ;
   }
 }
@@ -158,7 +158,7 @@ function stringToboolean(status) {
 
 function check() {
   wss.clients.forEach(function each(client) {
-        console.log("\nDevice: %s Status: %s" , client.name, client.isAlive);
+        logs("\nDevice: %s Status: %s" , client.name, client.isAlive);
   })
 }
 
@@ -173,7 +173,7 @@ const interval = setInterval(function ping() {
 }, 10000);
 
 function noop(ws) {
-  console.log('Ping to %s', ws.name);
+  logs('Ping to %s', ws.name);
 }
 
 function heartbeat() {
@@ -181,13 +181,13 @@ function heartbeat() {
 }
 
 function sendPing() {
-  console.log("There is a ping");
+  logs("There is a ping");
 }
 
 function getMsg(message) {
   try {
     const msg = JSON.parse(message)
-    console.log(msg);
+    logs(msg);
     return msg;
   } catch (error) {
     console.error("\n%s\nError 001. Cannot parse the message", message);
@@ -206,7 +206,7 @@ async function logic(message, ws) {
       ws.send('Error 001. Device already exist')
     }
   }else if (message.data) {
-    console.log(message.data);
+    logs(message.data);
     obj={}
     obj[ws.name]=message.data
     dataObj[ws.tenant]=obj
@@ -220,7 +220,7 @@ async function logic(message, ws) {
 wss.on('connection', function connection(ws, request, client) {
 
   /*Get request IP*/
-  console.log('\nNew connection from ip: %s' , request.socket.remoteAddress);
+  logs('\nNew connection from ip: %s' , request.socket.remoteAddress);
 
   /*Check connection*/
   ws.isAlive = true
@@ -232,7 +232,7 @@ wss.on('connection', function connection(ws, request, client) {
   ws.on('ping', sendPing)
 
   ws.on('close', function close() {
-    console.log('%s close', ws.name);
+    logs('%s close', ws.name);
   });
 
   ws.on('message', async function incoming(message) {
@@ -245,7 +245,14 @@ wss.on('connection', function connection(ws, request, client) {
 /*End of wss*/
 });
 
+function logs(text) {
+     let time = new Date().toLocaleString({timeZone: 'Europe/Spain'})
+     let str = ' '.repeat(25 - time.length)
+     text="\""+time+"\"" + str +"  :    "+"\""+text+"\""
+     console.log(text);
+}
+
 
 http.listen(3001, function () {
-    console.log('Servidor activo en http://localhost:3001');
+    logs('Servidor activo en http://localhost:3001');
   })
