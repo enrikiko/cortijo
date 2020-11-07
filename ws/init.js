@@ -49,7 +49,7 @@ wss.on('connection', function connection(ws, request, client) {
 
   ws.on('pong', heartbeat);
 
-  ws.on('ping', sendPing)
+  ///ws.on('ping', sendPing)
 
   ws.on('close', function close() {
     logs(['%s close', ws.name]);
