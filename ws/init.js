@@ -91,7 +91,7 @@ function getMsg(message) {
 }
 
 async function getDeviceData(tenant, device){
-  wss.clients.forEach( async function each(client) {
+  return wss.clients.forEach( async function each(client) {
     if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
         client.send("data")
         await client.on('message',async function(message) {
@@ -111,7 +111,6 @@ async function getDeviceData(tenant, device){
         logs(['Asking for data...']);
     }
   })
-  return true;
 }
 
 function getDevices(tenant) {
