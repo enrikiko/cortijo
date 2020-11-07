@@ -165,16 +165,20 @@ const interval = setInterval(function ping() {
       return ws.terminate()
     }
     ws.isAlive = false;
-    ws.ping(noop(ws.name));
+    ws.ping(noop(ws));
   });
 }, 10000);
 
-function noop(name) {
-  //console.log(name);
+function noop(ws) {
+  console.log(JSON.stringify(ws));
 }
 
 function heartbeat() {
   this.isAlive = true;
+}
+
+function ping() {
+  console.log("There is a ping");
 }
 
 function getMsg(message) {
@@ -220,6 +224,7 @@ wss.on('connection', function connection(ws, request, client) {
   ws.status = false
   ws.ip = request.socket.remoteAddress
   ws.on('pong', heartbeat);
+  ws.on('ping' ping)
 
   ws.on('close', function close() {
     console.log('%s close', ws.name);

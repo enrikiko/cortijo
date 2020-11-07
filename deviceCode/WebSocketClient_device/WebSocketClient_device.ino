@@ -18,7 +18,13 @@ const uint32_t connectTimeoutMs = 5000;
 //int RelayPin = 0;
 
 using namespace websockets;
+WebsocketsClient client;
+ESP8266WiFiMulti WiFiMulti;
 
+void onMessageCallback(WebsocketsMessage message) {
+    Serial.print("Got Message: ");
+    Serial.println(message.data());
+}
 void onEventsCallback(WebsocketsEvent event, String data) {
     if(event == WebsocketsEvent::ConnectionOpened) {
         Serial.println("Connnection Opened");
@@ -28,11 +34,11 @@ void onEventsCallback(WebsocketsEvent event, String data) {
         Serial.println("Got a Ping!");
     } else if(event == WebsocketsEvent::GotPong) {
         Serial.println("Got a Pong!");
+        client.ping("Hey there Server!");
     }
 }
 
-WebsocketsClient client;
-ESP8266WiFiMulti WiFiMulti;
+
 
 void setup() {
   Serial.begin(115200);
@@ -44,6 +50,12 @@ void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
   pinMode(RelayPin, OUTPUT);
   digitalWrite(LED_BUILTIN, HIGH);
+
+  client.onMessage(onMessageCallback);
+  client.onEvent(onEventsCallback);
+  web_reconnect();
+  client.send("Hi Server!");
+  client.ping();
 }
 
 void loop() {
