@@ -120,7 +120,9 @@ async function getDeviceData(tenant, device){
 function getDevices(tenant) {
   let devicesList=[]
 
-  for (var device in device_map){
+  bject.entries(device_map).forEach(([index, device]) => {
+    console.log(index);
+    console.log(device);
     if (device.tenant=device) {
       console.log(device_map);
       deviceObj={}
