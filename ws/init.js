@@ -127,7 +127,7 @@ function getDevices(tenant) {
       device.status=client.status
       device.ip=client.ip
       device.id=client.id
-      devices.push(device)
+      devicesList.push(device)
     }
   })
   return devicesList
