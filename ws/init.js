@@ -96,7 +96,6 @@ async function getDeviceData(tenant, device){
    if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
        client.send("data")
        logs(['Asking for data...']);
-       while (!result) {
          client.on('message', function(message) {
            message = JSON.parse(message)
            result = message
@@ -108,8 +107,6 @@ async function getDeviceData(tenant, device){
            }
          })
        }
-
-   }
  })
  return result
 }
