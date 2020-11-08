@@ -5,8 +5,10 @@ const wss = new WebSocket.Server({ port: 3000 });
 const app = express();
 var http = require('http').Server(app);
 const httpPort = 3001
-var io = http;
+// var io = http;
 var dataObj={}
+var id = 0
+var device_map = {}
 
 
 app.get("/:tenant/devices", function(req, res) {
@@ -43,6 +45,9 @@ wss.on('connection', function connection(ws, request, client) {
   logs(['New connection from ip: ' , request.socket.remoteAddress]);
 
   /*Check connection*/
+
+  ws.id = id++
+  device_map[ws.id] = ws
   ws.isAlive = true
   ws.status = false
   ws.ip = request.socket.remoteAddress
@@ -112,18 +117,27 @@ async function getDeviceData(tenant, device){
 }
 
 function getDevices(tenant) {
-  let devices=[]
-  wss.clients.forEach(function each(client) {
-    let device = {}
-    if ( client.name && ( client.tenant == tenant ) ) {
-      device.tenant=client.tenant
-      device.name=client.name
-      device.status=client.status
-      device.ip=client.ip
-      devices.push(device)
-    }
-  })
-  return devices
+  let devicesList=[]
+  for (var device in device_map){
+    deviceObj={}
+    deviceObj.tenant=device.tenant
+    deviceObj.name=device.name
+    deviceObj.status=device.status
+    deviceObj.ip=device.ip
+    deviceObj.id=device.id
+    devicesList.push()
+  }
+  // wss.clients.forEach(function each(client) {
+  //   let device = {}
+  //   if ( client.name && ( client.tenant == tenant ) ) {
+  //     device.tenant=client.tenant
+  //     device.name=client.name
+  //     device.status=client.status
+  //     device.ip=client.ip
+  //     devices.push(device)
+  //   }
+  // })
+  return devicesList
 }
 
 async function addDevice(tenant, device, ws) {
