@@ -25,13 +25,14 @@ app.get("/:tenant/:device/data", async function(req, res) {
   res.status(200).json(data)
 })
 
-app.post("/:tenant/:device/:status", async function(req, res) {
+app.post("/:tenant/:device/:id/:status", async function(req, res) {
   var tenant = req.params.tenant
   var device = req.params.device
+  var id = req.params.id
   var status = verifyStatus(req.params.status)
   logs(['%s change status to %s', req.params.device, req.params.status]);
-  if( status && device && tenant ){
-      updateDevice(tenant, device, status)
+  if( status && device && tenant && id ){
+      updateDevice(tenant, device, id, status)
   }
   res.status(200).send()
 })
@@ -98,22 +99,22 @@ function getMsg(message) {
 
 async function getDeviceData(tenant, device){
   let result = false
-  wss.clients.forEach( function(client) {
-   if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
-       client.send("data")
-       logs(['Asking for data...']);
-         client.on('message', function(message) {
-           message = JSON.parse(message)
-           result = message
-           if (message.device==device) {
-             console.log("Eureka");
-
-           }else {
-             console.log("Fuck!");
-           }
-         })
-       }
- })
+ //  wss.clients.forEach( function(client) {
+ //   if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
+ //       client.send("data")
+ //       logs(['Asking for data...']);
+ //         client.on('message', function(message) {
+ //           message = JSON.parse(message)
+ //           result = message
+ //           if (message.device==device) {
+ //             console.log("Eureka");
+ //
+ //           }else {
+ //             console.log("Fuck!");
+ //           }
+ //         })
+ //       }
+ // })
  return result
 }
 
@@ -149,7 +150,7 @@ async function addDevice(tenant, device, ws) {
       await deviceStatus.createDevice(tenant, device, false)
     }else {
       logs(['Get privious status of '+device+' form db'])
-      updateDevice(tenant, device, status)
+      updateDevice(tenant, device, id, status)
     }
     return true;
   }
@@ -171,18 +172,20 @@ function checkIfDeviceExist(device){
   return certain;
 }
 
-async function updateDevice(tenant, device, status) {
+async function updateDevice(tenant, device, id, status) {
   let certain = false
-  wss.clients.forEach(async function each(client) {
-    if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
-
-        client.send(status)
-        client.status = stringToboolean(status)
-        certain = true
-        await deviceStatus.updateDevice(tenant, device, status)
-
-    }
-  })
+  // wss.clients.forEach(async function each(client) {
+  //   if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
+  //
+  //       client.send(status)
+  //       client.status = stringToboolean(status)
+  //       certain = true
+  //       await deviceStatus.updateDevice(tenant, device, status)
+  //
+  //   }
+  // })
+  await deviceStatus.updateDevice(tenant, device, status)
+  device_map.id.send(status)
   if (certain) {
     return true
   }
