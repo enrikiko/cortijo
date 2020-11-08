@@ -119,9 +119,10 @@ async function getDeviceData(tenant, device){
 
 function getDevices(tenant) {
   let devicesList=[]
-  console.log(device_map);
+
   for (var device in device_map){
-    if (deviceObj.tenant=tenant) {
+    if (device.tenant=device) {
+      console.log(device_map);
       deviceObj={}
       deviceObj.tenant=device.tenant
       deviceObj.name=device.name
