@@ -8,9 +8,9 @@ const char *ssid2 = "WifiSalon";
 const char *password2 = "lunohas13steps";
 const char *ssid4 = "Seagull";
 const char *password4 = "Dober96Mila";
-const char* websockets_server_host = "ws.cortijodemazas.com"; //Enter server adress
+const char* websockets_server_host = "wss://ws.cortijodemazas.com"; //Enter server adress
 const String path = "/";
-const uint16_t websockets_server_port = 443; // Enter server port
+const uint16_t websockets_server_port = 433; // Enter server port
 const String deviceName = "Wemos_ws_001";
 bool certain = false;
 int RelayPin = 5; //Wemos
@@ -82,7 +82,7 @@ void web_reconnect() {
   //Serial.println("Connected to Wifi, Connecting to server.");
   // try to connect to Websockets server
   //bool connected = client.connect(websockets_server_host, websockets_server_port, path);
-  if(client.connect(websockets_server_host, websockets_server_port, path)) {
+  if(client.connect(websockets_server_host)) {
     //Serial.println("Connecetd!");
     client.send("{\"name\":\""+deviceName+"\",\"tenant\":\"cortijo\"}");
   } else {

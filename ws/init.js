@@ -92,9 +92,10 @@ function getMsg(message) {
 
 async function getDeviceData(tenant, device){
   let result
-  await Promise.all(wss.clients.forEach( function(client) {
+  wss.clients.forEach( function(client) {
    if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
-       client.send("data")
+       let req = client.send("data")
+       console.log('Request: %s', req);
        logs(['Asking for data...']);
        client.on('message', function(message) {
          message = JSON.parse(message)
@@ -107,7 +108,7 @@ async function getDeviceData(tenant, device){
          }
        })
    }
- }))
+ })
  return result
 }
 
