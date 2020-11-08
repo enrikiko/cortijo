@@ -414,12 +414,13 @@ app.get("/websocketDevice/all", async function(req, res) {
   res.status(200).json(response)
 })
 //
-app.get("/updateWebSocket/:name/:status", async function(req, res){
+app.get("/updateWebSocket/:name/:id/:status", async function(req, res){
   var tenant = req.tenant;
   var name = req.params.name
+  var id = req.params.id
   var status = req.params.status
-  console.log("/updateWebSocket/:name/:status");
-  var response = await request.changeWebSocketStatus(tenant, name, status)
+  //console.log("/updateWebSocket/:name/:status");
+  var response = await request.changeWebSocketStatus(tenant, name, status, id)
   res.status(response).send(status)
 })
 //

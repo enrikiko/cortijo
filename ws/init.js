@@ -119,32 +119,17 @@ async function getDeviceData(tenant, device){
 
 function getDevices(tenant) {
   let devicesList=[]
-
-  Object.entries(device_map).forEach(([index, device]) => {
-    console.log(index);
-    console.log(device);
-    if (device.tenant=device) {
-      console.log(device_map);
-      deviceObj={}
-      deviceObj.tenant=device.tenant
-      deviceObj.name=device.name
-      deviceObj.status=device.status
-      deviceObj.ip=device.ip
-      deviceObj.id=device.id
-      devicesList.push()
+  wss.clients.forEach(function each(client) {
+    let device = {}
+    if ( client.name && ( client.tenant == tenant ) ) {
+      device.tenant=client.tenant
+      device.name=client.name
+      device.status=client.status
+      device.ip=client.ip
+      device.id=client.id
+      devices.push(device)
     }
-  }
-)
-  // wss.clients.forEach(function each(client) {
-  //   let device = {}
-  //   if ( client.name && ( client.tenant == tenant ) ) {
-  //     device.tenant=client.tenant
-  //     device.name=client.name
-  //     device.status=client.status
-  //     device.ip=client.ip
-  //     devices.push(device)
-  //   }
-  // })
+  })
   return devicesList
 }
 

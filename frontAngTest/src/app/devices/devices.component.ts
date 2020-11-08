@@ -138,10 +138,10 @@ export class DevicesComponent implements OnInit {
     })
     let url = null
     if(device.status){
-      url = "https://back.app.cortijodemazas.com/updateWebSocket/" + device.name +"/false/"
+      url = "https://back.app.cortijodemazas.com/updateWebSocket/" + device.name + "/" + device.id + "/false/"
     }
     else if (!device.status){
-      url = "https://back.app.cortijodemazas.com/updateWebSocket/" + device.name +"/true/"
+      url = "https://back.app.cortijodemazas.com/updateWebSocket/" + device.name + "/" + device.id + "/true/"
     }
     let startTime = new Date().getTime()
     this.http.get(url, { headers: headers }).subscribe( data =>
