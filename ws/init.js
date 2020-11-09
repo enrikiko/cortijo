@@ -219,7 +219,7 @@ function stringToboolean(status) {
 }
 
 async function logic(message, ws) {
-  if(message.name && message.tenant && message.id){
+  if(message.name && message.tenant){
     const name = message.name
     const tenant = message.tenant
     const id = ws.id
