@@ -45,7 +45,7 @@ wss.on('connection', function connection(ws, request, client) {
   /*Get request IP*/
   console.log(request);
   logs(['New connection from ip: ' , request.socket.remoteAddress]);
-  console.log(request.headers.['x-forwarded-for']);
+  console.log(request.headers['x-forwarded-for']);
   /*Check connection*/
 
   ws.id = id++
