@@ -34,7 +34,7 @@ export class DevicesComponent implements OnInit {
 
   //------WebSocker-------//
   initIoConnection(){
-    this.socketService.sendMessage("angular user connected");
+    this.socketService.sendMessage("Angular user connected");
   }
 
   ngOnInit()
@@ -138,10 +138,10 @@ export class DevicesComponent implements OnInit {
     })
     let url = null
     if(device.status){
-      url = "https://back.app.cortijodemazas.com/updateWebSocket/" + device.name + "/" + device.id + "/false/"
+      url = "https://back.app.cortijodemazas.com/updateWebSocket/" + device.name + "/" + device.id + "/false"
     }
     else if (!device.status){
-      url = "https://back.app.cortijodemazas.com/updateWebSocket/" + device.name + "/" + device.id + "/true/"
+      url = "https://back.app.cortijodemazas.com/updateWebSocket/" + device.name + "/" + device.id + "/true"
     }
     let startTime = new Date().getTime()
     this.http.get(url, { headers: headers }).subscribe( data =>

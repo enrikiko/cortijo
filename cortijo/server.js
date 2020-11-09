@@ -420,7 +420,7 @@ app.get("/updateWebSocket/:name/:id/:status", async function(req, res){
   var id = req.params.id
   var status = req.params.status
   //console.log("/updateWebSocket/:name/:status");
-  var response = await request.changeWebSocketStatus(tenant, name, status, id)
+  var response = await request.changeWebSocketStatus(tenant, name, id, status)
   res.status(response).send(status)
 })
 //

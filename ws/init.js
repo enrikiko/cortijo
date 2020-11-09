@@ -30,7 +30,7 @@ app.post("/:tenant/:device/:id/:status", async function(req, res) {
   var device = req.params.device
   var id = req.params.id
   var status = verifyStatus(req.params.status)
-  logs([req.params.device,' change status to ', req.params.status, ',ID: ',id]);
+  logs([req.params.device,' change status to ', req.params.status, 'ID: ',id]);
   if( status && device && tenant && id ){
       updateDevice(tenant, device, id, status)
   }
@@ -42,10 +42,9 @@ http.listen(httpPort, function () {
   })
 
 wss.on('connection', function connection(ws, request, client) {
-
   /*Get request IP*/
+  console.log(JSON.stringify(request));
   logs(['New connection from ip: ' , request.socket.remoteAddress]);
-
   /*Check connection*/
 
   ws.id = id++
@@ -174,9 +173,14 @@ function checkIfDeviceExist(device){
   return certain;
 }
 
-async function updateDevice(tenant, device, localId, status) {
+async function updateDevice(tenant, device, id, status) {
+  wss.clients.forEach( function each(client) {
+    if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
+        client.status = stringToboolean(status)
+    }
+  })
   await deviceStatus.updateDevice(tenant, device, status)
-  device_map[localId].send(status)
+  device_map[id].send(status)
   return true
 }
 

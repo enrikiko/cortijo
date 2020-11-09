@@ -82,7 +82,7 @@ module.exports={
        return response.body;
      },
 
-     changeWebSocketStatus: async (tenant, name, status, id) => {
+     changeWebSocketStatus: async (tenant, name, id, status) => {
        console.log('changeWebSocketStatus');
        const url = WEBSOCKET_URL+"/"+tenant+"/"+name+"/"+id+"/"+status
        let response

@@ -12,9 +12,11 @@ const char* websockets_server_host = "wss://ws.cortijodemazas.com"; //Enter serv
 const String path = "/";
 const uint16_t websockets_server_port = 433; // Enter server port
 const String deviceName = "Wemos_ws_001";
+const String tenant = "cortijo";
 bool certain = false;
 int RelayPin = 5; //Wemos
 const uint32_t connectTimeoutMs = 5000;
+
 //int RelayPin = 0;
 
 using namespace websockets;
@@ -80,7 +82,7 @@ void loop() {
 
 void web_reconnect() {
   if(client.connect(websockets_server_host)) {
-    client.send("{\"name\":\""+deviceName+"\",\"tenant\":\"cortijo\"}");
+    client.send("{\"name\":\""+deviceName+"\",\"tenant\":\""+tenant+"\"}");
   } else {
     Serial.println("WS not connected!");
   }
@@ -101,6 +103,7 @@ void led(boolean statu){
   certain=statu;
   digitalWrite(RelayPin, statu);
   digitalWrite(LED_BUILTIN, statu);
+  client.send("OK")
   }
 
 void blink(){
