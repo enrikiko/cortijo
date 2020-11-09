@@ -189,8 +189,9 @@ async function updateDevice(tenant, device, localId, status) {
   console.log(localId)
   await deviceStatus.updateDevice(tenant, device, status)
   //console.log(device_map[localId])
-  res=device_map[localId].send(status)
+  device_map[localId].send(status)
   console.log(res);
+  certain = true
   if (certain) {
     return true
   }
