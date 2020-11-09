@@ -43,7 +43,7 @@ http.listen(httpPort, function () {
 
 wss.on('connection', function connection(ws, request, client) {
   /*Get request IP*/
-  console.log(JSON.stringify(request));
+  console.log(request);
   logs(['New connection from ip: ' , request.socket.remoteAddress]);
   /*Check connection*/
 
