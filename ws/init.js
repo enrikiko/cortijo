@@ -222,7 +222,7 @@ async function logic(message, ws) {
   if(message.name && message.tenant && message.id){
     const name = message.name
     const tenant = message.tenant
-    const id = message.id
+    const id = ws.id
     if(addDevice(tenant, name, ws, id)){
       ws.send('Welcome ' + name)
     }else{
