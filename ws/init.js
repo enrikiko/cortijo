@@ -43,16 +43,14 @@ http.listen(httpPort, function () {
 
 wss.on('connection', function connection(ws, request, client) {
   /*Get request IP*/
-  console.log(request);
-  logs(['New connection from ip: ' , request.socket.remoteAddress]);
-  console.log(request.headers['x-forwarded-for']);
+  logs(['New connection from ip: ' , request.headers['x-forwarded-for']]);
   /*Check connection*/
 
   ws.id = id++
   device_map[ws.id] = ws
   ws.isAlive = true
   ws.status = false
-  ws.ip = request.socket.remoteAddress
+  ws.ip = request.headers['x-forwarded-for']
 
   ws.send(ws.id)
 
@@ -182,6 +180,7 @@ async function updateDevice(tenant, device, id, status) {
   })
   await deviceStatus.updateDevice(tenant, device, status)
   device_map[id].send(status)
+  console.log(device_map[id])
   return true
 }
 

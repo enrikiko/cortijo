@@ -99,11 +99,13 @@ void logic(String data){
     }
   }
 
-void led(boolean statu){
-  certain=statu;
-  digitalWrite(RelayPin, statu);
-  digitalWrite(LED_BUILTIN, statu);
-  client.send("OK")
+void led(boolean relay_status){
+  Serial.print("Change status to ");
+  Serial.println(relay_status);
+  certain=relay_status;
+  digitalWrite(RelayPin, relay_status);
+  digitalWrite(LED_BUILTIN, relay_status);
+  client.send("OK");
   }
 
 void blink(){
