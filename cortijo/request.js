@@ -84,7 +84,7 @@ module.exports={
 
      changeWebSocketStatus: async (tenant, name, status, id) => {
        console.log('changeWebSocketStatus');
-       const url = WEBSOCKET_URL+"/"+tenant+"/"+id+"/"+status
+       const url = WEBSOCKET_URL+"/"+tenant+"/"+name+"/"+id+"/"+status
        let response
        try {
          response = await superagent.post(url);
