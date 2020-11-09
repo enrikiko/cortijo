@@ -54,6 +54,8 @@ wss.on('connection', function connection(ws, request, client) {
   ws.status = false
   ws.ip = request.socket.remoteAddress
 
+  ws.send(ws.id)
+
   ws.on('pong', heartbeat);
 
   ///ws.on('ping', sendPing)
@@ -134,7 +136,7 @@ function getDevices(tenant) {
   return devicesList
 }
 
-async function addDevice(tenant, device, ws) {
+async function addDevice(tenant, device, ws, id) {
   if(checkIfDeviceExist(tenant, device)){
     logs([device + ' device alrady exist']);
     return false
@@ -172,7 +174,7 @@ function checkIfDeviceExist(device){
   return certain;
 }
 
-async function updateDevice(tenant, device, id, status) {
+async function updateDevice(tenant, device, localId, status) {
   let certain = false
   // wss.clients.forEach(async function each(client) {
   //   if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
@@ -184,10 +186,11 @@ async function updateDevice(tenant, device, id, status) {
   //
   //   }
   // })
-  console.log(id);
+  console.log(localId)
+  console.log(device_map);
   await deviceStatus.updateDevice(tenant, device, status)
-  console.log(device_map[id])
-  device_map[id].send(status)
+  console.log(device_map[localId])
+  device_map[localId].send(status)
   if (certain) {
     return true
   }
@@ -216,10 +219,11 @@ function stringToboolean(status) {
 }
 
 async function logic(message, ws) {
-  if(message.name&&message.tenant){
+  if(message.name && message.tenant && message.id){
     const name = message.name
     const tenant = message.tenant
-    if(addDevice(tenant, name, ws)){
+    const id = message.id
+    if(addDevice(tenant, name, ws, id)){
       ws.send('Welcome ' + name)
     }else{
       ws.send('Error 001. Device already exist')

@@ -15,6 +15,7 @@ const String deviceName = "Wemos_ws_001";
 bool certain = false;
 int RelayPin = 5; //Wemos
 const uint32_t connectTimeoutMs = 5000;
+String socket_id;
 //int RelayPin = 0;
 
 using namespace websockets;
@@ -79,19 +80,17 @@ void loop() {
 }
 
 void web_reconnect() {
-  //Serial.println("Connected to Wifi, Connecting to server.");
-  // try to connect to Websockets server
-  //bool connected = client.connect(websockets_server_host, websockets_server_port, path);
+  socket_id = "false";
   if(client.connect(websockets_server_host)) {
-    //Serial.println("Connecetd!");
+    Serial.println("Waiting for Socket ID");
+    while(socket_id!="false"){
+      Serial.println(".");
+      delay(333);
+      }
     client.send("{\"name\":\""+deviceName+"\",\"tenant\":\"cortijo\"}");
   } else {
     Serial.println("WS not connected!");
   }
-    // run callback when messages are received
-  //client.onMessage([&](WebsocketsMessage message) {
-    //logic(message.data());
-  //});
 }
 
 void logic(String data){
@@ -99,8 +98,10 @@ void logic(String data){
     if ( data=="true" ){led(true);}
     else if ( data=="false" ){led(false);}
     else if ( data=="data" ){client.send("{\"data\":\""+deviceName+"\", \"device\":\""+deviceName+"\"}");}
-    else {blink();
-    Serial.println(data);}
+    else {
+      socket_id = data;
+      blink();
+      Serial.println(data);}
     }
   }
 
