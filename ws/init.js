@@ -30,7 +30,7 @@ app.post("/:tenant/:device/:id/:status", async function(req, res) {
   var device = req.params.device
   var id = req.params.id
   var status = verifyStatus(req.params.status)
-  logs(['%s change status to %s', req.params.device, req.params.status]);
+  logs([req.params.device,' change status to ', req.params.status, ',ID: ',id]);
   if( status && device && tenant && id ){
       updateDevice(tenant, device, id, status)
   }
@@ -175,29 +175,9 @@ function checkIfDeviceExist(device){
 }
 
 async function updateDevice(tenant, device, localId, status) {
-  let certain = false
-  // wss.clients.forEach(async function each(client) {
-  //   if (client.name == device &&  client.tenant == tenant) { //client.isAlive == true &&
-  //
-  //       client.send(status)
-  //       client.status = stringToboolean(status)
-  //       certain = true
-  //       await deviceStatus.updateDevice(tenant, device, status)
-  //
-  //   }
-  // })
-  //console.log(localId)
   await deviceStatus.updateDevice(tenant, device, status)
-  //console.log(device_map[localId])
   device_map[localId].send(status)
-  certain = true
-  if (certain) {
-    return true
-  }
-  else {
-    logs(["Error switching " + device + ' to ' + status]);
-    return false ;
-  }
+  return true
 }
 
 function verifyStatus(status) {
