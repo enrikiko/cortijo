@@ -14,7 +14,7 @@ var device_map = {}
 app.get("/:tenant/devices", function(req, res) {
   var tenant = req.params.tenant
   var devices = getDevices(tenant)
-  console.log(devices);
+  //console.log(devices);
   res.status(200).json(devices)
 })
 
@@ -180,10 +180,9 @@ async function updateDevice(tenant, device, id, status) {
   })
   await deviceStatus.updateDevice(tenant, device, status)
   device_map[id].send(status)
-  console.log(device_map[id])
-  response = await device_map[id].message()
-  console.log(response);
-  return true
+  return device_map[id].message()
+  // console.log(response);
+  // return true
 }
 
 function verifyStatus(status) {
