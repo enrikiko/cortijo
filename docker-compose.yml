@@ -124,6 +124,12 @@ services:
     - type: bind
       source: /media/ubuntu/ExtDriver/eramosFiles
       target: /scr/files/
+  count:
+    container_name: count
+    restart: on-failure
+    build: ./count/.
+    ports:
+    - "8000:3000"
   # device:
   #   container_name: deviceMock
   #   restart: always

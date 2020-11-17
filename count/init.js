@@ -1,0 +1,10 @@
+const express = require('express')
+const app = express()
+let count = 0
+app.enable('trust proxy');
+app.get('/count', function (req, res) {
+  res.status(200).json({"index": ++count})
+  console.log({"index": count});
+})
+
+app.listen(3000)
