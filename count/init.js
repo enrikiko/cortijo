@@ -14,8 +14,9 @@ function startTime(){
             speed = lastcount - count
             lastcount = count
             startTime()
+            console.log(speed);
             console.log('setTimeout');
-        }, 1000);
+        }, 10000);
 }
 
 app.listen(3000)
