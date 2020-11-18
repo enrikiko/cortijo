@@ -11,9 +11,10 @@ app.get('/count', function (req, res) {
 
 function startTime(){
     setTimeout(function(){
-            speed = lastcount-count
+            speed = lastcount - count
             lastcount = count
             startTime()
+            console.log('setTimeout');
         }, 1000);
 }
 
