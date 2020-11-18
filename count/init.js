@@ -18,5 +18,5 @@ function startTime(){
             console.log('setTimeout');
         }, 10000);
 }
-
+startTime()
 app.listen(3000)
