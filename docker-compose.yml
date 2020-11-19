@@ -130,6 +130,12 @@ services:
     build: ./count/.
     ports:
     - "8000:3000"
+  count2:
+    container_name: count2
+    restart: on-failure
+    build: ./count2/.
+    ports:
+    - "8001:3000"
   # device:
   #   container_name: deviceMock
   #   restart: always
