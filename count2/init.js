@@ -16,7 +16,11 @@ function startTime(){
             startTime()
         }, 1000);
 }
+<<<<<<< HEAD
 
 startTime()
 
+=======
+startTime()
+>>>>>>> b358c78cc60d904417909b9da8a1d871e0229150
 app.listen(3000)
