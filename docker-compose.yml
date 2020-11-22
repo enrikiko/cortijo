@@ -55,13 +55,15 @@ services:
     - mongo
     - cortijo
   auth:
-    container_name: auth
-    restart: always
+    # container_name: auth
+    restart: on-failure
     build: ./auth/.
+    deploy:
+      replicas: 2
     environment:
     - TOKEN=${AUTH_TOKEN}
     ports:
-    - "12000:3000"
+    - "12000-5:3000"
     networks:
     - network
     volumes:
@@ -216,18 +218,18 @@ services:
   #    - "8103:3000"
   #  networks:
   #    - network
-  mock4:
-   container_name: mock4
-   restart: always
-   build: ./mock/deviceMock/.
-   environment:
-     - mock_name=mock4
-     - mock_port=8104
-     - local_ip=192.168.1.53
-   ports:
-     - "8104:3000"
-   networks:
-     - network
+  # mock4:
+  #  container_name: mock4
+  #  restart: always
+  #  build: ./mock/deviceMock/.
+  #  environment:
+  #    - mock_name=mock4
+  #    - mock_port=8104
+  #    - local_ip=192.168.1.53
+  #  ports:
+  #    - "8104:3000"
+  #  networks:
+  #    - network
 
 networks:
   network:
