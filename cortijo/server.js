@@ -107,21 +107,27 @@ app.post("/auth", async function(req, res) {
     res.status(401).json({"status":false})
   }
   else {
-    if (tenants.checkTenantPassword(tenant, secret)) {
-      try {
-        var response = await request.newUser(tenant, user, password);
-        jwt = response.jwt
-        if(jwt){
-            logs.log("User " + user +" has been create")
-            res.status(201).json(response)
-          }
-        else{res.status(200).json(response)}
-      } catch (e) {
-        logs.error(e);
-        res.status(200).json(e)
+    try {
+      let isValidTenant = await tenants.checkTenantPassword(tenant, secret)
+    } catch (e) {
+      logs.error(e)
+    } finally {
+      if (isValidTenant) {
+        try {
+          var response = await request.newUser(tenant, user, password);
+          jwt = response.jwt
+          if(jwt){
+              logs.log("User " + user +" has been create")
+              res.status(201).json(response)
+            }
+          else{res.status(200).json(response)}
+        } catch (e) {
+          logs.error(e);
+          res.status(200).json(e)
+        }
+      }else {
+        res.status(400).send()
       }
-    }else {
-      res.status(400).send()
     }
   }
 })
