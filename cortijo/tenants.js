@@ -37,13 +37,18 @@ async function checkTenant(name) {
   }
 }
 
+async function checkTenantPassword(tenant, password) {
+  tenant=await getTenant(tenant, password)
+  return tenant[0].password==password
+}
+
 async function getTenant(tenant, password){
    return myTenants.find({user: tenant, password: password})
 }
 
 module.exports = {
 
-  checkTenant: checkTenant,
+  checkTenantPassword: checkTenantPassword,
 
    getTenants: async() => {
      tenantList = []

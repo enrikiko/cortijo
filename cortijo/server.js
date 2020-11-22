@@ -107,7 +107,7 @@ app.post("/auth", async function(req, res) {
     res.status(401).json({"status":false})
   }
   else {
-    if (tenant.checkTenant(tenant,secret)) {
+    if (tenant.checkTenantPassword(tenant,secret)) {
       try {
         var response = await request.newUser(tenant, user, password);
         jwt = response.jwt
