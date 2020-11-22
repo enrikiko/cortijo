@@ -106,8 +106,8 @@ module.exports={
        return await getResponse(url);
      },
 
-     newUser: async (tenant, user, password, secret) => {
-       const url = AUTH_JWT+"/user/"+tenant+"/"+user+"/"+password+"/"+secret
+     newUser: async (tenant, user, password) => {
+       const url = AUTH_JWT+"/user/"+tenant+"/"+user+"/"+password
        async function getResponse(url) {
          response = await superagent.post(url);
          return response.body

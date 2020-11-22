@@ -104,48 +104,32 @@ app.get("/jwt/:jwt", async function(req, res) {
 //      }else{res.status(401).send(false)}
 // })
 //
-app.delete('/user/:tenant/:user/:password/:token', async function(req, res){
-     tenant = req.params.tenant;
-     user = req.params.user;
-     password = req.params.password;
-     //TODO get password by db
-     token = req.params.token;
-     if(token==process.env.TOKEN){
-          console.log("Token correct")
-          var status = await auth.isUser(tenant, user, password)
-          if(status){
-               var result = await auth.removeUser(tenant, user, password)
-               console.log(result)
-               res.status(200).send("User removed successfuly")
-          }else{
-               console.log("User not exist")
-               res.status(401).send("Unauthorized")
-          }
-     }else{
-          console.log("Token incorrect")
-          res.status(401).send("Unauthorized")
-     }
-});
-
-app.post('/user/:tenant/:token/:user/:password/:token', async function(req, res){
+app.delete('/user/:tenant/:user/:password', async function(req, res){
     tenant = req.params.tenant;
-    token = req.params.token;
     user = req.params.user;
     password = req.params.password;
-    token = req.params.token;
-    if(token==process.env.TOKEN){
-        console.log("Token correct")
-        isCreateUser = await auth.createUser(tenant, user, password)
-        if ( isCreateUser ) {
-            generatedJWT = await jwt_auth.signAuthJwt(tenant, user)
-            res.status(201).json({"status":"User created successfuly","jwt":generatedJWT})
-        }else {
-            response.status="User already exist"
-            res.status(200).json({"status":"User already exist"})
-        }
+    var status = await auth.isUser(tenant, user, password)
+    if(status){
+         var result = await auth.removeUser(tenant, user, password)
+         console.log(result)
+         res.status(200).send("User removed successfuly")
     }else{
-        console.log("Token incorrect")
-        res.status(200).json({"status":"Unauthorized"})
+         console.log("User not exist")
+         res.status(401).send("Unauthorized")
+    }
+  });
+
+app.post('/user/:tenant/:user/:password/', async function(req, res){
+    tenant = req.params.tenant;
+    user = req.params.user;
+    password = req.params.password;
+    isCreateUser = await auth.createUser(tenant, user, password)
+    if ( isCreateUser ) {
+        generatedJWT = await jwt_auth.signAuthJwt(tenant, user)
+        res.status(201).json({"status":"User created successfuly","jwt":generatedJWT})
+    }else {
+        response.status="User already exist"
+        res.status(200).json({"status":"User already exist"})
     }
 });
 

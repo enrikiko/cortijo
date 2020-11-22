@@ -43,6 +43,8 @@ async function getTenant(tenant, password){
 
 module.exports = {
 
+  checkTenant: checkTenant,
+
    getTenants: async() => {
      tenantList = []
      tenants = await myTenants.find()

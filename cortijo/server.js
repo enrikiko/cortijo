@@ -103,21 +103,25 @@ app.post("/auth", async function(req, res) {
   password = req.body.password;
   tenant = req.body.tenant;
   secret = req.body.secret;
-  if (user==null||password==null||secret==null||tenant==null||user==""||password==""||secret==""||tenant=="") {res.status(401).json({"status":false})}
+  if (user==null||password==null||secret==null||tenant==null||user==""||password==""||secret==""||tenant=="") {
+    res.status(401).json({"status":false})
+  }
   else {
-    try {
-      var response = await request.newUser(tenant, user, password, secret);
-      jwt = response.jwt
-      if(jwt){
-          logs.log("User " + user +" has been create")
-          res.status(201).json(response)
-        }
-      else{res.status(200).json(response)}
-    } catch (e) {
-      logs.error(e);
-      res.status(200).json(e)
-    } finally {
-      //
+    if (tenant.checkTenant(tenant,secret)) {
+      try {
+        var response = await request.newUser(tenant, user, password);
+        jwt = response.jwt
+        if(jwt){
+            logs.log("User " + user +" has been create")
+            res.status(201).json(response)
+          }
+        else{res.status(200).json(response)}
+      } catch (e) {
+        logs.error(e);
+        res.status(200).json(e)
+      }
+    }else {
+      res.status(400).send()
     }
   }
 })
