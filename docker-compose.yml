@@ -63,7 +63,7 @@ services:
     environment:
     - TOKEN=${AUTH_TOKEN}
     ports:
-    - "12000-5:3000"
+    - "12000:3000"
     networks:
     - network
     volumes:
