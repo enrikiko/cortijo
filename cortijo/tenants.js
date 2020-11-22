@@ -38,6 +38,8 @@ async function checkTenant(name) {
 }
 
 async function checkTenantPassword(tenant, password) {
+  console.log(`Tenant: ${tenant}`);
+  console.log(`Password: ${password}`);
   tenant = await getTenant(tenant, password)
   console.log(tenant);
   return tenant[0].password==password
