@@ -60,8 +60,8 @@ app.get("/logo", async function(req, res) {
 //
 app.post("/newTenant", async function (req, res) {
   name = req.body.name;
-  var result = await tenants.createTenant(name, password)
   let password = tenants.createTenantPassword(name)
+  var result = await tenants.createTenant(name, password)
   if(result){res.status(201).json({'name':name, 'password':password})}
   else {
     res.status(400).send()
