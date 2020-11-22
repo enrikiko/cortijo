@@ -10,6 +10,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 export class UsersComponent implements OnInit {
 
   secret: String;
+  tenant: String;
   userName: String;
   password: String;
   status: String;
@@ -28,6 +29,7 @@ export class UsersComponent implements OnInit {
 
   createUser(event) {
     const target = event.target
+    const tenant = target.querySelector('#tenant').tenant
     const user = target.querySelector('#userName').value
     const password = target.querySelector('#password').value
     const secret = target.querySelector('#secret').value
@@ -36,6 +38,7 @@ export class UsersComponent implements OnInit {
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     var object = {};
     object["secret"]=secret;
+    object["tenant"]=tenant;
     object["user"]=user;
     object["password"]=password;
     this.http.post<any>(url, object, {headers: headers}).subscribe( data =>
