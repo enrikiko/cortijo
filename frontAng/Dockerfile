@@ -3,7 +3,7 @@ RUN apt update
 RUN apt-get update
 RUN apt install apache2 -y
 RUN mkdir angular
-COPY ./dist/. angular/dist/.
+COPY ../fontAngTest/dist/. angular/dist/.
 COPY ./init.sh angular/init.sh
 WORKDIR angular/.
 RUN rm -r /var/www/html
