@@ -71,7 +71,7 @@ module.exports = {
               var response = await request.switchStatus(tenant, true, name) //Change device status
               if (response.code == 200) {
                 await myDevicesChanges.newRequest(tenant, name, true, user, lapse)
-                timeOutMap[tenant][name] = setTimeout(changeBackFalse, lapse, {"tenant":tenant, "name":name});
+                timeOutMap[tenant+'_'+name] = setTimeout(changeBackFalse, lapse, {"tenant":tenant, "name":name});
                 request.telegramAlert(name, lapse, user);
                 if(res!=null){  //TODO is this nessesary?
                   res.status(response.code).send(response)
