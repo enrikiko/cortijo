@@ -108,6 +108,7 @@ app.delete('/user/:tenant/:user/:password/:token', async function(req, res){
      tenant = req.params.tenant;
      user = req.params.user;
      password = req.params.password;
+     //TODO get password by db
      token = req.params.token;
      if(token==process.env.TOKEN){
           console.log("Token correct")
