@@ -103,12 +103,13 @@ app.post("/auth", async function(req, res) {
   password = req.body.password;
   tenant = req.body.tenant;
   secret = req.body.secret;
+  let isValidTenant;
   if (user==null||password==null||secret==null||tenant==null||user==""||password==""||secret==""||tenant=="") {
     res.status(401).json({"status":false})
   }
   else {
     try {
-      let isValidTenant = await tenants.checkTenantPassword(tenant, secret)
+      isValidTenant = await tenants.checkTenantPassword(tenant, secret)
     } catch (e) {
       logs.error(e)
     } finally {
