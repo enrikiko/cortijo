@@ -46,8 +46,8 @@ module.exports = {
    getTenants: () => {
      tenantList = []
      tenants = myTenants.find()
-     forEach((tenants, tenants) => {
-       tenantList.push(tenants.name)
+     forEach((tenants, tenant) => {
+       tenantList.push(tenant.name)
      });
 
      return tenantList
