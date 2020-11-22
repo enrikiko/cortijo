@@ -5,10 +5,10 @@ const myDevicesChanges = require('./devicesChanges');
 
 let timeOutMap={}
 
-async function changeBackFalse(name) {
+async function changeBackFalse(tenant, name) {
   //Change back to false
   try {
-      var responseBack = await request.switchStatus(false, name) //Change device status
+      var responseBack = await request.switchStatus(tenant, false, name) //Change device status
       if (responseBack.code == 200) {
           logs.log("Changed back automatically due to timeout " + name + " to false")
           myDevicesChanges.newRequest(tenant, name, false, "node.js", null)
@@ -69,7 +69,7 @@ module.exports = {
               var response = await request.switchStatus(tenant, true, name) //Change device status
               if (response.code == 200) {
                 await myDevicesChanges.newRequest(tenant, name, true, user, lapse)
-                timeOutMap[name] = setTimeout(changeBackFalse, lapse, name);
+                timeOutMap[tenant][name] = setTimeout(changeBackFalse, lapse, (tenant, name));
                 request.telegramAlert(name, lapse, user);
                 if(res!=null){  //TODO is this nessesary?
                   res.status(response.code).send(response)
