@@ -126,18 +126,6 @@ services:
     - type: bind
       source: /media/ubuntu/ExtDriver/eramosFiles
       target: /scr/files/
-  # count:
-  #   container_name: count
-  #   restart: on-failure
-  #   build: ./count/.
-  #   ports:
-  #   - "8000:3000"
-  # count2:
-  #   container_name: count2
-  #   restart: on-failure
-  #   build: ./count/.
-  #   ports:
-  #   - "8000:3000"
   # device:
   #   container_name: deviceMock
   #   restart: always
@@ -218,18 +206,18 @@ services:
   #    - "8103:3000"
   #  networks:
   #    - network
-  # mock4:
-  #  container_name: mock4
-  #  restart: always
-  #  build: ./mock/deviceMock/.
-  #  environment:
-  #    - mock_name=mock4
-  #    - mock_port=8104
-  #    - local_ip=192.168.1.53
-  #  ports:
-  #    - "8104:3000"
-  #  networks:
-  #    - network
+  mock4:
+   container_name: mock4
+   restart: always
+   build: ./mock/deviceMock/.
+   environment:
+     - mock_name=mock4
+     - mock_port=8104
+     - local_ip=192.168.1.53
+   ports:
+     - "8104:3000"
+   networks:
+     - network
 
 networks:
   network:
