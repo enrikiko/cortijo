@@ -43,9 +43,9 @@ async function getTenant(tenant, password){
 
 module.exports = {
 
-   getTenants: () => {
+   getTenants: async() => {
      tenantList = []
-     tenants = myTenants.find()
+     tenants = await myTenants.find()
      forEach((tenants, tenant) => {
        tenantList.push(tenant.name)
      });
