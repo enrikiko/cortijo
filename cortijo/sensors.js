@@ -207,6 +207,7 @@ module.exports = {
           ip = await getIpByName(tenant, name)
           try{
               let response = await request.get("http://"+ip+"/data").timeout({response: GET_DATA_TIMEOUT});
+              console.log(response["body"]);
               return response["body"];
           }catch(e){
               return e
