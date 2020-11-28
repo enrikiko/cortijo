@@ -42,6 +42,7 @@ function executeTimeoutCheck(){
 //
 async function getSensor(){
     var sensorList = await mySensor.getAllSensor()  //Get all sensor from db
+    console.log(sensorList);
     for(var index in sensorList){  //Loop over all sensors
         var name = sensorList[index].name
         try{
