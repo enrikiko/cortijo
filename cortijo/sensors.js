@@ -90,7 +90,7 @@ async function getSensor(tenant, name){
 }
 async function getIpByName(tenant, sensorName){
   let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
-  var list = await getList(sensorName)
+  var list = await getList(tenant, sensorName)
   console.log(list);
   console.log(mySensor);
   if (list.length > 1) {
