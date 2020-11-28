@@ -53,8 +53,8 @@ async function getSensor(){
             console.log(data);
             dataType = data.type
             dataContent = data.content
-            safeData(tenant, dataType, name, dataContent)
-            analiceData(tenant, dataType, name, dataContent)
+            safeData(dataType, tenant, name, dataContent)
+            analiceData(tenant, tenant, dataType, name, dataContent)
         }catch(e){
             logs.error(e)
         }
