@@ -42,7 +42,7 @@ function executeTimeoutCheck(){
 }
 //
 async function getSensor(){
-  tenantList=await myTenants.getTenants()
+  tenantList = await myTenants.getTenants()
     console.log(tenantList[0].name);
 
     var sensorList = await mySensor.getAllSensor(tenantList[0].name)  //Get all sensor from db
@@ -60,7 +60,7 @@ async function getSensor(){
         }
     }
     socket.data("getSensor(data)")
-  });
+  }
 //
 async function checkDevices(){
     var devicesList = await myDevice.getDevice()
