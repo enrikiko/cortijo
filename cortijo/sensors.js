@@ -215,7 +215,7 @@ module.exports = {
               return e
           }
         }
-        return await data();
+      return await data(tenant, name);
     },
     getMin: async (tenant, name) => {
       var list = await getList(tenant, name)
