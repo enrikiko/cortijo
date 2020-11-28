@@ -205,7 +205,7 @@ module.exports = {
       console.log(tenant);
       console.log(name);
       let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
-      async function data() {
+      async function data(tenant, name) {
           ip = await getIpByName(tenant, name)
           try{
               let response = await request.get("http://"+ip+"/data").timeout({response: GET_DATA_TIMEOUT});
