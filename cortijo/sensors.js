@@ -204,15 +204,17 @@ module.exports = {
     getData: async (tenant, name) => {
       let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
       async function data(tenant, name) {
-          ip = await getIpByName(tenant, name)
-          console.log(ip);
-          try{
-              let response = await request.get("http://"+ip+"/data").timeout({response: GET_DATA_TIMEOUT});
-              console.log(response["body"]);
-              return response["body"];
-          }catch(e){
-              return e
-          }
+        console.log(tenant);
+        console.log(name);
+        ip = await getIpByName(tenant, name)
+        console.log(ip);
+        try{
+            let response = await request.get("http://"+ip+"/data").timeout({response: GET_DATA_TIMEOUT});
+            console.log(response["body"]);
+            return response["body"];
+        }catch(e){
+            return e
+        }
         }
       return await data(tenant, name);
     },
