@@ -79,17 +79,17 @@ const sensorSchema = new mongoose.Schema({
 // let mySensor = mongoose.model('Sensor', sensorSchema);
 //
 async function getList(tenant, name){
-  let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+  let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
   var sensorList = await mySensor.find({name: name})
   return sensorList
 }
 async function getSensor(tenant, name){
-  let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+  let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
   var sensor = await mySensor.find({name: name})
   return sensor[0]
 }
 async function getIpByName(tenant, sensorName){
-  let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+  let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
   var list = await getList(tenant, sensorName)
   if (list.length > 1) {
    return "The Database is corrupted";
@@ -105,15 +105,15 @@ async function getIpByName(tenant, sensorName){
 module.exports = {
 //
    getAllSensor: (tenant) => {
-    let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+    let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
     return mySensor.find() },
 //
    getSensorByName: (tenant, name) => {
-     let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+     let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
      return mySensor.find({name: name})},
 //
    newSensor: (tenant, name, ip, type, devices, min, max, lapse) => {
-     let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+     let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
      let sensor = new mySensor(
        {
          name: name,
@@ -163,7 +163,7 @@ module.exports = {
    },
 //
    updateSensor: (tenant, id, ip, devices, min, max, lapse) => {
-     let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+     let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
      var sensor = mySensor.findById(id, function(err, result) {
        if (err) throw err
        if(result){
@@ -180,7 +180,7 @@ module.exports = {
    },
 //
    removeSensorByName: (tenant, sensorName) => {
-     let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+     let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
      return mySensor.deleteOne({name: sensorName}, function(err, result) {
       if (err) throw err
       if(result){
@@ -190,7 +190,7 @@ module.exports = {
     },
 //
     setCheckSensorByName: async (tenant, name, status) => {
-      let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
     return mySensor.find({name: name}, function(err, result) {
        if (err) throw err
        if(result){
@@ -202,7 +202,7 @@ module.exports = {
     },
 //
     getData: async (tenant, name) => {
-      let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
       async function data(tenant, name) {
         ip = await getIpByName(tenant, name)
         try{
@@ -276,7 +276,7 @@ module.exports = {
       return sensor.increasing
         },
     setIncreasing: async(tenant, name, status)=>{
-      let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
       await mySensor.find({name: name}, function(err, result) {
          if (err) throw err
          if(result){
@@ -291,7 +291,7 @@ module.exports = {
       return sensor.count
     },
     setCount: async(tenant, name, count)=>{
-      let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
       await mySensor.find({name: name}, function(err, result) {
          if (err) throw err
          if(result){
@@ -306,7 +306,7 @@ module.exports = {
       return sensor.lastValue
     },
     setLastValue: async(tenant, name, lastValue)=>{
-      let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
       await mySensor.find({name: name}, function(err, result) {
          if (err) throw err
          if(result){
@@ -321,7 +321,7 @@ module.exports = {
       return sensor.block
     },
     blocked: async(tenant, name, status)=>{
-      let mySensor = mongoose.model(tenant+'_sensors', sensorSchema);
+      let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
       await mySensor.find({name: name}, function(err, result) {
          if (err) throw err
          if(result){
