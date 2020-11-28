@@ -202,6 +202,8 @@ module.exports = {
     },
 //
     getData: async (tenant, name) => {
+      console.log(tenant);
+      console.log(name);
       let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
       async function data() {
           ip = await getIpByName(tenant, name)

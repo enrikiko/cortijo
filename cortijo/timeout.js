@@ -49,7 +49,7 @@ async function getSensor(){
         var name = sensorList[index].name
         console.log(name);
         try{
-            data = await mySensor.getData(tenantList[tenant],name)
+            data = await mySensor.getData(tenantList[tenant], name)
             console.log(data);
             dataType = data.type
             dataContent = data.content
