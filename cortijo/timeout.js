@@ -47,6 +47,7 @@ async function getSensor(){
     var sensorList = await mySensor.getAllSensor(tenantList[tenant])  //Get all sensor from db
     for(var index in sensorList){  //Loop over all sensors
         var name = sensorList[index].name
+        console.log(name);
         try{
             data = await mySensor.getData(name)
             console.log(data);
