@@ -1,6 +1,7 @@
 const mySensor = require('./sensors');
 const myDevice = require('./devices');
 const request = require('./request');
+const myTenants = require('./tenants')
 const wifi = require('./wifi')
 const logs = require('./logs');
 const myTemperature = require('./temperature');
@@ -41,7 +42,11 @@ function executeTimeoutCheck(){
 }
 //
 async function getSensor(){
-    var sensorList = await mySensor.getAllSensor()  //Get all sensor from db
+  forEach((myTenants.getTenants, tenant) => {
+    console.log(tenant.name);
+  });
+
+    var sensorList = await mySensor.getAllSensor(tenant)  //Get all sensor from db
     console.log(sensorList);
     for(var index in sensorList){  //Loop over all sensors
         var name = sensorList[index].name
@@ -84,8 +89,8 @@ async function checkDevices(){
     socket.device("check(device)")
 }
 
-async function chechSensors() {
-  var sensorsList = await mySensor.getAllSensor()
+async function chechSensors(tenant) {
+  var sensorsList = await mySensor.getAllSensor(tenant)
   for (var index in sensorsList){
       var name = sensorsList[index].name
       try{
