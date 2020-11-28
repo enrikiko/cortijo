@@ -91,6 +91,8 @@ async function getSensor(tenant, name){
 async function getIpByName(tenant, sensorName){
   let mySensor = mongoose.model(tenant+'_sensor', sensorSchema);
   var list = await getList(sensorName)
+  console.log(list);
+  console.log(mySensor);
   if (list.length > 1) {
    return "The Database is corrupted";
   }
@@ -215,7 +217,7 @@ module.exports = {
         }catch(e){
             return e
         }
-        }
+      }
       return await data(tenant, name);
     },
     getMin: async (tenant, name) => {
