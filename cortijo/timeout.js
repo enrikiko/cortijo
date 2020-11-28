@@ -110,36 +110,36 @@ async function chechSensors(tenant) {
     socket.wifi("check(wifi)")
 }
 //
-function safeData(type,name,data){
+function safeData(type, tenant, name, data){
+    switch(type){
+      case "Temperature":
+      myTemperature.newTemperature(tenant, name, data.temperature, data.humidity)
+      break;
+      case "Humidity":
+      myHumidity.newHumidity(tenant, name, data.humidity)
+      break;
+    }
+}
+async function analiceData(type, tenant, name, data) {
     switch(type){
     case "Temperature":
-    myTemperature.newTemperature(name, data.temperature, data.humidity)
+    await analiceTemperature(type, tenant, name, data)
     break;
     case "Humidity":
-    myHumidity.newHumidity(name, data.humidity)
+    await analiceHumidity(type, tenant, name, data)
     break;
     }
 }
-async function analiceData(type,name,data) {
-    switch(type){
-    case "Temperature":
-    await analiceTemperature(type, name, data)
-    break;
-    case "Humidity":
-    await analiceHumidity(type, name, data)
-    break;
-    }
-}
-async function analiceTemperature(type, name, data) {/*TODO*/}
-async function analiceHumidity(type, name, data) {
-  var min = await mySensor.getMin(name)
-  var max = await mySensor.getMax(name)
-  var lapse = await mySensor.getLapse(name)
-  var count = await mySensor.getCount(name)
-  var block = await mySensor.isBlocked(name)
-  var devices = await mySensor.getDevices(name)
-  var increasing = await mySensor.increasing(name)
-  var lastValue = await mySensor.getLastValue(name)
+async function analiceTemperature(type, tenant, name, data) {/*TODO*/}
+async function analiceHumidity(type, tenant, name, data) {
+  var min = await mySensor.getMin(tenant, name)
+  var max = await mySensor.getMax(tenant, name)
+  var lapse = await mySensor.getLapse(tenant, name)
+  var count = await mySensor.getCount(tenant, name)
+  var block = await mySensor.isBlocked(tenant, name)
+  var devices = await mySensor.getDevices(tenant, name)
+  var increasing = await mySensor.increasing(tenant, name)
+  var lastValue = await mySensor.getLastValue(tenant, name)
   if (min!=undefined & max!=undefined & devices.length>0 & !block) {
     if ( increasing ){
       if ( data.humidity >= max ){
