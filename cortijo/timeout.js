@@ -42,7 +42,7 @@ function executeTimeoutCheck(){
 }
 //
 async function getSensor(){
-  forEach((myTenants.getTenants, tenant) => {
+  forEach((myTenants.getTenants(), tenant) => {
     console.log(tenant.name);
 
     var sensorList = await mySensor.getAllSensor(tenant.name)  //Get all sensor from db
