@@ -44,16 +44,17 @@ function executeTimeoutCheck(){
 async function getSensor(){
   tenantList = await myTenants.getTenants()
   for(var tenant in tenantList){
-    var sensorList = await mySensor.getAllSensor(tenantList[tenant])  //Get all sensor from db
+    var tenant = tenantList[tenant]
+    var sensorList = await mySensor.getAllSensor(tenant)  //Get all sensor from db
     for(var index in sensorList){  //Loop over all sensors
         var name = sensorList[index].name
         try{
-            data = await mySensor.getData(tenantList[tenant], name)
+            data = await mySensor.getData(tenant, name)
             console.log(data);
             dataType = data.type
             dataContent = data.content
-            safeData(dataType, name, dataContent)
-            analiceData(dataType, name, dataContent)
+            safeData(tenant, dataType, name, dataContent)
+            analiceData(tenant, dataType, name, dataContent)
         }catch(e){
             logs.error(e)
         }
