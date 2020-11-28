@@ -44,9 +44,8 @@ function executeTimeoutCheck(){
 async function getSensor(){
   forEach((myTenants.getTenants, tenant) => {
     console.log(tenant.name);
-  });
 
-    var sensorList = await mySensor.getAllSensor(tenant)  //Get all sensor from db
+    var sensorList = await mySensor.getAllSensor(tenant.name)  //Get all sensor from db
     console.log(sensorList);
     for(var index in sensorList){  //Loop over all sensors
         var name = sensorList[index].name
@@ -61,6 +60,7 @@ async function getSensor(){
         }
     }
     socket.data("getSensor(data)")
+  });
 }
 //
 async function checkDevices(){
