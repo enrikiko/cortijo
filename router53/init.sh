@@ -1,8 +1,8 @@
 #!/bin/bash
 while :
 do
-  curl -o /dev/null -s -w "%{http_code}\n" app.cortijodemazas.com > /tmp/curl.out
-  if [[ "$(cat /tmp/curl.out)" == "200" ]]; then
+  curl -o /dev/null -s -w "%{http_code}\n" back.app.cortijodemazas.com > /tmp/curl.out
+  if [[ "$(cat /tmp/curl.out)" == "401" ]]; then
     date
     echo "Route53 is set correctly"
   else
