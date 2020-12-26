@@ -17,12 +17,12 @@ int port = 80;
 float h;
 float t;
 
-const char *ssid1 = "Cuarto2.4G";
-const char *password1 = "Lunohas13steps";
-const char *ssid2 = "WifiSalon";
-const char *password2 = "lunohas13steps";
-const char *ssid3 = "Cuarto2.4G_2";
-const char *password3 = "Lunohas13steps";
+const char *ssid1 = "cortijo_south_1";
+const char *ssid2 = "cortijo_north_1";
+const char *ssid3 = "cortijo_east_1";
+const char *ssid3 = "cortijo_west_1";
+const char *password = "*********";
+const String tenant = "cortijo";
 const String deviceName = "Temperature_1";
 const char *deviceNameHost = "Temperature_1";
 String wifiName;
@@ -40,9 +40,10 @@ ESP8266WebServer server(port);
 void setup() {
 
   WiFi.mode(WIFI_STA);
-  WiFiMulti.addAP(ssid3, password3);
-  WiFiMulti.addAP(ssid1, password1);
-  WiFiMulti.addAP(ssid2, password2);
+  WiFiMulti.addAP(ssid1, password);
+  WiFiMulti.addAP(ssid2, password);
+  WiFiMulti.addAP(ssid3, password);
+  WiFiMulti.addAP(ssid4, password);
   //WiFi.config(ipDevice, dns, gateway, subnet);
   WiFi.begin();
   WiFi.hostname(deviceName);
@@ -140,7 +141,7 @@ void setIp(String ip){
      if ((WiFiMulti.run() == WL_CONNECTED)) {
        WiFiClient client;
        HTTPClient http;
-       if (http.begin(client, "https://back.app.cortijodemazas.com/sensor/temperature/"+deviceName+"/"+ip+":"+port)) {
+       if (http.begin(client, "https://back.app.cortijodemazas.com/sensor/temperature/"+tenant+"/"+deviceName+"/"+ip+":"+port)) {
          int httpCode = http.POST("");
          if (httpCode > 0) {
            if (httpCode == 200 ) {

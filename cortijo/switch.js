@@ -58,7 +58,7 @@ module.exports = {
   },
   changeStatusToTrue: async (tenant, name, lapse, res, user) => {
     var device = await myDevice.getDeviceByName(tenant, name) //Get ID of the device //
-    console.log(`Change statusof ${name} to true`);
+    console.log(`Change status of ${name} to true`);
     console.log(device[0].id);
     if ( !device[0].id ) {
       logs.error({"Request": "Incorrect", "Device": "Not found"});

@@ -161,8 +161,9 @@ app.post("/device/:tenant/:name/:status/:ip", async (req, res) => {
 })
 //
 //New sensor
-app.post("/sensor/:type/:name/:ip", async (req, res) => {
-  var tenant = "cortijo";
+app.post("/sensor/:type/:name/:ip", async (req, res) => {res.status(200).send()})
+app.post("/sensor/:tenant/:type/:name/:ip", async (req, res) => {
+  var tenant = req.params.tenant
   var name = req.params.name
   var ip = req.params.ip
   var type = req.params.type
@@ -303,9 +304,9 @@ app.put("/*", async function(req, res, next) {
   }
 })
 //
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////                     Secure request JWT needed                 /////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
+////////////                     Secure request JWT needed                 ///////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 //
 app.post("/task",async function (req, res) {
   var tenant = req.tenant;
@@ -318,7 +319,7 @@ app.post("/task",async function (req, res) {
     res.status(200).send()
   }
 })
-
+//
 app.get("/task/:name/:description",async function (req, res) {
   var tenant = req.tenant;
   var name = req.params.name;
@@ -329,7 +330,7 @@ app.get("/task/:name/:description",async function (req, res) {
     res.status(200).send()
   }
 })
-
+//
 app.post("/task/update",async function (req, res) {
   var tenant = req.tenant;
   console.log('Tenant: s%', tenant);
@@ -435,7 +436,6 @@ app.get("/updateWebSocket/:name/:id/:status", async function(req, res){
   res.status(response).send(status)
 })
 //
-//
 //Get temperature and humidity history
 //TODO add to documentation
 app.get("/all/temperature/:name",async function(req, res) {
@@ -483,12 +483,6 @@ app.get("/all/requests/:device", async function(req, res) {
   res.status(200).json(request_list)
 })
 //
-//Set temperature and humidity
-// app.get("/set/humidity/:humidity", function(req, res) {
-//   var tenant = req.tenant;
-//   myHumidity.newHumidity(req.params.humidity)
-//   res.status(200).send()
-// })
 //TODO
 //Delete temperature history
 app.delete("/temperature/history/:name",async function(req, res) {
@@ -526,18 +520,6 @@ app.get("/status/:device", async function(req, res) {
   }
 })
 //
-// app.get("/*", async function(req, res, next) {
-//     try{
-//         let jwt = req.headers.authorization
-//         let user = await request.getUserByJWT(jwt)
-//         req.params.user = "user"
-//         next()
-//     }catch(e){
-//        logs.error(e)
-//        res.status(401).json({"jwt":"Error"})
-//     }
-// })
-//
 // Get config
 app.get("/config", function(req, res) {
     res.status(200).json(config.getValues())
@@ -565,7 +547,6 @@ app.post("/config/update",async function(req, res) {
 app.get("/update/:name/false", async function(req, res){
   var tenant = req.tenant;
   var name = req.params.name
-  // var lapse = req.params.lapse_time
   var user = req.user
   console.log("/update/:name/false");
   await mySwitch.changeStatusToFalse(tenant, name, res, user)
