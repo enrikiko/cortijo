@@ -20,8 +20,8 @@ float t;
 const char *ssid1 = "cortijo_south_1";
 const char *ssid2 = "cortijo_north_1";
 const char *ssid3 = "cortijo_east_1";
-const char *ssid3 = "cortijo_west_1";
-const char *password = "*********";
+const char *ssid4 = "cortijo_west_1";
+const char *password = "y8MKz6zV3nKMKGjTsbzf";
 const String tenant = "cortijo";
 const String deviceName = "Temperature_1";
 const char *deviceNameHost = "Temperature_1";
@@ -138,10 +138,11 @@ void handleStatus() {
 void setIp(String ip){
    boolean certain = false;
    while(!certain){
+     delay(5000);
      if ((WiFiMulti.run() == WL_CONNECTED)) {
        WiFiClient client;
        HTTPClient http;
-       if (http.begin(client, "https://back.app.cortijodemazas.com/sensor/temperature/"+tenant+"/"+deviceName+"/"+ip+":"+port)) {
+       if (http.begin(client, "http://back.app.cortijodemazas.com/sensor/temperature/"+tenant+"/"+deviceName+"/"+ip+":"+port)) {
          int httpCode = http.POST("");
          if (httpCode > 0) {
            if (httpCode == 200 ) {
@@ -154,7 +155,6 @@ void setIp(String ip){
        } else {
        }
      }
-     delay(1000);
    }
  }
 

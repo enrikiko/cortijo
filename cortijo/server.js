@@ -162,7 +162,7 @@ app.post("/device/:tenant/:name/:status/:ip", async (req, res) => {
 //
 //New sensor
 app.post("/sensor/:type/:name/:ip", async (req, res) => {res.status(200).send()})
-app.post("/sensor/:tenant/:type/:name/:ip", async (req, res) => {
+app.post("/sensor/:type/:tenant/:name/:ip", async (req, res) => {
   var tenant = req.params.tenant
   var name = req.params.name
   var ip = req.params.ip
