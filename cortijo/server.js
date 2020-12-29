@@ -138,9 +138,9 @@ app.post("/auth", async function(req, res) {
 app.get("/sensor/soil/:tenant/:name/:humidity/:temperature/:soilmoist", async (req, res) => {
   var tenant = req.params.tenant;
   var name = req.params.name
-  var ip = req.params.humidity
-  var ip = req.params.temperature
-  var ip = req.params.soilmoist
+  var humidity = req.params.humidity
+  var temperature = req.params.temperature
+  var soilmoist = req.params.soilmoist
   console.log("Soil humidity sensor:");
   console.log(tenant);
   console.log(name);
