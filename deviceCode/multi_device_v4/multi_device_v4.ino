@@ -8,14 +8,11 @@
 #include <WiFiUdp.h>
 #include <ArduinoOTA.h>
 
-const char *ssid1 = "Cuarto2.4G";
-const char *password1 = "Lunohas13steps";
-const char *ssid2 = "WifiSalon";
-const char *password2 = "lunohas13steps";
-const char *ssid3 = "Cuarto2.4G_2";
-const char *password3 = "Lunohas13steps";
-const char *ssid4 = "Seagull";
-const char *password4 = "Dober96mila";
+const char *ssid1 = "cortijo_south_1";
+const char *ssid2 = "cortijo_north_1";
+const char *ssid3 = "cortijo_east_1";
+const char *ssid4 = "cortijo_west_1";
+const char *password = "*****";
 String deviceName = "Multi_device_1";
 const char *deviceNameHost = "Multi_device_1";
 boolean useOTA = false;
@@ -51,9 +48,10 @@ void setup() {
   digitalWrite(LED_BUILTIN, HIGH);
 
   WiFi.mode(WIFI_STA);
-  WiFiMulti.addAP(ssid1, password1);
-  WiFiMulti.addAP(ssid2, password2);
-  WiFiMulti.addAP(ssid3, password3);
+  WiFiMulti.addAP(ssid1, password);
+  WiFiMulti.addAP(ssid2, password);
+  WiFiMulti.addAP(ssid3, password);
+  WiFiMulti.addAP(ssid4, password);
   //WiFi.config(ipDevice, dns, gateway, subnet);
   WiFi.begin();
   WiFi.hostname(deviceName);
