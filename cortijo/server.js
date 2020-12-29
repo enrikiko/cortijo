@@ -13,6 +13,7 @@ const myDevicesChanges = require('./devicesChanges');
 const saveRequests = require('./saveRequests');
 const myTemperature = require('./temperature');
 const myHumidity = require('./humidity');
+const mySoilSensor = require('./soilmoist')
 const mySensor = require('./sensors');
 const myDevice = require('./devices');
 const mySwitch = require('./switch');
@@ -133,6 +134,22 @@ app.post("/auth", async function(req, res) {
   }
 })
 //
+// Soil sensor
+app.get("/sensor/:tenant/:name/:humidity/:temperature/:soilmoist", async (req, res) => {
+  var tenant = req.params.tenant;
+  var name = req.params.name
+  var ip = req.params.humidity
+  var ip = req.params.temperature
+  var ip = req.params.soilmoist
+  console.log("Soil humidity sensor:");
+  console.log(tenant);
+  console.log(name);
+  console.log(humidity);
+  console.log(temperature);
+  console.log(soilmoist);
+  mySoilSensor.newMeasure(tenant, name, humidity, temperature, soilmoist)
+  res.status(200).send()
+})
 //New device
 app.post("/device/:name/:status/:ip", async (req, res) => {res.status(200).send()})
 app.post("/device/:tenant/:name/:status/:ip", async (req, res) => {
