@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const logs = require('./logs');
 const conf_map = require('./url');
+const mySensor = require('./sensors');
 const mongo_db = conf_map.get("db_url");
 const db = mongoose.connection;
 mongoose.connect(mongo_db, { useNewUrlParser: true, useUnifiedTopology: true});
@@ -39,10 +40,18 @@ const soilmoistSchema = new mongoose.Schema({
 //
 // let myTemperature = mongoose.model('Temperature', temperatureSchema);
 //
+async function heckSensor(tenant, name){
+  var sensor = await mySensor.getSensorByName(tenant, name)
+  if (!sensor) {
+    mySensor.newSensor(tenant, name, 0.0.0.0, 'soil', '', '', '', '')
+  }
+}
+//
 module.exports = {
 //
   newMeasure: (tenant, name, temperature, humidity, soilmoist) => {
     let myTemperature = mongoose.model(tenant+'_Soilmoist', soilmoistSchema);
+    checkSensor(tenant, name)
     let newMeasure = new myTemperature(
       {
         time: new Date().getTime(),
