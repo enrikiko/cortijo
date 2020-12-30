@@ -42,7 +42,8 @@ const soilmoistSchema = new mongoose.Schema({
 //
 async function checkSensor(tenant, name){
   var sensor = await mySensor.getSensorByName(tenant, name)
-  if (!sensor) {
+  console.log(sensor);
+  if (sensor) {
     mySensor.newSensor(tenant, name, '', 'soil', '', '', '', '')
   }
 }
