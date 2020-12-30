@@ -487,6 +487,23 @@ app.get("/all/humidity/:name/:times",async function(req, res) {
   res.status(200).json(humidity.reverse())
 })
 //
+//
+//Get soil history
+app.get("/all/soil/:name",async function(req, res) {
+  var tenant = req.tenant;
+  var name = req.params.name;
+  var time = parseInt(config.get("sensor_history"))
+  var soil = await mySoilSensor.getByName(tenant, name, time)
+  res.status(200).json(soil.reverse())
+})
+app.get("/all/soil/:name/:times",async function(req, res) {
+  var tenant = req.tenant;
+  var name = req.params.name;
+  var time = req.params.times
+  var soil = await mySoilSensor.getByName(tenant, name, time)
+  res.status(200).json(soil.reverse())
+})
+//
 // app.get("/all/requests/", async function(req, res) {
 //   const request_list = await myDevicesChanges.getAllRequest()
 //   res.status(200).json(request_list)

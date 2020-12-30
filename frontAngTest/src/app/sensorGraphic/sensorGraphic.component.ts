@@ -72,6 +72,10 @@ subscription:any;
       this.getTemperature(url, name)
         // code block
         break;
+      case "soil":
+        this.getSoil(url, name)
+        // code block
+        break;
       default:
         console.log("switch default")
     }
@@ -128,6 +132,41 @@ subscription:any;
             labelList.push(""+label.getHours()+":"+label.getMinutes()+" "+label.getDate())
           }
           this.printGraphTemperature(name, temperature, humidity, labelList);
+        }
+        else {
+        console.log('No logs')
+        }
+      })
+    }
+
+    getSoil(url, name){
+      const jwt = window.localStorage.getItem('jwt')
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': jwt
+      })
+      this.http.get<HttpResponse<object>>(url, { headers: headers }).subscribe( data =>
+      {
+        if(data!=null){
+          var temperature = []
+          var humidity = []
+          var soilmoist = []
+          var labelList = []
+          var temp
+          var humi
+          var soil
+          var label
+          for(var index in data){
+            temp = parseInt(data[index].temperature)
+            humi = parseInt(data[index].humidity)
+            soil = parseInt(data[index].soilmoist)
+            temperature.push(temp)
+            humidity.push(humi)
+            soilmoist.push(soil)
+            label = new Date(parseInt(data[index].time))
+            labelList.push(""+label.getHours()+":"+label.getMinutes()+" "+label.getDate())
+          }
+          this.printGraphSoil(name, temperature, humidity, soilmoist, labelList);
         }
         else {
         console.log('No logs')
@@ -251,4 +290,61 @@ subscription:any;
           }
       });
     }
+
+    printGraphSoil(name, temperature, humidity, soilmoist, labelList){
+      var ctx = document.getElementById('humidityGraph');
+      var myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              datasets: [{
+                  label: name+"-temp",
+                  data: temperature,
+                  fill: true,
+                  borderColor: "#eb5136",
+                  // fillColor: "#eb5136",
+                  // background: "#eb5136",
+                  backgroundColor: "rgba(235, 81, 54, 0.3)",
+                  // pointBackgroundColor: "rgba(235, 81, 54, 0.3)",
+              },{
+                  label: name+"-humi",
+                  data: humidity,
+                  fill: true,
+                  borderColor: "#36a2eb",
+                  // fillColor: "#36a2eb",
+                  // background: "#36a2eb",
+                  backgroundColor: "rgba(54, 162, 235, 0.3)",
+                  // pointBackgroundColor: "rgba(54, 162, 235, 0.3)",
+              },{
+                  label: name+"-soil",
+                  data: soilmoist,
+                  fill: true,
+                  borderColor: "#0c7811",
+                  // fillColor: "#36a2eb",
+                  // background: "#36a2eb",
+                  backgroundColor: "rgba(53, 150, 42, 0.3)",
+                  // pointBackgroundColor: "rgba(54, 162, 235, 0.3)",
+              }],
+              labels: labelList
+          },
+          options: {
+            animation: {
+                duration: 0
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        beginAtZero: true,
+                    }
+                }]
+            },
+            elements: {
+                      point:{
+                          radius: 0
+                      }
+                  }
+          }
+      });
+    }
+
 }

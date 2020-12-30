@@ -63,6 +63,10 @@ module.exports = {
     newMeasure.save(function(err) {
       if (err) throw err;
     });
+  },
+  getByName: async(tenant, name, time) => {
+    let mySoil = mongoose.model(tenant+'_Soilmoist', soilmoistSchema);
+    return await mySoil.find({"name":name}).sort({time:-1}).limit(time)
   }
 //
 }
