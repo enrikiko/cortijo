@@ -43,7 +43,7 @@ const soilmoistSchema = new mongoose.Schema({
 async function heckSensor(tenant, name){
   var sensor = await mySensor.getSensorByName(tenant, name)
   if (!sensor) {
-    mySensor.newSensor(tenant, name, 0.0.0.0, 'soil', '', '', '', '')
+    mySensor.newSensor(tenant, name, '', 'soil', '', '', '', '')
   }
 }
 //
