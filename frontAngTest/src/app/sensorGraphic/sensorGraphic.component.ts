@@ -62,6 +62,9 @@ subscription:any;
   // }
 
   getData(sensor, type){
+    console.log(type);
+
+
     let url = "https://back.app.cortijodemazas.com/all/" + type + "/" + sensor
     switch(type) {
       case "humidity":
