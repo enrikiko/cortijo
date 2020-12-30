@@ -44,8 +44,6 @@ async function checkSensor(tenant, name){
   var sensor = await mySensor.getSensorByName(tenant, name)
   if (sensor.length==0) {
     mySensor.newSensor(tenant, name, 'nul', 'soil')
-  }else {
-    console.log(sensor[0]);
   }
 }
 //
