@@ -5,34 +5,33 @@
 #define USE_SERIAL Serial
 #define uS_TO_S_FACTOR 1000000ULL  /* Conversion factor for micro seconds to seconds */
 #define TIME_TO_SLEEP  3600        /* Time ESP32 will go to sleep (in seconds) */
-#include "DHT.h"
-#define DHTPIN 22
-#define DHTTYPE DHT11
 
 const char *ssid1 = "cortijo_south_1";
 const char *ssid2 = "cortijo_north_1";
 const char *ssid3 = "cortijo_east_1";
 const char *ssid4 = "cortijo_west_1";
-const char *password = "****";
+const char *password = "xxxx";
 const String tenant = "cortijo";
 const String deviceName = "Soil_frontyard";
 const char *deviceNameHost = "Soil_frontyard";
 
-DHT dht(DHTPIN, DHTTYPE);
-const int led = LED_BUILTIN;
 WiFiMulti wifiMulti;
-RTC_DATA_ATTR int bootCount = 0;
+
+#include "DHT.h"
+#define DHTPIN 22
+#define DHTTYPE DHT11
+DHT dht(DHTPIN, DHTTYPE);
+//const int led = LED_BUILTIN;
 
 void setup() {
 
   Serial.begin(115200);
   delay(1000);
-  ++bootCount;
+  dht.begin();
   wifiMulti.addAP(ssid1, password);
   wifiMulti.addAP(ssid2, password);
   wifiMulti.addAP(ssid3, password);
   wifiMulti.addAP(ssid4, password);
-  Serial.println("Boot number: " + String(bootCount));
   send_data();
   delay(1000);
   esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
@@ -52,8 +51,8 @@ void send_data() {
   bool sent=false;
     if((wifiMulti.run() == WL_CONNECTED)) {
       while (sent==false) {
-        digitalWrite(led, 1);
-        String webtext ;
+        //digitalWrite(led, 1);
+        //String webtext ;
         float hum = dht.readHumidity();
         float temp = dht.readTemperature();
         float asoilmoist = map(analogRead(32),1350, 3200, 100, 0);
@@ -66,7 +65,7 @@ void send_data() {
         }else{
         HTTPClient http;
         USE_SERIAL.print("[HTTP] begin...\n");
-        http.begin("http://back.app.cortijodemazas.com/sensor/soil/"+tenant+"/"+deviceName+"/"+(String) hum+"/"+(String) temp+"/"+(String) asoilmoist);
+        http.begin("http://back.app.cortijodemazas.com/sensor/soil/"+tenant+"/"+deviceName+"/"+(String) temp+"/"+(String) hum+"/"+(String) asoilmoist);
         USE_SERIAL.print("[HTTP] GET...\n");
         int httpCode = http.GET();
         if(httpCode > 0) {
