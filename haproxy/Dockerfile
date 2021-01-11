@@ -1,4 +1,5 @@
 FROM haproxy
+USER root
 COPY 400.http /etc/haproxy/errors/400.http
 COPY 403.http /etc/haproxy/errors/403.http
 COPY 408.http /etc/haproxy/errors/408.http
