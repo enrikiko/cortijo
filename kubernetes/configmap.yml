@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: url-config
+  namespace: cortijo
+data:
+  config.yaml: |
+    db_url: mongodb://192.168.1.53:27017/cortijo
+    socket_url: http://192.168.1.53:13000
+    websocket_url: http://192.168.1.53:16001
+    auth_url: http://192.168.1.53:12000
+    set_Router53: https://t5018nbtn5.execute-api.eu-central-1.amazonaws.com/final/DNS_setting_lambda
+    privatekey: -----BEGIN OPENSSH PRIVATE KEY-----\
+      b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn\
+      NhAAAAAwEAAQAAAQEAqS59FAZEvLiOfeqzryIGFSXDWKMphknAH5YfAEF1Z2t40iaNL/10\
+      aBbAW/IKqBEE8+fnouK8Xk7q1FyxBz+oSpC77o5p0Tf1a8z4ozrkkGi4kljJGedspviaax\
+      YzQ32ygEzQwsoxJoVD7qHc0yQcwljY/P6vK8BVTEfReAw4M2m2mIrgsGPmd02v0EwJZ+0f\
+      fabP+lFpxnJX8NC/T0uBU4Ig0Zj0BIYGmCPDT7/tMas8X826/h3WMOOPgQdZl2VVjRUdkG\
+      xgN0XllOcJfb8IWNFgBx2P4w2uSrzRtPjwcwQ4IqNKvtnaYp07i+HF2XuAl69Yb3/1HfcS\
+      M0I9OUnV1wAAA9ie8mP2nvJj9gAAAAdzc2gtcnNhAAABAQCpLn0UBkS8uI596rOvIgYVJc\
+      NYoymGScAflh8AQXVna3jSJo0v/XRoFsBb8gqoEQTz5+ei4rxeTurUXLEHP6hKkLvujmnR\
+      N/VrzPijOuSQaLiSWMkZ52ym+JprFjNDfbKATNDCyjEmhUPuodzTJBzCWNj8/q8rwFVMR9\
+      F4DDgzabaYiuCwY+Z3Ta/QTAln7R99ps/6UWnGclfw0L9PS4FTgiDRmPQEhgaYI8NPv+0x\
+      qzxfzbr+HdYw44+BB1mXZVWNFR2QbGA3ReWU5wl9vwhY0WAHHY/jDa5KvNG0+PBzBDgio0\
+      q+2dpinTuL4cXZe4CXr1hvf/Ud9xIzQj05SdXXAAAAAwEAAQAAAQAVPtdKOndLU8nhGiYy\
+      ag1lfnaHnQXL7VsJHGsMNywtLpvfmCPG0QdbQvApG74m2OxMTOUT2XFaToLC5Fj+1gmmQ4\
+      K2NIApW+OgA/99UBn/4Ia9KhUnAZ7tYO7TX9hUM2bFIeBdddKySa38O6tlgHV0GoA1VS5e\
+      SirsB2DQuIgePIXzLhNH5DgWT1XXrkBbsuCX/sBqBS47pZHTs/f9k10DGIejYZDuC2lL5s\
+      +bs059xDTOiGIhYBXJRTlHhw/f8IRUwP9RrLhXjt8C/aomstnlfB3LlndIpjfSn7K6DE72\
+      HzC4i0gk/ww7SSVBQqmV82rpIxQxx4TW/pGF7IFSt/rRAAAAgEDF9MEHguK7JGfa0RkW77\
+      4JKAvB4zfNlxq9lOpE9kh0NTl4hZV3McjNmb3T6EPYhUrI6Q/LJbqYxbGeHst7FbdNpde8\
+      zCRzF3/9i428IlYBIkqwxoTvLKj0wFSmKrwYGL/NzwtH4ZVPJVNIdwdTIpcab/aMqNGviM\
+      d48l2s18SkAAAAgQDaYnOwmp/jthL4h9WbIQOFPv1/Lk8rs3odk+m4OZJGouWozYZ6dKLr\
+      +UBC/tuODxcOMRy55OIHhsgFtMXO2evUbLAd+nhTsuBhOC6MXZCUP+cND+QZ6+Iom2hNHZ\
+      wC3Zg6IfQUIdZB4Dx1Gc3vKohnOsiP9Se5FOHV/wZnuN3YPQAAAIEAxlJ1TKQe9usNq45C\
+      y0jdZmVAubk7x7jkxa1JNPLnvsAduKgGJbaSb69fEYBkpUaztCmtcAdvOFHMU3bEVDY2/f\
+      IBdTTm++XoBNVD7mbCn2LSdREYpfVBx3p3ILAHWx/mVfpWui6NOz52aG54yAttQWjom6iz\
+      erqHQKr+lEQZM6MAAAAgZW5yaXF1ZXJhbW9zbXVub3pARW5yaXF1ZXNNQlA1MDMBAgM=\
+      -----END OPENSSH PRIVATE KEY-----

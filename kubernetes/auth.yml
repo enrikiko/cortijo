@@ -59,11 +59,19 @@ spec:
     spec:
       containers:
       - name: auth-node1
-        image: enriqueramosmunoz/auth:aarch64
+        image: enriqueramosmunoz/auth:rasp
         command: ["ls"]
         ports:
         - containerPort: 3000
+        volumeMounts:
+        - name: config-volume
+          mountPath: /root/node
+          subPath: config_url.yaml
         imagePullPolicy: Always
+      volumes:
+      - name: config-volume
+        configMap:
+          name: url-config
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
