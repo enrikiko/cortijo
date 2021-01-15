@@ -26,3 +26,5 @@ docker rmi -f $(docker images -qa)
 wireshark commads:
 icmp for ping
 http
+
+kubectl config set-context --current --namespace=cortijo

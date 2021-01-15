@@ -74,3 +74,21 @@ spec:
       - name: mongo-persistent-storage1
         persistentVolumeClaim:
           claimName: cortijo-pv-claim
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: mongo
+  namespace: cortijo
+spec:
+  rules:
+  - host: monogo.192.168.1.61.nip.io
+    http:
+      paths:
+      - backend:
+          serviceName: mongo-svc-a
+          servicePort: http
+        path: /
+  tls:
+  - hosts:
+    - monogo.192.168.1.61.nip.io
