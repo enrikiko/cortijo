@@ -15,7 +15,6 @@ const WEBSOCKET_URL = url.get("websocket_url")
 // const telegram_token = process.env.TELEGRAM_TOKEN;
 // const telegram_id = process.env.TELEGRAM_ID;
 
-// Created instance of TelegramBot
 // const bot = new TelegramBot(telegram_token, {polling: true});
 
 async function status(tenant, name) {
