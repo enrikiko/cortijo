@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: front
-        image: enriqueramosmunoz/front1:rasp
+        image: enriqueramosmunoz/front2:rasp
         # command: ["npm", "start"]
         ports:
         - containerPort: 4200

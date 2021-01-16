@@ -82,7 +82,7 @@ metadata:
   namespace: cortijo
 spec:
   rules:
-  - host: mongo.192.168.1.61.nip.io
+  - host: mongo.cortijodemazas.nip.io
     http:
       paths:
       - backend:
@@ -91,4 +91,4 @@ spec:
         path: /
   tls:
   - hosts:
-    - mongo.192.168.1.61.nip.io
+    - mongo.cortijodemazas.nip.io

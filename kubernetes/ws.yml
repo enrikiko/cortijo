@@ -55,7 +55,7 @@ metadata:
   namespace: cortijo
 spec:
   rules:
-  - host: ws.192.168.1.61.nip.io
+  - host: ws.cortijodemazas.nip.io
     http:
       paths:
       - backend:
@@ -64,4 +64,4 @@ spec:
         path: /
   tls:
   - hosts:
-    - ws.192.168.1.61.nip.io
+    - ws.cortijodemazas.nip.io
