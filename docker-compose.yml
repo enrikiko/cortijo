@@ -81,24 +81,24 @@ services:
     depends_on:
     - mongo
     - cortijo
-  front1:
-    container_name: front1
-    restart: always
-    build: ./frontAngTest/.
-    ports:
-    - "10000:4200"
+  # front1:
+  #   container_name: front1
+  #   restart: always
+  #   build: ./frontAngTest/.
+  #   ports:
+  #   - "10000:4200"
   front2:
     container_name: front2
     restart: always
     build: ./frontAng/.
     ports:
     - "10001:80"
-  git:
-    container_name: git
-    restart: on-failure
-    build: ./git/.
-    environment:
-    - PASSWORD=${GIT_PASSWORD}
+  # git:
+  #   container_name: git
+  #   restart: on-failure
+  #   build: ./git/.
+  #   environment:
+  #   - PASSWORD=${GIT_PASSWORD}
   setip:
     container_name: setip
     restart: on-failure
@@ -106,26 +106,26 @@ services:
     environment:
     - ROUTE53_URL=${ROUTE53_URL}
     - ROUTE53_KEY=${ROUTE53_KEY}
-  camera:
-    container_name: camera
-    restart: on-failure
-    build: ./camera/.
-    ports:
-    - "14000:3000"
-    volumes:
-    - type: bind
-      source: /media/ubuntu/ExtDriver/eramos
-      target: /root/node/eramos
-  file:
-    container_name: file
-    restart: on-failure
-    build: ./file/.
-    ports:
-    - "15000:3000"
-    volumes:
-    - type: bind
-      source: /media/ubuntu/ExtDriver/eramosFiles
-      target: /scr/files/
+  # camera:
+  #   container_name: camera
+  #   restart: on-failure
+  #   build: ./camera/.
+  #   ports:
+  #   - "14000:3000"
+  #   volumes:
+  #   - type: bind
+  #     source: /media/ubuntu/ExtDriver/eramos
+  #     target: /root/node/eramos
+  # file:
+  #   container_name: file
+  #   restart: on-failure
+  #   build: ./file/.
+  #   ports:
+  #   - "15000:3000"
+  #   volumes:
+  #   - type: bind
+  #     source: /media/ubuntu/ExtDriver/eramosFiles
+  #     target: /scr/files/
   # device:
   #   container_name: deviceMock
   #   restart: always
@@ -206,18 +206,18 @@ services:
   #    - "8103:3000"
   #  networks:
   #    - network
-  mock4:
-   container_name: mock4
-   restart: always
-   build: ./mock/deviceMock/.
-   environment:
-     - mock_name=mock4
-     - mock_port=8104
-     - local_ip=192.168.1.53
-   ports:
-     - "8104:3000"
-   networks:
-     - network
+  # mock4:
+  #  container_name: mock4
+  #  restart: always
+  #  build: ./mock/deviceMock/.
+  #  environment:
+  #    - mock_name=mock4
+  #    - mock_port=8104
+  #    - local_ip=192.168.1.53
+  #  ports:
+  #    - "8104:3000"
+  #  networks:
+  #    - network
 
 networks:
   network:
