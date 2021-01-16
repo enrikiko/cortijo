@@ -1,43 +1,43 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-svc-a
+  name: front-svc-a
   namespace: cortijo
   labels:
-    name: auth-svc-a
+    name: front-svc-a
 spec:
   type: LoadBalancer
   ports:
-  - port: 3000
-    targetPort: 3000
+  - port: 5000
+    targetPort: 4200
     protocol: TCP
-    name: auth-svc-a
+    name: front-svc-a
   selector:
-    app: auth-deployment
+    app: front-deployment
 ---
 apiVersion: apps/v1 # Usa apps/v1beta2 para versiones anteriores a 1.9.0
 kind: Deployment
 metadata:
-  name: auth-deployment
+  name: front-deployment
   namespace: cortijo
   labels:
-    name: auth-rc
+    name: front-rc
 spec:
   selector:
     matchLabels:
-      app: auth-deployment
+      app: front-deployment
   replicas: 1 # indica al controlador que ejecute 2 pods
   template:
     metadata:
       labels:
-        app: auth-deployment
+        app: front-deployment
     spec:
       containers:
-      - name: auth
-        image: enriqueramosmunoz/auth:rasp
-        command: ["node", "server.js"]
+      - name: front
+        image: enriqueramosmunoz/front1:rasp
+        # command: ["npm", "start"]
         ports:
-        - containerPort: 3000
+        - containerPort: 4200
         volumeMounts:
         - name: config
           mountPath: /root/node/config_url.yaml
@@ -51,17 +51,17 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: auth
+  name: front
   namespace: cortijo
 spec:
   rules:
-  - host: auth.192.168.1.61.nip.io
+  - host: front.192.168.1.61.nip.io
     http:
       paths:
       - backend:
-          serviceName: auth-svc-a
-          servicePort: 3000
+          serviceName: front-svc-a
+          servicePort: 5000
         path: /
   tls:
   - hosts:
-    - auth.192.168.1.61.nip.io
+    - front.192.168.1.61.nip.io

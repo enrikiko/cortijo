@@ -1,46 +1,46 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-svc-a
+  name: ws-svc-a
   namespace: cortijo
   labels:
-    name: auth-svc-a
+    name: ws-svc-a
 spec:
   type: LoadBalancer
   ports:
-  - port: 3000
+  - port: 7000
     targetPort: 3000
     protocol: TCP
-    name: auth-svc-a
+    name: ws-svc-a
   selector:
-    app: auth-deployment
+    app: ws-deployment
 ---
 apiVersion: apps/v1 # Usa apps/v1beta2 para versiones anteriores a 1.9.0
 kind: Deployment
 metadata:
-  name: auth-deployment
+  name: ws-deployment
   namespace: cortijo
   labels:
-    name: auth-rc
+    name: ws-rc
 spec:
   selector:
     matchLabels:
-      app: auth-deployment
+      app: ws-deployment
   replicas: 1 # indica al controlador que ejecute 2 pods
   template:
     metadata:
       labels:
-        app: auth-deployment
+        app: ws-deployment
     spec:
       containers:
-      - name: auth
-        image: enriqueramosmunoz/auth:rasp
-        command: ["node", "server.js"]
+      - name: ws
+        image: enriqueramosmunoz/ws:rasp
         ports:
         - containerPort: 3000
+        - containerPort: 3001
         volumeMounts:
         - name: config
-          mountPath: /root/node/config_url.yaml
+          mountPath: /root/scr/config_url.yaml
           subPath: config.yaml
         imagePullPolicy: Always
       volumes:
@@ -51,17 +51,17 @@ spec:
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: auth
+  name: ws
   namespace: cortijo
 spec:
   rules:
-  - host: auth.192.168.1.61.nip.io
+  - host: ws.192.168.1.61.nip.io
     http:
       paths:
       - backend:
-          serviceName: auth-svc-a
-          servicePort: 3000
+          serviceName: ws-svc-a
+          servicePort: 7000
         path: /
   tls:
   - hosts:
-    - auth.192.168.1.61.nip.io
+    - ws.192.168.1.61.nip.io

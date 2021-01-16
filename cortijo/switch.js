@@ -40,7 +40,7 @@ module.exports = {
             if (response.code == 200) {
               clearTimeout(timeOutMap[name])
               await myDevicesChanges.newRequest(tenant, name, false, user, null)
-              request.telegramAlert(name, null, user);
+              // request.telegramAlert(name, null, user);
               if(res!=null){  //TODO is this nessesary?
                 res.status(response.code).send(response)
               }
@@ -72,7 +72,7 @@ module.exports = {
               if (response.code == 200) {
                 await myDevicesChanges.newRequest(tenant, name, true, user, lapse)
                 timeOutMap[tenant+'_'+name] = setTimeout(changeBackFalse, lapse, {"tenant":tenant, "name":name});
-                request.telegramAlert(name, lapse, user);
+                //request.telegramAlert(name, lapse, user);
                 if(res!=null){  //TODO is this nessesary?
                   res.status(response.code).send(response)
                 }

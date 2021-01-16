@@ -8,15 +8,15 @@ const logs = require('./logs');
 const socket = require('./socket');
 const config = require('./config')
 const url = require('./url')
-const TelegramBot = require('node-telegram-bot-api');
-const AUTH_JWT = url.get("auth_url")
-const WEBSOCKET_URL = url.get("websocket_url")
+//const TelegramBot = require('node-telegram-bot-api');
+// const AUTH_JWT = url.get("auth_url")
+// const WEBSOCKET_URL = url.get("websocket_url")
 
-const telegram_token = process.env.TELEGRAM_TOKEN;
-const telegram_id = process.env.TELEGRAM_ID;
+// const telegram_token = process.env.TELEGRAM_TOKEN;
+// const telegram_id = process.env.TELEGRAM_ID;
 
 // Created instance of TelegramBot
-const bot = new TelegramBot(telegram_token, {polling: true});
+// const bot = new TelegramBot(telegram_token, {polling: true});
 
 async function status(tenant, name) {
     let ip = await myDevice.getIpByName(tenant, name)
@@ -51,14 +51,14 @@ async function getResponse(tenant, status, name) {
 
 module.exports={
 
-    telegramAlert: (name, lapse, user) => {
-       if (lapse){
-         bot.sendMessage(telegram_id,  user + ' has activated ' + name + " for " + lapse/60000 + " minutes");
-       }
-       else {
-         bot.sendMessage(telegram_id,  user + ' has deactivated ' + name );
-       }
-    },
+    // telegramAlert: (name, lapse, user) => {
+    //    if (lapse){
+    //      bot.sendMessage(telegram_id,  user + ' has activated ' + name + " for " + lapse/60000 + " minutes");
+    //    }
+    //    else {
+    //      bot.sendMessage(telegram_id,  user + ' has deactivated ' + name );
+    //    }
+    // },
      switchStatus: async (tenant, status, name) => {
        return await getResponse(tenant, status, name);
      },

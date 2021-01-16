@@ -82,13 +82,13 @@ metadata:
   namespace: cortijo
 spec:
   rules:
-  - host: monogo.192.168.1.61.nip.io
+  - host: mongo.192.168.1.61.nip.io
     http:
       paths:
       - backend:
           serviceName: mongo-svc-a
-          servicePort: http
+          servicePort: 27017
         path: /
   tls:
   - hosts:
-    - monogo.192.168.1.61.nip.io
+    - mongo.192.168.1.61.nip.io
