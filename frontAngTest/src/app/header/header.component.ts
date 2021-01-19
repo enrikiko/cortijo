@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
         'Content-Type': 'application/json',
         'Authorization': jwt
       })
-    let url = "https://back.app.cortijodemazas.com/jwt"
+    let url = "http://back.app.cortijodemazas.com/jwt"
     this.http.get<any>(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){
@@ -70,7 +70,7 @@ export class HeaderComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-  let url = "https://back.app.cortijodemazas.com/jwt"
+  let url = "http://back.app.cortijodemazas.com/jwt"
   this.http.get<any>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){

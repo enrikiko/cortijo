@@ -27,7 +27,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json; charset=utf-8',
       'Authorization': jwt
     })
-    let url = "https://back.app.cortijodemazas.com/task"
+    let url = "http://back.app.cortijodemazas.com/task"
     // let headers = new HttpHeaders();
     // headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     var object = {};
@@ -55,7 +55,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "https://back.app.cortijodemazas.com/task/todo"
+    let url = "http://back.app.cortijodemazas.com/task/todo"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -73,7 +73,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "https://back.app.cortijodemazas.com/task/Inprogres"
+    let url = "http://back.app.cortijodemazas.com/task/Inprogres"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -91,7 +91,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "https://back.app.cortijodemazas.com/task/done"
+    let url = "http://back.app.cortijodemazas.com/task/done"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -109,7 +109,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "https://back.app.cortijodemazas.com/task/update"
+    let url = "http://back.app.cortijodemazas.com/task/update"
     let object={}
     object["status"]="Inprogres"
     object["name"]=name
@@ -131,7 +131,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "https://back.app.cortijodemazas.com/task/update"
+    let url = "http://back.app.cortijodemazas.com/task/update"
     let object={}
     object["status"]="done"
     object["name"]=name
@@ -153,7 +153,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "https://back.app.cortijodemazas.com/task/update"
+    let url = "http://back.app.cortijodemazas.com/task/update"
     let object={}
     object["status"]="todo"
     object["name"]=name

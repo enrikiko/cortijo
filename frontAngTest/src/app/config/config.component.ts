@@ -24,7 +24,7 @@ export class ConfigComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    const url = "https://back.app.cortijodemazas.com/config/"
+    const url = "http://back.app.cortijodemazas.com/config/"
     this.http.get(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -59,7 +59,7 @@ export class ConfigComponent implements OnInit {
     this.config.forEach(element => {
       configObject[element.key] = element.value
     })
-    const url = "https://back.app.cortijodemazas.com/config/update"
+    const url = "http://back.app.cortijodemazas.com/config/update"
 
     this.http.post(url, configObject, {headers: headers}).subscribe( data =>
     {

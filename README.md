@@ -28,3 +28,22 @@ icmp for ping
 http
 
 kubectl config set-context --current --namespace=cortijo
+
+aarch64 https://www.youtube.com/watch?v=Y-FUvi1z1aU&t=480s
+
+qemu-system-aarch64 \
+-M virt \
+-m 1024 -smp 4 \
+-cpu cortex-a53 \
+-kernel vmlinuz \
+-initrd initrd.img \
+-drive file=2018-01-08-raspberry-pi-3-buster-PREVIEW.img \
+-append 'root=/dev/vda2 noresume rw' \
+-no-reboot \
+-nographic
+
+auto enp0s2
+
+iface enp0s2 inet dhcp
+        pre-up iptables-restore < /etc/iptables/rules.v4
+        pre-up ip6tables-restore < /etc/iptables/rules.v6

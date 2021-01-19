@@ -33,7 +33,7 @@ export class UsersComponent implements OnInit {
     const user = target.querySelector('#userName').value
     const password = target.querySelector('#password').value
     const secret = target.querySelector('#secret').value
-    let url = "https://back.app.cortijodemazas.com/auth"
+    let url = "http://back.app.cortijodemazas.com/auth"
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     var object = {};
@@ -59,7 +59,7 @@ export class UsersComponent implements OnInit {
   }
 
   getUrl(){
-    const url = "https://back.app.cortijodemazas.com/logo"
+    const url = "http://back.app.cortijodemazas.com/logo"
     this.url=url
     }
 

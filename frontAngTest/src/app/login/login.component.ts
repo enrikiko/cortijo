@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
 
   }
   getUrl(){
-    const url = "https://back.app.cortijodemazas.com/logo"
+    const url = "http://back.app.cortijodemazas.com/logo"
     this.url=url
     }
 

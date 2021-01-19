@@ -45,7 +45,7 @@ subscription:any;
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "https://back.app.cortijodemazas.com/sensor/type/" + sensorName
+    let url = "http://back.app.cortijodemazas.com/sensor/type/" + sensorName
     this.http.get(url, { headers: headers }).subscribe( data =>
     {
       if(data != null){
@@ -65,7 +65,7 @@ subscription:any;
     console.log(type);
 
 
-    let url = "https://back.app.cortijodemazas.com/all/" + type + "/" + sensor
+    let url = "http://back.app.cortijodemazas.com/all/" + type + "/" + sensor
     switch(type) {
       case "humidity":
         this.getHumidity(url, name)

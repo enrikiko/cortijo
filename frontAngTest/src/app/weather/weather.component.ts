@@ -23,7 +23,7 @@ export class WeatherComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "https://back.app.cortijodemazas.com/all/sensorMock/temperature"
+    let url = "http://back.app.cortijodemazas.com/all/sensorMock/temperature"
     this.http.get<HttpResponse<object>>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){

@@ -66,10 +66,10 @@ export class DevicesComponent implements OnInit {
     })
     let url = null
     if(device.status){
-      url = "https://back.app.cortijodemazas.com/update/" + device.name +"/false/"
+      url = "http://back.app.cortijodemazas.com/update/" + device.name +"/false/"
     }
     else if (!device.status){
-      url = "https://back.app.cortijodemazas.com/update/" + device.name +"/true/"+ this.lapse_time*60000
+      url = "http://back.app.cortijodemazas.com/update/" + device.name +"/true/"+ this.lapse_time*60000
     }
     let startTime = new Date().getTime()
     this.http.get(url, { headers: headers }).subscribe( data =>
@@ -95,7 +95,7 @@ export class DevicesComponent implements OnInit {
         'Content-Type': 'application/json',
         'Authorization': jwt
       })
-      let url = "https://back.app.cortijodemazas.com/device/" + device.name
+      let url = "http://back.app.cortijodemazas.com/device/" + device.name
       this.http.delete(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){
@@ -116,7 +116,7 @@ export class DevicesComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
       })
-    let url = "https://back.app.cortijodemazas.com/websocketDevice/all"
+    let url = "http://back.app.cortijodemazas.com/websocketDevice/all"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -138,10 +138,10 @@ export class DevicesComponent implements OnInit {
     })
     let url = null
     if(device.status){
-      url = "https://back.app.cortijodemazas.com/updateWebSocket/" + device.name + "/" + device.id + "/false"
+      url = "http://back.app.cortijodemazas.com/updateWebSocket/" + device.name + "/" + device.id + "/false"
     }
     else if (!device.status){
-      url = "https://back.app.cortijodemazas.com/updateWebSocket/" + device.name + "/" + device.id + "/true"
+      url = "http://back.app.cortijodemazas.com/updateWebSocket/" + device.name + "/" + device.id + "/true"
     }
     let startTime = new Date().getTime()
     this.http.get(url, { headers: headers }).subscribe( data =>
@@ -165,7 +165,7 @@ export class DevicesComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "https://back.app.cortijodemazas.com/device/all"
+    let url = "http://back.app.cortijodemazas.com/device/all"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -183,7 +183,7 @@ export class DevicesComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "https://back.app.cortijodemazas.com/sensor/all"
+    let url = "http://back.app.cortijodemazas.com/sensor/all"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -204,7 +204,7 @@ export class DevicesComponent implements OnInit {
         'Authorization': jwt
       })
 
-      let url = "https://back.app.cortijodemazas.com/sensor/" + sensor.name
+      let url = "http://back.app.cortijodemazas.com/sensor/" + sensor.name
       this.http.delete(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){

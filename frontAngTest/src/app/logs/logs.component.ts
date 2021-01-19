@@ -22,7 +22,7 @@ export class LogsComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "https://back.app.cortijodemazas.com/all/log"
+    let url = "http://back.app.cortijodemazas.com/all/log"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){

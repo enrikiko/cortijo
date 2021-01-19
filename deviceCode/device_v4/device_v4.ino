@@ -121,7 +121,7 @@ void setIp(String ip){
       HTTPClient http;
       //Serial.print("[HTTP] begin...\n");
       //Serial.print("https://192.168.1.50:8000/new/"+deviceName+"/true/"+ip+":"+port);
-      if (http.begin(client, "https://back.app.cortijodemazas.com/device/"+deviceName+"/true/"+ip+":"+port)) {
+      if (http.begin(client, "http://back.app.cortijodemazas.com/device/"+deviceName+"/true/"+ip+":"+port)) {
         Serial.print("[HTTP] POST CODE: ");
         int httpCode = http.POST("");
         Serial.println(httpCode);

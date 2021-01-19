@@ -9,7 +9,7 @@ spec:
   type: LoadBalancer
   ports:
   - port: 5000
-    targetPort: 4200
+    targetPort: 80
     protocol: TCP
     name: front-svc-a
   selector:
@@ -35,9 +35,8 @@ spec:
       containers:
       - name: front
         image: enriqueramosmunoz/front2:rasp
-        # command: ["npm", "start"]
         ports:
-        - containerPort: 4200
+        - containerPort: 80
         volumeMounts:
         - name: config
           mountPath: /root/node/config_url.yaml
@@ -55,7 +54,7 @@ metadata:
   namespace: cortijo
 spec:
   rules:
-  - host: front.192.168.1.61.nip.io
+  - host: www.cortijodemazas.com
     http:
       paths:
       - backend:
@@ -64,4 +63,4 @@ spec:
         path: /
   tls:
   - hosts:
-    - front.192.168.1.61.nip.io
+    - www.cortijodemazas.com
