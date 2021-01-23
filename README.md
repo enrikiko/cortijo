@@ -37,11 +37,13 @@ qemu-system-aarch64 \
 -cpu cortex-a53 \
 -kernel vmlinuz \
 -initrd initrd.img \
--drive file=2018-01-08-raspberry-pi-3-buster-PREVIEW.img \
+-drive file=2018-01-08-raspberry-pi-3-buster-PREVIEW.img,if=none,id=drive0,cache=writeback -device virtio-blk,drive=drive0,bootindex=0 \
 -append 'root=/dev/vda2 noresume rw' \
 -no-reboot \
 -nographic
 
+
+nano /etc
 auto enp0s2
 
 iface enp0s2 inet dhcp
