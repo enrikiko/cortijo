@@ -1,0 +1,63 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: gitlab
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-svc-a
+  namespace: gitlab
+  labels:
+    name: auth-svc-a
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 10000
+    targetPort: 3000
+    protocol: TCP
+    name: gitlab-svc-a
+  selector:
+    app: gitlab
+---
+apiVersion: apps/v1 # Usa apps/v1beta2 para versiones anteriores a 1.9.0
+kind: Deployment
+metadata:
+  name: gitlab
+  namespace: gitlab
+  labels:
+    name: gitlab-rc
+spec:
+  selector:
+    matchLabels:
+      app: gitlab
+  replicas: 1 # indica al controlador que ejecute 2 pods
+  template:
+    metadata:
+      labels:
+        app: gitlab
+    spec:
+      containers:
+      - name: gitlab
+        image: gitlab/gitlab
+        ports:
+        - containerPort: 3000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gitlab
+  namespace: gitlab
+spec:
+  rules:
+  - host: gitlab.cortijodemazas.com
+    http:
+      paths:
+      - backend:
+          serviceName: gitlab-svc-a
+          servicePort: 10000
+        path: /
+  tls:
+  - hosts:
+    - gitlab.cortijodemazas.com
