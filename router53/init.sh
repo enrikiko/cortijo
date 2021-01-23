@@ -1,6 +1,6 @@
 #!/bin/bash
-while :
-do
+# while :
+# do
   curl -o /dev/null -s -w "%{http_code}\n" www.cortijodemazas.com > /tmp/curl.out
   if [[ "$(cat /tmp/curl.out)" == "200" ]]; then
     date
@@ -12,5 +12,5 @@ do
     cat /tmp/curl.out
     echo "Route53 have been set"
   fi
-	sleep 600
-done
+	# sleep 600
+# done

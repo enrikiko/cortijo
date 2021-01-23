@@ -1,0 +1,21 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: route53
+            image: enriqueramosmunoz/route53:rasp2
+            volumeMounts:
+            - name: config
+              mountPath: /root/node/set-ip-config.sh
+              subPath: set-ip-config.sh
+          volumes:
+          - name: config
+            configMap:
+              name: set-ip-config
