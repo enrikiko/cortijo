@@ -40,7 +40,7 @@ spec:
     spec:
       containers:
       - name: gitlab
-        image: gitlab/gitlab
+        image: gitlab/gitlab:latest
         ports:
         - containerPort: 3000
 ---
