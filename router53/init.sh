@@ -1,6 +1,7 @@
 #!/bin/bash
 # while :
 # do
+source set-ip-config.sh
   curl -o /dev/null -s -w "%{http_code}\n" www.cortijodemazas.com > /tmp/curl.out
   if [[ "$(cat /tmp/curl.out)" == "200" ]]; then
     date
