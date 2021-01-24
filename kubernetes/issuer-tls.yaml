@@ -9,4 +9,3 @@ spec:
     email: enriqueramosmunoz@gmail.com
     privateKeySecretRef:
       name: cortijo-letsncypt
-    http01: {}
