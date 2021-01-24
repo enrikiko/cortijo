@@ -71,4 +71,4 @@ spec:
   tls:
   - hosts:
     - back.app.cortijodemazas.com
-    secretName: cortijo-tls
+    #secretName: cortijo-tls
