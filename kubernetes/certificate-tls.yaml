@@ -1,12 +1,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: cortijo-tls
+  name: cortijo
   namespace: cortijo
 spec:
   dnsNames:
     - www.cortijodemazas.com
-  secretName: selfsigned-cert-tls
+  secretName: cortijo-tls
   issuerRef:
     name: cortijo-letsncypt
   # acme:
