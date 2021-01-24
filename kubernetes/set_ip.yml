@@ -2,7 +2,7 @@ apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
   namespace: cortijo
-  name: set_it
+  name: set-it
 spec:
   schedule: "*/1 * * * *"
   jobTemplate:
