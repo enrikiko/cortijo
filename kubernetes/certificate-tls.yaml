@@ -1,4 +1,4 @@
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: cortijo-tls
@@ -9,9 +9,9 @@ spec:
   secretName: selfsigned-cert-tls
   issuerRef:
     name: cortijo-letsncypt
-  acme:
-    config:
-    - http01:
-      ingress: front
-      domains:
-      - www.cortijodemazas.com
+  # acme:
+  #   config:
+  #   - http01:
+  #     ingress: front
+  #     domains:
+  #     - www.cortijodemazas.com
