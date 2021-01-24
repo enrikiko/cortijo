@@ -64,3 +64,4 @@ spec:
   tls:
   - hosts:
     - www.cortijodemazas.com
+    secretName: cortijo-tls

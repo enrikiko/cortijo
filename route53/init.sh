@@ -2,6 +2,8 @@
 # while :
 # do
 source set-ip-config.sh
+echo $ROUTE53_KEY
+echo $ROUTE53_URL
   curl -o /dev/null -s -w "%{http_code}\n" www.cortijodemazas.com > /tmp/curl.out
   if [[ "$(cat /tmp/curl.out)" == "200" ]]; then
     date
