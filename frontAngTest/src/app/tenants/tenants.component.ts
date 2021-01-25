@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-tenants',
@@ -39,8 +42,6 @@ export class TenantsComponent implements OnInit {
     var object = {};
     object["secret"]=secret;
     object["tenant"]=tenant;
-    object["user"]=user;
-    object["password"]=password;
     this.http.post<any>(url, object, {headers: headers}).subscribe( data =>
     {
       if(data){
