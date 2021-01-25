@@ -1,4 +1,4 @@
-apiVersion: cert-manager.io/v1
+apiVersion: cert-manager.io/v1alpha2
 kind: Issuer
 metadata:
   name: cortijo-letsncypt
@@ -9,3 +9,7 @@ spec:
     email: enriqueramosmunoz@gmail.com
     privateKeySecretRef:
       name: cortijo-letsncypt
+    solvers:
+    - http01:
+        ingress:
+          class: nginx

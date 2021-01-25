@@ -68,7 +68,7 @@ spec:
           serviceName: orchestrator-svc-a
           servicePort: 4000
         path: /
-  tls:
-  - hosts:
-    - back.app.cortijodemazas.com
-    secretName: cortijo-tls
+  # tls:
+  # - hosts:
+  #   - back.app.cortijodemazas.com
+  #   secretName: cortijo-tls

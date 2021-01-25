@@ -61,7 +61,7 @@ spec:
           serviceName: front-svc-a
           servicePort: 5000
         path: /
-  tls:
-  - hosts:
-    - www.cortijodemazas.com
-    secretName: cortijo-tls
+  # tls:
+  # - hosts:
+  #   - www.cortijodemazas.com
+  #   secretName: cortijo-tls
