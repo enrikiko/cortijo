@@ -133,6 +133,10 @@ app.post("/auth", async function(req, res) {
     }
   }
 })
+app.post("/tenant", async function(req, res) {
+  tenant = req.body.tenant;
+  res.send(200).json({"Status": tenants.createTenant(tenant)} )
+})
 //
 // Soil sensor
 app.get("/sensor/soil/:tenant/:name/:humidity/:temperature/:soilmoist", async (req, res) => {

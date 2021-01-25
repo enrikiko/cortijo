@@ -26,6 +26,7 @@ import { WifiComponent } from './wifi/wifi.component';
 import { SensorInfoComponent } from './sensor-info/sensor-info.component';
 import { TaskComponent } from './task/task.component';
 import { CameraComponent } from './camera/camera.component';
+import { TenantsComponent } from './tenants/tenants.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { CameraComponent } from './camera/camera.component';
     WifiComponent,
     SensorInfoComponent,
     TaskComponent,
-    CameraComponent
+    CameraComponent,
+    TenantsComponent
   ],
   imports: [
     BrowserModule,

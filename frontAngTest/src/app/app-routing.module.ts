@@ -15,6 +15,7 @@ import { WifiComponent } from './wifi/wifi.component';
 import { TaskComponent } from './task/task.component';
 import { CameraComponent } from './camera/camera.component';
 import { SensorInfoComponent } from './sensor-info/sensor-info.component';
+import { TenantsComponent } from './tenants/tenants.component';
 
 const routes: Routes = [
   {path:'', component: DevicesComponent, canActivate: [AuthGuard]},
@@ -23,10 +24,11 @@ const routes: Routes = [
   {path:'config', component: ConfigComponent, canActivate: [AuthGuard]},
   {path:'sensorInfo/:sensor', component: SensorGraphicComponent, canActivate: [AuthGuard]},
   {path:'login', component: LoginComponent},
+  {path:'tenants', component: TenantsComponent},
+  {path:'users', component: UsersComponent},
   {path:'catordog', component: CatordogComponent, canActivate: [AuthGuard]},
   {path:'requests/:device', component: RequestsComponent, canActivate: [AuthGuard]},
   {path:'photos', component: PhotosComponent, canActivate: [AuthGuard]},
-  {path:'users', component: UsersComponent},
   {path:'files', component: FilesComponent, canActivate: [AuthGuard]},
   {path:'sensorSetting/:sensor', component: SensorInfoComponent, canActivate: [AuthGuard]},
   {path:'wifi', component: WifiComponent, canActivate: [AuthGuard]},

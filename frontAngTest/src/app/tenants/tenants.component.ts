@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-tenants',
+  templateUrl: './tenants.component.html',
+  styleUrls: ['./tenants.component.css']
 })
-export class UsersComponent implements OnInit {
+export class TenantsComponent implements OnInit {
 
   secret: String;
   tenant: String;
@@ -27,17 +25,15 @@ export class UsersComponent implements OnInit {
     this.router.navigate(['login'])
   }
 
-  newTenant(){
-    this.router.navigate(['tenants'])
+  singIn(){
+    this.router.navigate(['users'])
   }
 
-  createUser(event) {
+  createTenant(event) {
     const target = event.target
     const tenant = target.querySelector('#tenant').tenant
-    const user = target.querySelector('#userName').value
-    const password = target.querySelector('#password').value
     const secret = target.querySelector('#secret').value
-    let url = "http://back.app.cortijodemazas.com/auth"
+    let url = "http://back.app.cortijodemazas.com/tenant"
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     var object = {};

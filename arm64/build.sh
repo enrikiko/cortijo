@@ -8,4 +8,8 @@ docker push enriqueramosmunoz/auth:rasp2
 
 docker build -t enriqueramosmunoz/cortijo:rasp2 ../cortijo/.
 docker push enriqueramosmunoz/cortijo:rasp2
+
+docker build -t enriqueramosmunoz/front:rasp2 ../frontAngTest/.
+docker push enriqueramosmunoz/front:rasp2
+
 echo "Done"

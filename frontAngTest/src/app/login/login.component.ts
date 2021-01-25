@@ -30,6 +30,10 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['users'])
   }
 
+  newTenant(){
+    this.router.navigate(['tenants'])
+  }
+
   changeLoginResult(loginSuccess){
     if(loginSuccess)
     {
