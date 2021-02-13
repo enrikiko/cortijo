@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 
 @Component({
@@ -13,7 +14,8 @@ export class SensorInfoComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private http: HttpClient ) { }
+    private http: HttpClient,
+    private appConfig: AppConfiguration ) { }
 
   sensor:string = null;
   sensorInfo:any = null;
@@ -32,7 +34,7 @@ export class SensorInfoComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/sensor/" + sensor
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/sensor/" + sensor
     this.http.get(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -68,7 +70,7 @@ export class SensorInfoComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/device/all"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/device/all"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){

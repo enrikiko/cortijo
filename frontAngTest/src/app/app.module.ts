@@ -1,10 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-
-const config: SocketIoConfig = { url: 'https://socket.cortijodemazas.com', options: {} };
-
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -27,6 +24,18 @@ import { SensorInfoComponent } from './sensor-info/sensor-info.component';
 import { TaskComponent } from './task/task.component';
 import { CameraComponent } from './camera/camera.component';
 import { TenantsComponent } from './tenants/tenants.component';
+
+import {JsonAppConfigService} from './set_configuration/json-app-config.service';
+import {AppConfiguration} from './set_configuration/app-configuration';
+
+
+const config: SocketIoConfig = { url: 'http://socket.cortijodemazas.com', options: {} };
+
+export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
+  return () => {
+    return jsonAppConfigService.load();
+  };
+}
 
 
 @NgModule({
@@ -59,7 +68,19 @@ import { TenantsComponent } from './tenants/tenants.component';
     FormsModule,
     SocketIoModule.forRoot(config)
   ],
-  providers: [],
+  providers: [
+  {
+    provide: AppConfiguration,
+    deps: [HttpClient],
+    useExisting: JsonAppConfigService
+  },
+  {
+    provide: APP_INITIALIZER,
+    multi: true,
+    deps: [JsonAppConfigService],
+    useFactory: initializerFn
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

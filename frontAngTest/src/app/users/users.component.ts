@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 @Component({
   selector: 'app-users',
@@ -14,13 +16,18 @@ export class UsersComponent implements OnInit {
   userName: String;
   password: String;
   status: String;
+  error: Boolean;
+  createdUser: String;
   url = null;
 
   constructor(private router: Router,
-              private http: HttpClient) { }
+              private auth: AuthService,
+              private http: HttpClient,
+              private appConfig: AppConfiguration) { }
 
   ngOnInit() {
     this.getUrl()
+    this.auth.statusEventEmitter().subscribe(status => this.changeLoginResult(status));
   }
 
   logIn(){
@@ -33,11 +40,11 @@ export class UsersComponent implements OnInit {
 
   createUser(event) {
     const target = event.target
-    const tenant = target.querySelector('#tenant').tenant
+    const tenant = target.querySelector('#tenant').value
     const user = target.querySelector('#userName').value
     const password = target.querySelector('#password').value
     const secret = target.querySelector('#secret').value
-    let url = "http://back.app.cortijodemazas.com/auth"
+    const url = "http://" + this.appConfig.back_url + "/auth"
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     var object = {};
@@ -50,8 +57,11 @@ export class UsersComponent implements OnInit {
       if(data){
         console.log(data)
         this.status = data.status
+        this.createdUser = data.createdUser
+        this.error = false
         if(data.jwt!=null){
           window.localStorage.setItem('jwt', data.jwt)
+          const loginResult = this.auth.login(tenant, user, password)
         }
         this.router.navigate(['body'])
       }
@@ -59,12 +69,25 @@ export class UsersComponent implements OnInit {
         console.log('Unautorized')
         this.status = data.status
       }
+    },
+    error =>
+    {
+      this.error = true
+      this.status = ""
     })
   }
 
   getUrl(){
-    const url = "http://back.app.cortijodemazas.com/logo"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/logo"
     this.url=url
     }
 
+  changeLoginResult(loginSuccess){
+      if(loginSuccess)
+      {
+        this.router.navigate(['devices'])
+      }else{
+        console.log("loginFail");
+      }
+    }
 }

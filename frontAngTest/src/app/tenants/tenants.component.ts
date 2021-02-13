@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 @Component({
   selector: 'app-tenants',
@@ -15,10 +16,14 @@ export class TenantsComponent implements OnInit {
   userName: String;
   password: String;
   status: String;
+  createdTenant: String;
+  error: Boolean;
   url = null;
 
+
   constructor(private router: Router,
-              private http: HttpClient) { }
+              private http: HttpClient,
+              private appConfig: AppConfiguration) { }
 
   ngOnInit() {
     this.getUrl()
@@ -34,9 +39,10 @@ export class TenantsComponent implements OnInit {
 
   createTenant(event) {
     const target = event.target
-    const tenant = target.querySelector('#tenant').tenant
+    const tenant = target.querySelector('#tenant').value
     const secret = target.querySelector('#secret').value
-    let url = "http://back.app.cortijodemazas.com/tenant"
+    // let url = "http://back.app.cortijodemazas.com/tenant"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/tenant"
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     var object = {};
@@ -47,6 +53,8 @@ export class TenantsComponent implements OnInit {
       if(data){
         console.log(data)
         this.status = data.status
+        this.createdTenant = data.tenant
+        this.error = false
         if(data.jwt!=null){
           window.localStorage.setItem('jwt', data.jwt)
         }
@@ -54,13 +62,18 @@ export class TenantsComponent implements OnInit {
       }
       else {
         console.log('Unautorized')
-        this.status = data.status
+
       }
+    },
+    error =>
+    {
+      this.error = true
+      this.status = ""
     })
   }
 
   getUrl(){
-    const url = "http://back.app.cortijodemazas.com/logo"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/logo"
     this.url=url
     }
 

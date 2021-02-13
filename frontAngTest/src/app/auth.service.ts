@@ -1,6 +1,7 @@
 import { Injectable, Component, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import {AppConfiguration} from './set_configuration/app-configuration';
 
 
 interface myData {
@@ -21,7 +22,7 @@ export class AuthService {
 
   constructor(private router: Router,
               private http: HttpClient,
-            ) { };
+              private appConfig: AppConfiguration) { };
 
   jwtEventEmitter(){ return this.jwtEvent }
   statusEventEmitter(){ return this.statusEvent }
@@ -34,7 +35,7 @@ export class AuthService {
       'Content-Type': 'application/json',
       'Authorization': jwt
       })
-    const url = "http://back.app.cortijodemazas.com/jwt"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/jwt"
     this.http.get<any>(url, { headers: headers }).subscribe( data => {
       if(data!=null){
         if(data.status){
@@ -55,7 +56,7 @@ export class AuthService {
   }
 
   login( tenant, user, password ) {
-      const url = "http://back.app.cortijodemazas.com/auth"
+      const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/auth"
       let object={}
       object["tenant"] = tenant;
       object["user"] = user;

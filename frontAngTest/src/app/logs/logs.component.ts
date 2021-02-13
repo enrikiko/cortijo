@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 @Component({
   selector: 'app-logs',
@@ -10,7 +11,8 @@ export class LogsComponent implements OnInit {
 
   logs: any[]=null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private appConfig: AppConfiguration) { }
 
   ngOnInit() {
     this.getLogs()
@@ -22,7 +24,7 @@ export class LogsComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/all/log"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/all/log"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){

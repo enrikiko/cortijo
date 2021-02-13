@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   constructor( private router: Router,
                private auth: AuthService,
-               private http: HttpClient) { }
+               private http: HttpClient,
+               private appConfig: AppConfiguration) { }
 
   ngOnInit() {
   this.getUrl()
@@ -60,7 +62,7 @@ export class LoginComponent implements OnInit {
 
   }
   getUrl(){
-    const url = "http://back.app.cortijodemazas.com/logo"
+    const url = "http://" + this.appConfig.back_url + "/logo"
     this.url=url
     }
 

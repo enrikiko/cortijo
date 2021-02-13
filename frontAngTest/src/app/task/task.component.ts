@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 @Component({
   selector: 'app-task',
@@ -13,7 +14,9 @@ export class TaskComponent implements OnInit {
   tasksDone: any[] = null;
   task: any = {name: null, description: null};
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient,
+               private appConfig: AppConfiguration) { }
+
 
   ngOnInit() {
     this.getTodoTasks()
@@ -27,7 +30,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json; charset=utf-8',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/task"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/task"
     // let headers = new HttpHeaders();
     // headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     var object = {};
@@ -55,7 +58,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/task/todo"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/task/todo"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -73,7 +76,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/task/Inprogres"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/task/Inprogres"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -91,7 +94,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/task/done"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/task/done"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -109,7 +112,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/task/update"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/task/update"
     let object={}
     object["status"]="Inprogres"
     object["name"]=name
@@ -131,7 +134,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/task/update"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/task/update"
     let object={}
     object["status"]="done"
     object["name"]=name
@@ -153,7 +156,7 @@ export class TaskComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/task/update"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/task/update"
     let object={}
     object["status"]="todo"
     object["name"]=name

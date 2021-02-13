@@ -1,4 +1,4 @@
-FROM arm64v8/alpine
+FROM alpine
 RUN apk add npm
 RUN mkdir /root/node
 WORKDIR /root/node

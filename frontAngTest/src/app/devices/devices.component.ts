@@ -5,6 +5,7 @@ import { SocketService } from '../socket.service';
 import { AuthService } from '../auth.service';
 import { Message } from '../message';
 import { Event } from '../event';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class DevicesComponent implements OnInit {
     private router: Router,
     private http: HttpClient,
     private socketService: SocketService,
-    private auth: AuthService ) { }
+    private auth: AuthService,
+    private appConfig: AppConfiguration ) { }
 
 
 
@@ -66,10 +68,10 @@ export class DevicesComponent implements OnInit {
     })
     let url = null
     if(device.status){
-      url = "http://back.app.cortijodemazas.com/update/" + device.name +"/false/"
+     url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/update/" + device.name +"/false/"
     }
     else if (!device.status){
-      url = "http://back.app.cortijodemazas.com/update/" + device.name +"/true/"+ this.lapse_time*60000
+      url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/update/" + device.name +"/true/"+ this.lapse_time*60000
     }
     let startTime = new Date().getTime()
     this.http.get(url, { headers: headers }).subscribe( data =>
@@ -95,7 +97,7 @@ export class DevicesComponent implements OnInit {
         'Content-Type': 'application/json',
         'Authorization': jwt
       })
-      let url = "http://back.app.cortijodemazas.com/device/" + device.name
+      const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/device/" + device.name
       this.http.delete(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){
@@ -116,7 +118,7 @@ export class DevicesComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
       })
-    let url = "http://back.app.cortijodemazas.com/websocketDevice/all"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/websocketDevice/all"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -138,10 +140,10 @@ export class DevicesComponent implements OnInit {
     })
     let url = null
     if(device.status){
-      url = "http://back.app.cortijodemazas.com/updateWebSocket/" + device.name + "/" + device.id + "/false"
+      url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/updateWebSocket/" + device.name + "/" + device.id + "/false"
     }
     else if (!device.status){
-      url = "http://back.app.cortijodemazas.com/updateWebSocket/" + device.name + "/" + device.id + "/true"
+      url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/updateWebSocket/" + device.name + "/" + device.id + "/true"
     }
     let startTime = new Date().getTime()
     this.http.get(url, { headers: headers }).subscribe( data =>
@@ -165,7 +167,7 @@ export class DevicesComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/device/all"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/device/all"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -183,7 +185,7 @@ export class DevicesComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/sensor/all"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/sensor/all"
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -204,7 +206,7 @@ export class DevicesComponent implements OnInit {
         'Authorization': jwt
       })
 
-      let url = "http://back.app.cortijodemazas.com/sensor/" + sensor.name
+      const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/sensor/" + sensor.name
       this.http.delete(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){

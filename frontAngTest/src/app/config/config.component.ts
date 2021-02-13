@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 @Component({
   selector: 'app-config',
@@ -12,7 +13,8 @@ export class ConfigComponent implements OnInit {
     LOG: string = "log";
     check: boolean = false;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,
+                private appConfig: AppConfiguration) { }
 
   ngOnInit() {
     this.getConfig()
@@ -24,7 +26,7 @@ export class ConfigComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    const url = "http://back.app.cortijodemazas.com/config/"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/config/"
     this.http.get(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -59,7 +61,7 @@ export class ConfigComponent implements OnInit {
     this.config.forEach(element => {
       configObject[element.key] = element.value
     })
-    const url = "http://back.app.cortijodemazas.com/config/update"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/config/update"
 
     this.http.post(url, configObject, {headers: headers}).subscribe( data =>
     {

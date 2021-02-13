@@ -29,7 +29,20 @@ app.get("/*", function(req, res, next) {
   console.log( fullUrl + " : " + ip )
   next()
 })
-
+app.post("/*", function(req, res, next) {
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
+  var ip = req.ip
+  console.log( fullUrl + " : " + ip )
+  next()
+})
+app.delete("/*", function(req, res, next) {
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
+  var ip = req.ip
+  console.log( fullUrl + " : " + ip )
+  next()
+})
 // Get log
 app.get("/info", function(req, res) { //OK
     var info = {"Version": version, "Start time": startDate}
@@ -126,10 +139,10 @@ app.post('/user/:tenant/:user/:password/', async function(req, res){
     isCreateUser = await auth.createUser(tenant, user, password)
     if ( isCreateUser ) {
         generatedJWT = await jwt_auth.signAuthJwt(tenant, user)
-        res.status(201).json({"status":"User created successfuly","jwt":generatedJWT})
+        res.status(201).json({"status":true,"jwt":generatedJWT})
     }else {
         response.status="User already exist"
-        res.status(200).json({"status":"User already exist"})
+        res.status(200).json({"status":false})
     }
 });
 

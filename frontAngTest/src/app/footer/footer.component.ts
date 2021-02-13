@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class FooterComponent implements OnInit {
 
   constructor(
               private auth: AuthService,
-              private http: HttpClient) { }
+              private http: HttpClient,
+              private appConfig: AppConfiguration ) { }
 
   ngOnInit() {
     this.auth.statusEventEmitter().subscribe(status => this.changeLoginResult(status));
@@ -31,7 +33,7 @@ export class FooterComponent implements OnInit {
   alarm(){this.active="alarm"}
 
   getInfo(){
-    let url = "http://back.app.cortijodemazas.com/info"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/info"
     this.http.get<any>(url).subscribe( data =>
     {
       if(data!=null){

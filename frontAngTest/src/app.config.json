@@ -1,0 +1,5 @@
+{
+  "back_url": "localhost:11000",
+  "socket_url":"socket.cortijodemazas.com",
+  "protocol": "http"
+}

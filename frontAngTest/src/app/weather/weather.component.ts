@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as CanvasJS from './canvasjs.min';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 @Component({
   selector: 'app-weather',
@@ -12,7 +12,8 @@ export class WeatherComponent implements OnInit {
 
   logs: any[]=null;
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient,
+               private appConfig: AppConfiguration ) { }
 
   ngOnInit() {
     this.getData()
@@ -23,7 +24,7 @@ export class WeatherComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/all/sensorMock/temperature"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/all/sensorMock/temperature"
     this.http.get<HttpResponse<object>>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){

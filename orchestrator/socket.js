@@ -5,11 +5,11 @@ var socket = io(socket_url);
 const logs = require('./logs');
 
 socket.on('alert_device', function (data) {
-    //logs.log('[Socket.IO] (alert_device) : ' + data);
+    logs.log('[Socket.IO] (alert_device) : ' + data);
   });
 
 socket.on('alert_angular', function (data) {
-    //logs.log('[Socket.IO] (alert_angular) : ' + data);
+    logs.log('[Socket.IO] (alert_angular) : ' + data);
   });
 
 module.exports = {

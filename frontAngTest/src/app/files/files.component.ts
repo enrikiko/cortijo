@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 @Component({
   selector: 'app-files',
@@ -10,14 +11,15 @@ export class FilesComponent implements OnInit {
 
   files: any[] = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private appConfig: AppConfiguration ) { }
 
   ngOnInit() {
     this.getFiles()
   }
 
   getFiles(){
-    let url = "https://file.cortijodemazas.com/list"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/list"
     this.http.get<any>(url).subscribe( data =>
     {
       if(data!=null){
@@ -30,13 +32,13 @@ export class FilesComponent implements OnInit {
   }
 
   download(file){
-    let url = "https://file.cortijodemazas.com/download/" + file
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/download/" + file
     window.location.href = url
   }
 
   fileupload(file: FileList){
     event.preventDefault()
-    let url = "https://file.cortijodemazas.com/fileupload"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/fileupload"
     event.preventDefault()
     //const file = event.target.files
     console.log(file)

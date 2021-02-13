@@ -5,11 +5,14 @@
     <input [(ngModel)]="tenant" id="tenant" type="test" class="form-control" placeholder="Tenant" aria-label="Tenant" aria-describedby="addon-wrapping">
     <input [(ngModel)]="secret" id="secret" type="password" class="form-control" placeholder="Secret" aria-label="Password" aria-describedby="addon-wrapping">
     <button class="btn btn-lg btn-primary btn-block mt-2" id="createUser" type="submit" name="button" >Create new tenant</button>
-    <div *ngIf="status" id="userHasBeenCreated" class="mt-3 text-muted">
-      <h3>Result= {{ status }}</h3>
-    </div>
     <button (click)="logIn()" class="btn btn-lg btn-primary btn-block mt-2" type="button" name="button">Log In</button>
     <button (click)="singIn()" class="btn btn-lg btn-primary btn-block mt-2" type="button" name="button">Sign In</button>
+    <div *ngIf="status" id="userHasBeenCreated" class="mt-3 text-success">
+      <h3>Tenant {{ createdTenant }} has been created successfully </h3>
+    </div>
+    <div *ngIf="error" id="userHasBeenCreated" class="mt-3 text-danger">
+      <h3>Error </h3>
+    </div>
     <p class="mt-3 mb-3 text-muted">&copy; 2020</p>
   </form>
 </div>

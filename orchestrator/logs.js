@@ -4,10 +4,10 @@ const ERROR = "error"
 const SILENCE = "silence"
 //
 function logs(text) {
-     let time = new Date().toLocaleString({timeZone: 'Europe/Spain'})
-     let str = ' '.repeat(25 - time.length)
-     text="\""+time+"\"" + str +"  :    "+"\""+text+"\""
-     console.log(text);
+   let time = new Date().toLocaleString({timeZone: 'Europe/Spain'})
+   let str = ' '.repeat(25 - time.length)
+   text="\""+time+"\"" + str +"  :    "+"\""+text+"\""
+   console.log(text);
 }
 //
 function newLogs(ip, request) {
@@ -45,8 +45,8 @@ module.exports = {
       case ERROR:
         break;
       default:
+        console.log(ip)
         console.log(request)
-
     }
 
   }

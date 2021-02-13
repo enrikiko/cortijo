@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { SocketService } from '../socket.service';
 import Chart from 'chart.js';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 @Component({
   selector: 'app-wifi',
@@ -16,7 +17,9 @@ export class WifiComponent implements OnInit {
  subscription:any;
  //wifiData: any[]=null;
 
-  constructor( private http: HttpClient, private socketService: SocketService ) { }
+  constructor( private http: HttpClient,
+               private socketService: SocketService,
+               private appConfig: AppConfiguration ) { }
 
   ngOnInit() {
     this.getWifis()
@@ -35,7 +38,7 @@ export class WifiComponent implements OnInit {
     this.getData(wifi)
   }
   getWifis(){
-    let url = "http://back.app.cortijodemazas.com/wifis"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/wifis"
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -46,7 +49,7 @@ export class WifiComponent implements OnInit {
     })
   }
   getData(wifi){
-    let url = "http://back.app.cortijodemazas.com/wifi/" + wifi
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/wifi/" + wifi
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){

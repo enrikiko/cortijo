@@ -19,12 +19,11 @@ const myDevice = require('./devices');
 const mySwitch = require('./switch');
 const timeout = require('./timeout');
 const request = require('./request');
+const tenants = require('./tenants')
 const config = require('./config');
 const myTask = require('./task');
 const logs = require('./logs');
 // const wifi = require('./wifi');
-const tenants = require('./tenants')
-
 
 app.enable('trust proxy');
 app.use(bodyParser.json());
@@ -34,18 +33,37 @@ app.use(express())
 
 const version = config.get("version");
 //
+app.get('/*', function(req, res, next){
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
+  var ip = req.ip
+  logs.newLog(ip, fullUrl)
+  next()
+});
+app.post('/*', function(req, res, next){
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
+  var ip = req.ip
+  logs.newLog(ip, fullUrl)
+  next()
+});
+app.delete('/*', function(req, res, next){
+  const host = (req.get('host')) ? (req.get('host')) : ("localhost")
+  var fullUrl = req.protocol + '://' + host + req.originalUrl;
+  var ip = req.ip
+  logs.newLog(ip, fullUrl)
+  next()
+});
+//
 app.get("/readiness", function(req, res) {res.status(200).send()})
 //
 app.get("/liveness", function(req, res) {res.status(200).send()})
-//
-//  Get Info
 //
 app.get("/info", function(req, res) {
     var info = {"Version": version, "StartTime": startDate}
     res.status(200).json(info)
 })
 //
-//favicon.ico
 app.get("/favicon.ico", async function(req, res) {
     res.status(200).send(fs.readFileSync('files/favicon.ico'))
 })
@@ -59,13 +77,17 @@ app.get("/logo", async function(req, res) {
 })
 // Create new tenant
 //
-app.post("/newTenant", async function (req, res) {
-  name = req.body.name;
-  let password = tenants.createTenantPassword(name)
-  var result = await tenants.createTenant(name, password)
-  if(result){res.status(201).json({'name':name, 'password':password})}
+app.post("/tenant", async function (req, res) {
+  name = req.body.tenant;
+  password = req.body.secret;
+  // let password = tenants.createTenantPassword(name)
+  if (name==null||password==null||name==""||password=="") {res.status(409).json({"status":false})}
   else {
-    res.status(400).send()
+    var result = await tenants.createTenant(name, password)
+    if(result){res.status(201).json({"status":true, 'tenant':name, 'secret':password})}
+    else {
+      res.status(409).send()
+    }
   }
 })
 //
@@ -106,37 +128,40 @@ app.post("/auth", async function(req, res) {
   secret = req.body.secret;
   let isValidTenant;
   if (user==null||password==null||secret==null||tenant==null||user==""||password==""||secret==""||tenant=="") {
-    res.status(401).json({"status":false})
+    res.status(406).json({"status":false})
   }
   else {
     try {
       isValidTenant = await tenants.checkTenantPassword(tenant, secret)
-    } catch (e) {
-      logs.error(e)
-    } finally {
       if (isValidTenant) {
         try {
           var response = await request.newUser(tenant, user, password);
-          jwt = response.jwt
-          if(jwt){
-              logs.log("User " + user +" has been create")
-              res.status(201).json(response)
-            }
-          else{res.status(200).json(response)}
+          console.log(response.status);
+          console.log(response.jwt);
+          if (response) {
+            logs.log("User " + user +" has been create")
+            res.status(201).json({"createdUser": user, "jwt": response, "status": true})
+          }
+          res.status(409).json({"status":false})
         } catch (e) {
           logs.error(e);
-          res.status(200).json(e)
+          res.status(409).json({"status":false})
         }
       }else {
-        res.status(400).send()
+        res.status(409).json({"status":false})
+        console.log("");
       }
+    } catch (e) {
+      logs.error(e)
+      res.status(409).json({"status":false})
     }
   }
 })
-app.post("/tenant", async function(req, res) {
-  tenant = req.body.tenant;
-  res.send(200).json({"Status": tenants.createTenant(tenant)} )
-})
+
+// app.post("/tenant", async function(req, res) {
+//   tenant = req.body.tenant;
+//   res.send(200).json({"Status": tenants.createTenant(tenant)} )
+// })
 //
 // Soil sensor
 app.get("/sensor/soil/:tenant/:name/:humidity/:temperature/:soilmoist", async (req, res) => {
@@ -145,12 +170,6 @@ app.get("/sensor/soil/:tenant/:name/:humidity/:temperature/:soilmoist", async (r
   var humidity = req.params.humidity
   var temperature = req.params.temperature
   var soilmoist = req.params.soilmoist
-  console.log("Soil humidity sensor:");
-  console.log(tenant);
-  console.log(name);
-  console.log(humidity);
-  console.log(temperature);
-  console.log(soilmoist);
   mySoilSensor.newMeasure(tenant, name, humidity, temperature, soilmoist)
   res.status(200).send()
 })
@@ -162,11 +181,6 @@ app.post("/device/:tenant/:name/:status/:ip", async (req, res) => {
   var ip = req.params.ip
   var status = request.getStatus(req.params.status)
   var id = await myDevice.getIdByName(tenant, name)
-  console.log(tenant);
-  console.log(name);
-  console.log(ip);
-  console.log(status);
-  console.log(id);
   if(status===null){
         res.status(400).json({"Request": "Incorrect", "Status": "Not boolean"})
    }else{
@@ -193,11 +207,6 @@ app.post("/sensor/:type/:tenant/:name/:ip", async (req, res) => {
   var max = req.query.max
   var lapse = req.query.lapse
   var id = await mySensor.getIdByName(tenant, name)
-  console.log(tenant);
-  console.log(name);
-  console.log(ip);
-  console.log(type);
-  console.log(id);
   if (!id) {
      var response = await mySensor.newSensor(tenant, name, ip, type, devices, min, max, lapse)
      logs.log(name+' have been created successfully');
@@ -211,14 +220,14 @@ app.post("/sensor/:type/:tenant/:name/:ip", async (req, res) => {
 app.get("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
-  console.log(fullUrl);
+  logs.log(fullUrl);
   next()
 })
 
 app.post("/*", function(req, res, next) {
   const host = (req.get('host')) ? (req.get('host')) : ("localhost")
   var fullUrl = req.protocol + '://' + host + req.originalUrl;
-  console.log(fullUrl);
+  logs.log(fullUrl);
   next()
 })
 // app.put("/*", function(req, res, next) {
@@ -274,8 +283,6 @@ app.get("/*", async function(req, res, next) {
       let data = await request.getDataJWT(jwt)
       req.user = data.user
       req.tenant = data.tenant
-      console.log(req.tenant);
-      console.log(req.user);
       next()
   }catch(e){
      logs.error(e)
@@ -288,8 +295,6 @@ app.post("/*", async function(req, res, next) {
       let data = await request.getDataJWT(jwt)
       req.user = data.user
       req.tenant = data.tenant
-      console.log(req.tenant);
-      console.log(req.user);
       next()
   }catch(e){
      logs.error(e)
@@ -302,8 +307,6 @@ app.delete("/*", async function(req, res, next) {
       let data = await request.getDataJWT(jwt)
       req.user = data.user
       req.tenant = data.tenant
-      console.log(req.tenant);
-      console.log(req.user);
       next()
   }catch(e){
      logs.error(e)
@@ -316,8 +319,6 @@ app.put("/*", async function(req, res, next) {
       let data = await request.getDataJWT(jwt)
       req.user = data.user
       req.tenant = data.tenant
-      console.log(req.tenant);
-      console.log(req.user);
       next()
   }catch(e){
      logs.error(e)
@@ -331,7 +332,6 @@ app.put("/*", async function(req, res, next) {
 //
 app.post("/task",async function (req, res) {
   var tenant = req.tenant;
-  console.log('Tenant: s%', tenant);
   var name = req.body.name;
   var description = req.body.description;
   var result = await myTask.newTask(tenant, name, description)
@@ -354,7 +354,6 @@ app.get("/task/:name/:description",async function (req, res) {
 //
 app.post("/task/update",async function (req, res) {
   var tenant = req.tenant;
-  console.log('Tenant: s%', tenant);
   var name = req.body.name;
   var status = req.body.status;
   var result = await myTask.updateTask(tenant, name, status)
@@ -452,7 +451,6 @@ app.get("/updateWebSocket/:name/:id/:status", async function(req, res){
   var name = req.params.name
   var id = req.params.id
   var status = req.params.status
-  //console.log("/updateWebSocket/:name/:status");
   var response = await request.changeWebSocketStatus(tenant, name, id, status)
   res.status(response).send(status)
 })
@@ -586,7 +584,6 @@ app.get("/update/:name/false", async function(req, res){
   var tenant = req.tenant;
   var name = req.params.name
   var user = req.user
-  console.log("/update/:name/false");
   await mySwitch.changeStatusToFalse(tenant, name, res, user)
   //res.status(200).json(response)
 })
@@ -595,7 +592,6 @@ app.get("/update/:name/true/:lapse_time", async function(req, res){
   var name = req.params.name
   var lapse = req.params.lapse_time
   var user = req.user
-  console.log("/update/:name/true/:lapse_time");
   mySwitch.changeStatusToTrue(tenant, name, lapse, res, user)
   //res.status(200).json(response)
 })

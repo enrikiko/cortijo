@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 @Component({
   selector: 'app-photos',
@@ -26,7 +27,8 @@ export class PhotosComponent implements OnInit {
   dataMap={};
   dataCameraMap={};
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private appConfig: AppConfiguration) { }
 
   ngOnInit() {
     this.getCamera()
@@ -38,7 +40,7 @@ export class PhotosComponent implements OnInit {
     this.years = null
     this.months = null
     this.days = null
-    let url = "https://camera.cortijodemazas.com/camera"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/camera"
     this.http.get<any[]>(url).subscribe( data =>
       {
         if(data!=null){
@@ -52,7 +54,7 @@ export class PhotosComponent implements OnInit {
 
   getDatesYear(key){
     this.camera=key
-    let url = "https://camera.cortijodemazas.com/camera/" + key
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/camera/" + key
     this.http.get<any[]>(url).subscribe( data =>
     {
       if(data!=null){
@@ -113,7 +115,7 @@ export class PhotosComponent implements OnInit {
    getPhotos(key){
       let file = this.year + this.month + key
       this.date = file
-      let url = "https://camera.cortijodemazas.com/camera/" + this.camera + "/" + file
+      const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/camera/" + this.camera + "/" + file
       this.http.get<any[]>(url).subscribe( data =>
       {
         if(data!=null){
@@ -165,7 +167,7 @@ export class PhotosComponent implements OnInit {
 
   getPhoto(key){
     const photo = this.dataMap[key]
-    let url = "https://camera.cortijodemazas.com/camera/" + this.camera + "/" + this.date + "/" + photo
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/camera/" + this.camera + "/" + this.date + "/" + photo
     this.url=url;
   }
 

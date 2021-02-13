@@ -10,6 +10,7 @@ export class SocketService {
 
   constructor(private socket: Socket) { }
 
+
   sendMessage(msg: string){
        this.socket.emit("event_angular", msg);
    }

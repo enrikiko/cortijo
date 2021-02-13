@@ -38,8 +38,6 @@ async function checkTenant(name) {
 }
 
 async function checkTenantPassword(tenant, password) {
-  // console.log(`Tenant: ${tenant}`);
-  // console.log(`Password: ${password}`);
   tenant = await getTenant(tenant, password)
   return tenant[0].password==password
 }
@@ -72,7 +70,7 @@ module.exports = {
        newTenant.save( function(err, result) {
          if (err) throw err;
          if(result) {
-           console.log('Tenant '+tenant+' have been create')
+           logs.log('Tenant '+tenant+' have been create')
            logs.log(result);
          }
        });

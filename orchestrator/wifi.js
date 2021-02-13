@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const logs = require('./logs');
 const conf_map = require('./url');
+const config = require('./config');
+
 const mongo_db = conf_map.get("db_url");
 const db = mongoose.connection;
 mongoose.connect(mongo_db, { useNewUrlParser: true, useUnifiedTopology: true});
-const config = require('./config');
+
 
 db.on('error',function(){
     logs.error("Error to connect to MongoDB Wifi");

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 @Component({
   selector: 'app-requests',
@@ -15,8 +16,9 @@ export class RequestsComponent implements OnInit {
   device: string=null;
 
   constructor(
-    private router: Router,
-    private http: HttpClient) { }
+                private router: Router,
+                private http: HttpClient,
+                private appConfig: AppConfiguration) { }
 
   ngOnInit() {
     this.device = this.router.url.split("/")[2]
@@ -26,8 +28,8 @@ export class RequestsComponent implements OnInit {
   }
 
   // getDevices(){
-  //   const url = "http://back.app.cortijodemazas.com/device/all"
-  //   const urlSocket = "http://back.app.cortijodemazas.com/websocketDevice/all"
+  //   const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/device/all"
+  //   const urlSocket = this.appConfig.protocol + "://" + this.appConfig.back_url + "/websocketDevice/all"
   //   this.http.get<any[]>(url).subscribe( data =>
   //   {
   //     if(data!=null){
@@ -54,7 +56,7 @@ export class RequestsComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/all/requests/" + device
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/all/requests/" + device
     this.http.get<any[]>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){
@@ -80,7 +82,7 @@ export class RequestsComponent implements OnInit {
   }
 
   // getDeviceschanges(){
-  //   let url = "http://back.app.cortijodemazas.com/all/deviceschanges"
+  //   const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/all/deviceschanges"
   //   this.http.get<any[]>(url).subscribe( data =>
   //   {
   //     if(data!=null){

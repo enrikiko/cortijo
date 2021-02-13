@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { SocketService } from '../socket.service';
 import Chart from 'chart.js';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 @Component({
   selector: 'app-humidity',
@@ -22,7 +23,9 @@ subscription:any;
   constructor(
     private router: Router,
     private http: HttpClient,
-    private socketService: SocketService ) { }
+    private socketService: SocketService,
+    private appConfig: AppConfiguration) { }
+
 
   ngOnInit() {
     this.sensor = this.router.url.split("/")[2]
@@ -45,7 +48,7 @@ subscription:any;
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-    let url = "http://back.app.cortijodemazas.com/sensor/type/" + sensorName
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/sensor/type/" + sensorName
     this.http.get(url, { headers: headers }).subscribe( data =>
     {
       if(data != null){
@@ -65,7 +68,7 @@ subscription:any;
     console.log(type);
 
 
-    let url = "http://back.app.cortijodemazas.com/all/" + type + "/" + sensor
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/all/" + type + "/" + sensor
     switch(type) {
       case "humidity":
         this.getHumidity(url, name)

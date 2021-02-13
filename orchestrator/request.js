@@ -45,6 +45,7 @@ async function getResponse(tenant, status, name) {
      return res
  }finally{
          socket.device(name+" has changed to "+status)
+         console.log("socket.device");
  }
 }
 
@@ -82,13 +83,12 @@ module.exports={
      },
 
      changeWebSocketStatus: async (tenant, name, id, status) => {
-       console.log('changeWebSocketStatus');
        const url = WEBSOCKET_URL+"/"+tenant+"/"+name+"/"+id+"/"+status
        let response
        try {
          response = await superagent.post(url);
        } catch (e) {
-         console.error(e);
+         logs.error(e);
        }finally{
          socket.deviceSocket(name+" has changed to "+status)
          myDevicesChanges.newRequest(tenant, name, status, "webSocket", null)
@@ -109,7 +109,7 @@ module.exports={
        const url = AUTH_JWT+"/user/"+tenant+"/"+user+"/"+password
        async function getResponse(url) {
          response = await superagent.post(url);
-         return response.body
+         return {"status": response.body, "jwt": response.body.jwt}
        }
        return await getResponse(url);
      },

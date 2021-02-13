@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import {AppConfiguration} from '../set_configuration/app-configuration';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(private http: HttpClient,
               private auth: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private appConfig: AppConfiguration) { }
 
   ngOnInit() {
     this.getUserFromJwtLocalStorage()
@@ -36,7 +38,7 @@ export class HeaderComponent implements OnInit {
         'Content-Type': 'application/json',
         'Authorization': jwt
       })
-    let url = "http://back.app.cortijodemazas.com/jwt"
+    const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/jwt"
     this.http.get<any>(url, { headers: headers }).subscribe( data =>
       {
         if(data!=null){
@@ -70,7 +72,7 @@ export class HeaderComponent implements OnInit {
       'Content-Type': 'application/json',
       'Authorization': jwt
     })
-  let url = "http://back.app.cortijodemazas.com/jwt"
+  const url = this.appConfig.protocol + "://" + this.appConfig.back_url + "/jwt"
   this.http.get<any>(url, { headers: headers }).subscribe( data =>
     {
       if(data!=null){

@@ -1,93 +1,82 @@
 version: "3.3"
 services:
-  # haproxy:
-  #   container_name: haproxy
-  #   build: ./haproxy/.
-  #   restart: on-failure
-  #   ports:
-  #   - "80:80"
-  #   - "443:443"
-  #   - "9000:9000"
-  #   volumes:
-  #   - /etc/letsencrypt/haproxy.pem:/etc/letsencrypt/haproxy.pem:ro
   mongo:
     image: mongo
     container_name: mongo
     restart: on-failure
     ports:
-    - "27017:27017"
+      - "27017:27017"
     networks:
-    - network
-  ## volumes:
-  ## - /media/ubuntu/db1:/data/db
+      - network
   orchestrator:
     container_name: orchestrator
     restart: on-failure
-    build: ./orchestrator/.
-  #   environment:
-  #   - TZ='Europe/London'
-  #   # - TELEGRAM_ID=${TELEGRAM_ID}
-  #   # - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+    build: ../orchestrator/.
     ports:
-    - "11000:3000"
+      - "11000:3000"
     networks:
-    - network
+      - network
     volumes:
-  #   - /etc/localtime:/etc/localtime:ro
-    - /Users/enriqueramosmunoz/github/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
-    - /Users/enriqueramosmunoz/github/cortijo/orchestrator/config.yaml:/root/node/config.yaml
+      - /Users/enriqueramosmunoz/github/cortijo/local-deployment/config_url.yaml:/root/node/config_url.yaml:ro
+      - /Users/enriqueramosmunoz/github/cortijo/local-deployment/config.yaml:/root/node/config.yaml
     depends_on:
-    - mongo
-    # - auth
-  # ws:
-  #   container_name: ws
-  #   restart: on-failure
-  #   build: ./ws/.
-  #   ports:
-  #   - "16000:3000"
-  #   - "16001:3001"
-  #   volumes:
-  #   - /home/ubuntu/cortijo/deployment/config_url.yaml:/root/scr/config_url.yaml:ro
-  #   depends_on:
-  #   - mongo
-  #   - cortijo
+      - mongo
   auth:
     container_name: auth
     restart: on-failure
-    build: ./auth/.
-    # deploy:
-    #   replicas: 1
+    build: ../auth/.
     ports:
-    - "12000:3000"
+      - "12000:3000"
     networks:
-    - network
+      - network
     volumes:
-    - /Users/enriqueramosmunoz/github/cortijo/deployment/config_url.yaml:/root/node/config_url.yaml:ro
-  #   depends_on:
-  #   - mongo
-  # socket:
-  #   container_name: socket
-  #   restart: always
-  #   build: ./socket/.
+      - /Users/enriqueramosmunoz/github/cortijo/local-deployment/config_url.yaml:/root/node/config_url.yaml:ro
+  # front1:
+  #   container_name: front1
+  #   restart: on-failure
+  #   build: ../frontAngTest/.
   #   ports:
-  #   - "13000:3000"
-  #   networks:
-  #   - network
+  #   - "80:4200"
+  # front2:
+  #   container_name: front2
+  #   restart: on-failure
+  #   build: ../frontAng/.
+  #   ports:
+  #   - "81:80"
+  device-mock:
+   container_name: device-mock
+   restart: on-failure
+   build: ../mock/deviceMock/.
+   environment:
+     - mock_name=device-mock
+     - mock_port=8104
+     - local_ip=192.168.1.23
+   ports:
+     - "8104:3000"
+   networks:
+     - network
+  socket:
+   container_name: socket
+   restart: always
+   build: ../socket/.
+   ports:
+     - "13000:3000"
+   expose:
+     - "3000"
+   networks:
+     - network
+  ws:
+    container_name: ws
+    restart: on-failure
+    build: ../ws/.
+    ports:
+      - "16000:3000"
+      - "16001:3001"
+    volumes:
+      - /Users/enriqueramosmunoz/github/cortijo/local-deployment/config_url.yaml:/root/scr/config_url.yaml:ro
   #   depends_on:
   #   - mongo
   #   - cortijo
-  front1:
-    container_name: front1
-    restart: always
-    build: ./frontAngTest/.
-    ports:
-    - "10000:4200"
-  front2:
-    container_name: front2
-    restart: always
-    build: ./frontAng/.
-    ports:
-    - "10001:80"
   # git:
   #   container_name: git
   #   restart: on-failure
@@ -201,18 +190,7 @@ services:
   #    - "8103:3000"
   #  networks:
   #    - network
-  # mock4:
-  #  container_name: mock4
-  #  restart: always
-  #  build: ./mock/deviceMock/.
-  #  environment:
-  #    - mock_name=mock4
-  #    - mock_port=8104
-  #    - local_ip=192.168.1.53
-  #  ports:
-  #    - "8104:3000"
-  #  networks:
-  #    - network
 
 networks:
   network:
+    driver: bridge

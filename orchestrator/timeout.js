@@ -50,7 +50,6 @@ async function getSensor(){
         var name = sensorList[index].name
         try{
             data = await mySensor.getData(tenant, name)
-            // console.log(data);
             dataType = data.type
             dataContent = data.content
             safeData(dataType, tenant, name, dataContent)

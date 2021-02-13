@@ -4,6 +4,7 @@ var io = require('socket.io')(http);
 //
 app.get('/*', (req, res) => {
   console.log('express connection');
+  res.send('express connection')
 });
 //
 io.on('connection', socket => {
@@ -35,4 +36,4 @@ io.on('connection', socket => {
 
 });
 //
-http.listen(3000, () => console.log('listening on http://localhost:3000/'));
+http.listen(3000, () => console.log('listening on port 3000'));
