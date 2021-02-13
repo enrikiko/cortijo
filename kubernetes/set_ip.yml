@@ -11,7 +11,7 @@ spec:
         spec:
           containers:
           - name: route53
-            image: enriqueramosmunoz/route53:rasp2
+            image: enriqueramosmunoz/setip:rasp
             volumeMounts:
             - name: config
               mountPath: /root/node/set-ip-config.sh

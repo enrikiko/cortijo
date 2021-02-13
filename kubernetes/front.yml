@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: front
-        image: enriqueramosmunoz/front2:rasp2
+        image: enriqueramosmunoz/front2:rasp
         ports:
         - containerPort: 80
         volumeMounts:
