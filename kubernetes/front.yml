@@ -9,7 +9,7 @@ spec:
   type: LoadBalancer
   ports:
   - port: 5000
-    targetPort: 4200
+    targetPort: 80
     protocol: TCP
     name: front-svc-a
   selector:
@@ -26,7 +26,7 @@ spec:
   selector:
     matchLabels:
       app: front-deployment
-  replicas: 2 # indica al controlador que ejecute 2 pods
+  replicas: 1 # indica al controlador que ejecute 2 pods
   template:
     metadata:
       labels:
@@ -34,9 +34,9 @@ spec:
     spec:
       containers:
       - name: front
-        image: enriqueramosmunoz/front:rasp2
+        image: enriqueramosmunoz/front2:rasp2
         ports:
-        - containerPort: 4200
+        - containerPort: 80
         volumeMounts:
         - name: config
           mountPath: /root/node/config_url.yaml

@@ -1,4 +1,4 @@
-git pull
+sudo git pull
 
 # docker build -t enriqueramosmunoz/route53:rasp2 ../route53/.
 # docker push enriqueramosmunoz/route53:rasp2
