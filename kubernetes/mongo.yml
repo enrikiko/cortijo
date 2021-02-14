@@ -82,7 +82,7 @@ metadata:
   namespace: cortijo
 spec:
   rules:
-  - host: mongo.internal
+  - host: mongo.cortijo.internal
     http:
       paths:
       - backend:

@@ -55,13 +55,13 @@ metadata:
   namespace: cortijo
 spec:
   rules:
-  - host: ws.192.168.1.61.nip.io
+  - host: ws.cortijo.internal
     http:
       paths:
       - backend:
           serviceName: ws-svc-a
           servicePort: 7000
         path: /
-  tls:
-  - hosts:
-    - ws.192.168.1.61.nip.io
+  # tls:
+  # - hosts:
+  #   - ws.cortijo.internal

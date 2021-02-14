@@ -55,7 +55,7 @@ metadata:
   namespace: cortijo
 spec:
   rules:
-  - host: auth.internal
+  - host: auth.cortijo.internal
     http:
       paths:
       - backend:
