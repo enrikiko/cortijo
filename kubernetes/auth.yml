@@ -55,13 +55,13 @@ metadata:
   namespace: cortijo
 spec:
   rules:
-  - host: auth.192.168.1.61.nip.io
+  - host: auth.internal
     http:
       paths:
       - backend:
           serviceName: auth-svc-a
           servicePort: 3000
         path: /
-  tls:
-  - hosts:
-    - auth.192.168.1.61.nip.io
+  # tls:
+  # - hosts:
+  #   - auth.192.168.1.61.nip.io
