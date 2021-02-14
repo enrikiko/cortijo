@@ -55,7 +55,7 @@ metadata:
   namespace: cortijo
 spec:
   rules:
-  - host: ws.cortijo.internal
+  - host: ws.192.168.1.53.nip.io
     http:
       paths:
       - backend:

@@ -55,7 +55,7 @@ metadata:
   namespace: cortijo
 spec:
   rules:
-  - host: auth.cortijo.internal
+  - host: auth.192.168.1.53.nip.io
     http:
       paths:
       - backend:
