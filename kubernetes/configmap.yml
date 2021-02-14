@@ -5,10 +5,10 @@ metadata:
   namespace: cortijo
 data:
   config.yaml: |
-    db_url: mongodb://mongo.internal/cortijo
+    db_url: mongodb://mongo.cortijo.internal/cortijo
     socket_url: http://socket.cortijodemazas.com
     websocket_url: http://ws.cortijodemazas.com
-    auth_url: http://auth.internal
+    auth_url: http://auth.cortijo.internal
     set_Router53: https://t5018nbtn5.execute-api.eu-central-1.amazonaws.com/final/DNS_setting_lambda
     privatekey: -----BEGIN OPENSSH PRIVATE KEY-----\
       b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABFwAAAAdzc2gtcn\
