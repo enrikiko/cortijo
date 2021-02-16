@@ -29,7 +29,7 @@ import {JsonAppConfigService} from './set_configuration/json-app-config.service'
 import {AppConfiguration} from './set_configuration/app-configuration';
 
 
-const config: SocketIoConfig = { url: 'http://socket.cortijodemazas.com', options: {} };
+const config: SocketIoConfig = { url: 'http://192.168.1.23:13000', options: {} };
 
 export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   return () => {

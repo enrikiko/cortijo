@@ -1,5 +1,5 @@
 {
-  "back_url": "back.app.cortijodemazas.com",
-  "socket_url":"socket.cortijodemazas.com",
+  "back_url": "192.168.1.23:11000",
+  "socket_url":"192.168.1.23:13000",
   "protocol": "http"
 }

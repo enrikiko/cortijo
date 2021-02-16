@@ -1,6 +1,6 @@
 ---
   db_url: mongodb://192.168.1.23:27017/cortijo
-  socket_url: http://socket.cortijodemazas.com
+  socket_url: http://192.168.1.23:13000
   websocket_url: http://192.168.1.23:16001
   auth_url: http://192.168.1.23:12000
   set_Router53: https://t5018nbtn5.execute-api.eu-central-1.amazonaws.com/final/DNS_setting_lambda

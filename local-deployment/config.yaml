@@ -1,6 +1,6 @@
 ---
   log: "debug"
-  timeout_check:  60000
+  timeout_check: "600000"
   timeout_sensor: 600000
   times_before_block: 10
   device_status_timeout: 2500

@@ -1,5 +1,5 @@
 const superagent = require('superagent');
-const req = require('request');
+//const req = require('request');
 const myTemperature = require('./temperature');
 const myDevicesChanges = require('./devicesChanges');
 const myDevice = require('./devices');
